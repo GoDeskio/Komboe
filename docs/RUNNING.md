@@ -45,7 +45,10 @@ Family console (admin seats/members/split-off approval, no vault read): `https:/
 ```sh
 bash tests/playwright/run.sh   # fresh fixtures, then node e2e.mjs -> tests/playwright/results.json
 ```
-Currently 8/9 steps pass; `extension-loads` fails because branded Chrome ignores `--load-extension`.
+Env: `KOMBOE_ADMIN_TOKEN` (server admin token) and `KOMBOE_EXT_DIR` (unpacked `komboe-chrome-mv3.zip`). Currently 17/17
+steps pass: web vault login/items/sharing, the vault health reports (weak, reused, unsecured, inactive 2FA, exposed), an
+encrypted export that the test decrypts on its own, and the browser extension: it loads, logs in through the
+"Choose your Komboe server" -> self-hosted picker (no Bitwarden cloud regions offered), and autofills from the inline menu.
 
 ## CLI (local testing only)
 ```sh
@@ -61,8 +64,19 @@ Build: `NODE_ENV=production npx webpack` in `apps/cli`, then `npx pkg . --target
 CLI users can move their old `Bitwarden CLI` dir to the new name, or set `BITWARDENCLI_APPDATA_DIR` to keep using it.
 The env var names (`BITWARDENCLI_*`, `BW_SESSION`) are unchanged for script compatibility.
 
+## Desktop (Electron, Linux)
+apt is broken on this box, so native deps (pkg-config, dbus, libsecret, glib) come from a micromamba env:
+```sh
+bash desktop/desktop-build.sh   # desktop_native (Rust) -> npm run build -> electron-builder AppImage + deb
+```
+Outputs `Komboe-<ver>-x86_64.AppImage` and a `.deb`; the app id is `io.komboe.desktop` and the executable is `komboe`. Launch it with
+`./komboe --no-sandbox` (no user namespaces here). Smoke check: it launches on X11. The current artifacts predate two fixes in rebrand step 7,
+the window title (`<title>Komboe</title>`) and the deb package name (`komboe`), so rebuild to pick them up (needs ~3 GB free disk).
+`tests/playwright/desktop.mjs` can't attach yet, because the release Electron fuses turn off the inspector Playwright needs.
+
 ## Not buildable on this box
-- Desktop (Electron): `desktop_native` needs pkg-config + libdbus/libsecret dev headers, which aren't installed (apt is broken here).
+- Windows desktop: electron-builder needs wine plus mono/NSIS, which can't be installed here without apt. Build on a Windows CI runner instead.
+- iOS, Safari and macOS desktop: need macOS.
 
 ## Android debug APK (no apt needed)
 Portable toolchain in `/workspace/tools`: Temurin JDK 21 (upstream `jvmTarget = 21`; JDK 17 is also there but too old) and

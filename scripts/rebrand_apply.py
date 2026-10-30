@@ -127,6 +127,7 @@ for p in [f"{C}/apps/web/src/app/layouts/frontend-layout.component.html", f"{C}/
 # 6. Phase C branding gaps: no Bitwarden cloud regions in the server picker, violet autofill icons, Android label
 ENV = f"{C}/libs/angular/src/auth/environment-selector/environment-selector.component.html"
 def envsel(t):
+    if 'Komboe: Bitwarden-hosted regions' in t: return t
     t = t.replace('      <button\n        *ngFor="let region of availableRegions$ | async; let i = index"',
                   '      <!-- Komboe: Bitwarden-hosted regions are not offered; Komboe is self-hosted only -->\n'
                   '      <ng-container *ngIf="false">\n      <button\n        *ngFor="let region of availableRegions$ | async; let i = index"')
@@ -143,6 +144,17 @@ for p in [f"{C}/apps/browser/src/_locales/en/messages.json", f"{C}/apps/web/src/
 for p in glob.glob(f"{C}/apps/browser/src/autofill/**/*", recursive=True):
     if os.path.isfile(p) and re.search(r"\.(ts|scss|css|html|snap)$", p) and ".stories." not in p:
         rw(p, lambda t: re.sub(r"#175ddc", "#6D4AFF", t, flags=re.I))
+
+# 7. Desktop (Electron) identity: own app id and launcher name (no Bitwarden desktop id collisions)
+def ebuilder(t):
+    d = json.loads(t); d["appId"] = "io.komboe.desktop"
+    d.setdefault("linux", {}).setdefault("desktop", {}).setdefault("entry", {})["Name"] = "Komboe"
+    d["linux"]["executableName"] = "komboe"
+    d.setdefault("deb", {})["packageName"] = "komboe"
+    d["linux"]["synopsis"] = "Komboe: open-source, zero-knowledge password manager."
+    return json.dumps(d, indent=2) + "\n"
+rw(f"{C}/apps/desktop/electron-builder.json", ebuilder)
+rw(f"{C}/apps/desktop/src/index.html", lambda t: t.replace("<title>Bitwarden</title>", "<title>Komboe</title>"))
 
 print(f"rebrand: {len(changed)} files changed")
 if "-v" in sys.argv: print("\n".join(changed))

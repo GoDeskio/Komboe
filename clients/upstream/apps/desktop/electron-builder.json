@@ -4,9 +4,9 @@
     "name": "bitwarden"
   },
   "productName": "Komboe",
-  "appId": "com.bitwarden.desktop",
+  "appId": "io.komboe.desktop",
   "buildDependenciesFromSource": true,
-  "copyright": "Copyright © 2015-2026 Bitwarden Inc.",
+  "copyright": "Copyright \u00a9 2015-2026 Bitwarden Inc.",
   "directories": {
     "buildResources": "resources",
     "output": "dist",
@@ -90,12 +90,22 @@
       "Contents/PlugIns/autofill-extension.appex",
       "Frameworks/Electron Framework.framework/(Electron Framework|Libraries|Resources|Versions/Current)/.*"
     ],
-    "target": ["dmg", "zip"]
+    "target": [
+      "dmg",
+      "zip"
+    ]
   },
   "win": {
     "electronUpdaterCompatibility": ">=0.0.1",
-    "target": ["portable", "nsis-web", "appx"],
-    "signExts": [".dll", ".node"],
+    "target": [
+      "portable",
+      "nsis-web",
+      "appx"
+    ],
+    "signExts": [
+      ".dll",
+      ".node"
+    ],
     "signtoolOptions": {
       "sign": "./sign.js",
       "publisherName": "Bitwarden Inc."
@@ -131,7 +141,7 @@
   },
   "linux": {
     "category": "Utility",
-    "synopsis": "A secure and free password manager for all of your devices.",
+    "synopsis": "Komboe: open-source, zero-knowledge password manager.",
     "extraFiles": [
       {
         "from": "desktop_native/dist/desktop_proxy.${platform}-${arch}",
@@ -142,14 +152,20 @@
         "to": "libprocess_isolation.so"
       }
     ],
-    "target": ["deb", "rpm", "AppImage", "snap"],
+    "target": [
+      "deb",
+      "rpm",
+      "AppImage",
+      "snap"
+    ],
     "desktop": {
       "entry": {
-        "Name": "Bitwarden",
+        "Name": "Komboe",
         "Type": "Application",
         "GenericName": "Password Manager"
       }
-    }
+    },
+    "executableName": "komboe"
   },
   "dmg": {
     "icon": "dmg.icns",
@@ -274,14 +290,23 @@
   },
   "deb": {
     "artifactName": "${productName}-${version}-${arch}.${ext}",
-    "depends": ["libnotify4", "libxtst6", "libnss3", "libxss1"]
+    "depends": [
+      "libnotify4",
+      "libxtst6",
+      "libnss3",
+      "libxss1"
+    ],
+    "packageName": "komboe"
   },
   "appImage": {
     "artifactName": "${productName}-${version}-${arch}.${ext}"
   },
   "rpm": {
     "artifactName": "${productName}-${version}-${arch}.${ext}",
-    "fpm": ["--rpm-rpmbuild-define", "_build_id_links none"]
+    "fpm": [
+      "--rpm-rpmbuild-define",
+      "_build_id_links none"
+    ]
   },
   "snap": {
     "summary": "Bitwarden is a secure and free password manager for all of your devices.",
@@ -313,13 +338,17 @@
       "u2f-devices",
       "hardware-observe"
     ],
-    "stagePackages": ["default"],
+    "stagePackages": [
+      "default"
+    ],
     "allowNativeWayland": true
   },
   "protocols": [
     {
       "name": "Komboe",
-      "schemes": ["bitwarden"]
+      "schemes": [
+        "bitwarden"
+      ]
     }
   ]
 }

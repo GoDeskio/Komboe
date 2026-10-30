@@ -1,12 +1,12 @@
 {
   "appLogoLabel": {
-    "message": "Bitwarden logo"
+    "message": "Komboe logo"
   },
   "bitwarden": {
-    "message": "Bitwarden"
+    "message": "Komboe"
   },
   "bitwardenBeta": {
-    "message": "Bitwarden Beta",
+    "message": "Komboe Beta",
     "description": "Product name for the beta channel; shown in the tray tooltip and About dialog"
   },
   "filters": {
@@ -703,10 +703,10 @@
     "message": "SSH агентин иштетүү"
   },
   "enableSshAgentDesc": {
-    "message": "SSH агентин Bitwarden коддоочу жайыңыздан түз SSH сурамдарына кол коюу үчүн иштетиңиз."
+    "message": "SSH агентин Komboe коддоочу жайыңыздан түз SSH сурамдарына кол коюу үчүн иштетиңиз."
   },
   "enableSshAgentHelp": {
-    "message": "SSH агенти иштеп чыгуучуларга багытталган кызмат, ал сизге SSH сурамдарына Bitwarden коддоочу жайыңыздан түз кол коюуга мүмкүндүк берет."
+    "message": "SSH агенти иштеп чыгуучуларга багытталган кызмат, ал сизге SSH сурамдарына Komboe коддоочу жайыңыздан түз кол коюуга мүмкүндүк берет."
   },
   "sshAgentPromptBehavior": {
     "message": "SSH агентин колдонууда уруксат сураш"
@@ -736,7 +736,7 @@
     "message": "Браузер менен синхрондоштуруу"
   },
   "acquireCookieSpeedbumpContent": {
-    "message": "$VAULTURL$ туташуу үчүн демейки браузериңизди Bitwarden колдонмосу менен синхрондоштуруу керек. Браузериңиз синхрондоштурулгандан кийин сиз бул колдонмого кайра багытталасыз.",
+    "message": "$VAULTURL$ туташуу үчүн демейки браузериңизди Komboe колдонмосу менен синхрондоштуруу керек. Браузериңиз синхрондоштурулгандан кийин сиз бул колдонмого кайра багытталасыз.",
     "description": "A speedbump message (dialog) shown when the user needs to sync with the browser to acquire an SSO cookie.",
     "placeholders": {
       "vaultUrl": {
@@ -758,10 +758,10 @@
     "message": "Дешифрлөө катасы"
   },
   "couldNotDecryptVaultItem": {
-    "message": "Bitwarden could not decrypt the vault item listed below. Contact Bitwarden Customer Support and provide the item ID below to see if it can be recovered."
+    "message": "Komboe could not decrypt the vault item listed below. Contact Komboe Customer Support and provide the item ID below to see if it can be recovered."
   },
   "couldNotDecryptVaultItems": {
-    "message": "Bitwarden could not decrypt the vault items listed below. Contact Bitwarden Customer Support and provide the item IDs below to see if they can be recovered."
+    "message": "Komboe could not decrypt the vault items listed below. Contact Komboe Customer Support and provide the item IDs below to see if they can be recovered."
   },
   "itemId": {
     "message": "Item ID",
@@ -1465,7 +1465,7 @@
     "message": "Аккаунт түзүү"
   },
   "newToBitwarden": {
-    "message": "Bitwarden менен жаңы тааныштыңызбы?"
+    "message": "Komboe менен жаңы тааныштыңызбы?"
   },
   "setAStrongPassword": {
     "message": "Күчтүү сырсөз орнотуу"
@@ -1477,7 +1477,7 @@
     "message": "Кирүү"
   },
   "loginPageEmailEntryScreenTitle": {
-    "message": "Bitwarden кирүү"
+    "message": "Komboe кирүү"
   },
   "enterTheCodeSentToYourEmail": {
     "message": "Электрондук почтаңызга жөнөтүлгөн кодду киргизиңиз"
@@ -1635,7 +1635,7 @@
     "message": "Күтүлбөгөн ката"
   },
   "closeThisBitwardenWindow": {
-    "message": "Bitwarden терезесин жаап, кайра аракет кылыңыз."
+    "message": "Komboe терезесин жаап, кайра аракет кылыңыз."
   },
   "itemInformation": {
     "message": "Элементтин маалыматы"
@@ -1709,7 +1709,7 @@
     "message": "Аутентификатор колдонмосу"
   },
   "authenticatorAppDescV2": {
-    "message": "Bitwarden Authenticator сыяктуу аутентификатор колдонмосу тарабынан түзүлгөн кодду киргизиңиз.",
+    "message": "Komboe Authenticator сыяктуу аутентификатор колдонмосу тарабынан түзүлгөн кодду киргизиңиз.",
     "description": "'Bitwarden Authenticator' is a product name and should not be translated."
   },
   "yubiKeyTitleV2": {
@@ -1766,7 +1766,7 @@
     "message": "Өз сервериндеги чөйрө"
   },
   "selfHostedBaseUrlHint": {
-    "message": "Өз сервериңиздеги Bitwarden орнотуунун базалык URL дарегин көрсөтүңүз. Мисалы: https://bitwarden.company.com"
+    "message": "Өз сервериңиздеги Komboe орнотуунун базалык URL дарегин көрсөтүңүз. Мисалы: https://komboe.company.com"
   },
   "selfHostedCustomEnvHeader": {
     "message": "Өркүндөтүлгөн конфигурация үчүн, ар бир кызматтын базалык URL дарегин өзүнчө көрсөтө аласыз."
@@ -1857,7 +1857,7 @@
     "message": "Аккаунтуңуздун шифрлөө ачкычын ротациялагыңыз келерине ишенесизби?"
   },
   "updateEncryptionKeyWarning": {
-    "message": "Шифрлөө ачкычын жаңырткандан кийин, сиз учурда колдонуп жаткан бардык Bitwarden колдонмолорунан (мисалы, мобилдик колдонмо же браузер кеңейтүүлөрү) чыгып, кайра киришиңиз керек. Чыгып кайра кирбөө (жаңы шифрлөө ачкычын жүктөп алуу) маалыматтардын бузулушуна алып келиши мүмкүн. Биз сизди автоматтык түрдө чыгарууга аракет кылабыз, бирок бул кечигиши мүмкүн."
+    "message": "Шифрлөө ачкычын жаңырткандан кийин, сиз учурда колдонуп жаткан бардык Komboe колдонмолорунан (мисалы, мобилдик колдонмо же браузер кеңейтүүлөрү) чыгып, кайра киришиңиз керек. Чыгып кайра кирбөө (жаңы шифрлөө ачкычын жүктөп алуу) маалыматтардын бузулушуна алып келиши мүмкүн. Биз сизди автоматтык түрдө чыгарууга аракет кылабыз, бирок бул кечигиши мүмкүн."
   },
   "updateEncryptionKeyAccountExportWarning": {
     "message": "Сиз сактаган аккаунт чектелген экспорттордун баары жараксыз болуп калат."
@@ -1953,7 +1953,7 @@
     "message": "Веб-колдонмого улантуу?"
   },
   "changeMasterPasswordOnWebConfirmation": {
-    "message": "Башкы сырсөздү Bitwarden веб-колдонмосунда өзгөртө аласыз."
+    "message": "Башкы сырсөздү Komboe веб-колдонмосунда өзгөртө аласыз."
   },
   "fingerprintPhrase": {
     "message": "Манжа изинин сөз айкашы",
@@ -2022,7 +2022,7 @@
     }
   },
   "twoStepLoginConfirmation": {
-    "message": "Эки кадамдуу кирүү сиздин аккаунтуңузду коопсуз кылат, анткени кирүүнү башка түзмөк (коопсуздук ачкычы, аутентификатор колдонмосу, SMS, телефон чалуу же электрондук почта) аркылуу текшерүүнү талап кылат. Эки кадамдуу кирүүнү bitwarden.com веб-коддоочу жайында орното аласыз. Азыр веб-сайтка барууну каалайсызбы?"
+    "message": "Эки кадамдуу кирүү сиздин аккаунтуңузду коопсуз кылат, анткени кирүүнү башка түзмөк (коопсуздук ачкычы, аутентификатор колдонмосу, SMS, телефон чалуу же электрондук почта) аркылуу текшерүүнү талап кылат. Эки кадамдуу кирүүнү komboe.com веб-коддоочу жайында орното аласыз. Азыр веб-сайтка барууну каалайсызбы?"
   },
   "twoStepLogin": {
     "message": "Эки кадамдуу кирүү"
@@ -2105,19 +2105,19 @@
     "message": "Көчүрүү үчүн маалымат жок"
   },
   "runInBackground": {
-    "message": "Bitwarden'ди фондо иштетип туруу"
+    "message": "Komboe'ди фондо иштетип туруу"
   },
   "runInBackgroundDesc": {
-    "message": "Терезени жапканда Bitwarden берилмелер панелинен жеткиликтүү. SSH агенти же браузер интеграциясы колдонулганда сунушталат."
+    "message": "Терезени жапканда Komboe берилмелер панелинен жеткиликтүү. SSH агенти же браузер интеграциясы колдонулганда сунушталат."
   },
   "runInBackgroundDescMac": {
-    "message": "Терезени жапканда Bitwarden меню тилкесинде жеткиликтүү. SSH агенти же браузер интеграциясы колдонулганда сунушталат."
+    "message": "Терезени жапканда Komboe меню тилкесинде жеткиликтүү. SSH агенти же браузер интеграциясы колдонулганда сунушталат."
   },
   "openAtLogin": {
     "message": "Кирүүдө автоматтык түрдө баштоо"
   },
   "openAtLoginDesc": {
-    "message": "Bitwarden иш такта колдонмосун кирүүдө автоматтык түрдө баштоо."
+    "message": "Komboe иш такта колдонмосун кирүүдө автоматтык түрдө баштоо."
   },
   "language": {
     "message": "Тил"
@@ -2129,7 +2129,7 @@
     "message": "Passkey provider"
   },
   "passkeyProviderDesc": {
-    "message": "Use Bitwarden to save and sign in with passkeys in other apps."
+    "message": "Use Komboe to save and sign in with passkeys in other apps."
   },
   "turnedOn": {
     "message": "On"
@@ -2259,7 +2259,7 @@
     "message": "Мүчөлүктү башкаруу"
   },
   "premiumManageAlert": {
-    "message": "Мүчөлүгүңүздү bitwarden.com веб-коддоочу жайында башкара аласыз. Азыр веб-сайтка барууну каалайсызбы?"
+    "message": "Мүчөлүгүңүздү komboe.com веб-коддоочу жайында башкара аласыз. Азыр веб-сайтка барууну каалайсызбы?"
   },
   "premiumSignUpStorage": {
     "message": "Файл тиркемелер үчүн 1 ГБ шифрленген сактагыч."
@@ -2268,7 +2268,7 @@
     "message": "Premium сатып алуу"
   },
   "premiumPurchaseAlertV2": {
-    "message": "Premium'ди Bitwarden веб-колдонмосундагы аккаунт параметрлеринен сатып ала аласыз."
+    "message": "Premium'ди Komboe веб-колдонмосундагы аккаунт параметрлеринен сатып ала аласыз."
   },
   "month": {
     "message": "ай"
@@ -2514,13 +2514,13 @@
     "description": "Bring all windows to front (foreground)"
   },
   "aboutBitwarden": {
-    "message": "Bitwarden жөнүндө"
+    "message": "Komboe жөнүндө"
   },
   "services": {
     "message": "Кызматтар"
   },
   "hideBitwarden": {
-    "message": "Bitwarden жашыруу"
+    "message": "Komboe жашыруу"
   },
   "hideOthers": {
     "message": "Башкаларды жашыруу"
@@ -2529,7 +2529,7 @@
     "message": "Баарын көрсөтүү"
   },
   "quitBitwarden": {
-    "message": "Bitwarden чыгуу"
+    "message": "Komboe чыгуу"
   },
   "valueCopied": {
     "message": "$VALUE$ көчүрүлдү",
@@ -2675,13 +2675,13 @@
     "message": "Бул сырсөз файлды экспорттоо жана импорттоо үчүн колдонулат"
   },
   "accountRestrictedOptionDescription": {
-    "message": "Экспортту шифрлөө жана импортту учурдагы Bitwarden аккаунтуна гана чектөө үчүн аккаунтуңуздун колдонуучу атынан жана башкы сырсөздөн алынган аккаунт шифрлөө ачкычын колдонуңуз."
+    "message": "Экспортту шифрлөө жана импортту учурдагы Komboe аккаунтуна гана чектөө үчүн аккаунтуңуздун колдонуучу атынан жана башкы сырсөздөн алынган аккаунт шифрлөө ачкычын колдонуңуз."
   },
   "passwordProtected": {
     "message": "Сырсөз менен корголгон"
   },
   "passwordProtectedOptionDescription": {
-    "message": "Экспортту шифрлөө жана аны дешифрлөө үчүн сырсөздү колдонуп, каалаган Bitwarden аккаунтуна импорттоо үчүн файл сырсөзүн орнотуңуз."
+    "message": "Экспортту шифрлөө жана аны дешифрлөө үчүн сырсөздү колдонуп, каалаган Komboe аккаунтуна импорттоо үчүн файл сырсөзүн орнотуңуз."
   },
   "exportTypeHeading": {
     "message": "Экспорттоо түрү"
@@ -2712,7 +2712,7 @@
     "message": "Бул экспорт маалыматыңызды аккаунтуңуздун шифрлөө ачкычы менен шифрлейт. Эгер сиз аккаунтуңуздун шифрлөө ачкычын ротацияласаңыз, кайра экспорттоо керек, анткени бул экспорт файлын дешифрлей албай каласыз."
   },
   "encExportAccountWarningDesc": {
-    "message": "Аккаунт шифрлөө ачкычтары ар бир Bitwarden колдонуучу аккаунтуна уникалдуу, ошондуктан шифрленген экспортту башка аккаунтка импорттой албайсыз."
+    "message": "Аккаунт шифрлөө ачкычтары ар бир Komboe колдонуучу аккаунтуна уникалдуу, ошондуктан шифрленген экспортту башка аккаунтка импорттой албайсыз."
   },
   "noOrganizationsList": {
     "message": "Сиз эч бир уюмга кирбейсиз. Уюмдар элементтерди башка колдонуучулар менен коопсуз бөлүшүүгө мүмкүндүк берет."
@@ -2742,7 +2742,7 @@
     "message": "Алсыз башкы сырсөз"
   },
   "weakMasterPasswordDesc": {
-    "message": "Сиз тандаган башкы сырсөз алсыз. Bitwarden аккаунтуңузду туура коргоо үчүн күчтүү башкы сырсөздү (же сырсөз айкашын) колдонушуңуз керек. Бул башкы сырсөздү колдонгуңуз келерине ишенесизби?"
+    "message": "Сиз тандаган башкы сырсөз алсыз. Komboe аккаунтуңузду туура коргоо үчүн күчтүү башкы сырсөздү (же сырсөз айкашын) колдонушуңуз керек. Бул башкы сырсөздү колдонгуңуз келерине ишенесизби?"
   },
   "pin": {
     "message": "PIN",
@@ -2752,7 +2752,7 @@
     "message": "PIN менен ачуу"
   },
   "setYourPinCode": {
-    "message": "Bitwarden ачуу үчүн PIN кодун орнотуңуз. Эгер сиз колдонмодон толук чыксаңыз, PIN параметрлери баштапкы абалга келет."
+    "message": "Komboe ачуу үчүн PIN кодун орнотуңуз. Эгер сиз колдонмодон толук чыксаңыз, PIN параметрлери баштапкы абалга келет."
   },
   "pinRequired": {
     "message": "PIN коду талап кылынат."
@@ -2770,7 +2770,7 @@
     "message": "Системалык аутентификация менен ачуу"
   },
   "windowsHelloConsentMessage": {
-    "message": "Bitwarden үчүн текшерүү."
+    "message": "Komboe үчүн текшерүү."
   },
   "unlockWithTouchId": {
     "message": "Touch ID менен ачуу"
@@ -2794,10 +2794,10 @@
     "message": "Колдонмо кайра ишке киргизилгенде башкы сырсөз талап кылуу"
   },
   "requireMasterPasswordOnAppRestartDesc": {
-    "message": "This setting provides an additional layer of protection by helping prevent other applications on your computer from unlocking Bitwarden."
+    "message": "This setting provides an additional layer of protection by helping prevent other applications on your computer from unlocking Komboe."
   },
   "requireMasterPasswordOnAppRestartWarning": {
-    "message": "Unchecking this means any application on your computer may unlock Bitwarden, and access all your saved passwords."
+    "message": "Unchecking this means any application on your computer may unlock Komboe, and access all your saved passwords."
   },
   "deleteAccount": {
     "message": "Аккаунтту өчүрүү"
@@ -3012,10 +3012,10 @@
     "message": "2 кадамдуу текшерүүнү үзгүлтүксүз кылуу"
   },
   "totpHelper": {
-    "message": "Bitwarden 2 кадамдуу текшерүү коддорун сактап, толтура алат. Ачкычты көчүрүп, бул талаага кыстырыңыз."
+    "message": "Komboe 2 кадамдуу текшерүү коддорун сактап, толтура алат. Ачкычты көчүрүп, бул талаага кыстырыңыз."
   },
   "totpHelperWithCapture": {
-    "message": "Bitwarden 2 кадамдуу текшерүү коддорун сактап, толтура алат. Бул веб-сайттын аутентификатор QR кодун скриншоттоо үчүн камера сөлөкөтүн тандаңыз же ачкычты көчүрүп, бул талаага кыстырыңыз."
+    "message": "Komboe 2 кадамдуу текшерүү коддорун сактап, толтура алат. Бул веб-сайттын аутентификатор QR кодун скриншоттоо үчүн камера сөлөкөтүн тандаңыз же ачкычты көчүрүп, бул талаага кыстырыңыз."
   },
   "premium": {
     "message": "Premium",
@@ -3101,7 +3101,7 @@
     "message": "Бир же бир нече уюм саясаттары башкы сырсөздүн төмөнкү талаптарга жооп беришин талап кылат:"
   },
   "receiveMarketingEmails": {
-    "message": "Bitwarden'ден жаңыртууларды кирүү кутуңузда алыңыз."
+    "message": "Komboe'ден жаңыртууларды кирүү кутуңузда алыңыз."
   },
   "unsubscribe": {
     "message": "Жазылуудан чыгуу"
@@ -3125,7 +3125,7 @@
     "message": "DuckDuckGo браузер интеграциясына уруксат берүү"
   },
   "enableDuckDuckGoBrowserIntegrationDesc": {
-    "message": "DuckDuckGo менен серептегенде Bitwarden коддоочу жайыңызды колдонуңуз."
+    "message": "DuckDuckGo менен серептегенде Komboe коддоочу жайыңызды колдонуңуз."
   },
   "enableHardwareAcceleration": {
     "message": "Аппараттык ылдамдатууну колдонуу"
@@ -3137,7 +3137,7 @@
     "message": "Бекитүү"
   },
   "verifyNativeMessagingConnectionTitle": {
-    "message": "$APPID$ Bitwarden'ге туташууну каалайт",
+    "message": "$APPID$ Komboe'ге туташууну каалайт",
     "placeholders": {
       "appid": {
         "content": "$1",
@@ -3837,11 +3837,11 @@
     }
   },
   "forwarderGeneratedBy": {
-    "message": "Bitwarden тарабынан түзүлгөн.",
+    "message": "Komboe тарабынан түзүлгөн.",
     "description": "Displayed with the address on the forwarding service's configuration screen."
   },
   "forwarderGeneratedByWithWebsite": {
-    "message": "Веб-сайт: $WEBSITE$. Bitwarden тарабынан түзүлгөн.",
+    "message": "Веб-сайт: $WEBSITE$. Komboe тарабынан түзүлгөн.",
     "description": "Displayed with the address on the forwarding service's configuration screen.",
     "placeholders": {
       "WEBSITE": {
@@ -4037,7 +4037,7 @@
     "message": "Түзмөгүңүзгө билдирүү жөнөтүлдү"
   },
   "notificationSentDevicePart1": {
-    "message": "Bitwarden'ди түзмөгүңүздө же "
+    "message": "Komboe'ди түзмөгүңүздө же "
   },
   "notificationSentDeviceAnchor": {
     "message": "веб-колдонмодо"
@@ -4058,7 +4058,7 @@
     "message": "Сурам бекитилгенде сизге билдирүү келет"
   },
   "needAnotherOption": {
-    "message": "Түзмөк менен кирүү Bitwarden колдонмосунун параметрлеринде орнотулушу керек. Башка параметр керекпи?"
+    "message": "Түзмөк менен кирүү Komboe колдонмосунун параметрлеринде орнотулушу керек. Башка параметр керекпи?"
   },
   "viewAllLogInOptions": {
     "message": "Бардык кирүү параметрлерин көрүү"
@@ -4238,7 +4238,7 @@
     }
   },
   "windowsBiometricUpdateWarning": {
-    "message": "Bitwarden биометрикалык параметрлериңизди биринчи ачууда башкы сырсөздү (же PINди) талап кылуу үчүн жаңыртууну сунуштайт. Параметрлериңизди азыр жаңырткыңыз келеби?"
+    "message": "Komboe биометрикалык параметрлериңизди биринчи ачууда башкы сырсөздү (же PINди) талап кылуу үчүн жаңыртууну сунуштайт. Параметрлериңизди азыр жаңырткыңыз келеби?"
   },
   "windowsBiometricUpdateWarningTitle": {
     "message": "Сунушталган параметрлерди жаңыртуу"
@@ -4323,7 +4323,7 @@
     "message": "Түзмөк деген эмне?"
   },
   "aDeviceIs": {
-    "message": "Түзмөк – бул сиз кирген Bitwarden колдонмосунун уникалдуу орнотуусу. Колдонмону кайра орнотуу, колдонмо маалыматтарын же кукилерди тазалоо түзмөктүн бир нече жолу пайда болушуна алып келиши мүмкүн."
+    "message": "Түзмөк – бул сиз кирген Komboe колдонмосунун уникалдуу орнотуусу. Колдонмону кайра орнотуу, колдонмо маалыматтарын же кукилерди тазалоо түзмөктүн бир нече жолу пайда болушуна алып келиши мүмкүн."
   },
   "deviceListDescriptionTemp": {
     "message": "Аккаунтуңуз төмөнкү түзмөктөрдүн ар бирине кирген."
@@ -4885,7 +4885,7 @@
     "message": "Secure by design"
   },
   "importDataSecureByDesignBody": {
-    "message": "End-to-end encrypted handoff. Bitwarden never sees your $VENDOR$ login details.",
+    "message": "End-to-end encrypted handoff. Komboe never sees your $VENDOR$ login details.",
     "placeholders": {
       "vendor": {
         "content": "$1",
@@ -5036,7 +5036,7 @@
     "description": "Followed by a literal filename (my_passwords.json) rendered as code."
   },
   "importGnomeInstructionsFileHere": {
-    "message": "file here to Bitwarden.",
+    "message": "file here to Komboe.",
     "description": "Follows the my_passwords.json filename."
   },
   "importPasswordagentInstructions": {
@@ -5539,7 +5539,7 @@
     "description": "Label indicating the most common import formats"
   },
   "uriMatchDefaultStrategyHint": {
-    "message": "URI дал келүүнү аныктоо – Bitwarden автотолтуруу сунуштарын кантип аныктайт.",
+    "message": "URI дал келүүнү аныктоо – Komboe автотолтуруу сунуштарын кантип аныктайт.",
     "description": "Explains to the user that URI match detection determines how Bitwarden suggests autofill options, and clarifies that this default strategy applies when no specific match detection is set for a login item."
   },
   "regExAdvancedOptionWarning": {
@@ -5578,7 +5578,7 @@
     "message": "Диагностикалык отчетту жүктөп алып, аны төмөнкү менен бөлүшүңүз"
   },
   "bitwardenSupport": {
-    "message": "Bitwarden колдоо",
+    "message": "Komboe колдоо",
     "description": "Link text following the troubleshooting description sentence. 'Bitwarden' should not be translated."
   },
   "download": {
@@ -5681,7 +5681,7 @@
     "message": "Системалык файлдардын туура эмес конфигурациясына байланыштуу биометрикалык ачуу мүмкүн эмес."
   },
   "biometricsStatusHelptextNotEnabledLocally": {
-    "message": "Bitwarden иш такта колдонмосунда $EMAIL$ үчүн иштетилбегендиктен биометрикалык ачуу мүмкүн эмес.",
+    "message": "Komboe иш такта колдонмосунда $EMAIL$ үчүн иштетилбегендиктен биометрикалык ачуу мүмкүн эмес.",
     "placeholders": {
       "email": {
         "content": "$1",
@@ -5768,7 +5768,7 @@
     "message": "Эки кадамдуу кирүүнү орнотуу"
   },
   "newDeviceVerificationNoticeContentPage1": {
-    "message": "Bitwarden 2025-жылдын февраль айынан баштап жаңы түзмөктөрдөн кирүүнү текшерүү үчүн аккаунт электрондук почтаңызга код жөнөтөт."
+    "message": "Komboe 2025-жылдын февраль айынан баштап жаңы түзмөктөрдөн кирүүнү текшерүү үчүн аккаунт электрондук почтаңызга код жөнөтөт."
   },
   "newDeviceVerificationNoticeContentPage2": {
     "message": "Аккаунтуңузду коргоонун альтернативдүү жолу катары эки кадамдуу кирүүнү орното аласыз же электрондук почтаңызды кире ала турган дарекке өзгөртө аласыз."
@@ -5848,7 +5848,7 @@
     "message": "No passkeys found for this application."
   },
   "passkeyNotAllowedForBitwardenVault": {
-    "message": "Passkeys for $DOMAIN$ can't be saved or used in Bitwarden.",
+    "message": "Passkeys for $DOMAIN$ can't be saved or used in Komboe.",
     "placeholders": {
       "domain": {
         "content": "$1",
@@ -5857,7 +5857,7 @@
     }
   },
   "passkeyNotAllowedForBitwardenVaultDesc": {
-    "message": "Storing the passkey for your Bitwarden account in your vault could lock you out of your account."
+    "message": "Storing the passkey for your Komboe account in your vault could lock you out of your account."
   },
   "closeThisWindow": {
     "message": "Бул терезени жабуу"
@@ -5866,7 +5866,7 @@
     "message": "Экранды кармоого уруксат берүү"
   },
   "allowScreenshotsDesc": {
-    "message": "Bitwarden иш такта колдонмосун скриншоттордо кармоого жана алыскы иш такта сессияларында көрүүгө уруксат берүү. Бул өчүрүлсө, кээ бир тышкы дисплейлерде кирүү мүмкүн эмес болот."
+    "message": "Komboe иш такта колдонмосун скриншоттордо кармоого жана алыскы иш такта сессияларында көрүүгө уруксат берүү. Бул өчүрүлсө, кээ бир тышкы дисплейлерде кирүү мүмкүн эмес болот."
   },
   "confirmWindowStillVisibleTitle": {
     "message": "Терезенин көрүнүп турганын ырастаңыз"
@@ -6003,7 +6003,7 @@
     "message": "Бул параметр жөнүндө"
   },
   "permitCipherDetailsDescription": {
-    "message": "Bitwarden тажрыйбаңызды жакшыртуу үчүн кайсы сөлөкөт же сырсөздү өзгөртүү URL дареги колдонуларын аныктоо үчүн сакталган кирүү URI даректерин колдонот. Бул кызматты колдонгондо эч кандай маалымат чогултулбайт же сакталбайт."
+    "message": "Komboe тажрыйбаңызды жакшыртуу үчүн кайсы сөлөкөт же сырсөздү өзгөртүү URL дареги колдонуларын аныктоо үчүн сакталган кирүү URI даректерин колдонот. Бул кызматты колдонгондо эч кандай маалымат чогултулбайт же сакталбайт."
   },
   "showQuickCopyActionsDetailsDescription": {
     "message": "Колдонуучунун атын, сырсөздү же текшерүү кодун буферге көчүрүү үчүн элементтердин жанына 3 тез көчүрүү баскычын кошуңуз."
@@ -6243,7 +6243,7 @@
     "message": "Азыраак көрсөтүү"
   },
   "enableAutotypeDescription": {
-    "message": "Bitwarden киргизүү жайларын текшербейт, жарлыкты колдонуудан мурун туура терезеде жана талаада экениңизди текшериңиз."
+    "message": "Komboe киргизүү жайларын текшербейт, жарлыкты колдонуудан мурун туура терезеде жана талаада экениңизди текшериңиз."
   },
   "typeShortcut": {
     "message": "Жарлыкты териңиз"
@@ -6399,7 +6399,7 @@
     "message": "Premium'ге өркүндөтүү"
   },
   "removeMasterPasswordForOrgUserKeyConnector": {
-    "message": "Уюмуңуз эми Bitwarden'ге кирүү үчүн башкы сырсөздөрдү колдонбойт. Улантуу үчүн уюмду жана доменди ырастаңыз."
+    "message": "Уюмуңуз эми Komboe'ге кирүү үчүн башкы сырсөздөрдү колдонбойт. Улантуу үчүн уюмду жана доменди ырастаңыз."
   },
   "continueWithLogIn": {
     "message": "Кирүүнү улантуу"
@@ -6720,10 +6720,10 @@
     "message": "Бир нече электрондук почталарды үтүр менен бөлүп киргизиңиз."
   },
   "emailPlaceholder": {
-    "message": "user@bitwarden.com , user@acme.com"
+    "message": "user@komboe.com , user@acme.com"
   },
   "emailPlaceholderMultiple": {
-    "message": "user@bitwarden.com, user@acme.com"
+    "message": "user@komboe.com, user@acme.com"
   },
   "reorderToggleButton": {
     "message": "$LABEL$ кайра тартипке келтирүү. Элементти өйдө же ылдый жылдыруу үчүн ок баскычын колдонуңуз.",
@@ -7223,15 +7223,15 @@
     "message": "Unknown item, you may need to request permission to access this item."
   },
   "newExperienceDialogTitle": {
-    "message": "Bitwarden has a new look",
+    "message": "Komboe has a new look",
     "description": "Title of the dialog that introduces the redesigned vault to existing users."
   },
   "newExperienceDialogDesc": {
-    "message": "Better experience, same trusted security. The Bitwarden vault has been redesigned based on your feedback, so things are easier to find and work like you'd expect.",
+    "message": "Better experience, same trusted security. The Komboe vault has been redesigned based on your feedback, so things are easier to find and work like you'd expect.",
     "description": "Body copy of the dialog that introduces the redesigned vault to existing users."
   },
   "newExperienceDialogImgAlt": {
-    "message": "A preview of the redesigned Bitwarden vault.",
+    "message": "A preview of the redesigned Komboe vault.",
     "description": "Alt text for the screenshot shown in the dialog that introduces the redesigned vault."
   },
   "exploreTheNewVault": {

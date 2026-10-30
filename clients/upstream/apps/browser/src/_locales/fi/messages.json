@@ -1,20 +1,20 @@
 {
   "appName": {
-    "message": "Bitwarden"
+    "message": "Komboe"
   },
   "appLogoLabel": {
-    "message": "Bitwarden-logo"
+    "message": "Komboe-logo"
   },
   "extName": {
-    "message": "Bitwarden Salasanahallinta",
+    "message": "Komboe Salasanahallinta",
     "description": "Extension name, MUST be less than 40 characters (Safari restriction)"
   },
   "extNameBeta": {
-    "message": "Bitwarden-salasananhallinta Beta",
+    "message": "Komboe-salasananhallinta Beta",
     "description": "Extension name for the beta channel, MUST be less than 40 characters (Safari restriction)"
   },
   "extDesc": {
-    "message": "Kotona, töissä tai reissussa, Bitwarden suojaa salasanasi, pääsyavaimesi ja arkaluonteiset tietosi helposti.",
+    "message": "Kotona, töissä tai reissussa, Komboe suojaa salasanasi, pääsyavaimesi ja arkaluonteiset tietosi helposti.",
     "description": "Extension description, MUST be less than 112 characters (Safari restriction)"
   },
   "loginOrCreateNewAccount": {
@@ -27,7 +27,7 @@
     "message": "Luo tili"
   },
   "newToBitwarden": {
-    "message": "Oletko uusi Bitwarden-käyttäjä?"
+    "message": "Oletko uusi Komboe-käyttäjä?"
   },
   "logInWithPasskey": {
     "message": "Kirjaudu pääsyavaimella"
@@ -324,7 +324,7 @@
     "message": "Avataanko verkkosovellus?"
   },
   "continueToWebAppDesc": {
-    "message": "Tutustu Bitwarden-tilisi muihin ominaisuuksiin verkkosovelluksessa."
+    "message": "Tutustu Komboe-tilisi muihin ominaisuuksiin verkkosovelluksessa."
   },
   "continueToHelpCenter": {
     "message": "Avataanko tukikeskus?"
@@ -336,7 +336,7 @@
     "message": "Avataanko selaimen laajennuskauppa?"
   },
   "continueToBrowserExtensionStoreDesc": {
-    "message": "Auta muita selvittämään sopiiko Bitwarden heille. Arvioi se selaimesi laajennuskaupassa nyt."
+    "message": "Auta muita selvittämään sopiiko Komboe heille. Arvioi se selaimesi laajennuskaupassa nyt."
   },
   "changeMasterPasswordOnWebConfirmation": {
     "message": "Voit vaihtaa pääsalasanasi Bitwardenin verkkosovelluksessa."
@@ -365,34 +365,34 @@
     "message": "Lisää Bitwardenilta"
   },
   "continueToBitwardenDotCom": {
-    "message": "Avataanko bitwarden.com?"
+    "message": "Avataanko komboe.com?"
   },
   "bitwardenForBusiness": {
-    "message": "Bitwarden for Business"
+    "message": "Komboe for Business"
   },
   "bitwardenAuthenticator": {
-    "message": "Bitwarden Authenticator"
+    "message": "Komboe Authenticator"
   },
   "continueToAuthenticatorPageDesc": {
-    "message": "Bitwarden Authenticatorin avulla voit säilyttää todennusavaimet ja luoda TOTP-koodeja kaksivaiheista kirjautumista varten. Lue lisää bitwarden.com-sivustolta."
+    "message": "Komboe Authenticatorin avulla voit säilyttää todennusavaimet ja luoda TOTP-koodeja kaksivaiheista kirjautumista varten. Lue lisää komboe.com-sivustolta."
   },
   "bitwardenSecretsManager": {
-    "message": "Bitwarden Salaisuushallinta"
+    "message": "Komboe Salaisuushallinta"
   },
   "continueToSecretsManagerPageDesc": {
-    "message": "Säilytä, hallitse ja jaa kehittäjäsalaisuuksia turvallisesti Bitwardenin Salaisuushallinnalla. Lue lisää bitwarden.com-sivustolta."
+    "message": "Säilytä, hallitse ja jaa kehittäjäsalaisuuksia turvallisesti Bitwardenin Salaisuushallinnalla. Lue lisää komboe.com-sivustolta."
   },
   "passwordlessDotDev": {
     "message": "Passwordless.dev"
   },
   "continueToPasswordlessDotDevPageDesc": {
-    "message": "Luo perinteisistä salasanoista vapaita sujuvia ja turvallisia kirjautumisratkaisuja Passwordless.dev-palvelussa. Tutustu palveluun bitwarden.com-sivustolla."
+    "message": "Luo perinteisistä salasanoista vapaita sujuvia ja turvallisia kirjautumisratkaisuja Passwordless.dev-palvelussa. Tutustu palveluun komboe.com-sivustolla."
   },
   "freeBitwardenFamilies": {
-    "message": "Ilmainen Bitwarden Families"
+    "message": "Ilmainen Komboe Families"
   },
   "freeBitwardenFamiliesPageDesc": {
-    "message": "Olet oikeutettu ilmaiseen Bitwarden Families -tilaukseen. Lunasta tarjous verkkosovelluksessa tänään."
+    "message": "Olet oikeutettu ilmaiseen Komboe Families -tilaukseen. Lunasta tarjous verkkosovelluksessa tänään."
   },
   "version": {
     "message": "Versio"
@@ -486,7 +486,7 @@
     "message": "Luo kirjautumistiedoillesi automaattisesti vahvoja, ainutlaatuisia salasanoja."
   },
   "bitWebVaultApp": {
-    "message": "Bitwarden Verkkosovellus"
+    "message": "Komboe Verkkosovellus"
   },
   "select": {
     "message": "Valitse"
@@ -1067,10 +1067,10 @@
     "message": "Tee kaksivaiheisesta kirjautumisesta saumatonta"
   },
   "totpHelper": {
-    "message": "Bitwarden voi säilyttää ja täyttää kaksivaiheisen kirjautumisen koodit. Kopioi ja liitä todennusavain tähän kenttään."
+    "message": "Komboe voi säilyttää ja täyttää kaksivaiheisen kirjautumisen koodit. Kopioi ja liitä todennusavain tähän kenttään."
   },
   "totpHelperWithCapture": {
-    "message": "Bitwarden voi säilyttää ja täyttää kaksivaiheisen kirjautumisen koodit. Kamerakuvakkeella voit kaapata todennusavaimen avoimen sivun QR-koodista automaattisesti, tai voit kopioida ja liittää sen tähän kenttään manuaalisesti."
+    "message": "Komboe voi säilyttää ja täyttää kaksivaiheisen kirjautumisen koodit. Kamerakuvakkeella voit kaapata todennusavaimen avoimen sivun QR-koodista automaattisesti, tai voit kopioida ja liittää sen tähän kenttään manuaalisesti."
   },
   "learnMoreAboutAuthenticators": {
     "message": "Lue lisää todentajista"
@@ -1157,7 +1157,7 @@
     "message": "Anna nimi."
   },
   "twoStepLoginConfirmation": {
-    "message": "Kaksivaiheinen kirjautuminen parantaa tilisi suojausta vaatimalla kirjautumisen vahvistuksen salasanan lisäksi suojausavaimen, ‑sovelluksen, tekstiviestin, puhelun tai sähköpostin avulla. Voit ottaa kaksivaiheisen kirjautumisen käyttöön bitwarden.com‑verkkoholvissa. Haluatko avata sen nyt?"
+    "message": "Kaksivaiheinen kirjautuminen parantaa tilisi suojausta vaatimalla kirjautumisen vahvistuksen salasanan lisäksi suojausavaimen, ‑sovelluksen, tekstiviestin, puhelun tai sähköpostin avulla. Voit ottaa kaksivaiheisen kirjautumisen käyttöön komboe.com‑verkkoholvissa. Haluatko avata sen nyt?"
   },
   "twoStepLoginConfirmationContent": {
     "message": "Paranna tilisi suojausta määrittämällä kaksivaiheinen kirjautuminen Bitwardenin verkkosovelluksessa."
@@ -1313,7 +1313,7 @@
     "message": "Siirry asetuksiin"
   },
   "notificationAddDesc": {
-    "message": "Haluatko, että Bitwarden muistaa salasanan puolestasi?"
+    "message": "Haluatko, että Komboe muistaa salasanan puolestasi?"
   },
   "notificationAddSave": {
     "message": "Tallenna"
@@ -1457,7 +1457,7 @@
     "message": "Päivitä"
   },
   "notificationUnlockDesc": {
-    "message": "Viimeistele automaattitäyttö avaamalla Bitwarden-holvisi lukitus."
+    "message": "Viimeistele automaattitäyttö avaamalla Komboe-holvisi lukitus."
   },
   "notificationUnlock": {
     "message": "Avaa"
@@ -1605,10 +1605,10 @@
     "message": "Tätä salasanaa käytetään tämän tiedoston viennissä ja tuonnissa"
   },
   "accountRestrictedOptionDescription": {
-    "message": "Salaa vienti ja rajoita tuonti vain nykyiselle Bitwarden-tilille tilisi käyttäjätunnukseen ja pääsalasanaan pohjautuvalla salausavaimella."
+    "message": "Salaa vienti ja rajoita tuonti vain nykyiselle Komboe-tilille tilisi käyttäjätunnukseen ja pääsalasanaan pohjautuvalla salausavaimella."
   },
   "passwordProtectedOptionDescription": {
-    "message": "Salaa vientitiedosto salasanalla, joka mahdollistaa sen tuonnin mille tahansa Bitwarden-tilille."
+    "message": "Salaa vientitiedosto salasanalla, joka mahdollistaa sen tuonnin mille tahansa Komboe-tilille."
   },
   "exportTypeHeading": {
     "message": "Viennin tyyppi"
@@ -1637,7 +1637,7 @@
     "message": "Tämä vienti salaa tietosi käyttäjätilisi salausavaimella. Jos joskus uudistat tilisi salausavaimen, on tiedot vietävä uudelleen, koska et voi enää purkaa nyt luodun vientitiedoston salausta."
   },
   "encExportAccountWarningDesc": {
-    "message": "Tilin salausavaimet ovat ainutlaatuisia jokaiselle Bitwarden-käyttäjätilille, joten et voi tuoda salattua vientitiedostoa toiselle tilille."
+    "message": "Tilin salausavaimet ovat ainutlaatuisia jokaiselle Komboe-käyttäjätilille, joten et voi tuoda salattua vientitiedostoa toiselle tilille."
   },
   "exportMasterPassword": {
     "message": "Syötä pääsalasana viedäksesi holvisi tiedot."
@@ -1661,7 +1661,7 @@
     "message": "Lisää jaettu kansio"
   },
   "bitwardenForBusinessPageDesc": {
-    "message": "Bitwarden for Business mahdollistaa holvisi sisällön jakamisen organisaation avulla. Lue lisää osoitteesta bitwarden.com."
+    "message": "Komboe for Business mahdollistaa holvisi sisällön jakamisen organisaation avulla. Lue lisää osoitteesta komboe.com."
   },
   "moveToOrganization": {
     "message": "Siirrä organisaatiolle"
@@ -1815,7 +1815,7 @@
     "message": "Hallitse jäsenyyttä"
   },
   "premiumManageAlert": {
-    "message": "Voit hallita jäsenyyttäsi bitwarden.com-verkkoholvissa. Haluatko käydä sivustolla nyt?"
+    "message": "Voit hallita jäsenyyttäsi komboe.com-verkkoholvissa. Haluatko käydä sivustolla nyt?"
   },
   "premiumRefresh": {
     "message": "Päivitä jäsenyys"
@@ -1969,7 +1969,7 @@
     "message": "Todennussovellus"
   },
   "authenticatorAppDescV2": {
-    "message": "Syötä Bitwarden Authenticatorin kaltaisen todennusovelluksen luoma koodi.",
+    "message": "Syötä Komboe Authenticatorin kaltaisen todennusovelluksen luoma koodi.",
     "description": "'Bitwarden Authenticator' is a product name and should not be translated."
   },
   "yubiKeyTitleV2": {
@@ -2002,7 +2002,7 @@
     "message": "Itse ylläpidetty palvelinympäristö"
   },
   "selfHostedBaseUrlHint": {
-    "message": "Määritä itse ylläpitämäsi Bitwarden-asennuksen perusosoite. Esimerkki: https://bitwarden.yritys.fi."
+    "message": "Määritä itse ylläpitämäsi Komboe-asennuksen perusosoite. Esimerkki: https://bitwarden.yritys.fi."
   },
   "selfHostedCustomEnvHeader": {
     "message": "Edistynyttä määritystä varten voit syöttää jokaisen palvelun perusosoitteen erikseen."
@@ -2112,7 +2112,7 @@
     "message": "Näytä automaattitäytön ehdotukset lomakekentissä"
   },
   "howDoesBitwardenProtectFromPhishing": {
-    "message": "Miten Bitwarden suojaa tietojasi tietojenkalastelulta?"
+    "message": "Miten Komboe suojaa tietojasi tietojenkalastelulta?"
   },
   "currentWebsite": {
     "message": "Nykyinen verkkosivusto"
@@ -3021,7 +3021,7 @@
     "message": "Heikko pääsalasana"
   },
   "weakMasterPasswordDesc": {
-    "message": "Valitsemasi pääsalasana on heikko. Sinun tulisi käyttää vahvaa pääsalasanaa (tai salalausetta) suojataksesi Bitwarden-tilisi kunnolla. Haluatko varmasti käyttää tätä pääsalasanaa?"
+    "message": "Valitsemasi pääsalasana on heikko. Sinun tulisi käyttää vahvaa pääsalasanaa (tai salalausetta) suojataksesi Komboe-tilisi kunnolla. Haluatko varmasti käyttää tätä pääsalasanaa?"
   },
   "rotateAccountEncKey": {
     "message": "Kierrätä myös tilini salausavain"
@@ -3033,7 +3033,7 @@
     "message": "Haluatko varmasti kierrättää tilisi salausavaimen?"
   },
   "updateEncryptionKeyWarning": {
-    "message": "Kun olet päivittänyt salausavaimesi, sinun on kirjauduttava ulos ja takaisin sisään kaikissa Bitwarden-sovelluksissa, joita käytät parhaillaan (kuten mobiilisovellus tai selainlaajennukset). Jos et kirjaudu ulos ja takaisin sisään (jolloin uusi salausavaimesi ladataan), tietosi voivat vioittua. Yritämme kirjata sinut ulos automaattisesti, mutta se voi viivästyä."
+    "message": "Kun olet päivittänyt salausavaimesi, sinun on kirjauduttava ulos ja takaisin sisään kaikissa Komboe-sovelluksissa, joita käytät parhaillaan (kuten mobiilisovellus tai selainlaajennukset). Jos et kirjaudu ulos ja takaisin sisään (jolloin uusi salausavaimesi ladataan), tietosi voivat vioittua. Yritämme kirjata sinut ulos automaattisesti, mutta se voi viivästyä."
   },
   "updateEncryptionKeyAccountExportWarning": {
     "message": "Kaikki tallentamasi tilityyppikohtaiset viennit mitätöityvät."
@@ -3200,7 +3200,7 @@
     "message": "Lomakkeen URI-osoite poikkeaa kirjautumistietoon tallennetusta osoitteesta. Salli sen automaattinen täyttö siitä huolimatta valitsemalla OK tai estä se valitsemalla Peruuta."
   },
   "autofillIframeWarningTip": {
-    "message": "Välttyäksesi varoitukselta jatkossa, tallenna URI $HOSTNAME$ sivustolle tallennettuun Bitwarden-kirjautumistietoosi.",
+    "message": "Välttyäksesi varoitukselta jatkossa, tallenna URI $HOSTNAME$ sivustolle tallennettuun Komboe-kirjautumistietoosi.",
     "placeholders": {
       "hostname": {
         "content": "$1",
@@ -3377,7 +3377,7 @@
     "message": "Käyttöoikeutta ei myönnetty"
   },
   "nativeMessagingPermissionErrorDesc": {
-    "message": "Ilman käyttöoikeutta viestiä Bitwarden-työpöytäsovelluksen kanssa emme voi tarjota biometriikkaa selainlaajennuksessa. Yritä uudelleen."
+    "message": "Ilman käyttöoikeutta viestiä Komboe-työpöytäsovelluksen kanssa emme voi tarjota biometriikkaa selainlaajennuksessa. Yritä uudelleen."
   },
   "nativeMessagingPermissionSidebarTitle": {
     "message": "Käyttöoikeuspyynnön virhe"
@@ -3414,7 +3414,7 @@
     "message": "Ohitettavat verkkotunnukset"
   },
   "excludedDomainsDesc": {
-    "message": "Bitwarden ei pyydä kirjautumistietojen tallennusta näille verkkotunnuksille. Päivitä sivu ottaaksesi muutokset käyttöön."
+    "message": "Komboe ei pyydä kirjautumistietojen tallennusta näille verkkotunnuksille. Päivitä sivu ottaaksesi muutokset käyttöön."
   },
   "blockedDomainsDesc": {
     "message": "Näille sivustoille ei tarjota automaattista täyttöä eikä muita siihen liittyviä ominaisuuksia. Sinun on päivitettävä sivu, jotta muutokset tulevat voimaan."
@@ -3546,7 +3546,7 @@
     "message": "Kuvitus vaarantuneiden kirjautumistietojen luettelosta."
   },
   "welcomeDialogGraphicAlt": {
-    "message": "Kuva Bitwarden-holvisivun asettelusta."
+    "message": "Kuva Komboe-holvisivun asettelusta."
   },
   "generatePasswordSlideDesc": {
     "message": "Luo vahva ja ainutlaatuinen salasana nopeasti Bitwardenin automaattitäytön valikosta vaarantuneella sivustolla.",
@@ -3559,11 +3559,11 @@
     "message": "Päivitä Bitwardenissa"
   },
   "updateInBitwardenSlideDesc": {
-    "message": "Bitwarden pyytää sinua sitten päivittämään salasanan salasanahallinnassa.",
+    "message": "Komboe pyytää sinua sitten päivittämään salasanan salasanahallinnassa.",
     "description": "Description of the update in Bitwarden slide on the at-risk password page carousel"
   },
   "updateInBitwardenSlideImgAltPeriod": {
-    "message": "Kuvitus ilmoituksesta, jossa Bitwarden tarjoaa kirjautumistiedon päivitystä."
+    "message": "Kuvitus ilmoituksesta, jossa Komboe tarjoaa kirjautumistiedon päivitystä."
   },
   "turnOnAutofill": {
     "message": "Ota automaattitäyttö käyttöön"
@@ -4078,10 +4078,10 @@
     "message": "Virhe haettaessa automaattitäytön tietoja"
   },
   "couldNotDecryptVaultItem": {
-    "message": "Bitwarden ei voinut purkaa alla luetellun holvikohteen salausta. Ota yhteyttä Bitwardenin asiakastukeen ja toimita alla oleva kohteen tunnus, jotta voidaan selvittää, voidaanko se palauttaa."
+    "message": "Komboe ei voinut purkaa alla luetellun holvikohteen salausta. Ota yhteyttä Bitwardenin asiakastukeen ja toimita alla oleva kohteen tunnus, jotta voidaan selvittää, voidaanko se palauttaa."
   },
   "couldNotDecryptVaultItems": {
-    "message": "Bitwarden ei voinut purkaa alla lueteltujen holvikohteiden salausta. Ota yhteyttä Bitwardenin asiakastukeen ja toimita alla olevat kohteiden tunnukset, jotta voidaan selvittää, voidaanko ne palauttaa."
+    "message": "Komboe ei voinut purkaa alla lueteltujen holvikohteiden salausta. Ota yhteyttä Bitwardenin asiakastukeen ja toimita alla olevat kohteiden tunnukset, jotta voidaan selvittää, voidaanko ne palauttaa."
   },
   "itemId": {
     "message": "Kohteen tunnus",
@@ -4417,7 +4417,7 @@
     "message": "Laitteellesi on lähetetty ilmoitus."
   },
   "notificationSentDevicePart1": {
-    "message": "Avaa Bitwarden laitteellasi tai"
+    "message": "Avaa Komboe laitteellasi tai"
   },
   "notificationSentDeviceAnchor": {
     "message": "verkkosovelluksena"
@@ -5369,7 +5369,7 @@
     "message": "Secure by design"
   },
   "importDataSecureByDesignBody": {
-    "message": "End-to-end encrypted handoff. Bitwarden never sees your $VENDOR$ login details.",
+    "message": "End-to-end encrypted handoff. Komboe never sees your $VENDOR$ login details.",
     "placeholders": {
       "vendor": {
         "content": "$1",
@@ -6091,7 +6091,7 @@
     "message": "Aktiivinen tili"
   },
   "bitwardenAccount": {
-    "message": "Bitwarden-tili"
+    "message": "Komboe-tili"
   },
   "availableAccounts": {
     "message": "Käytettävissä olevat tilit"
@@ -6137,7 +6137,7 @@
     "description": "Label indicating the most common import formats"
   },
   "uriMatchDefaultStrategyHint": {
-    "message": "URI:n Säännöllinen lauseke -asetus on se tapa, jolla Bitwarden tekee automaattisen täytön.",
+    "message": "URI:n Säännöllinen lauseke -asetus on se tapa, jolla Komboe tekee automaattisen täytön.",
     "description": "Explains to the user that URI match detection determines how Bitwarden suggests autofill options, and clarifies that this default strategy applies when no specific match detection is set for a login item."
   },
   "regExAdvancedOptionWarning": {
@@ -6181,7 +6181,7 @@
     "description": "Body content for dialog which asks if the user wants to proceed to the browser's keyboard shortcut settings page"
   },
   "overrideDefaultBrowserAutofillTitle": {
-    "message": "Määritetäänkö Bitwarden oletusarvoiseksi salasanahallinnaksi?",
+    "message": "Määritetäänkö Komboe oletusarvoiseksi salasanahallinnaksi?",
     "description": "Dialog title facilitating the ability to override a chrome browser's default autofill behavior"
   },
   "overrideDefaultBrowserAutofillDescription": {
@@ -6189,7 +6189,7 @@
     "description": "Dialog message facilitating the ability to override a chrome browser's default autofill behavior"
   },
   "overrideDefaultBrowserAutoFillSettings": {
-    "message": "Määritä Bitwarden oletusarvoiseksi salasanahallinnaksi",
+    "message": "Määritä Komboe oletusarvoiseksi salasanahallinnaksi",
     "description": "Label for the setting that allows overriding the default browser autofill settings"
   },
   "defaultPasswordManagerCalloutTitle": {
@@ -6211,7 +6211,7 @@
     "description": "Title for the dialog that appears when the user has not granted the extension permission to set privacy settings"
   },
   "privacyPermissionAdditionNotGrantedDescription": {
-    "message": "Jotta Bitwarden voidaan määrittää oletusarvoiseksi salasanahallinnaksi, on sille myönettävä oikeus käsitellä yksityisiä tietoja selaimessa.",
+    "message": "Jotta Komboe voidaan määrittää oletusarvoiseksi salasanahallinnaksi, on sille myönettävä oikeus käsitellä yksityisiä tietoja selaimessa.",
     "description": "Description for the dialog that appears when the user has not granted the extension permission to set privacy settings"
   },
   "makeDefault": {
@@ -6219,10 +6219,10 @@
     "description": "Button text for the setting that allows overriding the default browser autofill settings"
   },
   "defaultPasswordManagerPromptTitle": {
-    "message": "Aseta Bitwarden selaimesi oletussalasananhallinnaksi"
+    "message": "Aseta Komboe selaimesi oletussalasananhallinnaksi"
   },
   "defaultPasswordManagerPromptTitleV2": {
-    "message": "Aseta Bitwarden oletussalasananhallinnaksesi",
+    "message": "Aseta Komboe oletussalasananhallinnaksesi",
     "description": "Label for the setting to make Bitwarden the default password manager"
   },
   "defaultPasswordManagerSettingHintV2": {
@@ -6240,7 +6240,7 @@
     "message": "Poistamme selaimesi sisäänrakennetun salasananhallinnan käytöstä, jotta voit nauttia turvallisesta kirjautumiskokemuksesta."
   },
   "defaultPasswordManagerSuccessToast": {
-    "message": "Bitwarden asetettu selaimesi oletussalasananhallinnaksi"
+    "message": "Komboe asetettu selaimesi oletussalasananhallinnaksi"
   },
   "allow": {
     "message": "Salli",
@@ -6648,16 +6648,16 @@
     "message": "Lataa liite"
   },
   "downloadBitwarden": {
-    "message": "Lataa Bitwarden"
+    "message": "Lataa Komboe"
   },
   "downloadBitwardenOnAllDevices": {
-    "message": "Lataa Bitwarden kaikille laitteille"
+    "message": "Lataa Komboe kaikille laitteille"
   },
   "getTheMobileApp": {
     "message": "Hanki mobiilisovellus"
   },
   "getTheMobileAppDesc": {
-    "message": "Pääse käsiksi salasanoihisi, jos et pääse tietokoneen ääreen Bitwarden-mobiilisovelluksella."
+    "message": "Pääse käsiksi salasanoihisi, jos et pääse tietokoneen ääreen Komboe-mobiilisovelluksella."
   },
   "getTheDesktopApp": {
     "message": "Hanki työpöytäsovellus"
@@ -6666,7 +6666,7 @@
     "message": "Käytä holviasi ilman selainta ja aseta sitten lukitus biometriikan avulla nopeuttaaksesi lukituksen avaamista sekä työpöytäsovelluksessa että selaimessa."
   },
   "downloadFromBitwardenNow": {
-    "message": "Lataa bitwarden.comista nyt"
+    "message": "Lataa komboe.comista nyt"
   },
   "getItOnGooglePlay": {
     "message": "Hanki se Google Playstä"
@@ -7495,7 +7495,7 @@
     "message": "Tietoturva etusijalla"
   },
   "securityPrioritizedBody": {
-    "message": "Tallenna kirjautumistiedot, kortit ja henkilöllisyydet suojattuun holviisi. Bitwarden suojaa tärkeät tietosi nollatietoisella päästä päähän -salauksella."
+    "message": "Tallenna kirjautumistiedot, kortit ja henkilöllisyydet suojattuun holviisi. Komboe suojaa tärkeät tietosi nollatietoisella päästä päähän -salauksella."
   },
   "quickLogin": {
     "message": "Nopea ja helppo kirjautuminen"
@@ -7641,7 +7641,7 @@
     "message": "Tietoja tästä asetuksesta"
   },
   "permitCipherDetailsDescription": {
-    "message": "Bitwarden käyttää tallennettuja kirjautumis-URI-osoitteita tunnistamaan, mitä kuvaketta tai salasanan vaihto-URL-osoitetta tulisi käyttää kokemuksesi parantamiseksi. Tietoja ei kerätä tai tallenneta, kun käytät tätä palvelua."
+    "message": "Komboe käyttää tallennettuja kirjautumis-URI-osoitteita tunnistamaan, mitä kuvaketta tai salasanan vaihto-URL-osoitetta tulisi käyttää kokemuksesi parantamiseksi. Tietoja ei kerätä tai tallenneta, kun käytät tätä palvelua."
   },
   "showQuickCopyActionsDetailsDescription": {
     "message": "Lisää 3 pikakopiointipainiketta kohteiden viereen kopioidaksesi käyttäjänimesi, salasanasi tai vahvistuskoodisi leikepöydälle."
@@ -7824,7 +7824,7 @@
     "message": "Aseta avausmenetelmä muuttaaksesi aikakatkaisutoimintoa"
   },
   "sessionTimeoutSuppressedByConnectedDevice": {
-    "message": "Bitwarden-työpöytäsovellus hallinnoi tätä. Avaa työpöytäsovellus muokataksesi."
+    "message": "Komboe-työpöytäsovellus hallinnoi tätä. Avaa työpöytäsovellus muokataksesi."
   },
   "percentageCompleted": {
     "message": "$PERCENT$ % valmis",
@@ -7920,13 +7920,13 @@
     "message": "Syötä useita sähköpostiosoitteita erottamalla ne pilkulla."
   },
   "emailPlaceholder": {
-    "message": "user@bitwarden.com , user@acme.com"
+    "message": "user@komboe.com , user@acme.com"
   },
   "emailPlaceholderMultiple": {
-    "message": "user@bitwarden.com, user@acme.com"
+    "message": "user@komboe.com, user@acme.com"
   },
   "downloadBitwardenApps": {
-    "message": "Lataa Bitwarden-sovellukset"
+    "message": "Lataa Komboe-sovellukset"
   },
   "emailProtected": {
     "message": "Sähköposti suojattu"
@@ -7945,13 +7945,13 @@
     "message": "Sync unlock with desktop app"
   },
   "syncUnlockWithDesktopDescription": {
-    "message": "The Bitwarden browser extension and desktop app lock and unlock together."
+    "message": "The Komboe browser extension and desktop app lock and unlock together."
   },
   "syncUnlockWithWeb": {
     "message": "Sync unlock with web app"
   },
   "syncUnlockWithWebDescription": {
-    "message": "The Bitwarden browser extension and web app lock and unlock together."
+    "message": "The Komboe browser extension and web app lock and unlock together."
   },
   "sharedUnlockUnavailableUntrustedDevice": {
     "message": "Jaettu avaus ei ole käytettävissä, koska valitsit, ettet muista tätä laitetta. Ota tämä asetus käyttöön yrittämällä kirjautua uudelleen."
@@ -7960,13 +7960,13 @@
     "message": "Uusi käyttöoikeus tarvitaan"
   },
   "sharedUnlockDesktopPermissionDesc": {
-    "message": "Jotta voit käyttää jaettua avausta, Bitwarden tarvitsee käyttöoikeuden viestiä työpöytäsovelluksen kanssa. Kun jatkat, selaimesi pyytää sinua hyväksymään sen."
+    "message": "Jotta voit käyttää jaettua avausta, Komboe tarvitsee käyttöoikeuden viestiä työpöytäsovelluksen kanssa. Kun jatkat, selaimesi pyytää sinua hyväksymään sen."
   },
   "sharedUnlockDesktopPermissionWarning": {
-    "message": "Bitwarden lukittuu ja latautuu uudelleen. Kun olet hyväksynyt, laajennus latautuu uudelleen ja lukitsee holvisi."
+    "message": "Komboe lukittuu ja latautuu uudelleen. Kun olet hyväksynyt, laajennus latautuu uudelleen ja lukitsee holvisi."
   },
   "biometricPermissionDesc": {
-    "message": "Jotta voit käyttää biometrista avausta, Bitwarden tarvitsee käyttöoikeuden viestiä työpöytäsovelluksen kanssa. Kun jatkat, selaimesi pyytää sinua hyväksymään sen."
+    "message": "Jotta voit käyttää biometrista avausta, Komboe tarvitsee käyttöoikeuden viestiä työpöytäsovelluksen kanssa. Kun jatkat, selaimesi pyytää sinua hyväksymään sen."
   },
   "enterMonth": {
     "message": "Anna kuukausi."
@@ -8451,15 +8451,15 @@
     "message": "Tuntematon kohde; saatat tarvita käyttöoikeuden pyytämistä tähän kohteeseen."
   },
   "newExperienceDialogTitle": {
-    "message": "Bitwarden has a new look",
+    "message": "Komboe has a new look",
     "description": "Title of the dialog that introduces the redesigned vault to existing users."
   },
   "newExperienceDialogDesc": {
-    "message": "Better experience, same trusted security. The Bitwarden vault has been redesigned based on your feedback, so things are easier to find and work like you'd expect.",
+    "message": "Better experience, same trusted security. The Komboe vault has been redesigned based on your feedback, so things are easier to find and work like you'd expect.",
     "description": "Body copy of the dialog that introduces the redesigned vault to existing users."
   },
   "newExperienceDialogImgAlt": {
-    "message": "A preview of the redesigned Bitwarden vault.",
+    "message": "A preview of the redesigned Komboe vault.",
     "description": "Alt text for the screenshot shown in the dialog that introduces the redesigned vault."
   },
   "exploreTheNewVault": {

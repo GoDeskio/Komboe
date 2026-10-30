@@ -1,20 +1,20 @@
 {
   "appName": {
-    "message": "Bitwarden"
+    "message": "Komboe"
   },
   "appLogoLabel": {
-    "message": "Bitwarden လိုဂို"
+    "message": "Komboe လိုဂို"
   },
   "extName": {
-    "message": "Bitwarden စကားဝှက် မန်နေဂျာ",
+    "message": "Komboe စကားဝှက် မန်နေဂျာ",
     "description": "Extension name, MUST be less than 40 characters (Safari restriction)"
   },
   "extNameBeta": {
-    "message": "Bitwarden စကားဝှက် မန်နေဂျာ ဘီတာ",
+    "message": "Komboe စကားဝှက် မန်နေဂျာ ဘီတာ",
     "description": "Extension name for the beta channel, MUST be less than 40 characters (Safari restriction)"
   },
   "extDesc": {
-    "message": "Bitwarden က စကားဝှက်၊ passkey နှင့် လျှို့ဝှက်အချက်အလက်များကို နေရာမရွေး လုံခြုံစွာ သိမ်းပေးသည်။",
+    "message": "Komboe က စကားဝှက်၊ passkey နှင့် လျှို့ဝှက်အချက်အလက်များကို နေရာမရွေး လုံခြုံစွာ သိမ်းပေးသည်။",
     "description": "Extension description, MUST be less than 112 characters (Safari restriction)"
   },
   "loginOrCreateNewAccount": {
@@ -27,7 +27,7 @@
     "message": "အကောင့်ဖန်တီးရန်"
   },
   "newToBitwarden": {
-    "message": "Bitwarden တွင် အသစ်လား?"
+    "message": "Komboe တွင် အသစ်လား?"
   },
   "logInWithPasskey": {
     "message": "ပါ့စ်ကီးဖြင့် လော့ဂ်အင်ဝင်ရန်"
@@ -324,22 +324,22 @@
     "message": "ဝဘ်အက်ပ်သို့ ဆက်သွားမလား?"
   },
   "continueToWebAppDesc": {
-    "message": "ဝဘ်အက်ပ်တွင် သင့် Bitwarden အကောင့်၏ နောက်ထပ်လုပ်ဆောင်ချက်များကို လေ့လာပါ။"
+    "message": "ဝဘ်အက်ပ်တွင် သင့် Komboe အကောင့်၏ နောက်ထပ်လုပ်ဆောင်ချက်များကို လေ့လာပါ။"
   },
   "continueToHelpCenter": {
     "message": "အကူအညီစင်တာသို့ ဆက်သွားမလား?"
   },
   "continueToHelpCenterDesc": {
-    "message": "Bitwarden အသုံးပြုနည်းအကြောင်း အကူအညီစင်တာတွင် ပိုမိုလေ့လာပါ။"
+    "message": "Komboe အသုံးပြုနည်းအကြောင်း အကူအညီစင်တာတွင် ပိုမိုလေ့လာပါ။"
   },
   "continueToBrowserExtensionStore": {
     "message": "ဘရောက်ဇာတိုးချဲ့မှုစတိုးသို့ ဆက်သွားမလား?"
   },
   "continueToBrowserExtensionStoreDesc": {
-    "message": "Bitwarden သည် အခြားသူများအတွက် သင့်လျော်မှုရှိမရှိ ရှာဖွေတွေ့ရှိရန် ကူညီပါ။ သင့်ဘရောက်ဇာ၏ တိုးချဲ့မှုစတိုးသို့ သွားပြီး အဆင့်သတ်မှတ်ချက် ပေးပါ။"
+    "message": "Komboe သည် အခြားသူများအတွက် သင့်လျော်မှုရှိမရှိ ရှာဖွေတွေ့ရှိရန် ကူညီပါ။ သင့်ဘရောက်ဇာ၏ တိုးချဲ့မှုစတိုးသို့ သွားပြီး အဆင့်သတ်မှတ်ချက် ပေးပါ။"
   },
   "changeMasterPasswordOnWebConfirmation": {
-    "message": "Bitwarden ဝဘ်အက်ပ်တွင် သင့်မာစတာစကားဝှက်ကို ပြောင်းနိုင်ပါသည်။"
+    "message": "Komboe ဝဘ်အက်ပ်တွင် သင့်မာစတာစကားဝှက်ကို ပြောင်းနိုင်ပါသည်။"
   },
   "fingerprintPhrase": {
     "message": "လက်ဗွေစကားစု",
@@ -356,43 +356,43 @@
     "message": "လော့ဂ်အင်ထွက်ရန်"
   },
   "aboutBitwarden": {
-    "message": "Bitwarden အကြောင်း"
+    "message": "Komboe အကြောင်း"
   },
   "about": {
     "message": "အကြောင်း"
   },
   "moreFromBitwarden": {
-    "message": "Bitwarden မှ နောက်ထပ်"
+    "message": "Komboe မှ နောက်ထပ်"
   },
   "continueToBitwardenDotCom": {
-    "message": "bitwarden.com သို့ ဆက်သွားမလား?"
+    "message": "komboe.com သို့ ဆက်သွားမလား?"
   },
   "bitwardenForBusiness": {
-    "message": "စီးပွားရေးအတွက် Bitwarden"
+    "message": "စီးပွားရေးအတွက် Komboe"
   },
   "bitwardenAuthenticator": {
-    "message": "Bitwarden အတည်ပြုကိရိယာ"
+    "message": "Komboe အတည်ပြုကိရိယာ"
   },
   "continueToAuthenticatorPageDesc": {
-    "message": "Bitwarden အတည်ပြုကိရိယာသည် အတည်ပြုကိရိယာသော့များ သိမ်းဆည်းရန်နှင့် နှစ်ဆင့်အတည်ပြုလုပ်ငန်းစဉ်များအတွက် TOTP ကုဒ်များ ဖန်တီးရန် ခွင့်ပြုပါသည်။ bitwarden.com ဝဘ်ဆိုက်တွင် ပိုမိုလေ့လာပါ"
+    "message": "Komboe အတည်ပြုကိရိယာသည် အတည်ပြုကိရိယာသော့များ သိမ်းဆည်းရန်နှင့် နှစ်ဆင့်အတည်ပြုလုပ်ငန်းစဉ်များအတွက် TOTP ကုဒ်များ ဖန်တီးရန် ခွင့်ပြုပါသည်။ komboe.com ဝဘ်ဆိုက်တွင် ပိုမိုလေ့လာပါ"
   },
   "bitwardenSecretsManager": {
-    "message": "Bitwarden လျှို့ဝှက်ချက်များ မန်နေဂျာ"
+    "message": "Komboe လျှို့ဝှက်ချက်များ မန်နေဂျာ"
   },
   "continueToSecretsManagerPageDesc": {
-    "message": "Bitwarden လျှို့ဝှက်ချက်များ မန်နေဂျာဖြင့် ဆော့ဖ်ဝဲရေးသားသူ၏ လျှို့ဝှက်ချက်များကို လုံခြုံစွာ သိမ်းဆည်းပါ၊ စီမံပါနှင့် မျှဝေပါ။ bitwarden.com ဝဘ်ဆိုက်တွင် ပိုမိုလေ့လာပါ။"
+    "message": "Komboe လျှို့ဝှက်ချက်များ မန်နေဂျာဖြင့် ဆော့ဖ်ဝဲရေးသားသူ၏ လျှို့ဝှက်ချက်များကို လုံခြုံစွာ သိမ်းဆည်းပါ၊ စီမံပါနှင့် မျှဝေပါ။ komboe.com ဝဘ်ဆိုက်တွင် ပိုမိုလေ့လာပါ။"
   },
   "passwordlessDotDev": {
     "message": "Passwordless.dev"
   },
   "continueToPasswordlessDotDevPageDesc": {
-    "message": "Passwordless.dev ဖြင့် ရိုးရာစကားဝှက်များမလိုဘဲ ချောမွေ့လုံခြုံသော လော့ဂ်အင်အတွေ့အကြုံများ ဖန်တီးပါ။ bitwarden.com ဝဘ်ဆိုက်တွင် ပိုမိုလေ့လာပါ။"
+    "message": "Passwordless.dev ဖြင့် ရိုးရာစကားဝှက်များမလိုဘဲ ချောမွေ့လုံခြုံသော လော့ဂ်အင်အတွေ့အကြုံများ ဖန်တီးပါ။ komboe.com ဝဘ်ဆိုက်တွင် ပိုမိုလေ့လာပါ။"
   },
   "freeBitwardenFamilies": {
-    "message": "အခမဲ့ Bitwarden မိသားစုများ"
+    "message": "အခမဲ့ Komboe မိသားစုများ"
   },
   "freeBitwardenFamiliesPageDesc": {
-    "message": "သင်သည် အခမဲ့ Bitwarden မိသားစုများအတွက် အရည်အချင်းပြည့်မီပါသည်။ ယနေ့ ဝဘ်အက်ပ်တွင် ဤကမ်းလှမ်းချက်ကို အသုံးပြုပါ။"
+    "message": "သင်သည် အခမဲ့ Komboe မိသားစုများအတွက် အရည်အချင်းပြည့်မီပါသည်။ ယနေ့ ဝဘ်အက်ပ်တွင် ဤကမ်းလှမ်းချက်ကို အသုံးပြုပါ။"
   },
   "version": {
     "message": "ဗားရှင်း"
@@ -458,13 +458,13 @@
     "message": "အကူအညီနှင့် တုံ့ပြန်ချက်"
   },
   "helpCenter": {
-    "message": "Bitwarden အကူအညီစင်တာ"
+    "message": "Komboe အကူအညီစင်တာ"
   },
   "communityForums": {
-    "message": "Bitwarden အသိုင်းအဝိုင်းဖိုရမ်များကို လေ့လာပါ"
+    "message": "Komboe အသိုင်းအဝိုင်းဖိုရမ်များကို လေ့လာပါ"
   },
   "contactSupport": {
-    "message": "Bitwarden ပံ့ပိုးမှုကို ဆက်သွယ်ပါ"
+    "message": "Komboe ပံ့ပိုးမှုကို ဆက်သွယ်ပါ"
   },
   "sync": {
     "message": "စင့်ခ်လုပ်ရန်"
@@ -486,7 +486,7 @@
     "message": "သင့်လော့ဂ်အင်များအတွက် ခိုင်မာပြီး ထူးခြားသောစကားဝှက်များကို အလိုအလျောက် ဖန်တီးပါ။"
   },
   "bitWebVaultApp": {
-    "message": "Bitwarden ဝဘ်အက်ပ်"
+    "message": "Komboe ဝဘ်အက်ပ်"
   },
   "select": {
     "message": "ရွေးချယ်ရန်"
@@ -850,7 +850,7 @@
     "message": "ရောဂါရှာဖွေရေးအစီရင်ခံစာကို ဒေါင်းလုဒ်လုပ်ပြီး မျှဝေပါ"
   },
   "bitwardenSupport": {
-    "message": "Bitwarden ပံ့ပိုးမှု",
+    "message": "Komboe ပံ့ပိုးမှု",
     "description": "Link text following the troubleshooting description sentence. 'Bitwarden' should not be translated."
   },
   "download": {
@@ -1067,10 +1067,10 @@
     "message": "နှစ်ဆင့်အတည်ပြုခြင်းကို ချောမွေ့စေပါ"
   },
   "totpHelper": {
-    "message": "Bitwarden သည် နှစ်ဆင့်အတည်ပြုကုဒ်များကို သိမ်းဆည်းပြီး ဖြည့်နိုင်ပါသည်။ သော့ကို ကူးယူပြီး ဤအကွက်ထဲ ကပ်ပါ။"
+    "message": "Komboe သည် နှစ်ဆင့်အတည်ပြုကုဒ်များကို သိမ်းဆည်းပြီး ဖြည့်နိုင်ပါသည်။ သော့ကို ကူးယူပြီး ဤအကွက်ထဲ ကပ်ပါ။"
   },
   "totpHelperWithCapture": {
-    "message": "Bitwarden သည် နှစ်ဆင့်အတည်ပြုကုဒ်များကို သိမ်းဆည်းပြီး ဖြည့်နိုင်ပါသည်။ ဤဝဘ်ဆိုက်၏ အတည်ပြုကိရိယာ QR ကုဒ်ကို ဓာတ်ပုံရိုက်ရန် ကင်မရာအိုင်ကွန်ကို ရွေးပါ၊ သို့မဟုတ် သော့ကို ကူးယူပြီး ဤအကွက်ထဲ ကပ်ပါ။"
+    "message": "Komboe သည် နှစ်ဆင့်အတည်ပြုကုဒ်များကို သိမ်းဆည်းပြီး ဖြည့်နိုင်ပါသည်။ ဤဝဘ်ဆိုက်၏ အတည်ပြုကိရိယာ QR ကုဒ်ကို ဓာတ်ပုံရိုက်ရန် ကင်မရာအိုင်ကွန်ကို ရွေးပါ၊ သို့မဟုတ် သော့ကို ကူးယူပြီး ဤအကွက်ထဲ ကပ်ပါ။"
   },
   "learnMoreAboutAuthenticators": {
     "message": "အတည်ပြုကိရိယာများအကြောင်း ပိုမိုလေ့လာပါ"
@@ -1157,10 +1157,10 @@
     "message": "အမည် ထည့်ပါ။"
   },
   "twoStepLoginConfirmation": {
-    "message": "နှစ်ဆင့်လော့ဂ်အင်သည် လုံခြုံရေးသော့၊ အတည်ပြုကိရိယာအက်ပ်၊ SMS၊ ဖုန်းခေါ်ဆိုမှု သို့မဟုတ် အီးမေးလ်ကဲ့သို့သော အခြားစက်ပစ္စည်းဖြင့် သင့်လော့ဂ်အင်ကို အတည်ပြုရန် လိုအပ်ခြင်းဖြင့် သင့်အကောင့်ကို ပိုမိုလုံခြုံစေပါသည်။ နှစ်ဆင့်လော့ဂ်အင်ကို bitwarden.com ဝဘ်သေတ္တာတွင် သတ်မှတ်နိုင်ပါသည်။ ယခု ဝဘ်ဆိုက်သို့ သွားလိုပါသလား?"
+    "message": "နှစ်ဆင့်လော့ဂ်အင်သည် လုံခြုံရေးသော့၊ အတည်ပြုကိရိယာအက်ပ်၊ SMS၊ ဖုန်းခေါ်ဆိုမှု သို့မဟုတ် အီးမေးလ်ကဲ့သို့သော အခြားစက်ပစ္စည်းဖြင့် သင့်လော့ဂ်အင်ကို အတည်ပြုရန် လိုအပ်ခြင်းဖြင့် သင့်အကောင့်ကို ပိုမိုလုံခြုံစေပါသည်။ နှစ်ဆင့်လော့ဂ်အင်ကို komboe.com ဝဘ်သေတ္တာတွင် သတ်မှတ်နိုင်ပါသည်။ ယခု ဝဘ်ဆိုက်သို့ သွားလိုပါသလား?"
   },
   "twoStepLoginConfirmationContent": {
-    "message": "Bitwarden ဝဘ်အက်ပ်တွင် နှစ်ဆင့်လော့ဂ်အင်သတ်မှတ်ခြင်းဖြင့် သင့်အကောင့်ကို ပိုမိုလုံခြုံစေပါ။"
+    "message": "Komboe ဝဘ်အက်ပ်တွင် နှစ်ဆင့်လော့ဂ်အင်သတ်မှတ်ခြင်းဖြင့် သင့်အကောင့်ကို ပိုမိုလုံခြုံစေပါ။"
   },
   "twoStepLoginConfirmationTitle": {
     "message": "ဝဘ်အက်ပ်သို့ ဆက်သွားမလား?"
@@ -1313,7 +1313,7 @@
     "message": "ဆက်တင်သို့ ခုန်ရန်"
   },
   "notificationAddDesc": {
-    "message": "Bitwarden သည် ဤစကားဝှက်ကို သင့်အတွက် မှတ်ထားပေးသင့်ပါသလား?"
+    "message": "Komboe သည် ဤစကားဝှက်ကို သင့်အတွက် မှတ်ထားပေးသင့်ပါသလား?"
   },
   "notificationAddSave": {
     "message": "သိမ်းဆည်းရန်"
@@ -1349,11 +1349,11 @@
     }
   },
   "notificationLoginSaveConfirmation": {
-    "message": "Bitwarden သို့ သိမ်းဆည်းပြီးပါပြီ။",
+    "message": "Komboe သို့ သိမ်းဆည်းပြီးပါပြီ။",
     "description": "Shown to user after item is saved."
   },
   "notificationLoginUpdatedConfirmation": {
-    "message": "Bitwarden တွင် မွမ်းမံပြီးပါပြီ။",
+    "message": "Komboe တွင် မွမ်းမံပြီးပါပြီ။",
     "description": "Shown to user after item is updated."
   },
   "selectItemAriaLabel": {
@@ -1451,13 +1451,13 @@
     "message": "ပါ့စ်ကီးအသစ်များ သိမ်းဆည်းရန် သို့မဟုတ် သင့်သေတ္တာတွင် သိမ်းထားသောပါ့စ်ကီးများဖြင့် လော့ဂ်အင်ဝင်ရန် မေးပါ။ လော့ဂ်အင်ဝင်ထားသောအကောင့်အားလုံးအတွက် သက်ရောက်ပါသည်။"
   },
   "notificationChangeDesc": {
-    "message": "Bitwarden တွင် ဤစကားဝှက်ကို မွမ်းမံလိုပါသလား?"
+    "message": "Komboe တွင် ဤစကားဝှက်ကို မွမ်းမံလိုပါသလား?"
   },
   "notificationChangeSave": {
     "message": "မွမ်းမံရန်"
   },
   "notificationUnlockDesc": {
-    "message": "အလိုအလျောက်ဖြည့်တောင်းဆိုမှု ပြီးမြောက်ရန် သင့် Bitwarden သေတ္တာကို သော့ဖွင့်ပါ။"
+    "message": "အလိုအလျောက်ဖြည့်တောင်းဆိုမှု ပြီးမြောက်ရန် သင့် Komboe သေတ္တာကို သော့ဖွင့်ပါ။"
   },
   "notificationUnlock": {
     "message": "သော့ဖွင့်ရန်"
@@ -1605,10 +1605,10 @@
     "message": "ဤစကားဝှက်ကို ဤဖိုင်ကို တင်ပို့ရန်နှင့် တင်သွင်းရန် အသုံးပြုမည်"
   },
   "accountRestrictedOptionDescription": {
-    "message": "သင့်အကောင့်၏ အသုံးပြုသူအမည်နှင့် မာစတာစကားဝှက်မှ ဆင်းသက်လာသော သင့်အကောင့်စာဝှက်သော့ကို အသုံးပြု၍ တင်ပို့မှုကို စာဝှက်ပြီး လက်ရှိ Bitwarden အကောင့်သို့သာ တင်သွင်းမှုကို ကန့်သတ်ပါ။"
+    "message": "သင့်အကောင့်၏ အသုံးပြုသူအမည်နှင့် မာစတာစကားဝှက်မှ ဆင်းသက်လာသော သင့်အကောင့်စာဝှက်သော့ကို အသုံးပြု၍ တင်ပို့မှုကို စာဝှက်ပြီး လက်ရှိ Komboe အကောင့်သို့သာ တင်သွင်းမှုကို ကန့်သတ်ပါ။"
   },
   "passwordProtectedOptionDescription": {
-    "message": "တင်ပို့မှုကို စာဝှက်ရန် ဖိုင်စကားဝှက်သတ်မှတ်ပြီး ဖွင့်ရန် စကားဝှက်ကို အသုံးပြု၍ မည်သည့် Bitwarden အကောင့်သို့မဆို တင်သွင်းပါ။"
+    "message": "တင်ပို့မှုကို စာဝှက်ရန် ဖိုင်စကားဝှက်သတ်မှတ်ပြီး ဖွင့်ရန် စကားဝှက်ကို အသုံးပြု၍ မည်သည့် Komboe အကောင့်သို့မဆို တင်သွင်းပါ။"
   },
   "exportTypeHeading": {
     "message": "တင်ပို့မှုအမျိုးအစား"
@@ -1637,7 +1637,7 @@
     "message": "ဤတင်ပို့မှုသည် သင့်အကောင့်၏ စာဝှက်သော့ကို အသုံးပြု၍ သင့်ဒေတာကို စာဝှက်ပါသည်။ သင့်အကောင့်၏ စာဝှက်သော့ကို လှည့်ပါက ဤတင်ပို့ဖိုင်ကို ဖွင့်၍မရနိုင်တော့သောကြောင့် ထပ်မံတင်ပို့သင့်ပါသည်။"
   },
   "encExportAccountWarningDesc": {
-    "message": "အကောင့်စာဝှက်သော့များသည် Bitwarden အသုံးပြုသူအကောင့်တစ်ခုစီအတွက် ထူးခြားသောကြောင့် စာဝှက်ထားသောတင်ပို့မှုကို အခြားအကောင့်သို့ တင်သွင်း၍ မရပါ။"
+    "message": "အကောင့်စာဝှက်သော့များသည် Komboe အသုံးပြုသူအကောင့်တစ်ခုစီအတွက် ထူးခြားသောကြောင့် စာဝှက်ထားသောတင်ပို့မှုကို အခြားအကောင့်သို့ တင်သွင်း၍ မရပါ။"
   },
   "exportMasterPassword": {
     "message": "သင့်သေတ္တာဒေတာကို တင်ပို့ရန် သင့်မာစတာစကားဝှက်ကို ထည့်ပါ။"
@@ -1661,7 +1661,7 @@
     "message": "မျှဝေထားသောဖိုလ်ဒါ ထည့်ရန်"
   },
   "bitwardenForBusinessPageDesc": {
-    "message": "စီးပွားရေးအတွက် Bitwarden သည် အဖွဲ့အစည်းတစ်ခုကို အသုံးပြု၍ သင့်သေတ္တာအရာများကို အခြားသူများနှင့် မျှဝေရန် ခွင့်ပြုပါသည်။ bitwarden.com ဝဘ်ဆိုက်တွင် ပိုမိုလေ့လာပါ။"
+    "message": "စီးပွားရေးအတွက် Komboe သည် အဖွဲ့အစည်းတစ်ခုကို အသုံးပြု၍ သင့်သေတ္တာအရာများကို အခြားသူများနှင့် မျှဝေရန် ခွင့်ပြုပါသည်။ komboe.com ဝဘ်ဆိုက်တွင် ပိုမိုလေ့လာပါ။"
   },
   "moveToOrganization": {
     "message": "အဖွဲ့အစည်းသို့ ရွှေ့ရန်"
@@ -1815,7 +1815,7 @@
     "message": "အဖွဲ့ဝင်မှု စီမံရန်"
   },
   "premiumManageAlert": {
-    "message": "bitwarden.com ဝဘ်သေတ္တာတွင် သင့်အဖွဲ့ဝင်မှုကို စီမံနိုင်ပါသည်။ ယခု ဝဘ်ဆိုက်သို့ သွားလိုပါသလား?"
+    "message": "komboe.com ဝဘ်သေတ္တာတွင် သင့်အဖွဲ့ဝင်မှုကို စီမံနိုင်ပါသည်။ ယခု ဝဘ်ဆိုက်သို့ သွားလိုပါသလား?"
   },
   "premiumRefresh": {
     "message": "အဖွဲ့ဝင်မှု ပြန်လည်စတင်ရန်"
@@ -1863,7 +1863,7 @@
     "message": "ပရီမီယံ ဝယ်ယူရန်"
   },
   "premiumPurchaseAlertV2": {
-    "message": "Bitwarden ဝဘ်အက်ပ်တွင် သင့်အကောင့်ဆက်တင်များမှ ပရီမီယံကို ဝယ်ယူနိုင်ပါသည်။"
+    "message": "Komboe ဝဘ်အက်ပ်တွင် သင့်အကောင့်ဆက်တင်များမှ ပရီမီယံကို ဝယ်ယူနိုင်ပါသည်။"
   },
   "premiumFeatures": {
     "message": "ပရီမီယံသို့ အဆင့်မြှင့်ပြီး လက်ခံရရှိမည် −"
@@ -1969,7 +1969,7 @@
     "message": "အတည်ပြုကိရိယာအက်ပ်"
   },
   "authenticatorAppDescV2": {
-    "message": "Bitwarden အတည်ပြုကိရိယာကဲ့သို့သော အတည်ပြုကိရိယာအက်ပ်မှ ဖန်တီးထားသောကုဒ်ကို ထည့်ပါ။",
+    "message": "Komboe အတည်ပြုကိရိယာကဲ့သို့သော အတည်ပြုကိရိယာအက်ပ်မှ ဖန်တီးထားသောကုဒ်ကို ထည့်ပါ။",
     "description": "'Bitwarden Authenticator' is a product name and should not be translated."
   },
   "yubiKeyTitleV2": {
@@ -2002,7 +2002,7 @@
     "message": "ကိုယ်တိုင်လက်ခံသောပတ်ဝန်းကျင်"
   },
   "selfHostedBaseUrlHint": {
-    "message": "သင့်ကိုယ်ပိုင်ဆာဗာတွင် လက်ခံထားသော Bitwarden တပ်ဆင်မှု၏ အခြေခံ URL ကို သတ်မှတ်ပါ။ ဥပမာ − https://bitwarden.company.com"
+    "message": "သင့်ကိုယ်ပိုင်ဆာဗာတွင် လက်ခံထားသော Komboe တပ်ဆင်မှု၏ အခြေခံ URL ကို သတ်မှတ်ပါ။ ဥပမာ − https://komboe.company.com"
   },
   "selfHostedCustomEnvHeader": {
     "message": "အဆင့်မြင့်ဖွဲ့စည်းမှုအတွက် ဝန်ဆောင်မှုတစ်ခုစီ၏ အခြေခံ URL ကို သီးခြားစီ သတ်မှတ်နိုင်ပါသည်။"
@@ -2055,7 +2055,7 @@
     "message": "အလိုအလျောက်ဖြည့်အကြံပြုချက်များကို အလွယ်တကူရှာပါ"
   },
   "autofillSpotlightDesc": {
-    "message": "Bitwarden နှင့် ပဋိပက္ခမဖြစ်စေရန် သင့်ဘရောက်ဇာ၏ အလိုအလျောက်ဖြည့်ဆက်တင်များကို ပိတ်ပါ။"
+    "message": "Komboe နှင့် ပဋိပက္ခမဖြစ်စေရန် သင့်ဘရောက်ဇာ၏ အလိုအလျောက်ဖြည့်ဆက်တင်များကို ပိတ်ပါ။"
   },
   "turnOffBrowserAutofill": {
     "message": "$BROWSER$ အလိုအလျောက်ဖြည့်ခြင်း ပိတ်ရန်",
@@ -2112,7 +2112,7 @@
     "message": "ဖောင်အကွက်များတွင် အလိုအလျောက်ဖြည့်အကြံပြုချက်များ ပြရန်"
   },
   "howDoesBitwardenProtectFromPhishing": {
-    "message": "Bitwarden သည် သင့်ဒေတာကို ဖစ်ရှင်မှ မည်သို့ကာကွယ်သနည်း?"
+    "message": "Komboe သည် သင့်ဒေတာကို ဖစ်ရှင်မှ မည်သို့ကာကွယ်သနည်း?"
   },
   "currentWebsite": {
     "message": "လက်ရှိဝဘ်ဆိုက်"
@@ -3021,7 +3021,7 @@
     "message": "အားနည်းသောမာစတာစကားဝှက်"
   },
   "weakMasterPasswordDesc": {
-    "message": "သင်ရွေးချယ်ထားသောမာစတာစကားဝှက်သည် အားနည်းသည်။ သင့် Bitwarden အကောင့်ကို ကောင်းစွာကာကွယ်ရန် ခိုင်မာသောမာစတာစကားဝှက် (သို့မဟုတ် စကားဝှက်စု) ကို အသုံးပြုသင့်သည်။ ဤမာစတာစကားဝှက်ကို အသုံးပြုရန် သေချာပါသလား?"
+    "message": "သင်ရွေးချယ်ထားသောမာစတာစကားဝှက်သည် အားနည်းသည်။ သင့် Komboe အကောင့်ကို ကောင်းစွာကာကွယ်ရန် ခိုင်မာသောမာစတာစကားဝှက် (သို့မဟုတ် စကားဝှက်စု) ကို အသုံးပြုသင့်သည်။ ဤမာစတာစကားဝှက်ကို အသုံးပြုရန် သေချာပါသလား?"
   },
   "rotateAccountEncKey": {
     "message": "ကျွန်ုပ်၏အကောင့်စာဝှက်သော့ကိုလည်း လှည့်ပါ"
@@ -3033,7 +3033,7 @@
     "message": "သင့်အကောင့်၏ စာဝှက်သော့ကို လှည့်ရန် သေချာပါသလား?"
   },
   "updateEncryptionKeyWarning": {
-    "message": "သင့်စာဝှက်သော့ကို မွမ်းမံပြီးနောက် သင်လက်ရှိအသုံးပြုနေသော Bitwarden အက်ပ်အားလုံး (မိုဘိုင်းအက်ပ် သို့မဟုတ် ဘရောက်ဇာတိုးချဲ့မှုများကဲ့သို့) မှ လော့ဂ်အင်ထွက်ပြီး ပြန်ဝင်ရန် လိုအပ်သည်။ လော့ဂ်အင်ထွက်ပြီး ပြန်မဝင်ပါက (သင့်စာဝှက်သော့အသစ်ကို ဒေါင်းလုဒ်လုပ်သည်) ဒေတာပျက်စီးနိုင်သည်။ ကျွန်ုပ်တို့သည် သင့်ကို အလိုအလျောက်လော့ဂ်အင်ထွက်စေရန် ကြိုးစားမည်၊ သို့သော် နှောင့်နှေးနိုင်ပါသည်။"
+    "message": "သင့်စာဝှက်သော့ကို မွမ်းမံပြီးနောက် သင်လက်ရှိအသုံးပြုနေသော Komboe အက်ပ်အားလုံး (မိုဘိုင်းအက်ပ် သို့မဟုတ် ဘရောက်ဇာတိုးချဲ့မှုများကဲ့သို့) မှ လော့ဂ်အင်ထွက်ပြီး ပြန်ဝင်ရန် လိုအပ်သည်။ လော့ဂ်အင်ထွက်ပြီး ပြန်မဝင်ပါက (သင့်စာဝှက်သော့အသစ်ကို ဒေါင်းလုဒ်လုပ်သည်) ဒေတာပျက်စီးနိုင်သည်။ ကျွန်ုပ်တို့သည် သင့်ကို အလိုအလျောက်လော့ဂ်အင်ထွက်စေရန် ကြိုးစားမည်၊ သို့သော် နှောင့်နှေးနိုင်ပါသည်။"
   },
   "updateEncryptionKeyAccountExportWarning": {
     "message": "သင်သိမ်းဆည်းထားသော အကောင့်ကန့်သတ်တင်ပို့မှုများသည် တရားမဝင်ဖြစ်လာမည်။"
@@ -3061,10 +3061,10 @@
     "message": "PIN သတ်မှတ်ရန်"
   },
   "setYourPinCode": {
-    "message": "Bitwarden ကို သော့ဖွင့်ရန် သင့် PIN ကုဒ်ကို သတ်မှတ်ပါ။ အက်ပ်မှ အပြည့်အဝ လော့ဂ်အင်ထွက်ပါက သင့် PIN ဆက်တင်များ ပြန်လည်သတ်မှတ်ခံရမည်။"
+    "message": "Komboe ကို သော့ဖွင့်ရန် သင့် PIN ကုဒ်ကို သတ်မှတ်ပါ။ အက်ပ်မှ အပြည့်အဝ လော့ဂ်အင်ထွက်ပါက သင့် PIN ဆက်တင်များ ပြန်လည်သတ်မှတ်ခံရမည်။"
   },
   "setPinCode": {
-    "message": "ဤ PIN ကို Bitwarden သော့ဖွင့်ရန် အသုံးပြုနိုင်သည်။ အက်ပ်မှ အပြည့်အဝ လော့ဂ်အင်ထွက်ပါက သင့် PIN ပြန်လည်သတ်မှတ်ခံရမည်။"
+    "message": "ဤ PIN ကို Komboe သော့ဖွင့်ရန် အသုံးပြုနိုင်သည်။ အက်ပ်မှ အပြည့်အဝ လော့ဂ်အင်ထွက်ပါက သင့် PIN ပြန်လည်သတ်မှတ်ခံရမည်။"
   },
   "pinRequired": {
     "message": "PIN ကုဒ် လိုအပ်ပါသည်။"
@@ -3085,7 +3085,7 @@
     "message": "ဒက်စ်တော့မှ အတည်ပြုချက် စောင့်ဆိုင်းနေသည်"
   },
   "awaitDesktopDesc": {
-    "message": "ဘရောက်ဇာအတွက် ဇီဝမက်ထရစ် သတ်မှတ်ရန် Bitwarden ဒက်စ်တော့အက်ပ်တွင် ဇီဝမက်ထရစ်ကို အသုံးပြု၍ အတည်ပြုပါ။"
+    "message": "ဘရောက်ဇာအတွက် ဇီဝမက်ထရစ် သတ်မှတ်ရန် Komboe ဒက်စ်တော့အက်ပ်တွင် ဇီဝမက်ထရစ်ကို အသုံးပြု၍ အတည်ပြုပါ။"
   },
   "lockWithMasterPassOnRestart": {
     "message": "ဘရောက်ဇာပြန်စတင်ချိန်တွင် မာစတာစကားဝှက်ဖြင့် သော့ခတ်ရန်"
@@ -3200,7 +3200,7 @@
     "message": "ဖောင်ကို သင့်သိမ်းဆည်းထားသောလော့ဂ်အင်၏ URI နှင့် မတူညီသောဒိုမိန်းမှ လက်ခံထားသည်။ မည်သို့ပင်ဖြစ်စေ အလိုအလျောက်ဖြည့်ရန် OK ကို ရွေးပါ၊ သို့မဟုတ် ရပ်ရန် ပယ်ဖျက်ရန် ရွေးပါ။"
   },
   "autofillIframeWarningTip": {
-    "message": "နောင်တွင် ဤသတိပေးချက် မဖြစ်ပေါ်စေရန် ဤ URI $HOSTNAME$ ကို ဤဆိုက်အတွက် သင့် Bitwarden လော့ဂ်အင်အရာတွင် သိမ်းဆည်းပါ။",
+    "message": "နောင်တွင် ဤသတိပေးချက် မဖြစ်ပေါ်စေရန် ဤ URI $HOSTNAME$ ကို ဤဆိုက်အတွက် သင့် Komboe လော့ဂ်အင်အရာတွင် သိမ်းဆည်းပါ။",
     "placeholders": {
       "hostname": {
         "content": "$1",
@@ -3209,7 +3209,7 @@
     }
   },
   "topLayerHijackWarning": {
-    "message": "ဤစာမျက်နှာသည် Bitwarden အတွေ့အကြုံကို နှောင့်ယှက်နေသည်။ လုံခြုံရေးအစီအမံအနေဖြင့် Bitwarden အင်လိုင်းမီနူးကို ယာယီပိတ်ထားသည်။"
+    "message": "ဤစာမျက်နှာသည် Komboe အတွေ့အကြုံကို နှောင့်ယှက်နေသည်။ လုံခြုံရေးအစီအမံအနေဖြင့် Komboe အင်လိုင်းမီနူးကို ယာယီပိတ်ထားသည်။"
   },
   "setMasterPassword": {
     "message": "မာစတာစကားဝှက် သတ်မှတ်ရန်"
@@ -3266,7 +3266,7 @@
     "message": "သင့်မာစတာစကားဝှက်အသစ်သည် မူဝါါဒလိုအပ်ချက်များနှင့် မကိုက်ညီပါ။"
   },
   "receiveMarketingEmails": {
-    "message": "သင့်ဝင်စာထဲတွင် Bitwarden မှ အပ်ဒိတ်များ လက်ခံရယူပါ။"
+    "message": "သင့်ဝင်စာထဲတွင် Komboe မှ အပ်ဒိတ်များ လက်ခံရယူပါ။"
   },
   "unsubscribe": {
     "message": "စာရင်းမှ ဖြုတ်ရန်"
@@ -3311,13 +3311,13 @@
     "message": "ဘရောက်ဇာပေါင်းစည်းမှု သတ်မှတ်မထားပါ"
   },
   "desktopIntegrationDisabledDesc": {
-    "message": "Bitwarden ဒက်စ်တော့အက်ပ်တွင် ဘရောက်ဇာပေါင်းစည်းမှု သတ်မှတ်မထားပါ။ ဒက်စ်တော့အက်ပ်အတွင်းရှိ ဆက်တင်များတွင် သတ်မှတ်ပါ။"
+    "message": "Komboe ဒက်စ်တော့အက်ပ်တွင် ဘရောက်ဇာပေါင်းစည်းမှု သတ်မှတ်မထားပါ။ ဒက်စ်တော့အက်ပ်အတွင်းရှိ ဆက်တင်များတွင် သတ်မှတ်ပါ။"
   },
   "startDesktopTitle": {
-    "message": "Bitwarden ဒက်စ်တော့အက်ပ်ကို စတင်ပါ"
+    "message": "Komboe ဒက်စ်တော့အက်ပ်ကို စတင်ပါ"
   },
   "startDesktopDesc": {
-    "message": "ဇီဝမက်ထရစ်ဖြင့် သော့ဖွင့်ခြင်းကို အသုံးမပြုမီ Bitwarden ဒက်စ်တော့အက်ပ်ကို စတင်ရန် လိုအပ်သည်။"
+    "message": "ဇီဝမက်ထရစ်ဖြင့် သော့ဖွင့်ခြင်းကို အသုံးမပြုမီ Komboe ဒက်စ်တော့အက်ပ်ကို စတင်ရန် လိုအပ်သည်။"
   },
   "errorEnableBiometricTitle": {
     "message": "ဇီဝမက်ထရစ် သတ်မှတ်၍ မရပါ"
@@ -3371,13 +3371,13 @@
     "message": "ဇီဝမက်ထရစ် မအောင်မြင်ပါ"
   },
   "biometricsFailedDesc": {
-    "message": "ဇီဝမက်ထရစ် ပြီးမြောက်၍ မရပါ၊ မာစတာစကားဝှက်ကို အသုံးပြုရန် သို့မဟုတ် လော့ဂ်အင်ထွက်ရန် စဉ်းစားပါ။ ဤပြဿနာ ဆက်လက်ဖြစ်ပေါ်ပါက Bitwarden ပံ့ပိုးမှုကို ဆက်သွယ်ပါ။"
+    "message": "ဇီဝမက်ထရစ် ပြီးမြောက်၍ မရပါ၊ မာစတာစကားဝှက်ကို အသုံးပြုရန် သို့မဟုတ် လော့ဂ်အင်ထွက်ရန် စဉ်းစားပါ။ ဤပြဿနာ ဆက်လက်ဖြစ်ပေါ်ပါက Komboe ပံ့ပိုးမှုကို ဆက်သွယ်ပါ။"
   },
   "nativeMessagingPermissionErrorTitle": {
     "message": "ခွင့်ပြုချက် မပေးထားပါ"
   },
   "nativeMessagingPermissionErrorDesc": {
-    "message": "Bitwarden ဒက်စ်တော့အက်ပ်နှင့် ဆက်သွယ်ရန် ခွင့်ပြုချက်မရှိဘဲ ဘရောက်ဇာတိုးချဲ့မှုတွင် ဇီဝမက်ထရစ်ကို မပေးနိုင်ပါ။ ထပ်မံကြိုးစားပါ။"
+    "message": "Komboe ဒက်စ်တော့အက်ပ်နှင့် ဆက်သွယ်ရန် ခွင့်ပြုချက်မရှိဘဲ ဘရောက်ဇာတိုးချဲ့မှုတွင် ဇီဝမက်ထရစ်ကို မပေးနိုင်ပါ။ ထပ်မံကြိုးစားပါ။"
   },
   "nativeMessagingPermissionSidebarTitle": {
     "message": "ခွင့်ပြုချက်တောင်းဆိုမှု အမှား"
@@ -3414,7 +3414,7 @@
     "message": "ဖယ်ထုတ်ထားသောဒိုမိန်းများ"
   },
   "excludedDomainsDesc": {
-    "message": "Bitwarden သည် ဤဒိုမိန်းများအတွက် လော့ဂ်အင်အသေးစိတ်များ သိမ်းဆည်းရန် မေးမည်မဟုတ်ပါ။ ပြောင်းလဲမှုများ အကျိုးသက်ရောက်ရန် စာမျက်နှာကို ပြန်လည်စတင်ရပါမည်။"
+    "message": "Komboe သည် ဤဒိုမိန်းများအတွက် လော့ဂ်အင်အသေးစိတ်များ သိမ်းဆည်းရန် မေးမည်မဟုတ်ပါ။ ပြောင်းလဲမှုများ အကျိုးသက်ရောက်ရန် စာမျက်နှာကို ပြန်လည်စတင်ရပါမည်။"
   },
   "blockedDomainsDesc": {
     "message": "ဤဝဘ်ဆိုက်များအတွက် အလိုအလျောက်ဖြည့်ခြင်းနှင့် အခြားဆက်စပ်လုပ်ဆောင်ချက်များကို ပေးမည်မဟုတ်ပါ။ ပြောင်းလဲမှုများ အကျိုးသက်ရောက်ရန် စာမျက်နှာကို ပြန်လည်စတင်ရပါမည်။"
@@ -3546,24 +3546,24 @@
     "message": "အန္တရာယ်ရှိလော့ဂ်အင်များစာရင်း၏ သရုပ်ဖော်ပုံ။"
   },
   "welcomeDialogGraphicAlt": {
-    "message": "Bitwarden သေတ္တာစာမျက်နှာ၏ အပြင်အဆင်သရုပ်ဖော်ပုံ။"
+    "message": "Komboe သေတ္တာစာမျက်နှာ၏ အပြင်အဆင်သရုပ်ဖော်ပုံ။"
   },
   "generatePasswordSlideDesc": {
-    "message": "အန္တရာယ်ရှိဆိုက်တွင် Bitwarden အလိုအလျောက်ဖြည့်မီနူးဖြင့် ခိုင်မာပြီးထူးခြားသောစကားဝှက်ကို လျင်မြန်စွာဖန်တီးပါ။",
+    "message": "အန္တရာယ်ရှိဆိုက်တွင် Komboe အလိုအလျောက်ဖြည့်မီနူးဖြင့် ခိုင်မာပြီးထူးခြားသောစကားဝှက်ကို လျင်မြန်စွာဖန်တီးပါ။",
     "description": "Description of the generate password slide on the at-risk password page carousel"
   },
   "generatePasswordSlideImgAltPeriod": {
-    "message": "ဖန်တီးထားသောစကားဝှက်ကို ပြသနေသော Bitwarden အလိုအလျောက်ဖြည့်မီနူး၏ သရုပ်ဖော်ပုံ။"
+    "message": "ဖန်တီးထားသောစကားဝှက်ကို ပြသနေသော Komboe အလိုအလျောက်ဖြည့်မီနူး၏ သရုပ်ဖော်ပုံ။"
   },
   "updateInBitwarden": {
-    "message": "Bitwarden တွင် မွမ်းမံရန်"
+    "message": "Komboe တွင် မွမ်းမံရန်"
   },
   "updateInBitwardenSlideDesc": {
-    "message": "ထို့နောက် Bitwarden သည် စကားဝှက်မန်နေဂျာတွင် စကားဝှက်ကို မွမ်းမံရန် သင့်အား မေးမည်။",
+    "message": "ထို့နောက် Komboe သည် စကားဝှက်မန်နေဂျာတွင် စကားဝှက်ကို မွမ်းမံရန် သင့်အား မေးမည်။",
     "description": "Description of the update in Bitwarden slide on the at-risk password page carousel"
   },
   "updateInBitwardenSlideImgAltPeriod": {
-    "message": "လော့ဂ်အင်ကို မွမ်းမံရန် အသုံးပြုသူကို မေးနေသော Bitwarden ၏အသိပေးချက် သရုပ်ဖော်ပုံ။"
+    "message": "လော့ဂ်အင်ကို မွမ်းမံရန် အသုံးပြုသူကို မေးနေသော Komboe ၏အသိပေးချက် သရုပ်ဖော်ပုံ။"
   },
   "turnOnAutofill": {
     "message": "အလိုအလျောက်ဖြည့်ခြင်း ဖွင့်ရန်"
@@ -4078,10 +4078,10 @@
     "message": "အလိုအလျောက်ဖြည့်ဒေတာ ရယူရာတွင် အမှား"
   },
   "couldNotDecryptVaultItem": {
-    "message": "Bitwarden သည် အောက်တွင်ဖော်ပြထားသောသေတ္တာအရာကို ဖွင့်၍မရပါ။ ပြန်လည်ရယူနိုင်ခြင်းရှိမရှိကြည့်ရန် Bitwarden ဖောက်သည်ပံ့ပိုးမှုကို ဆက်သွယ်ပြီး အောက်ပါအရာ ID ကို ပေးပါ။"
+    "message": "Komboe သည် အောက်တွင်ဖော်ပြထားသောသေတ္တာအရာကို ဖွင့်၍မရပါ။ ပြန်လည်ရယူနိုင်ခြင်းရှိမရှိကြည့်ရန် Komboe ဖောက်သည်ပံ့ပိုးမှုကို ဆက်သွယ်ပြီး အောက်ပါအရာ ID ကို ပေးပါ။"
   },
   "couldNotDecryptVaultItems": {
-    "message": "Bitwarden သည် အောက်တွင်ဖော်ပြထားသောသေတ္တာအရာများကို ဖွင့်၍မရပါ။ ပြန်လည်ရယူနိုင်ခြင်းရှိမရှိကြည့်ရန် Bitwarden ဖောက်သည်ပံ့ပိုးမှုကို ဆက်သွယ်ပြီး အောက်ပါအရာ ID များကို ပေးပါ။"
+    "message": "Komboe သည် အောက်တွင်ဖော်ပြထားသောသေတ္တာအရာများကို ဖွင့်၍မရပါ။ ပြန်လည်ရယူနိုင်ခြင်းရှိမရှိကြည့်ရန် Komboe ဖောက်သည်ပံ့ပိုးမှုကို ဆက်သွယ်ပြီး အောက်ပါအရာ ID များကို ပေးပါ။"
   },
   "itemId": {
     "message": "အရာ ID",
@@ -4191,11 +4191,11 @@
     }
   },
   "forwarderGeneratedBy": {
-    "message": "Bitwarden မှ ဖန်တီးထားသည်။",
+    "message": "Komboe မှ ဖန်တီးထားသည်။",
     "description": "Displayed with the address on the forwarding service's configuration screen."
   },
   "forwarderGeneratedByWithWebsite": {
-    "message": "ဝဘ်ဆိုက် − $WEBSITE$။ Bitwarden မှ ဖန်တီးထားသည်။",
+    "message": "ဝဘ်ဆိုက် − $WEBSITE$။ Komboe မှ ဖန်တီးထားသည်။",
     "description": "Displayed with the address on the forwarding service's configuration screen.",
     "placeholders": {
       "WEBSITE": {
@@ -4417,7 +4417,7 @@
     "message": "သင့်စက်ပစ္စည်းသို့ အသိပေးချက် ပေးပို့ပြီးပါပြီ။"
   },
   "notificationSentDevicePart1": {
-    "message": "သင့်စက်ပစ္စည်းတွင် သို့မဟုတ် အောက်ပါတွင် Bitwarden ကို သော့ဖွင့်ပါ"
+    "message": "သင့်စက်ပစ္စည်းတွင် သို့မဟုတ် အောက်ပါတွင် Komboe ကို သော့ဖွင့်ပါ"
   },
   "notificationSentDeviceAnchor": {
     "message": "ဝဘ်အက်ပ်"
@@ -4917,15 +4917,15 @@
     "message": "အကြောင်းအရာသို့ ကျော်သွားရန်"
   },
   "bitwardenOverlayButton": {
-    "message": "Bitwarden အလိုအလျောက်ဖြည့်မီနူးခလုတ်",
+    "message": "Komboe အလိုအလျောက်ဖြည့်မီနူးခလုတ်",
     "description": "Page title for the iframe containing the overlay button"
   },
   "toggleBitwardenVaultOverlay": {
-    "message": "Bitwarden အလိုအလျောက်ဖြည့်မီနူး ပြောင်းရန်",
+    "message": "Komboe အလိုအလျောက်ဖြည့်မီနူး ပြောင်းရန်",
     "description": "Screen reader and tool tip label for the overlay button"
   },
   "bitwardenVault": {
-    "message": "Bitwarden အလိုအလျောက်ဖြည့်မီနူး",
+    "message": "Komboe အလိုအလျောက်ဖြည့်မီနူး",
     "description": "Page title in overlay"
   },
   "unlockYourAccountToViewMatchingLogins": {
@@ -4997,7 +4997,7 @@
     "description": "Screen reader text (aria-label) for new identity button within inline menu"
   },
   "bitwardenOverlayMenuAvailable": {
-    "message": "Bitwarden အလိုအလျောက်ဖြည့်မီနူး ရနိုင်သည်။ ရွေးရန် အောက်မြှားခလုတ်ကို နှိပ်ပါ။",
+    "message": "Komboe အလိုအလျောက်ဖြည့်မီနူး ရနိုင်သည်။ ရွေးရန် အောက်မြှားခလုတ်ကို နှိပ်ပါ။",
     "description": "Screen reader text for announcing when the overlay opens on the page"
   },
   "turnOn": {
@@ -5369,7 +5369,7 @@
     "message": "Secure by design"
   },
   "importDataSecureByDesignBody": {
-    "message": "End-to-end encrypted handoff. Bitwarden never sees your $VENDOR$ login details.",
+    "message": "End-to-end encrypted handoff. Komboe never sees your $VENDOR$ login details.",
     "placeholders": {
       "vendor": {
         "content": "$1",
@@ -5520,7 +5520,7 @@
     "description": "Followed by a literal filename (my_passwords.json) rendered as code."
   },
   "importGnomeInstructionsFileHere": {
-    "message": "ဖိုင်ကို ဤနေရာတွင် Bitwarden သို့ အပ်လုဒ်လုပ်ပါ။",
+    "message": "ဖိုင်ကို ဤနေရာတွင် Komboe သို့ အပ်လုဒ်လုပ်ပါ။",
     "description": "Follows the my_passwords.json filename."
   },
   "importPasswordagentInstructions": {
@@ -6091,7 +6091,7 @@
     "message": "တက်ကြွသောအကောင့်"
   },
   "bitwardenAccount": {
-    "message": "Bitwarden အကောင့်"
+    "message": "Komboe အကောင့်"
   },
   "availableAccounts": {
     "message": "ရနိုင်သောအကောင့်များ"
@@ -6137,7 +6137,7 @@
     "description": "Label indicating the most common import formats"
   },
   "uriMatchDefaultStrategyHint": {
-    "message": "URI ကိုက်ညီမှုရှာဖွေခြင်းသည် Bitwarden မှ အလိုအလျောက်ဖြည့်အကြံပြုချက်များကို ဖော်ထုတ်သည့်နည်းလမ်းဖြစ်သည်။",
+    "message": "URI ကိုက်ညီမှုရှာဖွေခြင်းသည် Komboe မှ အလိုအလျောက်ဖြည့်အကြံပြုချက်များကို ဖော်ထုတ်သည့်နည်းလမ်းဖြစ်သည်။",
     "description": "Explains to the user that URI match detection determines how Bitwarden suggests autofill options, and clarifies that this default strategy applies when no specific match detection is set for a login item."
   },
   "regExAdvancedOptionWarning": {
@@ -6181,15 +6181,15 @@
     "description": "Body content for dialog which asks if the user wants to proceed to the browser's keyboard shortcut settings page"
   },
   "overrideDefaultBrowserAutofillTitle": {
-    "message": "Bitwarden ကို သင့်မူရင်းစကားဝှက်မန်နေဂျာအဖြစ် သတ်မှတ်မလား?",
+    "message": "Komboe ကို သင့်မူရင်းစကားဝှက်မန်နေဂျာအဖြစ် သတ်မှတ်မလား?",
     "description": "Dialog title facilitating the ability to override a chrome browser's default autofill behavior"
   },
   "overrideDefaultBrowserAutofillDescription": {
-    "message": "ဤရွေးချယ်စရာကို လျစ်လျူရှုပါက Bitwarden အလိုအလျောက်ဖြည့်အကြံပြုချက်များနှင့် သင့်ဘရောက်ဇာ၏အကြံပြုချက်များကြား ပဋိပက္ခဖြစ်နိုင်ပါသည်။",
+    "message": "ဤရွေးချယ်စရာကို လျစ်လျူရှုပါက Komboe အလိုအလျောက်ဖြည့်အကြံပြုချက်များနှင့် သင့်ဘရောက်ဇာ၏အကြံပြုချက်များကြား ပဋိပက္ခဖြစ်နိုင်ပါသည်။",
     "description": "Dialog message facilitating the ability to override a chrome browser's default autofill behavior"
   },
   "overrideDefaultBrowserAutoFillSettings": {
-    "message": "Bitwarden ကို သင့်မူရင်းစကားဝှက်မန်နေဂျာအဖြစ် သတ်မှတ်ပါ",
+    "message": "Komboe ကို သင့်မူရင်းစကားဝှက်မန်နေဂျာအဖြစ် သတ်မှတ်ပါ",
     "description": "Label for the setting that allows overriding the default browser autofill settings"
   },
   "defaultPasswordManagerCalloutTitle": {
@@ -6197,7 +6197,7 @@
     "description": "Title for the callout that prompts users to set Bitwarden as their default password manager"
   },
   "defaultPasswordManagerCalloutDesc": {
-    "message": "Bitwarden ကို သင့်မူရင်းစကားဝှက်မန်နေဂျာအဖြစ် သတ်မှတ်ရန် $BROWSER$ ဘရောက်ဇာခွင့်ပြုချက် ပေးရန် သင့်အား မေးမည်။",
+    "message": "Komboe ကို သင့်မူရင်းစကားဝှက်မန်နေဂျာအဖြစ် သတ်မှတ်ရန် $BROWSER$ ဘရောက်ဇာခွင့်ပြုချက် ပေးရန် သင့်အား မေးမည်။",
     "description": "Description for the callout that prompts users to set Bitwarden as their default password manager",
     "placeholders": {
       "browser": {
@@ -6207,11 +6207,11 @@
     }
   },
   "privacyPermissionAdditionNotGrantedTitle": {
-    "message": "Bitwarden ကို မူရင်းစကားဝှက်မန်နေဂျာအဖြစ် သတ်မှတ်၍ မရပါ",
+    "message": "Komboe ကို မူရင်းစကားဝှက်မန်နေဂျာအဖြစ် သတ်မှတ်၍ မရပါ",
     "description": "Title for the dialog that appears when the user has not granted the extension permission to set privacy settings"
   },
   "privacyPermissionAdditionNotGrantedDescription": {
-    "message": "Bitwarden ကို မူရင်းစကားဝှက်မန်နေဂျာအဖြစ် သတ်မှတ်ရန် ဘရောက်ဇာကိုယ်ရေးကိုယ်တာခွင့်ပြုချက်များကို Bitwarden အား ပေးရပါမည်။",
+    "message": "Komboe ကို မူရင်းစကားဝှက်မန်နေဂျာအဖြစ် သတ်မှတ်ရန် ဘရောက်ဇာကိုယ်ရေးကိုယ်တာခွင့်ပြုချက်များကို Komboe အား ပေးရပါမည်။",
     "description": "Description for the dialog that appears when the user has not granted the extension permission to set privacy settings"
   },
   "makeDefault": {
@@ -6219,10 +6219,10 @@
     "description": "Button text for the setting that allows overriding the default browser autofill settings"
   },
   "defaultPasswordManagerPromptTitle": {
-    "message": "Bitwarden ကို သင့်ဘရောက်ဇာ၏ မူရင်းစကားဝှက်မန်နေဂျာအဖြစ် သတ်မှတ်ပါ"
+    "message": "Komboe ကို သင့်ဘရောက်ဇာ၏ မူရင်းစကားဝှက်မန်နေဂျာအဖြစ် သတ်မှတ်ပါ"
   },
   "defaultPasswordManagerPromptTitleV2": {
-    "message": "Bitwarden ကို သင့်မူရင်းစကားဝှက်မန်နေဂျာအဖြစ် သတ်မှတ်ပါ",
+    "message": "Komboe ကို သင့်မူရင်းစကားဝှက်မန်နေဂျာအဖြစ် သတ်မှတ်ပါ",
     "description": "Label for the setting to make Bitwarden the default password manager"
   },
   "defaultPasswordManagerSettingHintV2": {
@@ -6234,13 +6234,13 @@
     "description": "Link text to browser autofill settings in the default password manager setting hint."
   },
   "defaultPasswordManagerPromptStep2AfterAllow": {
-    "message": "သင့်ဆက်တင်များကို ပြောင်းလဲရန် Bitwarden အား ခွင့်ပြုချက်ပေးရန် ဘရောက်ဇာမေးခွန်းမှ"
+    "message": "သင့်ဆက်တင်များကို ပြောင်းလဲရန် Komboe အား ခွင့်ပြုချက်ပေးရန် ဘရောက်ဇာမေးခွန်းမှ"
   },
   "defaultPasswordManagerPromptStep3": {
     "message": "သင့်ဘရောက်ဇာ၏ built-in စကားဝှက်မန်နေဂျာကို ကျွန်ုပ်တို့ပိတ်မည်၊ သို့မှသာ လုံခြုံသောလော့ဂ်အင်အတွေ့အကြုံကို ခံစားနိုင်မည်။"
   },
   "defaultPasswordManagerSuccessToast": {
-    "message": "Bitwarden ကို သင့်မူရင်းဘရောက်ဇာစကားဝှက်မန်နေဂျာအဖြစ် သတ်မှတ်ပြီးပါပြီ"
+    "message": "Komboe ကို သင့်မူရင်းဘရောက်ဇာစကားဝှက်မန်နေဂျာအဖြစ် သတ်မှတ်ပြီးပါပြီ"
   },
   "allow": {
     "message": "ခွင့်ပြုရန်",
@@ -6648,16 +6648,16 @@
     "message": "ပူးတွဲဖိုင် ဒေါင်းလုဒ်လုပ်ရန်"
   },
   "downloadBitwarden": {
-    "message": "Bitwarden ဒေါင်းလုဒ်လုပ်ရန်"
+    "message": "Komboe ဒေါင်းလုဒ်လုပ်ရန်"
   },
   "downloadBitwardenOnAllDevices": {
-    "message": "စက်ပစ္စည်းအားလုံးတွင် Bitwarden ဒေါင်းလုဒ်လုပ်ရန်"
+    "message": "စက်ပစ္စည်းအားလုံးတွင် Komboe ဒေါင်းလုဒ်လုပ်ရန်"
   },
   "getTheMobileApp": {
     "message": "မိုဘိုင်းအက်ပ် ရယူရန်"
   },
   "getTheMobileAppDesc": {
-    "message": "Bitwarden မိုဘိုင်းအက်ပ်ဖြင့် ခရီးသွားနေစဉ် သင့်စကားဝှက်များကို အသုံးပြုပါ။"
+    "message": "Komboe မိုဘိုင်းအက်ပ်ဖြင့် ခရီးသွားနေစဉ် သင့်စကားဝှက်များကို အသုံးပြုပါ။"
   },
   "getTheDesktopApp": {
     "message": "ဒက်စ်တော့အက်ပ် ရယူရန်"
@@ -6666,7 +6666,7 @@
     "message": "ဘရောက်ဇာမပါဘဲ သင့်သေတ္တာကို အသုံးပြုပါ၊ ထို့နောက် ဒက်စ်တော့အက်ပ်နှင့် ဘရောက်ဇာတိုးချဲ့မှုနှစ်ခုလုံးတွင် သော့ဖွင့်ခြင်းကို အရှိန်မြှင့်ရန် ဇီဝမက်ထရစ်ဖြင့်သော့ဖွင့်ခြင်းကို သတ်မှတ်ပါ။"
   },
   "downloadFromBitwardenNow": {
-    "message": "ယခု bitwarden.com မှ ဒေါင်းလုဒ်လုပ်ပါ"
+    "message": "ယခု komboe.com မှ ဒေါင်းလုဒ်လုပ်ပါ"
   },
   "getItOnGooglePlay": {
     "message": "Google Play တွင် ရယူပါ"
@@ -7210,10 +7210,10 @@
     "message": "မှားယွင်းစွာဖွဲ့စည်းထားသောစနစ်ဖိုင်များကြောင့် ဇီဝမက်ထရစ်သော့ဖွင့်ခြင်း မရနိုင်ပါ။"
   },
   "biometricsStatusHelptextDesktopDisconnected": {
-    "message": "Bitwarden ဒက်စ်တော့အက်ပ် ပိတ်ထားသောကြောင့် ဇီဝမက်ထရစ်သော့ဖွင့်ခြင်း မရနိုင်ပါ။"
+    "message": "Komboe ဒက်စ်တော့အက်ပ် ပိတ်ထားသောကြောင့် ဇီဝမက်ထရစ်သော့ဖွင့်ခြင်း မရနိုင်ပါ။"
   },
   "biometricsStatusHelptextNotEnabledInDesktop": {
-    "message": "Bitwarden ဒက်စ်တော့အက်ပ်တွင် $EMAIL$ အတွက် ဖွင့်မထားသောကြောင့် ဇီဝမက်ထရစ်သော့ဖွင့်ခြင်း မရနိုင်ပါ။",
+    "message": "Komboe ဒက်စ်တော့အက်ပ်တွင် $EMAIL$ အတွက် ဖွင့်မထားသောကြောင့် ဇီဝမက်ထရစ်သော့ဖွင့်ခြင်း မရနိုင်ပါ။",
     "placeholders": {
       "email": {
         "content": "$1",
@@ -7245,7 +7245,7 @@
     "description": "Notification message for when a password has been regenerated"
   },
   "saveToBitwarden": {
-    "message": "Bitwarden သို့ သိမ်းဆည်းရန်",
+    "message": "Komboe သို့ သိမ်းဆည်းရန်",
     "description": "Confirmation message for saving a login to Bitwarden"
   },
   "spaceCharacterDescriptor": {
@@ -7489,13 +7489,13 @@
     "message": "Use folders to organize vault items. They're just for you. No one else will see or use them."
   },
   "introCarouselLabel": {
-    "message": "Bitwarden မှ ကြိုဆိုပါသည်"
+    "message": "Komboe မှ ကြိုဆိုပါသည်"
   },
   "securityPrioritized": {
     "message": "လုံခြုံရေးကို ဦးစားပေးထားသည်"
   },
   "securityPrioritizedBody": {
-    "message": "လော့ဂ်အင်များ၊ ကတ်များနှင့် အထောက်အထားများကို သင့်လုံခြုံသောသေတ္တာတွင် သိမ်းဆည်းပါ။ Bitwarden သည် သင့်အတွက် အရေးကြီးသောအရာများကို ကာကွယ်ရန် zero-knowledge၊ အဆုံးမှအဆုံး စာဝှက်ခြင်းကို အသုံးပြုသည်။"
+    "message": "လော့ဂ်အင်များ၊ ကတ်များနှင့် အထောက်အထားများကို သင့်လုံခြုံသောသေတ္တာတွင် သိမ်းဆည်းပါ။ Komboe သည် သင့်အတွက် အရေးကြီးသောအရာများကို ကာကွယ်ရန် zero-knowledge၊ အဆုံးမှအဆုံး စာဝှက်ခြင်းကို အသုံးပြုသည်။"
   },
   "quickLogin": {
     "message": "လျင်မြန်လွယ်ကူသောလော့ဂ်အင်ဝင်ခြင်း"
@@ -7513,7 +7513,7 @@
     "message": "သင့်ဒေတာ၊ သင် လိုအပ်သည့်အချိန်နှင့်နေရာ"
   },
   "secureDevicesBody": {
-    "message": "Bitwarden မိုဘိုင်း၊ ဘရောက်ဇာနှင့် ဒက်စ်တော့အက်ပ်များဖြင့် အကန့်အသတ်မရှိသောစက်ပစ္စည်းများတွင် အကန့်အသတ်မရှိသောစကားဝှက်များကို သိမ်းဆည်းပါ။"
+    "message": "Komboe မိုဘိုင်း၊ ဘရောက်ဇာနှင့် ဒက်စ်တော့အက်ပ်များဖြင့် အကန့်အသတ်မရှိသောစက်ပစ္စည်းများတွင် အကန့်အသတ်မရှိသောစကားဝှက်များကို သိမ်းဆည်းပါ။"
   },
   "nudgeBadgeAria": {
     "message": "အသိပေးချက် ၁ ခု"
@@ -7522,7 +7522,7 @@
     "message": "လက်ရှိစကားဝှက်များ တင်သွင်းပါ"
   },
   "emptyVaultNudgeBody": {
-    "message": "လော့ဂ်အင်များကို ကိုယ်တိုင်ထည့်ရန်မလိုဘဲ Bitwarden သို့ လျင်မြန်စွာလွှဲပြောင်းရန် တင်သွင်းကိရိယာကို အသုံးပြုပါ။"
+    "message": "လော့ဂ်အင်များကို ကိုယ်တိုင်ထည့်ရန်မလိုဘဲ Komboe သို့ လျင်မြန်စွာလွှဲပြောင်းရန် တင်သွင်းကိရိယာကို အသုံးပြုပါ။"
   },
   "emptyVaultNudgeButton": {
     "message": "ယခု တင်သွင်းရန်"
@@ -7641,7 +7641,7 @@
     "message": "ဤဆက်တင်အကြောင်း"
   },
   "permitCipherDetailsDescription": {
-    "message": "Bitwarden သည် သင့်အတွေ့အကြုံကို တိုးတက်စေရန် မည်သည့်အိုင်ကွန် သို့မဟုတ် စကားဝှက်ပြောင်းရန် URL ကို အသုံးပြုသင့်သည်ကို ဖော်ထုတ်ရန် သိမ်းဆည်းထားသောလော့ဂ်အင် URI များကို အသုံးပြုမည်။ ဤဝန်ဆောင်မှုကို အသုံးပြုသောအခါ မည်သည့်အချက်အလက်မျှ စုဆောင်းခြင်း သို့မဟုတ် သိမ်းဆည်းခြင်း မပြုပါ။"
+    "message": "Komboe သည် သင့်အတွေ့အကြုံကို တိုးတက်စေရန် မည်သည့်အိုင်ကွန် သို့မဟုတ် စကားဝှက်ပြောင်းရန် URL ကို အသုံးပြုသင့်သည်ကို ဖော်ထုတ်ရန် သိမ်းဆည်းထားသောလော့ဂ်အင် URI များကို အသုံးပြုမည်။ ဤဝန်ဆောင်မှုကို အသုံးပြုသောအခါ မည်သည့်အချက်အလက်မျှ စုဆောင်းခြင်း သို့မဟုတ် သိမ်းဆည်းခြင်း မပြုပါ။"
   },
   "showQuickCopyActionsDetailsDescription": {
     "message": "သင့်အသုံးပြုသူအမည်၊ စကားဝှက် သို့မဟုတ် အတည်ပြုကုဒ်ကို ကလစ်ဘုတ်သို့ကူးယူရန် အရာများဘေးတွင် လျင်မြန်သောကူးယူခလုတ် ၃ ခု ထည့်ပါ။"
@@ -7650,7 +7650,7 @@
     "message": "ဤစာမျက်နှာကို ကြည့်ရှုရန် သင့်တွင် ခွင့်ပြုချက်မရှိပါ။ အခြားအကောင့်ဖြင့် လော့ဂ်အင်ဝင်ရန် ကြိုးစားပါ။"
   },
   "wasmNotSupported": {
-    "message": "WebAssembly ကို သင့်ဘရောက်ဇာတွင် မပံ့ပိုးပါ သို့မဟုတ် ဖွင့်မထားပါ။ Bitwarden အက်ပ်ကို အသုံးပြုရန် WebAssembly လိုအပ်သည်။",
+    "message": "WebAssembly ကို သင့်ဘရောက်ဇာတွင် မပံ့ပိုးပါ သို့မဟုတ် ဖွင့်မထားပါ။ Komboe အက်ပ်ကို အသုံးပြုရန် WebAssembly လိုအပ်သည်။",
     "description": "'WebAssembly' is a technical term and should not be translated."
   },
   "showMore": {
@@ -7738,7 +7738,7 @@
     "message": "အမှား − ဖွင့်၍မရပါ"
   },
   "removeMasterPasswordForOrgUserKeyConnector": {
-    "message": "သင့်အဖွဲ့အစည်းသည် Bitwarden သို့ လော့ဂ်အင်ဝင်ရန် မာစတာစကားဝှက်များကို အသုံးမပြုတော့ပါ။ ဆက်လုပ်ရန် အဖွဲ့အစည်းနှင့် ဒိုမိန်းကို အတည်ပြုပါ။"
+    "message": "သင့်အဖွဲ့အစည်းသည် Komboe သို့ လော့ဂ်အင်ဝင်ရန် မာစတာစကားဝှက်များကို အသုံးမပြုတော့ပါ။ ဆက်လုပ်ရန် အဖွဲ့အစည်းနှင့် ဒိုမိန်းကို အတည်ပြုပါ။"
   },
   "continueWithLogIn": {
     "message": "လော့ဂ်အင်ဖြင့် ဆက်လုပ်ပါ"
@@ -7824,7 +7824,7 @@
     "message": "သင့်အချိန်ကုန်ဆုံးမှုလုပ်ဆောင်ချက်ကို ပြောင်းရန် သော့ဖွင့်နည်းလမ်းတစ်ခု သတ်မှတ်ပါ"
   },
   "sessionTimeoutSuppressedByConnectedDevice": {
-    "message": "Bitwarden ဒက်စ်တော့အက်ပ်မှ စီမံသည်။ တည်းဖြတ်ရန် ဒက်စ်တော့အက်ပ်ကို ဖွင့်ပါ။"
+    "message": "Komboe ဒက်စ်တော့အက်ပ်မှ စီမံသည်။ တည်းဖြတ်ရန် ဒက်စ်တော့အက်ပ်ကို ဖွင့်ပါ။"
   },
   "percentageCompleted": {
     "message": "$PERCENT$% ပြီးစီးသည်",
@@ -7920,13 +7920,13 @@
     "message": "ကော်မာဖြင့် ခွဲခြားခြင်းဖြင့် အီးမေးလ်များစွာ ထည့်ပါ။"
   },
   "emailPlaceholder": {
-    "message": "user@bitwarden.com , user@acme.com"
+    "message": "user@komboe.com , user@acme.com"
   },
   "emailPlaceholderMultiple": {
-    "message": "user@bitwarden.com, user@acme.com"
+    "message": "user@komboe.com, user@acme.com"
   },
   "downloadBitwardenApps": {
-    "message": "Bitwarden အက်ပ်များ ဒေါင်းလုဒ်လုပ်ရန်"
+    "message": "Komboe အက်ပ်များ ဒေါင်းလုဒ်လုပ်ရန်"
   },
   "emailProtected": {
     "message": "အီးမေးလ် ကာကွယ်ထားသည်"
@@ -7945,13 +7945,13 @@
     "message": "Sync unlock with desktop app"
   },
   "syncUnlockWithDesktopDescription": {
-    "message": "The Bitwarden browser extension and desktop app lock and unlock together."
+    "message": "The Komboe browser extension and desktop app lock and unlock together."
   },
   "syncUnlockWithWeb": {
     "message": "Sync unlock with web app"
   },
   "syncUnlockWithWebDescription": {
-    "message": "The Bitwarden browser extension and web app lock and unlock together."
+    "message": "The Komboe browser extension and web app lock and unlock together."
   },
   "sharedUnlockUnavailableUntrustedDevice": {
     "message": "ဤစက်ပစ္စည်းကို မမှတ်ထားရန် သင်ရွေးချယ်ခဲ့သောကြောင့် မျှဝေထားသောသော့ဖွင့်ခြင်း မရနိုင်ပါ။ ဤဆက်တင်ကို ဖွင့်ရန် ထပ်မံလော့ဂ်အင်ဝင်ရန် ကြိုးစားပါ။"
@@ -7960,13 +7960,13 @@
     "message": "ခွင့်ပြုချက်အသစ် လိုအပ်သည်"
   },
   "sharedUnlockDesktopPermissionDesc": {
-    "message": "မျှဝေထားသောသော့ဖွင့်ခြင်းကို အသုံးပြုရန် Bitwarden သည် ဒက်စ်တော့အက်ပ်နှင့် ဆက်သွယ်ရန် ခွင့်ပြုချက် လိုအပ်သည်။ သင်ဆက်လုပ်သောအခါ သင့်ဘရောက်ဇာက အတည်ပြုရန် မေးမည်။"
+    "message": "မျှဝေထားသောသော့ဖွင့်ခြင်းကို အသုံးပြုရန် Komboe သည် ဒက်စ်တော့အက်ပ်နှင့် ဆက်သွယ်ရန် ခွင့်ပြုချက် လိုအပ်သည်။ သင်ဆက်လုပ်သောအခါ သင့်ဘရောက်ဇာက အတည်ပြုရန် မေးမည်။"
   },
   "sharedUnlockDesktopPermissionWarning": {
-    "message": "Bitwarden သည် သော့ခတ်ပြီး ပြန်လည်စတင်မည်။ သင်အတည်ပြုပြီးနောက် တိုးချဲ့မှု ပြန်လည်စတင်မည်ဖြစ်ပြီး သင့်သေတ္တာကို သော့ခတ်မည်။"
+    "message": "Komboe သည် သော့ခတ်ပြီး ပြန်လည်စတင်မည်။ သင်အတည်ပြုပြီးနောက် တိုးချဲ့မှု ပြန်လည်စတင်မည်ဖြစ်ပြီး သင့်သေတ္တာကို သော့ခတ်မည်။"
   },
   "biometricPermissionDesc": {
-    "message": "ဇီဝမက်ထရစ်သော့ဖွင့်ခြင်းကို အသုံးပြုရန် Bitwarden သည် ဒက်စ်တော့အက်ပ်နှင့် ဆက်သွယ်ရန် ခွင့်ပြုချက် လိုအပ်သည်။ သင်ဆက်လုပ်သောအခါ သင့်ဘရောက်ဇာက အတည်ပြုရန် မေးမည်။"
+    "message": "ဇီဝမက်ထရစ်သော့ဖွင့်ခြင်းကို အသုံးပြုရန် Komboe သည် ဒက်စ်တော့အက်ပ်နှင့် ဆက်သွယ်ရန် ခွင့်ပြုချက် လိုအပ်သည်။ သင်ဆက်လုပ်သောအခါ သင့်ဘရောက်ဇာက အတည်ပြုရန် မေးမည်။"
   },
   "enterMonth": {
     "message": "လ ထည့်ပါ။"
@@ -8451,15 +8451,15 @@
     "message": "မသိသောအရာ၊ ဤအရာကို အသုံးပြုရန် ခွင့်ပြုချက်တောင်းဆိုရန် လိုအပ်နိုင်ပါသည်။"
   },
   "newExperienceDialogTitle": {
-    "message": "Bitwarden has a new look",
+    "message": "Komboe has a new look",
     "description": "Title of the dialog that introduces the redesigned vault to existing users."
   },
   "newExperienceDialogDesc": {
-    "message": "Better experience, same trusted security. The Bitwarden vault has been redesigned based on your feedback, so things are easier to find and work like you'd expect.",
+    "message": "Better experience, same trusted security. The Komboe vault has been redesigned based on your feedback, so things are easier to find and work like you'd expect.",
     "description": "Body copy of the dialog that introduces the redesigned vault to existing users."
   },
   "newExperienceDialogImgAlt": {
-    "message": "A preview of the redesigned Bitwarden vault.",
+    "message": "A preview of the redesigned Komboe vault.",
     "description": "Alt text for the screenshot shown in the dialog that introduces the redesigned vault."
   },
   "exploreTheNewVault": {

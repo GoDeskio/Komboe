@@ -1,20 +1,20 @@
 {
   "appName": {
-    "message": "Bitwarden"
+    "message": "Komboe"
   },
   "appLogoLabel": {
-    "message": "Bitwarden Logo"
+    "message": "Komboe Logo"
   },
   "extName": {
-    "message": "Bitwarden Password Manager",
+    "message": "Komboe Password Manager",
     "description": "Extension name, MUST be less than 40 characters (Safari restriction)"
   },
   "extNameBeta": {
-    "message": "Bitwarden Password Manager Beta",
+    "message": "Komboe Password Manager Beta",
     "description": "Extension name for the beta channel, MUST be less than 40 characters (Safari restriction)"
   },
   "extDesc": {
-    "message": "无论是在家中、工作中还是在旅途中，Bitwarden 都可以轻松地保护您的所有密码、通行密钥和敏感信息。",
+    "message": "无论是在家中、工作中还是在旅途中，Komboe 都可以轻松地保护您的所有密码、通行密钥和敏感信息。",
     "description": "Extension description, MUST be less than 112 characters (Safari restriction)"
   },
   "loginOrCreateNewAccount": {
@@ -27,7 +27,7 @@
     "message": "创建账户"
   },
   "newToBitwarden": {
-    "message": "Bitwarden 新手吗？"
+    "message": "Komboe 新手吗？"
   },
   "logInWithPasskey": {
     "message": "使用通行密钥登录"
@@ -324,22 +324,22 @@
     "message": "前往网页 App 吗？"
   },
   "continueToWebAppDesc": {
-    "message": "在网页 App 上探索 Bitwarden 账户的更多功能。"
+    "message": "在网页 App 上探索 Komboe 账户的更多功能。"
   },
   "continueToHelpCenter": {
     "message": "前往帮助中心吗？"
   },
   "continueToHelpCenterDesc": {
-    "message": "访问帮助中心进一步了解如何使用 Bitwarden。"
+    "message": "访问帮助中心进一步了解如何使用 Komboe。"
   },
   "continueToBrowserExtensionStore": {
     "message": "前往浏览器扩展商店吗？"
   },
   "continueToBrowserExtensionStoreDesc": {
-    "message": "帮助他人了解 Bitwarden 是否适合他们。立即访问浏览器扩展商店并留下评分。"
+    "message": "帮助他人了解 Komboe 是否适合他们。立即访问浏览器扩展商店并留下评分。"
   },
   "changeMasterPasswordOnWebConfirmation": {
-    "message": "您可以在 Bitwarden 网页 App 上更改您的主密码。"
+    "message": "您可以在 Komboe 网页 App 上更改您的主密码。"
   },
   "fingerprintPhrase": {
     "message": "指纹短语",
@@ -356,43 +356,43 @@
     "message": "注销"
   },
   "aboutBitwarden": {
-    "message": "关于 Bitwarden"
+    "message": "关于 Komboe"
   },
   "about": {
     "message": "关于"
   },
   "moreFromBitwarden": {
-    "message": "更多来自 Bitwarden 的产品"
+    "message": "更多来自 Komboe 的产品"
   },
   "continueToBitwardenDotCom": {
-    "message": "前往 bitwarden.com 吗？"
+    "message": "前往 komboe.com 吗？"
   },
   "bitwardenForBusiness": {
-    "message": "Bitwarden 商业版"
+    "message": "Komboe 商业版"
   },
   "bitwardenAuthenticator": {
-    "message": "Bitwarden Authenticator"
+    "message": "Komboe Authenticator"
   },
   "continueToAuthenticatorPageDesc": {
-    "message": "Bitwarden Authenticator 允许您存储验证器密钥以及为两步验证流程生成 TOTP 代码。访问 bitwarden.com 网站了解更多信息"
+    "message": "Komboe Authenticator 允许您存储验证器密钥以及为两步验证流程生成 TOTP 代码。访问 komboe.com 网站了解更多信息"
   },
   "bitwardenSecretsManager": {
-    "message": "Bitwarden Secrets Manager"
+    "message": "Komboe Secrets Manager"
   },
   "continueToSecretsManagerPageDesc": {
-    "message": "使用 Bitwarden Secrets Manager 安全地存储、管理以及共享开发人员的机密。访问 bitwarden.com 网站了解更多信息。"
+    "message": "使用 Komboe Secrets Manager 安全地存储、管理以及共享开发人员的机密。访问 komboe.com 网站了解更多信息。"
   },
   "passwordlessDotDev": {
     "message": "Passwordless.dev"
   },
   "continueToPasswordlessDotDevPageDesc": {
-    "message": "使用 Passwordless.dev 摆脱传统密码束缚，打造流畅且安全的登录体验。访问 bitwarden.com 网站了解更多信息。"
+    "message": "使用 Passwordless.dev 摆脱传统密码束缚，打造流畅且安全的登录体验。访问 komboe.com 网站了解更多信息。"
   },
   "freeBitwardenFamilies": {
-    "message": "免费 Bitwarden 家庭版"
+    "message": "免费 Komboe 家庭版"
   },
   "freeBitwardenFamiliesPageDesc": {
-    "message": "您有资格获得免费的 Bitwarden 家庭版。立即在网页 App 中兑换此优惠。"
+    "message": "您有资格获得免费的 Komboe 家庭版。立即在网页 App 中兑换此优惠。"
   },
   "version": {
     "message": "版本"
@@ -458,13 +458,13 @@
     "message": "帮助与反馈"
   },
   "helpCenter": {
-    "message": "Bitwarden 帮助中心"
+    "message": "Komboe 帮助中心"
   },
   "communityForums": {
-    "message": "探索 Bitwarden 社区论坛"
+    "message": "探索 Komboe 社区论坛"
   },
   "contactSupport": {
-    "message": "联系 Bitwarden 支持"
+    "message": "联系 Komboe 支持"
   },
   "sync": {
     "message": "同步"
@@ -486,7 +486,7 @@
     "message": "自动为您的登录生成强大且唯一的密码。"
   },
   "bitWebVaultApp": {
-    "message": "Bitwarden 网页 App"
+    "message": "Komboe 网页 App"
   },
   "select": {
     "message": "选择"
@@ -850,7 +850,7 @@
     "message": "下载诊断报告然后将其分享给"
   },
   "bitwardenSupport": {
-    "message": "Bitwarden 支持",
+    "message": "Komboe 支持",
     "description": "Link text following the troubleshooting description sentence. 'Bitwarden' should not be translated."
   },
   "download": {
@@ -1067,10 +1067,10 @@
     "message": "无缝两步验证"
   },
   "totpHelper": {
-    "message": "Bitwarden 可以存储并填充两步验证码。复制并粘贴密钥到此字段中。"
+    "message": "Komboe 可以存储并填充两步验证码。复制并粘贴密钥到此字段中。"
   },
   "totpHelperWithCapture": {
-    "message": "Bitwarden 可以存储并填充两步验证码。选择相机图标来拍摄此网站的验证器二维码，或复制并粘贴密钥到此字段中。"
+    "message": "Komboe 可以存储并填充两步验证码。选择相机图标来拍摄此网站的验证器二维码，或复制并粘贴密钥到此字段中。"
   },
   "learnMoreAboutAuthenticators": {
     "message": "进一步了解验证器"
@@ -1157,10 +1157,10 @@
     "message": "输入名称。"
   },
   "twoStepLoginConfirmation": {
-    "message": "两步登录要求您从其他设备（例如安全密钥、验证器 App、短信、电话或者电子邮件）来验证您的登录，这能使您的账户更加安全。两步登录需要在 bitwarden.com 网页密码库中设置。现在要访问此网站吗？"
+    "message": "两步登录要求您从其他设备（例如安全密钥、验证器 App、短信、电话或者电子邮件）来验证您的登录，这能使您的账户更加安全。两步登录需要在 komboe.com 网页密码库中设置。现在要访问此网站吗？"
   },
   "twoStepLoginConfirmationContent": {
-    "message": "在 Bitwarden 网页 App 中设置两步登录，让您的账户更加安全。"
+    "message": "在 Komboe 网页 App 中设置两步登录，让您的账户更加安全。"
   },
   "twoStepLoginConfirmationTitle": {
     "message": "前往网页 App 吗？"
@@ -1313,7 +1313,7 @@
     "message": "跳转到设置"
   },
   "notificationAddDesc": {
-    "message": "希望 Bitwarden 为您保存这个密码吗？"
+    "message": "希望 Komboe 为您保存这个密码吗？"
   },
   "notificationAddSave": {
     "message": "保存"
@@ -1349,11 +1349,11 @@
     }
   },
   "notificationLoginSaveConfirmation": {
-    "message": "已保存到 Bitwarden。",
+    "message": "已保存到 Komboe。",
     "description": "Shown to user after item is saved."
   },
   "notificationLoginUpdatedConfirmation": {
-    "message": "已在 Bitwarden 中更新。",
+    "message": "已在 Komboe 中更新。",
     "description": "Shown to user after item is updated."
   },
   "selectItemAriaLabel": {
@@ -1451,13 +1451,13 @@
     "message": "询问保存新的通行密钥或使用存储在密码库中的通行密钥登录。适用于所有已登录的账户。"
   },
   "notificationChangeDesc": {
-    "message": "要在 Bitwarden 中更新此密码吗？"
+    "message": "要在 Komboe 中更新此密码吗？"
   },
   "notificationChangeSave": {
     "message": "更新"
   },
   "notificationUnlockDesc": {
-    "message": "解锁 Bitwarden 密码库以完成自动填充请求。"
+    "message": "解锁 Komboe 密码库以完成自动填充请求。"
   },
   "notificationUnlock": {
     "message": "解锁​​​​"
@@ -1605,10 +1605,10 @@
     "message": "此密码将用于导出和导入此文件"
   },
   "accountRestrictedOptionDescription": {
-    "message": "使用衍生自您账户用户名和主密码的账户加密密钥以加密此导出，并限制只能导入到当前 Bitwarden 账户。"
+    "message": "使用衍生自您账户用户名和主密码的账户加密密钥以加密此导出，并限制只能导入到当前 Komboe 账户。"
   },
   "passwordProtectedOptionDescription": {
-    "message": "设置一个文件密码以加密此导出，并使用此密码解密以导入到任意 Bitwarden 账户。"
+    "message": "设置一个文件密码以加密此导出，并使用此密码解密以导入到任意 Komboe 账户。"
   },
   "exportTypeHeading": {
     "message": "导出类型"
@@ -1637,7 +1637,7 @@
     "message": "此导出将使用您的账户加密密钥来加密您的数据。如果您曾经轮换过您的账户加密密钥，您应将其重新导出，否则您将无法解密导出的文件。"
   },
   "encExportAccountWarningDesc": {
-    "message": "每个 Bitwarden 用户账户的账户加密密钥都是唯一的，因此您无法将加密的导出导入到另一个账户。"
+    "message": "每个 Komboe 用户账户的账户加密密钥都是唯一的，因此您无法将加密的导出导入到另一个账户。"
   },
   "exportMasterPassword": {
     "message": "输入您的主密码以导出您的密码库数据。"
@@ -1661,7 +1661,7 @@
     "message": "添加共享文件夹"
   },
   "bitwardenForBusinessPageDesc": {
-    "message": "Bitwarden 商业版允许您使用组织与他人共享您的密码库项目。访问 bitwarden.com 网站了解更多信息。"
+    "message": "Komboe 商业版允许您使用组织与他人共享您的密码库项目。访问 komboe.com 网站了解更多信息。"
   },
   "moveToOrganization": {
     "message": "移动到组织"
@@ -1815,7 +1815,7 @@
     "message": "管理成员资格"
   },
   "premiumManageAlert": {
-    "message": "您可以在 bitwarden.com 网页密码库管理您的成员资格。现在要访问此网站吗？"
+    "message": "您可以在 komboe.com 网页密码库管理您的成员资格。现在要访问此网站吗？"
   },
   "premiumRefresh": {
     "message": "刷新成员资格"
@@ -1863,7 +1863,7 @@
     "message": "购买高级版"
   },
   "premiumPurchaseAlertV2": {
-    "message": "您可以在 Bitwarden 网页 App 的账户设置中购买高级版。"
+    "message": "您可以在 Komboe 网页 App 的账户设置中购买高级版。"
   },
   "premiumFeatures": {
     "message": "升级到高级版并接收："
@@ -1969,7 +1969,7 @@
     "message": "验证器 App"
   },
   "authenticatorAppDescV2": {
-    "message": "输入验证器 App（例如 Bitwarden Authenticator）生成的代码。",
+    "message": "输入验证器 App（例如 Komboe Authenticator）生成的代码。",
     "description": "'Bitwarden Authenticator' is a product name and should not be translated."
   },
   "yubiKeyTitleV2": {
@@ -2002,7 +2002,7 @@
     "message": "自托管环境"
   },
   "selfHostedBaseUrlHint": {
-    "message": "指定您的本地托管 Bitwarden 安装的基础 URL。示例：https://bitwarden.company.com"
+    "message": "指定您的本地托管 Komboe 安装的基础 URL。示例：https://komboe.company.com"
   },
   "selfHostedCustomEnvHeader": {
     "message": "对于高级配置，您可以单独指定每个服务的基础 URL。"
@@ -2055,7 +2055,7 @@
     "message": "轻松找到自动填充建议"
   },
   "autofillSpotlightDesc": {
-    "message": "停用您浏览器的自动填充设置，以免与 Bitwarden 产生冲突。"
+    "message": "停用您浏览器的自动填充设置，以免与 Komboe 产生冲突。"
   },
   "turnOffBrowserAutofill": {
     "message": "停用 $BROWSER$ 自动填充",
@@ -2112,7 +2112,7 @@
     "message": "在表单字段上显示自动填充建议"
   },
   "howDoesBitwardenProtectFromPhishing": {
-    "message": "Bitwarden 如何保护您的数据免遭网络钓鱼？"
+    "message": "Komboe 如何保护您的数据免遭网络钓鱼？"
   },
   "currentWebsite": {
     "message": "当前网站"
@@ -3021,7 +3021,7 @@
     "message": "脆弱的主密码"
   },
   "weakMasterPasswordDesc": {
-    "message": "您选择的主密码较弱。您应该使用强密码（或密码短语）来正确保护您的 Bitwarden 账户。确定要使用这个主密码吗？"
+    "message": "您选择的主密码较弱。您应该使用强密码（或密码短语）来正确保护您的 Komboe 账户。确定要使用这个主密码吗？"
   },
   "rotateAccountEncKey": {
     "message": "同时轮换我的账户加密密钥"
@@ -3033,7 +3033,7 @@
     "message": "确定要轮换您的账户加密密钥吗？"
   },
   "updateEncryptionKeyWarning": {
-    "message": "更新加密密钥后，您需要注销当前正在使用的所有 Bitwarden 应用程序（例如移动 App 或浏览器扩展）然后重新登录。注销然后重新登录（这将下载新的加密密钥）失败可能会导致数据损坏。我们会尝试自动为您注销，但可能会有所延迟。"
+    "message": "更新加密密钥后，您需要注销当前正在使用的所有 Komboe 应用程序（例如移动 App 或浏览器扩展）然后重新登录。注销然后重新登录（这将下载新的加密密钥）失败可能会导致数据损坏。我们会尝试自动为您注销，但可能会有所延迟。"
   },
   "updateEncryptionKeyAccountExportWarning": {
     "message": "所有您已保存的账户限制的导出文件将失效。"
@@ -3061,10 +3061,10 @@
     "message": "设置 PIN 码"
   },
   "setYourPinCode": {
-    "message": "设置用于解锁 Bitwarden 的 PIN 码。您的 PIN 设置将在您完全注销应用程序时被重置。"
+    "message": "设置用于解锁 Komboe 的 PIN 码。您的 PIN 设置将在您完全注销应用程序时被重置。"
   },
   "setPinCode": {
-    "message": "您可以使用此 PIN 码解锁 Bitwarden。您的 PIN 码将在您完全注销此应用程序时被重置。"
+    "message": "您可以使用此 PIN 码解锁 Komboe。您的 PIN 码将在您完全注销此应用程序时被重置。"
   },
   "pinRequired": {
     "message": "必须填写 PIN 码。"
@@ -3085,7 +3085,7 @@
     "message": "等待来自桌面端的确认"
   },
   "awaitDesktopDesc": {
-    "message": "请确认在 Bitwarden 桌面应用程序中使用了生物识别以设置浏览器的生物识别。"
+    "message": "请确认在 Komboe 桌面应用程序中使用了生物识别以设置浏览器的生物识别。"
   },
   "lockWithMasterPassOnRestart": {
     "message": "浏览器重启后使用主密码锁定"
@@ -3200,7 +3200,7 @@
     "message": "该表单由与您保存的登录 URI 不同的域名托管。选择「确定」继续自动填充，或选择「取消」停止自动填充。"
   },
   "autofillIframeWarningTip": {
-    "message": "要防止以后出现此警告，请将此站点的 URI $HOSTNAME$ 保存到您的 Bitwarden 登录项目中。",
+    "message": "要防止以后出现此警告，请将此站点的 URI $HOSTNAME$ 保存到您的 Komboe 登录项目中。",
     "placeholders": {
       "hostname": {
         "content": "$1",
@@ -3209,7 +3209,7 @@
     }
   },
   "topLayerHijackWarning": {
-    "message": "此页面正在干扰 Bitwarden 的使用体验。出于安全考虑，Bitwarden 内嵌菜单已被暂时禁用。"
+    "message": "此页面正在干扰 Komboe 的使用体验。出于安全考虑，Komboe 内嵌菜单已被暂时禁用。"
   },
   "setMasterPassword": {
     "message": "设置主密码"
@@ -3266,7 +3266,7 @@
     "message": "您的新主密码不符合策略要求。"
   },
   "receiveMarketingEmails": {
-    "message": "通过电子邮件接收 Bitwarden 的最新动态。"
+    "message": "通过电子邮件接收 Komboe 的最新动态。"
   },
   "unsubscribe": {
     "message": "取消订阅"
@@ -3311,13 +3311,13 @@
     "message": "浏览器集成未设置"
   },
   "desktopIntegrationDisabledDesc": {
-    "message": "浏览器集成在 Bitwarden 桌面应用程序中未设置。请在桌面应用程序的设置中设置它。"
+    "message": "浏览器集成在 Komboe 桌面应用程序中未设置。请在桌面应用程序的设置中设置它。"
   },
   "startDesktopTitle": {
-    "message": "启动 Bitwarden 桌面应用程序"
+    "message": "启动 Komboe 桌面应用程序"
   },
   "startDesktopDesc": {
-    "message": "Bitwarden 桌面应用程序需要已启动才能使用生物识别解锁。"
+    "message": "Komboe 桌面应用程序需要已启动才能使用生物识别解锁。"
   },
   "errorEnableBiometricTitle": {
     "message": "无法设置生物识别"
@@ -3371,13 +3371,13 @@
     "message": "生物识别失败"
   },
   "biometricsFailedDesc": {
-    "message": "生物识别无法完成，请尝试使用主密码或注销。如果仍无法解决，请联系 Bitwarden 支持。"
+    "message": "生物识别无法完成，请尝试使用主密码或注销。如果仍无法解决，请联系 Komboe 支持。"
   },
   "nativeMessagingPermissionErrorTitle": {
     "message": "未提供权限"
   },
   "nativeMessagingPermissionErrorDesc": {
-    "message": "由于没有与 Bitwarden 桌面应用程序通信的权限，我们无法在浏览器扩展中提供生物识别。请重试。"
+    "message": "由于没有与 Komboe 桌面应用程序通信的权限，我们无法在浏览器扩展中提供生物识别。请重试。"
   },
   "nativeMessagingPermissionSidebarTitle": {
     "message": "权限请求错误"
@@ -3414,7 +3414,7 @@
     "message": "排除域名"
   },
   "excludedDomainsDesc": {
-    "message": "Bitwarden 将不会提示保存这些域名的登录信息。您必须刷新页面才能使更改生效。"
+    "message": "Komboe 将不会提示保存这些域名的登录信息。您必须刷新页面才能使更改生效。"
   },
   "blockedDomainsDesc": {
     "message": "将不会为这些网站提供自动填充和其他相关功能。您必须刷新页面才能使更改生效。"
@@ -3546,24 +3546,24 @@
     "message": "存在风险的登录列表示意图。"
   },
   "welcomeDialogGraphicAlt": {
-    "message": "Bitwarden 密码库页面布局示意图。"
+    "message": "Komboe 密码库页面布局示意图。"
   },
   "generatePasswordSlideDesc": {
-    "message": "在存在风险的站点上，使用 Bitwarden 自动填充菜单快速生成强大且唯一的密码。",
+    "message": "在存在风险的站点上，使用 Komboe 自动填充菜单快速生成强大且唯一的密码。",
     "description": "Description of the generate password slide on the at-risk password page carousel"
   },
   "generatePasswordSlideImgAltPeriod": {
-    "message": "显示生成的密码的 Bitwarden 自动填充菜单示意图。"
+    "message": "显示生成的密码的 Komboe 自动填充菜单示意图。"
   },
   "updateInBitwarden": {
-    "message": "在 Bitwarden 中更新"
+    "message": "在 Komboe 中更新"
   },
   "updateInBitwardenSlideDesc": {
-    "message": "然后，Bitwarden 会提示您更新密码管理器中的密码。",
+    "message": "然后，Komboe 会提示您更新密码管理器中的密码。",
     "description": "Description of the update in Bitwarden slide on the at-risk password page carousel"
   },
   "updateInBitwardenSlideImgAltPeriod": {
-    "message": "提示用户更新登录的 Bitwarden 通知示意图。"
+    "message": "提示用户更新登录的 Komboe 通知示意图。"
   },
   "turnOnAutofill": {
     "message": "启用自动填充"
@@ -4078,10 +4078,10 @@
     "message": "获取自动填充数据时出错"
   },
   "couldNotDecryptVaultItem": {
-    "message": "Bitwarden 无法解密下面列出的密码库项目。请联系 Bitwarden 客户支持并提供下面的项目 ID，以查看它是否可以恢复。"
+    "message": "Komboe 无法解密下面列出的密码库项目。请联系 Komboe 客户支持并提供下面的项目 ID，以查看它是否可以恢复。"
   },
   "couldNotDecryptVaultItems": {
-    "message": "Bitwarden 无法解密下面列出的密码库项目。请联系 Bitwarden 客户支持并提供下面的项目 ID，以查看它们是否可以恢复。"
+    "message": "Komboe 无法解密下面列出的密码库项目。请联系 Komboe 客户支持并提供下面的项目 ID，以查看它们是否可以恢复。"
   },
   "itemId": {
     "message": "项目 ID",
@@ -4191,11 +4191,11 @@
     }
   },
   "forwarderGeneratedBy": {
-    "message": "由 Bitwarden 生成。",
+    "message": "由 Komboe 生成。",
     "description": "Displayed with the address on the forwarding service's configuration screen."
   },
   "forwarderGeneratedByWithWebsite": {
-    "message": "网站：$WEBSITE$。由 Bitwarden 生成。",
+    "message": "网站：$WEBSITE$。由 Komboe 生成。",
     "description": "Displayed with the address on the forwarding service's configuration screen.",
     "placeholders": {
       "WEBSITE": {
@@ -4417,7 +4417,7 @@
     "message": "通知已发送到您的设备。"
   },
   "notificationSentDevicePart1": {
-    "message": "解锁您设备上的 Bitwarden 或解锁"
+    "message": "解锁您设备上的 Komboe 或解锁"
   },
   "notificationSentDeviceAnchor": {
     "message": "网页 App"
@@ -4917,15 +4917,15 @@
     "message": "跳转到内容"
   },
   "bitwardenOverlayButton": {
-    "message": "Bitwarden 自动填充菜单按钮",
+    "message": "Komboe 自动填充菜单按钮",
     "description": "Page title for the iframe containing the overlay button"
   },
   "toggleBitwardenVaultOverlay": {
-    "message": "切换 Bitwarden 自动填充菜单",
+    "message": "切换 Komboe 自动填充菜单",
     "description": "Screen reader and tool tip label for the overlay button"
   },
   "bitwardenVault": {
-    "message": "Bitwarden 自动填充菜单",
+    "message": "Komboe 自动填充菜单",
     "description": "Page title in overlay"
   },
   "unlockYourAccountToViewMatchingLogins": {
@@ -4997,7 +4997,7 @@
     "description": "Screen reader text (aria-label) for new identity button within inline menu"
   },
   "bitwardenOverlayMenuAvailable": {
-    "message": "Bitwarden 自动填充菜单可用。按向下箭头键进行选择。",
+    "message": "Komboe 自动填充菜单可用。按向下箭头键进行选择。",
     "description": "Screen reader text for announcing when the overlay opens on the page"
   },
   "turnOn": {
@@ -5369,7 +5369,7 @@
     "message": "设计即安全"
   },
   "importDataSecureByDesignBody": {
-    "message": "端到端加密传输。Bitwarden 绝不会获取您的 $VENDOR$ 登录详细信息。",
+    "message": "端到端加密传输。Komboe 绝不会获取您的 $VENDOR$ 登录详细信息。",
     "placeholders": {
       "vendor": {
         "content": "$1",
@@ -5520,7 +5520,7 @@
     "description": "Followed by a literal filename (my_passwords.json) rendered as code."
   },
   "importGnomeInstructionsFileHere": {
-    "message": "文件上传到 Bitwarden。",
+    "message": "文件上传到 Komboe。",
     "description": "Follows the my_passwords.json filename."
   },
   "importPasswordagentInstructions": {
@@ -6091,7 +6091,7 @@
     "message": "活动账户"
   },
   "bitwardenAccount": {
-    "message": "Bitwarden 账户"
+    "message": "Komboe 账户"
   },
   "availableAccounts": {
     "message": "可用账户"
@@ -6137,7 +6137,7 @@
     "description": "Label indicating the most common import formats"
   },
   "uriMatchDefaultStrategyHint": {
-    "message": "Bitwarden 根据 URI 匹配检测来识别自动填充建议。",
+    "message": "Komboe 根据 URI 匹配检测来识别自动填充建议。",
     "description": "Explains to the user that URI match detection determines how Bitwarden suggests autofill options, and clarifies that this default strategy applies when no specific match detection is set for a login item."
   },
   "regExAdvancedOptionWarning": {
@@ -6181,15 +6181,15 @@
     "description": "Body content for dialog which asks if the user wants to proceed to the browser's keyboard shortcut settings page"
   },
   "overrideDefaultBrowserAutofillTitle": {
-    "message": "将 Bitwarden 设置为默认密码管理器吗？",
+    "message": "将 Komboe 设置为默认密码管理器吗？",
     "description": "Dialog title facilitating the ability to override a chrome browser's default autofill behavior"
   },
   "overrideDefaultBrowserAutofillDescription": {
-    "message": "忽略此选项可能会导致 Bitwarden 自动填充建议与浏览器产生冲突。",
+    "message": "忽略此选项可能会导致 Komboe 自动填充建议与浏览器产生冲突。",
     "description": "Dialog message facilitating the ability to override a chrome browser's default autofill behavior"
   },
   "overrideDefaultBrowserAutoFillSettings": {
-    "message": "将 Bitwarden 设置为默认密码管理器",
+    "message": "将 Komboe 设置为默认密码管理器",
     "description": "Label for the setting that allows overriding the default browser autofill settings"
   },
   "defaultPasswordManagerCalloutTitle": {
@@ -6197,7 +6197,7 @@
     "description": "Title for the callout that prompts users to set Bitwarden as their default password manager"
   },
   "defaultPasswordManagerCalloutDesc": {
-    "message": "您将被请求授予 $BROWSER$ 浏览器权限，以将 Bitwarden 设为默认密码管理器。",
+    "message": "您将被请求授予 $BROWSER$ 浏览器权限，以将 Komboe 设为默认密码管理器。",
     "description": "Description for the callout that prompts users to set Bitwarden as their default password manager",
     "placeholders": {
       "browser": {
@@ -6207,11 +6207,11 @@
     }
   },
   "privacyPermissionAdditionNotGrantedTitle": {
-    "message": "无法将 Bitwarden 设置为默认密码管理器",
+    "message": "无法将 Komboe 设置为默认密码管理器",
     "description": "Title for the dialog that appears when the user has not granted the extension permission to set privacy settings"
   },
   "privacyPermissionAdditionNotGrantedDescription": {
-    "message": "您必须授予 Bitwarden 浏览器隐私权限才能将其设置为默认密码管理器。",
+    "message": "您必须授予 Komboe 浏览器隐私权限才能将其设置为默认密码管理器。",
     "description": "Description for the dialog that appears when the user has not granted the extension permission to set privacy settings"
   },
   "makeDefault": {
@@ -6219,10 +6219,10 @@
     "description": "Button text for the setting that allows overriding the default browser autofill settings"
   },
   "defaultPasswordManagerPromptTitle": {
-    "message": "将 Bitwarden 设置为浏览器的默认密码管理器"
+    "message": "将 Komboe 设置为浏览器的默认密码管理器"
   },
   "defaultPasswordManagerPromptTitleV2": {
-    "message": "将 Bitwarden 设置为默认密码管理器",
+    "message": "将 Komboe 设置为默认密码管理器",
     "description": "Label for the setting to make Bitwarden the default password manager"
   },
   "defaultPasswordManagerSettingHintV2": {
@@ -6234,13 +6234,13 @@
     "description": "Link text to browser autofill settings in the default password manager setting hint."
   },
   "defaultPasswordManagerPromptStep2AfterAllow": {
-    "message": "根据浏览器提示授予 Bitwarden 更改您的设置的权限。"
+    "message": "根据浏览器提示授予 Komboe 更改您的设置的权限。"
   },
   "defaultPasswordManagerPromptStep3": {
     "message": "我们将停用您浏览器的内置密码管理器，以便您可以享受安全的登录体验。"
   },
   "defaultPasswordManagerSuccessToast": {
-    "message": "已将 Bitwarden 设置为浏览器的默认密码管理器"
+    "message": "已将 Komboe 设置为浏览器的默认密码管理器"
   },
   "allow": {
     "message": "允许",
@@ -6648,16 +6648,16 @@
     "message": "下载附件"
   },
   "downloadBitwarden": {
-    "message": "下载 Bitwarden"
+    "message": "下载 Komboe"
   },
   "downloadBitwardenOnAllDevices": {
-    "message": "在所有设备上下载 Bitwarden"
+    "message": "在所有设备上下载 Komboe"
   },
   "getTheMobileApp": {
     "message": "获取移动 App"
   },
   "getTheMobileAppDesc": {
-    "message": "使用 Bitwarden 移动 App，随时随地访问您的密码。"
+    "message": "使用 Komboe 移动 App，随时随地访问您的密码。"
   },
   "getTheDesktopApp": {
     "message": "获取桌面 App"
@@ -6666,7 +6666,7 @@
     "message": "无需使用浏览器访问您的密码库。在桌面 App 和浏览器扩展中同时设置生物识别解锁，即可实现快速解锁。"
   },
   "downloadFromBitwardenNow": {
-    "message": "立即从 bitwarden.com 下载"
+    "message": "立即从 komboe.com 下载"
   },
   "getItOnGooglePlay": {
     "message": "从 Google Play 获取"
@@ -7210,10 +7210,10 @@
     "message": "由于系统文件配置错误，生物识别解锁不可用。"
   },
   "biometricsStatusHelptextDesktopDisconnected": {
-    "message": "生物识别解锁不可用，因为 Bitwarden 桌面 App 已关闭。"
+    "message": "生物识别解锁不可用，因为 Komboe 桌面 App 已关闭。"
   },
   "biometricsStatusHelptextNotEnabledInDesktop": {
-    "message": "生物识别解锁不可用，因为在 Bitwarden 桌面 App 中没有为 $EMAIL$ 启用生物识别解锁。",
+    "message": "生物识别解锁不可用，因为在 Komboe 桌面 App 中没有为 $EMAIL$ 启用生物识别解锁。",
     "placeholders": {
       "email": {
         "content": "$1",
@@ -7245,7 +7245,7 @@
     "description": "Notification message for when a password has been regenerated"
   },
   "saveToBitwarden": {
-    "message": "保存到 Bitwarden",
+    "message": "保存到 Komboe",
     "description": "Confirmation message for saving a login to Bitwarden"
   },
   "spaceCharacterDescriptor": {
@@ -7489,13 +7489,13 @@
     "message": "使用文件夹来整理密码库项目。文件夹只对您可用，其他人无法看到或使用它们。"
   },
   "introCarouselLabel": {
-    "message": "欢迎使用 Bitwarden"
+    "message": "欢迎使用 Komboe"
   },
   "securityPrioritized": {
     "message": "以安全为首要"
   },
   "securityPrioritizedBody": {
-    "message": "将登录、支付卡和身份保存到您的安全密码库。Bitwarden 使用零知识、端到端的加密来保护您的重要信息。"
+    "message": "将登录、支付卡和身份保存到您的安全密码库。Komboe 使用零知识、端到端的加密来保护您的重要信息。"
   },
   "quickLogin": {
     "message": "快速便捷的登录"
@@ -7513,7 +7513,7 @@
     "message": "随时随地在您需要时获取您的数据"
   },
   "secureDevicesBody": {
-    "message": "使用 Bitwarden 移动端、浏览器和桌面 App 在无限制的设备上保存无限数量的密码。"
+    "message": "使用 Komboe 移动端、浏览器和桌面 App 在无限制的设备上保存无限数量的密码。"
   },
   "nudgeBadgeAria": {
     "message": "1 个通知"
@@ -7522,7 +7522,7 @@
     "message": "导入现有密码"
   },
   "emptyVaultNudgeBody": {
-    "message": "使用导入器快速将登录转移到 Bitwarden 而无需手动添加。"
+    "message": "使用导入器快速将登录转移到 Komboe 而无需手动添加。"
   },
   "emptyVaultNudgeButton": {
     "message": "立即导入"
@@ -7641,7 +7641,7 @@
     "message": "关于此设置"
   },
   "permitCipherDetailsDescription": {
-    "message": "Bitwarden 将使用已保存的登录 URI 来确定应使用的图标或更改密码的 URL，以提升您的使用体验。使用此服务时不会收集或保存任何信息。"
+    "message": "Komboe 将使用已保存的登录 URI 来确定应使用的图标或更改密码的 URL，以提升您的使用体验。使用此服务时不会收集或保存任何信息。"
   },
   "showQuickCopyActionsDetailsDescription": {
     "message": "在项目旁边添加 3 个快速复制按钮，以将您的用户名、密码或验证码复制到剪贴板。"
@@ -7650,7 +7650,7 @@
     "message": "您没有查看此页面的权限。请尝试使用其他账户登录。"
   },
   "wasmNotSupported": {
-    "message": "您的浏览器不支持 WebAssembly 或 WebAssembly 未启用。需要 WebAssembly 才能使用 Bitwarden App。",
+    "message": "您的浏览器不支持 WebAssembly 或 WebAssembly 未启用。需要 WebAssembly 才能使用 Komboe App。",
     "description": "'WebAssembly' is a technical term and should not be translated."
   },
   "showMore": {
@@ -7738,7 +7738,7 @@
     "message": "错误：无法解密"
   },
   "removeMasterPasswordForOrgUserKeyConnector": {
-    "message": "您的组织已不再使用主密码登录 Bitwarden。要继续，请验证组织和域名。"
+    "message": "您的组织已不再使用主密码登录 Komboe。要继续，请验证组织和域名。"
   },
   "continueWithLogIn": {
     "message": "继续登录"
@@ -7824,7 +7824,7 @@
     "message": "设置一个解锁方式以更改您的超时动作"
   },
   "sessionTimeoutSuppressedByConnectedDevice": {
-    "message": "由 Bitwarden 桌面 App 管理。打开桌面 App 进行编辑。"
+    "message": "由 Komboe 桌面 App 管理。打开桌面 App 进行编辑。"
   },
   "percentageCompleted": {
     "message": "完成 $PERCENT$%",
@@ -7920,13 +7920,13 @@
     "message": "使用逗号分隔输入多个电子邮箱。"
   },
   "emailPlaceholder": {
-    "message": "user@bitwarden.com, user@acme.com"
+    "message": "user@komboe.com, user@acme.com"
   },
   "emailPlaceholderMultiple": {
-    "message": "user@bitwarden.com, user@acme.com"
+    "message": "user@komboe.com, user@acme.com"
   },
   "downloadBitwardenApps": {
-    "message": "下载 Bitwarden App"
+    "message": "下载 Komboe App"
   },
   "emailProtected": {
     "message": "电子邮箱保护"
@@ -7945,13 +7945,13 @@
     "message": "与桌面 App 同步解锁状态"
   },
   "syncUnlockWithDesktopDescription": {
-    "message": "Bitwarden 浏览器扩展与桌面 App 会一起锁定或解锁。"
+    "message": "Komboe 浏览器扩展与桌面 App 会一起锁定或解锁。"
   },
   "syncUnlockWithWeb": {
     "message": "与网页 App 同步解锁状态"
   },
   "syncUnlockWithWebDescription": {
-    "message": "Bitwarden 浏览器扩展与网页 App 会一起锁定或解锁。"
+    "message": "Komboe 浏览器扩展与网页 App 会一起锁定或解锁。"
   },
   "sharedUnlockUnavailableUntrustedDevice": {
     "message": "共享解锁不可用，因为您选择了不记住此设备。要启用此设置，请尝试重新登录。"
@@ -7960,13 +7960,13 @@
     "message": "需要新权限"
   },
   "sharedUnlockDesktopPermissionDesc": {
-    "message": "要使用共享解锁，Bitwarden 需要与桌面应用程序通信的权限。继续操作后，浏览器将向您请求授权。"
+    "message": "要使用共享解锁，Komboe 需要与桌面应用程序通信的权限。继续操作后，浏览器将向您请求授权。"
   },
   "sharedUnlockDesktopPermissionWarning": {
-    "message": "Bitwarden 将锁定并重新加载。在您批准后，扩展将重新加载并锁定您的密码库。"
+    "message": "Komboe 将锁定并重新加载。在您批准后，扩展将重新加载并锁定您的密码库。"
   },
   "biometricPermissionDesc": {
-    "message": "要使用生物识别解锁，Bitwarden 需要与桌面应用程序通信的权限。继续操作后，浏览器将向您请求授权。"
+    "message": "要使用生物识别解锁，Komboe 需要与桌面应用程序通信的权限。继续操作后，浏览器将向您请求授权。"
   },
   "enterMonth": {
     "message": "输入月份。"
@@ -8451,15 +8451,15 @@
     "message": "未知的项目，您可能需要请求权限才能访问此项目。"
   },
   "newExperienceDialogTitle": {
-    "message": "Bitwarden 拥有一个新的外观",
+    "message": "Komboe 拥有一个新的外观",
     "description": "Title of the dialog that introduces the redesigned vault to existing users."
   },
   "newExperienceDialogDesc": {
-    "message": "体验更佳，安全如初。我们根据您们的反馈重新设计了 Bitwarden 密码库，让查找更便捷，操作更符合您的预期。",
+    "message": "体验更佳，安全如初。我们根据您们的反馈重新设计了 Komboe 密码库，让查找更便捷，操作更符合您的预期。",
     "description": "Body copy of the dialog that introduces the redesigned vault to existing users."
   },
   "newExperienceDialogImgAlt": {
-    "message": "重新设计后的 Bitwarden 密码库预览。",
+    "message": "重新设计后的 Komboe 密码库预览。",
     "description": "Alt text for the screenshot shown in the dialog that introduces the redesigned vault."
   },
   "exploreTheNewVault": {

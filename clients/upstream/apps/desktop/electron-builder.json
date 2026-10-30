@@ -3,7 +3,7 @@
   "extraMetadata": {
     "name": "bitwarden"
   },
-  "productName": "Bitwarden",
+  "productName": "Komboe",
   "appId": "com.bitwarden.desktop",
   "buildDependenciesFromSource": true,
   "copyright": "Copyright © 2015-2026 Bitwarden Inc.",
@@ -199,7 +199,7 @@
   },
   "appx": {
     "artifactName": "${productName}-${version}-${arch}.${ext}",
-    "backgroundColor": "#175DDC",
+    "backgroundColor": "#0B1F3A",
     "applicationId": "bitwardendesktop",
     "identityName": "8bitSolutionsLLC.bitwardendesktop",
     "publisher": "CN=14D52771-DE3C-4886-B8BF-825BA7690418",
@@ -318,7 +318,7 @@
   },
   "protocols": [
     {
-      "name": "Bitwarden",
+      "name": "Komboe",
       "schemes": ["bitwarden"]
     }
   ]

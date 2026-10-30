@@ -1,20 +1,20 @@
 {
   "appName": {
-    "message": "Bitwarden"
+    "message": "Komboe"
   },
   "appLogoLabel": {
-    "message": "Bitwarden logo"
+    "message": "Komboe logo"
   },
   "extName": {
-    "message": "Bitwarden Password Manager",
+    "message": "Komboe Password Manager",
     "description": "Extension name, MUST be less than 40 characters (Safari restriction)"
   },
   "extNameBeta": {
-    "message": "Bitwarden Password Manager Beta",
+    "message": "Komboe Password Manager Beta",
     "description": "Extension name for the beta channel, MUST be less than 40 characters (Safari restriction)"
   },
   "extDesc": {
-    "message": "Kod kuće, na poslu ili u pokretu, Bitwarden lako štiti vaše lozinke, ključeve za prijavu i osjetljive podatke.",
+    "message": "Kod kuće, na poslu ili u pokretu, Komboe lako štiti vaše lozinke, ključeve za prijavu i osjetljive podatke.",
     "description": "Extension description, MUST be less than 112 characters (Safari restriction)"
   },
   "loginOrCreateNewAccount": {
@@ -324,22 +324,22 @@
     "message": "Nastaviti na web aplikaciju?"
   },
   "continueToWebAppDesc": {
-    "message": "Istražite više funkcija svog Bitwarden računa na web aplikaciji."
+    "message": "Istražite više funkcija svog Komboe računa na web aplikaciji."
   },
   "continueToHelpCenter": {
     "message": "Nastaviti na Centar za pomoć?"
   },
   "continueToHelpCenterDesc": {
-    "message": "Saznajte više o tome kako koristiti Bitwarden u Centru za pomoć."
+    "message": "Saznajte više o tome kako koristiti Komboe u Centru za pomoć."
   },
   "continueToBrowserExtensionStore": {
     "message": "Nastaviti na trgovinu proširenja preglednika?"
   },
   "continueToBrowserExtensionStoreDesc": {
-    "message": "Pomozite drugima da otkriju je li Bitwarden pravi za njih. Posjetite trgovinu proširenja svog preglednika i ostavite ocjenu sada."
+    "message": "Pomozite drugima da otkriju je li Komboe pravi za njih. Posjetite trgovinu proširenja svog preglednika i ostavite ocjenu sada."
   },
   "changeMasterPasswordOnWebConfirmation": {
-    "message": "Možete promijeniti svoju glavnu lozinku na Bitwarden web aplikaciji."
+    "message": "Možete promijeniti svoju glavnu lozinku na Komboe web aplikaciji."
   },
   "fingerprintPhrase": {
     "message": "Fraza otiska prsta",
@@ -365,34 +365,34 @@
     "message": "Više od Bitwardena"
   },
   "continueToBitwardenDotCom": {
-    "message": "Nastaviti na bitwarden.com?"
+    "message": "Nastaviti na komboe.com?"
   },
   "bitwardenForBusiness": {
-    "message": "Bitwarden za kompanije"
+    "message": "Komboe za kompanije"
   },
   "bitwardenAuthenticator": {
-    "message": "Bitwarden Authenticator"
+    "message": "Komboe Authenticator"
   },
   "continueToAuthenticatorPageDesc": {
-    "message": "Bitwarden Authenticator vam omogućava da pohranite autentifikacijske ključeve i generišete TOTP kodove za tokove verifikacije u dva koraka. Saznajte više na web stranici bitwarden.com"
+    "message": "Komboe Authenticator vam omogućava da pohranite autentifikacijske ključeve i generišete TOTP kodove za tokove verifikacije u dva koraka. Saznajte više na web stranici komboe.com"
   },
   "bitwardenSecretsManager": {
-    "message": "Bitwarden Secrets Manager"
+    "message": "Komboe Secrets Manager"
   },
   "continueToSecretsManagerPageDesc": {
-    "message": "Sigurno pohranite, upravljajte i dijelite razvojne tajne uz Bitwarden Secrets Manager. Saznajte više na web stranici bitwarden.com."
+    "message": "Sigurno pohranite, upravljajte i dijelite razvojne tajne uz Komboe Secrets Manager. Saznajte više na web stranici komboe.com."
   },
   "passwordlessDotDev": {
     "message": "Passwordless.dev"
   },
   "continueToPasswordlessDotDevPageDesc": {
-    "message": "Kreirajte glatka i sigurna iskustva prijave bez tradicionalnih lozinki uz Passwordless.dev. Saznajte više na web stranici bitwarden.com."
+    "message": "Kreirajte glatka i sigurna iskustva prijave bez tradicionalnih lozinki uz Passwordless.dev. Saznajte više na web stranici komboe.com."
   },
   "freeBitwardenFamilies": {
-    "message": "Besplatni Bitwarden Families"
+    "message": "Besplatni Komboe Families"
   },
   "freeBitwardenFamiliesPageDesc": {
-    "message": "Ispunjavaate uslove za besplatni Bitwarden Families. Iskoristite ovu ponudu danas u web aplikaciji."
+    "message": "Ispunjavaate uslove za besplatni Komboe Families. Iskoristite ovu ponudu danas u web aplikaciji."
   },
   "version": {
     "message": "Verzija"
@@ -458,13 +458,13 @@
     "message": "Pomoć i povratne informacije"
   },
   "helpCenter": {
-    "message": "Bitwarden centar za pomoć"
+    "message": "Komboe centar za pomoć"
   },
   "communityForums": {
-    "message": "Istražite Bitwarden forume zajednice"
+    "message": "Istražite Komboe forume zajednice"
   },
   "contactSupport": {
-    "message": "Kontaktirajte Bitwarden podršku"
+    "message": "Kontaktirajte Komboe podršku"
   },
   "sync": {
     "message": "Sinhronizacija"
@@ -486,7 +486,7 @@
     "message": "Automatski generišite snažne, jedinstvene lozinke za svoje prijave."
   },
   "bitWebVaultApp": {
-    "message": "Bitwarden web aplikacija"
+    "message": "Komboe web aplikacija"
   },
   "select": {
     "message": "Odaberi"
@@ -850,7 +850,7 @@
     "message": "Preuzmite zatim podijelite dijagnostički izvještaj s"
   },
   "bitwardenSupport": {
-    "message": "Bitwarden podrška",
+    "message": "Komboe podrška",
     "description": "Link text following the troubleshooting description sentence. 'Bitwarden' should not be translated."
   },
   "download": {
@@ -1067,10 +1067,10 @@
     "message": "Učinite verifikaciju u dva koraka besprijekornom"
   },
   "totpHelper": {
-    "message": "Bitwarden može pohraniti i popuniti kodove za verifikaciju u dva koraka. Kopirajte i zalijepite ključ u ovo polje."
+    "message": "Komboe može pohraniti i popuniti kodove za verifikaciju u dva koraka. Kopirajte i zalijepite ključ u ovo polje."
   },
   "totpHelperWithCapture": {
-    "message": "Bitwarden može pohraniti i popuniti kodove za verifikaciju u dva koraka. Odaberite ikonu kamere da snimite QR kod autentifikatora ove web stranice ili kopirajte i zalijepite ključ u ovo polje."
+    "message": "Komboe može pohraniti i popuniti kodove za verifikaciju u dva koraka. Odaberite ikonu kamere da snimite QR kod autentifikatora ove web stranice ili kopirajte i zalijepite ključ u ovo polje."
   },
   "learnMoreAboutAuthenticators": {
     "message": "Saznajte više o autentifikatorima"
@@ -1157,10 +1157,10 @@
     "message": "Unesite naziv."
   },
   "twoStepLoginConfirmation": {
-    "message": "Prijava u dva koraka čini vaš račun sigurnijim zahtijevajući da potvrdite svoju prijavu drugim uređajem kao što je sigurnosni ključ, aplikacija autentifikatora, SMS, telefonski poziv ili e-pošta. Prijava u dva koraka se može postaviti na bitwarden.com web sefu. Želite li posjetiti web stranicu sada?"
+    "message": "Prijava u dva koraka čini vaš račun sigurnijim zahtijevajući da potvrdite svoju prijavu drugim uređajem kao što je sigurnosni ključ, aplikacija autentifikatora, SMS, telefonski poziv ili e-pošta. Prijava u dva koraka se može postaviti na komboe.com web sefu. Želite li posjetiti web stranicu sada?"
   },
   "twoStepLoginConfirmationContent": {
-    "message": "Učinite svoj račun sigurnijim postavljanjem prijave u dva koraka u Bitwarden web aplikaciji."
+    "message": "Učinite svoj račun sigurnijim postavljanjem prijave u dva koraka u Komboe web aplikaciji."
   },
   "twoStepLoginConfirmationTitle": {
     "message": "Nastaviti na web aplikaciju?"
@@ -1313,7 +1313,7 @@
     "message": "Skoči na postavku"
   },
   "notificationAddDesc": {
-    "message": "Treba li Bitwarden zapamtiti ovu lozinku za vas?"
+    "message": "Treba li Komboe zapamtiti ovu lozinku za vas?"
   },
   "notificationAddSave": {
     "message": "Sačuvaj"
@@ -1349,11 +1349,11 @@
     }
   },
   "notificationLoginSaveConfirmation": {
-    "message": "sačuvano u Bitwarden.",
+    "message": "sačuvano u Komboe.",
     "description": "Shown to user after item is saved."
   },
   "notificationLoginUpdatedConfirmation": {
-    "message": "ažurirano u Bitwarden.",
+    "message": "ažurirano u Komboe.",
     "description": "Shown to user after item is updated."
   },
   "selectItemAriaLabel": {
@@ -1457,7 +1457,7 @@
     "message": "Ažuriraj"
   },
   "notificationUnlockDesc": {
-    "message": "Otključajte svoj Bitwarden sef da završite zahtjev za automatsko popunjavanje."
+    "message": "Otključajte svoj Komboe sef da završite zahtjev za automatsko popunjavanje."
   },
   "notificationUnlock": {
     "message": "Otključaj"
@@ -1605,10 +1605,10 @@
     "message": "Ova lozinka će se koristiti za izvoz i uvoz ove datoteke"
   },
   "accountRestrictedOptionDescription": {
-    "message": "Koristite ključ za šifrovanje svog računa, izveden iz korisničkog imena i glavne lozinke vašeg računa, da šifrujete izvoz i ograničite uvoz samo na trenutni Bitwarden račun."
+    "message": "Koristite ključ za šifrovanje svog računa, izveden iz korisničkog imena i glavne lozinke vašeg računa, da šifrujete izvoz i ograničite uvoz samo na trenutni Komboe račun."
   },
   "passwordProtectedOptionDescription": {
-    "message": "Postavite lozinku datoteke da šifrujete izvoz i uvezete ga u bilo koji Bitwarden račun koristeći lozinku za dešifrovanje."
+    "message": "Postavite lozinku datoteke da šifrujete izvoz i uvezete ga u bilo koji Komboe račun koristeći lozinku za dešifrovanje."
   },
   "exportTypeHeading": {
     "message": "Tip izvoza"
@@ -1637,7 +1637,7 @@
     "message": "Ovaj izvoz šifruje vaše podatke koristeći ključ za šifrovanje vašeg računa. Ako ikada rotirate ključ za šifrovanje svog računa, trebali biste ponovo izvesti jer nećete moći dešifrovati ovu datoteku izvoza."
   },
   "encExportAccountWarningDesc": {
-    "message": "Ključevi za šifrovanje računa su jedinstveni za svaki Bitwarden korisnički račun, tako da ne možete uvesti šifrovani izvoz u drugi račun."
+    "message": "Ključevi za šifrovanje računa su jedinstveni za svaki Komboe korisnički račun, tako da ne možete uvesti šifrovani izvoz u drugi račun."
   },
   "exportMasterPassword": {
     "message": "Unesite svoju glavnu lozinku da izvezete podatke svog sefa."
@@ -1661,7 +1661,7 @@
     "message": "Dodaj dijeljenu fasciklu"
   },
   "bitwardenForBusinessPageDesc": {
-    "message": "Bitwarden for Business vam omogućava da dijelite stavke svog sefa s drugima koristeći organizaciju. Saznajte više na web stranici bitwarden.com."
+    "message": "Komboe for Business vam omogućava da dijelite stavke svog sefa s drugima koristeći organizaciju. Saznajte više na web stranici komboe.com."
   },
   "moveToOrganization": {
     "message": "Premjesti u organizaciju"
@@ -1815,7 +1815,7 @@
     "message": "Upravljaj članstvom"
   },
   "premiumManageAlert": {
-    "message": "Možete upravljati svojim članstvom na bitwarden.com web sefu. Želite li posjetiti web stranicu sada?"
+    "message": "Možete upravljati svojim članstvom na komboe.com web sefu. Želite li posjetiti web stranicu sada?"
   },
   "premiumRefresh": {
     "message": "Osvježi članstvo"
@@ -1863,7 +1863,7 @@
     "message": "Kupi Premium"
   },
   "premiumPurchaseAlertV2": {
-    "message": "Možete kupiti Premium iz postavki svog računa na Bitwarden web aplikaciji."
+    "message": "Možete kupiti Premium iz postavki svog računa na Komboe web aplikaciji."
   },
   "premiumFeatures": {
     "message": "Nadogradite na Premium i primite:"
@@ -1969,7 +1969,7 @@
     "message": "Aplikacija autentifikatora"
   },
   "authenticatorAppDescV2": {
-    "message": "Unesite kod koji generiše aplikacija autentifikatora kao što je Bitwarden Authenticator.",
+    "message": "Unesite kod koji generiše aplikacija autentifikatora kao što je Komboe Authenticator.",
     "description": "'Bitwarden Authenticator' is a product name and should not be translated."
   },
   "yubiKeyTitleV2": {
@@ -2002,7 +2002,7 @@
     "message": "Samostalno hostovano okruženje"
   },
   "selfHostedBaseUrlHint": {
-    "message": "Navedite osnovni URL vaše lokalno hostovane Bitwarden instalacije. Primjer: https://bitwarden.company.com"
+    "message": "Navedite osnovni URL vaše lokalno hostovane Komboe instalacije. Primjer: https://komboe.company.com"
   },
   "selfHostedCustomEnvHeader": {
     "message": "Za naprednu konfiguraciju, možete nezavisno navesti osnovni URL svake usluge."
@@ -2112,7 +2112,7 @@
     "message": "Prikaži prijedloge za automatsko popunjavanje na poljima obrasca"
   },
   "howDoesBitwardenProtectFromPhishing": {
-    "message": "Kako Bitwarden štiti vaše podatke od phishinga?"
+    "message": "Kako Komboe štiti vaše podatke od phishinga?"
   },
   "currentWebsite": {
     "message": "Trenutna web stranica"
@@ -3021,7 +3021,7 @@
     "message": "Slaba glavna lozinka"
   },
   "weakMasterPasswordDesc": {
-    "message": "Glavna lozinka koju ste odabrali je slaba. Trebali biste koristiti snažnu glavnu lozinku (ili pristupnu frazu) da pravilno zaštitite svoj Bitwarden račun. Jeste li sigurni da želite koristiti ovu glavnu lozinku?"
+    "message": "Glavna lozinka koju ste odabrali je slaba. Trebali biste koristiti snažnu glavnu lozinku (ili pristupnu frazu) da pravilno zaštitite svoj Komboe račun. Jeste li sigurni da želite koristiti ovu glavnu lozinku?"
   },
   "rotateAccountEncKey": {
     "message": "Također rotiraj ključ za šifrovanje mog računa"
@@ -3033,7 +3033,7 @@
     "message": "Jeste li sigurni da želite rotirati ključ za šifrovanje svog računa?"
   },
   "updateEncryptionKeyWarning": {
-    "message": "Nakon ažuriranja vašeg ključa za šifrovanje, morate se odjaviti i ponovo prijaviti u sve Bitwarden aplikacije koje trenutno koristite (kao što su mobilna aplikacija ili proširenja preglednika). Ako se ne odjavite i ponovo prijavite (što preuzima vaš novi ključ za šifrovanje), može doći do oštećenja podataka. Pokušat ćemo vas automatski odjaviti, međutim, to može biti odgođeno."
+    "message": "Nakon ažuriranja vašeg ključa za šifrovanje, morate se odjaviti i ponovo prijaviti u sve Komboe aplikacije koje trenutno koristite (kao što su mobilna aplikacija ili proširenja preglednika). Ako se ne odjavite i ponovo prijavite (što preuzima vaš novi ključ za šifrovanje), može doći do oštećenja podataka. Pokušat ćemo vas automatski odjaviti, međutim, to može biti odgođeno."
   },
   "updateEncryptionKeyAccountExportWarning": {
     "message": "Svi izvozi ograničeni na račun koje ste sačuvali postat će nevažeći."
@@ -3085,7 +3085,7 @@
     "message": "Čekanje potvrde s računara"
   },
   "awaitDesktopDesc": {
-    "message": "Potvrdite korištenjem biometrije u Bitwarden desktop aplikaciji da postavite biometriju za preglednik."
+    "message": "Potvrdite korištenjem biometrije u Komboe desktop aplikaciji da postavite biometriju za preglednik."
   },
   "lockWithMasterPassOnRestart": {
     "message": "Zaključaj glavnom lozinkom pri ponovnom pokretanju preglednika"
@@ -3200,7 +3200,7 @@
     "message": "Obrazac je hostovan na drugoj domeni od URI-ja vaše sačuvane prijave. Odaberite OK da ipak automatski popunite ili Otkaži da zaustavite."
   },
   "autofillIframeWarningTip": {
-    "message": "Da spriječite ovo upozorenje u budućnosti, sačuvajte ovaj URI, $HOSTNAME$, u svoju Bitwarden stavku prijave za ovu stranicu.",
+    "message": "Da spriječite ovo upozorenje u budućnosti, sačuvajte ovaj URI, $HOSTNAME$, u svoju Komboe stavku prijave za ovu stranicu.",
     "placeholders": {
       "hostname": {
         "content": "$1",
@@ -3209,7 +3209,7 @@
     }
   },
   "topLayerHijackWarning": {
-    "message": "Ova stranica ometa Bitwarden iskustvo. Bitwarden inline meni je privremeno onemogućen kao sigurnosna mjera."
+    "message": "Ova stranica ometa Komboe iskustvo. Komboe inline meni je privremeno onemogućen kao sigurnosna mjera."
   },
   "setMasterPassword": {
     "message": "Postavi glavnu lozinku"
@@ -3311,13 +3311,13 @@
     "message": "Integracija preglednika nije postavljena"
   },
   "desktopIntegrationDisabledDesc": {
-    "message": "Integracija preglednika nije postavljena u Bitwarden desktop aplikaciji. Postavite je u postavkama unutar desktop aplikacije."
+    "message": "Integracija preglednika nije postavljena u Komboe desktop aplikaciji. Postavite je u postavkama unutar desktop aplikacije."
   },
   "startDesktopTitle": {
-    "message": "Pokrenite Bitwarden desktop aplikaciju"
+    "message": "Pokrenite Komboe desktop aplikaciju"
   },
   "startDesktopDesc": {
-    "message": "Bitwarden desktop aplikacija mora biti pokrenuta prije nego što se može koristiti otključavanje biometrijom."
+    "message": "Komboe desktop aplikacija mora biti pokrenuta prije nego što se može koristiti otključavanje biometrijom."
   },
   "errorEnableBiometricTitle": {
     "message": "Nije moguće postaviti biometriju"
@@ -3371,13 +3371,13 @@
     "message": "Biometrija neuspješna"
   },
   "biometricsFailedDesc": {
-    "message": "Biometrija se ne može završiti, razmotrite korištenje glavne lozinke ili odjavu. Ako se ovo nastavi, kontaktirajte Bitwarden podršku."
+    "message": "Biometrija se ne može završiti, razmotrite korištenje glavne lozinke ili odjavu. Ako se ovo nastavi, kontaktirajte Komboe podršku."
   },
   "nativeMessagingPermissionErrorTitle": {
     "message": "Dozvola nije pružena"
   },
   "nativeMessagingPermissionErrorDesc": {
-    "message": "Bez dozvole za komunikaciju s Bitwarden Desktop aplikacijom ne možemo pružiti biometriju u proširenju preglednika. Pokušajte ponovo."
+    "message": "Bez dozvole za komunikaciju s Komboe Desktop aplikacijom ne možemo pružiti biometriju u proširenju preglednika. Pokušajte ponovo."
   },
   "nativeMessagingPermissionSidebarTitle": {
     "message": "Greška zahtjeva za dozvolu"
@@ -3414,7 +3414,7 @@
     "message": "Isključene domene"
   },
   "excludedDomainsDesc": {
-    "message": "Bitwarden neće tražiti čuvanje detalja prijave za ove domene. Morate osvježiti stranicu da promjene stupe na snagu."
+    "message": "Komboe neće tražiti čuvanje detalja prijave za ove domene. Morate osvježiti stranicu da promjene stupe na snagu."
   },
   "blockedDomainsDesc": {
     "message": "Automatsko popunjavanje i druge povezane funkcije neće biti ponuđene za ove web stranice. Morate osvježiti stranicu da promjene stupe na snagu."
@@ -3546,24 +3546,24 @@
     "message": "Ilustracija liste prijava koje su rizične."
   },
   "welcomeDialogGraphicAlt": {
-    "message": "Ilustracija izgleda Bitwarden stranice sefa."
+    "message": "Ilustracija izgleda Komboe stranice sefa."
   },
   "generatePasswordSlideDesc": {
-    "message": "Brzo generišite snažnu, jedinstvenu lozinku uz Bitwarden meni za automatsko popunjavanje na rizičnoj stranici.",
+    "message": "Brzo generišite snažnu, jedinstvenu lozinku uz Komboe meni za automatsko popunjavanje na rizičnoj stranici.",
     "description": "Description of the generate password slide on the at-risk password page carousel"
   },
   "generatePasswordSlideImgAltPeriod": {
-    "message": "Ilustracija Bitwarden menija za automatsko popunjavanje koji prikazuje generisanu lozinku."
+    "message": "Ilustracija Komboe menija za automatsko popunjavanje koji prikazuje generisanu lozinku."
   },
   "updateInBitwarden": {
     "message": "Ažuriraj u Bitwardenu"
   },
   "updateInBitwardenSlideDesc": {
-    "message": "Bitwarden će vas zatim upitati da ažurirate lozinku u upravitelju lozinkama.",
+    "message": "Komboe će vas zatim upitati da ažurirate lozinku u upravitelju lozinkama.",
     "description": "Description of the update in Bitwarden slide on the at-risk password page carousel"
   },
   "updateInBitwardenSlideImgAltPeriod": {
-    "message": "Ilustracija Bitwarden obavještenja koje poziva korisnika da ažurira prijavu."
+    "message": "Ilustracija Komboe obavještenja koje poziva korisnika da ažurira prijavu."
   },
   "turnOnAutofill": {
     "message": "Uključi automatsko popunjavanje"
@@ -4078,10 +4078,10 @@
     "message": "Greška pri dobavljanju podataka za automatsko popunjavanje"
   },
   "couldNotDecryptVaultItem": {
-    "message": "Bitwarden nije mogao dešifrovati stavku sefa navedenu ispod. Kontaktirajte Bitwarden korisničku podršku i navedite ID stavke ispod da vidite može li se povratiti."
+    "message": "Komboe nije mogao dešifrovati stavku sefa navedenu ispod. Kontaktirajte Komboe korisničku podršku i navedite ID stavke ispod da vidite može li se povratiti."
   },
   "couldNotDecryptVaultItems": {
-    "message": "Bitwarden nije mogao dešifrovati stavke sefa navedene ispod. Kontaktirajte Bitwarden korisničku podršku i navedite ID-ove stavki ispod da vidite mogu li se povratiti."
+    "message": "Komboe nije mogao dešifrovati stavke sefa navedene ispod. Kontaktirajte Komboe korisničku podršku i navedite ID-ove stavki ispod da vidite mogu li se povratiti."
   },
   "itemId": {
     "message": "ID stavke",
@@ -4191,11 +4191,11 @@
     }
   },
   "forwarderGeneratedBy": {
-    "message": "Generisao Bitwarden.",
+    "message": "Generisao Komboe.",
     "description": "Displayed with the address on the forwarding service's configuration screen."
   },
   "forwarderGeneratedByWithWebsite": {
-    "message": "Web stranica: $WEBSITE$. Generisao Bitwarden.",
+    "message": "Web stranica: $WEBSITE$. Generisao Komboe.",
     "description": "Displayed with the address on the forwarding service's configuration screen.",
     "placeholders": {
       "WEBSITE": {
@@ -4417,7 +4417,7 @@
     "message": "Obavještenje je poslano na vaš uređaj."
   },
   "notificationSentDevicePart1": {
-    "message": "Otključajte Bitwarden na svom uređaju ili na"
+    "message": "Otključajte Komboe na svom uređaju ili na"
   },
   "notificationSentDeviceAnchor": {
     "message": "web aplikaciji"
@@ -4917,15 +4917,15 @@
     "message": "Preskoči na sadržaj"
   },
   "bitwardenOverlayButton": {
-    "message": "Dugme Bitwarden menija za automatsko popunjavanje",
+    "message": "Dugme Komboe menija za automatsko popunjavanje",
     "description": "Page title for the iframe containing the overlay button"
   },
   "toggleBitwardenVaultOverlay": {
-    "message": "Prebaci Bitwarden meni za automatsko popunjavanje",
+    "message": "Prebaci Komboe meni za automatsko popunjavanje",
     "description": "Screen reader and tool tip label for the overlay button"
   },
   "bitwardenVault": {
-    "message": "Bitwarden meni za automatsko popunjavanje",
+    "message": "Komboe meni za automatsko popunjavanje",
     "description": "Page title in overlay"
   },
   "unlockYourAccountToViewMatchingLogins": {
@@ -4997,7 +4997,7 @@
     "description": "Screen reader text (aria-label) for new identity button within inline menu"
   },
   "bitwardenOverlayMenuAvailable": {
-    "message": "Bitwarden meni za automatsko popunjavanje dostupan. Pritisnite strelicu dolje da odaberete.",
+    "message": "Komboe meni za automatsko popunjavanje dostupan. Pritisnite strelicu dolje da odaberete.",
     "description": "Screen reader text for announcing when the overlay opens on the page"
   },
   "turnOn": {
@@ -5369,7 +5369,7 @@
     "message": "Secure by design"
   },
   "importDataSecureByDesignBody": {
-    "message": "End-to-end encrypted handoff. Bitwarden never sees your $VENDOR$ login details.",
+    "message": "End-to-end encrypted handoff. Komboe never sees your $VENDOR$ login details.",
     "placeholders": {
       "vendor": {
         "content": "$1",
@@ -5520,7 +5520,7 @@
     "description": "Followed by a literal filename (my_passwords.json) rendered as code."
   },
   "importGnomeInstructionsFileHere": {
-    "message": "datoteku ovdje u Bitwarden.",
+    "message": "datoteku ovdje u Komboe.",
     "description": "Follows the my_passwords.json filename."
   },
   "importPasswordagentInstructions": {
@@ -6091,7 +6091,7 @@
     "message": "Aktivan račun"
   },
   "bitwardenAccount": {
-    "message": "Bitwarden račun"
+    "message": "Komboe račun"
   },
   "availableAccounts": {
     "message": "Dostupni računi"
@@ -6137,7 +6137,7 @@
     "description": "Label indicating the most common import formats"
   },
   "uriMatchDefaultStrategyHint": {
-    "message": "Prepoznavanje podudaranja URI-ja je način na koji Bitwarden identifikuje prijedloge za automatsko popunjavanje.",
+    "message": "Prepoznavanje podudaranja URI-ja je način na koji Komboe identifikuje prijedloge za automatsko popunjavanje.",
     "description": "Explains to the user that URI match detection determines how Bitwarden suggests autofill options, and clarifies that this default strategy applies when no specific match detection is set for a login item."
   },
   "regExAdvancedOptionWarning": {
@@ -6181,15 +6181,15 @@
     "description": "Body content for dialog which asks if the user wants to proceed to the browser's keyboard shortcut settings page"
   },
   "overrideDefaultBrowserAutofillTitle": {
-    "message": "Postaviti Bitwarden kao zadani upravitelj lozinkama?",
+    "message": "Postaviti Komboe kao zadani upravitelj lozinkama?",
     "description": "Dialog title facilitating the ability to override a chrome browser's default autofill behavior"
   },
   "overrideDefaultBrowserAutofillDescription": {
-    "message": "Ignoriranje ove opcije može uzrokovati sukobe između Bitwarden prijedloga za automatsko popunjavanje i onih vašeg preglednika.",
+    "message": "Ignoriranje ove opcije može uzrokovati sukobe između Komboe prijedloga za automatsko popunjavanje i onih vašeg preglednika.",
     "description": "Dialog message facilitating the ability to override a chrome browser's default autofill behavior"
   },
   "overrideDefaultBrowserAutoFillSettings": {
-    "message": "Postavite Bitwarden kao zadani upravitelj lozinkama",
+    "message": "Postavite Komboe kao zadani upravitelj lozinkama",
     "description": "Label for the setting that allows overriding the default browser autofill settings"
   },
   "defaultPasswordManagerCalloutTitle": {
@@ -6197,7 +6197,7 @@
     "description": "Title for the callout that prompts users to set Bitwarden as their default password manager"
   },
   "defaultPasswordManagerCalloutDesc": {
-    "message": "Bit ćete zamoljeni da odobrite $BROWSER$ dozvolu preglednika da postavite Bitwarden kao svoj zadani upravitelj lozinkama.",
+    "message": "Bit ćete zamoljeni da odobrite $BROWSER$ dozvolu preglednika da postavite Komboe kao svoj zadani upravitelj lozinkama.",
     "description": "Description for the callout that prompts users to set Bitwarden as their default password manager",
     "placeholders": {
       "browser": {
@@ -6207,7 +6207,7 @@
     }
   },
   "privacyPermissionAdditionNotGrantedTitle": {
-    "message": "Nije moguće postaviti Bitwarden kao zadani upravitelj lozinkama",
+    "message": "Nije moguće postaviti Komboe kao zadani upravitelj lozinkama",
     "description": "Title for the dialog that appears when the user has not granted the extension permission to set privacy settings"
   },
   "privacyPermissionAdditionNotGrantedDescription": {
@@ -6219,10 +6219,10 @@
     "description": "Button text for the setting that allows overriding the default browser autofill settings"
   },
   "defaultPasswordManagerPromptTitle": {
-    "message": "Postavite Bitwarden kao zadani upravitelj lozinkama svog preglednika"
+    "message": "Postavite Komboe kao zadani upravitelj lozinkama svog preglednika"
   },
   "defaultPasswordManagerPromptTitleV2": {
-    "message": "Postavite Bitwarden kao svoj zadani upravitelj lozinkama",
+    "message": "Postavite Komboe kao svoj zadani upravitelj lozinkama",
     "description": "Label for the setting to make Bitwarden the default password manager"
   },
   "defaultPasswordManagerSettingHintV2": {
@@ -6240,7 +6240,7 @@
     "message": "Isključit ćemo ugrađeni upravitelj lozinkama vašeg preglednika da možete uživati u sigurnom iskustvu prijave."
   },
   "defaultPasswordManagerSuccessToast": {
-    "message": "Bitwarden je postavljen kao vaš zadani upravitelj lozinkama preglednika"
+    "message": "Komboe je postavljen kao vaš zadani upravitelj lozinkama preglednika"
   },
   "allow": {
     "message": "Dozvoli",
@@ -6648,16 +6648,16 @@
     "message": "Preuzmi prilog"
   },
   "downloadBitwarden": {
-    "message": "Preuzmi Bitwarden"
+    "message": "Preuzmi Komboe"
   },
   "downloadBitwardenOnAllDevices": {
-    "message": "Preuzmite Bitwarden na svim uređajima"
+    "message": "Preuzmite Komboe na svim uređajima"
   },
   "getTheMobileApp": {
     "message": "Nabavite mobilnu aplikaciju"
   },
   "getTheMobileAppDesc": {
-    "message": "Pristupite svojim lozinkama u pokretu s Bitwarden mobilnom aplikacijom."
+    "message": "Pristupite svojim lozinkama u pokretu s Komboe mobilnom aplikacijom."
   },
   "getTheDesktopApp": {
     "message": "Nabavite desktop aplikaciju"
@@ -6666,7 +6666,7 @@
     "message": "Pristupite svom sefu bez preglednika, zatim postavite otključavanje biometrijom da ubrzate otključavanje i u desktop aplikaciji i u proširenju preglednika."
   },
   "downloadFromBitwardenNow": {
-    "message": "Preuzmite s bitwarden.com sada"
+    "message": "Preuzmite s komboe.com sada"
   },
   "getItOnGooglePlay": {
     "message": "Preuzmite na Google Play"
@@ -7210,10 +7210,10 @@
     "message": "Biometrijsko otključavanje nije dostupno zbog pogrešno konfigurisanih sistemskih datoteka."
   },
   "biometricsStatusHelptextDesktopDisconnected": {
-    "message": "Biometrijsko otključavanje nije dostupno jer je Bitwarden desktop aplikacija zatvorena."
+    "message": "Biometrijsko otključavanje nije dostupno jer je Komboe desktop aplikacija zatvorena."
   },
   "biometricsStatusHelptextNotEnabledInDesktop": {
-    "message": "Biometrijsko otključavanje nije dostupno jer nije omogućeno za $EMAIL$ u Bitwarden desktop aplikaciji.",
+    "message": "Biometrijsko otključavanje nije dostupno jer nije omogućeno za $EMAIL$ u Komboe desktop aplikaciji.",
     "placeholders": {
       "email": {
         "content": "$1",
@@ -7245,7 +7245,7 @@
     "description": "Notification message for when a password has been regenerated"
   },
   "saveToBitwarden": {
-    "message": "Sačuvaj u Bitwarden",
+    "message": "Sačuvaj u Komboe",
     "description": "Confirmation message for saving a login to Bitwarden"
   },
   "spaceCharacterDescriptor": {
@@ -7489,13 +7489,13 @@
     "message": "Use folders to organize vault items. They're just for you. No one else will see or use them."
   },
   "introCarouselLabel": {
-    "message": "Dobro došli u Bitwarden"
+    "message": "Dobro došli u Komboe"
   },
   "securityPrioritized": {
     "message": "Sigurnost na prvom mjestu"
   },
   "securityPrioritizedBody": {
-    "message": "Sačuvajte prijave, kartice i identitete u svoj sigurni sef. Bitwarden koristi zero-knowledge, end-to-end šifrovanje da zaštiti ono što vam je važno."
+    "message": "Sačuvajte prijave, kartice i identitete u svoj sigurni sef. Komboe koristi zero-knowledge, end-to-end šifrovanje da zaštiti ono što vam je važno."
   },
   "quickLogin": {
     "message": "Brza i jednostavna prijava"
@@ -7513,7 +7513,7 @@
     "message": "Vaši podaci, kada i gdje vam trebaju"
   },
   "secureDevicesBody": {
-    "message": "Sačuvajte neograničen broj lozinki na neograničenom broju uređaja uz Bitwarden mobilne, pregledničke i desktop aplikacije."
+    "message": "Sačuvajte neograničen broj lozinki na neograničenom broju uređaja uz Komboe mobilne, pregledničke i desktop aplikacije."
   },
   "nudgeBadgeAria": {
     "message": "1 obavještenje"
@@ -7522,7 +7522,7 @@
     "message": "Uvezite postojeće lozinke"
   },
   "emptyVaultNudgeBody": {
-    "message": "Koristite uvoznik za brz prijenos prijava u Bitwarden bez ručnog dodavanja."
+    "message": "Koristite uvoznik za brz prijenos prijava u Komboe bez ručnog dodavanja."
   },
   "emptyVaultNudgeButton": {
     "message": "Uvezi sada"
@@ -7641,7 +7641,7 @@
     "message": "O ovoj postavci"
   },
   "permitCipherDetailsDescription": {
-    "message": "Bitwarden će koristiti sačuvane URI-je prijave da identificira koja ikona ili URL za promjenu lozinke treba biti korišten za poboljšanje vašeg iskustva. Nikakve informacije se ne prikupljaju niti čuvaju kada koristite ovu uslugu."
+    "message": "Komboe će koristiti sačuvane URI-je prijave da identificira koja ikona ili URL za promjenu lozinke treba biti korišten za poboljšanje vašeg iskustva. Nikakve informacije se ne prikupljaju niti čuvaju kada koristite ovu uslugu."
   },
   "showQuickCopyActionsDetailsDescription": {
     "message": "Dodajte 3 dugmeta za brzo kopiranje pored stavki za kopiranje vašeg korisničkog imena, lozinke ili verifikacijskog koda u međuspremnik."
@@ -7650,7 +7650,7 @@
     "message": "Nemate dozvole za pregled ove stranice. Pokušajte se prijaviti s drugim računom."
   },
   "wasmNotSupported": {
-    "message": "WebAssembly nije podržan u vašem pregledniku ili nije omogućen. WebAssembly je potreban za korištenje Bitwarden aplikacije.",
+    "message": "WebAssembly nije podržan u vašem pregledniku ili nije omogućen. WebAssembly je potreban za korištenje Komboe aplikacije.",
     "description": "'WebAssembly' is a technical term and should not be translated."
   },
   "showMore": {
@@ -7738,7 +7738,7 @@
     "message": "Greška: Nije moguće dešifrovati"
   },
   "removeMasterPasswordForOrgUserKeyConnector": {
-    "message": "Vaša organizacija više ne koristi glavne lozinke za prijavu na Bitwarden. Da nastavite, potvrdite organizaciju i domenu."
+    "message": "Vaša organizacija više ne koristi glavne lozinke za prijavu na Komboe. Da nastavite, potvrdite organizaciju i domenu."
   },
   "continueWithLogIn": {
     "message": "Nastavi s prijavom"
@@ -7824,7 +7824,7 @@
     "message": "Postavite metodu otključavanja da promijenite radnju isteka"
   },
   "sessionTimeoutSuppressedByConnectedDevice": {
-    "message": "Upravlja Bitwarden desktop aplikacija. Otvorite desktop aplikaciju za uređivanje."
+    "message": "Upravlja Komboe desktop aplikacija. Otvorite desktop aplikaciju za uređivanje."
   },
   "percentageCompleted": {
     "message": "$PERCENT$% završeno",
@@ -7920,13 +7920,13 @@
     "message": "Unesite više e-pošta odvajajući ih zarezom."
   },
   "emailPlaceholder": {
-    "message": "user@bitwarden.com , user@acme.com"
+    "message": "user@komboe.com , user@acme.com"
   },
   "emailPlaceholderMultiple": {
-    "message": "user@bitwarden.com, user@acme.com"
+    "message": "user@komboe.com, user@acme.com"
   },
   "downloadBitwardenApps": {
-    "message": "Preuzmi Bitwarden aplikacije"
+    "message": "Preuzmi Komboe aplikacije"
   },
   "emailProtected": {
     "message": "E-pošta zaštićena"
@@ -7945,13 +7945,13 @@
     "message": "Sync unlock with desktop app"
   },
   "syncUnlockWithDesktopDescription": {
-    "message": "The Bitwarden browser extension and desktop app lock and unlock together."
+    "message": "The Komboe browser extension and desktop app lock and unlock together."
   },
   "syncUnlockWithWeb": {
     "message": "Sync unlock with web app"
   },
   "syncUnlockWithWebDescription": {
-    "message": "The Bitwarden browser extension and web app lock and unlock together."
+    "message": "The Komboe browser extension and web app lock and unlock together."
   },
   "sharedUnlockUnavailableUntrustedDevice": {
     "message": "Dijeljeno otključavanje nije dostupno jer ste odabrali da ne zapamtite ovaj uređaj. Da omogućite ovu postavku, pokušajte se ponovo prijaviti."
@@ -7960,13 +7960,13 @@
     "message": "Potrebna nova dozvola"
   },
   "sharedUnlockDesktopPermissionDesc": {
-    "message": "Za korištenje dijeljenog otključavanja, Bitwarden treba dozvolu za komunikaciju s desktop aplikacijom. Kada nastavite, vaš preglednik će vas zamoliti da to odobrite."
+    "message": "Za korištenje dijeljenog otključavanja, Komboe treba dozvolu za komunikaciju s desktop aplikacijom. Kada nastavite, vaš preglednik će vas zamoliti da to odobrite."
   },
   "sharedUnlockDesktopPermissionWarning": {
-    "message": "Bitwarden će se zaključati i ponovo učitati. Nakon što odobrite, proširenje se ponovo učitava i zaključat će vaš sef."
+    "message": "Komboe će se zaključati i ponovo učitati. Nakon što odobrite, proširenje se ponovo učitava i zaključat će vaš sef."
   },
   "biometricPermissionDesc": {
-    "message": "Za korištenje biometrijskog otključavanja, Bitwarden treba dozvolu za komunikaciju s desktop aplikacijom. Kada nastavite, vaš preglednik će vas zamoliti da to odobrite."
+    "message": "Za korištenje biometrijskog otključavanja, Komboe treba dozvolu za komunikaciju s desktop aplikacijom. Kada nastavite, vaš preglednik će vas zamoliti da to odobrite."
   },
   "enterMonth": {
     "message": "Unesite mjesec."
@@ -8451,15 +8451,15 @@
     "message": "Nepoznata stavka, možda ćete morati zatražiti dozvolu za pristup ovoj stavci."
   },
   "newExperienceDialogTitle": {
-    "message": "Bitwarden has a new look",
+    "message": "Komboe has a new look",
     "description": "Title of the dialog that introduces the redesigned vault to existing users."
   },
   "newExperienceDialogDesc": {
-    "message": "Better experience, same trusted security. The Bitwarden vault has been redesigned based on your feedback, so things are easier to find and work like you'd expect.",
+    "message": "Better experience, same trusted security. The Komboe vault has been redesigned based on your feedback, so things are easier to find and work like you'd expect.",
     "description": "Body copy of the dialog that introduces the redesigned vault to existing users."
   },
   "newExperienceDialogImgAlt": {
-    "message": "A preview of the redesigned Bitwarden vault.",
+    "message": "A preview of the redesigned Komboe vault.",
     "description": "Alt text for the screenshot shown in the dialog that introduces the redesigned vault."
   },
   "exploreTheNewVault": {

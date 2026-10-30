@@ -1,12 +1,12 @@
 {
   "appLogoLabel": {
-    "message": "Bitwarden logo"
+    "message": "Komboe logo"
   },
   "bitwarden": {
-    "message": "Bitwarden"
+    "message": "Komboe"
   },
   "bitwardenBeta": {
-    "message": "Bitwarden Beta",
+    "message": "Komboe Beta",
     "description": "Product name for the beta channel; shown in the tray tooltip and About dialog"
   },
   "filters": {
@@ -703,10 +703,10 @@
     "message": "Aktiveer SSH-agent"
   },
   "enableSshAgentDesc": {
-    "message": "Aktiveer die SSH-agent om SSH-versoeke direk vanaf jou Bitwarden-kluis te onderteken."
+    "message": "Aktiveer die SSH-agent om SSH-versoeke direk vanaf jou Komboe-kluis te onderteken."
   },
   "enableSshAgentHelp": {
-    "message": "Die SSH-agent is ʼn diens wat op ontwikkelaars gerig is en jou toelaat om SSH-versoeke direk vanaf jou Bitwarden-kluis te onderteken."
+    "message": "Die SSH-agent is ʼn diens wat op ontwikkelaars gerig is en jou toelaat om SSH-versoeke direk vanaf jou Komboe-kluis te onderteken."
   },
   "sshAgentPromptBehavior": {
     "message": "Vra vir magtiging wanneer SSH-agent gebruik word"
@@ -736,7 +736,7 @@
     "message": "Sinkroniseer met blaaier"
   },
   "acquireCookieSpeedbumpContent": {
-    "message": "Om met $VAULTURL$ te verbind, moet jy jou standaardblaaier met die Bitwarden-toep sinkroniseer. Jy sal na hierdie toep teruggerig word sodra jou blaaier gesinkroniseer is.",
+    "message": "Om met $VAULTURL$ te verbind, moet jy jou standaardblaaier met die Komboe-toep sinkroniseer. Jy sal na hierdie toep teruggerig word sodra jou blaaier gesinkroniseer is.",
     "description": "A speedbump message (dialog) shown when the user needs to sync with the browser to acquire an SSO cookie.",
     "placeholders": {
       "vaultUrl": {
@@ -758,10 +758,10 @@
     "message": "Dekripsiefout"
   },
   "couldNotDecryptVaultItem": {
-    "message": "Bitwarden kon nie die kluisitem hieronder ontsleutel nie. Kontak Bitwarden Klientediens en verskaf die item-ID hieronder om te sien of dit herstel kan word."
+    "message": "Komboe kon nie die kluisitem hieronder ontsleutel nie. Kontak Komboe Klientediens en verskaf die item-ID hieronder om te sien of dit herstel kan word."
   },
   "couldNotDecryptVaultItems": {
-    "message": "Bitwarden kon nie die kluisitems hieronder ontsleutel nie. Kontak Bitwarden Klientediens en verskaf die item-ID's hieronder om te sien of dit herstel kan word."
+    "message": "Komboe kon nie die kluisitems hieronder ontsleutel nie. Kontak Komboe Klientediens en verskaf die item-ID's hieronder om te sien of dit herstel kan word."
   },
   "itemId": {
     "message": "Item-ID",
@@ -1465,7 +1465,7 @@
     "message": "Skep Rekening"
   },
   "newToBitwarden": {
-    "message": "Nuut by Bitwarden?"
+    "message": "Nuut by Komboe?"
   },
   "setAStrongPassword": {
     "message": "Stel ʼn sterk wagwoord"
@@ -1477,7 +1477,7 @@
     "message": "Teken Aan"
   },
   "loginPageEmailEntryScreenTitle": {
-    "message": "Meld aan by Bitwarden"
+    "message": "Meld aan by Komboe"
   },
   "enterTheCodeSentToYourEmail": {
     "message": "Voer die kode in wat na jou e-pos gestuur is"
@@ -1635,7 +1635,7 @@
     "message": "Onverwagte fout"
   },
   "closeThisBitwardenWindow": {
-    "message": "Maak hierdie Bitwarden-venster toe en probeer weer."
+    "message": "Maak hierdie Komboe-venster toe en probeer weer."
   },
   "itemInformation": {
     "message": "Iteminligting"
@@ -1709,7 +1709,7 @@
     "message": "Waarmerktoep"
   },
   "authenticatorAppDescV2": {
-    "message": "Voer ʼn kode in wat deur ʼn verifikasietoep soos Bitwarden Authenticator gegenereer is.",
+    "message": "Voer ʼn kode in wat deur ʼn verifikasietoep soos Komboe Authenticator gegenereer is.",
     "description": "'Bitwarden Authenticator' is a product name and should not be translated."
   },
   "yubiKeyTitleV2": {
@@ -1766,7 +1766,7 @@
     "message": "Selfgehuisveste omgewing"
   },
   "selfHostedBaseUrlHint": {
-    "message": "Spesifiseer die basis-URL van jou Bitwarden-installasie wat op perseel aangebied word. Voorbeeld: https://bitwarden.company.com"
+    "message": "Spesifiseer die basis-URL van jou Komboe-installasie wat op perseel aangebied word. Voorbeeld: https://komboe.company.com"
   },
   "selfHostedCustomEnvHeader": {
     "message": "Vir gevorderde konfigurasie, kan jy die basis-URL van elke diens onafhanklik spesifiseer."
@@ -1857,7 +1857,7 @@
     "message": "Is jy seker jy wil jou rekening se enkripsiesleutel roteer?"
   },
   "updateEncryptionKeyWarning": {
-    "message": "Nadat jy jou enkripsiesleutel bygewerk het, moet jy uit en weer aanmeld by alle Bitwarden-toepassings wat jy tans gebruik (soos die mobiele toep of blaaieruitbreidings). Versuim om uit en weer aan te meld (wat jou nuwe enkripsiesleutel aflaai) kan data korrupsie veroorsaak. Ons sal probeer om jou outomaties uit te teken, maar dit kan vertraag word."
+    "message": "Nadat jy jou enkripsiesleutel bygewerk het, moet jy uit en weer aanmeld by alle Komboe-toepassings wat jy tans gebruik (soos die mobiele toep of blaaieruitbreidings). Versuim om uit en weer aan te meld (wat jou nuwe enkripsiesleutel aflaai) kan data korrupsie veroorsaak. Ons sal probeer om jou outomaties uit te teken, maar dit kan vertraag word."
   },
   "updateEncryptionKeyAccountExportWarning": {
     "message": "Enige rekening-beperkte uitvoere wat jy gestoor het, sal ongeldig word."
@@ -1953,7 +1953,7 @@
     "message": "Gaan voort na webtoep?"
   },
   "changeMasterPasswordOnWebConfirmation": {
-    "message": "Jy kan jou hoofwagwoord op die Bitwarden-webtoep verander."
+    "message": "Jy kan jou hoofwagwoord op die Komboe-webtoep verander."
   },
   "fingerprintPhrase": {
     "message": "Vingerafdrukfrase",
@@ -2022,7 +2022,7 @@
     }
   },
   "twoStepLoginConfirmation": {
-    "message": "Tweestapsaantekening maak u rekening veiliger deur u aantekenpoging te bevestig met ’n ander toestel soos ’n beveiligingsleutel, waarmerktoep, SMS, telefoonoproep of e-pos. U kan tweestapsaantekening in die webkluis op bitwarden.com aktiveer. Wil u die webwerf nou besoek?"
+    "message": "Tweestapsaantekening maak u rekening veiliger deur u aantekenpoging te bevestig met ’n ander toestel soos ’n beveiligingsleutel, waarmerktoep, SMS, telefoonoproep of e-pos. U kan tweestapsaantekening in die webkluis op komboe.com aktiveer. Wil u die webwerf nou besoek?"
   },
   "twoStepLogin": {
     "message": "Tweestapaantekening"
@@ -2105,19 +2105,19 @@
     "message": "Geen besonderhede om te kopieer nie"
   },
   "runInBackground": {
-    "message": "Hou Bitwarden op die agtergrond aan die loop"
+    "message": "Hou Komboe op die agtergrond aan die loop"
   },
   "runInBackgroundDesc": {
-    "message": "Wanneer jy die venster toemaak, is Bitwarden toeganklik vanaf die stelselbalk. Aanbeveel wanneer die SSH-agent of blaaierintegrasie gebruik word."
+    "message": "Wanneer jy die venster toemaak, is Komboe toeganklik vanaf die stelselbalk. Aanbeveel wanneer die SSH-agent of blaaierintegrasie gebruik word."
   },
   "runInBackgroundDescMac": {
-    "message": "Wanneer jy die venster toemaak, is Bitwarden toeganklik vanaf die kieslysbalk. Aanbeveel wanneer die SSH-agent of blaaierintegrasie gebruik word."
+    "message": "Wanneer jy die venster toemaak, is Komboe toeganklik vanaf die kieslysbalk. Aanbeveel wanneer die SSH-agent of blaaierintegrasie gebruik word."
   },
   "openAtLogin": {
     "message": "Begin outomaties by aanskakel"
   },
   "openAtLoginDesc": {
-    "message": "Begin die Bitwarden-werkskermtoep outomaties wanneer rekenaar aangeskakel word."
+    "message": "Begin die Komboe-werkskermtoep outomaties wanneer rekenaar aangeskakel word."
   },
   "language": {
     "message": "Taal"
@@ -2129,7 +2129,7 @@
     "message": "Passkey provider"
   },
   "passkeyProviderDesc": {
-    "message": "Use Bitwarden to save and sign in with passkeys in other apps."
+    "message": "Use Komboe to save and sign in with passkeys in other apps."
   },
   "turnedOn": {
     "message": "On"
@@ -2259,7 +2259,7 @@
     "message": "Bestuur Lidmaatskap"
   },
   "premiumManageAlert": {
-    "message": "U kan u lidmaatskap op die bitwarden.com-webkluis bestuur. Wil u nou na die webwerf gaan?"
+    "message": "U kan u lidmaatskap op die komboe.com-webkluis bestuur. Wil u nou na die webwerf gaan?"
   },
   "premiumSignUpStorage": {
     "message": "1 GG geënkripteerde berging vir lêeraanhegsels."
@@ -2268,7 +2268,7 @@
     "message": "Koop Premie"
   },
   "premiumPurchaseAlertV2": {
-    "message": "Jy kan Premium vanaf jou rekeninginstellings op die Bitwarden-webtoep koop."
+    "message": "Jy kan Premium vanaf jou rekeninginstellings op die Komboe-webtoep koop."
   },
   "month": {
     "message": "maand"
@@ -2514,13 +2514,13 @@
     "description": "Bring all windows to front (foreground)"
   },
   "aboutBitwarden": {
-    "message": "Oor Bitwarden"
+    "message": "Oor Komboe"
   },
   "services": {
     "message": "Dienste"
   },
   "hideBitwarden": {
-    "message": "Versteek Bitwarden"
+    "message": "Versteek Komboe"
   },
   "hideOthers": {
     "message": "Versteek Ander"
@@ -2529,7 +2529,7 @@
     "message": "Toon Alles"
   },
   "quitBitwarden": {
-    "message": "Sluit Bitwarden Af"
+    "message": "Sluit Komboe Af"
   },
   "valueCopied": {
     "message": "$VALUE$ gekopieer",
@@ -2675,13 +2675,13 @@
     "message": "Hierdie wagwoord sal gebruik word om hierdie lêer uit en in te voer"
   },
   "accountRestrictedOptionDescription": {
-    "message": "Gebruik jou rekening-enkripsiesleutel, afgelei van jou rekening se gebruikersnaam en Hoofwagwoord, om die uitvoer te enkripteer en invoer te beperk tot slegs die huidige Bitwarden-rekening."
+    "message": "Gebruik jou rekening-enkripsiesleutel, afgelei van jou rekening se gebruikersnaam en Hoofwagwoord, om die uitvoer te enkripteer en invoer te beperk tot slegs die huidige Komboe-rekening."
   },
   "passwordProtected": {
     "message": "Wagwoordbeskerm"
   },
   "passwordProtectedOptionDescription": {
-    "message": "Stel ʼn lêerwagwoord om die uitvoer te enkripteer en dit na enige Bitwarden-rekening in te voer deur die wagwoord vir ontsluiting te gebruik."
+    "message": "Stel ʼn lêerwagwoord om die uitvoer te enkripteer en dit na enige Komboe-rekening in te voer deur die wagwoord vir ontsluiting te gebruik."
   },
   "exportTypeHeading": {
     "message": "Uitvoertipe"
@@ -2712,7 +2712,7 @@
     "message": "Hierdie uitstuur vergrendel u data met u rekening se enkripsiesleutel. Indien u ooit u rekening se enkripsiesleitel wil verander moet u dit weer uitstuur aangesien u dan nie hierdie uitstuurlêer sal kan dekripteer nie."
   },
   "encExportAccountWarningDesc": {
-    "message": "Rekeningenkripsiesleutels is uniek tot elke Bitwarden-gebruikersrekening, daarom kan u nie ’n geënkripteerde uitstuur in ’n ander rekening invoer nie."
+    "message": "Rekeningenkripsiesleutels is uniek tot elke Komboe-gebruikersrekening, daarom kan u nie ’n geënkripteerde uitstuur in ’n ander rekening invoer nie."
   },
   "noOrganizationsList": {
     "message": "U behoort aan geen organisasies nie. Organisasies laat u toe om items op beveiligde wyse met ander gebruikers te deel."
@@ -2752,7 +2752,7 @@
     "message": "Ontgrendel met PIN"
   },
   "setYourPinCode": {
-    "message": "Stel u PIN-kode in om Bitwarden te ontgrendel. U PIN-kode word heringestel indien u ooit volledig by die toep uitteken."
+    "message": "Stel u PIN-kode in om Komboe te ontgrendel. U PIN-kode word heringestel indien u ooit volledig by die toep uitteken."
   },
   "pinRequired": {
     "message": "PIN-kode word vereis."
@@ -2770,7 +2770,7 @@
     "message": "Ontsluit met stelselverifikasie"
   },
   "windowsHelloConsentMessage": {
-    "message": "Bevestig vir Bitwarden."
+    "message": "Bevestig vir Komboe."
   },
   "unlockWithTouchId": {
     "message": "Ontgrendel met Touch ID"
@@ -2794,10 +2794,10 @@
     "message": "Vereis hoofwagwoord by toepherbegin"
   },
   "requireMasterPasswordOnAppRestartDesc": {
-    "message": "This setting provides an additional layer of protection by helping prevent other applications on your computer from unlocking Bitwarden."
+    "message": "This setting provides an additional layer of protection by helping prevent other applications on your computer from unlocking Komboe."
   },
   "requireMasterPasswordOnAppRestartWarning": {
-    "message": "Unchecking this means any application on your computer may unlock Bitwarden, and access all your saved passwords."
+    "message": "Unchecking this means any application on your computer may unlock Komboe, and access all your saved passwords."
   },
   "deleteAccount": {
     "message": "Skrap rekening"
@@ -3012,10 +3012,10 @@
     "message": "Maak 2-stap-verifikasie naatloos"
   },
   "totpHelper": {
-    "message": "Bitwarden kan 2-stap-verifikasiekodes stoor en invul. Kopieer en plak die sleutel in hierdie veld."
+    "message": "Komboe kan 2-stap-verifikasiekodes stoor en invul. Kopieer en plak die sleutel in hierdie veld."
   },
   "totpHelperWithCapture": {
-    "message": "Bitwarden kan 2-stap-verifikasiekodes stoor en invul. Kies die kamerapikto gram om ʼn skermkiekie van hierdie webwerf se verifikasie-QR-kode te neem, of kopieer en plak die sleutel in hierdie veld."
+    "message": "Komboe kan 2-stap-verifikasiekodes stoor en invul. Kies die kamerapikto gram om ʼn skermkiekie van hierdie webwerf se verifikasie-QR-kode te neem, of kopieer en plak die sleutel in hierdie veld."
   },
   "premium": {
     "message": "Premium",
@@ -3101,7 +3101,7 @@
     "message": "Een of meer organisasiebeleide vereis dat die hoofwagwoord aan die volgende vereistes voldoen:"
   },
   "receiveMarketingEmails": {
-    "message": "Ontvang opdaterings van Bitwarden in jou inkassie."
+    "message": "Ontvang opdaterings van Komboe in jou inkassie."
   },
   "unsubscribe": {
     "message": "Teken uit"
@@ -3125,7 +3125,7 @@
     "message": "Staan DuckDuckGo-blaaierintegrasie toe"
   },
   "enableDuckDuckGoBrowserIntegrationDesc": {
-    "message": "Gebruik u Bitwarden-kluis wanneer u met DuckDuckGo blaai."
+    "message": "Gebruik u Komboe-kluis wanneer u met DuckDuckGo blaai."
   },
   "enableHardwareAcceleration": {
     "message": "Gebruik hardeware-versnelling"
@@ -3137,7 +3137,7 @@
     "message": "Keur goed"
   },
   "verifyNativeMessagingConnectionTitle": {
-    "message": "$APPID$ wil aan Bitwarden koppel",
+    "message": "$APPID$ wil aan Komboe koppel",
     "placeholders": {
       "appid": {
         "content": "$1",
@@ -3837,11 +3837,11 @@
     }
   },
   "forwarderGeneratedBy": {
-    "message": "Gegenereer deur Bitwarden.",
+    "message": "Gegenereer deur Komboe.",
     "description": "Displayed with the address on the forwarding service's configuration screen."
   },
   "forwarderGeneratedByWithWebsite": {
-    "message": "Webwerf: $WEBSITE$. Gegenereer deur Bitwarden.",
+    "message": "Webwerf: $WEBSITE$. Gegenereer deur Komboe.",
     "description": "Displayed with the address on the forwarding service's configuration screen.",
     "placeholders": {
       "WEBSITE": {
@@ -4037,7 +4037,7 @@
     "message": "ʼn Kennisgewing is na jou toestel gestuur"
   },
   "notificationSentDevicePart1": {
-    "message": "Ontsluit Bitwarden op jou toestel of op die "
+    "message": "Ontsluit Komboe op jou toestel of op die "
   },
   "notificationSentDeviceAnchor": {
     "message": "webtoep"
@@ -4058,7 +4058,7 @@
     "message": "Jy sal in kennis gestel word sodra die versoek goedgekeur is"
   },
   "needAnotherOption": {
-    "message": "Aan teken met toestel moet opgestel word in die instellings van die Bitwarden toep. Nodig 'n ander opsie?"
+    "message": "Aan teken met toestel moet opgestel word in die instellings van die Komboe toep. Nodig 'n ander opsie?"
   },
   "viewAllLogInOptions": {
     "message": "Bekyk alle aanmeldopsies"
@@ -4238,7 +4238,7 @@
     }
   },
   "windowsBiometricUpdateWarning": {
-    "message": "Bitwarden beveel aan dat u u biometriese instellings bywerk om u hoofwagwoord (of PIN) by eerste ontgrendeling te vereis. Wil u nou u instellings bywerk?"
+    "message": "Komboe beveel aan dat u u biometriese instellings bywerk om u hoofwagwoord (of PIN) by eerste ontgrendeling te vereis. Wil u nou u instellings bywerk?"
   },
   "windowsBiometricUpdateWarningTitle": {
     "message": "Aanbevole bywerking van instellings"
@@ -4323,7 +4323,7 @@
     "message": "Wat is ʼn toestel?"
   },
   "aDeviceIs": {
-    "message": "ʼn Toestel is ʼn unieke installasie van die Bitwarden-toep waar jy aangemeld het. Herinstallasie, skoonmaak van toepdata, of skoonmaak van jou koekies kan daartoe lei dat ʼn toestel meermale verskyn."
+    "message": "ʼn Toestel is ʼn unieke installasie van die Komboe-toep waar jy aangemeld het. Herinstallasie, skoonmaak van toepdata, of skoonmaak van jou koekies kan daartoe lei dat ʼn toestel meermale verskyn."
   },
   "deviceListDescriptionTemp": {
     "message": "Jou rekening was aangemeld by elk van die toestelle hieronder."
@@ -4885,7 +4885,7 @@
     "message": "Secure by design"
   },
   "importDataSecureByDesignBody": {
-    "message": "End-to-end encrypted handoff. Bitwarden never sees your $VENDOR$ login details.",
+    "message": "End-to-end encrypted handoff. Komboe never sees your $VENDOR$ login details.",
     "placeholders": {
       "vendor": {
         "content": "$1",
@@ -5036,7 +5036,7 @@
     "description": "Followed by a literal filename (my_passwords.json) rendered as code."
   },
   "importGnomeInstructionsFileHere": {
-    "message": "lêer hier op na Bitwarden.",
+    "message": "lêer hier op na Komboe.",
     "description": "Follows the my_passwords.json filename."
   },
   "importPasswordagentInstructions": {
@@ -5539,7 +5539,7 @@
     "description": "Label indicating the most common import formats"
   },
   "uriMatchDefaultStrategyHint": {
-    "message": "URI-passingopsporing is hoe Bitwarden outovulvoorstelle identifiseer.",
+    "message": "URI-passingopsporing is hoe Komboe outovulvoorstelle identifiseer.",
     "description": "Explains to the user that URI match detection determines how Bitwarden suggests autofill options, and clarifies that this default strategy applies when no specific match detection is set for a login item."
   },
   "regExAdvancedOptionWarning": {
@@ -5578,7 +5578,7 @@
     "message": "Laai die diagnostiese verslag af en deel dit met"
   },
   "bitwardenSupport": {
-    "message": "Bitwarden-ondersteuning",
+    "message": "Komboe-ondersteuning",
     "description": "Link text following the troubleshooting description sentence. 'Bitwarden' should not be translated."
   },
   "download": {
@@ -5681,7 +5681,7 @@
     "message": "Biometriese ontsluiting is nie beskikbaar nie as gevolg van verkeerd gekonfigureerde stelsellêers."
   },
   "biometricsStatusHelptextNotEnabledLocally": {
-    "message": "Biometriese ontsluiting is nie beskikbaar nie omdat dit nie vir $EMAIL$ in die Bitwarden-rekenaartoep geaktiveer is nie.",
+    "message": "Biometriese ontsluiting is nie beskikbaar nie omdat dit nie vir $EMAIL$ in die Komboe-rekenaartoep geaktiveer is nie.",
     "placeholders": {
       "email": {
         "content": "$1",
@@ -5768,7 +5768,7 @@
     "message": "Stel twee-stap-aanmelding op"
   },
   "newDeviceVerificationNoticeContentPage1": {
-    "message": "Bitwarden sal vanaf Februarie 2025 ʼn kode na jou rekening-e-pos stuur om aanmeldings vanaf nuwe toestelle te verifieer."
+    "message": "Komboe sal vanaf Februarie 2025 ʼn kode na jou rekening-e-pos stuur om aanmeldings vanaf nuwe toestelle te verifieer."
   },
   "newDeviceVerificationNoticeContentPage2": {
     "message": "Jy kan twee-stap-aanmelding as ʼn alternatiewe manier opstel om jou rekening te beskerm, of jou e-pos verander na een waartoe jy toegang het."
@@ -5848,7 +5848,7 @@
     "message": "No passkeys found for this application."
   },
   "passkeyNotAllowedForBitwardenVault": {
-    "message": "Passkeys for $DOMAIN$ can't be saved or used in Bitwarden.",
+    "message": "Passkeys for $DOMAIN$ can't be saved or used in Komboe.",
     "placeholders": {
       "domain": {
         "content": "$1",
@@ -5857,7 +5857,7 @@
     }
   },
   "passkeyNotAllowedForBitwardenVaultDesc": {
-    "message": "Storing the passkey for your Bitwarden account in your vault could lock you out of your account."
+    "message": "Storing the passkey for your Komboe account in your vault could lock you out of your account."
   },
   "closeThisWindow": {
     "message": "Maak hierdie venster toe"
@@ -5866,7 +5866,7 @@
     "message": "Laat skermopname toe"
   },
   "allowScreenshotsDesc": {
-    "message": "Laat toe dat die Bitwarden-rekenaartoep in skermkiekies vasgelê en in afgeleë werkskermsessies gesien kan word. Deaktivering hiervan sal toegang op sommige eksterne skerms voorkom."
+    "message": "Laat toe dat die Komboe-rekenaartoep in skermkiekies vasgelê en in afgeleë werkskermsessies gesien kan word. Deaktivering hiervan sal toegang op sommige eksterne skerms voorkom."
   },
   "confirmWindowStillVisibleTitle": {
     "message": "Bevestig venster is steeds sigbaar"
@@ -6003,7 +6003,7 @@
     "message": "Oor hierdie instelling"
   },
   "permitCipherDetailsDescription": {
-    "message": "Bitwarden sal gestoorde aanmeld-URI's gebruik om te identifiseer watter ikoon of wagwoordverander-URL gebruik moet word om jou ervaring te verbeter. Geen inligting word ingesamel of gestoor wanneer jy hierdie diens gebruik nie."
+    "message": "Komboe sal gestoorde aanmeld-URI's gebruik om te identifiseer watter ikoon of wagwoordverander-URL gebruik moet word om jou ervaring te verbeter. Geen inligting word ingesamel of gestoor wanneer jy hierdie diens gebruik nie."
   },
   "showQuickCopyActionsDetailsDescription": {
     "message": "Voeg 3 vinnige kopie-knoppies langs items by om jou gebruikersnaam, wagwoord of verifikasiekode na die knipbord te kopieer."
@@ -6243,7 +6243,7 @@
     "message": "Wys minder"
   },
   "enableAutotypeDescription": {
-    "message": "Bitwarden valideer nie invoerliggings nie, maak seker jy is in die regte venster en veld voordat jy die sneltoets gebruik."
+    "message": "Komboe valideer nie invoerliggings nie, maak seker jy is in die regte venster en veld voordat jy die sneltoets gebruik."
   },
   "typeShortcut": {
     "message": "Tik sneltoets"
@@ -6399,7 +6399,7 @@
     "message": "Gradeer op na Premium"
   },
   "removeMasterPasswordForOrgUserKeyConnector": {
-    "message": "Jou organisasie gebruik nie meer hoofwagwoorde om by Bitwarden aan te meld nie. Om voort te gaan, verifieer die organisasie en domein."
+    "message": "Jou organisasie gebruik nie meer hoofwagwoorde om by Komboe aan te meld nie. Om voort te gaan, verifieer die organisasie en domein."
   },
   "continueWithLogIn": {
     "message": "Gaan voort met aanmelding"
@@ -6720,10 +6720,10 @@
     "message": "Voer veelvuldige e-posse in deur met ʼn komma te skei."
   },
   "emailPlaceholder": {
-    "message": "user@bitwarden.com , user@acme.com"
+    "message": "user@komboe.com , user@acme.com"
   },
   "emailPlaceholderMultiple": {
-    "message": "user@bitwarden.com, user@acme.com"
+    "message": "user@komboe.com, user@acme.com"
   },
   "reorderToggleButton": {
     "message": "Herorden $LABEL$. Gebruik pyltjietoets om item op of af te skuif.",
@@ -7223,15 +7223,15 @@
     "message": "Onbekende item, jy sal dalk toestemming moet versoek om toegang tot hierdie item te kry."
   },
   "newExperienceDialogTitle": {
-    "message": "Bitwarden has a new look",
+    "message": "Komboe has a new look",
     "description": "Title of the dialog that introduces the redesigned vault to existing users."
   },
   "newExperienceDialogDesc": {
-    "message": "Better experience, same trusted security. The Bitwarden vault has been redesigned based on your feedback, so things are easier to find and work like you'd expect.",
+    "message": "Better experience, same trusted security. The Komboe vault has been redesigned based on your feedback, so things are easier to find and work like you'd expect.",
     "description": "Body copy of the dialog that introduces the redesigned vault to existing users."
   },
   "newExperienceDialogImgAlt": {
-    "message": "A preview of the redesigned Bitwarden vault.",
+    "message": "A preview of the redesigned Komboe vault.",
     "description": "Alt text for the screenshot shown in the dialog that introduces the redesigned vault."
   },
   "exploreTheNewVault": {

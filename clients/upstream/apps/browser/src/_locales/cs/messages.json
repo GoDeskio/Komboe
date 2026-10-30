@@ -1,20 +1,20 @@
 {
   "appName": {
-    "message": "Bitwarden"
+    "message": "Komboe"
   },
   "appLogoLabel": {
-    "message": "Logo Bitwarden"
+    "message": "Logo Komboe"
   },
   "extName": {
-    "message": "Bitwarden - Správce hesel",
+    "message": "Komboe - Správce hesel",
     "description": "Extension name, MUST be less than 40 characters (Safari restriction)"
   },
   "extNameBeta": {
-    "message": "Správce hesel Bitwarden (Beta)",
+    "message": "Správce hesel Komboe (Beta)",
     "description": "Extension name for the beta channel, MUST be less than 40 characters (Safari restriction)"
   },
   "extDesc": {
-    "message": "Bitwarden zabezpečí všechna Vaše hesla, přístupové klíče a citlivé informace doma, v práci nebo na cestách",
+    "message": "Komboe zabezpečí všechna Vaše hesla, přístupové klíče a citlivé informace doma, v práci nebo na cestách",
     "description": "Extension description, MUST be less than 112 characters (Safari restriction)"
   },
   "loginOrCreateNewAccount": {
@@ -324,19 +324,19 @@
     "message": "Pokračovat do webové aplikace?"
   },
   "continueToWebAppDesc": {
-    "message": "Prozkoumejte další funkce Vašeho účtu Bitwarden ve webové aplikaci."
+    "message": "Prozkoumejte další funkce Vašeho účtu Komboe ve webové aplikaci."
   },
   "continueToHelpCenter": {
     "message": "Pokračovat do Centra nápovědy?"
   },
   "continueToHelpCenterDesc": {
-    "message": "Přečtěte si více o tom, jak používat Bitwarden v Centru nápovědy."
+    "message": "Přečtěte si více o tom, jak používat Komboe v Centru nápovědy."
   },
   "continueToBrowserExtensionStore": {
     "message": "Pokračovat do obchodu s rozšířeními pro prohlížeč?"
   },
   "continueToBrowserExtensionStoreDesc": {
-    "message": "Pomozte ostatním zjistit, zda je Bitwarden pro ně správný. Navštivte obchod s rozšířeními pro prohlížeč a zanechte hodnocení."
+    "message": "Pomozte ostatním zjistit, zda je Komboe pro ně správný. Navštivte obchod s rozšířeními pro prohlížeč a zanechte hodnocení."
   },
   "changeMasterPasswordOnWebConfirmation": {
     "message": "Hlavní heslo můžete změnit ve webové aplikaci Bitwardenu."
@@ -365,34 +365,34 @@
     "message": "Více od Bitwardenu"
   },
   "continueToBitwardenDotCom": {
-    "message": "Pokračovat na bitwarden.com?"
+    "message": "Pokračovat na komboe.com?"
   },
   "bitwardenForBusiness": {
-    "message": "Bitwarden pro podnikání"
+    "message": "Komboe pro podnikání"
   },
   "bitwardenAuthenticator": {
-    "message": "Bitwarden Authenticator"
+    "message": "Komboe Authenticator"
   },
   "continueToAuthenticatorPageDesc": {
-    "message": "Bitwarden Authenticator umožňuje ukládat ověřovací klíče a generovat TOTP kódy pro 2-fázové ověřování. Další informace naleznete na stránkách bitwarden.com"
+    "message": "Komboe Authenticator umožňuje ukládat ověřovací klíče a generovat TOTP kódy pro 2-fázové ověřování. Další informace naleznete na stránkách komboe.com"
   },
   "bitwardenSecretsManager": {
     "message": "Správce tajných klíčů Bitwardenu"
   },
   "continueToSecretsManagerPageDesc": {
-    "message": "Bezpečně ukládá, spravuje a sdílí tajné klíče vývojáře se správcem tajných klíčů Bitwardenu. Více informací naleznete na stránkách bitwarden.com."
+    "message": "Bezpečně ukládá, spravuje a sdílí tajné klíče vývojáře se správcem tajných klíčů Bitwardenu. Více informací naleznete na stránkách komboe.com."
   },
   "passwordlessDotDev": {
     "message": "Passwordless.dev"
   },
   "continueToPasswordlessDotDevPageDesc": {
-    "message": "S heslem Passwordless.dev vytvořte hladký a bezpečný přístup bez tradičních hesel. Další informace naleznete na stránkách bitwarden.com."
+    "message": "S heslem Passwordless.dev vytvořte hladký a bezpečný přístup bez tradičních hesel. Další informace naleznete na stránkách komboe.com."
   },
   "freeBitwardenFamilies": {
-    "message": "Bitwarden pro rodinu zdarma"
+    "message": "Komboe pro rodinu zdarma"
   },
   "freeBitwardenFamiliesPageDesc": {
-    "message": "Máte nárok na Bitwarden pro rodinu zdarma. Uplatněte tuto nabídku ještě dnes ve webové aplikaci."
+    "message": "Máte nárok na Komboe pro rodinu zdarma. Uplatněte tuto nabídku ještě dnes ve webové aplikaci."
   },
   "version": {
     "message": "Verze"
@@ -458,10 +458,10 @@
     "message": "Nápověda a zpětná vazba"
   },
   "helpCenter": {
-    "message": "Centrum nápovědy Bitwarden"
+    "message": "Centrum nápovědy Komboe"
   },
   "communityForums": {
-    "message": "Prozkoumejte komunitní fóra Bitwarden"
+    "message": "Prozkoumejte komunitní fóra Komboe"
   },
   "contactSupport": {
     "message": "Kontakt na podporu"
@@ -850,7 +850,7 @@
     "message": "Stáhněte si a pak sdílejte diagnostický report s"
   },
   "bitwardenSupport": {
-    "message": "podporou Bitwarden",
+    "message": "podporou Komboe",
     "description": "Link text following the troubleshooting description sentence. 'Bitwarden' should not be translated."
   },
   "download": {
@@ -1067,10 +1067,10 @@
     "message": "Bezproblémové dvoufázové ověřování"
   },
   "totpHelper": {
-    "message": "Bitwarden umí ukládat a vyplňovat dvoufázové ověřovací kódy. Zkopírujte a vložte klíč do tohoto pole."
+    "message": "Komboe umí ukládat a vyplňovat dvoufázové ověřovací kódy. Zkopírujte a vložte klíč do tohoto pole."
   },
   "totpHelperWithCapture": {
-    "message": "Bitwarden umí ukládat a vyplňovat dvoufázové ověřovací kódy. Vyberte ikonu fotoaparátu a pořiďte snímek obrazovky ověřovacího QR kódu této webové stránky nebo klíč zkopírujte a vložte do tohoto pole."
+    "message": "Komboe umí ukládat a vyplňovat dvoufázové ověřovací kódy. Vyberte ikonu fotoaparátu a pořiďte snímek obrazovky ověřovacího QR kódu této webové stránky nebo klíč zkopírujte a vložte do tohoto pole."
   },
   "learnMoreAboutAuthenticators": {
     "message": "Zjistěte více o autentizátorech"
@@ -1157,10 +1157,10 @@
     "message": "Zadejte název."
   },
   "twoStepLoginConfirmation": {
-    "message": "Dvoufázové přihlášení činí Váš účet mnohem bezpečnějším díky nutnosti po každém úspěšném přihlášení zadat ověřovací kód získaný z bezpečnostního klíče, aplikace, SMS, telefonního hovoru nebo e-mailu. Dvoufázové přihlášení lze aktivovat na webové stránce bitwarden.com. Chcete tuto stránku nyní otevřít?"
+    "message": "Dvoufázové přihlášení činí Váš účet mnohem bezpečnějším díky nutnosti po každém úspěšném přihlášení zadat ověřovací kód získaný z bezpečnostního klíče, aplikace, SMS, telefonního hovoru nebo e-mailu. Dvoufázové přihlášení lze aktivovat na webové stránce komboe.com. Chcete tuto stránku nyní otevřít?"
   },
   "twoStepLoginConfirmationContent": {
-    "message": "Vytvořte svůj účet bezpečnějším nastavením dvoufázového přihlášení ve webové aplikaci Bitwarden."
+    "message": "Vytvořte svůj účet bezpečnějším nastavením dvoufázového přihlášení ve webové aplikaci Komboe."
   },
   "twoStepLoginConfirmationTitle": {
     "message": "Pokračovat do webové aplikace?"
@@ -1313,7 +1313,7 @@
     "message": "Přejít na nastavení"
   },
   "notificationAddDesc": {
-    "message": "Má si Bitwarden toto heslo pamatovat?"
+    "message": "Má si Komboe toto heslo pamatovat?"
   },
   "notificationAddSave": {
     "message": "Uložit"
@@ -1661,7 +1661,7 @@
     "message": "Přidat sdílenou složku"
   },
   "bitwardenForBusinessPageDesc": {
-    "message": "Bitwarden pro podnikání Vám umožňuje sdílet položky v trezoru s ostatními prostřednictvím organizace. Více informací naleznete na bitwarden.com."
+    "message": "Komboe pro podnikání Vám umožňuje sdílet položky v trezoru s ostatními prostřednictvím organizace. Více informací naleznete na komboe.com."
   },
   "moveToOrganization": {
     "message": "Přesunout do organizace"
@@ -1815,7 +1815,7 @@
     "message": "Spravovat členství"
   },
   "premiumManageAlert": {
-    "message": "Své členství můžete spravovat na webové stránce bitwarden.com. Chcete tuto stránku nyní otevřít?"
+    "message": "Své členství můžete spravovat na webové stránce komboe.com. Chcete tuto stránku nyní otevřít?"
   },
   "premiumRefresh": {
     "message": "Obnovit členství"
@@ -1863,7 +1863,7 @@
     "message": "Zakoupit členství Premium"
   },
   "premiumPurchaseAlertV2": {
-    "message": "Premium si můžete zakoupit v nastavení účtu ve webové aplikaci Bitwarden."
+    "message": "Premium si můžete zakoupit v nastavení účtu ve webové aplikaci Komboe."
   },
   "premiumFeatures": {
     "message": "Přejděte na Premium a získáte:"
@@ -1969,7 +1969,7 @@
     "message": "Ověřovací aplikace"
   },
   "authenticatorAppDescV2": {
-    "message": "Zadejte kód vygenerovaný ověřovací aplikací, jako je Bitwarden Authenticator.",
+    "message": "Zadejte kód vygenerovaný ověřovací aplikací, jako je Komboe Authenticator.",
     "description": "'Bitwarden Authenticator' is a product name and should not be translated."
   },
   "yubiKeyTitleV2": {
@@ -2002,7 +2002,7 @@
     "message": "Prostředí vlastního serveru"
   },
   "selfHostedBaseUrlHint": {
-    "message": "Zadejte základní URL adresu Vaší vlastní hostované aplikace Bitwarden. Příklad: https://bitwarden.spolecnost.cz"
+    "message": "Zadejte základní URL adresu Vaší vlastní hostované aplikace Komboe. Příklad: https://bitwarden.spolecnost.cz"
   },
   "selfHostedCustomEnvHeader": {
     "message": "Pro rozšířená nastavení můžete zadat základní URL adresu každé služby zvlášť."
@@ -2112,7 +2112,7 @@
     "message": "Zobrazit návrhy automatického vyplňování v polích formuláře"
   },
   "howDoesBitwardenProtectFromPhishing": {
-    "message": "Jak Bitwarden chrání Vaše data před phishingem?"
+    "message": "Jak Komboe chrání Vaše data před phishingem?"
   },
   "currentWebsite": {
     "message": "Aktuální webová stránka"
@@ -3085,7 +3085,7 @@
     "message": "Čeká se na potvrzení z aplikace v počítači"
   },
   "awaitDesktopDesc": {
-    "message": "Pro povolení biometrie v prohlížeči potvrďte její použití v desktopové aplikaci Bitwarden."
+    "message": "Pro povolení biometrie v prohlížeči potvrďte její použití v desktopové aplikaci Komboe."
   },
   "lockWithMasterPassOnRestart": {
     "message": "Zamknout trezor při restartu prohlížeče pomocí hlavního hesla"
@@ -3200,7 +3200,7 @@
     "message": "Formulář je hostován jinou doménou než URI uloženého přihlášení. Zvolte OK pro automatické vyplnění nebo Zrušit pro zrušení."
   },
   "autofillIframeWarningTip": {
-    "message": "Aby se zabránilo tomuto varování v budoucnu, uložte tuto URI: $HOSTNAME$ do vaší přihlašovací položky Bitwarden pro tuto stránku.",
+    "message": "Aby se zabránilo tomuto varování v budoucnu, uložte tuto URI: $HOSTNAME$ do vaší přihlašovací položky Komboe pro tuto stránku.",
     "placeholders": {
       "hostname": {
         "content": "$1",
@@ -3209,7 +3209,7 @@
     }
   },
   "topLayerHijackWarning": {
-    "message": "Tato stránka narušuje zážitek z Bitwardenu. Vložené menu Bitwarden bylo dočasně vypnuto jako bezpečnostní opatření."
+    "message": "Tato stránka narušuje zážitek z Bitwardenu. Vložené menu Komboe bylo dočasně vypnuto jako bezpečnostní opatření."
   },
   "setMasterPassword": {
     "message": "Nastavit hlavní heslo"
@@ -3311,13 +3311,13 @@
     "message": "Integrace prohlížeče není nastavena"
   },
   "desktopIntegrationDisabledDesc": {
-    "message": "Integrace prohlížeče není v aplikaci Bitwarden nastavena. Nastavte ji v aplikaci pro počítač."
+    "message": "Integrace prohlížeče není v aplikaci Komboe nastavena. Nastavte ji v aplikaci pro počítač."
   },
   "startDesktopTitle": {
-    "message": "Spustit aplikaci Bitwarden pro počítač"
+    "message": "Spustit aplikaci Komboe pro počítač"
   },
   "startDesktopDesc": {
-    "message": "Před použitím této funkce musí být spuštěna aplikace Bitwarden pro počítač."
+    "message": "Před použitím této funkce musí být spuštěna aplikace Komboe pro počítač."
   },
   "errorEnableBiometricTitle": {
     "message": "Nelze nastavit biometrii"
@@ -3377,7 +3377,7 @@
     "message": "Oprávnění nebylo uděleno"
   },
   "nativeMessagingPermissionErrorDesc": {
-    "message": "Bez oprávnění ke komunikaci s aplikací Bitwarden pro počítač nelze v rozšíření prohlížeče používat biometrické údaje. Zkuste to znovu."
+    "message": "Bez oprávnění ke komunikaci s aplikací Komboe pro počítač nelze v rozšíření prohlížeče používat biometrické údaje. Zkuste to znovu."
   },
   "nativeMessagingPermissionSidebarTitle": {
     "message": "Žádost o oprávnění selhala"
@@ -3414,7 +3414,7 @@
     "message": "Vyloučené domény"
   },
   "excludedDomainsDesc": {
-    "message": "Bitwarden nebude žádat o uložení přihlašovacích údajů pro tyto domény. Aby se změny projevily, musíte stránku obnovit."
+    "message": "Komboe nebude žádat o uložení přihlašovacích údajů pro tyto domény. Aby se změny projevily, musíte stránku obnovit."
   },
   "blockedDomainsDesc": {
     "message": "Automatické vyplňování a další související funkce nebudou pro tyto webové stránky nabízeny. Aby se změny projevily, musíte stránku aktualizovat."
@@ -3546,20 +3546,20 @@
     "message": "Ilustrace seznamu přihlášení, která jsou zranitelná."
   },
   "welcomeDialogGraphicAlt": {
-    "message": "Ilustrace rozložení stránky trezoru Bitwarden."
+    "message": "Ilustrace rozložení stránky trezoru Komboe."
   },
   "generatePasswordSlideDesc": {
-    "message": "Rychle vygeneruje silné, unikátní heslo s nabídkou automatického vyplňování Bitwarden na zranitelných stránkách.",
+    "message": "Rychle vygeneruje silné, unikátní heslo s nabídkou automatického vyplňování Komboe na zranitelných stránkách.",
     "description": "Description of the generate password slide on the at-risk password page carousel"
   },
   "generatePasswordSlideImgAltPeriod": {
-    "message": "Ilustrace nabídky automatického vyplňování Bitwarden zobrazující vygenerované heslo."
+    "message": "Ilustrace nabídky automatického vyplňování Komboe zobrazující vygenerované heslo."
   },
   "updateInBitwarden": {
     "message": "Aktualizovat v Bitwardenu"
   },
   "updateInBitwardenSlideDesc": {
-    "message": "Bitwarden Vás poté požádá o aktualizaci hesla ve správci hesel.",
+    "message": "Komboe Vás poté požádá o aktualizaci hesla ve správci hesel.",
     "description": "Description of the update in Bitwarden slide on the at-risk password page carousel"
   },
   "updateInBitwardenSlideImgAltPeriod": {
@@ -4078,10 +4078,10 @@
     "message": "Chyba při načítání dat automatického vyplňování"
   },
   "couldNotDecryptVaultItem": {
-    "message": "Bitwarden nemohl dešifrovat položku z trezoru zobrazenou níže. Kontaktujte zákaznickou podporu Bitwarden a zadejte ID položky níže a zjistěte, zda je možné ji obnovit."
+    "message": "Komboe nemohl dešifrovat položku z trezoru zobrazenou níže. Kontaktujte zákaznickou podporu Komboe a zadejte ID položky níže a zjistěte, zda je možné ji obnovit."
   },
   "couldNotDecryptVaultItems": {
-    "message": "Bitwarden nemohl dešifrovat položky z trezoru zobrazené níže. Kontaktujte zákaznickou podporu Bitwarden a zadejte ID položek níže a zjistěte, zda je možné je obnovit."
+    "message": "Komboe nemohl dešifrovat položky z trezoru zobrazené níže. Kontaktujte zákaznickou podporu Komboe a zadejte ID položek níže a zjistěte, zda je možné je obnovit."
   },
   "itemId": {
     "message": "ID položky",
@@ -4417,7 +4417,7 @@
     "message": "Na Vaše zařízení bylo odesláno oznámení."
   },
   "notificationSentDevicePart1": {
-    "message": "Odemknout Bitwarden na Vašem zařízení nebo na"
+    "message": "Odemknout Komboe na Vašem zařízení nebo na"
   },
   "notificationSentDeviceAnchor": {
     "message": "webová aplikace"
@@ -5369,7 +5369,7 @@
     "message": "Navrženo s ohledem na bezpečnost"
   },
   "importDataSecureByDesignBody": {
-    "message": "End-to-end šifrované předání. Bitwarden nikdy nevidí Vaše přihlašovací údaje z $VENDOR$.",
+    "message": "End-to-end šifrované předání. Komboe nikdy nevidí Vaše přihlašovací údaje z $VENDOR$.",
     "placeholders": {
       "vendor": {
         "content": "$1",
@@ -6091,7 +6091,7 @@
     "message": "Aktivní účet"
   },
   "bitwardenAccount": {
-    "message": "Účet Bitwarden"
+    "message": "Účet Komboe"
   },
   "availableAccounts": {
     "message": "Dostupné účty"
@@ -6137,7 +6137,7 @@
     "description": "Label indicating the most common import formats"
   },
   "uriMatchDefaultStrategyHint": {
-    "message": "Detekce shody URI je způsob, jakým Bitwarden identifikuje návrhy automatického vyplňování.",
+    "message": "Detekce shody URI je způsob, jakým Komboe identifikuje návrhy automatického vyplňování.",
     "description": "Explains to the user that URI match detection determines how Bitwarden suggests autofill options, and clarifies that this default strategy applies when no specific match detection is set for a login item."
   },
   "regExAdvancedOptionWarning": {
@@ -6181,7 +6181,7 @@
     "description": "Body content for dialog which asks if the user wants to proceed to the browser's keyboard shortcut settings page"
   },
   "overrideDefaultBrowserAutofillTitle": {
-    "message": "Nastavit Bitwarden jako výchozí správce hesel?",
+    "message": "Nastavit Komboe jako výchozí správce hesel?",
     "description": "Dialog title facilitating the ability to override a chrome browser's default autofill behavior"
   },
   "overrideDefaultBrowserAutofillDescription": {
@@ -6189,7 +6189,7 @@
     "description": "Dialog message facilitating the ability to override a chrome browser's default autofill behavior"
   },
   "overrideDefaultBrowserAutoFillSettings": {
-    "message": "Nastavit Bitwarden jako výchozí správce hesel",
+    "message": "Nastavit Komboe jako výchozí správce hesel",
     "description": "Label for the setting that allows overriding the default browser autofill settings"
   },
   "defaultPasswordManagerCalloutTitle": {
@@ -6207,7 +6207,7 @@
     }
   },
   "privacyPermissionAdditionNotGrantedTitle": {
-    "message": "Bitwarden nelze nastavit jako výchozí správce hesel",
+    "message": "Komboe nelze nastavit jako výchozí správce hesel",
     "description": "Title for the dialog that appears when the user has not granted the extension permission to set privacy settings"
   },
   "privacyPermissionAdditionNotGrantedDescription": {
@@ -6219,10 +6219,10 @@
     "description": "Button text for the setting that allows overriding the default browser autofill settings"
   },
   "defaultPasswordManagerPromptTitle": {
-    "message": "Nastavit Bitwarden jako výchozí správce hesel Vašeho prohlížeče"
+    "message": "Nastavit Komboe jako výchozí správce hesel Vašeho prohlížeče"
   },
   "defaultPasswordManagerPromptTitleV2": {
-    "message": "Nastavit Bitwarden jako výchozí správce hesel",
+    "message": "Nastavit Komboe jako výchozí správce hesel",
     "description": "Label for the setting to make Bitwarden the default password manager"
   },
   "defaultPasswordManagerSettingHintV2": {
@@ -6234,13 +6234,13 @@
     "description": "Link text to browser autofill settings in the default password manager setting hint."
   },
   "defaultPasswordManagerPromptStep2AfterAllow": {
-    "message": "z výzvy prohlížeče, abyste udělili aplikaci Bitwarden oprávnění ke změně Vašich nastavení."
+    "message": "z výzvy prohlížeče, abyste udělili aplikaci Komboe oprávnění ke změně Vašich nastavení."
   },
   "defaultPasswordManagerPromptStep3": {
     "message": "Vypneme vestavěný správce hesel ve Vašem prohlížeči, abyste se mohli bezpečně přihlásit."
   },
   "defaultPasswordManagerSuccessToast": {
-    "message": "Bitwarden byl nastaven jako váš výchozí správce hesel prohlížeče"
+    "message": "Komboe byl nastaven jako váš výchozí správce hesel prohlížeče"
   },
   "allow": {
     "message": "Povolit",
@@ -6648,16 +6648,16 @@
     "message": "Stáhnout přílohu"
   },
   "downloadBitwarden": {
-    "message": "Stáhnout Bitwarden"
+    "message": "Stáhnout Komboe"
   },
   "downloadBitwardenOnAllDevices": {
-    "message": "Stáhnout Bitwarden na všech zařízeních"
+    "message": "Stáhnout Komboe na všech zařízeních"
   },
   "getTheMobileApp": {
     "message": "Získejte mobilní aplikaci"
   },
   "getTheMobileAppDesc": {
-    "message": "Přistupujte k Vašim heslům pomocí mobilní aplikace Bitwarden."
+    "message": "Přistupujte k Vašim heslům pomocí mobilní aplikace Komboe."
   },
   "getTheDesktopApp": {
     "message": "Získejte desktopovou aplikaci"
@@ -6666,7 +6666,7 @@
     "message": "Přistupujte k trezoru bez prohlížeče. Pak nastavte odemykání pomocí biometriky pro urychlení odemykání v desktopové aplikaci i rozšíření prohlížeče."
   },
   "downloadFromBitwardenNow": {
-    "message": "Stáhnout z bitwarden.com nyní"
+    "message": "Stáhnout z komboe.com nyní"
   },
   "getItOnGooglePlay": {
     "message": "Získejte ji na Google Play"
@@ -7210,10 +7210,10 @@
     "message": "Biometrické odemknutí není dostupné kvůli chybnému nastavení systémových souborů."
   },
   "biometricsStatusHelptextDesktopDisconnected": {
-    "message": "Biometrické odemknutí není dostupné, protože je aplikace Bitwarden zavřena."
+    "message": "Biometrické odemknutí není dostupné, protože je aplikace Komboe zavřena."
   },
   "biometricsStatusHelptextNotEnabledInDesktop": {
-    "message": "Biometrické odemknutí není dostupné, protože není povoleno pro $EMAIL$ v desktopové aplikaci Bitwarden.",
+    "message": "Biometrické odemknutí není dostupné, protože není povoleno pro $EMAIL$ v desktopové aplikaci Komboe.",
     "placeholders": {
       "email": {
         "content": "$1",
@@ -7495,7 +7495,7 @@
     "message": "Bezpečnost, priorita"
   },
   "securityPrioritizedBody": {
-    "message": "Uložte si přihlašovací údaje, karty a identity do zabezpečeného trezoru. Bitwarden používá šifrování end-to-end s nulovou znalostí, aby ochránil to, co je pro Vás důležité."
+    "message": "Uložte si přihlašovací údaje, karty a identity do zabezpečeného trezoru. Komboe používá šifrování end-to-end s nulovou znalostí, aby ochránil to, co je pro Vás důležité."
   },
   "quickLogin": {
     "message": "Rychlé a snadné přihlášení"
@@ -7641,7 +7641,7 @@
     "message": "O tomto nastavení"
   },
   "permitCipherDetailsDescription": {
-    "message": "Bitwarden bude používat uložené přihlašovací URI k identifikaci, která ikona nebo změna adresy URL by měla být použita pro zlepšení Vašeho zážitku. Při používání této služby nejsou shromažďovány ani ukládány žádné informace."
+    "message": "Komboe bude používat uložené přihlašovací URI k identifikaci, která ikona nebo změna adresy URL by měla být použita pro zlepšení Vašeho zážitku. Při používání této služby nejsou shromažďovány ani ukládány žádné informace."
   },
   "showQuickCopyActionsDetailsDescription": {
     "message": "Přidá vedle položek 3 tlačítka pro rychlé kopírování, pomocí kterých můžete zkopírovat své uživatelské jméno, heslo nebo ověřovací kód do schránky."
@@ -7650,7 +7650,7 @@
     "message": "Nemáte oprávnění k zobrazení této stránky. Zkuste se přihlásit jiným účtem."
   },
   "wasmNotSupported": {
-    "message": "WebAssembly není ve Vašem prohlížeči podporováno nebo není povoleno. WebAssembly je vyžadováno pro použití aplikace Bitwarden.",
+    "message": "WebAssembly není ve Vašem prohlížeči podporováno nebo není povoleno. WebAssembly je vyžadováno pro použití aplikace Komboe.",
     "description": "'WebAssembly' is a technical term and should not be translated."
   },
   "showMore": {
@@ -7824,7 +7824,7 @@
     "message": "Nastavte metodu odemknutí, abyste změnili akci při vypršení časového limitu"
   },
   "sessionTimeoutSuppressedByConnectedDevice": {
-    "message": "Spravováno desktopovou aplikací Bitwarden. Pro úpravu otevřete desktopovou aplikaci."
+    "message": "Spravováno desktopovou aplikací Komboe. Pro úpravu otevřete desktopovou aplikaci."
   },
   "percentageCompleted": {
     "message": "$PERCENT$ % dokončeno",
@@ -7920,13 +7920,13 @@
     "message": "Zadejte více e-mailů oddělených čárkou."
   },
   "emailPlaceholder": {
-    "message": "user@bitwarden.com , user@acme.com"
+    "message": "user@komboe.com , user@acme.com"
   },
   "emailPlaceholderMultiple": {
-    "message": "user@bitwarden.com, user@acme.com"
+    "message": "user@komboe.com, user@acme.com"
   },
   "downloadBitwardenApps": {
-    "message": "Stáhnout aplikace Bitwarden"
+    "message": "Stáhnout aplikace Komboe"
   },
   "emailProtected": {
     "message": "E-mail je chráněný"
@@ -7945,13 +7945,13 @@
     "message": "Synchronizovat odemknutí s desktopovou aplikací"
   },
   "syncUnlockWithDesktopDescription": {
-    "message": "Rozšíření prohlížeče Bitwarden a zámek na desktopu se odemknou společně."
+    "message": "Rozšíření prohlížeče Komboe a zámek na desktopu se odemknou společně."
   },
   "syncUnlockWithWeb": {
     "message": "Synchronizovat odemknutí s webovou aplikací"
   },
   "syncUnlockWithWebDescription": {
-    "message": "Rozšíření prohlížeče Bitwarden a webový zámek se odemknou společně."
+    "message": "Rozšíření prohlížeče Komboe a webový zámek se odemknou společně."
   },
   "sharedUnlockUnavailableUntrustedDevice": {
     "message": "Sdílené odemknutí není k dispozici, protože jste se rozhodli nepamatovat si toto zařízení. Chcete-li toto nastavení povolit, zkuste se znovu přihlásit."
@@ -7960,13 +7960,13 @@
     "message": "Je vyžadováno nové oprávnění"
   },
   "sharedUnlockDesktopPermissionDesc": {
-    "message": "Aby bylo možné používat funkci sdíleného odemykání, potřebuje Bitwarden oprávnění ke komunikaci s desktopovou aplikací. Pokud budete pokračovat, Váš prohlížeč Vás požádá o schválení tohoto oprávnění."
+    "message": "Aby bylo možné používat funkci sdíleného odemykání, potřebuje Komboe oprávnění ke komunikaci s desktopovou aplikací. Pokud budete pokračovat, Váš prohlížeč Vás požádá o schválení tohoto oprávnění."
   },
   "sharedUnlockDesktopPermissionWarning": {
-    "message": "Bitwarden se uzamkne a znovu se načte. Po Vašem schválení se rozšíření znovu načte a uzamkne Váš trezor."
+    "message": "Komboe se uzamkne a znovu se načte. Po Vašem schválení se rozšíření znovu načte a uzamkne Váš trezor."
   },
   "biometricPermissionDesc": {
-    "message": "Aby bylo možné používat funkci biometrického odemykání, potřebuje Bitwarden oprávnění ke komunikaci s desktopovou aplikací. Pokud budete pokračovat, Váš prohlížeč Vás požádá o schválení tohoto oprávnění."
+    "message": "Aby bylo možné používat funkci biometrického odemykání, potřebuje Komboe oprávnění ke komunikaci s desktopovou aplikací. Pokud budete pokračovat, Váš prohlížeč Vás požádá o schválení tohoto oprávnění."
   },
   "enterMonth": {
     "message": "Zadejte měsíc."
@@ -8451,15 +8451,15 @@
     "message": "Neznámá položka, možná budete muset požádat o oprávnění pro přístup k této položce."
   },
   "newExperienceDialogTitle": {
-    "message": "Bitwarden má nový vzhled",
+    "message": "Komboe má nový vzhled",
     "description": "Title of the dialog that introduces the redesigned vault to existing users."
   },
   "newExperienceDialogDesc": {
-    "message": "Lepší uživatelský zážitek, stejná osvědčená bezpečnost. Trezor Bitwarden byl přepracován na základě Vašich připomínek, takže vše najdete snáze a funguje přesně tak, jak byste očekávali.",
+    "message": "Lepší uživatelský zážitek, stejná osvědčená bezpečnost. Trezor Komboe byl přepracován na základě Vašich připomínek, takže vše najdete snáze a funguje přesně tak, jak byste očekávali.",
     "description": "Body copy of the dialog that introduces the redesigned vault to existing users."
   },
   "newExperienceDialogImgAlt": {
-    "message": "Náhled přepracovaného trezoru Bitwarden.",
+    "message": "Náhled přepracovaného trezoru Komboe.",
     "description": "Alt text for the screenshot shown in the dialog that introduces the redesigned vault."
   },
   "exploreTheNewVault": {

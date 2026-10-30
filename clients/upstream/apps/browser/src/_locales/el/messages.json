@@ -1,20 +1,20 @@
 {
   "appName": {
-    "message": "Bitwarden"
+    "message": "Komboe"
   },
   "appLogoLabel": {
-    "message": "Λογότυπο του Bitwarden"
+    "message": "Λογότυπο του Komboe"
   },
   "extName": {
-    "message": "Bitwarden - Διαχείριση κωδικών πρόσβασης",
+    "message": "Komboe - Διαχείριση κωδικών πρόσβασης",
     "description": "Extension name, MUST be less than 40 characters (Safari restriction)"
   },
   "extNameBeta": {
-    "message": "Bitwarden Beta - Διαχ. κωδικών πρόσβασης",
+    "message": "Komboe Beta - Διαχ. κωδικών πρόσβασης",
     "description": "Extension name for the beta channel, MUST be less than 40 characters (Safari restriction)"
   },
   "extDesc": {
-    "message": "Το Bitwarden ασφαλίζει παντού και εύκολα τους κωδικούς, τα κλειδιά πρόσβασης και τις ευαίσθητες πληροφορίες σας",
+    "message": "Το Komboe ασφαλίζει παντού και εύκολα τους κωδικούς, τα κλειδιά πρόσβασης και τις ευαίσθητες πληροφορίες σας",
     "description": "Extension description, MUST be less than 112 characters (Safari restriction)"
   },
   "loginOrCreateNewAccount": {
@@ -27,7 +27,7 @@
     "message": "Δημιουργία λογαριασμού"
   },
   "newToBitwarden": {
-    "message": "Νέος/α στο Bitwarden;"
+    "message": "Νέος/α στο Komboe;"
   },
   "logInWithPasskey": {
     "message": "Σύνδεση με κλειδί πρόσβασης"
@@ -324,22 +324,22 @@
     "message": "Συνέχεια στη διαδικτυακή εφαρμογή;"
   },
   "continueToWebAppDesc": {
-    "message": "Εξερευνήστε περισσότερες δυνατότητες του λογαριασμού σας Bitwarden στη διαδικτυακή εφαρμογή."
+    "message": "Εξερευνήστε περισσότερες δυνατότητες του λογαριασμού σας Komboe στη διαδικτυακή εφαρμογή."
   },
   "continueToHelpCenter": {
     "message": "Συνεχίστε στο Κέντρο Βοήθειας;"
   },
   "continueToHelpCenterDesc": {
-    "message": "Μάθετε περισσότερα για το πώς να χρησιμοποιήσετε το Bitwarden στο Κέντρο Βοήθειας."
+    "message": "Μάθετε περισσότερα για το πώς να χρησιμοποιήσετε το Komboe στο Κέντρο Βοήθειας."
   },
   "continueToBrowserExtensionStore": {
     "message": "Συνεχίστε στο κατάστημα επεκτάσεων περιηγητή;"
   },
   "continueToBrowserExtensionStoreDesc": {
-    "message": "Βοηθήστε άλλους να μάθουν αν το Bitwarden είναι κατάλληλο για αυτούς. Επισκεφθείτε το κατάστημα επεκτάσεων του περιηγητή σας και αφήστε τώρα μια βαθμολογία."
+    "message": "Βοηθήστε άλλους να μάθουν αν το Komboe είναι κατάλληλο για αυτούς. Επισκεφθείτε το κατάστημα επεκτάσεων του περιηγητή σας και αφήστε τώρα μια βαθμολογία."
   },
   "changeMasterPasswordOnWebConfirmation": {
-    "message": "Μπορείτε να αλλάξετε τον κύριο κωδικό πρόσβασής σας στη διαδικτυακή εφαρμογή του Bitwarden."
+    "message": "Μπορείτε να αλλάξετε τον κύριο κωδικό πρόσβασής σας στη διαδικτυακή εφαρμογή του Komboe."
   },
   "fingerprintPhrase": {
     "message": "Αναγνωριστική φράση χρήστη",
@@ -356,43 +356,43 @@
     "message": "Αποσύνδεση"
   },
   "aboutBitwarden": {
-    "message": "Σχετικά με το Bitwarden"
+    "message": "Σχετικά με το Komboe"
   },
   "about": {
     "message": "Πληροφορίες"
   },
   "moreFromBitwarden": {
-    "message": "Περισσότερα από το Bitwarden"
+    "message": "Περισσότερα από το Komboe"
   },
   "continueToBitwardenDotCom": {
-    "message": "Συνέχεια στο bitwarden.com;"
+    "message": "Συνέχεια στο komboe.com;"
   },
   "bitwardenForBusiness": {
-    "message": "Bitwarden για επιχειρήσεις"
+    "message": "Komboe για επιχειρήσεις"
   },
   "bitwardenAuthenticator": {
-    "message": "Bitwarden Authenticator"
+    "message": "Komboe Authenticator"
   },
   "continueToAuthenticatorPageDesc": {
-    "message": "Το Bitwarden Authenticator σάς επιτρέπει να αποθηκεύετε κλειδιά ελέγχου ταυτότητας και να δημιουργείτε κωδικούς TOTP για διαδικασίες επαλήθευσης δύο βημάτων. Μάθετε περισσότερα στον ιστότοπο bitwarden.com"
+    "message": "Το Komboe Authenticator σάς επιτρέπει να αποθηκεύετε κλειδιά ελέγχου ταυτότητας και να δημιουργείτε κωδικούς TOTP για διαδικασίες επαλήθευσης δύο βημάτων. Μάθετε περισσότερα στον ιστότοπο komboe.com"
   },
   "bitwardenSecretsManager": {
-    "message": "Bitwarden Secrets Manager"
+    "message": "Komboe Secrets Manager"
   },
   "continueToSecretsManagerPageDesc": {
-    "message": "Αποθηκεύστε και μοιραστείτε μυστικά προγραμματιστών με τον Διαχειριστή Bitwarden Secrets. Μάθετε περισσότερα στον ιστότοπο bitwarden.com."
+    "message": "Αποθηκεύστε και μοιραστείτε μυστικά προγραμματιστών με τον Διαχειριστή Komboe Secrets. Μάθετε περισσότερα στον ιστότοπο komboe.com."
   },
   "passwordlessDotDev": {
     "message": "Passwordless.dev"
   },
   "continueToPasswordlessDotDevPageDesc": {
-    "message": "Δημιουργήστε ομαλές και ασφαλείς εμπειρίες σύνδεσης δωρεάν από παραδοσιακούς κωδικούς πρόσβασης με το Passwordless.dev. Μάθετε περισσότερα στην ιστοσελίδα bitwarden.com."
+    "message": "Δημιουργήστε ομαλές και ασφαλείς εμπειρίες σύνδεσης δωρεάν από παραδοσιακούς κωδικούς πρόσβασης με το Passwordless.dev. Μάθετε περισσότερα στην ιστοσελίδα komboe.com."
   },
   "freeBitwardenFamilies": {
-    "message": "Δωρεάν Bitwarden για οικογένειες"
+    "message": "Δωρεάν Komboe για οικογένειες"
   },
   "freeBitwardenFamiliesPageDesc": {
-    "message": "Δικαιούστε το Δωρεάν Bitwarden για Οικογένειες. Εξαργυρώστε αυτή την προσφορά σήμερα στην διαδικτυακή εφαρμογή."
+    "message": "Δικαιούστε το Δωρεάν Komboe για Οικογένειες. Εξαργυρώστε αυτή την προσφορά σήμερα στην διαδικτυακή εφαρμογή."
   },
   "version": {
     "message": "Έκδοση"
@@ -458,13 +458,13 @@
     "message": "Βοήθεια και σχόλια"
   },
   "helpCenter": {
-    "message": "Κέντρο βοήθειας Bitwarden"
+    "message": "Κέντρο βοήθειας Komboe"
   },
   "communityForums": {
-    "message": "Εξερευνήστε τα φόρουμ κοινότητας Bitwarden"
+    "message": "Εξερευνήστε τα φόρουμ κοινότητας Komboe"
   },
   "contactSupport": {
-    "message": "Επικοινωνία με την υποστήριξη του Bitwarden"
+    "message": "Επικοινωνία με την υποστήριξη του Komboe"
   },
   "sync": {
     "message": "Συγχρονισμός"
@@ -486,7 +486,7 @@
     "message": "Δημιουργήστε αυτόματα ισχυρούς και μοναδικούς κωδικούς πρόσβασης για τις συνδέσεις σας."
   },
   "bitWebVaultApp": {
-    "message": "Διαδικτυακή εφαρμογή Bitwarden"
+    "message": "Διαδικτυακή εφαρμογή Komboe"
   },
   "select": {
     "message": "Επιλέξτε"
@@ -850,7 +850,7 @@
     "message": "Κάντε λήψη και κοινοποιήστε τη διαγνωστική αναφορά στην"
   },
   "bitwardenSupport": {
-    "message": "Υποστήριξη Bitwarden",
+    "message": "Υποστήριξη Komboe",
     "description": "Link text following the troubleshooting description sentence. 'Bitwarden' should not be translated."
   },
   "download": {
@@ -1067,10 +1067,10 @@
     "message": "Κάντε την επαλήθευση δύο βημάτων απρόσκοπτη"
   },
   "totpHelper": {
-    "message": "Το Bitwarden μπορεί να αποθηκεύσει και να συμπληρώσει τους κωδικούς επαλήθευσης 2 βημάτων. Αντιγράψτε και επικολλήστε το κλειδί σε αυτό το πεδίο."
+    "message": "Το Komboe μπορεί να αποθηκεύσει και να συμπληρώσει τους κωδικούς επαλήθευσης 2 βημάτων. Αντιγράψτε και επικολλήστε το κλειδί σε αυτό το πεδίο."
   },
   "totpHelperWithCapture": {
-    "message": "Το Bitwarden μπορεί να αποθηκεύει και να συμπληρώνει κωδικούς επαλήθευσης δύο βημάτων. Επιλέξτε το εικονίδιο κάμερας για να δημιουργήσετε ένα στιγμιότυπο του κωδικού QR ελέγχου ταυτότητας αυτού του ιστοτόπου ή αντιγράψτε και επικολλήστε το κλειδί σε αυτό το πεδίο."
+    "message": "Το Komboe μπορεί να αποθηκεύει και να συμπληρώνει κωδικούς επαλήθευσης δύο βημάτων. Επιλέξτε το εικονίδιο κάμερας για να δημιουργήσετε ένα στιγμιότυπο του κωδικού QR ελέγχου ταυτότητας αυτού του ιστοτόπου ή αντιγράψτε και επικολλήστε το κλειδί σε αυτό το πεδίο."
   },
   "learnMoreAboutAuthenticators": {
     "message": "Μάθετε περισσότερα για τις εφαρμογές ελέγχου ταυτότητας"
@@ -1157,10 +1157,10 @@
     "message": "Εισαγάγετε ένα όνομα."
   },
   "twoStepLoginConfirmation": {
-    "message": "Η σύνδεση δύο βημάτων καθιστά πιο ασφαλή τον λογαριασμό σας, απαιτώντας την επαλήθευση της σύνδεσής σας με μια άλλη συσκευή, όπως ένα κλειδί ασφαλείας, μια εφαρμογή ελέγχου ταυτότητας, ένα μήνυμα SMS, μια τηλεφωνική κλήση ή ένα email. Μπορείτε να ενεργοποιήσετε τη σύνδεση δύο βημάτων στη διαδικτυακή θυρίδα του bitwarden.com. Θέλετε να επισκεφθείτε τον ιστότοπο τώρα;"
+    "message": "Η σύνδεση δύο βημάτων καθιστά πιο ασφαλή τον λογαριασμό σας, απαιτώντας την επαλήθευση της σύνδεσής σας με μια άλλη συσκευή, όπως ένα κλειδί ασφαλείας, μια εφαρμογή ελέγχου ταυτότητας, ένα μήνυμα SMS, μια τηλεφωνική κλήση ή ένα email. Μπορείτε να ενεργοποιήσετε τη σύνδεση δύο βημάτων στη διαδικτυακή θυρίδα του komboe.com. Θέλετε να επισκεφθείτε τον ιστότοπο τώρα;"
   },
   "twoStepLoginConfirmationContent": {
-    "message": "Κάντε τον λογαριασμό σας πιο ασφαλή με τη ρύθμιση της σύνδεσης δύο βημάτων στη διαδικτυακή εφαρμογή του Bitwarden."
+    "message": "Κάντε τον λογαριασμό σας πιο ασφαλή με τη ρύθμιση της σύνδεσης δύο βημάτων στη διαδικτυακή εφαρμογή του Komboe."
   },
   "twoStepLoginConfirmationTitle": {
     "message": "Συνέχεια στη διαδικτυακή εφαρμογή;"
@@ -1313,7 +1313,7 @@
     "message": "Μετάβαση στη ρύθμιση"
   },
   "notificationAddDesc": {
-    "message": "Να απομνημονεύσει το Bitwarden αυτόν τον κωδικό πρόσβασης;"
+    "message": "Να απομνημονεύσει το Komboe αυτόν τον κωδικό πρόσβασης;"
   },
   "notificationAddSave": {
     "message": "Αποθήκευση"
@@ -1349,11 +1349,11 @@
     }
   },
   "notificationLoginSaveConfirmation": {
-    "message": "αποθηκεύτηκε στο Bitwarden.",
+    "message": "αποθηκεύτηκε στο Komboe.",
     "description": "Shown to user after item is saved."
   },
   "notificationLoginUpdatedConfirmation": {
-    "message": "ενημερώθηκε στο Bitwarden.",
+    "message": "ενημερώθηκε στο Komboe.",
     "description": "Shown to user after item is updated."
   },
   "selectItemAriaLabel": {
@@ -1451,13 +1451,13 @@
     "message": "Ρώτησε με για την αποθήκευση νέων συνθηματικών ή σύνδεση με κλειδιά πρόσβασης αποθηκευμένα στο θησαυ/κιό μου. Ισχύει για όλους τους συνδεδεμένους λογαριασμούς."
   },
   "notificationChangeDesc": {
-    "message": "Θέλετε να ενημερώσετε αυτόν τον κωδικό πρόσβασης στο Bitwarden;"
+    "message": "Θέλετε να ενημερώσετε αυτόν τον κωδικό πρόσβασης στο Komboe;"
   },
   "notificationChangeSave": {
     "message": "Ενημέρωση"
   },
   "notificationUnlockDesc": {
-    "message": "Ξεκλειδώστε τη θυρίδα σας στο Bitwarden για να ολοκληρώσετε το αίτημα αυτόματης συμπλήρωσης."
+    "message": "Ξεκλειδώστε τη θυρίδα σας στο Komboe για να ολοκληρώσετε το αίτημα αυτόματης συμπλήρωσης."
   },
   "notificationUnlock": {
     "message": "Ξεκλείδωμα"
@@ -1605,10 +1605,10 @@
     "message": "Αυτός ο κωδικός πρόσβασης θα χρησιμοποιηθεί για την εξαγωγή και εισαγωγή αυτού του αρχείου"
   },
   "accountRestrictedOptionDescription": {
-    "message": "Χρησιμοποιήστε το κλειδί κρυπτογράφησης του λογαριασμού σας, που προέρχεται από το όνομα χρήστη και τον Κύριο Κωδικό Πρόσβασης του λογαριασμού σας, για να κρυπτογραφήσετε την εξαγωγή και να περιορίσετε την εισαγωγή μόνο στον τρέχοντα λογαριασμό Bitwarden."
+    "message": "Χρησιμοποιήστε το κλειδί κρυπτογράφησης του λογαριασμού σας, που προέρχεται από το όνομα χρήστη και τον Κύριο Κωδικό Πρόσβασης του λογαριασμού σας, για να κρυπτογραφήσετε την εξαγωγή και να περιορίσετε την εισαγωγή μόνο στον τρέχοντα λογαριασμό Komboe."
   },
   "passwordProtectedOptionDescription": {
-    "message": "Ορίστε έναν κωδικό πρόσβασης αρχείου για να κρυπτογραφήσετε την εξαγωγή, και να την εισάγετε σε οποιονδήποτε λογαριασμό Bitwarden χρησιμοποιώντας τον κωδικό πρόσβασης για αποκρυπτογράφηση."
+    "message": "Ορίστε έναν κωδικό πρόσβασης αρχείου για να κρυπτογραφήσετε την εξαγωγή, και να την εισάγετε σε οποιονδήποτε λογαριασμό Komboe χρησιμοποιώντας τον κωδικό πρόσβασης για αποκρυπτογράφηση."
   },
   "exportTypeHeading": {
     "message": "Τύπος εξαγωγής"
@@ -1637,7 +1637,7 @@
     "message": "Αυτή η εξαγωγή κρυπτογραφεί τα δεδομένα σας χρησιμοποιώντας το κλειδί κρυπτογράφησης του λογαριασμού σας. Εάν ποτέ περιστρέψετε το κλειδί κρυπτογράφησης του λογαριασμού σας, θα πρέπει να κάνετε εξαγωγή ξανά, καθώς δεν θα μπορείτε να αποκρυπτογραφήσετε αυτό το αρχείο εξαγωγής."
   },
   "encExportAccountWarningDesc": {
-    "message": "Τα κλειδιά κρυπτογράφησης του λογαριασμού είναι μοναδικά για κάθε λογαριασμό χρήστη του Bitwarden, επομένως δεν μπορείτε να εισάγετε μια κρυπτογραφημένη εξαγωγή σε διαφορετικό λογαριασμό."
+    "message": "Τα κλειδιά κρυπτογράφησης του λογαριασμού είναι μοναδικά για κάθε λογαριασμό χρήστη του Komboe, επομένως δεν μπορείτε να εισάγετε μια κρυπτογραφημένη εξαγωγή σε διαφορετικό λογαριασμό."
   },
   "exportMasterPassword": {
     "message": "Πληκτρολογήστε τον κύριο κωδικό πρόσβασής σας για εξαγωγή των δεδομένων της θυρίδας σας."
@@ -1661,7 +1661,7 @@
     "message": "Προσθήκη κοινόχρηστου φακέλου"
   },
   "bitwardenForBusinessPageDesc": {
-    "message": "Το Bitwarden για επιχειρήσεις σάς επιτρέπει να μοιράζεστε τα στοιχεία της θυρίδας σας με άλλους χρήστες μέσω ενός οργανισμού. Μάθετε περισσότερα στον ιστότοπο bitwarden.com."
+    "message": "Το Komboe για επιχειρήσεις σάς επιτρέπει να μοιράζεστε τα στοιχεία της θυρίδας σας με άλλους χρήστες μέσω ενός οργανισμού. Μάθετε περισσότερα στον ιστότοπο komboe.com."
   },
   "moveToOrganization": {
     "message": "Μετακίνηση σε οργανισμό"
@@ -1815,7 +1815,7 @@
     "message": "Διαχείριση συνδρομής"
   },
   "premiumManageAlert": {
-    "message": "Μπορείτε να διαχειριστείτε τη συνδρομή σας στη διαδικτυακή θυρίδα του bitwarden.com. Θέλετε να επισκεφθείτε τον ιστότοπο τώρα;"
+    "message": "Μπορείτε να διαχειριστείτε τη συνδρομή σας στη διαδικτυακή θυρίδα του komboe.com. Θέλετε να επισκεφθείτε τον ιστότοπο τώρα;"
   },
   "premiumRefresh": {
     "message": "Ανανέωση συνδρομής"
@@ -1863,7 +1863,7 @@
     "message": "Αγορά έκδοσης Premium"
   },
   "premiumPurchaseAlertV2": {
-    "message": "Μπορείτε να αγοράσετε το Premium από τις ρυθμίσεις του λογαριασμού σας στην διαδικτυακή εφαρμογή Bitwarden."
+    "message": "Μπορείτε να αγοράσετε το Premium από τις ρυθμίσεις του λογαριασμού σας στην διαδικτυακή εφαρμογή Komboe."
   },
   "premiumFeatures": {
     "message": "Αναβαθμίστε στην έκδοση Premium και λάβετε:"
@@ -1969,7 +1969,7 @@
     "message": "Εφαρμογή ελέγχου ταυτότητας"
   },
   "authenticatorAppDescV2": {
-    "message": "Εισαγάγετε έναν κωδικό που δημιουργήθηκε από μια εφαρμογή ελέγχου ταυτότητας, όπως το Bitwarden Authenticator.",
+    "message": "Εισαγάγετε έναν κωδικό που δημιουργήθηκε από μια εφαρμογή ελέγχου ταυτότητας, όπως το Komboe Authenticator.",
     "description": "'Bitwarden Authenticator' is a product name and should not be translated."
   },
   "yubiKeyTitleV2": {
@@ -2002,7 +2002,7 @@
     "message": "Αυτοφιλοξενούμενο περιβάλλον"
   },
   "selfHostedBaseUrlHint": {
-    "message": "Καθορίστε το βασικό URL της εγκατάστασης Bitwarden στο χώρο σας. Παράδειγμα: https://bitwarden.company.com"
+    "message": "Καθορίστε το βασικό URL της εγκατάστασης Komboe στο χώρο σας. Παράδειγμα: https://komboe.company.com"
   },
   "selfHostedCustomEnvHeader": {
     "message": "Για προχωρημένη παραμετροποίηση, μπορείτε να ορίσετε ανεξάρτητα το βασικό URL κάθε υπηρεσίας."
@@ -2055,7 +2055,7 @@
     "message": "Εύκολη εύρεση προτάσεων αυτόματης συμπλήρωσης"
   },
   "autofillSpotlightDesc": {
-    "message": "Απενεργοποιήστε τις ρυθμίσεις αυτόματης συμπλήρωσης του προγράμματος περιήγησής σας, έτσι ώστε να μη συγκρούονται με αυτές του Bitwarden."
+    "message": "Απενεργοποιήστε τις ρυθμίσεις αυτόματης συμπλήρωσης του προγράμματος περιήγησής σας, έτσι ώστε να μη συγκρούονται με αυτές του Komboe."
   },
   "turnOffBrowserAutofill": {
     "message": "Απενεργοποίηση αυτόματης συμπλήρωσης του $BROWSER$",
@@ -2112,7 +2112,7 @@
     "message": "Εμφάνιση προτάσεων αυτόματης συμπλήρωσης σε πεδία φορμών"
   },
   "howDoesBitwardenProtectFromPhishing": {
-    "message": "Πώς προστατεύει το Bitwarden τα δεδομένα σας από phishing (ψάρεμα);"
+    "message": "Πώς προστατεύει το Komboe τα δεδομένα σας από phishing (ψάρεμα);"
   },
   "currentWebsite": {
     "message": "Τρέχων ιστότοπος"
@@ -3021,7 +3021,7 @@
     "message": "Αδύναμος κύριος κωδικός πρόσβασης"
   },
   "weakMasterPasswordDesc": {
-    "message": "Ο κύριος κωδικός πρόσβασης που έχετε επιλέξει είναι αδύναμος. Θα πρέπει να χρησιμοποιήσετε έναν ισχυρό κύριο κωδικό (ή μια φράση) πρόσβασης για την κατάλληλη προστασία του λογαριασμού σας στο Bitwarden. Θέλετε σίγουρα να χρησιμοποιήσετε αυτόν τον κύριο κωδικό πρόσβασης;"
+    "message": "Ο κύριος κωδικός πρόσβασης που έχετε επιλέξει είναι αδύναμος. Θα πρέπει να χρησιμοποιήσετε έναν ισχυρό κύριο κωδικό (ή μια φράση) πρόσβασης για την κατάλληλη προστασία του λογαριασμού σας στο Komboe. Θέλετε σίγουρα να χρησιμοποιήσετε αυτόν τον κύριο κωδικό πρόσβασης;"
   },
   "rotateAccountEncKey": {
     "message": "Να γίνει επίσης περιστροφή του κλειδιού κρυπτογράφησης του λογαριασμού μου"
@@ -3033,7 +3033,7 @@
     "message": "Θέλετε σίγουρα να γίνει περιστροφή του κλειδιού κρυπτογράφησης του λογαριασμού σας;"
   },
   "updateEncryptionKeyWarning": {
-    "message": "Αφού ενημερώσετε το κλειδί κρυπτογράφησής σας, απαιτείται να αποσυνδεθείτε και να συνδεθείτε ξανά σε όλες τις εφαρμογές Bitwarden που χρησιμοποιείτε αυτήν τη στιγμή (όπως η εφαρμογή για κινητά ή οι επεκτάσεις προγράμματος περιήγησης). Η αποτυχία αποσύνδεσης και επανασύνδεσης (η οποία κατεβάζει το νέο σας κλειδί κρυπτογράφησης) μπορεί να προκαλέσει καταστροφή δεδομένων. Θα επιχειρήσουμε να σας αποσυνδέσουμε αυτόματα, ωστόσο, μπορεί να καθυστερήσει."
+    "message": "Αφού ενημερώσετε το κλειδί κρυπτογράφησής σας, απαιτείται να αποσυνδεθείτε και να συνδεθείτε ξανά σε όλες τις εφαρμογές Komboe που χρησιμοποιείτε αυτήν τη στιγμή (όπως η εφαρμογή για κινητά ή οι επεκτάσεις προγράμματος περιήγησης). Η αποτυχία αποσύνδεσης και επανασύνδεσης (η οποία κατεβάζει το νέο σας κλειδί κρυπτογράφησης) μπορεί να προκαλέσει καταστροφή δεδομένων. Θα επιχειρήσουμε να σας αποσυνδέσουμε αυτόματα, ωστόσο, μπορεί να καθυστερήσει."
   },
   "updateEncryptionKeyAccountExportWarning": {
     "message": "Τυχόν εξαγωγές με περιορισμό λογαριασμού που έχετε αποθηκεύσει θα καταστούν άκυρες."
@@ -3061,10 +3061,10 @@
     "message": "Ορισμός PIN"
   },
   "setYourPinCode": {
-    "message": "Ορίστε τον κωδικό PIN για το ξεκλείδωμα του Bitwarden. Εάν αποσυνδεθείτε εντελώς από την εφαρμογή, θα γίνει επαναφορά των ρυθμίσεων του PIN σας."
+    "message": "Ορίστε τον κωδικό PIN για το ξεκλείδωμα του Komboe. Εάν αποσυνδεθείτε εντελώς από την εφαρμογή, θα γίνει επαναφορά των ρυθμίσεων του PIN σας."
   },
   "setPinCode": {
-    "message": "Μπορείτε να χρησιμοποιήσετε αυτό το PIN για να ξεκλειδώσετε το Bitwarden. Το PIN σας θα επαναφερθεί αν αποσυνδεθείτε ποτέ πλήρως από την εφαρμογή."
+    "message": "Μπορείτε να χρησιμοποιήσετε αυτό το PIN για να ξεκλειδώσετε το Komboe. Το PIN σας θα επαναφερθεί αν αποσυνδεθείτε ποτέ πλήρως από την εφαρμογή."
   },
   "pinRequired": {
     "message": "Απαιτείται κωδικός PIN."
@@ -3085,7 +3085,7 @@
     "message": "Αναμονή επιβεβαίωσης από την έκδοση για υπολογιστές"
   },
   "awaitDesktopDesc": {
-    "message": "Παρακαλώ επιβεβαιώστε τη χρήση βιομετρικών στην εφαρμογή Bitwarden της επιφάνειας εργασίας για να ενεργοποιήσετε τα βιομετρικά για τον περιηγητή."
+    "message": "Παρακαλώ επιβεβαιώστε τη χρήση βιομετρικών στην εφαρμογή Komboe της επιφάνειας εργασίας για να ενεργοποιήσετε τα βιομετρικά για τον περιηγητή."
   },
   "lockWithMasterPassOnRestart": {
     "message": "Κλείδωμα με κύριο κωδικό πρόσβασης κατά την επανεκκίνηση του προγράμματος περιήγησης"
@@ -3200,7 +3200,7 @@
     "message": "Η φόρμα φιλοξενείται από διαφορετικό τομέα (domain) από το λινκ (uri) της αποθηκευμένης σύνδεσης σας (login). Επιλέξτε OK για αυτόματη συμπλήρωση, ή Ακύρωση για να σταματήσετε."
   },
   "autofillIframeWarningTip": {
-    "message": "Για να αποτρέψετε αυτή την προειδοποίηση στο μέλλον, αποθηκεύστε αυτό το URI, $HOSTNAME$, στο στοιχείο σύνδεσης Bitwarden σας για αυτόν τον ιστότοπο.",
+    "message": "Για να αποτρέψετε αυτή την προειδοποίηση στο μέλλον, αποθηκεύστε αυτό το URI, $HOSTNAME$, στο στοιχείο σύνδεσης Komboe σας για αυτόν τον ιστότοπο.",
     "placeholders": {
       "hostname": {
         "content": "$1",
@@ -3209,7 +3209,7 @@
     }
   },
   "topLayerHijackWarning": {
-    "message": "Αυτή η σελίδα παρεμβαίνει στην εμπειρία του Bitwarden. Το ενσωματωμένο μενού του Bitwarden απενεργοποιήθηκε προσωρινά ως μέτρο ασφαλείας."
+    "message": "Αυτή η σελίδα παρεμβαίνει στην εμπειρία του Komboe. Το ενσωματωμένο μενού του Komboe απενεργοποιήθηκε προσωρινά ως μέτρο ασφαλείας."
   },
   "setMasterPassword": {
     "message": "Ορισμός κύριου κωδικού πρόσβασης"
@@ -3266,7 +3266,7 @@
     "message": "Ο νέος κύριος κωδικός πρόσβασης δεν πληροί τις απαιτήσεις της πολιτικής."
   },
   "receiveMarketingEmails": {
-    "message": "Λάβετε ενημερώσεις από το Bitwarden στα εισερχόμενά σας."
+    "message": "Λάβετε ενημερώσεις από το Komboe στα εισερχόμενά σας."
   },
   "unsubscribe": {
     "message": "Ακύρωση συνδρομής"
@@ -3311,13 +3311,13 @@
     "message": "Η ενσωμάτωση περιηγητή δεν έχει οριστεί"
   },
   "desktopIntegrationDisabledDesc": {
-    "message": "Η ενσωμάτωση περιηγητή δεν έχει οριστεί στην εφαρμογή Bitwarden Desktop. Παρακαλώ ορίστε την στις ρυθμίσεις της εφαρμογής desktop."
+    "message": "Η ενσωμάτωση περιηγητή δεν έχει οριστεί στην εφαρμογή Komboe Desktop. Παρακαλώ ορίστε την στις ρυθμίσεις της εφαρμογής desktop."
   },
   "startDesktopTitle": {
-    "message": "Ξεκινήστε την εφαρμογή Bitwarden Επιφάνεια εργασίας"
+    "message": "Ξεκινήστε την εφαρμογή Komboe Επιφάνεια εργασίας"
   },
   "startDesktopDesc": {
-    "message": "Η εφαρμογή Bitwarden Desktop πρέπει να εκκινηθεί για να χρησιμοποιηθεί αυτή η λειτουργία."
+    "message": "Η εφαρμογή Komboe Desktop πρέπει να εκκινηθεί για να χρησιμοποιηθεί αυτή η λειτουργία."
   },
   "errorEnableBiometricTitle": {
     "message": "Αδυναμία ενεργοποίησης βιομετρικών στοιχείων"
@@ -3371,13 +3371,13 @@
     "message": "Τα βιομετρικά απέτυχαν"
   },
   "biometricsFailedDesc": {
-    "message": "Δεν ήταν δυνατή η ολοκλήρωση της επαλήθευσης με βιομετρικά στοιχεία, χρησιμοποιήστε έναν κύριο κωδικό πρόσβασης ή αποσυνδεθείτε. Εάν αυτό εξακολουθεί να συμβαίνει, επικοινωνήστε με την υποστήριξη του Bitwarden."
+    "message": "Δεν ήταν δυνατή η ολοκλήρωση της επαλήθευσης με βιομετρικά στοιχεία, χρησιμοποιήστε έναν κύριο κωδικό πρόσβασης ή αποσυνδεθείτε. Εάν αυτό εξακολουθεί να συμβαίνει, επικοινωνήστε με την υποστήριξη του Komboe."
   },
   "nativeMessagingPermissionErrorTitle": {
     "message": "Δεν παραχωρήθηκε άδεια"
   },
   "nativeMessagingPermissionErrorDesc": {
-    "message": "Χωρίς άδεια επικοινωνίας με την εφαρμογή Bitwarden Desktop, δεν μπορούμε να παρέχουμε βιομετρικά στην επέκταση προγράμματος περιήγησης. Προσπαθήστε ξανά."
+    "message": "Χωρίς άδεια επικοινωνίας με την εφαρμογή Komboe Desktop, δεν μπορούμε να παρέχουμε βιομετρικά στην επέκταση προγράμματος περιήγησης. Προσπαθήστε ξανά."
   },
   "nativeMessagingPermissionSidebarTitle": {
     "message": "Σφάλμα αιτήματος άδειας"
@@ -3414,7 +3414,7 @@
     "message": "Εξαιρούμενοι τομείς"
   },
   "excludedDomainsDesc": {
-    "message": "Το Bitwarden δεν θα σας ρωτά αν θέλετε να αποθηκεύσετε στοιχεία σύνδεσης για αυτούς τους τομείς. Πρέπει να ανανεώσετε τη σελίδα για να τεθούν σε ισχύ οι αλλαγές."
+    "message": "Το Komboe δεν θα σας ρωτά αν θέλετε να αποθηκεύσετε στοιχεία σύνδεσης για αυτούς τους τομείς. Πρέπει να ανανεώσετε τη σελίδα για να τεθούν σε ισχύ οι αλλαγές."
   },
   "blockedDomainsDesc": {
     "message": "Η αυτόματη συμπλήρωση και άλλες σχετικές λειτουργίες δεν θα προσφέρονται για αυτούς τους ιστοτόπους. Πρέπει να ανανεώσετε τη σελίδα για να τεθούν σε ισχύ οι αλλαγές."
@@ -3546,24 +3546,24 @@
     "message": "Εικονογράφηση λίστας συνδέσεων που είναι σε κίνδυνο."
   },
   "welcomeDialogGraphicAlt": {
-    "message": "Εικονογράφηση της διάταξης της σελίδας θησαυροφυλακίου του Bitwarden."
+    "message": "Εικονογράφηση της διάταξης της σελίδας θησαυροφυλακίου του Komboe."
   },
   "generatePasswordSlideDesc": {
-    "message": "Δημιουργήστε γρήγορα έναν ισχυρό, μοναδικό κωδικό πρόσβασης με το μενού αυτόματης συμπλήρωσης του Bitwarden στον ιστότοπο που είναι σε κίνδυνο.",
+    "message": "Δημιουργήστε γρήγορα έναν ισχυρό, μοναδικό κωδικό πρόσβασης με το μενού αυτόματης συμπλήρωσης του Komboe στον ιστότοπο που είναι σε κίνδυνο.",
     "description": "Description of the generate password slide on the at-risk password page carousel"
   },
   "generatePasswordSlideImgAltPeriod": {
-    "message": "Εικονογράφηση του μενού αυτόματης συμπλήρωσης του Bitwarden που εμφανίζει έναν δημιουργημένο κωδικό πρόσβασης."
+    "message": "Εικονογράφηση του μενού αυτόματης συμπλήρωσης του Komboe που εμφανίζει έναν δημιουργημένο κωδικό πρόσβασης."
   },
   "updateInBitwarden": {
-    "message": "Ενημέρωση στο Bitwarden"
+    "message": "Ενημέρωση στο Komboe"
   },
   "updateInBitwardenSlideDesc": {
-    "message": "Το Bitwarden θα σας ζητήσει στη συνέχεια να ενημερώσετε τον κωδικό πρόσβασης στον διαχειριστή κωδικών πρόσβασης.",
+    "message": "Το Komboe θα σας ζητήσει στη συνέχεια να ενημερώσετε τον κωδικό πρόσβασης στον διαχειριστή κωδικών πρόσβασης.",
     "description": "Description of the update in Bitwarden slide on the at-risk password page carousel"
   },
   "updateInBitwardenSlideImgAltPeriod": {
-    "message": "Εικονογράφηση ειδοποίησης του Bitwarden που ζητά από τον χρήστη να ενημερώσει τη σύνδεση."
+    "message": "Εικονογράφηση ειδοποίησης του Komboe που ζητά από τον χρήστη να ενημερώσει τη σύνδεση."
   },
   "turnOnAutofill": {
     "message": "Ενεργοποίηση αυτόματης συμπλήρωσης"
@@ -4078,10 +4078,10 @@
     "message": "Σφάλμα λήψης δεδομένων αυτόματης συμπλήρωσης"
   },
   "couldNotDecryptVaultItem": {
-    "message": "Το Bitwarden δεν μπόρεσε να αποκρυπτογραφήσει το στοιχείο θησαυροφυλακίου που αναφέρεται παρακάτω. Επικοινωνήστε με την Υποστήριξη Πελατών του Bitwarden και δώστε το αναγνωριστικό στοιχείου παρακάτω για να δείτε αν μπορεί να ανακτηθεί."
+    "message": "Το Komboe δεν μπόρεσε να αποκρυπτογραφήσει το στοιχείο θησαυροφυλακίου που αναφέρεται παρακάτω. Επικοινωνήστε με την Υποστήριξη Πελατών του Komboe και δώστε το αναγνωριστικό στοιχείου παρακάτω για να δείτε αν μπορεί να ανακτηθεί."
   },
   "couldNotDecryptVaultItems": {
-    "message": "Το Bitwarden δεν μπόρεσε να αποκρυπτογραφήσει τα στοιχεία θησαυροφυλακίου που αναφέρονται παρακάτω. Επικοινωνήστε με την Υποστήριξη Πελατών του Bitwarden και δώστε τα αναγνωριστικά στοιχείων παρακάτω για να δείτε αν μπορούν να ανακτηθούν."
+    "message": "Το Komboe δεν μπόρεσε να αποκρυπτογραφήσει τα στοιχεία θησαυροφυλακίου που αναφέρονται παρακάτω. Επικοινωνήστε με την Υποστήριξη Πελατών του Komboe και δώστε τα αναγνωριστικά στοιχείων παρακάτω για να δείτε αν μπορούν να ανακτηθούν."
   },
   "itemId": {
     "message": "ID στοιχείου",
@@ -4191,11 +4191,11 @@
     }
   },
   "forwarderGeneratedBy": {
-    "message": "Δημιουργήθηκε από το Bitwarden.",
+    "message": "Δημιουργήθηκε από το Komboe.",
     "description": "Displayed with the address on the forwarding service's configuration screen."
   },
   "forwarderGeneratedByWithWebsite": {
-    "message": "Ιστότοπος: $WEBSITE$. Δημιουργήθηκε από το Bitwarden.",
+    "message": "Ιστότοπος: $WEBSITE$. Δημιουργήθηκε από το Komboe.",
     "description": "Displayed with the address on the forwarding service's configuration screen.",
     "placeholders": {
       "WEBSITE": {
@@ -4417,7 +4417,7 @@
     "message": "Μια ειδοποίηση έχει σταλεί στη συσκευή σας."
   },
   "notificationSentDevicePart1": {
-    "message": "Ξεκλειδώστε το Bitwarden στη συσκευή σας ή στην"
+    "message": "Ξεκλειδώστε το Komboe στη συσκευή σας ή στην"
   },
   "notificationSentDeviceAnchor": {
     "message": "εφαρμογή web"
@@ -4917,15 +4917,15 @@
     "message": "Μετάβαση στο περιεχόμενο"
   },
   "bitwardenOverlayButton": {
-    "message": "Πλήκτρο μενού αυτόματης συμπλήρωσης Bitwarden",
+    "message": "Πλήκτρο μενού αυτόματης συμπλήρωσης Komboe",
     "description": "Page title for the iframe containing the overlay button"
   },
   "toggleBitwardenVaultOverlay": {
-    "message": "Εναλλαγή ορατότητας μενού αυτόματης συμπλήρωσης Bitwarden",
+    "message": "Εναλλαγή ορατότητας μενού αυτόματης συμπλήρωσης Komboe",
     "description": "Screen reader and tool tip label for the overlay button"
   },
   "bitwardenVault": {
-    "message": "Μενού αυτόματης συμπλήρωσης Bitwarden",
+    "message": "Μενού αυτόματης συμπλήρωσης Komboe",
     "description": "Page title in overlay"
   },
   "unlockYourAccountToViewMatchingLogins": {
@@ -4997,7 +4997,7 @@
     "description": "Screen reader text (aria-label) for new identity button within inline menu"
   },
   "bitwardenOverlayMenuAvailable": {
-    "message": "Είναι διαθέσιμο το Bitwarden μενού αυτόματης συμπλήρωσης. Πατήστε το πλήκτρο κάτω βέλος για να επιλέξετε.",
+    "message": "Είναι διαθέσιμο το Komboe μενού αυτόματης συμπλήρωσης. Πατήστε το πλήκτρο κάτω βέλος για να επιλέξετε.",
     "description": "Screen reader text for announcing when the overlay opens on the page"
   },
   "turnOn": {
@@ -5369,7 +5369,7 @@
     "message": "Secure by design"
   },
   "importDataSecureByDesignBody": {
-    "message": "End-to-end encrypted handoff. Bitwarden never sees your $VENDOR$ login details.",
+    "message": "End-to-end encrypted handoff. Komboe never sees your $VENDOR$ login details.",
     "placeholders": {
       "vendor": {
         "content": "$1",
@@ -5520,7 +5520,7 @@
     "description": "Followed by a literal filename (my_passwords.json) rendered as code."
   },
   "importGnomeInstructionsFileHere": {
-    "message": "αρχείο εδώ στο Bitwarden.",
+    "message": "αρχείο εδώ στο Komboe.",
     "description": "Follows the my_passwords.json filename."
   },
   "importPasswordagentInstructions": {
@@ -6091,7 +6091,7 @@
     "message": "Ενεργός λογαριασμός"
   },
   "bitwardenAccount": {
-    "message": "Λογαριασμός Bitwarden"
+    "message": "Λογαριασμός Komboe"
   },
   "availableAccounts": {
     "message": "Διαθέσιμοι λογαριασμοί"
@@ -6137,7 +6137,7 @@
     "description": "Label indicating the most common import formats"
   },
   "uriMatchDefaultStrategyHint": {
-    "message": "Η ανίχνευση αντιστοιχίας URI είναι ο τρόπος με τον οποίο το Bitwarden προσδιορίζει τις προτάσεις αυτόματης συμπλήρωσης.",
+    "message": "Η ανίχνευση αντιστοιχίας URI είναι ο τρόπος με τον οποίο το Komboe προσδιορίζει τις προτάσεις αυτόματης συμπλήρωσης.",
     "description": "Explains to the user that URI match detection determines how Bitwarden suggests autofill options, and clarifies that this default strategy applies when no specific match detection is set for a login item."
   },
   "regExAdvancedOptionWarning": {
@@ -6181,15 +6181,15 @@
     "description": "Body content for dialog which asks if the user wants to proceed to the browser's keyboard shortcut settings page"
   },
   "overrideDefaultBrowserAutofillTitle": {
-    "message": "Να γίνει το Bitwarden ο προεπιλεγμένος διαχειριστής κωδικών πρόσβασης σας;",
+    "message": "Να γίνει το Komboe ο προεπιλεγμένος διαχειριστής κωδικών πρόσβασης σας;",
     "description": "Dialog title facilitating the ability to override a chrome browser's default autofill behavior"
   },
   "overrideDefaultBrowserAutofillDescription": {
-    "message": "Η αγνόηση αυτής της επιλογής μπορεί να προκαλέσει συγκρούσεις μεταξύ του μενού αυτόματης συμπλήρωσης Bitwarden και του περιηγητή σας.",
+    "message": "Η αγνόηση αυτής της επιλογής μπορεί να προκαλέσει συγκρούσεις μεταξύ του μενού αυτόματης συμπλήρωσης Komboe και του περιηγητή σας.",
     "description": "Dialog message facilitating the ability to override a chrome browser's default autofill behavior"
   },
   "overrideDefaultBrowserAutoFillSettings": {
-    "message": "Ορισμός του Bitwarden ως προεπιλεγμένου διαχειριστή κωδικών πρόσβασης",
+    "message": "Ορισμός του Komboe ως προεπιλεγμένου διαχειριστή κωδικών πρόσβασης",
     "description": "Label for the setting that allows overriding the default browser autofill settings"
   },
   "defaultPasswordManagerCalloutTitle": {
@@ -6197,7 +6197,7 @@
     "description": "Title for the callout that prompts users to set Bitwarden as their default password manager"
   },
   "defaultPasswordManagerCalloutDesc": {
-    "message": "Θα σας ζητηθεί να παραχωρήσετε άδεια στο πρόγραμμα περιήγησης $BROWSER$ για να ορίσετε το Bitwarden ως προεπιλεγμένο διαχειριστή κωδικών πρόσβασης.",
+    "message": "Θα σας ζητηθεί να παραχωρήσετε άδεια στο πρόγραμμα περιήγησης $BROWSER$ για να ορίσετε το Komboe ως προεπιλεγμένο διαχειριστή κωδικών πρόσβασης.",
     "description": "Description for the callout that prompts users to set Bitwarden as their default password manager",
     "placeholders": {
       "browser": {
@@ -6207,11 +6207,11 @@
     }
   },
   "privacyPermissionAdditionNotGrantedTitle": {
-    "message": "Αδυναμία ορισμού του Bitwarden ως προεπιλεγμένου διαχειριστή κωδικών πρόσβασης",
+    "message": "Αδυναμία ορισμού του Komboe ως προεπιλεγμένου διαχειριστή κωδικών πρόσβασης",
     "description": "Title for the dialog that appears when the user has not granted the extension permission to set privacy settings"
   },
   "privacyPermissionAdditionNotGrantedDescription": {
-    "message": "Πρέπει να παραχωρήσετε δικαιώματα απορρήτου περιηγητή στο Bitwarden για να το ορίσετε ως προεπιλεγμένο διαχειριστή κωδικών πρόσβασης.",
+    "message": "Πρέπει να παραχωρήσετε δικαιώματα απορρήτου περιηγητή στο Komboe για να το ορίσετε ως προεπιλεγμένο διαχειριστή κωδικών πρόσβασης.",
     "description": "Description for the dialog that appears when the user has not granted the extension permission to set privacy settings"
   },
   "makeDefault": {
@@ -6219,10 +6219,10 @@
     "description": "Button text for the setting that allows overriding the default browser autofill settings"
   },
   "defaultPasswordManagerPromptTitle": {
-    "message": "Ορίστε το Bitwarden ως τον προεπιλεγμένο διαχειριστή κωδικών πρόσβασης του προγράμματος περιήγησής σας"
+    "message": "Ορίστε το Komboe ως τον προεπιλεγμένο διαχειριστή κωδικών πρόσβασης του προγράμματος περιήγησής σας"
   },
   "defaultPasswordManagerPromptTitleV2": {
-    "message": "Ορίστε το Bitwarden ως τον προεπιλεγμένο διαχειριστή κωδικών πρόσβασής σας",
+    "message": "Ορίστε το Komboe ως τον προεπιλεγμένο διαχειριστή κωδικών πρόσβασής σας",
     "description": "Label for the setting to make Bitwarden the default password manager"
   },
   "defaultPasswordManagerSettingHintV2": {
@@ -6234,13 +6234,13 @@
     "description": "Link text to browser autofill settings in the default password manager setting hint."
   },
   "defaultPasswordManagerPromptStep2AfterAllow": {
-    "message": "από το μήνυμα του προγράμματος περιήγησης για να επιτρέψετε στο Bitwarden να αλλάζει τις ρυθμίσεις σας."
+    "message": "από το μήνυμα του προγράμματος περιήγησης για να επιτρέψετε στο Komboe να αλλάζει τις ρυθμίσεις σας."
   },
   "defaultPasswordManagerPromptStep3": {
     "message": "Θα απενεργοποιήσουμε τον ενσωματωμένο διαχειριστή κωδικών πρόσβασης του προγράμματος περιήγησής σας ώστε να απολαμβάνετε μια ασφαλή εμπειρία σύνδεσης."
   },
   "defaultPasswordManagerSuccessToast": {
-    "message": "Το Bitwarden ορίστηκε ως ο προεπιλεγμένος διαχειριστής κωδικών πρόσβασης του προγράμματος περιήγησης"
+    "message": "Το Komboe ορίστηκε ως ο προεπιλεγμένος διαχειριστής κωδικών πρόσβασης του προγράμματος περιήγησης"
   },
   "allow": {
     "message": "Να επιτρέπεται",
@@ -6648,16 +6648,16 @@
     "message": "Λήψη συνημμένου"
   },
   "downloadBitwarden": {
-    "message": "Λήψη του Bitwarden"
+    "message": "Λήψη του Komboe"
   },
   "downloadBitwardenOnAllDevices": {
-    "message": "Λήψη του Bitwarden σε όλες τις συσκευές"
+    "message": "Λήψη του Komboe σε όλες τις συσκευές"
   },
   "getTheMobileApp": {
     "message": "Αποκτήστε την εφαρμογή για κινητές συσκευές"
   },
   "getTheMobileAppDesc": {
-    "message": "Αποκτήστε πρόσβαση στους κωδικούς πρόσβασής σας εν κινήσει με την εφαρμογή του Bitwarden για κινητές συσκευές."
+    "message": "Αποκτήστε πρόσβαση στους κωδικούς πρόσβασής σας εν κινήσει με την εφαρμογή του Komboe για κινητές συσκευές."
   },
   "getTheDesktopApp": {
     "message": "Αποκτήστε την εφαρμογή για υπολογιστές"
@@ -6666,7 +6666,7 @@
     "message": "Αποκτήστε πρόσβαση στη θυρίδα σας χωρίς πρόγραμμα περιήγησης και ενεργοποιήστε το ξεκλείδωμα με βιομετρικά στοιχεία για ταχύτερο ξεκλείδωμα τόσο της εφαρμογής για υπολογιστές όσο και της επέκτασης του προγράμματος περιήγησης."
   },
   "downloadFromBitwardenNow": {
-    "message": "Λήψη από το bitwarden.com τώρα"
+    "message": "Λήψη από το komboe.com τώρα"
   },
   "getItOnGooglePlay": {
     "message": "Αποκτήστε το στο Google Play"
@@ -7210,10 +7210,10 @@
     "message": "Το βιομετρικό ξεκλείδωμα δεν είναι διαθέσιμο λόγω εσφαλμένων ρυθμίσεων αρχείων συστήματος."
   },
   "biometricsStatusHelptextDesktopDisconnected": {
-    "message": "Το βιομετρικό ξεκλείδωμα δεν είναι διαθέσιμο επειδή η εφαρμογή Bitwarden επιφάνειας εργασίας είναι κλειστή."
+    "message": "Το βιομετρικό ξεκλείδωμα δεν είναι διαθέσιμο επειδή η εφαρμογή Komboe επιφάνειας εργασίας είναι κλειστή."
   },
   "biometricsStatusHelptextNotEnabledInDesktop": {
-    "message": "Το βιομετρικό ξεκλείδωμα δεν είναι διαθέσιμο επειδή δεν είναι ενεργοποιημένο για $EMAIL$ στην εφαρμογή Bitwarden desktop.",
+    "message": "Το βιομετρικό ξεκλείδωμα δεν είναι διαθέσιμο επειδή δεν είναι ενεργοποιημένο για $EMAIL$ στην εφαρμογή Komboe desktop.",
     "placeholders": {
       "email": {
         "content": "$1",
@@ -7245,7 +7245,7 @@
     "description": "Notification message for when a password has been regenerated"
   },
   "saveToBitwarden": {
-    "message": "Αποθήκευση στο Bitwarden",
+    "message": "Αποθήκευση στο Komboe",
     "description": "Confirmation message for saving a login to Bitwarden"
   },
   "spaceCharacterDescriptor": {
@@ -7489,13 +7489,13 @@
     "message": "Use folders to organize vault items. They're just for you. No one else will see or use them."
   },
   "introCarouselLabel": {
-    "message": "Καλώς ορίσατε στο Bitwarden"
+    "message": "Καλώς ορίσατε στο Komboe"
   },
   "securityPrioritized": {
     "message": "Με προτεραιότητα την ασφάλεια"
   },
   "securityPrioritizedBody": {
-    "message": "Αποθηκεύστε συνδέσεις, κάρτες και ταυτότητες στην ασφαλή θυρίδα σας. Το Bitwarden χρησιμοποιεί διατερματική κρυπτογράφηση μηδενικής γνώσης για να προστατεύει ό,τι είναι σημαντικό για εσάς."
+    "message": "Αποθηκεύστε συνδέσεις, κάρτες και ταυτότητες στην ασφαλή θυρίδα σας. Το Komboe χρησιμοποιεί διατερματική κρυπτογράφηση μηδενικής γνώσης για να προστατεύει ό,τι είναι σημαντικό για εσάς."
   },
   "quickLogin": {
     "message": "Εύκολη και γρήγορη σύνδεση"
@@ -7513,7 +7513,7 @@
     "message": "Τα δεδομένα σας, όποτε και όπου τα χρειάζεστε"
   },
   "secureDevicesBody": {
-    "message": "Αποθηκεύστε απεριόριστους κωδικούς πρόσβασης σε απεριόριστες συσκευές με τις εφαρμογές του Bitwarden για υπολογιστές, κινητές συσκευές και προγράμματα περιήγησης."
+    "message": "Αποθηκεύστε απεριόριστους κωδικούς πρόσβασης σε απεριόριστες συσκευές με τις εφαρμογές του Komboe για υπολογιστές, κινητές συσκευές και προγράμματα περιήγησης."
   },
   "nudgeBadgeAria": {
     "message": "1 ειδοποίηση"
@@ -7522,7 +7522,7 @@
     "message": "Εισαγωγή υπαρχόντων κωδικών πρόσβασης"
   },
   "emptyVaultNudgeBody": {
-    "message": "Χρησιμοποιήστε τον εισαγωγέα για να μεταφέρετε γρήγορα συνδέσεις στο Bitwarden χωρίς να τις προσθέτετε χειροκίνητα."
+    "message": "Χρησιμοποιήστε τον εισαγωγέα για να μεταφέρετε γρήγορα συνδέσεις στο Komboe χωρίς να τις προσθέτετε χειροκίνητα."
   },
   "emptyVaultNudgeButton": {
     "message": "Εισαγωγή τώρα"
@@ -7641,7 +7641,7 @@
     "message": "Σχετικά με αυτήν τη ρύθμιση"
   },
   "permitCipherDetailsDescription": {
-    "message": "Το Bitwarden θα χρησιμοποιεί τα αποθηκευμένα URI σύνδεσης για να προσδιορίζει ποιο εικονίδιο ή URL αλλαγής κωδικού πρόσβασης θα χρησιμοποιείται, προκειμένου να βελτιώσει την εμπειρία σας. Δεν συλλέγονται, ούτε αποθηκεύονται, πληροφορίες όταν χρησιμοποιείτε αυτήν την υπηρεσία."
+    "message": "Το Komboe θα χρησιμοποιεί τα αποθηκευμένα URI σύνδεσης για να προσδιορίζει ποιο εικονίδιο ή URL αλλαγής κωδικού πρόσβασης θα χρησιμοποιείται, προκειμένου να βελτιώσει την εμπειρία σας. Δεν συλλέγονται, ούτε αποθηκεύονται, πληροφορίες όταν χρησιμοποιείτε αυτήν την υπηρεσία."
   },
   "showQuickCopyActionsDetailsDescription": {
     "message": "Προσθέτει 3 κουμπιά γρήγορης αντιγραφής δίπλα στα στοιχεία για αντιγραφή του ονόματος χρήστη, του κωδικού πρόσβασης ή του κωδικού επαλήθευσης στο πρόχειρο."
@@ -7650,7 +7650,7 @@
     "message": "Δεν έχετε δικαιώματα προβολής αυτής της σελίδας. Δοκιμάστε να συνδεθείτε με διαφορετικό λογαριασμό."
   },
   "wasmNotSupported": {
-    "message": "Το WebAssembly δεν υποστηρίζεται στο πρόγραμμα περιήγησής σας ή δεν είναι ενεργοποιημένο. Απαιτείται WebAssembly για τη χρήση της εφαρμογής Bitwarden.",
+    "message": "Το WebAssembly δεν υποστηρίζεται στο πρόγραμμα περιήγησής σας ή δεν είναι ενεργοποιημένο. Απαιτείται WebAssembly για τη χρήση της εφαρμογής Komboe.",
     "description": "'WebAssembly' is a technical term and should not be translated."
   },
   "showMore": {
@@ -7738,7 +7738,7 @@
     "message": "Σφάλμα: Αδυναμία αποκρυπτογράφησης"
   },
   "removeMasterPasswordForOrgUserKeyConnector": {
-    "message": "Ο οργανισμός σας δεν χρησιμοποιεί πλέον κύριους κωδικούς πρόσβασης για σύνδεση στο Bitwarden. Για να συνεχίσετε, επαληθεύστε τον οργανισμό και τον τομέα."
+    "message": "Ο οργανισμός σας δεν χρησιμοποιεί πλέον κύριους κωδικούς πρόσβασης για σύνδεση στο Komboe. Για να συνεχίσετε, επαληθεύστε τον οργανισμό και τον τομέα."
   },
   "continueWithLogIn": {
     "message": "Συνεχίστε με σύνδεση"
@@ -7824,7 +7824,7 @@
     "message": "Ορίστε μια μέθοδο ξεκλειδώματος για να αλλάξετε την ενέργεια χρονικού ορίου"
   },
   "sessionTimeoutSuppressedByConnectedDevice": {
-    "message": "Διαχειρίζεται από την εφαρμογή Bitwarden desktop. Ανοίξτε την εφαρμογή desktop για επεξεργασία."
+    "message": "Διαχειρίζεται από την εφαρμογή Komboe desktop. Ανοίξτε την εφαρμογή desktop για επεξεργασία."
   },
   "percentageCompleted": {
     "message": "$PERCENT$% ολοκληρωμένο",
@@ -7920,13 +7920,13 @@
     "message": "Εισαγάγετε πολλά email χωρίζοντάς τα με κόμμα."
   },
   "emailPlaceholder": {
-    "message": "user@bitwarden.com , user@acme.com"
+    "message": "user@komboe.com , user@acme.com"
   },
   "emailPlaceholderMultiple": {
-    "message": "user@bitwarden.com, user@acme.com"
+    "message": "user@komboe.com, user@acme.com"
   },
   "downloadBitwardenApps": {
-    "message": "Λήψη εφαρμογών Bitwarden"
+    "message": "Λήψη εφαρμογών Komboe"
   },
   "emailProtected": {
     "message": "Email προστατευμένο"
@@ -7945,13 +7945,13 @@
     "message": "Sync unlock with desktop app"
   },
   "syncUnlockWithDesktopDescription": {
-    "message": "The Bitwarden browser extension and desktop app lock and unlock together."
+    "message": "The Komboe browser extension and desktop app lock and unlock together."
   },
   "syncUnlockWithWeb": {
     "message": "Sync unlock with web app"
   },
   "syncUnlockWithWebDescription": {
-    "message": "The Bitwarden browser extension and web app lock and unlock together."
+    "message": "The Komboe browser extension and web app lock and unlock together."
   },
   "sharedUnlockUnavailableUntrustedDevice": {
     "message": "Το κοινόχρηστο ξεκλείδωμα δεν είναι διαθέσιμο επειδή επιλέξατε να μην θυμάστε αυτή τη συσκευή. Για να ενεργοποιήσετε αυτή τη ρύθμιση, δοκιμάστε να συνδεθείτε ξανά."
@@ -7960,13 +7960,13 @@
     "message": "Απαιτείται νέα άδεια"
   },
   "sharedUnlockDesktopPermissionDesc": {
-    "message": "Για να χρησιμοποιήσετε το κοινόχρηστο ξεκλείδωμα, το Bitwarden χρειάζεται άδεια επικοινωνίας με την εφαρμογή desktop. Όταν συνεχίσετε, το πρόγραμμα περιήγησής σας θα σας ζητήσει να το εγκρίνετε."
+    "message": "Για να χρησιμοποιήσετε το κοινόχρηστο ξεκλείδωμα, το Komboe χρειάζεται άδεια επικοινωνίας με την εφαρμογή desktop. Όταν συνεχίσετε, το πρόγραμμα περιήγησής σας θα σας ζητήσει να το εγκρίνετε."
   },
   "sharedUnlockDesktopPermissionWarning": {
-    "message": "Το Bitwarden θα κλειδώσει και θα επαναφορτωθεί. Αφού εγκρίνετε, η επέκταση επαναφορτώνεται και θα κλειδώσει το θησαυροφυλάκιό σας."
+    "message": "Το Komboe θα κλειδώσει και θα επαναφορτωθεί. Αφού εγκρίνετε, η επέκταση επαναφορτώνεται και θα κλειδώσει το θησαυροφυλάκιό σας."
   },
   "biometricPermissionDesc": {
-    "message": "Για να χρησιμοποιήσετε βιομετρικό ξεκλείδωμα, το Bitwarden χρειάζεται άδεια επικοινωνίας με την εφαρμογή desktop. Όταν συνεχίσετε, το πρόγραμμα περιήγησής σας θα σας ζητήσει να το εγκρίνετε."
+    "message": "Για να χρησιμοποιήσετε βιομετρικό ξεκλείδωμα, το Komboe χρειάζεται άδεια επικοινωνίας με την εφαρμογή desktop. Όταν συνεχίσετε, το πρόγραμμα περιήγησής σας θα σας ζητήσει να το εγκρίνετε."
   },
   "enterMonth": {
     "message": "Εισαγάγετε μήνα."
@@ -8451,15 +8451,15 @@
     "message": "Άγνωστο στοιχείο, ίσως χρειαστεί να ζητήσετε άδεια για πρόσβαση σε αυτό το στοιχείο."
   },
   "newExperienceDialogTitle": {
-    "message": "Το Bitwarden διαθέτει νέα εμφάνιση",
+    "message": "Το Komboe διαθέτει νέα εμφάνιση",
     "description": "Title of the dialog that introduces the redesigned vault to existing users."
   },
   "newExperienceDialogDesc": {
-    "message": "Better experience, same trusted security. The Bitwarden vault has been redesigned based on your feedback, so things are easier to find and work like you'd expect.",
+    "message": "Better experience, same trusted security. The Komboe vault has been redesigned based on your feedback, so things are easier to find and work like you'd expect.",
     "description": "Body copy of the dialog that introduces the redesigned vault to existing users."
   },
   "newExperienceDialogImgAlt": {
-    "message": "Μια προεπισκόπηση της ανασχεδιασμένης θυρίδας του Bitwarden.",
+    "message": "Μια προεπισκόπηση της ανασχεδιασμένης θυρίδας του Komboe.",
     "description": "Alt text for the screenshot shown in the dialog that introduces the redesigned vault."
   },
   "exploreTheNewVault": {

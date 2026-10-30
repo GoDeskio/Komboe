@@ -6,7 +6,7 @@ names, `@bitwarden/*` imports, URL paths, enum names) are left alone so clients
 stay wire-compatible. Copyright and license text is never touched.
 The padlock-K logo is used as-is from branding/logo (shape locked).
 """
-import base64, glob, io, json, os, re, sys
+import base64, glob, io, json, os, re, shutil, sys
 from PIL import Image
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -155,6 +155,35 @@ def ebuilder(t):
     return json.dumps(d, indent=2) + "\n"
 rw(f"{C}/apps/desktop/electron-builder.json", ebuilder)
 rw(f"{C}/apps/desktop/src/index.html", lambda t: t.replace("<title>Bitwarden</title>", "<title>Komboe</title>"))
+
+# 8. Phase D: padlock-K everywhere icons remain upstream: extension inline-menu/notification logo, desktop ico/icns/iconsets
+def pk_svg(size, gray=False):
+    data = base64.b64encode(png(LIGHT, (64, 64))).decode()  # violet #6D4AFF padlock-K
+    f = ('<filter id="g"><feColorMatrix type="saturate" values="0"/></filter>' if gray else "")
+    return (f'<svg xmlns="http://www.w3.org/2000/svg" width="{size}" height="{size}" viewBox="0 0 {size} {size}" fill="none">{f}'
+            f'<image width="{size}" height="{size}" {"filter=\"url(#g)\" " if gray else ""}href="data:image/png;base64,{data}"/></svg>')
+def svgicons(t):
+    out = []
+    lines = t.split("\n"); i = 0
+    while i < len(lines):
+        out.append(lines[i])
+        m = re.match(r"export const (logoIcon|logoLockedIcon) =$", lines[i])
+        if m: out.append("  '" + pk_svg(14 if m.group(1) == "logoIcon" else 16, gray=m.group(1) == "logoLockedIcon") + "';"); i += 1
+        i += 1
+    return "\n".join(out)
+rw(f"{C}/apps/browser/src/autofill/utils/svg-icons.ts", svgicons)
+KIT = f"{B}/desktop"
+def copyfile(src, dst):
+    if os.path.exists(dst) and open(src, "rb").read() == open(dst, "rb").read(): return
+    shutil.copyfile(src, dst); changed.append(os.path.relpath(dst, ROOT))
+R = f"{C}/apps/desktop/resources"
+for n in ["icon.ico", "icon.beta.ico"]: copyfile(f"{KIT}/komboe.ico", f"{R}/{n}")
+for n in ["icon.icns", "icon.beta.icns", "dmg.icns", "dmg.beta.icns"]: copyfile(f"{KIT}/komboe.icns", f"{R}/{n}")
+for p in glob.glob(f"{R}/icon.iconset/*.png") + glob.glob(f"{R}/dmg.iconset/*.png") + glob.glob(f"{R}/icons_beta/*.png") + [f"{R}/icon.beta.png"]:
+    if os.path.exists(p):
+        new = png(ICON, Image.open(p).size)
+        if open(p, "rb").read() != new: open(p, "wb").write(new); changed.append(os.path.relpath(p, ROOT))
+for p in glob.glob(f"{R}/windows_plugin_authenticator_logo_*.svg"): rw(p, lambda t: pk_svg(48))
 
 print(f"rebrand: {len(changed)} files changed")
 if "-v" in sys.argv: print("\n".join(changed))

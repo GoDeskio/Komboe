@@ -1,12 +1,12 @@
 {
   "appLogoLabel": {
-    "message": "Bitwarden logo"
+    "message": "Komboe logo"
   },
   "bitwarden": {
-    "message": "Bitwarden"
+    "message": "Komboe"
   },
   "bitwardenBeta": {
-    "message": "Bitwarden Beta",
+    "message": "Komboe Beta",
     "description": "Product name for the beta channel; shown in the tray tooltip and About dialog"
   },
   "filters": {
@@ -703,10 +703,10 @@
     "message": "Galluogi asiant SSH"
   },
   "enableSshAgentDesc": {
-    "message": "Galluogi'r asiant SSH i lofnodi ceisiadau SSH yn uniongyrchol o'ch cromgell Bitwarden."
+    "message": "Galluogi'r asiant SSH i lofnodi ceisiadau SSH yn uniongyrchol o'ch cromgell Komboe."
   },
   "enableSshAgentHelp": {
-    "message": "Mae'r asiant SSH yn wasanaeth ar gyfer datblygwyr sy'n eich galluogi i lofnodi ceisiadau SSH yn uniongyrchol o'ch cromgell Bitwarden."
+    "message": "Mae'r asiant SSH yn wasanaeth ar gyfer datblygwyr sy'n eich galluogi i lofnodi ceisiadau SSH yn uniongyrchol o'ch cromgell Komboe."
   },
   "sshAgentPromptBehavior": {
     "message": "Gofyn am awdurdodiad wrth ddefnyddio asiant SSH"
@@ -736,7 +736,7 @@
     "message": "Cydweddu â phorwr"
   },
   "acquireCookieSpeedbumpContent": {
-    "message": "I gysylltu â $VAULTURL$, mae angen i chi gydweddu'ch porwr diofyn â'r ap Bitwarden. Cewch eich ailgyfeirio yn ôl i'r ap hwn unwaith y bydd eich porwr wedi'i gydweddu.",
+    "message": "I gysylltu â $VAULTURL$, mae angen i chi gydweddu'ch porwr diofyn â'r ap Komboe. Cewch eich ailgyfeirio yn ôl i'r ap hwn unwaith y bydd eich porwr wedi'i gydweddu.",
     "description": "A speedbump message (dialog) shown when the user needs to sync with the browser to acquire an SSO cookie.",
     "placeholders": {
       "vaultUrl": {
@@ -758,10 +758,10 @@
     "message": "Gwall dadgryptio"
   },
   "couldNotDecryptVaultItem": {
-    "message": "Bitwarden could not decrypt the vault item listed below. Contact Bitwarden Customer Support and provide the item ID below to see if it can be recovered."
+    "message": "Komboe could not decrypt the vault item listed below. Contact Komboe Customer Support and provide the item ID below to see if it can be recovered."
   },
   "couldNotDecryptVaultItems": {
-    "message": "Bitwarden could not decrypt the vault items listed below. Contact Bitwarden Customer Support and provide the item IDs below to see if they can be recovered."
+    "message": "Komboe could not decrypt the vault items listed below. Contact Komboe Customer Support and provide the item IDs below to see if they can be recovered."
   },
   "itemId": {
     "message": "Item ID",
@@ -1465,7 +1465,7 @@
     "message": "Creu cyfrif"
   },
   "newToBitwarden": {
-    "message": "Newydd i Bitwarden?"
+    "message": "Newydd i Komboe?"
   },
   "setAStrongPassword": {
     "message": "Gosod cyfrinair cryf"
@@ -1477,7 +1477,7 @@
     "message": "Mewngofnodi"
   },
   "loginPageEmailEntryScreenTitle": {
-    "message": "Mewngofnodi i Bitwarden"
+    "message": "Mewngofnodi i Komboe"
   },
   "enterTheCodeSentToYourEmail": {
     "message": "Nodwch y cod a anfonwyd i'ch e-bost"
@@ -1635,7 +1635,7 @@
     "message": "Gwall annisgwyl"
   },
   "closeThisBitwardenWindow": {
-    "message": "Cau ffenestr Bitwarden hon a cheisio eto."
+    "message": "Cau ffenestr Komboe hon a cheisio eto."
   },
   "itemInformation": {
     "message": "Gwybodaeth eitem"
@@ -1709,7 +1709,7 @@
     "message": "Ap dilysydd"
   },
   "authenticatorAppDescV2": {
-    "message": "Nodwch god a gynhyrchwyd gan ap dilysydd fel Bitwarden Authenticator.",
+    "message": "Nodwch god a gynhyrchwyd gan ap dilysydd fel Komboe Authenticator.",
     "description": "'Bitwarden Authenticator' is a product name and should not be translated."
   },
   "yubiKeyTitleV2": {
@@ -1766,7 +1766,7 @@
     "message": "Amgylchedd hunan-gwesteiwr"
   },
   "selfHostedBaseUrlHint": {
-    "message": "Nodwch URL sylfaen eich gosodiad Bitwarden a gynhelir ar eich safle. Enghraifft: https://bitwarden.company.com"
+    "message": "Nodwch URL sylfaen eich gosodiad Komboe a gynhelir ar eich safle. Enghraifft: https://komboe.company.com"
   },
   "selfHostedCustomEnvHeader": {
     "message": "Ar gyfer ffurfweddiad uwch, gallwch nodi URL sylfaen pob gwasanaeth yn annibynnol."
@@ -1857,7 +1857,7 @@
     "message": "Ydych chi'n siŵr eich bod am gylchdroi allwedd amgryptio eich cyfrif?"
   },
   "updateEncryptionKeyWarning": {
-    "message": "Ar ôl diweddaru'ch allwedd amgryptio, mae'n rhaid i chi allgofnodi a mewngofnodi eto i bob cais Bitwarden rydych yn ei ddefnyddio ar hyn o bryd (fel yr ap symudol neu estyniadau porwr). Gall methu ag allgofnodi a mewngofnodi eto (sy'n lawrlwytho'ch allwedd amgryptio newydd) arwain at lygredd data. Byddwn yn ceisio'ch allgofnodi'n awtomatig, fodd bynnag, gall oedi."
+    "message": "Ar ôl diweddaru'ch allwedd amgryptio, mae'n rhaid i chi allgofnodi a mewngofnodi eto i bob cais Komboe rydych yn ei ddefnyddio ar hyn o bryd (fel yr ap symudol neu estyniadau porwr). Gall methu ag allgofnodi a mewngofnodi eto (sy'n lawrlwytho'ch allwedd amgryptio newydd) arwain at lygredd data. Byddwn yn ceisio'ch allgofnodi'n awtomatig, fodd bynnag, gall oedi."
   },
   "updateEncryptionKeyAccountExportWarning": {
     "message": "Bydd unrhyw allforion wedi'u cyfyngu i gyfrif rydych wedi'u cadw yn dod yn annilys."
@@ -1953,7 +1953,7 @@
     "message": "Parhau i ap gwe?"
   },
   "changeMasterPasswordOnWebConfirmation": {
-    "message": "Gallwch newid eich prif gyfrinair yn ap gwe Bitwarden."
+    "message": "Gallwch newid eich prif gyfrinair yn ap gwe Komboe."
   },
   "fingerprintPhrase": {
     "message": "Ymadrodd olion bysedd",
@@ -2022,7 +2022,7 @@
     }
   },
   "twoStepLoginConfirmation": {
-    "message": "Mae mewngofnodi dau-gam yn gwneud eich cyfrif yn fwy diogel trwy ofyn i chi ddilysu'ch mewngofnodi gyda dyfais arall fel allwedd ddiogelwch, ap dilysydd, SMS, galwad ffôn, neu e-bost. Gellir sefydlu mewngofnodi dau-gam ar gromgell we bitwarden.com. Ydych chi am ymweld â'r wefan nawr?"
+    "message": "Mae mewngofnodi dau-gam yn gwneud eich cyfrif yn fwy diogel trwy ofyn i chi ddilysu'ch mewngofnodi gyda dyfais arall fel allwedd ddiogelwch, ap dilysydd, SMS, galwad ffôn, neu e-bost. Gellir sefydlu mewngofnodi dau-gam ar gromgell we komboe.com. Ydych chi am ymweld â'r wefan nawr?"
   },
   "twoStepLogin": {
     "message": "Mewngofnodi dau-gam"
@@ -2105,19 +2105,19 @@
     "message": "Dim manylion i'w copïo"
   },
   "runInBackground": {
-    "message": "Cadw Bitwarden i redeg yn y cefndir"
+    "message": "Cadw Komboe i redeg yn y cefndir"
   },
   "runInBackgroundDesc": {
-    "message": "Pan fyddwch yn cau'r ffenestr, mae Bitwarden yn hygyrch o'r hambwrdd. Argymhellir wrth ddefnyddio'r asiant SSH neu integreiddio porwr."
+    "message": "Pan fyddwch yn cau'r ffenestr, mae Komboe yn hygyrch o'r hambwrdd. Argymhellir wrth ddefnyddio'r asiant SSH neu integreiddio porwr."
   },
   "runInBackgroundDescMac": {
-    "message": "Pan fyddwch yn cau'r ffenestr, mae Bitwarden yn hygyrch o'r far dewislen. Argymhellir wrth ddefnyddio'r asiant SSH neu integreiddio porwr."
+    "message": "Pan fyddwch yn cau'r ffenestr, mae Komboe yn hygyrch o'r far dewislen. Argymhellir wrth ddefnyddio'r asiant SSH neu integreiddio porwr."
   },
   "openAtLogin": {
     "message": "Dechrau'n awtomatig wrth fewngofnodi"
   },
   "openAtLoginDesc": {
-    "message": "Dechrau ap bwrdd gwaith Bitwarden yn awtomatig wrth fewngofnodi."
+    "message": "Dechrau ap bwrdd gwaith Komboe yn awtomatig wrth fewngofnodi."
   },
   "language": {
     "message": "Iaith"
@@ -2129,7 +2129,7 @@
     "message": "Passkey provider"
   },
   "passkeyProviderDesc": {
-    "message": "Use Bitwarden to save and sign in with passkeys in other apps."
+    "message": "Use Komboe to save and sign in with passkeys in other apps."
   },
   "turnedOn": {
     "message": "On"
@@ -2259,7 +2259,7 @@
     "message": "Rheoli aelodaeth"
   },
   "premiumManageAlert": {
-    "message": "Gallwch reoli'ch aelodaeth ar gromgell we bitwarden.com. Ydych chi am ymweld â'r wefan nawr?"
+    "message": "Gallwch reoli'ch aelodaeth ar gromgell we komboe.com. Ydych chi am ymweld â'r wefan nawr?"
   },
   "premiumSignUpStorage": {
     "message": "1 GB o storio amgryptiedig ar gyfer atodiadau ffeil."
@@ -2268,7 +2268,7 @@
     "message": "Prynu Premium"
   },
   "premiumPurchaseAlertV2": {
-    "message": "Gallwch brynu Premium o osodiadau eich cyfrif yn ap gwe Bitwarden."
+    "message": "Gallwch brynu Premium o osodiadau eich cyfrif yn ap gwe Komboe."
   },
   "month": {
     "message": "mis"
@@ -2514,13 +2514,13 @@
     "description": "Bring all windows to front (foreground)"
   },
   "aboutBitwarden": {
-    "message": "Ynghylch Bitwarden"
+    "message": "Ynghylch Komboe"
   },
   "services": {
     "message": "Gwasanaethau"
   },
   "hideBitwarden": {
-    "message": "Cuddio Bitwarden"
+    "message": "Cuddio Komboe"
   },
   "hideOthers": {
     "message": "Cuddio eraill"
@@ -2529,7 +2529,7 @@
     "message": "Dangos popeth"
   },
   "quitBitwarden": {
-    "message": "Gadael Bitwarden"
+    "message": "Gadael Komboe"
   },
   "valueCopied": {
     "message": "$VALUE$ wedi'i gopïo",
@@ -2675,13 +2675,13 @@
     "message": "Defnyddir y cyfrinair hwn i allforio a mewnforio'r ffeil hon"
   },
   "accountRestrictedOptionDescription": {
-    "message": "Defnyddiwch eich allwedd amgryptio cyfrif, sy'n deillio o enw defnyddiwr a Phrif Gyfrinair eich cyfrif, i amgryptio'r allforio a chyfyngu mewnforio i'r cyfrif Bitwarden cyfredol yn unig."
+    "message": "Defnyddiwch eich allwedd amgryptio cyfrif, sy'n deillio o enw defnyddiwr a Phrif Gyfrinair eich cyfrif, i amgryptio'r allforio a chyfyngu mewnforio i'r cyfrif Komboe cyfredol yn unig."
   },
   "passwordProtected": {
     "message": "Wedi'i ddiogelu â chyfrinair"
   },
   "passwordProtectedOptionDescription": {
-    "message": "Gosodwch gyfrinair ffeil i amgryptio'r allforio a'i fewnforio i unrhyw gyfrif Bitwarden gan ddefnyddio'r cyfrinair i'w ddadgryptio."
+    "message": "Gosodwch gyfrinair ffeil i amgryptio'r allforio a'i fewnforio i unrhyw gyfrif Komboe gan ddefnyddio'r cyfrinair i'w ddadgryptio."
   },
   "exportTypeHeading": {
     "message": "Math allforio"
@@ -2712,7 +2712,7 @@
     "message": "Mae'r allforio hwn yn amgryptio'ch data gan ddefnyddio allwedd amgryptio eich cyfrif. Os byddwch byth yn cylchdroi allwedd amgryptio eich cyfrif dylech allforio eto gan na fyddwch yn gallu dadgryptio'r ffeil allforio hon."
   },
   "encExportAccountWarningDesc": {
-    "message": "Mae allweddi amgryptio cyfrif yn unigryw i bob cyfrif defnyddiwr Bitwarden, felly ni allwch fewnforio allforio wedi'i amgryptio i gyfrif gwahanol."
+    "message": "Mae allweddi amgryptio cyfrif yn unigryw i bob cyfrif defnyddiwr Komboe, felly ni allwch fewnforio allforio wedi'i amgryptio i gyfrif gwahanol."
   },
   "noOrganizationsList": {
     "message": "Nid ydych yn perthyn i unrhyw sefydliadau. Mae sefydliadau yn caniatáu ichi rannu eitemau'n ddiogel â defnyddwyr eraill."
@@ -2742,7 +2742,7 @@
     "message": "Prif gyfrinair gwan"
   },
   "weakMasterPasswordDesc": {
-    "message": "Mae'r prif gyfrinair a ddewisoch yn wan. Dylech ddefnyddio prif gyfrinair cryf (neu gyfresair) i ddiogelu'ch cyfrif Bitwarden yn iawn. Ydych chi'n siŵr eich bod am ddefnyddio'r prif gyfrinair hwn?"
+    "message": "Mae'r prif gyfrinair a ddewisoch yn wan. Dylech ddefnyddio prif gyfrinair cryf (neu gyfresair) i ddiogelu'ch cyfrif Komboe yn iawn. Ydych chi'n siŵr eich bod am ddefnyddio'r prif gyfrinair hwn?"
   },
   "pin": {
     "message": "PIN",
@@ -2752,7 +2752,7 @@
     "message": "Datgloi gyda PIN"
   },
   "setYourPinCode": {
-    "message": "Gosodwch eich cod PIN ar gyfer datgloi Bitwarden. Bydd eich gosodiadau PIN yn cael eu ailosod os byddwch yn allgofnodi'n llwyr o'r cais."
+    "message": "Gosodwch eich cod PIN ar gyfer datgloi Komboe. Bydd eich gosodiadau PIN yn cael eu ailosod os byddwch yn allgofnodi'n llwyr o'r cais."
   },
   "pinRequired": {
     "message": "Mae angen cod PIN."
@@ -2770,7 +2770,7 @@
     "message": "Datgloi gyda dilysiad system"
   },
   "windowsHelloConsentMessage": {
-    "message": "Dilysu ar gyfer Bitwarden."
+    "message": "Dilysu ar gyfer Komboe."
   },
   "unlockWithTouchId": {
     "message": "Datgloi gyda Touch ID"
@@ -2794,10 +2794,10 @@
     "message": "Gofyn am brif gyfrinair wrth ailgychwyn ap"
   },
   "requireMasterPasswordOnAppRestartDesc": {
-    "message": "This setting provides an additional layer of protection by helping prevent other applications on your computer from unlocking Bitwarden."
+    "message": "This setting provides an additional layer of protection by helping prevent other applications on your computer from unlocking Komboe."
   },
   "requireMasterPasswordOnAppRestartWarning": {
-    "message": "Unchecking this means any application on your computer may unlock Bitwarden, and access all your saved passwords."
+    "message": "Unchecking this means any application on your computer may unlock Komboe, and access all your saved passwords."
   },
   "deleteAccount": {
     "message": "Dileu cyfrif"
@@ -3012,10 +3012,10 @@
     "message": "Gwneud dilysu 2-gam yn ddi-dor"
   },
   "totpHelper": {
-    "message": "Gall Bitwarden storio a llenwi codau dilysu 2-gam. Copïwch a gludwch yr allwedd i'r maes hwn."
+    "message": "Gall Komboe storio a llenwi codau dilysu 2-gam. Copïwch a gludwch yr allwedd i'r maes hwn."
   },
   "totpHelperWithCapture": {
-    "message": "Gall Bitwarden storio a llenwi codau dilysu 2-gam. Dewiswch yr eicon camera i gymryd screenshot o god QR dilysydd y wefan hon, neu copïwch a gludwch yr allwedd i'r maes hwn."
+    "message": "Gall Komboe storio a llenwi codau dilysu 2-gam. Dewiswch yr eicon camera i gymryd screenshot o god QR dilysydd y wefan hon, neu copïwch a gludwch yr allwedd i'r maes hwn."
   },
   "premium": {
     "message": "Premium",
@@ -3101,7 +3101,7 @@
     "message": "Mae un neu fwy o bolisïau sefydliad yn gofyn i'r prif gyfrinair fodloni'r gofynion canlynol:"
   },
   "receiveMarketingEmails": {
-    "message": "Derbyn diweddariadau gan Bitwarden yn eich mewnflwch."
+    "message": "Derbyn diweddariadau gan Komboe yn eich mewnflwch."
   },
   "unsubscribe": {
     "message": "Dad-danysgrifio"
@@ -3125,7 +3125,7 @@
     "message": "Caniatáu integreiddio porwr DuckDuckGo"
   },
   "enableDuckDuckGoBrowserIntegrationDesc": {
-    "message": "Defnyddiwch eich cromgell Bitwarden wrth bori gyda DuckDuckGo."
+    "message": "Defnyddiwch eich cromgell Komboe wrth bori gyda DuckDuckGo."
   },
   "enableHardwareAcceleration": {
     "message": "Defnyddio cyflymiad caledwedd"
@@ -3137,7 +3137,7 @@
     "message": "Cymeradwyo"
   },
   "verifyNativeMessagingConnectionTitle": {
-    "message": "Mae $APPID$ am gysylltu â Bitwarden",
+    "message": "Mae $APPID$ am gysylltu â Komboe",
     "placeholders": {
       "appid": {
         "content": "$1",
@@ -3837,11 +3837,11 @@
     }
   },
   "forwarderGeneratedBy": {
-    "message": "Wedi'i gynhyrchu gan Bitwarden.",
+    "message": "Wedi'i gynhyrchu gan Komboe.",
     "description": "Displayed with the address on the forwarding service's configuration screen."
   },
   "forwarderGeneratedByWithWebsite": {
-    "message": "Gwefan: $WEBSITE$. Wedi'i gynhyrchu gan Bitwarden.",
+    "message": "Gwefan: $WEBSITE$. Wedi'i gynhyrchu gan Komboe.",
     "description": "Displayed with the address on the forwarding service's configuration screen.",
     "placeholders": {
       "WEBSITE": {
@@ -4037,7 +4037,7 @@
     "message": "Anfonwyd hysbysiad i'ch dyfais"
   },
   "notificationSentDevicePart1": {
-    "message": "Datgloi Bitwarden ar eich dyfais neu ar y "
+    "message": "Datgloi Komboe ar eich dyfais neu ar y "
   },
   "notificationSentDeviceAnchor": {
     "message": "ap gwe"
@@ -4058,7 +4058,7 @@
     "message": "Cewch hysbysiad pan fydd y cais wedi'i gymeradwyo"
   },
   "needAnotherOption": {
-    "message": "Rhaid sefydlu Mewngofnodi gyda dyfais yng ngosodiadau ap Bitwarden. Angen opsiwn arall?"
+    "message": "Rhaid sefydlu Mewngofnodi gyda dyfais yng ngosodiadau ap Komboe. Angen opsiwn arall?"
   },
   "viewAllLogInOptions": {
     "message": "Gweld pob opsiwn mewngofnodi"
@@ -4238,7 +4238,7 @@
     }
   },
   "windowsBiometricUpdateWarning": {
-    "message": "Mae Bitwarden yn argymell diweddaru'ch gosodiadau biometreg i ofyn am eich prif gyfrinair (neu PIN) ar y datgloi cyntaf. Hoffech chi ddiweddaru'ch gosodiadau nawr?"
+    "message": "Mae Komboe yn argymell diweddaru'ch gosodiadau biometreg i ofyn am eich prif gyfrinair (neu PIN) ar y datgloi cyntaf. Hoffech chi ddiweddaru'ch gosodiadau nawr?"
   },
   "windowsBiometricUpdateWarningTitle": {
     "message": "Diweddariad Gosodiadau a Argymhellir"
@@ -4323,7 +4323,7 @@
     "message": "Beth yw dyfais?"
   },
   "aDeviceIs": {
-    "message": "Dyfais yw gosodiad unigryw o ap Bitwarden lle rydych wedi mewngofnodi. Gall ailosod, clirio data ap, neu glirio'ch cwcis arwain at ddyfais yn ymddangos sawl gwaith."
+    "message": "Dyfais yw gosodiad unigryw o ap Komboe lle rydych wedi mewngofnodi. Gall ailosod, clirio data ap, neu glirio'ch cwcis arwain at ddyfais yn ymddangos sawl gwaith."
   },
   "deviceListDescriptionTemp": {
     "message": "Roedd eich cyfrif wedi mewngofnodi i bob un o'r dyfeisiau isod."
@@ -4885,7 +4885,7 @@
     "message": "Secure by design"
   },
   "importDataSecureByDesignBody": {
-    "message": "End-to-end encrypted handoff. Bitwarden never sees your $VENDOR$ login details.",
+    "message": "End-to-end encrypted handoff. Komboe never sees your $VENDOR$ login details.",
     "placeholders": {
       "vendor": {
         "content": "$1",
@@ -5036,7 +5036,7 @@
     "description": "Followed by a literal filename (my_passwords.json) rendered as code."
   },
   "importGnomeInstructionsFileHere": {
-    "message": "file here to Bitwarden.",
+    "message": "file here to Komboe.",
     "description": "Follows the my_passwords.json filename."
   },
   "importPasswordagentInstructions": {
@@ -5539,7 +5539,7 @@
     "description": "Label indicating the most common import formats"
   },
   "uriMatchDefaultStrategyHint": {
-    "message": "Canfod cyfatebiaeth URI yw sut mae Bitwarden yn nodi awgrymiadau awto-lenwi.",
+    "message": "Canfod cyfatebiaeth URI yw sut mae Komboe yn nodi awgrymiadau awto-lenwi.",
     "description": "Explains to the user that URI match detection determines how Bitwarden suggests autofill options, and clarifies that this default strategy applies when no specific match detection is set for a login item."
   },
   "regExAdvancedOptionWarning": {
@@ -5578,7 +5578,7 @@
     "message": "Lawrlwythwch yna rhannwch yr adroddiad diagnostig gyda"
   },
   "bitwardenSupport": {
-    "message": "Cymorth Bitwarden",
+    "message": "Cymorth Komboe",
     "description": "Link text following the troubleshooting description sentence. 'Bitwarden' should not be translated."
   },
   "download": {
@@ -5681,7 +5681,7 @@
     "message": "Nid yw datgloi biometrig ar gael oherwydd ffeiliau system wedi'u camffurfweddu."
   },
   "biometricsStatusHelptextNotEnabledLocally": {
-    "message": "Nid yw datgloi biometrig ar gael oherwydd nid yw wedi'i alluogi ar gyfer $EMAIL$ yn ap bwrdd gwaith Bitwarden.",
+    "message": "Nid yw datgloi biometrig ar gael oherwydd nid yw wedi'i alluogi ar gyfer $EMAIL$ yn ap bwrdd gwaith Komboe.",
     "placeholders": {
       "email": {
         "content": "$1",
@@ -5768,7 +5768,7 @@
     "message": "Sefydlu mewngofnodi dau-gam"
   },
   "newDeviceVerificationNoticeContentPage1": {
-    "message": "Bydd Bitwarden yn anfon cod i'ch e-bost cyfrif i ddilysu mewngofnodi o ddyfeisiau newydd gan ddechrau ym mis Chwefror 2025."
+    "message": "Bydd Komboe yn anfon cod i'ch e-bost cyfrif i ddilysu mewngofnodi o ddyfeisiau newydd gan ddechrau ym mis Chwefror 2025."
   },
   "newDeviceVerificationNoticeContentPage2": {
     "message": "Gallwch sefydlu mewngofnodi dau-gam fel ffordd arall i ddiogelu'ch cyfrif neu newid eich e-bost i un y gallwch ei gyrchu."
@@ -5848,7 +5848,7 @@
     "message": "No passkeys found for this application."
   },
   "passkeyNotAllowedForBitwardenVault": {
-    "message": "Passkeys for $DOMAIN$ can't be saved or used in Bitwarden.",
+    "message": "Passkeys for $DOMAIN$ can't be saved or used in Komboe.",
     "placeholders": {
       "domain": {
         "content": "$1",
@@ -5857,7 +5857,7 @@
     }
   },
   "passkeyNotAllowedForBitwardenVaultDesc": {
-    "message": "Storing the passkey for your Bitwarden account in your vault could lock you out of your account."
+    "message": "Storing the passkey for your Komboe account in your vault could lock you out of your account."
   },
   "closeThisWindow": {
     "message": "Cau'r ffenestr hon"
@@ -5866,7 +5866,7 @@
     "message": "Caniatáu dal sgrin"
   },
   "allowScreenshotsDesc": {
-    "message": "Caniatáu i ap bwrdd gwaith Bitwarden gael ei ddal mewn sgrinluniau a'i weld mewn sesiynau bwrdd gwaith o bell. Bydd analluogi hyn yn atal mynediad ar rai arddangosfeydd allanol."
+    "message": "Caniatáu i ap bwrdd gwaith Komboe gael ei ddal mewn sgrinluniau a'i weld mewn sesiynau bwrdd gwaith o bell. Bydd analluogi hyn yn atal mynediad ar rai arddangosfeydd allanol."
   },
   "confirmWindowStillVisibleTitle": {
     "message": "Cadarnhau bod ffenestr yn dal i fod yn weladwy"
@@ -6003,7 +6003,7 @@
     "message": "Ynghylch y gosodiad hwn"
   },
   "permitCipherDetailsDescription": {
-    "message": "Bydd Bitwarden yn defnyddio URIs mewngofnodi wedi'u cadw i nodi pa eicon neu URL newid cyfrinair y dylid ei ddefnyddio i wella'ch profiad. Ni chaiff unrhyw wybodaeth ei gasglu na'i chadw pan fyddwch yn defnyddio'r gwasanaeth hwn."
+    "message": "Bydd Komboe yn defnyddio URIs mewngofnodi wedi'u cadw i nodi pa eicon neu URL newid cyfrinair y dylid ei ddefnyddio i wella'ch profiad. Ni chaiff unrhyw wybodaeth ei gasglu na'i chadw pan fyddwch yn defnyddio'r gwasanaeth hwn."
   },
   "showQuickCopyActionsDetailsDescription": {
     "message": "Ychwanegu 3 botwm copïo cyflym wrth ymyl eitemau i gopïo'ch enw defnyddiwr, cyfrinair, neu god dilysu i'r clipfwrdd."
@@ -6243,7 +6243,7 @@
     "message": "Dangos llai"
   },
   "enableAutotypeDescription": {
-    "message": "Nid yw Bitwarden yn dilysu lleoliadau mewnbwn, gwnewch yn siŵr eich bod yn y ffenestr a'r maes cywir cyn defnyddio'r llwybr byr."
+    "message": "Nid yw Komboe yn dilysu lleoliadau mewnbwn, gwnewch yn siŵr eich bod yn y ffenestr a'r maes cywir cyn defnyddio'r llwybr byr."
   },
   "typeShortcut": {
     "message": "Teipio llwybr byr"
@@ -6399,7 +6399,7 @@
     "message": "Uwchraddio i Premium"
   },
   "removeMasterPasswordForOrgUserKeyConnector": {
-    "message": "Nid yw eich sefydliad bellach yn defnyddio prif gyfrineiriau i fewngofnodi i Bitwarden. I barhau, dilyswch y sefydliad a'r parth."
+    "message": "Nid yw eich sefydliad bellach yn defnyddio prif gyfrineiriau i fewngofnodi i Komboe. I barhau, dilyswch y sefydliad a'r parth."
   },
   "continueWithLogIn": {
     "message": "Parhau gyda mewngofnodi"
@@ -6720,10 +6720,10 @@
     "message": "Nodwch e-byst lluosog drwy eu gwahanu gyda choma."
   },
   "emailPlaceholder": {
-    "message": "user@bitwarden.com , user@acme.com"
+    "message": "user@komboe.com , user@acme.com"
   },
   "emailPlaceholderMultiple": {
-    "message": "user@bitwarden.com, user@acme.com"
+    "message": "user@komboe.com, user@acme.com"
   },
   "reorderToggleButton": {
     "message": "Aildrefnu $LABEL$. Defnyddiwch y bysell saeth i symud eitem i fyny neu i lawr.",
@@ -7223,15 +7223,15 @@
     "message": "Unknown item, you may need to request permission to access this item."
   },
   "newExperienceDialogTitle": {
-    "message": "Bitwarden has a new look",
+    "message": "Komboe has a new look",
     "description": "Title of the dialog that introduces the redesigned vault to existing users."
   },
   "newExperienceDialogDesc": {
-    "message": "Better experience, same trusted security. The Bitwarden vault has been redesigned based on your feedback, so things are easier to find and work like you'd expect.",
+    "message": "Better experience, same trusted security. The Komboe vault has been redesigned based on your feedback, so things are easier to find and work like you'd expect.",
     "description": "Body copy of the dialog that introduces the redesigned vault to existing users."
   },
   "newExperienceDialogImgAlt": {
-    "message": "A preview of the redesigned Bitwarden vault.",
+    "message": "A preview of the redesigned Komboe vault.",
     "description": "Alt text for the screenshot shown in the dialog that introduces the redesigned vault."
   },
   "exploreTheNewVault": {

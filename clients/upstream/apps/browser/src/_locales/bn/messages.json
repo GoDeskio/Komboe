@@ -1,6 +1,6 @@
 {
   "appName": {
-    "message": "Bitwarden"
+    "message": "Komboe"
   },
   "appLogoLabel": {
     "message": "বিটওয়ার্ডেন লোগো"
@@ -365,7 +365,7 @@
     "message": "বিটওয়ার্ডেন থেকে আরও"
   },
   "continueToBitwardenDotCom": {
-    "message": "bitwarden.com এ চালিয়ে যাবেন?"
+    "message": "komboe.com এ চালিয়ে যাবেন?"
   },
   "bitwardenForBusiness": {
     "message": "ব্যবসার জন্য বিটওয়ার্ডেন"
@@ -374,19 +374,19 @@
     "message": "বিটওয়ার্ডেন অথেন্টিকেটর"
   },
   "continueToAuthenticatorPageDesc": {
-    "message": "বিটওয়ার্ডেন অথেন্টিকেটর আপনাকে অথেন্টিকেটর কী সংরক্ষণ করতে এবং 2-ধাপ যাচাইকরণ প্রবাহের জন্য TOTP কোড তৈরি করতে দেয়। bitwarden.com ওয়েবসাইটে আরও জানুন"
+    "message": "বিটওয়ার্ডেন অথেন্টিকেটর আপনাকে অথেন্টিকেটর কী সংরক্ষণ করতে এবং 2-ধাপ যাচাইকরণ প্রবাহের জন্য TOTP কোড তৈরি করতে দেয়। komboe.com ওয়েবসাইটে আরও জানুন"
   },
   "bitwardenSecretsManager": {
     "message": "বিটওয়ার্ডেন সিক্রেটস ম্যানেজার"
   },
   "continueToSecretsManagerPageDesc": {
-    "message": "বিটওয়ার্ডেন সিক্রেটস ম্যানেজার দিয়ে ডেভেলপার সিক্রেট নিরাপদে সংরক্ষণ, পরিচালনা এবং শেয়ার করুন। bitwarden.com ওয়েবসাইটে আরও জানুন।"
+    "message": "বিটওয়ার্ডেন সিক্রেটস ম্যানেজার দিয়ে ডেভেলপার সিক্রেট নিরাপদে সংরক্ষণ, পরিচালনা এবং শেয়ার করুন। komboe.com ওয়েবসাইটে আরও জানুন।"
   },
   "passwordlessDotDev": {
     "message": "Passwordless.dev"
   },
   "continueToPasswordlessDotDevPageDesc": {
-    "message": "Passwordless.dev দিয়ে ঐতিহ্যবাহী পাসওয়ার্ড থেকে মুক্ত মসৃণ এবং নিরাপদ লগইন অভিজ্ঞতা তৈরি করুন। bitwarden.com ওয়েবসাইটে আরও জানুন।"
+    "message": "Passwordless.dev দিয়ে ঐতিহ্যবাহী পাসওয়ার্ড থেকে মুক্ত মসৃণ এবং নিরাপদ লগইন অভিজ্ঞতা তৈরি করুন। komboe.com ওয়েবসাইটে আরও জানুন।"
   },
   "freeBitwardenFamilies": {
     "message": "বিনামূল্যে বিটওয়ার্ডেন Families"
@@ -1157,7 +1157,7 @@
     "message": "একটি নাম লিখুন।"
   },
   "twoStepLoginConfirmation": {
-    "message": "দ্বি-পদক্ষেপ লগইন অন্য ডিভাইসে আপনার লগইনটি যাচাই করার জন্য সিকিউরিটি কী, প্রমাণীকরণকারী অ্যাপ্লিকেশন, এসএমএস, ফোন কল বা ই-মেইল ব্যাবহারের মাধ্যমে আপনার অ্যাকাউন্টকে আরও সুরক্ষিত করে। bitwarden.com ওয়েব ভল্টে দ্বি-পদক্ষেপের লগইন সক্ষম করা যাবে। আপনি কি এখনই ওয়েবসাইটটি দেখতে চান?"
+    "message": "দ্বি-পদক্ষেপ লগইন অন্য ডিভাইসে আপনার লগইনটি যাচাই করার জন্য সিকিউরিটি কী, প্রমাণীকরণকারী অ্যাপ্লিকেশন, এসএমএস, ফোন কল বা ই-মেইল ব্যাবহারের মাধ্যমে আপনার অ্যাকাউন্টকে আরও সুরক্ষিত করে। komboe.com ওয়েব ভল্টে দ্বি-পদক্ষেপের লগইন সক্ষম করা যাবে। আপনি কি এখনই ওয়েবসাইটটি দেখতে চান?"
   },
   "twoStepLoginConfirmationContent": {
     "message": "বিটওয়ার্ডেন ওয়েব অ্যাপে দুই-ধাপ লগইন সেট আপ করে আপনার অ্যাকাউন্ট আরও নিরাপদ করুন।"
@@ -1313,7 +1313,7 @@
     "message": "সেটিংয়ে যান"
   },
   "notificationAddDesc": {
-    "message": "Bitwarden আপনার জন্য এই পাসওয়ার্ডটি মনে রাখবে?"
+    "message": "Komboe আপনার জন্য এই পাসওয়ার্ডটি মনে রাখবে?"
   },
   "notificationAddSave": {
     "message": "হ্যাঁ, এখনই সংরক্ষণ করুন"
@@ -1451,7 +1451,7 @@
     "message": "নতুন পাসকী সংরক্ষণ করতে বা আপনার ভল্টে সংরক্ষিত পাসকী দিয়ে লগ ইন করতে বলুন। সমস্ত লগ ইন করা অ্যাকাউন্টে প্রযোজ্য।"
   },
   "notificationChangeDesc": {
-    "message": "আপনি কি এই পাসওয়ার্ডটি Bitwarden এ হালনাগাদ করতে চান?"
+    "message": "আপনি কি এই পাসওয়ার্ডটি Komboe এ হালনাগাদ করতে চান?"
   },
   "notificationChangeSave": {
     "message": "হ্যাঁ, এখনই হালনাগাদ করুন"
@@ -1661,7 +1661,7 @@
     "message": "শেয়ার করা ফোল্ডার যোগ করুন"
   },
   "bitwardenForBusinessPageDesc": {
-    "message": "Bitwarden for Business আপনাকে একটি সংস্থা ব্যবহার করে আপনার ভল্ট আইটেম অন্যদের সাথে শেয়ার করতে দেয়। bitwarden.com ওয়েবসাইটে আরও জানুন।"
+    "message": "Komboe for Business আপনাকে একটি সংস্থা ব্যবহার করে আপনার ভল্ট আইটেম অন্যদের সাথে শেয়ার করতে দেয়। komboe.com ওয়েবসাইটে আরও জানুন।"
   },
   "moveToOrganization": {
     "message": "সংস্থায় সরান"
@@ -1815,7 +1815,7 @@
     "message": "সদস্যতা পরিচালনা"
   },
   "premiumManageAlert": {
-    "message": "আপনি bitwarden.com ওয়েব ভল্টে আপনার সদস্যপদ পরিচালনা করতে পারেন। আপনি কি এখনই ওয়েবসাইটটি দেখতে চান?"
+    "message": "আপনি komboe.com ওয়েব ভল্টে আপনার সদস্যপদ পরিচালনা করতে পারেন। আপনি কি এখনই ওয়েবসাইটটি দেখতে চান?"
   },
   "premiumRefresh": {
     "message": "সদস্যতা সতেজ করুন"
@@ -2002,7 +2002,7 @@
     "message": "স্ব-হোস্টকৃত পরিবেশ"
   },
   "selfHostedBaseUrlHint": {
-    "message": "আপনার অন-প্রিমাইজ হোস্ট করা বিটওয়ার্ডেন ইনস্টলেশনের বেস URL উল্লেখ করুন। উদাহরণ: https://bitwarden.company.com"
+    "message": "আপনার অন-প্রিমাইজ হোস্ট করা বিটওয়ার্ডেন ইনস্টলেশনের বেস URL উল্লেখ করুন। উদাহরণ: https://komboe.company.com"
   },
   "selfHostedCustomEnvHeader": {
     "message": "উন্নত কনফিগারেশনের জন্য, আপনি প্রতিটি পরিষেবার বেস URL স্বতন্ত্রভাবে উল্লেখ করতে পারেন।"
@@ -3021,7 +3021,7 @@
     "message": "দুর্বল মূল পাসওয়ার্ড"
   },
   "weakMasterPasswordDesc": {
-    "message": "আপনার চয়নকৃত মূল পাসওয়ার্ডটি দুর্বল। আপনার Bitwarden অ্যাকাউন্টটি সঠিকভাবে সুরক্ষিত করার জন্য আপনার একটি শক্তিশালী মূল পাসওয়ার্ড (বা একটি পাসফ্রেজ) ব্যবহার করা উচিত। আপনি কি নিশ্চিত যে এই মূল পাসওয়ার্ডটি ব্যবহার করতে চান?"
+    "message": "আপনার চয়নকৃত মূল পাসওয়ার্ডটি দুর্বল। আপনার Komboe অ্যাকাউন্টটি সঠিকভাবে সুরক্ষিত করার জন্য আপনার একটি শক্তিশালী মূল পাসওয়ার্ড (বা একটি পাসফ্রেজ) ব্যবহার করা উচিত। আপনি কি নিশ্চিত যে এই মূল পাসওয়ার্ডটি ব্যবহার করতে চান?"
   },
   "rotateAccountEncKey": {
     "message": "আমার অ্যাকাউন্টের এনক্রিপশন কী ও রোটেট করুন"
@@ -3061,7 +3061,7 @@
     "message": "PIN সেট করুন"
   },
   "setYourPinCode": {
-    "message": "Bitwarden আনলক করার জন্য আপনার পিন কোডটি সেট করুন। আপনি যদি অ্যাপ্লিকেশনটি থেকে পুরোপুরি লগ আউট করেন তবে আপনার পিন সেটিংস রিসেট করা হবে।"
+    "message": "Komboe আনলক করার জন্য আপনার পিন কোডটি সেট করুন। আপনি যদি অ্যাপ্লিকেশনটি থেকে পুরোপুরি লগ আউট করেন তবে আপনার পিন সেটিংস রিসেট করা হবে।"
   },
   "setPinCode": {
     "message": "আপনি বিটওয়ার্ডেন আনলক করতে এই PIN ব্যবহার করতে পারেন। আপনি যদি কখনও অ্যাপ্লিকেশন থেকে সম্পূর্ণ লগ আউট করেন তবে আপনার PIN রিসেট হবে।"
@@ -3085,7 +3085,7 @@
     "message": "ডেস্কটপ থেকে নিশ্চিতকরণের অপেক্ষায়"
   },
   "awaitDesktopDesc": {
-    "message": "ব্রাউজারের জন্য বায়োমেট্রিক্স সক্ষম করতে দয়া করে Bitwarden ডেস্কটপ অ্যাপ্লিকেশনটিতে বায়োমেট্রিক্স ব্যবহার সক্ষম করুন।"
+    "message": "ব্রাউজারের জন্য বায়োমেট্রিক্স সক্ষম করতে দয়া করে Komboe ডেস্কটপ অ্যাপ্লিকেশনটিতে বায়োমেট্রিক্স ব্যবহার সক্ষম করুন।"
   },
   "lockWithMasterPassOnRestart": {
     "message": "ব্রাউজার পুনরারম্ভতে মূল পাসওয়ার্ড দিয়ে লক করুন"
@@ -3311,13 +3311,13 @@
     "message": "ব্রাউজার একীকরণ সক্ষম নেই"
   },
   "desktopIntegrationDisabledDesc": {
-    "message": "Bitwarden ডেস্কটপ অ্যাপ্লিকেশনটিতে ব্রাউজার ইন্টিগ্রেশন সক্ষম নেই। ডেস্কটপ অ্যাপ্লিকেশন মধ্যে সেটিংস এ দয়া করে এটি সক্ষম করুন।"
+    "message": "Komboe ডেস্কটপ অ্যাপ্লিকেশনটিতে ব্রাউজার ইন্টিগ্রেশন সক্ষম নেই। ডেস্কটপ অ্যাপ্লিকেশন মধ্যে সেটিংস এ দয়া করে এটি সক্ষম করুন।"
   },
   "startDesktopTitle": {
-    "message": "Bitwarden ডেস্কটপ অ্যাপ্লিকেশন শুরু করুন"
+    "message": "Komboe ডেস্কটপ অ্যাপ্লিকেশন শুরু করুন"
   },
   "startDesktopDesc": {
-    "message": "এই ক্রিয়াকলাপ ব্যবহার করার পূর্বে Bitwarden ডেস্কটপ অ্যাপ্লিকেশনটি শুরু করা দরকার।"
+    "message": "এই ক্রিয়াকলাপ ব্যবহার করার পূর্বে Komboe ডেস্কটপ অ্যাপ্লিকেশনটি শুরু করা দরকার।"
   },
   "errorEnableBiometricTitle": {
     "message": "বায়োমেট্রিক্স সক্ষম করতে অক্ষম"
@@ -5369,7 +5369,7 @@
     "message": "Secure by design"
   },
   "importDataSecureByDesignBody": {
-    "message": "End-to-end encrypted handoff. Bitwarden never sees your $VENDOR$ login details.",
+    "message": "End-to-end encrypted handoff. Komboe never sees your $VENDOR$ login details.",
     "placeholders": {
       "vendor": {
         "content": "$1",
@@ -6666,7 +6666,7 @@
     "message": "ব্রাউজার ছাড়াই আপনার ভল্ট অ্যাক্সেস করুন, তারপর ডেস্কটপ অ্যাপ এবং ব্রাউজার এক্সটেনশন উভয় ক্ষেত্রেই আনলক দ্রুত করতে বায়োমেট্রিক্স দিয়ে আনলক সেট আপ করুন।"
   },
   "downloadFromBitwardenNow": {
-    "message": "এখনই bitwarden.com থেকে ডাউনলোড করুন"
+    "message": "এখনই komboe.com থেকে ডাউনলোড করুন"
   },
   "getItOnGooglePlay": {
     "message": "Google Play এ পান"
@@ -7920,10 +7920,10 @@
     "message": "কমা দিয়ে পৃথক করে একাধিক ইমেইল লিখুন।"
   },
   "emailPlaceholder": {
-    "message": "user@bitwarden.com , user@acme.com"
+    "message": "user@komboe.com , user@acme.com"
   },
   "emailPlaceholderMultiple": {
-    "message": "user@bitwarden.com, user@acme.com"
+    "message": "user@komboe.com, user@acme.com"
   },
   "downloadBitwardenApps": {
     "message": "বিটওয়ার্ডেন অ্যাপ ডাউনলোড করুন"
@@ -7945,13 +7945,13 @@
     "message": "Sync unlock with desktop app"
   },
   "syncUnlockWithDesktopDescription": {
-    "message": "The Bitwarden browser extension and desktop app lock and unlock together."
+    "message": "The Komboe browser extension and desktop app lock and unlock together."
   },
   "syncUnlockWithWeb": {
     "message": "Sync unlock with web app"
   },
   "syncUnlockWithWebDescription": {
-    "message": "The Bitwarden browser extension and web app lock and unlock together."
+    "message": "The Komboe browser extension and web app lock and unlock together."
   },
   "sharedUnlockUnavailableUntrustedDevice": {
     "message": "শেয়ার করা আনলক উপলব্ধ নয় কারণ আপনি এই ডিভাইসটি মনে রাখতে চাননি। এই সেটিং সক্ষম করতে, আবার লগ ইন করার চেষ্টা করুন।"
@@ -8451,15 +8451,15 @@
     "message": "অজানা আইটেম, এই আইটেম অ্যাক্সেস করতে আপনাকে অনুমতি অনুরোধ করতে হতে পারে।"
   },
   "newExperienceDialogTitle": {
-    "message": "Bitwarden has a new look",
+    "message": "Komboe has a new look",
     "description": "Title of the dialog that introduces the redesigned vault to existing users."
   },
   "newExperienceDialogDesc": {
-    "message": "Better experience, same trusted security. The Bitwarden vault has been redesigned based on your feedback, so things are easier to find and work like you'd expect.",
+    "message": "Better experience, same trusted security. The Komboe vault has been redesigned based on your feedback, so things are easier to find and work like you'd expect.",
     "description": "Body copy of the dialog that introduces the redesigned vault to existing users."
   },
   "newExperienceDialogImgAlt": {
-    "message": "A preview of the redesigned Bitwarden vault.",
+    "message": "A preview of the redesigned Komboe vault.",
     "description": "Alt text for the screenshot shown in the dialog that introduces the redesigned vault."
   },
   "exploreTheNewVault": {

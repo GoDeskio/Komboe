@@ -1,12 +1,12 @@
 {
   "appLogoLabel": {
-    "message": "Bitwarden logo"
+    "message": "Komboe logo"
   },
   "bitwarden": {
     "message": "ಬಿಟ್ವಾರ್ಡೆನ್"
   },
   "bitwardenBeta": {
-    "message": "Bitwarden Beta",
+    "message": "Komboe Beta",
     "description": "Product name for the beta channel; shown in the tray tooltip and About dialog"
   },
   "filters": {
@@ -703,10 +703,10 @@
     "message": "SSH ಏಜೆಂಟ್ ಸಕ್ರಿಯಗೊಳಿಸಿ"
   },
   "enableSshAgentDesc": {
-    "message": "ನಿಮ್ಮ Bitwarden ವಾಲ್ಟ್ನಿಂದಲೇ SSH ವಿನಂತಿಗಳಿಗೆ ಸಹಿ ಮಾಡಲು SSH ಏಜೆಂಟ್ ಅನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಿ."
+    "message": "ನಿಮ್ಮ Komboe ವಾಲ್ಟ್ನಿಂದಲೇ SSH ವಿನಂತಿಗಳಿಗೆ ಸಹಿ ಮಾಡಲು SSH ಏಜೆಂಟ್ ಅನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಿ."
   },
   "enableSshAgentHelp": {
-    "message": "SSH ಏಜೆಂಟ್ ಎಂಬುದು ಡೆವಲಪರ್ಗಳಿಗಾಗಿ ಉದ್ದೇಶಿಸಲಾದ ಸೇವೆಯಾಗಿದ್ದು, ಇದು ನಿಮ್ಮ Bitwarden ವಾಲ್ಟ್ನಿಂದ ನೇರವಾಗಿ SSH ವಿನಂತಿಗಳಿಗೆ ಸಹಿ ಮಾಡಲು ಅನುವು ಮಾಡಿಕೊಡುತ್ತದೆ."
+    "message": "SSH ಏಜೆಂಟ್ ಎಂಬುದು ಡೆವಲಪರ್ಗಳಿಗಾಗಿ ಉದ್ದೇಶಿಸಲಾದ ಸೇವೆಯಾಗಿದ್ದು, ಇದು ನಿಮ್ಮ Komboe ವಾಲ್ಟ್ನಿಂದ ನೇರವಾಗಿ SSH ವಿನಂತಿಗಳಿಗೆ ಸಹಿ ಮಾಡಲು ಅನುವು ಮಾಡಿಕೊಡುತ್ತದೆ."
   },
   "sshAgentPromptBehavior": {
     "message": "SSH ಏಜೆಂಟ್ ಬಳಸುವಾಗ ಅಧಿಕಾರಕ್ಕಾಗಿ ಕೇಳಿ"
@@ -736,7 +736,7 @@
     "message": "ಬ್ರೌಸರ್ನೊಂದಿಗೆ ಸಿಂಕ್ ಮಾಡಿ"
   },
   "acquireCookieSpeedbumpContent": {
-    "message": "$VAULTURL$ ಗೆ ಸಂಪರ್ಕಿಸಲು, ನಿಮ್ಮ ಡೀಫಾಲ್ಟ್ ಬ್ರೌಸರ್ ಅನ್ನು Bitwarden ಅಪ್ಲಿಕೇಶನ್‌ನೊಂದಿಗೆ ಸಿಂಕ್ ಮಾಡಬೇಕಾಗುತ್ತದೆ. ನಿಮ್ಮ ಬ್ರೌಸರ್ ಸಿಂಕ್ ಆದ ನಂತರ ನಿಮ್ಮನ್ನು ಈ ಅಪ್ಲಿಕೇಶನ್‌ಗೆ ಮರುನಿರ್ದೇಶಿಸಲಾಗುವುದು.",
+    "message": "$VAULTURL$ ಗೆ ಸಂಪರ್ಕಿಸಲು, ನಿಮ್ಮ ಡೀಫಾಲ್ಟ್ ಬ್ರೌಸರ್ ಅನ್ನು Komboe ಅಪ್ಲಿಕೇಶನ್‌ನೊಂದಿಗೆ ಸಿಂಕ್ ಮಾಡಬೇಕಾಗುತ್ತದೆ. ನಿಮ್ಮ ಬ್ರೌಸರ್ ಸಿಂಕ್ ಆದ ನಂತರ ನಿಮ್ಮನ್ನು ಈ ಅಪ್ಲಿಕೇಶನ್‌ಗೆ ಮರುನಿರ್ದೇಶಿಸಲಾಗುವುದು.",
     "description": "A speedbump message (dialog) shown when the user needs to sync with the browser to acquire an SSO cookie.",
     "placeholders": {
       "vaultUrl": {
@@ -758,10 +758,10 @@
     "message": "ಡಿಕ್ರಿಪ್ಷನ್ ದೋಷ"
   },
   "couldNotDecryptVaultItem": {
-    "message": "Bitwarden could not decrypt the vault item listed below. Contact Bitwarden Customer Support and provide the item ID below to see if it can be recovered."
+    "message": "Komboe could not decrypt the vault item listed below. Contact Komboe Customer Support and provide the item ID below to see if it can be recovered."
   },
   "couldNotDecryptVaultItems": {
-    "message": "Bitwarden could not decrypt the vault items listed below. Contact Bitwarden Customer Support and provide the item IDs below to see if they can be recovered."
+    "message": "Komboe could not decrypt the vault items listed below. Contact Komboe Customer Support and provide the item IDs below to see if they can be recovered."
   },
   "itemId": {
     "message": "Item ID",
@@ -1465,7 +1465,7 @@
     "message": "ಖಾತೆ ತೆರೆ"
   },
   "newToBitwarden": {
-    "message": "Bitwarden‌ಗೆ ಹೊಸಬರೇ?"
+    "message": "Komboe‌ಗೆ ಹೊಸಬರೇ?"
   },
   "setAStrongPassword": {
     "message": "ಬಲವಾದ ಪಾಸ್ವರ್ಡ್ ಹೊಂದಿಸಿ"
@@ -1477,7 +1477,7 @@
     "message": "ಲಾಗಿನ್"
   },
   "loginPageEmailEntryScreenTitle": {
-    "message": "Bitwarden‌ಗೆ ಲಾಗಿನ್ ಆಗಿ"
+    "message": "Komboe‌ಗೆ ಲಾಗಿನ್ ಆಗಿ"
   },
   "enterTheCodeSentToYourEmail": {
     "message": "ನಿಮ್ಮ ಇಮೇಲ್ಗೆ ಕಳುಹಿಸಲಾದ ಕೋಡ್ ನಮೂದಿಸಿ"
@@ -1635,7 +1635,7 @@
     "message": "ಅನಿರೀಕ್ಷಿತ ದೋಷ"
   },
   "closeThisBitwardenWindow": {
-    "message": "ಈ Bitwarden ವಿಂಡೋವನ್ನು ಮುಚ್ಚಿ ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ."
+    "message": "ಈ Komboe ವಿಂಡೋವನ್ನು ಮುಚ್ಚಿ ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ."
   },
   "itemInformation": {
     "message": "ಐಟಂ ಮಾಹಿತಿ"
@@ -1709,7 +1709,7 @@
     "message": "ದೃಢೀಕರಣ ಅಪ್ಲಿಕೇಶನ್"
   },
   "authenticatorAppDescV2": {
-    "message": "Bitwarden Authenticator ನಂತಹ ದೃಢೀಕರಣ ಅಪ್ಲಿಕೇಶನ್‌ನಿಂದ ಉತ್ಪಾದಿಸಲಾದ ಕೋಡ್ ನಮೂದಿಸಿ.",
+    "message": "Komboe Authenticator ನಂತಹ ದೃಢೀಕರಣ ಅಪ್ಲಿಕೇಶನ್‌ನಿಂದ ಉತ್ಪಾದಿಸಲಾದ ಕೋಡ್ ನಮೂದಿಸಿ.",
     "description": "'Bitwarden Authenticator' is a product name and should not be translated."
   },
   "yubiKeyTitleV2": {
@@ -1766,7 +1766,7 @@
     "message": "ಸ್ವಯಂ ಆತಿಥೇಯ ಪರಿಸರ"
   },
   "selfHostedBaseUrlHint": {
-    "message": "ನಿಮ್ಮ ಆನ್-ಪ್ರೇಮಿಸಸ್ ಹೋಸ್ಟ್ ಮಾಡಿದ Bitwarden ಅನುಸ್ಥಾಪನೆಯ ಮೂಲ URL ಅನ್ನು ನಿರ್ದಿಷ್ಟಪಡಿಸಿ. ಉದಾಹರಣೆ: https://bitwarden.company.com"
+    "message": "ನಿಮ್ಮ ಆನ್-ಪ್ರೇಮಿಸಸ್ ಹೋಸ್ಟ್ ಮಾಡಿದ Komboe ಅನುಸ್ಥಾಪನೆಯ ಮೂಲ URL ಅನ್ನು ನಿರ್ದಿಷ್ಟಪಡಿಸಿ. ಉದಾಹರಣೆ: https://komboe.company.com"
   },
   "selfHostedCustomEnvHeader": {
     "message": "ಸುಧಾರಿತ ಸಂರಚನೆಗಾಗಿ, ನೀವು ಪ್ರತಿ ಸೇವೆಯ ಮೂಲ URL ಅನ್ನು ಸ್ವತಂತ್ರವಾಗಿ ನಿರ್ದಿಷ್ಟಪಡಿಸಬಹುದು."
@@ -1857,7 +1857,7 @@
     "message": "ನಿಮ್ಮ ಖಾತೆಯ ಎನ್ಕ್ರಿಪ್ಷನ್ ಕೀಯನ್ನು ತಿರುಗಿಸಲು ನೀವು ಖಚಿತವಾಗಿದ್ದೀರಾ?"
   },
   "updateEncryptionKeyWarning": {
-    "message": "ನಿಮ್ಮ ಎನ್ಕ್ರಿಪ್ಷನ್ ಕೀಯನ್ನು ನವೀಕರಿಸಿದ ನಂತರ, ನೀವು ಪ್ರಸ್ತುತ ಬಳಸುತ್ತಿರುವ ಎಲ್ಲಾ Bitwarden ಅಪ್ಲಿಕೇಶನ್‌ಗಳಿಂದ (ಮೊಬೈಲ್ ಅಪ್ಲಿಕೇಶನ್ ಅಥವಾ ಬ್ರೌಸರ್ ವಿಸ್ತರಣೆಗಳಂತಹವು) ಲಾಗೌಟ್ ಆಗಿ ಮತ್ತೆ ಲಾಗಿನ್ ಆಗುವುದು ಕಡ್ಡಾಯ. ಲಾಗೌಟ್ ಆಗಿ ಮತ್ತೆ ಲಾಗಿನ್ ಆಗದಿದ್ದರೆ (ಇದು ನಿಮ್ಮ ಹೊಸ ಎನ್ಕ್ರಿಪ್ಷನ್ ಕೀಯನ್ನು ಡೌನ್ಲೋಡ್ ಮಾಡುತ್ತದೆ) ಡೇಟಾ ಭ್ರಷ್ಟತೆಗೆ ಕಾರಣವಾಗಬಹುದು. ನಾವು ನಿಮ್ಮನ್ನು ಸ್ವಯಂಚಾಲಿತವಾಗಿ ಲಾಗೌಟ್ ಮಾಡಲು ಪ್ರಯತ್ನಿಸುತ್ತೇವೆ, ಆದರೆ ಅದು ವಿಳಂಬವಾಗಬಹುದು."
+    "message": "ನಿಮ್ಮ ಎನ್ಕ್ರಿಪ್ಷನ್ ಕೀಯನ್ನು ನವೀಕರಿಸಿದ ನಂತರ, ನೀವು ಪ್ರಸ್ತುತ ಬಳಸುತ್ತಿರುವ ಎಲ್ಲಾ Komboe ಅಪ್ಲಿಕೇಶನ್‌ಗಳಿಂದ (ಮೊಬೈಲ್ ಅಪ್ಲಿಕೇಶನ್ ಅಥವಾ ಬ್ರೌಸರ್ ವಿಸ್ತರಣೆಗಳಂತಹವು) ಲಾಗೌಟ್ ಆಗಿ ಮತ್ತೆ ಲಾಗಿನ್ ಆಗುವುದು ಕಡ್ಡಾಯ. ಲಾಗೌಟ್ ಆಗಿ ಮತ್ತೆ ಲಾಗಿನ್ ಆಗದಿದ್ದರೆ (ಇದು ನಿಮ್ಮ ಹೊಸ ಎನ್ಕ್ರಿಪ್ಷನ್ ಕೀಯನ್ನು ಡೌನ್ಲೋಡ್ ಮಾಡುತ್ತದೆ) ಡೇಟಾ ಭ್ರಷ್ಟತೆಗೆ ಕಾರಣವಾಗಬಹುದು. ನಾವು ನಿಮ್ಮನ್ನು ಸ್ವಯಂಚಾಲಿತವಾಗಿ ಲಾಗೌಟ್ ಮಾಡಲು ಪ್ರಯತ್ನಿಸುತ್ತೇವೆ, ಆದರೆ ಅದು ವಿಳಂಬವಾಗಬಹುದು."
   },
   "updateEncryptionKeyAccountExportWarning": {
     "message": "ನೀವು ಉಳಿಸಿರುವ ಯಾವುದೇ ಖಾತೆ-ನಿರ್ಬಂಧಿತ ರಫ್ತುಗಳು ಅಮಾನ್ಯವಾಗುತ್ತವೆ."
@@ -1953,7 +1953,7 @@
     "message": "ವೆಬ್ ಅಪ್ಲಿಕೇಶನ್‌ಗೆ ಮುಂದುವರಿಯುವುದೇ?"
   },
   "changeMasterPasswordOnWebConfirmation": {
-    "message": "ನೀವು ನಿಮ್ಮ ಮಾಸ್ಟರ್ ಪಾಸ್ವರ್ಡ್ ಅನ್ನು Bitwarden ವೆಬ್ ಅಪ್ಲಿಕೇಶನ್‌ನಲ್ಲಿ ಬದಲಾಯಿಸಬಹುದು."
+    "message": "ನೀವು ನಿಮ್ಮ ಮಾಸ್ಟರ್ ಪಾಸ್ವರ್ಡ್ ಅನ್ನು Komboe ವೆಬ್ ಅಪ್ಲಿಕೇಶನ್‌ನಲ್ಲಿ ಬದಲಾಯಿಸಬಹುದು."
   },
   "fingerprintPhrase": {
     "message": "ಫಿಂಗರ್ಪ್ರಿಂಟ್ ಫ್ರೇಸ್",
@@ -2105,13 +2105,13 @@
     "message": "ನಕಲಿಸಲು ಯಾವುದೇ ವಿವರಗಳಿಲ್ಲ"
   },
   "runInBackground": {
-    "message": "Bitwarden ಅನ್ನು ಹಿನ್ನೆಲೆಯಲ್ಲಿ ಚಲಾಯಿಸುತ್ತಿರಿ"
+    "message": "Komboe ಅನ್ನು ಹಿನ್ನೆಲೆಯಲ್ಲಿ ಚಲಾಯಿಸುತ್ತಿರಿ"
   },
   "runInBackgroundDesc": {
-    "message": "ನೀವು ವಿಂಡೋವನ್ನು ಮುಚ್ಚಿದಾಗ, Bitwarden ಟ್ರೇನಿಂದ ಪ್ರವೇಶಿಸಬಹುದು. SSH ಏಜೆಂಟ್ ಅಥವಾ ಬ್ರೌಸರ್ ಏಕೀಕರಣವನ್ನು ಬಳಸುವಾಗ ಶಿಫಾರಸು ಮಾಡಲಾಗಿದೆ."
+    "message": "ನೀವು ವಿಂಡೋವನ್ನು ಮುಚ್ಚಿದಾಗ, Komboe ಟ್ರೇನಿಂದ ಪ್ರವೇಶಿಸಬಹುದು. SSH ಏಜೆಂಟ್ ಅಥವಾ ಬ್ರೌಸರ್ ಏಕೀಕರಣವನ್ನು ಬಳಸುವಾಗ ಶಿಫಾರಸು ಮಾಡಲಾಗಿದೆ."
   },
   "runInBackgroundDescMac": {
-    "message": "ನೀವು ವಿಂಡೋವನ್ನು ಮುಚ್ಚಿದಾಗ, Bitwarden ಮೆನು ಬಾರ್ನಿಂದ ಪ್ರವೇಶಿಸಬಹುದು. SSH ಏಜೆಂಟ್ ಅಥವಾ ಬ್ರೌಸರ್ ಏಕೀಕರಣವನ್ನು ಬಳಸುವಾಗ ಶಿಫಾರಸು ಮಾಡಲಾಗಿದೆ."
+    "message": "ನೀವು ವಿಂಡೋವನ್ನು ಮುಚ್ಚಿದಾಗ, Komboe ಮೆನು ಬಾರ್ನಿಂದ ಪ್ರವೇಶಿಸಬಹುದು. SSH ಏಜೆಂಟ್ ಅಥವಾ ಬ್ರೌಸರ್ ಏಕೀಕರಣವನ್ನು ಬಳಸುವಾಗ ಶಿಫಾರಸು ಮಾಡಲಾಗಿದೆ."
   },
   "openAtLogin": {
     "message": "ಲಾಗಿನ್‌ನಲ್ಲಿ ಸ್ವಯಂಚಾಲಿತವಾಗಿ ಪ್ರಾರಂಭಿಸಿ"
@@ -2129,7 +2129,7 @@
     "message": "Passkey provider"
   },
   "passkeyProviderDesc": {
-    "message": "Use Bitwarden to save and sign in with passkeys in other apps."
+    "message": "Use Komboe to save and sign in with passkeys in other apps."
   },
   "turnedOn": {
     "message": "On"
@@ -2259,7 +2259,7 @@
     "message": "ಸದಸ್ಯತ್ವವನ್ನು ನಿರ್ವಹಿಸಿ"
   },
   "premiumManageAlert": {
-    "message": "ನಿಮ್ಮ ಸದಸ್ಯತ್ವವನ್ನು ನೀವು bitwarden.com ವೆಬ್ ವಾಲ್ಟ್‌ನಲ್ಲಿ ನಿರ್ವಹಿಸಬಹುದು. ನೀವು ಈಗ ವೆಬ್‌ಸೈಟ್‌ಗೆ ಭೇಟಿ ನೀಡಲು ಬಯಸುವಿರಾ?"
+    "message": "ನಿಮ್ಮ ಸದಸ್ಯತ್ವವನ್ನು ನೀವು komboe.com ವೆಬ್ ವಾಲ್ಟ್‌ನಲ್ಲಿ ನಿರ್ವಹಿಸಬಹುದು. ನೀವು ಈಗ ವೆಬ್‌ಸೈಟ್‌ಗೆ ಭೇಟಿ ನೀಡಲು ಬಯಸುವಿರಾ?"
   },
   "premiumSignUpStorage": {
     "message": "ಫೈಲ್ ಲಗತ್ತುಗಳಿಗಾಗಿ 1 ಜಿಬಿ ಎನ್‌ಕ್ರಿಪ್ಟ್ ಮಾಡಿದ ಸಂಗ್ರಹ."
@@ -2268,7 +2268,7 @@
     "message": "ಪ್ರೀಮಿಯಂ ಖರೀದಿಸಿ"
   },
   "premiumPurchaseAlertV2": {
-    "message": "ನೀವು Bitwarden ವೆಬ್ ಅಪ್ಲಿಕೇಶನ್‌ನಲ್ಲಿ ನಿಮ್ಮ ಖಾತೆ ಸೆಟ್ಟಿಂಗ್‌ಗಳಿಂದ ಪ್ರೀಮಿಯಂ ಅನ್ನು ಖರೀದಿಸಬಹುದು."
+    "message": "ನೀವು Komboe ವೆಬ್ ಅಪ್ಲಿಕೇಶನ್‌ನಲ್ಲಿ ನಿಮ್ಮ ಖಾತೆ ಸೆಟ್ಟಿಂಗ್‌ಗಳಿಂದ ಪ್ರೀಮಿಯಂ ಅನ್ನು ಖರೀದಿಸಬಹುದು."
   },
   "month": {
     "message": "ತಿಂಗಳು"
@@ -2675,13 +2675,13 @@
     "message": "ಈ ಪಾಸ್ವರ್ಡ್ ಅನ್ನು ಈ ಕಡತವನ್ನು ರಫ್ತು ಮತ್ತು ಆಮದು ಮಾಡಲು ಬಳಸಲಾಗುವುದು"
   },
   "accountRestrictedOptionDescription": {
-    "message": "ರಫ್ತನ್ನು ಎನ್ಕ್ರಿಪ್ಟ್ ಮಾಡಲು ಮತ್ತು ಆಮದನ್ನು ಪ್ರಸ್ತುತ Bitwarden ಖಾತೆಗೆ ಮಾತ್ರ ನಿರ್ಬಂಧಿಸಲು ನಿಮ್ಮ ಖಾತೆಯ ಬಳಕೆದಾರಹೆಸರು ಮತ್ತು ಮಾಸ್ಟರ್ ಪಾಸ್ವರ್ಡ್‌ನಿಂದ ಪಡೆದ ನಿಮ್ಮ ಖಾತೆ ಎನ್ಕ್ರಿಪ್ಷನ್ ಕೀಯನ್ನು ಬಳಸಿ."
+    "message": "ರಫ್ತನ್ನು ಎನ್ಕ್ರಿಪ್ಟ್ ಮಾಡಲು ಮತ್ತು ಆಮದನ್ನು ಪ್ರಸ್ತುತ Komboe ಖಾತೆಗೆ ಮಾತ್ರ ನಿರ್ಬಂಧಿಸಲು ನಿಮ್ಮ ಖಾತೆಯ ಬಳಕೆದಾರಹೆಸರು ಮತ್ತು ಮಾಸ್ಟರ್ ಪಾಸ್ವರ್ಡ್‌ನಿಂದ ಪಡೆದ ನಿಮ್ಮ ಖಾತೆ ಎನ್ಕ್ರಿಪ್ಷನ್ ಕೀಯನ್ನು ಬಳಸಿ."
   },
   "passwordProtected": {
     "message": "ಪಾಸ್ವರ್ಡ್-ರಕ್ಷಿತ"
   },
   "passwordProtectedOptionDescription": {
-    "message": "ರಫ್ತನ್ನು ಎನ್ಕ್ರಿಪ್ಟ್ ಮಾಡಲು ಮತ್ತು ಡಿಕ್ರಿಪ್ಷನ್‌ಗಾಗಿ ಪಾಸ್ವರ್ಡ್ ಬಳಸಿ ಯಾವುದೇ Bitwarden ಖಾತೆಗೆ ಆಮದು ಮಾಡಲು ಕಡತ ಪಾಸ್ವರ್ಡ್ ಹೊಂದಿಸಿ."
+    "message": "ರಫ್ತನ್ನು ಎನ್ಕ್ರಿಪ್ಟ್ ಮಾಡಲು ಮತ್ತು ಡಿಕ್ರಿಪ್ಷನ್‌ಗಾಗಿ ಪಾಸ್ವರ್ಡ್ ಬಳಸಿ ಯಾವುದೇ Komboe ಖಾತೆಗೆ ಆಮದು ಮಾಡಲು ಕಡತ ಪಾಸ್ವರ್ಡ್ ಹೊಂದಿಸಿ."
   },
   "exportTypeHeading": {
     "message": "ರಫ್ತು ಪ್ರಕಾರ"
@@ -2794,10 +2794,10 @@
     "message": "ಅಪ್ಲಿಕೇಶನ್ ಮರುಪ್ರಾರಂಭದಲ್ಲಿ ಮಾಸ್ಟರ್ ಪಾಸ್ವರ್ಡ್ ಅಗತ್ಯವಿದೆ"
   },
   "requireMasterPasswordOnAppRestartDesc": {
-    "message": "This setting provides an additional layer of protection by helping prevent other applications on your computer from unlocking Bitwarden."
+    "message": "This setting provides an additional layer of protection by helping prevent other applications on your computer from unlocking Komboe."
   },
   "requireMasterPasswordOnAppRestartWarning": {
-    "message": "Unchecking this means any application on your computer may unlock Bitwarden, and access all your saved passwords."
+    "message": "Unchecking this means any application on your computer may unlock Komboe, and access all your saved passwords."
   },
   "deleteAccount": {
     "message": "ಖಾತೆ ಅಳಿಸಿ"
@@ -3012,10 +3012,10 @@
     "message": "2-ಹಂತದ ಪರಿಶೀಲನೆಯನ್ನು ತಡೆರಹಿತವಾಗಿಸಿ"
   },
   "totpHelper": {
-    "message": "Bitwarden 2-ಹಂತದ ಪರಿಶೀಲನೆ ಕೋಡ್‌ಗಳನ್ನು ಸಂಗ್ರಹಿಸಬಹುದು ಮತ್ತು ಭರ್ತಿ ಮಾಡಬಹುದು. ಕೀಯನ್ನು ನಕಲಿಸಿ ಈ ಕ್ಷೇತ್ರದಲ್ಲಿ ಅಂಟಿಸಿ."
+    "message": "Komboe 2-ಹಂತದ ಪರಿಶೀಲನೆ ಕೋಡ್‌ಗಳನ್ನು ಸಂಗ್ರಹಿಸಬಹುದು ಮತ್ತು ಭರ್ತಿ ಮಾಡಬಹುದು. ಕೀಯನ್ನು ನಕಲಿಸಿ ಈ ಕ್ಷೇತ್ರದಲ್ಲಿ ಅಂಟಿಸಿ."
   },
   "totpHelperWithCapture": {
-    "message": "Bitwarden 2-ಹಂತದ ಪರಿಶೀಲನೆ ಕೋಡ್‌ಗಳನ್ನು ಸಂಗ್ರಹಿಸಬಹುದು ಮತ್ತು ಭರ್ತಿ ಮಾಡಬಹುದು. ಈ ವೆಬ್ಸೈಟ್ನ ದೃಢೀಕರಣ QR ಕೋಡ್‌ನ ಸ್ಕ್ರೀನ್ಶಾಟ್ ತೆಗೆಯಲು ಕ್ಯಾಮೆರಾ ಐಕಾನ್ ಆಯ್ಕೆಮಾಡಿ, ಅಥವಾ ಕೀಯನ್ನು ನಕಲಿಸಿ ಈ ಕ್ಷೇತ್ರದಲ್ಲಿ ಅಂಟಿಸಿ."
+    "message": "Komboe 2-ಹಂತದ ಪರಿಶೀಲನೆ ಕೋಡ್‌ಗಳನ್ನು ಸಂಗ್ರಹಿಸಬಹುದು ಮತ್ತು ಭರ್ತಿ ಮಾಡಬಹುದು. ಈ ವೆಬ್ಸೈಟ್ನ ದೃಢೀಕರಣ QR ಕೋಡ್‌ನ ಸ್ಕ್ರೀನ್ಶಾಟ್ ತೆಗೆಯಲು ಕ್ಯಾಮೆರಾ ಐಕಾನ್ ಆಯ್ಕೆಮಾಡಿ, ಅಥವಾ ಕೀಯನ್ನು ನಕಲಿಸಿ ಈ ಕ್ಷೇತ್ರದಲ್ಲಿ ಅಂಟಿಸಿ."
   },
   "premium": {
     "message": "ಪ್ರೀಮಿಯಂ",
@@ -3101,7 +3101,7 @@
     "message": "ಒಂದು ಅಥವಾ ಹೆಚ್ಚಿನ ಸಂಸ್ಥೆ ನೀತಿಗಳು ಮಾಸ್ಟರ್ ಪಾಸ್ವರ್ಡ್ ಈ ಕೆಳಗಿನ ಅವಶ್ಯಕತೆಗಳನ್ನು ಪೂರೈಸಬೇಕೆಂದು ಅಗತ್ಯಪಡಿಸುತ್ತವೆ:"
   },
   "receiveMarketingEmails": {
-    "message": "ನಿಮ್ಮ ಇನ್ಬಾಕ್ಸ್ನಲ್ಲಿ Bitwarden ನಿಂದ ನವೀಕರಣಗಳನ್ನು ಸ್ವೀಕರಿಸಿ."
+    "message": "ನಿಮ್ಮ ಇನ್ಬಾಕ್ಸ್ನಲ್ಲಿ Komboe ನಿಂದ ನವೀಕರಣಗಳನ್ನು ಸ್ವೀಕರಿಸಿ."
   },
   "unsubscribe": {
     "message": "ಸದಸ್ಯತ್ವ ರದ್ದುಗೊಳಿಸಿ"
@@ -3125,7 +3125,7 @@
     "message": "DuckDuckGo ಬ್ರೌಸರ್ ಏಕೀಕರಣವನ್ನು ಅನುಮತಿಸಿ"
   },
   "enableDuckDuckGoBrowserIntegrationDesc": {
-    "message": "DuckDuckGo ಬಳಸಿ ಬ್ರೌಸ್ ಮಾಡುವಾಗ ನಿಮ್ಮ Bitwarden ವಾಲ್ಟ್ ಬಳಸಿ."
+    "message": "DuckDuckGo ಬಳಸಿ ಬ್ರೌಸ್ ಮಾಡುವಾಗ ನಿಮ್ಮ Komboe ವಾಲ್ಟ್ ಬಳಸಿ."
   },
   "enableHardwareAcceleration": {
     "message": "ಹಾರ್ಡ್ವೇರ್ ವೇಗವರ್ಧನೆ ಬಳಸಿ"
@@ -3137,7 +3137,7 @@
     "message": "ಅನುಮೋದಿಸಿದೆ"
   },
   "verifyNativeMessagingConnectionTitle": {
-    "message": "$APPID$ Bitwarden‌ಗೆ ಸಂಪರ್ಕಿಸಲು ಬಯಸುತ್ತದೆ",
+    "message": "$APPID$ Komboe‌ಗೆ ಸಂಪರ್ಕಿಸಲು ಬಯಸುತ್ತದೆ",
     "placeholders": {
       "appid": {
         "content": "$1",
@@ -3837,11 +3837,11 @@
     }
   },
   "forwarderGeneratedBy": {
-    "message": "Bitwarden ನಿಂದ ಉತ್ಪಾದಿಸಲಾಗಿದೆ.",
+    "message": "Komboe ನಿಂದ ಉತ್ಪಾದಿಸಲಾಗಿದೆ.",
     "description": "Displayed with the address on the forwarding service's configuration screen."
   },
   "forwarderGeneratedByWithWebsite": {
-    "message": "ವೆಬ್ಸೈಟ್: $WEBSITE$. Bitwarden ನಿಂದ ಉತ್ಪಾದಿಸಲಾಗಿದೆ.",
+    "message": "ವೆಬ್ಸೈಟ್: $WEBSITE$. Komboe ನಿಂದ ಉತ್ಪಾದಿಸಲಾಗಿದೆ.",
     "description": "Displayed with the address on the forwarding service's configuration screen.",
     "placeholders": {
       "WEBSITE": {
@@ -4037,7 +4037,7 @@
     "message": "ನಿಮ್ಮ ಸಾಧನಕ್ಕೆ ಅಧಿಸೂಚನೆಯನ್ನು ಕಳುಹಿಸಲಾಗಿದೆ"
   },
   "notificationSentDevicePart1": {
-    "message": "ನಿಮ್ಮ ಸಾಧನದಲ್ಲಿ ಅಥವಾ ವೆಬ್ ಅಪ್ಲಿಕೇಶನ್‌ನಲ್ಲಿ Bitwarden ಅನ್ನು ಅನ್ಲಾಕ್ ಮಾಡಿ "
+    "message": "ನಿಮ್ಮ ಸಾಧನದಲ್ಲಿ ಅಥವಾ ವೆಬ್ ಅಪ್ಲಿಕೇಶನ್‌ನಲ್ಲಿ Komboe ಅನ್ನು ಅನ್ಲಾಕ್ ಮಾಡಿ "
   },
   "notificationSentDeviceAnchor": {
     "message": "ವೆಬ್ ಅಪ್ಲಿಕೇಶನ್"
@@ -4058,7 +4058,7 @@
     "message": "ವಿನಂತಿಯನ್ನು ಅನುಮೋದಿಸಿದ ನಂತರ ನಿಮಗೆ ತಿಳಿಸಲಾಗುವುದು"
   },
   "needAnotherOption": {
-    "message": "ಸಾಧನದೊಂದಿಗೆ ಲಾಗಿನ್ ಅನ್ನು Bitwarden ಅಪ್ಲಿಕೇಶನ್‌ನ ಸೆಟ್ಟಿಂಗ್‌ಗಳಲ್ಲಿ ಹೊಂದಿಸಬೇಕು. ಬೇರೆ ಆಯ್ಕೆ ಬೇಕೇ?"
+    "message": "ಸಾಧನದೊಂದಿಗೆ ಲಾಗಿನ್ ಅನ್ನು Komboe ಅಪ್ಲಿಕೇಶನ್‌ನ ಸೆಟ್ಟಿಂಗ್‌ಗಳಲ್ಲಿ ಹೊಂದಿಸಬೇಕು. ಬೇರೆ ಆಯ್ಕೆ ಬೇಕೇ?"
   },
   "viewAllLogInOptions": {
     "message": "ಎಲ್ಲಾ ಲಾಗಿನ್ ಆಯ್ಕೆಗಳನ್ನು ವೀಕ್ಷಿಸಿ"
@@ -4238,7 +4238,7 @@
     }
   },
   "windowsBiometricUpdateWarning": {
-    "message": "Bitwarden ಮೊದಲ ಅನ್ಲಾಕ್ನಲ್ಲಿ ನಿಮ್ಮ ಮಾಸ್ಟರ್ ಪಾಸ್ವರ್ಡ್ (ಅಥವಾ PIN) ಅಗತ್ಯಪಡಿಸಲು ನಿಮ್ಮ ಬಯೋಮೆಟ್ರಿಕ್ ಸೆಟ್ಟಿಂಗ್‌ಗಳನ್ನು ನವೀಕರಿಸಲು ಶಿಫಾರಸು ಮಾಡುತ್ತದೆ. ನಿಮ್ಮ ಸೆಟ್ಟಿಂಗ್‌ಗಳನ್ನು ಈಗ ನವೀಕರಿಸಲು ನೀವು ಬಯಸುವಿರಾ?"
+    "message": "Komboe ಮೊದಲ ಅನ್ಲಾಕ್ನಲ್ಲಿ ನಿಮ್ಮ ಮಾಸ್ಟರ್ ಪಾಸ್ವರ್ಡ್ (ಅಥವಾ PIN) ಅಗತ್ಯಪಡಿಸಲು ನಿಮ್ಮ ಬಯೋಮೆಟ್ರಿಕ್ ಸೆಟ್ಟಿಂಗ್‌ಗಳನ್ನು ನವೀಕರಿಸಲು ಶಿಫಾರಸು ಮಾಡುತ್ತದೆ. ನಿಮ್ಮ ಸೆಟ್ಟಿಂಗ್‌ಗಳನ್ನು ಈಗ ನವೀಕರಿಸಲು ನೀವು ಬಯಸುವಿರಾ?"
   },
   "windowsBiometricUpdateWarningTitle": {
     "message": "ಶಿಫಾರಸು ಮಾಡಲಾದ ಸೆಟ್ಟಿಂಗ್‌ಗಳ ನವೀಕರಣ"
@@ -4323,7 +4323,7 @@
     "message": "ಸಾಧನ ಎಂದರೇನು?"
   },
   "aDeviceIs": {
-    "message": "ಸಾಧನವು ನೀವು ಲಾಗಿನ್ ಆಗಿರುವ Bitwarden ಅಪ್ಲಿಕೇಶನ್‌ನ ಅನನ್ಯ ಅನುಸ್ಥಾಪನೆಯಾಗಿದೆ. ಮರುಸ್ಥಾಪನೆ, ಅಪ್ಲಿಕೇಶನ್ ಡೇಟಾವನ್ನು ತೆರವುಗೊಳಿಸುವುದು, ಅಥವಾ ಕುಕೀಗಳನ್ನು ತೆರವುಗೊಳಿಸುವುದು ಸಾಧನವು ಅನೇಕ ಬಾರಿ ಕಾಣಿಸಿಕೊಳ್ಳಲು ಕಾರಣವಾಗಬಹುದು."
+    "message": "ಸಾಧನವು ನೀವು ಲಾಗಿನ್ ಆಗಿರುವ Komboe ಅಪ್ಲಿಕೇಶನ್‌ನ ಅನನ್ಯ ಅನುಸ್ಥಾಪನೆಯಾಗಿದೆ. ಮರುಸ್ಥಾಪನೆ, ಅಪ್ಲಿಕೇಶನ್ ಡೇಟಾವನ್ನು ತೆರವುಗೊಳಿಸುವುದು, ಅಥವಾ ಕುಕೀಗಳನ್ನು ತೆರವುಗೊಳಿಸುವುದು ಸಾಧನವು ಅನೇಕ ಬಾರಿ ಕಾಣಿಸಿಕೊಳ್ಳಲು ಕಾರಣವಾಗಬಹುದು."
   },
   "deviceListDescriptionTemp": {
     "message": "ನಿಮ್ಮ ಖಾತೆಯನ್ನು ಕೆಳಗಿನ ಪ್ರತಿಯೊಂದು ಸಾಧನಗಳಲ್ಲಿ ಲಾಗಿನ್ ಮಾಡಲಾಗಿತ್ತು."
@@ -4885,7 +4885,7 @@
     "message": "Secure by design"
   },
   "importDataSecureByDesignBody": {
-    "message": "End-to-end encrypted handoff. Bitwarden never sees your $VENDOR$ login details.",
+    "message": "End-to-end encrypted handoff. Komboe never sees your $VENDOR$ login details.",
     "placeholders": {
       "vendor": {
         "content": "$1",
@@ -5036,7 +5036,7 @@
     "description": "Followed by a literal filename (my_passwords.json) rendered as code."
   },
   "importGnomeInstructionsFileHere": {
-    "message": "file here to Bitwarden.",
+    "message": "file here to Komboe.",
     "description": "Follows the my_passwords.json filename."
   },
   "importPasswordagentInstructions": {
@@ -5539,7 +5539,7 @@
     "description": "Label indicating the most common import formats"
   },
   "uriMatchDefaultStrategyHint": {
-    "message": "URI ಹೊಂದಾಣಿಕೆ ಪತ್ತೆಯು Bitwarden ಸ್ವಯಂ ಭರ್ತಿ ಸಲಹೆಗಳನ್ನು ಗುರುತಿಸುವ ವಿಧಾನವಾಗಿದೆ.",
+    "message": "URI ಹೊಂದಾಣಿಕೆ ಪತ್ತೆಯು Komboe ಸ್ವಯಂ ಭರ್ತಿ ಸಲಹೆಗಳನ್ನು ಗುರುತಿಸುವ ವಿಧಾನವಾಗಿದೆ.",
     "description": "Explains to the user that URI match detection determines how Bitwarden suggests autofill options, and clarifies that this default strategy applies when no specific match detection is set for a login item."
   },
   "regExAdvancedOptionWarning": {
@@ -5578,7 +5578,7 @@
     "message": "ಡಯಾಗ್ನೋಸ್ಟಿಕ್ ವರದಿಯನ್ನು ಡೌನ್ಲೋಡ್ ಮಾಡಿ ನಂತರ ಇದರೊಂದಿಗೆ ಹಂಚಿಕೊಳ್ಳಿ"
   },
   "bitwardenSupport": {
-    "message": "Bitwarden ಬೆಂಬಲ",
+    "message": "Komboe ಬೆಂಬಲ",
     "description": "Link text following the troubleshooting description sentence. 'Bitwarden' should not be translated."
   },
   "download": {
@@ -5681,7 +5681,7 @@
     "message": "ತಪ್ಪಾಗಿ ಸಂರಚಿಸಲಾದ ಸಿಸ್ಟಮ್ ಕಡತಗಳ ಕಾರಣ ಬಯೋಮೆಟ್ರಿಕ್ ಅನ್ಲಾಕ್ ಲಭ್ಯವಿಲ್ಲ."
   },
   "biometricsStatusHelptextNotEnabledLocally": {
-    "message": "Bitwarden ಡೆಸ್ಕ್ಟಾಪ್ ಅಪ್ಲಿಕೇಶನ್‌ನಲ್ಲಿ $EMAIL$ ಗಾಗಿ ಇದು ಸಕ್ರಿಯಗೊಳಿಸಲಾಗಿಲ್ಲವಾದ್ದರಿಂದ ಬಯೋಮೆಟ್ರಿಕ್ ಅನ್ಲಾಕ್ ಲಭ್ಯವಿಲ್ಲ.",
+    "message": "Komboe ಡೆಸ್ಕ್ಟಾಪ್ ಅಪ್ಲಿಕೇಶನ್‌ನಲ್ಲಿ $EMAIL$ ಗಾಗಿ ಇದು ಸಕ್ರಿಯಗೊಳಿಸಲಾಗಿಲ್ಲವಾದ್ದರಿಂದ ಬಯೋಮೆಟ್ರಿಕ್ ಅನ್ಲಾಕ್ ಲಭ್ಯವಿಲ್ಲ.",
     "placeholders": {
       "email": {
         "content": "$1",
@@ -5768,7 +5768,7 @@
     "message": "ಎರಡು-ಹಂತದ ಲಾಗಿನ್ ಹೊಂದಿಸಿ"
   },
   "newDeviceVerificationNoticeContentPage1": {
-    "message": "Bitwarden ಫೆಬ್ರವರಿ 2025 ರಿಂದ ಹೊಸ ಸಾಧನಗಳಿಂದ ಲಾಗಿನ್‌ಗಳನ್ನು ಪರಿಶೀಲಿಸಲು ನಿಮ್ಮ ಖಾತೆ ಇಮೇಲ್ಗೆ ಕೋಡ್ ಕಳುಹಿಸುತ್ತದೆ."
+    "message": "Komboe ಫೆಬ್ರವರಿ 2025 ರಿಂದ ಹೊಸ ಸಾಧನಗಳಿಂದ ಲಾಗಿನ್‌ಗಳನ್ನು ಪರಿಶೀಲಿಸಲು ನಿಮ್ಮ ಖಾತೆ ಇಮೇಲ್ಗೆ ಕೋಡ್ ಕಳುಹಿಸುತ್ತದೆ."
   },
   "newDeviceVerificationNoticeContentPage2": {
     "message": "ನಿಮ್ಮ ಖಾತೆಯನ್ನು ರಕ್ಷಿಸಲು ಪರ್ಯಾಯ ಮಾರ್ಗವಾಗಿ ಎರಡು-ಹಂತದ ಲಾಗಿನ್ ಅನ್ನು ಹೊಂದಿಸಬಹುದು ಅಥವಾ ನಿಮ್ಮ ಇಮೇಲ್ ಅನ್ನು ನೀವು ಪ್ರವೇಶಿಸಬಹುದಾದ ಒಂದಕ್ಕೆ ಬದಲಾಯಿಸಬಹುದು."
@@ -5848,7 +5848,7 @@
     "message": "No passkeys found for this application."
   },
   "passkeyNotAllowedForBitwardenVault": {
-    "message": "Passkeys for $DOMAIN$ can't be saved or used in Bitwarden.",
+    "message": "Passkeys for $DOMAIN$ can't be saved or used in Komboe.",
     "placeholders": {
       "domain": {
         "content": "$1",
@@ -5857,7 +5857,7 @@
     }
   },
   "passkeyNotAllowedForBitwardenVaultDesc": {
-    "message": "Storing the passkey for your Bitwarden account in your vault could lock you out of your account."
+    "message": "Storing the passkey for your Komboe account in your vault could lock you out of your account."
   },
   "closeThisWindow": {
     "message": "ಈ ವಿಂಡೋವನ್ನು ಮುಚ್ಚಿ"
@@ -5866,7 +5866,7 @@
     "message": "ಪರದೆ ಸೆರೆಹಿಡಿಯುವಿಕೆಯನ್ನು ಅನುಮತಿಸಿ"
   },
   "allowScreenshotsDesc": {
-    "message": "Bitwarden ಡೆಸ್ಕ್ಟಾಪ್ ಅಪ್ಲಿಕೇಶನ್ ಅನ್ನು ಸ್ಕ್ರೀನ್ಶಾಟ್‌ಗಳಲ್ಲಿ ಸೆರೆಹಿಡಿಯಲು ಮತ್ತು ರಿಮೋಟ್ ಡೆಸ್ಕ್ಟಾಪ್ ಸೆಷನ್‌ಗಳಲ್ಲಿ ವೀಕ್ಷಿಸಲು ಅನುಮತಿಸಿ. ಇದನ್ನು ನಿಷ್ಕ್ರಿಯಗೊಳಿಸುವುದು ಕೆಲವು ಬಾಹ್ಯ ಪ್ರದರ್ಶನಗಳಲ್ಲಿ ಪ್ರವೇಶವನ್ನು ತಡೆಯುತ್ತದೆ."
+    "message": "Komboe ಡೆಸ್ಕ್ಟಾಪ್ ಅಪ್ಲಿಕೇಶನ್ ಅನ್ನು ಸ್ಕ್ರೀನ್ಶಾಟ್‌ಗಳಲ್ಲಿ ಸೆರೆಹಿಡಿಯಲು ಮತ್ತು ರಿಮೋಟ್ ಡೆಸ್ಕ್ಟಾಪ್ ಸೆಷನ್‌ಗಳಲ್ಲಿ ವೀಕ್ಷಿಸಲು ಅನುಮತಿಸಿ. ಇದನ್ನು ನಿಷ್ಕ್ರಿಯಗೊಳಿಸುವುದು ಕೆಲವು ಬಾಹ್ಯ ಪ್ರದರ್ಶನಗಳಲ್ಲಿ ಪ್ರವೇಶವನ್ನು ತಡೆಯುತ್ತದೆ."
   },
   "confirmWindowStillVisibleTitle": {
     "message": "ವಿಂಡೋ ಇನ್ನೂ ಗೋಚರಿಸುತ್ತಿದೆಯೇ ಎಂದು ದೃಢೀಕರಿಸಿ"
@@ -6003,7 +6003,7 @@
     "message": "ಈ ಸೆಟ್ಟಿಂಗ್ ಬಗ್ಗೆ"
   },
   "permitCipherDetailsDescription": {
-    "message": "Bitwarden ನಿಮ್ಮ ಅನುಭವವನ್ನು ಸುಧಾರಿಸಲು ಯಾವ ಐಕಾನ್ ಅಥವಾ ಪಾಸ್ವರ್ಡ್ ಬದಲಾಯಿಸುವ URL ಅನ್ನು ಬಳಸಬೇಕೆಂದು ಗುರುತಿಸಲು ಉಳಿಸಿದ ಲಾಗಿನ್ URIಗಳನ್ನು ಬಳಸುತ್ತದೆ. ನೀವು ಈ ಸೇವೆಯನ್ನು ಬಳಸುವಾಗ ಯಾವುದೇ ಮಾಹಿತಿಯನ್ನು ಸಂಗ್ರಹಿಸಲಾಗುವುದಿಲ್ಲ ಅಥವಾ ಉಳಿಸಲಾಗುವುದಿಲ್ಲ."
+    "message": "Komboe ನಿಮ್ಮ ಅನುಭವವನ್ನು ಸುಧಾರಿಸಲು ಯಾವ ಐಕಾನ್ ಅಥವಾ ಪಾಸ್ವರ್ಡ್ ಬದಲಾಯಿಸುವ URL ಅನ್ನು ಬಳಸಬೇಕೆಂದು ಗುರುತಿಸಲು ಉಳಿಸಿದ ಲಾಗಿನ್ URIಗಳನ್ನು ಬಳಸುತ್ತದೆ. ನೀವು ಈ ಸೇವೆಯನ್ನು ಬಳಸುವಾಗ ಯಾವುದೇ ಮಾಹಿತಿಯನ್ನು ಸಂಗ್ರಹಿಸಲಾಗುವುದಿಲ್ಲ ಅಥವಾ ಉಳಿಸಲಾಗುವುದಿಲ್ಲ."
   },
   "showQuickCopyActionsDetailsDescription": {
     "message": "ನಿಮ್ಮ ಬಳಕೆದಾರಹೆಸರು, ಪಾಸ್ವರ್ಡ್, ಅಥವಾ ದೃಢೀಕರಣ ಕೋಡ್ ಅನ್ನು ಕ್ಲಿಪ್ಬೋರ್ಡ್ಗೆ ನಕಲಿಸಲು ಐಟಂಗಳ ಪಕ್ಕದಲ್ಲಿ 3 ತ್ವರಿತ ನಕಲು ಬಟನ್‌ಗಳನ್ನು ಸೇರಿಸಿ."
@@ -6243,7 +6243,7 @@
     "message": "ಕಡಿಮೆ ತೋರಿಸು"
   },
   "enableAutotypeDescription": {
-    "message": "Bitwarden ಇನ್ಪುಟ್ ಸ್ಥಳಗಳನ್ನು ಮೌಲ್ಯೀಕರಿಸುವುದಿಲ್ಲ, ಶಾರ್ಟ್ಕಟ್ ಬಳಸುವ ಮೊದಲು ನೀವು ಸರಿಯಾದ ವಿಂಡೋ ಮತ್ತು ಕ್ಷೇತ್ರದಲ್ಲಿದ್ದೀರಿ ಎಂದು ಖಚಿತಪಡಿಸಿಕೊಳ್ಳಿ."
+    "message": "Komboe ಇನ್ಪುಟ್ ಸ್ಥಳಗಳನ್ನು ಮೌಲ್ಯೀಕರಿಸುವುದಿಲ್ಲ, ಶಾರ್ಟ್ಕಟ್ ಬಳಸುವ ಮೊದಲು ನೀವು ಸರಿಯಾದ ವಿಂಡೋ ಮತ್ತು ಕ್ಷೇತ್ರದಲ್ಲಿದ್ದೀರಿ ಎಂದು ಖಚಿತಪಡಿಸಿಕೊಳ್ಳಿ."
   },
   "typeShortcut": {
     "message": "ಶಾರ್ಟ್ಕಟ್ ಟೈಪ್ ಮಾಡಿ"
@@ -6720,10 +6720,10 @@
     "message": "ಅಲ್ಪವಿರಾಮದಿಂದ ಬೇರ್ಪಡಿಸಿ ಬಹು ಇಮೇಲ್‌ಗಳನ್ನು ನಮೂದಿಸಿ."
   },
   "emailPlaceholder": {
-    "message": "user@bitwarden.com , user@acme.com"
+    "message": "user@komboe.com , user@acme.com"
   },
   "emailPlaceholderMultiple": {
-    "message": "user@bitwarden.com, user@acme.com"
+    "message": "user@komboe.com, user@acme.com"
   },
   "reorderToggleButton": {
     "message": "$LABEL$ ಮರುಕ್ರಮಗೊಳಿಸಿ. ಐಟಂ ಅನ್ನು ಮೇಲೆ ಅಥವಾ ಕೆಳಗೆ ಸರಿಸಲು ಬಾಣದ ಕೀಲಿಯನ್ನು ಬಳಸಿ.",
@@ -7223,15 +7223,15 @@
     "message": "Unknown item, you may need to request permission to access this item."
   },
   "newExperienceDialogTitle": {
-    "message": "Bitwarden has a new look",
+    "message": "Komboe has a new look",
     "description": "Title of the dialog that introduces the redesigned vault to existing users."
   },
   "newExperienceDialogDesc": {
-    "message": "Better experience, same trusted security. The Bitwarden vault has been redesigned based on your feedback, so things are easier to find and work like you'd expect.",
+    "message": "Better experience, same trusted security. The Komboe vault has been redesigned based on your feedback, so things are easier to find and work like you'd expect.",
     "description": "Body copy of the dialog that introduces the redesigned vault to existing users."
   },
   "newExperienceDialogImgAlt": {
-    "message": "A preview of the redesigned Bitwarden vault.",
+    "message": "A preview of the redesigned Komboe vault.",
     "description": "Alt text for the screenshot shown in the dialog that introduces the redesigned vault."
   },
   "exploreTheNewVault": {

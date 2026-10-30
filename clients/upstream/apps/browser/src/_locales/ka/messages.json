@@ -1,20 +1,20 @@
 {
   "appName": {
-    "message": "Bitwarden"
+    "message": "Komboe"
   },
   "appLogoLabel": {
-    "message": "Bitwarden-ის ლოგო"
+    "message": "Komboe-ის ლოგო"
   },
   "extName": {
-    "message": "Bitwarden პაროლების მენეჯერი",
+    "message": "Komboe პაროლების მენეჯერი",
     "description": "Extension name, MUST be less than 40 characters (Safari restriction)"
   },
   "extNameBeta": {
-    "message": "Bitwarden პაროლების მენეჯერი Beta",
+    "message": "Komboe პაროლების მენეჯერი Beta",
     "description": "Extension name for the beta channel, MUST be less than 40 characters (Safari restriction)"
   },
   "extDesc": {
-    "message": "სახლში, სამსახურში ან გზაში, Bitwarden მარტივად იცავს თქვენს ყველა პაროლს, პასკის და მგრძნობიარე ინფორმაციას",
+    "message": "სახლში, სამსახურში ან გზაში, Komboe მარტივად იცავს თქვენს ყველა პაროლს, პასკის და მგრძნობიარე ინფორმაციას",
     "description": "Extension description, MUST be less than 112 characters (Safari restriction)"
   },
   "loginOrCreateNewAccount": {
@@ -27,7 +27,7 @@
     "message": "ანგარიშის შექმნა"
   },
   "newToBitwarden": {
-    "message": "ახალი ხართ Bitwarden-ში?"
+    "message": "ახალი ხართ Komboe-ში?"
   },
   "logInWithPasskey": {
     "message": "შესვლა პასკით"
@@ -324,22 +324,22 @@
     "message": "გავაგრძელოთ ვებ აპში?"
   },
   "continueToWebAppDesc": {
-    "message": "გამოიკვლიეთ თქვენი Bitwarden ანგარიშის მეტი ფუნქცია ვებ აპში."
+    "message": "გამოიკვლიეთ თქვენი Komboe ანგარიშის მეტი ფუნქცია ვებ აპში."
   },
   "continueToHelpCenter": {
     "message": "გავაგრძელოთ დახმარების ცენტრში?"
   },
   "continueToHelpCenterDesc": {
-    "message": "გაიგეთ მეტი Bitwarden-ის გამოყენების შესახებ დახმარების ცენტრში."
+    "message": "გაიგეთ მეტი Komboe-ის გამოყენების შესახებ დახმარების ცენტრში."
   },
   "continueToBrowserExtensionStore": {
     "message": "გავაგრძელოთ ბრაუზერის გაფართოებების მაღაზიაში?"
   },
   "continueToBrowserExtensionStoreDesc": {
-    "message": "დაეხმარეთ სხვებს გაიგონ, არის თუ არა Bitwarden მათთვის შესაფერისი. ეწვიეთ თქვენი ბრაუზერის გაფართოებების მაღაზიას და დატოვეთ შეფასება."
+    "message": "დაეხმარეთ სხვებს გაიგონ, არის თუ არა Komboe მათთვის შესაფერისი. ეწვიეთ თქვენი ბრაუზერის გაფართოებების მაღაზიას და დატოვეთ შეფასება."
   },
   "changeMasterPasswordOnWebConfirmation": {
-    "message": "შეგიძლიათ შეცვალოთ მთავარი პაროლი Bitwarden-ის ვებ აპში."
+    "message": "შეგიძლიათ შეცვალოთ მთავარი პაროლი Komboe-ის ვებ აპში."
   },
   "fingerprintPhrase": {
     "message": "ანაბეჭდის ფრაზა",
@@ -356,43 +356,43 @@
     "message": "სისტემიდან გასვლა"
   },
   "aboutBitwarden": {
-    "message": "Bitwarden-ის შესახებ"
+    "message": "Komboe-ის შესახებ"
   },
   "about": {
     "message": "შესახებ"
   },
   "moreFromBitwarden": {
-    "message": "მეტი Bitwarden-ისგან"
+    "message": "მეტი Komboe-ისგან"
   },
   "continueToBitwardenDotCom": {
-    "message": "გავაგრძელოთ bitwarden.com-ზე?"
+    "message": "გავაგრძელოთ komboe.com-ზე?"
   },
   "bitwardenForBusiness": {
-    "message": "Bitwarden ბიზნესისთვის"
+    "message": "Komboe ბიზნესისთვის"
   },
   "bitwardenAuthenticator": {
-    "message": "Bitwarden აუთენტიფიკატორი"
+    "message": "Komboe აუთენტიფიკატორი"
   },
   "continueToAuthenticatorPageDesc": {
-    "message": "Bitwarden აუთენტიფიკატორი საშუალებას გაძლევთ შეინახოთ აუთენტიფიკატორის გასაღებები და დააგენერიროთ TOTP კოდები ორსაფეხურიანი ვერიფიკაციისთვის. გაიგეთ მეტი bitwarden.com ვებსაიტზე"
+    "message": "Komboe აუთენტიფიკატორი საშუალებას გაძლევთ შეინახოთ აუთენტიფიკატორის გასაღებები და დააგენერიროთ TOTP კოდები ორსაფეხურიანი ვერიფიკაციისთვის. გაიგეთ მეტი komboe.com ვებსაიტზე"
   },
   "bitwardenSecretsManager": {
-    "message": "Bitwarden საიდუმლოებების მენეჯერი"
+    "message": "Komboe საიდუმლოებების მენეჯერი"
   },
   "continueToSecretsManagerPageDesc": {
-    "message": "უსაფრთხოდ შეინახეთ, მართეთ და გააზიარეთ დეველოპერის საიდუმლოებები Bitwarden საიდუმლოებების მენეჯერით. გაიგეთ მეტი bitwarden.com ვებსაიტზე."
+    "message": "უსაფრთხოდ შეინახეთ, მართეთ და გააზიარეთ დეველოპერის საიდუმლოებები Komboe საიდუმლოებების მენეჯერით. გაიგეთ მეტი komboe.com ვებსაიტზე."
   },
   "passwordlessDotDev": {
     "message": "Passwordless.dev"
   },
   "continueToPasswordlessDotDevPageDesc": {
-    "message": "შექმენით გლუვი და უსაფრთხო შესვლის გამოცდილება ტრადიციული პაროლების გარეშე Passwordless.dev-ით. გაიგეთ მეტი bitwarden.com ვებსაიტზე."
+    "message": "შექმენით გლუვი და უსაფრთხო შესვლის გამოცდილება ტრადიციული პაროლების გარეშე Passwordless.dev-ით. გაიგეთ მეტი komboe.com ვებსაიტზე."
   },
   "freeBitwardenFamilies": {
-    "message": "უფასო Bitwarden ოჯახები"
+    "message": "უფასო Komboe ოჯახები"
   },
   "freeBitwardenFamiliesPageDesc": {
-    "message": "თქვენ გაქვთ უფასო Bitwarden ოჯახების უფლება. გამოიყენეთ ეს შეთავაზება დღეს ვებ აპში."
+    "message": "თქვენ გაქვთ უფასო Komboe ოჯახების უფლება. გამოიყენეთ ეს შეთავაზება დღეს ვებ აპში."
   },
   "version": {
     "message": "ვერსია"
@@ -458,13 +458,13 @@
     "message": "დახმარება და უკუკავშირი"
   },
   "helpCenter": {
-    "message": "Bitwarden დახმარების ცენტრი"
+    "message": "Komboe დახმარების ცენტრი"
   },
   "communityForums": {
-    "message": "გამოიკვლიეთ Bitwarden-ის საზოგადოების ფორუმები"
+    "message": "გამოიკვლიეთ Komboe-ის საზოგადოების ფორუმები"
   },
   "contactSupport": {
-    "message": "დაუკავშირდით Bitwarden-ის მხარდაჭერას"
+    "message": "დაუკავშირდით Komboe-ის მხარდაჭერას"
   },
   "sync": {
     "message": "სინქრონიზაცია"
@@ -486,7 +486,7 @@
     "message": "ავტომატურად დააგენერირეთ ძლიერი, უნიკალური პაროლები თქვენი შესვლებისთვის."
   },
   "bitWebVaultApp": {
-    "message": "Bitwarden ვებ აპი"
+    "message": "Komboe ვებ აპი"
   },
   "select": {
     "message": "არჩევა"
@@ -850,7 +850,7 @@
     "message": "ჩამოტვირთეთ და გააზიარეთ დიაგნოსტიკური ანგარიში"
   },
   "bitwardenSupport": {
-    "message": "Bitwarden-ის მხარდაჭერა",
+    "message": "Komboe-ის მხარდაჭერა",
     "description": "Link text following the troubleshooting description sentence. 'Bitwarden' should not be translated."
   },
   "download": {
@@ -1067,10 +1067,10 @@
     "message": "გახადეთ ორსაფეხურიანი ვერიფიკაცია უწყვეტი"
   },
   "totpHelper": {
-    "message": "Bitwarden-ს შეუძლია ორსაფეხურიანი ვერიფიკაციის კოდების შენახვა და შევსება. დააკოპირეთ და ჩასვით გასაღები ამ ველში."
+    "message": "Komboe-ს შეუძლია ორსაფეხურიანი ვერიფიკაციის კოდების შენახვა და შევსება. დააკოპირეთ და ჩასვით გასაღები ამ ველში."
   },
   "totpHelperWithCapture": {
-    "message": "Bitwarden-ს შეუძლია ორსაფეხურიანი ვერიფიკაციის კოდების შენახვა და შევსება. აირჩიეთ კამერის ხატულა ამ ვებსაიტის აუთენტიფიკატორის QR კოდის სკრინშოტის გადასაღებად, ან დააკოპირეთ და ჩასვით გასაღები ამ ველში."
+    "message": "Komboe-ს შეუძლია ორსაფეხურიანი ვერიფიკაციის კოდების შენახვა და შევსება. აირჩიეთ კამერის ხატულა ამ ვებსაიტის აუთენტიფიკატორის QR კოდის სკრინშოტის გადასაღებად, ან დააკოპირეთ და ჩასვით გასაღები ამ ველში."
   },
   "learnMoreAboutAuthenticators": {
     "message": "გაიგეთ მეტი აუთენტიფიკატორების შესახებ"
@@ -1157,10 +1157,10 @@
     "message": "შეიყვანეთ სახელი."
   },
   "twoStepLoginConfirmation": {
-    "message": "ორსაფეხურიანი შესვლა თქვენს ანგარიშს უფრო უსაფრთხოს ხდის, რადგან მოითხოვს შესვლის დადასტურებას სხვა მოწყობილობით, როგორიცაა უსაფრთხოების გასაღები, აუთენტიფიკატორის აპი, SMS, სატელეფონო ზარი ან ელფოსტა. ორსაფეხურიანი შესვლა შეიძლება დაყენდეს bitwarden.com ვებ საცავზე. გსურთ ვებსაიტის ახლა მონახულება?"
+    "message": "ორსაფეხურიანი შესვლა თქვენს ანგარიშს უფრო უსაფრთხოს ხდის, რადგან მოითხოვს შესვლის დადასტურებას სხვა მოწყობილობით, როგორიცაა უსაფრთხოების გასაღები, აუთენტიფიკატორის აპი, SMS, სატელეფონო ზარი ან ელფოსტა. ორსაფეხურიანი შესვლა შეიძლება დაყენდეს komboe.com ვებ საცავზე. გსურთ ვებსაიტის ახლა მონახულება?"
   },
   "twoStepLoginConfirmationContent": {
-    "message": "გახადეთ თქვენი ანგარიში უფრო უსაფრთხო ორსაფეხურიანი შესვლის დაყენებით Bitwarden-ის ვებ აპში."
+    "message": "გახადეთ თქვენი ანგარიში უფრო უსაფრთხო ორსაფეხურიანი შესვლის დაყენებით Komboe-ის ვებ აპში."
   },
   "twoStepLoginConfirmationTitle": {
     "message": "გავაგრძელოთ ვებ აპში?"
@@ -1313,7 +1313,7 @@
     "message": "პარამეტრზე გადასვლა"
   },
   "notificationAddDesc": {
-    "message": "უნდა დაიმახსოვროს Bitwarden-მა ეს პაროლი თქვენთვის?"
+    "message": "უნდა დაიმახსოვროს Komboe-მა ეს პაროლი თქვენთვის?"
   },
   "notificationAddSave": {
     "message": "შენახვა"
@@ -1349,11 +1349,11 @@
     }
   },
   "notificationLoginSaveConfirmation": {
-    "message": "შენახულია Bitwarden-ში.",
+    "message": "შენახულია Komboe-ში.",
     "description": "Shown to user after item is saved."
   },
   "notificationLoginUpdatedConfirmation": {
-    "message": "განახლებულია Bitwarden-ში.",
+    "message": "განახლებულია Komboe-ში.",
     "description": "Shown to user after item is updated."
   },
   "selectItemAriaLabel": {
@@ -1451,13 +1451,13 @@
     "message": "ახალი პასკების შენახვის ან თქვენს საცავში შენახული პასკებით შესვლის მოთხოვნა. ვრცელდება ყველა შესულ ანგარიშზე."
   },
   "notificationChangeDesc": {
-    "message": "გსურთ ამ პაროლის განახლება Bitwarden-ში?"
+    "message": "გსურთ ამ პაროლის განახლება Komboe-ში?"
   },
   "notificationChangeSave": {
     "message": "განახლება"
   },
   "notificationUnlockDesc": {
-    "message": "განბლოკეთ თქვენი Bitwarden საცავი ავტომატური შევსების მოთხოვნის დასასრულებლად."
+    "message": "განბლოკეთ თქვენი Komboe საცავი ავტომატური შევსების მოთხოვნის დასასრულებლად."
   },
   "notificationUnlock": {
     "message": "განბლოკვა"
@@ -1605,10 +1605,10 @@
     "message": "ეს პაროლი გამოყენებული იქნება ამ ფაილის ექსპორტისა და იმპორტისთვის"
   },
   "accountRestrictedOptionDescription": {
-    "message": "გამოიყენეთ თქვენი ანგარიშის დაშიფვრის გასაღები, რომელიც მიღებულია თქვენი ანგარიშის მომხმარებლის სახელიდან და მთავარი პაროლიდან, ექსპორტის დასაშიფრად და იმპორტის შესაზღუდად მხოლოდ მიმდინარე Bitwarden ანგარიშზე."
+    "message": "გამოიყენეთ თქვენი ანგარიშის დაშიფვრის გასაღები, რომელიც მიღებულია თქვენი ანგარიშის მომხმარებლის სახელიდან და მთავარი პაროლიდან, ექსპორტის დასაშიფრად და იმპორტის შესაზღუდად მხოლოდ მიმდინარე Komboe ანგარიშზე."
   },
   "passwordProtectedOptionDescription": {
-    "message": "დააყენეთ ფაილის პაროლი ექსპორტის დასაშიფრად და იმპორტისთვის ნებისმიერ Bitwarden ანგარიშზე, გაშიფვრისთვის პაროლის გამოყენებით."
+    "message": "დააყენეთ ფაილის პაროლი ექსპორტის დასაშიფრად და იმპორტისთვის ნებისმიერ Komboe ანგარიშზე, გაშიფვრისთვის პაროლის გამოყენებით."
   },
   "exportTypeHeading": {
     "message": "გატანის ტიპი"
@@ -1637,7 +1637,7 @@
     "message": "ეს ექსპორტი თქვენს მონაცემებს შიფრავს თქვენი ანგარიშის დაშიფვრის გასაღებით. თუ ოდესმე შეცვლით თქვენი ანგარიშის დაშიფვრის გასაღებს, უნდა გააკეთოთ ექსპორტი ხელახლა, რადგან ვეღარ შეძლებთ ამ ექსპორტის ფაილის გაშიფვრას."
   },
   "encExportAccountWarningDesc": {
-    "message": "ანგარიშის დაშიფვრის გასაღებები უნიკალურია თითოეული Bitwarden მომხმარებლის ანგარიშისთვის, ამიტომ დაშიფრული ექსპორტის იმპორტი სხვა ანგარიშზე შეუძლებელია."
+    "message": "ანგარიშის დაშიფვრის გასაღებები უნიკალურია თითოეული Komboe მომხმარებლის ანგარიშისთვის, ამიტომ დაშიფრული ექსპორტის იმპორტი სხვა ანგარიშზე შეუძლებელია."
   },
   "exportMasterPassword": {
     "message": "შეიყვანეთ თქვენი მთავარი პაროლი საცავის მონაცემების ექსპორტისთვის."
@@ -1661,7 +1661,7 @@
     "message": "საერთო საქაღალდის დამატება"
   },
   "bitwardenForBusinessPageDesc": {
-    "message": "Bitwarden ბიზნესისთვის საშუალებას გაძლევთ გააზიაროთ თქვენი საცავის ელემენტები სხვებთან ორგანიზაციის გამოყენებით. გაიგეთ მეტი bitwarden.com ვებსაიტზე."
+    "message": "Komboe ბიზნესისთვის საშუალებას გაძლევთ გააზიაროთ თქვენი საცავის ელემენტები სხვებთან ორგანიზაციის გამოყენებით. გაიგეთ მეტი komboe.com ვებსაიტზე."
   },
   "moveToOrganization": {
     "message": "ორგანიზაციაში გადატანა"
@@ -1815,7 +1815,7 @@
     "message": "წევრობის მართვა"
   },
   "premiumManageAlert": {
-    "message": "შეგიძლიათ მართოთ თქვენი წევრობა bitwarden.com ვებ საცავზე. გსურთ ვებსაიტის ახლა მონახულება?"
+    "message": "შეგიძლიათ მართოთ თქვენი წევრობა komboe.com ვებ საცავზე. გსურთ ვებსაიტის ახლა მონახულება?"
   },
   "premiumRefresh": {
     "message": "წევრობის განახლება"
@@ -1863,7 +1863,7 @@
     "message": "პრემიუმის შეძენა"
   },
   "premiumPurchaseAlertV2": {
-    "message": "შეგიძლიათ შეიძინოთ პრემიუმი თქვენი ანგარიშის პარამეტრებიდან Bitwarden-ის ვებ აპში."
+    "message": "შეგიძლიათ შეიძინოთ პრემიუმი თქვენი ანგარიშის პარამეტრებიდან Komboe-ის ვებ აპში."
   },
   "premiumFeatures": {
     "message": "განაახლეთ პრემიუმზე და მიიღეთ:"
@@ -1969,7 +1969,7 @@
     "message": "ავთენტიკატორი აპი"
   },
   "authenticatorAppDescV2": {
-    "message": "შეიყვანეთ აუთენტიფიკატორის აპის მიერ დაგენერირებული კოდი, როგორიცაა Bitwarden აუთენტიფიკატორი.",
+    "message": "შეიყვანეთ აუთენტიფიკატორის აპის მიერ დაგენერირებული კოდი, როგორიცაა Komboe აუთენტიფიკატორი.",
     "description": "'Bitwarden Authenticator' is a product name and should not be translated."
   },
   "yubiKeyTitleV2": {
@@ -2002,7 +2002,7 @@
     "message": "თვითჰოსტინგის გარემო"
   },
   "selfHostedBaseUrlHint": {
-    "message": "მიუთითეთ თქვენი ლოკალურად ჰოსტირებული Bitwarden-ის ინსტალაციის საბაზისო URL. მაგალითი: https://bitwarden.company.com"
+    "message": "მიუთითეთ თქვენი ლოკალურად ჰოსტირებული Komboe-ის ინსტალაციის საბაზისო URL. მაგალითი: https://komboe.company.com"
   },
   "selfHostedCustomEnvHeader": {
     "message": "გაფართოებული კონფიგურაციისთვის, შეგიძლიათ დამოუკიდებლად მიუთითოთ თითოეული სერვისის საბაზისო URL."
@@ -2055,7 +2055,7 @@
     "message": "მარტივად იპოვეთ ავტომატური შევსების შემოთავაზებები"
   },
   "autofillSpotlightDesc": {
-    "message": "გამორთეთ თქვენი ბრაუზერის ავტომატური შევსების პარამეტრები, რომ არ კონფლიქტობდეს Bitwarden-თან."
+    "message": "გამორთეთ თქვენი ბრაუზერის ავტომატური შევსების პარამეტრები, რომ არ კონფლიქტობდეს Komboe-თან."
   },
   "turnOffBrowserAutofill": {
     "message": "$BROWSER$-ის ავტომატური შევსების გამორთვა",
@@ -2112,7 +2112,7 @@
     "message": "ავტომატური შევსების შემოთავაზებების ჩვენება ფორმის ველებზე"
   },
   "howDoesBitwardenProtectFromPhishing": {
-    "message": "როგორ იცავს Bitwarden თქვენს მონაცემებს ფიშინგისგან?"
+    "message": "როგორ იცავს Komboe თქვენს მონაცემებს ფიშინგისგან?"
   },
   "currentWebsite": {
     "message": "მიმდინარე ვებსაიტი"
@@ -3021,7 +3021,7 @@
     "message": "სუსტი მთავარი პაროლი"
   },
   "weakMasterPasswordDesc": {
-    "message": "თქვენ მიერ არჩეული მთავარი პაროლი სუსტია. თქვენ უნდა გამოიყენოთ ძლიერი მთავარი პაროლი (ან ფრაზა) თქვენი Bitwarden ანგარიშის სათანადოდ დასაცავად. დარწმუნებული ხართ, რომ გსურთ ამ მთავარი პაროლის გამოყენება?"
+    "message": "თქვენ მიერ არჩეული მთავარი პაროლი სუსტია. თქვენ უნდა გამოიყენოთ ძლიერი მთავარი პაროლი (ან ფრაზა) თქვენი Komboe ანგარიშის სათანადოდ დასაცავად. დარწმუნებული ხართ, რომ გსურთ ამ მთავარი პაროლის გამოყენება?"
   },
   "rotateAccountEncKey": {
     "message": "ასევე შეცვალეთ ჩემი ანგარიშის დაშიფვრის გასაღები"
@@ -3033,7 +3033,7 @@
     "message": "დარწმუნებული ხართ, რომ გსურთ თქვენი ანგარიშის დაშიფვრის გასაღების შეცვლა?"
   },
   "updateEncryptionKeyWarning": {
-    "message": "დაშიფვრის გასაღების განახლების შემდეგ, თქვენ უნდა გამოხვიდეთ და ხელახლა შეხვიდეთ ყველა Bitwarden აპლიკაციაში, რომელსაც ამჟამად იყენებთ (როგორიცაა მობილური აპი ან ბრაუზერის გაფართოებები). გასვლის და ხელახლა შესვლის შეუსრულებლობამ (რაც ჩამოტვირთავს თქვენს ახალ დაშიფვრის გასაღებს) შეიძლება გამოიწვიოს მონაცემების დაზიანება. ჩვენ შევეცდებით ავტომატურად გაგიყვანოთ, თუმცა, შეიძლება დაგვიანდეს."
+    "message": "დაშიფვრის გასაღების განახლების შემდეგ, თქვენ უნდა გამოხვიდეთ და ხელახლა შეხვიდეთ ყველა Komboe აპლიკაციაში, რომელსაც ამჟამად იყენებთ (როგორიცაა მობილური აპი ან ბრაუზერის გაფართოებები). გასვლის და ხელახლა შესვლის შეუსრულებლობამ (რაც ჩამოტვირთავს თქვენს ახალ დაშიფვრის გასაღებს) შეიძლება გამოიწვიოს მონაცემების დაზიანება. ჩვენ შევეცდებით ავტომატურად გაგიყვანოთ, თუმცა, შეიძლება დაგვიანდეს."
   },
   "updateEncryptionKeyAccountExportWarning": {
     "message": "ნებისმიერი ანგარიშით შეზღუდული ექსპორტი, რომელიც შეინახეთ, გახდება არასწორი."
@@ -3061,10 +3061,10 @@
     "message": "PIN-ის დაყენება"
   },
   "setYourPinCode": {
-    "message": "დააყენეთ თქვენი PIN კოდი Bitwarden-ის განბლოკვისთვის. თქვენი PIN პარამეტრები განულდება, თუ ოდესმე მთლიანად გამოხვალთ აპლიკაციიდან."
+    "message": "დააყენეთ თქვენი PIN კოდი Komboe-ის განბლოკვისთვის. თქვენი PIN პარამეტრები განულდება, თუ ოდესმე მთლიანად გამოხვალთ აპლიკაციიდან."
   },
   "setPinCode": {
-    "message": "შეგიძლიათ ეს PIN გამოიყენოთ Bitwarden-ის განსაბლოკად. თქვენი PIN განულდება, თუ ოდესმე მთლიანად გამოხვალთ აპლიკაციიდან."
+    "message": "შეგიძლიათ ეს PIN გამოიყენოთ Komboe-ის განსაბლოკად. თქვენი PIN განულდება, თუ ოდესმე მთლიანად გამოხვალთ აპლიკაციიდან."
   },
   "pinRequired": {
     "message": "PIN კოდი სავალდებულოა."
@@ -3085,7 +3085,7 @@
     "message": "დესკტოპიდან დადასტურების მოლოდინი"
   },
   "awaitDesktopDesc": {
-    "message": "გთხოვთ დაადასტურეთ ბიომეტრიის გამოყენება Bitwarden-ის დესკტოპ აპლიკაციაში ბრაუზერისთვის ბიომეტრიის დასაყენებლად."
+    "message": "გთხოვთ დაადასტურეთ ბიომეტრიის გამოყენება Komboe-ის დესკტოპ აპლიკაციაში ბრაუზერისთვის ბიომეტრიის დასაყენებლად."
   },
   "lockWithMasterPassOnRestart": {
     "message": "მთავარი პაროლით დაბლოკვა ბრაუზერის გადატვირთვისას"
@@ -3200,7 +3200,7 @@
     "message": "ფორმა განთავსებულია სხვა დომენზე, ვიდრე თქვენი შენახული შესვლის URI. აირჩიეთ OK ყოველ შემთხვევაში ავტომატურად შესავსებად, ან Cancel შესაჩერებლად."
   },
   "autofillIframeWarningTip": {
-    "message": "მომავალში ამ გაფრთხილების თავიდან ასაცილებლად, შეინახეთ ეს URI, $HOSTNAME$, თქვენი Bitwarden-ის შესვლის ელემენტში ამ საიტისთვის.",
+    "message": "მომავალში ამ გაფრთხილების თავიდან ასაცილებლად, შეინახეთ ეს URI, $HOSTNAME$, თქვენი Komboe-ის შესვლის ელემენტში ამ საიტისთვის.",
     "placeholders": {
       "hostname": {
         "content": "$1",
@@ -3209,7 +3209,7 @@
     }
   },
   "topLayerHijackWarning": {
-    "message": "ეს გვერდი ხელს უშლის Bitwarden-ის მუშაობას. Bitwarden-ის ჩაშენებული მენიუ დროებით გამორთულია უსაფრთხოების ზომად."
+    "message": "ეს გვერდი ხელს უშლის Komboe-ის მუშაობას. Komboe-ის ჩაშენებული მენიუ დროებით გამორთულია უსაფრთხოების ზომად."
   },
   "setMasterPassword": {
     "message": "მთავარი პაროლის დაყენება"
@@ -3266,7 +3266,7 @@
     "message": "თქვენი ახალი მთავარი პაროლი არ აკმაყოფილებს პოლიტიკის მოთხოვნებს."
   },
   "receiveMarketingEmails": {
-    "message": "მიიღეთ განახლებები Bitwarden-ისგან თქვენს შემოსულებში."
+    "message": "მიიღეთ განახლებები Komboe-ისგან თქვენს შემოსულებში."
   },
   "unsubscribe": {
     "message": "გამოწერის გაუქმება"
@@ -3311,13 +3311,13 @@
     "message": "ბრაუზერის ინტეგრაცია არ არის დაყენებული"
   },
   "desktopIntegrationDisabledDesc": {
-    "message": "ბრაუზერის ინტეგრაცია არ არის დაყენებული Bitwarden-ის დესკტოპ აპლიკაციაში. გთხოვთ დააყენოთ ის დესკტოპ აპლიკაციის პარამეტრებში."
+    "message": "ბრაუზერის ინტეგრაცია არ არის დაყენებული Komboe-ის დესკტოპ აპლიკაციაში. გთხოვთ დააყენოთ ის დესკტოპ აპლიკაციის პარამეტრებში."
   },
   "startDesktopTitle": {
-    "message": "გაუშვით Bitwarden-ის დესკტოპ აპლიკაცია"
+    "message": "გაუშვით Komboe-ის დესკტოპ აპლიკაცია"
   },
   "startDesktopDesc": {
-    "message": "Bitwarden-ის დესკტოპ აპლიკაცია უნდა იყოს გაშვებული, სანამ ბიომეტრიით განბლოკვა იქნება შესაძლებელი."
+    "message": "Komboe-ის დესკტოპ აპლიკაცია უნდა იყოს გაშვებული, სანამ ბიომეტრიით განბლოკვა იქნება შესაძლებელი."
   },
   "errorEnableBiometricTitle": {
     "message": "ბიომეტრიის დაყენება შეუძლებელია"
@@ -3371,13 +3371,13 @@
     "message": "ბიომეტრია ვერ მოხერხდა"
   },
   "biometricsFailedDesc": {
-    "message": "ბიომეტრია ვერ სრულდება, განიხილეთ მთავარი პაროლის გამოყენება ან გასვლა. თუ ეს გაგრძელდა, გთხოვთ დაუკავშირდეთ Bitwarden-ის მხარდაჭერას."
+    "message": "ბიომეტრია ვერ სრულდება, განიხილეთ მთავარი პაროლის გამოყენება ან გასვლა. თუ ეს გაგრძელდა, გთხოვთ დაუკავშირდეთ Komboe-ის მხარდაჭერას."
   },
   "nativeMessagingPermissionErrorTitle": {
     "message": "ნებართვა არ არის მოწოდებული"
   },
   "nativeMessagingPermissionErrorDesc": {
-    "message": "Bitwarden-ის დესკტოპ აპლიკაციასთან კომუნიკაციის ნებართვის გარეშე ჩვენ ვერ უზრუნველვყოფთ ბიომეტრიას ბრაუზერის გაფართოებაში. გთხოვთ სცადოთ ხელახლა."
+    "message": "Komboe-ის დესკტოპ აპლიკაციასთან კომუნიკაციის ნებართვის გარეშე ჩვენ ვერ უზრუნველვყოფთ ბიომეტრიას ბრაუზერის გაფართოებაში. გთხოვთ სცადოთ ხელახლა."
   },
   "nativeMessagingPermissionSidebarTitle": {
     "message": "ნებართვის მოთხოვნის შეცდომა"
@@ -3414,7 +3414,7 @@
     "message": "გამორიცხული დომენები"
   },
   "excludedDomainsDesc": {
-    "message": "Bitwarden არ მოგთხოვთ ამ დომენებისთვის შესვლის დეტალების შენახვას. ცვლილებების ძალაში შესვლისთვის საჭიროა გვერდის განახლება."
+    "message": "Komboe არ მოგთხოვთ ამ დომენებისთვის შესვლის დეტალების შენახვას. ცვლილებების ძალაში შესვლისთვის საჭიროა გვერდის განახლება."
   },
   "blockedDomainsDesc": {
     "message": "ავტომატური შევსება და სხვა დაკავშირებული ფუნქციები არ იქნება შემოთავაზებული ამ ვებსაიტებისთვის. ცვლილებების ძალაში შესვლისთვის საჭიროა გვერდის განახლება."
@@ -3546,24 +3546,24 @@
     "message": "რისკის ქვეშ მყოფი შესვლების სიის ილუსტრაცია."
   },
   "welcomeDialogGraphicAlt": {
-    "message": "Bitwarden-ის საცავის გვერდის განლაგების ილუსტრაცია."
+    "message": "Komboe-ის საცავის გვერდის განლაგების ილუსტრაცია."
   },
   "generatePasswordSlideDesc": {
-    "message": "სწრაფად დააგენერირეთ ძლიერი, უნიკალური პაროლი Bitwarden-ის ავტომატური შევსების მენიუთი რისკის ქვეშ მყოფ საიტზე.",
+    "message": "სწრაფად დააგენერირეთ ძლიერი, უნიკალური პაროლი Komboe-ის ავტომატური შევსების მენიუთი რისკის ქვეშ მყოფ საიტზე.",
     "description": "Description of the generate password slide on the at-risk password page carousel"
   },
   "generatePasswordSlideImgAltPeriod": {
-    "message": "Bitwarden-ის ავტომატური შევსების მენიუს ილუსტრაცია, რომელიც აჩვენებს დაგენერირებულ პაროლს."
+    "message": "Komboe-ის ავტომატური შევსების მენიუს ილუსტრაცია, რომელიც აჩვენებს დაგენერირებულ პაროლს."
   },
   "updateInBitwarden": {
-    "message": "განახლება Bitwarden-ში"
+    "message": "განახლება Komboe-ში"
   },
   "updateInBitwardenSlideDesc": {
-    "message": "Bitwarden შემდეგ მოგთხოვთ პაროლის განახლებას პაროლების მენეჯერში.",
+    "message": "Komboe შემდეგ მოგთხოვთ პაროლის განახლებას პაროლების მენეჯერში.",
     "description": "Description of the update in Bitwarden slide on the at-risk password page carousel"
   },
   "updateInBitwardenSlideImgAltPeriod": {
-    "message": "Bitwarden-ის შეტყობინების ილუსტრაცია, რომელიც მომხმარებელს შესვლის განახლებას სთხოვს."
+    "message": "Komboe-ის შეტყობინების ილუსტრაცია, რომელიც მომხმარებელს შესვლის განახლებას სთხოვს."
   },
   "turnOnAutofill": {
     "message": "ავტომატური შევსების ჩართვა"
@@ -4078,10 +4078,10 @@
     "message": "ავტომატური შევსების მონაცემების მიღების შეცდომა"
   },
   "couldNotDecryptVaultItem": {
-    "message": "Bitwarden-მა ვერ შეძლო ქვემოთ ჩამოთვლილი საცავის ელემენტის გაშიფვრა. დაუკავშირდით Bitwarden-ის მომხმარებელთა მხარდაჭერას და მიაწოდეთ ქვემოთ მოცემული ელემენტის ID, რომ ნახოთ, შესაძლებელია თუ არა მისი აღდგენა."
+    "message": "Komboe-მა ვერ შეძლო ქვემოთ ჩამოთვლილი საცავის ელემენტის გაშიფვრა. დაუკავშირდით Komboe-ის მომხმარებელთა მხარდაჭერას და მიაწოდეთ ქვემოთ მოცემული ელემენტის ID, რომ ნახოთ, შესაძლებელია თუ არა მისი აღდგენა."
   },
   "couldNotDecryptVaultItems": {
-    "message": "Bitwarden-მა ვერ შეძლო ქვემოთ ჩამოთვლილი საცავის ელემენტების გაშიფვრა. დაუკავშირდით Bitwarden-ის მომხმარებელთა მხარდაჭერას და მიაწოდეთ ქვემოთ მოცემული ელემენტების ID-ები, რომ ნახოთ, შესაძლებელია თუ არა მათი აღდგენა."
+    "message": "Komboe-მა ვერ შეძლო ქვემოთ ჩამოთვლილი საცავის ელემენტების გაშიფვრა. დაუკავშირდით Komboe-ის მომხმარებელთა მხარდაჭერას და მიაწოდეთ ქვემოთ მოცემული ელემენტების ID-ები, რომ ნახოთ, შესაძლებელია თუ არა მათი აღდგენა."
   },
   "itemId": {
     "message": "ელემენტის ID",
@@ -4191,11 +4191,11 @@
     }
   },
   "forwarderGeneratedBy": {
-    "message": "დაგენერირებულია Bitwarden-ის მიერ.",
+    "message": "დაგენერირებულია Komboe-ის მიერ.",
     "description": "Displayed with the address on the forwarding service's configuration screen."
   },
   "forwarderGeneratedByWithWebsite": {
-    "message": "ვებსაიტი: $WEBSITE$. დაგენერირებულია Bitwarden-ის მიერ.",
+    "message": "ვებსაიტი: $WEBSITE$. დაგენერირებულია Komboe-ის მიერ.",
     "description": "Displayed with the address on the forwarding service's configuration screen.",
     "placeholders": {
       "WEBSITE": {
@@ -4417,7 +4417,7 @@
     "message": "შეტყობინება გაგზავნილია თქვენს მოწყობილობაზე."
   },
   "notificationSentDevicePart1": {
-    "message": "განბლოკეთ Bitwarden თქვენს მოწყობილობაზე ან"
+    "message": "განბლოკეთ Komboe თქვენს მოწყობილობაზე ან"
   },
   "notificationSentDeviceAnchor": {
     "message": "ვებ აპზე"
@@ -4917,15 +4917,15 @@
     "message": "შემცველობაზე გადახტომა"
   },
   "bitwardenOverlayButton": {
-    "message": "Bitwarden-ის ავტომატური შევსების მენიუს ღილაკი",
+    "message": "Komboe-ის ავტომატური შევსების მენიუს ღილაკი",
     "description": "Page title for the iframe containing the overlay button"
   },
   "toggleBitwardenVaultOverlay": {
-    "message": "Bitwarden-ის ავტომატური შევსების მენიუს გადართვა",
+    "message": "Komboe-ის ავტომატური შევსების მენიუს გადართვა",
     "description": "Screen reader and tool tip label for the overlay button"
   },
   "bitwardenVault": {
-    "message": "Bitwarden-ის ავტომატური შევსების მენიუ",
+    "message": "Komboe-ის ავტომატური შევსების მენიუ",
     "description": "Page title in overlay"
   },
   "unlockYourAccountToViewMatchingLogins": {
@@ -4997,7 +4997,7 @@
     "description": "Screen reader text (aria-label) for new identity button within inline menu"
   },
   "bitwardenOverlayMenuAvailable": {
-    "message": "Bitwarden-ის ავტომატური შევსების მენიუ ხელმისაწვდომია. ასარჩევად დააჭირეთ ქვემოთ მიმართულ ისარს.",
+    "message": "Komboe-ის ავტომატური შევსების მენიუ ხელმისაწვდომია. ასარჩევად დააჭირეთ ქვემოთ მიმართულ ისარს.",
     "description": "Screen reader text for announcing when the overlay opens on the page"
   },
   "turnOn": {
@@ -5369,7 +5369,7 @@
     "message": "Secure by design"
   },
   "importDataSecureByDesignBody": {
-    "message": "End-to-end encrypted handoff. Bitwarden never sees your $VENDOR$ login details.",
+    "message": "End-to-end encrypted handoff. Komboe never sees your $VENDOR$ login details.",
     "placeholders": {
       "vendor": {
         "content": "$1",
@@ -5520,7 +5520,7 @@
     "description": "Followed by a literal filename (my_passwords.json) rendered as code."
   },
   "importGnomeInstructionsFileHere": {
-    "message": "ფაილი აქ Bitwarden-ში.",
+    "message": "ფაილი აქ Komboe-ში.",
     "description": "Follows the my_passwords.json filename."
   },
   "importPasswordagentInstructions": {
@@ -6091,7 +6091,7 @@
     "message": "აქტიური ანგარიში"
   },
   "bitwardenAccount": {
-    "message": "Bitwarden ანგარიში"
+    "message": "Komboe ანგარიში"
   },
   "availableAccounts": {
     "message": "ხელმისაწვდომი ანგარიშები"
@@ -6137,7 +6137,7 @@
     "description": "Label indicating the most common import formats"
   },
   "uriMatchDefaultStrategyHint": {
-    "message": "URI-ის შესაბამისობის აღმოჩენა არის ის, თუ როგორ ამოიცნობს Bitwarden ავტომატური შევსების შემოთავაზებებს.",
+    "message": "URI-ის შესაბამისობის აღმოჩენა არის ის, თუ როგორ ამოიცნობს Komboe ავტომატური შევსების შემოთავაზებებს.",
     "description": "Explains to the user that URI match detection determines how Bitwarden suggests autofill options, and clarifies that this default strategy applies when no specific match detection is set for a login item."
   },
   "regExAdvancedOptionWarning": {
@@ -6181,15 +6181,15 @@
     "description": "Body content for dialog which asks if the user wants to proceed to the browser's keyboard shortcut settings page"
   },
   "overrideDefaultBrowserAutofillTitle": {
-    "message": "გახადოთ Bitwarden თქვენი ნაგულისხმევი პაროლების მენეჯერი?",
+    "message": "გახადოთ Komboe თქვენი ნაგულისხმევი პაროლების მენეჯერი?",
     "description": "Dialog title facilitating the ability to override a chrome browser's default autofill behavior"
   },
   "overrideDefaultBrowserAutofillDescription": {
-    "message": "ამ პარამეტრის იგნორირებამ შეიძლება გამოიწვიოს კონფლიქტი Bitwarden-ის ავტომატური შევსების შემოთავაზებებსა და თქვენი ბრაუზერისას შორის.",
+    "message": "ამ პარამეტრის იგნორირებამ შეიძლება გამოიწვიოს კონფლიქტი Komboe-ის ავტომატური შევსების შემოთავაზებებსა და თქვენი ბრაუზერისას შორის.",
     "description": "Dialog message facilitating the ability to override a chrome browser's default autofill behavior"
   },
   "overrideDefaultBrowserAutoFillSettings": {
-    "message": "გახადეთ Bitwarden თქვენი ნაგულისხმევი პაროლების მენეჯერი",
+    "message": "გახადეთ Komboe თქვენი ნაგულისხმევი პაროლების მენეჯერი",
     "description": "Label for the setting that allows overriding the default browser autofill settings"
   },
   "defaultPasswordManagerCalloutTitle": {
@@ -6197,7 +6197,7 @@
     "description": "Title for the callout that prompts users to set Bitwarden as their default password manager"
   },
   "defaultPasswordManagerCalloutDesc": {
-    "message": "თქვენ მოგეთხოვებათ $BROWSER$ ბრაუზერის ნებართვის მინიჭება, რომ Bitwarden თქვენს ნაგულისხმევ პაროლების მენეჯერად იქცეს.",
+    "message": "თქვენ მოგეთხოვებათ $BROWSER$ ბრაუზერის ნებართვის მინიჭება, რომ Komboe თქვენს ნაგულისხმევ პაროლების მენეჯერად იქცეს.",
     "description": "Description for the callout that prompts users to set Bitwarden as their default password manager",
     "placeholders": {
       "browser": {
@@ -6207,11 +6207,11 @@
     }
   },
   "privacyPermissionAdditionNotGrantedTitle": {
-    "message": "Bitwarden-ის ნაგულისხმევ პაროლების მენეჯერად დაყენება შეუძლებელია",
+    "message": "Komboe-ის ნაგულისხმევ პაროლების მენეჯერად დაყენება შეუძლებელია",
     "description": "Title for the dialog that appears when the user has not granted the extension permission to set privacy settings"
   },
   "privacyPermissionAdditionNotGrantedDescription": {
-    "message": "Bitwarden-ის ნაგულისხმევ პაროლების მენეჯერად დასაყენებლად უნდა მიანიჭოთ ბრაუზერის კონფიდენციალურობის ნებართვები.",
+    "message": "Komboe-ის ნაგულისხმევ პაროლების მენეჯერად დასაყენებლად უნდა მიანიჭოთ ბრაუზერის კონფიდენციალურობის ნებართვები.",
     "description": "Description for the dialog that appears when the user has not granted the extension permission to set privacy settings"
   },
   "makeDefault": {
@@ -6219,10 +6219,10 @@
     "description": "Button text for the setting that allows overriding the default browser autofill settings"
   },
   "defaultPasswordManagerPromptTitle": {
-    "message": "გახადეთ Bitwarden თქვენი ბრაუზერის ნაგულისხმევი პაროლების მენეჯერი"
+    "message": "გახადეთ Komboe თქვენი ბრაუზერის ნაგულისხმევი პაროლების მენეჯერი"
   },
   "defaultPasswordManagerPromptTitleV2": {
-    "message": "გახადეთ Bitwarden თქვენი ნაგულისხმევი პაროლების მენეჯერი",
+    "message": "გახადეთ Komboe თქვენი ნაგულისხმევი პაროლების მენეჯერი",
     "description": "Label for the setting to make Bitwarden the default password manager"
   },
   "defaultPasswordManagerSettingHintV2": {
@@ -6234,13 +6234,13 @@
     "description": "Link text to browser autofill settings in the default password manager setting hint."
   },
   "defaultPasswordManagerPromptStep2AfterAllow": {
-    "message": "ბრაუზერის მოთხოვნიდან, რომ Bitwarden-ს მისცეთ თქვენი პარამეტრების შეცვლის ნებართვა."
+    "message": "ბრაუზერის მოთხოვნიდან, რომ Komboe-ს მისცეთ თქვენი პარამეტრების შეცვლის ნებართვა."
   },
   "defaultPasswordManagerPromptStep3": {
     "message": "ჩვენ გამოვრთავთ თქვენი ბრაუზერის ჩაშენებულ პაროლების მენეჯერს, რომ უსაფრთხო შესვლის გამოცდილება მიიღოთ."
   },
   "defaultPasswordManagerSuccessToast": {
-    "message": "Bitwarden გახდა თქვენი ბრაუზერის ნაგულისხმევი პაროლების მენეჯერი"
+    "message": "Komboe გახდა თქვენი ბრაუზერის ნაგულისხმევი პაროლების მენეჯერი"
   },
   "allow": {
     "message": "დაშვება",
@@ -6648,16 +6648,16 @@
     "message": "დანართის ჩამოტვირთვა"
   },
   "downloadBitwarden": {
-    "message": "ჩამოტვირთეთ Bitwarden"
+    "message": "ჩამოტვირთეთ Komboe"
   },
   "downloadBitwardenOnAllDevices": {
-    "message": "ჩამოტვირთეთ Bitwarden ყველა მოწყობილობაზე"
+    "message": "ჩამოტვირთეთ Komboe ყველა მოწყობილობაზე"
   },
   "getTheMobileApp": {
     "message": "მიიღეთ მობილური აპი"
   },
   "getTheMobileAppDesc": {
-    "message": "წვდით თქვენს პაროლებს გზაში Bitwarden-ის მობილური აპით."
+    "message": "წვდით თქვენს პაროლებს გზაში Komboe-ის მობილური აპით."
   },
   "getTheDesktopApp": {
     "message": "მიიღეთ დესკტოპ აპი"
@@ -6666,7 +6666,7 @@
     "message": "წვდით თქვენს საცავს ბრაუზერის გარეშე, შემდეგ დააყენეთ ბიომეტრიით განბლოკვა, რომ დააჩქაროთ განბლოკვა როგორც დესკტოპ აპში, ისე ბრაუზერის გაფართოებაში."
   },
   "downloadFromBitwardenNow": {
-    "message": "ჩამოტვირთეთ bitwarden.com-იდან ახლა"
+    "message": "ჩამოტვირთეთ komboe.com-იდან ახლა"
   },
   "getItOnGooglePlay": {
     "message": "მიიღეთ Google Play-ზე"
@@ -7210,10 +7210,10 @@
     "message": "ბიომეტრიით განბლოკვა მიუწვდომელია არასწორად კონფიგურირებული სისტემური ფაილების გამო."
   },
   "biometricsStatusHelptextDesktopDisconnected": {
-    "message": "ბიომეტრიით განბლოკვა მიუწვდომელია, რადგან Bitwarden-ის დესკტოპ აპი დახურულია."
+    "message": "ბიომეტრიით განბლოკვა მიუწვდომელია, რადგან Komboe-ის დესკტოპ აპი დახურულია."
   },
   "biometricsStatusHelptextNotEnabledInDesktop": {
-    "message": "ბიომეტრიით განბლოკვა მიუწვდომელია, რადგან ის არ არის ჩართული $EMAIL$-ისთვის Bitwarden-ის დესკტოპ აპში.",
+    "message": "ბიომეტრიით განბლოკვა მიუწვდომელია, რადგან ის არ არის ჩართული $EMAIL$-ისთვის Komboe-ის დესკტოპ აპში.",
     "placeholders": {
       "email": {
         "content": "$1",
@@ -7245,7 +7245,7 @@
     "description": "Notification message for when a password has been regenerated"
   },
   "saveToBitwarden": {
-    "message": "Bitwarden-ში შენახვა",
+    "message": "Komboe-ში შენახვა",
     "description": "Confirmation message for saving a login to Bitwarden"
   },
   "spaceCharacterDescriptor": {
@@ -7489,13 +7489,13 @@
     "message": "Use folders to organize vault items. They're just for you. No one else will see or use them."
   },
   "introCarouselLabel": {
-    "message": "კეთილი იყოს თქვენი მობრძანება Bitwarden-ში"
+    "message": "კეთილი იყოს თქვენი მობრძანება Komboe-ში"
   },
   "securityPrioritized": {
     "message": "უსაფრთხოება, პრიორიტეტად"
   },
   "securityPrioritizedBody": {
-    "message": "შეინახეთ შესვლები, ბარათები და იდენტობები თქვენს დაცულ საცავში. Bitwarden იყენებს ნულოვანი ცოდნის, ბოლოდან ბოლომდე დაშიფვრას თქვენთვის მნიშვნელოვანი ნივთების დასაცავად."
+    "message": "შეინახეთ შესვლები, ბარათები და იდენტობები თქვენს დაცულ საცავში. Komboe იყენებს ნულოვანი ცოდნის, ბოლოდან ბოლომდე დაშიფვრას თქვენთვის მნიშვნელოვანი ნივთების დასაცავად."
   },
   "quickLogin": {
     "message": "სწრაფი და მარტივი შესვლა"
@@ -7513,7 +7513,7 @@
     "message": "თქვენი მონაცემები, როცა და სადაც გჭირდებათ"
   },
   "secureDevicesBody": {
-    "message": "შეინახეთ ულიმიტო პაროლები ულიმიტო მოწყობილობებზე Bitwarden-ის მობილური, ბრაუზერის და დესკტოპ აპებით."
+    "message": "შეინახეთ ულიმიტო პაროლები ულიმიტო მოწყობილობებზე Komboe-ის მობილური, ბრაუზერის და დესკტოპ აპებით."
   },
   "nudgeBadgeAria": {
     "message": "1 შეტყობინება"
@@ -7522,7 +7522,7 @@
     "message": "არსებული პაროლების იმპორტი"
   },
   "emptyVaultNudgeBody": {
-    "message": "გამოიყენეთ იმპორტიორი შესვლების სწრაფად გადასატანად Bitwarden-ში ხელით დამატების გარეშე."
+    "message": "გამოიყენეთ იმპორტიორი შესვლების სწრაფად გადასატანად Komboe-ში ხელით დამატების გარეშე."
   },
   "emptyVaultNudgeButton": {
     "message": "იმპორტი ახლა"
@@ -7641,7 +7641,7 @@
     "message": "ამ პარამეტრის შესახებ"
   },
   "permitCipherDetailsDescription": {
-    "message": "Bitwarden გამოიყენებს შენახულ შესვლის URI-ებს იმის დასადგენად, თუ რომელი ხატულა ან პაროლის შეცვლის URL უნდა იქნას გამოყენებული თქვენი გამოცდილების გასაუმჯობესებლად. ამ სერვისის გამოყენებისას ინფორმაცია არ გროვდება ან ინახება."
+    "message": "Komboe გამოიყენებს შენახულ შესვლის URI-ებს იმის დასადგენად, თუ რომელი ხატულა ან პაროლის შეცვლის URL უნდა იქნას გამოყენებული თქვენი გამოცდილების გასაუმჯობესებლად. ამ სერვისის გამოყენებისას ინფორმაცია არ გროვდება ან ინახება."
   },
   "showQuickCopyActionsDetailsDescription": {
     "message": "დაამატეთ 3 სწრაფი კოპირების ღილაკი ელემენტების გვერდით, რომ დააკოპიროთ თქვენი მომხმარებლის სახელი, პაროლი ან ვერიფიკაციის კოდი ბუფერში."
@@ -7650,7 +7650,7 @@
     "message": "თქვენ არ გაქვთ ამ გვერდის ნახვის უფლება. სცადეთ სხვა ანგარიშით შესვლა."
   },
   "wasmNotSupported": {
-    "message": "WebAssembly არ არის მხარდაჭერილი თქვენს ბრაუზერზე ან არ არის ჩართული. WebAssembly საჭიროა Bitwarden აპის გამოსაყენებლად.",
+    "message": "WebAssembly არ არის მხარდაჭერილი თქვენს ბრაუზერზე ან არ არის ჩართული. WebAssembly საჭიროა Komboe აპის გამოსაყენებლად.",
     "description": "'WebAssembly' is a technical term and should not be translated."
   },
   "showMore": {
@@ -7738,7 +7738,7 @@
     "message": "შეცდომა: გაშიფვრა შეუძლებელია"
   },
   "removeMasterPasswordForOrgUserKeyConnector": {
-    "message": "თქვენი ორგანიზაცია აღარ იყენებს მთავარ პაროლებს Bitwarden-ში შესასვლელად. გასაგრძელებლად, დაადასტურეთ ორგანიზაცია და დომენი."
+    "message": "თქვენი ორგანიზაცია აღარ იყენებს მთავარ პაროლებს Komboe-ში შესასვლელად. გასაგრძელებლად, დაადასტურეთ ორგანიზაცია და დომენი."
   },
   "continueWithLogIn": {
     "message": "გაგრძელება შესვლით"
@@ -7824,7 +7824,7 @@
     "message": "დააყენეთ განბლოკვის მეთოდი დროის ამოწურვის მოქმედების შესაცვლელად"
   },
   "sessionTimeoutSuppressedByConnectedDevice": {
-    "message": "იმართება Bitwarden-ის დესკტოპ აპის მიერ. რედაქტირებისთვის გახსენით დესკტოპ აპი."
+    "message": "იმართება Komboe-ის დესკტოპ აპის მიერ. რედაქტირებისთვის გახსენით დესკტოპ აპი."
   },
   "percentageCompleted": {
     "message": "$PERCENT$% დასრულებულია",
@@ -7920,13 +7920,13 @@
     "message": "შეიყვანეთ მრავალი ელფოსტა მძიმით გამოყოფით."
   },
   "emailPlaceholder": {
-    "message": "user@bitwarden.com , user@acme.com"
+    "message": "user@komboe.com , user@acme.com"
   },
   "emailPlaceholderMultiple": {
-    "message": "user@bitwarden.com, user@acme.com"
+    "message": "user@komboe.com, user@acme.com"
   },
   "downloadBitwardenApps": {
-    "message": "ჩამოტვირთეთ Bitwarden აპები"
+    "message": "ჩამოტვირთეთ Komboe აპები"
   },
   "emailProtected": {
     "message": "ელფოსტა დაცულია"
@@ -7945,13 +7945,13 @@
     "message": "Sync unlock with desktop app"
   },
   "syncUnlockWithDesktopDescription": {
-    "message": "The Bitwarden browser extension and desktop app lock and unlock together."
+    "message": "The Komboe browser extension and desktop app lock and unlock together."
   },
   "syncUnlockWithWeb": {
     "message": "Sync unlock with web app"
   },
   "syncUnlockWithWebDescription": {
-    "message": "The Bitwarden browser extension and web app lock and unlock together."
+    "message": "The Komboe browser extension and web app lock and unlock together."
   },
   "sharedUnlockUnavailableUntrustedDevice": {
     "message": "საერთო განბლოკვა მიუწვდომელია, რადგან აირჩიეთ ამ მოწყობილობის არდამახსოვრება. ამ პარამეტრის ჩასართავად, სცადეთ ხელახლა შესვლა."
@@ -7960,13 +7960,13 @@
     "message": "ახალი ნებართვა საჭიროა"
   },
   "sharedUnlockDesktopPermissionDesc": {
-    "message": "საერთო განბლოკვის გამოსაყენებლად, Bitwarden-ს სჭირდება ნებართვა დესკტოპ აპთან კომუნიკაციისთვის. გაგრძელებისას, თქვენი ბრაუზერი მოგთხოვთ მის დადასტურებას."
+    "message": "საერთო განბლოკვის გამოსაყენებლად, Komboe-ს სჭირდება ნებართვა დესკტოპ აპთან კომუნიკაციისთვის. გაგრძელებისას, თქვენი ბრაუზერი მოგთხოვთ მის დადასტურებას."
   },
   "sharedUnlockDesktopPermissionWarning": {
-    "message": "Bitwarden დაიბლოკება და გადაიტვირთება. დადასტურების შემდეგ, გაფართოება გადაიტვირთება და დაბლოკავს თქვენს საცავს."
+    "message": "Komboe დაიბლოკება და გადაიტვირთება. დადასტურების შემდეგ, გაფართოება გადაიტვირთება და დაბლოკავს თქვენს საცავს."
   },
   "biometricPermissionDesc": {
-    "message": "ბიომეტრიით განბლოკვის გამოსაყენებლად, Bitwarden-ს სჭირდება ნებართვა დესკტოპ აპთან კომუნიკაციისთვის. გაგრძელებისას, თქვენი ბრაუზერი მოგთხოვთ მის დადასტურებას."
+    "message": "ბიომეტრიით განბლოკვის გამოსაყენებლად, Komboe-ს სჭირდება ნებართვა დესკტოპ აპთან კომუნიკაციისთვის. გაგრძელებისას, თქვენი ბრაუზერი მოგთხოვთ მის დადასტურებას."
   },
   "enterMonth": {
     "message": "შეიყვანეთ თვე."
@@ -8451,15 +8451,15 @@
     "message": "უცნობი ელემენტი, შესაძლოა საჭირო გახდეს ამ ელემენტზე წვდომის მოთხოვნა."
   },
   "newExperienceDialogTitle": {
-    "message": "Bitwarden has a new look",
+    "message": "Komboe has a new look",
     "description": "Title of the dialog that introduces the redesigned vault to existing users."
   },
   "newExperienceDialogDesc": {
-    "message": "Better experience, same trusted security. The Bitwarden vault has been redesigned based on your feedback, so things are easier to find and work like you'd expect.",
+    "message": "Better experience, same trusted security. The Komboe vault has been redesigned based on your feedback, so things are easier to find and work like you'd expect.",
     "description": "Body copy of the dialog that introduces the redesigned vault to existing users."
   },
   "newExperienceDialogImgAlt": {
-    "message": "A preview of the redesigned Bitwarden vault.",
+    "message": "A preview of the redesigned Komboe vault.",
     "description": "Alt text for the screenshot shown in the dialog that introduces the redesigned vault."
   },
   "exploreTheNewVault": {

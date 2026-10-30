@@ -1,20 +1,20 @@
 {
   "appName": {
-    "message": "Bitwarden"
+    "message": "Komboe"
   },
   "appLogoLabel": {
-    "message": "Bitwarden-kjennemerke"
+    "message": "Komboe-kjennemerke"
   },
   "extName": {
-    "message": "Bitwarden Password Manager",
+    "message": "Komboe Password Manager",
     "description": "Extension name, MUST be less than 40 characters (Safari restriction)"
   },
   "extNameBeta": {
-    "message": "Bitwarden Password Manager Beta",
+    "message": "Komboe Password Manager Beta",
     "description": "Extension name for the beta channel, MUST be less than 40 characters (Safari restriction)"
   },
   "extDesc": {
-    "message": "Er ein heime, på jobb eller på farten, so held Bitwarden trygt på alle passord, passlyklar og all ømtolug data",
+    "message": "Er ein heime, på jobb eller på farten, so held Komboe trygt på alle passord, passlyklar og all ømtolug data",
     "description": "Extension description, MUST be less than 112 characters (Safari restriction)"
   },
   "loginOrCreateNewAccount": {
@@ -27,7 +27,7 @@
     "message": "Opprett ein konto"
   },
   "newToBitwarden": {
-    "message": "Ny på Bitwarden?"
+    "message": "Ny på Komboe?"
   },
   "logInWithPasskey": {
     "message": "Logg inn med passnøkkel"
@@ -324,22 +324,22 @@
     "message": "Haldt fram til nett-app?"
   },
   "continueToWebAppDesc": {
-    "message": "Utforsk fleire funksjonar i Bitwarden-kontoen din i nettappen."
+    "message": "Utforsk fleire funksjonar i Komboe-kontoen din i nettappen."
   },
   "continueToHelpCenter": {
     "message": "Haldt fram til hjelpesenteret?"
   },
   "continueToHelpCenterDesc": {
-    "message": "Lær meir om korleis ein nyttar Bitwarden på hjelpesenteret."
+    "message": "Lær meir om korleis ein nyttar Komboe på hjelpesenteret."
   },
   "continueToBrowserExtensionStore": {
     "message": "Halde fram til nettlesarutvidingsbutikken?"
   },
   "continueToBrowserExtensionStoreDesc": {
-    "message": "Hjelp andre med å finne ut om Bitwarden passar for dei. Besøk utvidingsbutikken til nettlesaren din og gi ei vurdering no."
+    "message": "Hjelp andre med å finne ut om Komboe passar for dei. Besøk utvidingsbutikken til nettlesaren din og gi ei vurdering no."
   },
   "changeMasterPasswordOnWebConfirmation": {
-    "message": "Du kan endre hovudpassordet ditt i Bitwarden-nettappen."
+    "message": "Du kan endre hovudpassordet ditt i Komboe-nettappen."
   },
   "fingerprintPhrase": {
     "message": "Fingeravtrykksfrase",
@@ -356,43 +356,43 @@
     "message": "Logg ut"
   },
   "aboutBitwarden": {
-    "message": "Om Bitwarden"
+    "message": "Om Komboe"
   },
   "about": {
     "message": "Om"
   },
   "moreFromBitwarden": {
-    "message": "Meir frå Bitwarden"
+    "message": "Meir frå Komboe"
   },
   "continueToBitwardenDotCom": {
-    "message": "Haldt fram til bitwarden.com?"
+    "message": "Haldt fram til komboe.com?"
   },
   "bitwardenForBusiness": {
-    "message": "Bitwarden for verksemder"
+    "message": "Komboe for verksemder"
   },
   "bitwardenAuthenticator": {
-    "message": "Bitwarden Authenticator"
+    "message": "Komboe Authenticator"
   },
   "continueToAuthenticatorPageDesc": {
-    "message": "Bitwarden Authenticator lèt deg lagre autentiseringsnøklar og generere TOTP-kodar for tostegs stadfestingsflytar. Lær meir på bitwarden.com"
+    "message": "Komboe Authenticator lèt deg lagre autentiseringsnøklar og generere TOTP-kodar for tostegs stadfestingsflytar. Lær meir på komboe.com"
   },
   "bitwardenSecretsManager": {
-    "message": "Bitwarden Secrets Manager"
+    "message": "Komboe Secrets Manager"
   },
   "continueToSecretsManagerPageDesc": {
-    "message": "Lagre, handsam og del utviklarlynndomar trygt med Bitwarden Secrets Manager. Lær meir på bitwarden.com."
+    "message": "Lagre, handsam og del utviklarlynndomar trygt med Komboe Secrets Manager. Lær meir på komboe.com."
   },
   "passwordlessDotDev": {
     "message": "Passwordless.dev"
   },
   "continueToPasswordlessDotDevPageDesc": {
-    "message": "Skap smidige og trygge innloggingsopplevingar utan tradisjonelle passord med Passwordless.dev. Lær meir på bitwarden.com."
+    "message": "Skap smidige og trygge innloggingsopplevingar utan tradisjonelle passord med Passwordless.dev. Lær meir på komboe.com."
   },
   "freeBitwardenFamilies": {
-    "message": "Gratis Bitwarden Families"
+    "message": "Gratis Komboe Families"
   },
   "freeBitwardenFamiliesPageDesc": {
-    "message": "Du er kvalifisert for Gratis Bitwarden Families. Løys inn tilbodet i dag i nettappen."
+    "message": "Du er kvalifisert for Gratis Komboe Families. Løys inn tilbodet i dag i nettappen."
   },
   "version": {
     "message": "Versjon"
@@ -458,13 +458,13 @@
     "message": "Hjelp og tilbakemelding"
   },
   "helpCenter": {
-    "message": "Bitwarden-hjelpesenter"
+    "message": "Komboe-hjelpesenter"
   },
   "communityForums": {
-    "message": "Utforsk Bitwarden-samfunnsforum"
+    "message": "Utforsk Komboe-samfunnsforum"
   },
   "contactSupport": {
-    "message": "Kontakt Bitwarden-støtte"
+    "message": "Kontakt Komboe-støtte"
   },
   "sync": {
     "message": "Synkroniser"
@@ -486,7 +486,7 @@
     "message": "Generer automatisk sterke, unike passord for innloggingane dine."
   },
   "bitWebVaultApp": {
-    "message": "Bitwarden-nettapp"
+    "message": "Komboe-nettapp"
   },
   "select": {
     "message": "Vel"
@@ -850,7 +850,7 @@
     "message": "Last ned og del deretter diagnostikkrapporten med"
   },
   "bitwardenSupport": {
-    "message": "Bitwarden-støtte",
+    "message": "Komboe-støtte",
     "description": "Link text following the troubleshooting description sentence. 'Bitwarden' should not be translated."
   },
   "download": {
@@ -1067,10 +1067,10 @@
     "message": "Gjer tostegs stadfesting sømlaus"
   },
   "totpHelper": {
-    "message": "Bitwarden kan lagre og fylle ut tostegs stadfestingskodar. Kopier og lim inn nøkkelen i dette feltet."
+    "message": "Komboe kan lagre og fylle ut tostegs stadfestingskodar. Kopier og lim inn nøkkelen i dette feltet."
   },
   "totpHelperWithCapture": {
-    "message": "Bitwarden kan lagre og fylle ut tostegs stadfestingskodar. Vel kameraikonet for å ta eit skjermbilete av autentiserings-QR-koden til denne nettsida, eller kopier og lim inn nøkkelen i dette feltet."
+    "message": "Komboe kan lagre og fylle ut tostegs stadfestingskodar. Vel kameraikonet for å ta eit skjermbilete av autentiserings-QR-koden til denne nettsida, eller kopier og lim inn nøkkelen i dette feltet."
   },
   "learnMoreAboutAuthenticators": {
     "message": "Lær meir om autentisering"
@@ -1157,10 +1157,10 @@
     "message": "Skriv inn eit namn."
   },
   "twoStepLoginConfirmation": {
-    "message": "Tostegsinnlogging gjer kontoen din tryggare ved å krevje at du stadfestar innlogginga di med ei anna eining, til dømes ein tryggingsnøkkel, autentiseringsapp, SMS, telefonsamtale eller e-post. Tostegsinnlogging kan setjast opp i nettkvelven på bitwarden.com. Vil du besøkje nettstaden no?"
+    "message": "Tostegsinnlogging gjer kontoen din tryggare ved å krevje at du stadfestar innlogginga di med ei anna eining, til dømes ein tryggingsnøkkel, autentiseringsapp, SMS, telefonsamtale eller e-post. Tostegsinnlogging kan setjast opp i nettkvelven på komboe.com. Vil du besøkje nettstaden no?"
   },
   "twoStepLoginConfirmationContent": {
-    "message": "Gjer kontoen din tryggare ved å setje opp tostegsinnlogging i Bitwarden-nettappen."
+    "message": "Gjer kontoen din tryggare ved å setje opp tostegsinnlogging i Komboe-nettappen."
   },
   "twoStepLoginConfirmationTitle": {
     "message": "Haldt fram til nettappen?"
@@ -1313,7 +1313,7 @@
     "message": "Hopp til innstilling"
   },
   "notificationAddDesc": {
-    "message": "Skal Bitwarden hugse dette passordet for deg?"
+    "message": "Skal Komboe hugse dette passordet for deg?"
   },
   "notificationAddSave": {
     "message": "Lagre"
@@ -1349,11 +1349,11 @@
     }
   },
   "notificationLoginSaveConfirmation": {
-    "message": "lagra i Bitwarden.",
+    "message": "lagra i Komboe.",
     "description": "Shown to user after item is saved."
   },
   "notificationLoginUpdatedConfirmation": {
-    "message": "oppdatert i Bitwarden.",
+    "message": "oppdatert i Komboe.",
     "description": "Shown to user after item is updated."
   },
   "selectItemAriaLabel": {
@@ -1451,13 +1451,13 @@
     "message": "Spør om å lagre nye passnøklar eller logg inn med passnøklar lagra i kvelven din. Gjeld alle innlogga kontoar."
   },
   "notificationChangeDesc": {
-    "message": "Vil du oppdatere dette passordet i Bitwarden?"
+    "message": "Vil du oppdatere dette passordet i Komboe?"
   },
   "notificationChangeSave": {
     "message": "Oppdater"
   },
   "notificationUnlockDesc": {
-    "message": "Lås opp Bitwarden-kvelven din for å fullføre autofyllingsførespurnaden."
+    "message": "Lås opp Komboe-kvelven din for å fullføre autofyllingsførespurnaden."
   },
   "notificationUnlock": {
     "message": "Lås opp"
@@ -1605,10 +1605,10 @@
     "message": "Dette passordet vil bli brukt til å eksportere og importere denne fila"
   },
   "accountRestrictedOptionDescription": {
-    "message": "Bruk kontokrypteringsnøkkelen din, utleidd frå brukarnamnet og hovudpassordet til kontoen, for å kryptere eksporten og avgrense import til berre den gjeldande Bitwarden-kontoen."
+    "message": "Bruk kontokrypteringsnøkkelen din, utleidd frå brukarnamnet og hovudpassordet til kontoen, for å kryptere eksporten og avgrense import til berre den gjeldande Komboe-kontoen."
   },
   "passwordProtectedOptionDescription": {
-    "message": "Set eit filpassord for å kryptere eksporten og importere han til ein kvar Bitwarden-konto ved hjelp av passordet for dekryptering."
+    "message": "Set eit filpassord for å kryptere eksporten og importere han til ein kvar Komboe-konto ved hjelp av passordet for dekryptering."
   },
   "exportTypeHeading": {
     "message": "Eksporttype"
@@ -1637,7 +1637,7 @@
     "message": "Denne eksporten krypterer dataa dine med krypteringsnøkkelen til kontoen din. Dersom du nokon gong roterer krypteringsnøkkelen til kontoen, bør du eksportere på nytt, sidan du ikkje vil kunne dekryptere denne eksportfila."
   },
   "encExportAccountWarningDesc": {
-    "message": "Kontokrypteringsnøklar er unike for kvar Bitwarden-brukarkonto, så du kan ikkje importere ein kryptert eksport til ein annan konto."
+    "message": "Kontokrypteringsnøklar er unike for kvar Komboe-brukarkonto, så du kan ikkje importere ein kryptert eksport til ein annan konto."
   },
   "exportMasterPassword": {
     "message": "Skriv inn hovudpassordet ditt for å eksportere kvelvdataa dine."
@@ -1661,7 +1661,7 @@
     "message": "Legg til delt mappe"
   },
   "bitwardenForBusinessPageDesc": {
-    "message": "Bitwarden for Business lèt deg dele kvelvelementa dine med andre ved hjelp av ein organisasjon. Lær meir på bitwarden.com."
+    "message": "Komboe for Business lèt deg dele kvelvelementa dine med andre ved hjelp av ein organisasjon. Lær meir på komboe.com."
   },
   "moveToOrganization": {
     "message": "Flytt til organisasjon"
@@ -1815,7 +1815,7 @@
     "message": "Handsam medlemskap"
   },
   "premiumManageAlert": {
-    "message": "Du kan handsame medlemskapen din i nettkvelven på bitwarden.com. Vil du besøkje nettstaden no?"
+    "message": "Du kan handsame medlemskapen din i nettkvelven på komboe.com. Vil du besøkje nettstaden no?"
   },
   "premiumRefresh": {
     "message": "Oppdater medlemskap"
@@ -1863,7 +1863,7 @@
     "message": "Kjøp Premium"
   },
   "premiumPurchaseAlertV2": {
-    "message": "Du kan kjøpe Premium frå kontoinnstillingane dine i Bitwarden-nettappen."
+    "message": "Du kan kjøpe Premium frå kontoinnstillingane dine i Komboe-nettappen."
   },
   "premiumFeatures": {
     "message": "Oppgrader til Premium og få:"
@@ -1969,7 +1969,7 @@
     "message": "Autentiseringsapp"
   },
   "authenticatorAppDescV2": {
-    "message": "Skriv inn ein kode generert av ein autentiseringsapp som Bitwarden Authenticator.",
+    "message": "Skriv inn ein kode generert av ein autentiseringsapp som Komboe Authenticator.",
     "description": "'Bitwarden Authenticator' is a product name and should not be translated."
   },
   "yubiKeyTitleV2": {
@@ -2002,7 +2002,7 @@
     "message": "Sjølvdriven maskinmiljø"
   },
   "selfHostedBaseUrlHint": {
-    "message": "Spesifiser basis-URL-en til den lokalt drivne Bitwarden-installasjonen din. Døme: https://bitwarden.company.com"
+    "message": "Spesifiser basis-URL-en til den lokalt drivne Komboe-installasjonen din. Døme: https://komboe.company.com"
   },
   "selfHostedCustomEnvHeader": {
     "message": "For avansert konfigurasjon kan du spesifisere basis-URL-en til kvar teneste uavhengig."
@@ -2055,7 +2055,7 @@
     "message": "Finn autofyllingsforslag enkelt"
   },
   "autofillSpotlightDesc": {
-    "message": "Slå av autofyllingsinnstillingane i nettlesaren, slik at dei ikkje kjem i konflikt med Bitwarden."
+    "message": "Slå av autofyllingsinnstillingane i nettlesaren, slik at dei ikkje kjem i konflikt med Komboe."
   },
   "turnOffBrowserAutofill": {
     "message": "Slå av autofylling i $BROWSER$",
@@ -2112,7 +2112,7 @@
     "message": "Vis autofyllingsforslag på skjemafelt"
   },
   "howDoesBitwardenProtectFromPhishing": {
-    "message": "Korleis verner Bitwarden dataa dine mot nettfiske?"
+    "message": "Korleis verner Komboe dataa dine mot nettfiske?"
   },
   "currentWebsite": {
     "message": "Gjeldande nettstad"
@@ -3021,7 +3021,7 @@
     "message": "Svakt hovudpassord"
   },
   "weakMasterPasswordDesc": {
-    "message": "Hovudpassordet du har valt er svakt. Du bør bruke eit sterkt hovudpassord (eller ei passfrase) for å verna Bitwarden-kontoen din forsvarleg. Er du sikker på at du vil bruke dette hovudpassordet?"
+    "message": "Hovudpassordet du har valt er svakt. Du bør bruke eit sterkt hovudpassord (eller ei passfrase) for å verna Komboe-kontoen din forsvarleg. Er du sikker på at du vil bruke dette hovudpassordet?"
   },
   "rotateAccountEncKey": {
     "message": "Roter også krypteringsnøkkelen til kontoen min"
@@ -3033,7 +3033,7 @@
     "message": "Er du sikker på at du vil rotere krypteringsnøkkelen til kontoen din?"
   },
   "updateEncryptionKeyWarning": {
-    "message": "Etter å ha oppdatert krypteringsnøkkelen din, må du logge ut og inn igjen i alle Bitwarden-applikasjonar du brukar (som mobilappen eller nettlesarutvidingar). Viss du ikkje loggar ut og inn igjen (som lastar ned den nye krypteringsnøkkelen din), kan det føre til datakorrupsjon. Vi vil prøve å logge deg ut automatisk, men det kan bli forseinka."
+    "message": "Etter å ha oppdatert krypteringsnøkkelen din, må du logge ut og inn igjen i alle Komboe-applikasjonar du brukar (som mobilappen eller nettlesarutvidingar). Viss du ikkje loggar ut og inn igjen (som lastar ned den nye krypteringsnøkkelen din), kan det føre til datakorrupsjon. Vi vil prøve å logge deg ut automatisk, men det kan bli forseinka."
   },
   "updateEncryptionKeyAccountExportWarning": {
     "message": "Alle kontobegrensa eksportar du har lagra vil bli ugyldige."
@@ -3061,10 +3061,10 @@
     "message": "Set PIN"
   },
   "setYourPinCode": {
-    "message": "Set PIN-koden din for å låse opp Bitwarden. PIN-innstillingane dine vil bli nullstilte dersom du nokon gong loggar heilt ut av applikasjonen."
+    "message": "Set PIN-koden din for å låse opp Komboe. PIN-innstillingane dine vil bli nullstilte dersom du nokon gong loggar heilt ut av applikasjonen."
   },
   "setPinCode": {
-    "message": "Du kan bruke denne PIN-en til å låse opp Bitwarden. PIN-en din vil bli nullstilt dersom du nokon gong loggar heilt ut av applikasjonen."
+    "message": "Du kan bruke denne PIN-en til å låse opp Komboe. PIN-en din vil bli nullstilt dersom du nokon gong loggar heilt ut av applikasjonen."
   },
   "pinRequired": {
     "message": "PIN-kode er påkravd."
@@ -3085,7 +3085,7 @@
     "message": "Ventar på stadfesting frå skrivebord"
   },
   "awaitDesktopDesc": {
-    "message": "Stadfest med biometri i Bitwarden-skrivebordsapplikasjonen for å setje opp biometri for nettlesaren."
+    "message": "Stadfest med biometri i Komboe-skrivebordsapplikasjonen for å setje opp biometri for nettlesaren."
   },
   "lockWithMasterPassOnRestart": {
     "message": "Lås med hovudpassord ved omstart av nettlesar"
@@ -3200,7 +3200,7 @@
     "message": "Skjemaet vert drive av eit anna domene enn URI-en til den lagra innlogginga di. Vel OK for å autofylle likevel, eller Avbryt for å stoppe."
   },
   "autofillIframeWarningTip": {
-    "message": "For å unngå denne åtvaringa i framtida, lagre denne URI-en, $HOSTNAME$, til Bitwarden-innloggingselementet ditt for denne nettstaden.",
+    "message": "For å unngå denne åtvaringa i framtida, lagre denne URI-en, $HOSTNAME$, til Komboe-innloggingselementet ditt for denne nettstaden.",
     "placeholders": {
       "hostname": {
         "content": "$1",
@@ -3209,7 +3209,7 @@
     }
   },
   "topLayerHijackWarning": {
-    "message": "Denne sida forstyrrar Bitwarden-opplevinga. Bitwarden sin innebygde meny er mellombels deaktivert som ei tryggingstiltak."
+    "message": "Denne sida forstyrrar Komboe-opplevinga. Komboe sin innebygde meny er mellombels deaktivert som ei tryggingstiltak."
   },
   "setMasterPassword": {
     "message": "Set hovudpassord"
@@ -3266,7 +3266,7 @@
     "message": "Det nye hovudpassordet ditt oppfyller ikkje retningslinjekrava."
   },
   "receiveMarketingEmails": {
-    "message": "Få oppdateringar frå Bitwarden i innboksen din."
+    "message": "Få oppdateringar frå Komboe i innboksen din."
   },
   "unsubscribe": {
     "message": "Meld av"
@@ -3311,13 +3311,13 @@
     "message": "Nettlesarintegrering er ikkje sett opp"
   },
   "desktopIntegrationDisabledDesc": {
-    "message": "Nettlesarintegrering er ikkje sett opp i Bitwarden-skrivebordsapplikasjonen. Set det opp i innstillingane i skrivebordsapplikasjonen."
+    "message": "Nettlesarintegrering er ikkje sett opp i Komboe-skrivebordsapplikasjonen. Set det opp i innstillingane i skrivebordsapplikasjonen."
   },
   "startDesktopTitle": {
-    "message": "Start Bitwarden-skrivebordsapplikasjonen"
+    "message": "Start Komboe-skrivebordsapplikasjonen"
   },
   "startDesktopDesc": {
-    "message": "Bitwarden-skrivebordsapplikasjonen må startast før opplåsing med biometri kan brukast."
+    "message": "Komboe-skrivebordsapplikasjonen må startast før opplåsing med biometri kan brukast."
   },
   "errorEnableBiometricTitle": {
     "message": "Klarte ikkje setje opp biometri"
@@ -3371,13 +3371,13 @@
     "message": "Biometri mislykkast"
   },
   "biometricsFailedDesc": {
-    "message": "Biometri kan ikkje fullførast, vurder å bruke eit hovudpassord eller logge ut. Dersom dette held fram, kontakt Bitwarden-støtte."
+    "message": "Biometri kan ikkje fullførast, vurder å bruke eit hovudpassord eller logge ut. Dersom dette held fram, kontakt Komboe-støtte."
   },
   "nativeMessagingPermissionErrorTitle": {
     "message": "Løyve ikkje gitt"
   },
   "nativeMessagingPermissionErrorDesc": {
-    "message": "Utan løyve til å kommunisere med Bitwarden skrivebordsapplikasjon kan vi ikkje tilby biometri i nettlesarutvidinga. Prøv igjen."
+    "message": "Utan løyve til å kommunisere med Komboe skrivebordsapplikasjon kan vi ikkje tilby biometri i nettlesarutvidinga. Prøv igjen."
   },
   "nativeMessagingPermissionSidebarTitle": {
     "message": "Feil ved løyveførespurnad"
@@ -3414,7 +3414,7 @@
     "message": "Ekskluderte domene"
   },
   "excludedDomainsDesc": {
-    "message": "Bitwarden vil ikkje spørje om å lagre innloggingsdetaljar for desse domenea. Du må oppdatere sida for at endringane skal tre i kraft."
+    "message": "Komboe vil ikkje spørje om å lagre innloggingsdetaljar for desse domenea. Du må oppdatere sida for at endringane skal tre i kraft."
   },
   "blockedDomainsDesc": {
     "message": "Autofylling og andre relaterte funksjonar vil ikkje bli tilbodne for desse nettstadane. Du må oppdatere sida for at endringane skal tre i kraft."
@@ -3546,24 +3546,24 @@
     "message": "Illustrasjon av ei liste med innloggingar som er risikable."
   },
   "welcomeDialogGraphicAlt": {
-    "message": "Illustrasjon av utforminga av Bitwarden-kvelvsida."
+    "message": "Illustrasjon av utforminga av Komboe-kvelvsida."
   },
   "generatePasswordSlideDesc": {
-    "message": "Generer raskt eit sterkt, unikt passord med Bitwarden-autofyllingsmenyen på den risikable nettstaden.",
+    "message": "Generer raskt eit sterkt, unikt passord med Komboe-autofyllingsmenyen på den risikable nettstaden.",
     "description": "Description of the generate password slide on the at-risk password page carousel"
   },
   "generatePasswordSlideImgAltPeriod": {
-    "message": "Illustrasjon av Bitwarden-autofyllingsmenyen som viser eit generert passord."
+    "message": "Illustrasjon av Komboe-autofyllingsmenyen som viser eit generert passord."
   },
   "updateInBitwarden": {
-    "message": "Oppdater i Bitwarden"
+    "message": "Oppdater i Komboe"
   },
   "updateInBitwardenSlideDesc": {
-    "message": "Bitwarden vil deretter be deg oppdatere passordet i passordhandsamaren.",
+    "message": "Komboe vil deretter be deg oppdatere passordet i passordhandsamaren.",
     "description": "Description of the update in Bitwarden slide on the at-risk password page carousel"
   },
   "updateInBitwardenSlideImgAltPeriod": {
-    "message": "Illustrasjon av eit Bitwarden-varsel som ber brukaren oppdatere innlogginga."
+    "message": "Illustrasjon av eit Komboe-varsel som ber brukaren oppdatere innlogginga."
   },
   "turnOnAutofill": {
     "message": "Slå på autofylling"
@@ -4078,10 +4078,10 @@
     "message": "Feil ved henting av autofyllingsdata"
   },
   "couldNotDecryptVaultItem": {
-    "message": "Bitwarden klarte ikkje dekryptere kvelvelementet som er lista opp nedanfor. Kontakt Bitwarden kundestøtte og oppgi element-ID-en nedanfor for å sjå om det kan gjenopprettast."
+    "message": "Komboe klarte ikkje dekryptere kvelvelementet som er lista opp nedanfor. Kontakt Komboe kundestøtte og oppgi element-ID-en nedanfor for å sjå om det kan gjenopprettast."
   },
   "couldNotDecryptVaultItems": {
-    "message": "Bitwarden klarte ikkje dekryptere kvelvelementa som er lista opp nedanfor. Kontakt Bitwarden kundestøtte og oppgi element-ID-ane nedanfor for å sjå om dei kan gjenopprettast."
+    "message": "Komboe klarte ikkje dekryptere kvelvelementa som er lista opp nedanfor. Kontakt Komboe kundestøtte og oppgi element-ID-ane nedanfor for å sjå om dei kan gjenopprettast."
   },
   "itemId": {
     "message": "Element-ID",
@@ -4191,11 +4191,11 @@
     }
   },
   "forwarderGeneratedBy": {
-    "message": "Generert av Bitwarden.",
+    "message": "Generert av Komboe.",
     "description": "Displayed with the address on the forwarding service's configuration screen."
   },
   "forwarderGeneratedByWithWebsite": {
-    "message": "Nettstad: $WEBSITE$. Generert av Bitwarden.",
+    "message": "Nettstad: $WEBSITE$. Generert av Komboe.",
     "description": "Displayed with the address on the forwarding service's configuration screen.",
     "placeholders": {
       "WEBSITE": {
@@ -4417,7 +4417,7 @@
     "message": "Eit varsel er sendt til eininga di."
   },
   "notificationSentDevicePart1": {
-    "message": "Lås opp Bitwarden på eininga di eller på"
+    "message": "Lås opp Komboe på eininga di eller på"
   },
   "notificationSentDeviceAnchor": {
     "message": "nettappen"
@@ -4917,15 +4917,15 @@
     "message": "Hopp til innhald"
   },
   "bitwardenOverlayButton": {
-    "message": "Bitwarden autofyllingsmenyknapp",
+    "message": "Komboe autofyllingsmenyknapp",
     "description": "Page title for the iframe containing the overlay button"
   },
   "toggleBitwardenVaultOverlay": {
-    "message": "Veksle Bitwarden autofyllingsmeny",
+    "message": "Veksle Komboe autofyllingsmeny",
     "description": "Screen reader and tool tip label for the overlay button"
   },
   "bitwardenVault": {
-    "message": "Bitwarden autofyllingsmeny",
+    "message": "Komboe autofyllingsmeny",
     "description": "Page title in overlay"
   },
   "unlockYourAccountToViewMatchingLogins": {
@@ -4997,7 +4997,7 @@
     "description": "Screen reader text (aria-label) for new identity button within inline menu"
   },
   "bitwardenOverlayMenuAvailable": {
-    "message": "Bitwarden autofyllingsmeny tilgjengeleg. Trykk pil ned for å velje.",
+    "message": "Komboe autofyllingsmeny tilgjengeleg. Trykk pil ned for å velje.",
     "description": "Screen reader text for announcing when the overlay opens on the page"
   },
   "turnOn": {
@@ -5369,7 +5369,7 @@
     "message": "Secure by design"
   },
   "importDataSecureByDesignBody": {
-    "message": "End-to-end encrypted handoff. Bitwarden never sees your $VENDOR$ login details.",
+    "message": "End-to-end encrypted handoff. Komboe never sees your $VENDOR$ login details.",
     "placeholders": {
       "vendor": {
         "content": "$1",
@@ -5520,7 +5520,7 @@
     "description": "Followed by a literal filename (my_passwords.json) rendered as code."
   },
   "importGnomeInstructionsFileHere": {
-    "message": "fila her til Bitwarden.",
+    "message": "fila her til Komboe.",
     "description": "Follows the my_passwords.json filename."
   },
   "importPasswordagentInstructions": {
@@ -6091,7 +6091,7 @@
     "message": "Aktiv konto"
   },
   "bitwardenAccount": {
-    "message": "Bitwarden-konto"
+    "message": "Komboe-konto"
   },
   "availableAccounts": {
     "message": "Tilgjengelege kontoar"
@@ -6137,7 +6137,7 @@
     "description": "Label indicating the most common import formats"
   },
   "uriMatchDefaultStrategyHint": {
-    "message": "URI-samsvarsgjenkjenning er korleis Bitwarden identifiserer autofyllingsforslag.",
+    "message": "URI-samsvarsgjenkjenning er korleis Komboe identifiserer autofyllingsforslag.",
     "description": "Explains to the user that URI match detection determines how Bitwarden suggests autofill options, and clarifies that this default strategy applies when no specific match detection is set for a login item."
   },
   "regExAdvancedOptionWarning": {
@@ -6181,15 +6181,15 @@
     "description": "Body content for dialog which asks if the user wants to proceed to the browser's keyboard shortcut settings page"
   },
   "overrideDefaultBrowserAutofillTitle": {
-    "message": "Gjere Bitwarden til standard passordhandsamar?",
+    "message": "Gjere Komboe til standard passordhandsamar?",
     "description": "Dialog title facilitating the ability to override a chrome browser's default autofill behavior"
   },
   "overrideDefaultBrowserAutofillDescription": {
-    "message": "Viss du ignorerer dette valet, kan det oppstå konfliktar mellom Bitwarden sine autofyllingsforslag og nettlesaren sine.",
+    "message": "Viss du ignorerer dette valet, kan det oppstå konfliktar mellom Komboe sine autofyllingsforslag og nettlesaren sine.",
     "description": "Dialog message facilitating the ability to override a chrome browser's default autofill behavior"
   },
   "overrideDefaultBrowserAutoFillSettings": {
-    "message": "Gjer Bitwarden til standard passordhandsamar",
+    "message": "Gjer Komboe til standard passordhandsamar",
     "description": "Label for the setting that allows overriding the default browser autofill settings"
   },
   "defaultPasswordManagerCalloutTitle": {
@@ -6197,7 +6197,7 @@
     "description": "Title for the callout that prompts users to set Bitwarden as their default password manager"
   },
   "defaultPasswordManagerCalloutDesc": {
-    "message": "Du vil bli beden om å gi $BROWSER$-nettlesaren løyve til å gjere Bitwarden til standard passordhandsamaren din.",
+    "message": "Du vil bli beden om å gi $BROWSER$-nettlesaren løyve til å gjere Komboe til standard passordhandsamaren din.",
     "description": "Description for the callout that prompts users to set Bitwarden as their default password manager",
     "placeholders": {
       "browser": {
@@ -6207,11 +6207,11 @@
     }
   },
   "privacyPermissionAdditionNotGrantedTitle": {
-    "message": "Klarte ikkje setje Bitwarden som standard passordhandsamar",
+    "message": "Klarte ikkje setje Komboe som standard passordhandsamar",
     "description": "Title for the dialog that appears when the user has not granted the extension permission to set privacy settings"
   },
   "privacyPermissionAdditionNotGrantedDescription": {
-    "message": "Du må gi Bitwarden nettlesarpersonvernløyve for å setje det som standard passordhandsamar.",
+    "message": "Du må gi Komboe nettlesarpersonvernløyve for å setje det som standard passordhandsamar.",
     "description": "Description for the dialog that appears when the user has not granted the extension permission to set privacy settings"
   },
   "makeDefault": {
@@ -6219,10 +6219,10 @@
     "description": "Button text for the setting that allows overriding the default browser autofill settings"
   },
   "defaultPasswordManagerPromptTitle": {
-    "message": "Gjer Bitwarden til nettlesarens standard passordhandsamar"
+    "message": "Gjer Komboe til nettlesarens standard passordhandsamar"
   },
   "defaultPasswordManagerPromptTitleV2": {
-    "message": "Gjer Bitwarden til standard passordhandsamaren din",
+    "message": "Gjer Komboe til standard passordhandsamaren din",
     "description": "Label for the setting to make Bitwarden the default password manager"
   },
   "defaultPasswordManagerSettingHintV2": {
@@ -6234,13 +6234,13 @@
     "description": "Link text to browser autofill settings in the default password manager setting hint."
   },
   "defaultPasswordManagerPromptStep2AfterAllow": {
-    "message": "frå nettlesarførespurnaden for å gi Bitwarden løyve til å endre innstillingane dine."
+    "message": "frå nettlesarførespurnaden for å gi Komboe løyve til å endre innstillingane dine."
   },
   "defaultPasswordManagerPromptStep3": {
     "message": "Vi vil slå av den innebygde passordhandsamaren i nettlesaren din slik at du kan nyte ei trygg innloggingsoppleving."
   },
   "defaultPasswordManagerSuccessToast": {
-    "message": "Gjorde Bitwarden til standard passordhandsamar i nettlesaren"
+    "message": "Gjorde Komboe til standard passordhandsamar i nettlesaren"
   },
   "allow": {
     "message": "Tillat",
@@ -6648,16 +6648,16 @@
     "message": "Last ned vedlegg"
   },
   "downloadBitwarden": {
-    "message": "Last ned Bitwarden"
+    "message": "Last ned Komboe"
   },
   "downloadBitwardenOnAllDevices": {
-    "message": "Last ned Bitwarden på alle einingar"
+    "message": "Last ned Komboe på alle einingar"
   },
   "getTheMobileApp": {
     "message": "Få mobilappen"
   },
   "getTheMobileAppDesc": {
-    "message": "Få tilgang til passorda dine på farten med Bitwarden-mobilappen."
+    "message": "Få tilgang til passorda dine på farten med Komboe-mobilappen."
   },
   "getTheDesktopApp": {
     "message": "Få skrivebordsappen"
@@ -6666,7 +6666,7 @@
     "message": "Få tilgang til kvelven din utan ein nettlesar, og set deretter opp opplåsing med biometri for å framskynde opplåsing i både skrivebordsappen og nettlesarutvidinga."
   },
   "downloadFromBitwardenNow": {
-    "message": "Last ned frå bitwarden.com no"
+    "message": "Last ned frå komboe.com no"
   },
   "getItOnGooglePlay": {
     "message": "Få det på Google Play"
@@ -7210,10 +7210,10 @@
     "message": "Biometrisk opplåsing er utilgjengeleg på grunn av feilkonfigurerte systemfiler."
   },
   "biometricsStatusHelptextDesktopDisconnected": {
-    "message": "Biometrisk opplåsing er utilgjengeleg fordi Bitwarden-skrivebordsappen er lukka."
+    "message": "Biometrisk opplåsing er utilgjengeleg fordi Komboe-skrivebordsappen er lukka."
   },
   "biometricsStatusHelptextNotEnabledInDesktop": {
-    "message": "Biometrisk opplåsing er utilgjengeleg fordi det ikkje er aktivert for $EMAIL$ i Bitwarden-skrivebordsappen.",
+    "message": "Biometrisk opplåsing er utilgjengeleg fordi det ikkje er aktivert for $EMAIL$ i Komboe-skrivebordsappen.",
     "placeholders": {
       "email": {
         "content": "$1",
@@ -7245,7 +7245,7 @@
     "description": "Notification message for when a password has been regenerated"
   },
   "saveToBitwarden": {
-    "message": "Lagre til Bitwarden",
+    "message": "Lagre til Komboe",
     "description": "Confirmation message for saving a login to Bitwarden"
   },
   "spaceCharacterDescriptor": {
@@ -7489,13 +7489,13 @@
     "message": "Use folders to organize vault items. They're just for you. No one else will see or use them."
   },
   "introCarouselLabel": {
-    "message": "Velkomen til Bitwarden"
+    "message": "Velkomen til Komboe"
   },
   "securityPrioritized": {
     "message": "Tryggleik, prioritert"
   },
   "securityPrioritizedBody": {
-    "message": "Lagre innloggingar, kort og identitetar i den sikre kvelven din. Bitwarden brukar nullkunnskaps, ende-til-ende-kryptering for å verne det som er viktig for deg."
+    "message": "Lagre innloggingar, kort og identitetar i den sikre kvelven din. Komboe brukar nullkunnskaps, ende-til-ende-kryptering for å verne det som er viktig for deg."
   },
   "quickLogin": {
     "message": "Rask og enkel innlogging"
@@ -7513,7 +7513,7 @@
     "message": "Dataa dine, når og der du treng dei"
   },
   "secureDevicesBody": {
-    "message": "Lagre ubegrensa med passord på tvers av ubegrensa einingar med Bitwarden mobil-, nettlesar- og skrivebordsappar."
+    "message": "Lagre ubegrensa med passord på tvers av ubegrensa einingar med Komboe mobil-, nettlesar- og skrivebordsappar."
   },
   "nudgeBadgeAria": {
     "message": "1 varsel"
@@ -7522,7 +7522,7 @@
     "message": "Importer eksisterande passord"
   },
   "emptyVaultNudgeBody": {
-    "message": "Bruk importøren til å raskt overføre innloggingar til Bitwarden utan å leggje dei til manuelt."
+    "message": "Bruk importøren til å raskt overføre innloggingar til Komboe utan å leggje dei til manuelt."
   },
   "emptyVaultNudgeButton": {
     "message": "Importer no"
@@ -7641,7 +7641,7 @@
     "message": "Om denne innstillinga"
   },
   "permitCipherDetailsDescription": {
-    "message": "Bitwarden vil bruke lagra innloggings-URI-ar for å identifisere kva ikon eller URL for passordendring som bør brukast for å forbetre opplevinga di. Ingen informasjon vert samla inn eller lagra når du brukar denne tenesta."
+    "message": "Komboe vil bruke lagra innloggings-URI-ar for å identifisere kva ikon eller URL for passordendring som bør brukast for å forbetre opplevinga di. Ingen informasjon vert samla inn eller lagra når du brukar denne tenesta."
   },
   "showQuickCopyActionsDetailsDescription": {
     "message": "Legg til 3 snøggkopieringsknappar ved sida av element for å kopiere brukarnamnet, passordet eller stadfestingskoden din til utklippstavla."
@@ -7650,7 +7650,7 @@
     "message": "Du har ikkje løyve til å sjå denne sida. Prøv å logge inn med ein annan konto."
   },
   "wasmNotSupported": {
-    "message": "WebAssembly er ikkje støtta i nettlesaren din eller er ikkje aktivert. WebAssembly er påkravd for å bruke Bitwarden-appen.",
+    "message": "WebAssembly er ikkje støtta i nettlesaren din eller er ikkje aktivert. WebAssembly er påkravd for å bruke Komboe-appen.",
     "description": "'WebAssembly' is a technical term and should not be translated."
   },
   "showMore": {
@@ -7738,7 +7738,7 @@
     "message": "Feil: Kan ikkje dekryptere"
   },
   "removeMasterPasswordForOrgUserKeyConnector": {
-    "message": "Organisasjonen din brukar ikkje lenger hovudpassord for å logge inn på Bitwarden. Stadfest organisasjonen og domenet for å halde fram."
+    "message": "Organisasjonen din brukar ikkje lenger hovudpassord for å logge inn på Komboe. Stadfest organisasjonen og domenet for å halde fram."
   },
   "continueWithLogIn": {
     "message": "Hald fram med innlogging"
@@ -7824,7 +7824,7 @@
     "message": "Set ein opplåsingsmetode for å endre tidsavbrotshandlinga di"
   },
   "sessionTimeoutSuppressedByConnectedDevice": {
-    "message": "Handsama av Bitwarden-skrivebordsappen. Opne skrivebordsappen for å redigere."
+    "message": "Handsama av Komboe-skrivebordsappen. Opne skrivebordsappen for å redigere."
   },
   "percentageCompleted": {
     "message": "$PERCENT$% fullført",
@@ -7920,13 +7920,13 @@
     "message": "Skriv inn fleire e-postar ved å skilje dei med komma."
   },
   "emailPlaceholder": {
-    "message": "brukar@bitwarden.com , brukar@acme.com"
+    "message": "brukar@komboe.com , brukar@acme.com"
   },
   "emailPlaceholderMultiple": {
-    "message": "brukar@bitwarden.com, brukar@acme.com"
+    "message": "brukar@komboe.com, brukar@acme.com"
   },
   "downloadBitwardenApps": {
-    "message": "Last ned Bitwarden-appar"
+    "message": "Last ned Komboe-appar"
   },
   "emailProtected": {
     "message": "E-post verna"
@@ -7945,13 +7945,13 @@
     "message": "Sync unlock with desktop app"
   },
   "syncUnlockWithDesktopDescription": {
-    "message": "The Bitwarden browser extension and desktop app lock and unlock together."
+    "message": "The Komboe browser extension and desktop app lock and unlock together."
   },
   "syncUnlockWithWeb": {
     "message": "Sync unlock with web app"
   },
   "syncUnlockWithWebDescription": {
-    "message": "The Bitwarden browser extension and web app lock and unlock together."
+    "message": "The Komboe browser extension and web app lock and unlock together."
   },
   "sharedUnlockUnavailableUntrustedDevice": {
     "message": "Delt opplåsing er ikkje tilgjengeleg fordi du valde å ikkje hugse denne eininga. Prøv å logge inn igjen for å aktivere denne innstillinga."
@@ -7960,13 +7960,13 @@
     "message": "Nytt løyve naudsynt"
   },
   "sharedUnlockDesktopPermissionDesc": {
-    "message": "For å bruke delt opplåsing treng Bitwarden løyve til å kommunisere med skrivebordsappen. Når du held fram, vil nettlesaren din be deg godkjenne det."
+    "message": "For å bruke delt opplåsing treng Komboe løyve til å kommunisere med skrivebordsappen. Når du held fram, vil nettlesaren din be deg godkjenne det."
   },
   "sharedUnlockDesktopPermissionWarning": {
-    "message": "Bitwarden vil låse og laste på nytt. Etter at du godkjenner, lastar utvidinga på nytt og vil låse kvelven din."
+    "message": "Komboe vil låse og laste på nytt. Etter at du godkjenner, lastar utvidinga på nytt og vil låse kvelven din."
   },
   "biometricPermissionDesc": {
-    "message": "For å bruke biometrisk opplåsing treng Bitwarden løyve til å kommunisere med skrivebordsappen. Når du held fram, vil nettlesaren din be deg godkjenne det."
+    "message": "For å bruke biometrisk opplåsing treng Komboe løyve til å kommunisere med skrivebordsappen. Når du held fram, vil nettlesaren din be deg godkjenne det."
   },
   "enterMonth": {
     "message": "Skriv inn månad."
@@ -8451,15 +8451,15 @@
     "message": "Ukjent element, du må kanskje be om løyve for å få tilgang til dette elementet."
   },
   "newExperienceDialogTitle": {
-    "message": "Bitwarden has a new look",
+    "message": "Komboe has a new look",
     "description": "Title of the dialog that introduces the redesigned vault to existing users."
   },
   "newExperienceDialogDesc": {
-    "message": "Better experience, same trusted security. The Bitwarden vault has been redesigned based on your feedback, so things are easier to find and work like you'd expect.",
+    "message": "Better experience, same trusted security. The Komboe vault has been redesigned based on your feedback, so things are easier to find and work like you'd expect.",
     "description": "Body copy of the dialog that introduces the redesigned vault to existing users."
   },
   "newExperienceDialogImgAlt": {
-    "message": "A preview of the redesigned Bitwarden vault.",
+    "message": "A preview of the redesigned Komboe vault.",
     "description": "Alt text for the screenshot shown in the dialog that introduces the redesigned vault."
   },
   "exploreTheNewVault": {

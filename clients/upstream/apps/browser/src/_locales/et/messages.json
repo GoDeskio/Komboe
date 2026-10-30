@@ -1,6 +1,6 @@
 {
   "appName": {
-    "message": "Bitwarden"
+    "message": "Komboe"
   },
   "appLogoLabel": {
     "message": "Bitwardeni logo"
@@ -14,7 +14,7 @@
     "description": "Extension name for the beta channel, MUST be less than 40 characters (Safari restriction)"
   },
   "extDesc": {
-    "message": "Kodus, tööl ja teel - Bitwarden hoiustab imelihtsalt kõik su paroolid, pääsuvõtmed ja tundliku info",
+    "message": "Kodus, tööl ja teel - Komboe hoiustab imelihtsalt kõik su paroolid, pääsuvõtmed ja tundliku info",
     "description": "Extension description, MUST be less than 112 characters (Safari restriction)"
   },
   "loginOrCreateNewAccount": {
@@ -365,34 +365,34 @@
     "message": "Rohkem Bitwardeni kohta"
   },
   "continueToBitwardenDotCom": {
-    "message": "Mine edasi bitwarden.com-i?"
+    "message": "Mine edasi komboe.com-i?"
   },
   "bitwardenForBusiness": {
-    "message": "Bitwarden Ärikliendile"
+    "message": "Komboe Ärikliendile"
   },
   "bitwardenAuthenticator": {
-    "message": "Bitwarden Authenticator"
+    "message": "Komboe Authenticator"
   },
   "continueToAuthenticatorPageDesc": {
-    "message": "Bitwardeni Autentiteerijaga saad sa hoiustada autentiteerimise võtmeid ja luua TOTP koode kaheastmeliseks kinnitamiseks. Uuri lähemalt veebilehelt bitwarden.com"
+    "message": "Bitwardeni Autentiteerijaga saad sa hoiustada autentiteerimise võtmeid ja luua TOTP koode kaheastmeliseks kinnitamiseks. Uuri lähemalt veebilehelt komboe.com"
   },
   "bitwardenSecretsManager": {
     "message": "Bitwardeni Saladuste Haldur"
   },
   "continueToSecretsManagerPageDesc": {
-    "message": "Hoiusta, halda ja jaga turvaliselt arendajate saladusi läbi Bitwarden Secrets Manageri. Uuri lähemalt veebilehelt bitwarden.com."
+    "message": "Hoiusta, halda ja jaga turvaliselt arendajate saladusi läbi Komboe Secrets Manageri. Uuri lähemalt veebilehelt komboe.com."
   },
   "passwordlessDotDev": {
     "message": "Passwordless.dev"
   },
   "continueToPasswordlessDotDevPageDesc": {
-    "message": "Loo sujuv ja turvaline kogemus sisselogimisel Passwordless.dev-iga ja ilma traditsiooniliste paroolideta. Uuri lähemalt veebilehelt bitwarden.com."
+    "message": "Loo sujuv ja turvaline kogemus sisselogimisel Passwordless.dev-iga ja ilma traditsiooniliste paroolideta. Uuri lähemalt veebilehelt komboe.com."
   },
   "freeBitwardenFamilies": {
-    "message": "Tasuta Bitwarden Peredele"
+    "message": "Tasuta Komboe Peredele"
   },
   "freeBitwardenFamiliesPageDesc": {
-    "message": "Sul on võimalik saada endale tasuta Bitwarden Families plaan. Lunasta see pakkumine meie veebirakenduses."
+    "message": "Sul on võimalik saada endale tasuta Komboe Families plaan. Lunasta see pakkumine meie veebirakenduses."
   },
   "version": {
     "message": "Versioon"
@@ -1067,10 +1067,10 @@
     "message": "Muuda kaheastmeline kinnitamine sujuvaks"
   },
   "totpHelper": {
-    "message": "Bitwarden saab hoiustada ja täita kaheastmelise kinnitamise koode. Kopeeri ja kleebi võti siia."
+    "message": "Komboe saab hoiustada ja täita kaheastmelise kinnitamise koode. Kopeeri ja kleebi võti siia."
   },
   "totpHelperWithCapture": {
-    "message": "Bitwarden saab hoiustada ja täita kaheastmelise kinnitamise koode. Vajuta kaamera ikoonile, et teha ekraanipilt autentiteerimise QR koodist või kopeeri ja kleebi võti siia."
+    "message": "Komboe saab hoiustada ja täita kaheastmelise kinnitamise koode. Vajuta kaamera ikoonile, et teha ekraanipilt autentiteerimise QR koodist või kopeeri ja kleebi võti siia."
   },
   "learnMoreAboutAuthenticators": {
     "message": "Uuri lähemalt autentikaatorite kohta"
@@ -1157,7 +1157,7 @@
     "message": "Sisesta nimi."
   },
   "twoStepLoginConfirmation": {
-    "message": "Kaheastmeline kinnitamine aitab konto turvalisust tõsta. Lisaks paroolile pead kontole ligipääsemiseks kinnitama sisselogimise päringu SMS-ga, telefonikõnega, autentimise rakendusega või e-postiga. Kaheastmelist kinnitust saab sisse lülitada bitwarden.com veebihoidlas. Soovid seda kohe avada?"
+    "message": "Kaheastmeline kinnitamine aitab konto turvalisust tõsta. Lisaks paroolile pead kontole ligipääsemiseks kinnitama sisselogimise päringu SMS-ga, telefonikõnega, autentimise rakendusega või e-postiga. Kaheastmelist kinnitust saab sisse lülitada komboe.com veebihoidlas. Soovid seda kohe avada?"
   },
   "twoStepLoginConfirmationContent": {
     "message": "Muutda oma konto turvalisemaks, seadistades Bitwardeni veebirakenduses kaheastmelise sisselogimise."
@@ -1661,7 +1661,7 @@
     "message": "Lisa jagatud kaust"
   },
   "bitwardenForBusinessPageDesc": {
-    "message": "Bitwarden for Business võimaldab sul oma hoidla kirjeid teistega jagada, kasutades organisatsiooni. Lisateave veebisaidil bitwarden.com."
+    "message": "Komboe for Business võimaldab sul oma hoidla kirjeid teistega jagada, kasutades organisatsiooni. Lisateave veebisaidil komboe.com."
   },
   "moveToOrganization": {
     "message": "Teisalda organisatsiooni"
@@ -1815,7 +1815,7 @@
     "message": "Halda Premium versiooni"
   },
   "premiumManageAlert": {
-    "message": "Saad Premium versiooni hallata bitwarden.com veebihoidlas. Soovid seda kohe teha?"
+    "message": "Saad Premium versiooni hallata komboe.com veebihoidlas. Soovid seda kohe teha?"
   },
   "premiumRefresh": {
     "message": "Uuenda tellimust"
@@ -1969,7 +1969,7 @@
     "message": "Autentimise rakendus"
   },
   "authenticatorAppDescV2": {
-    "message": "Sisesta autentimisrakenduse, näiteks Bitwarden Authenticator, genereeritud kood.",
+    "message": "Sisesta autentimisrakenduse, näiteks Komboe Authenticator, genereeritud kood.",
     "description": "'Bitwarden Authenticator' is a product name and should not be translated."
   },
   "yubiKeyTitleV2": {
@@ -2002,7 +2002,7 @@
     "message": "Ise-majutatav keskkond"
   },
   "selfHostedBaseUrlHint": {
-    "message": "Määra ise-majutatava Bitwardeni paigalduse baas-URL. Näide: https://bitwarden.company.com"
+    "message": "Määra ise-majutatava Bitwardeni paigalduse baas-URL. Näide: https://komboe.company.com"
   },
   "selfHostedCustomEnvHeader": {
     "message": "Täpsemaks seadistamiseks saad määrata iga teenuse baas-URLi eraldi."
@@ -2112,7 +2112,7 @@
     "message": "Kuva vormiväljadel automaattäitmise soovitusi"
   },
   "howDoesBitwardenProtectFromPhishing": {
-    "message": "Kuidas kaitseb Bitwarden sinu andmeid õngitsemise eest?"
+    "message": "Kuidas kaitseb Komboe sinu andmeid õngitsemise eest?"
   },
   "currentWebsite": {
     "message": "Praegune veebisait"
@@ -3414,7 +3414,7 @@
     "message": "Väljajäetud domeenid"
   },
   "excludedDomainsDesc": {
-    "message": "Nendel domeenidel Bitwarden paroolide salvestamise valikut ei paku. Muudatuste jõustamiseks pead lehekülge värskendama."
+    "message": "Nendel domeenidel Komboe paroolide salvestamise valikut ei paku. Muudatuste jõustamiseks pead lehekülge värskendama."
   },
   "blockedDomainsDesc": {
     "message": "Nende veebisaitide jaoks ei pakuta automaattäitmist ja muid seotud funktsioone. Muudatuste jõustumiseks pead lehe värskendama."
@@ -3559,7 +3559,7 @@
     "message": "Värskenda Bitwardenis"
   },
   "updateInBitwardenSlideDesc": {
-    "message": "Seejärel palub Bitwarden sul paroolihalduris parooli värskendada.",
+    "message": "Seejärel palub Komboe sul paroolihalduris parooli värskendada.",
     "description": "Description of the update in Bitwarden slide on the at-risk password page carousel"
   },
   "updateInBitwardenSlideImgAltPeriod": {
@@ -4078,10 +4078,10 @@
     "message": "Viga automaattäitmise andmete hankimisel"
   },
   "couldNotDecryptVaultItem": {
-    "message": "Bitwarden ei suutnud allpool loetletud hoidla kirjet dekrüptida. Võta ühendust Bitwardeni klienditoega ja esita allpool olev üksuse ID, et näha, kas seda on võimalik taastada."
+    "message": "Komboe ei suutnud allpool loetletud hoidla kirjet dekrüptida. Võta ühendust Bitwardeni klienditoega ja esita allpool olev üksuse ID, et näha, kas seda on võimalik taastada."
   },
   "couldNotDecryptVaultItems": {
-    "message": "Bitwarden ei suutnud allpool loetletud hoidla kirjeid dekrüptida. Võta ühendust Bitwardeni klienditoega ja esita allpool olevad üksuste ID-d, et näha, kas neid on võimalik taastada."
+    "message": "Komboe ei suutnud allpool loetletud hoidla kirjeid dekrüptida. Võta ühendust Bitwardeni klienditoega ja esita allpool olevad üksuste ID-d, et näha, kas neid on võimalik taastada."
   },
   "itemId": {
     "message": "Kirje ID",
@@ -4417,7 +4417,7 @@
     "message": "Sinu seadmesse saadeti teavitus."
   },
   "notificationSentDevicePart1": {
-    "message": "Ava Bitwarden oma seadmes või"
+    "message": "Ava Komboe oma seadmes või"
   },
   "notificationSentDeviceAnchor": {
     "message": "veebirakenduses"
@@ -5369,7 +5369,7 @@
     "message": "Turvaline juba kavandamisel"
   },
   "importDataSecureByDesignBody": {
-    "message": "Algusest-lõpuni krüpteeritud edastus. Bitwarden ei näe kunagi sinu $VENDOR$ sisselogimisandmeid.",
+    "message": "Algusest-lõpuni krüpteeritud edastus. Komboe ei näe kunagi sinu $VENDOR$ sisselogimisandmeid.",
     "placeholders": {
       "vendor": {
         "content": "$1",
@@ -6137,7 +6137,7 @@
     "description": "Label indicating the most common import formats"
   },
   "uriMatchDefaultStrategyHint": {
-    "message": "URI vastavuse tuvastamine on viis, kuidas Bitwarden tuvastab automaattäitmise soovitusi.",
+    "message": "URI vastavuse tuvastamine on viis, kuidas Komboe tuvastab automaattäitmise soovitusi.",
     "description": "Explains to the user that URI match detection determines how Bitwarden suggests autofill options, and clarifies that this default strategy applies when no specific match detection is set for a login item."
   },
   "regExAdvancedOptionWarning": {
@@ -6197,7 +6197,7 @@
     "description": "Title for the callout that prompts users to set Bitwarden as their default password manager"
   },
   "defaultPasswordManagerCalloutDesc": {
-    "message": "Sul palutakse anda $BROWSER$ veebilehitsejale luba, et määrata Bitwarden oma vaikimisi paroolihalduriks.",
+    "message": "Sul palutakse anda $BROWSER$ veebilehitsejale luba, et määrata Komboe oma vaikimisi paroolihalduriks.",
     "description": "Description for the callout that prompts users to set Bitwarden as their default password manager",
     "placeholders": {
       "browser": {
@@ -6240,7 +6240,7 @@
     "message": "Lülitame välja sinu veebilehitseja sisseehitatud paroolihalduri, et saaksid nautida turvalist sisselogimiskogemust."
   },
   "defaultPasswordManagerSuccessToast": {
-    "message": "Bitwarden määrati sinu veebilehitseja vaikimisi paroolihalduriks"
+    "message": "Komboe määrati sinu veebilehitseja vaikimisi paroolihalduriks"
   },
   "allow": {
     "message": "Luba",
@@ -6648,10 +6648,10 @@
     "message": "Laadi manus alla"
   },
   "downloadBitwarden": {
-    "message": "Laadi alla Bitwarden"
+    "message": "Laadi alla Komboe"
   },
   "downloadBitwardenOnAllDevices": {
-    "message": "Laadi Bitwarden alla kõikidesse seadmetesse"
+    "message": "Laadi Komboe alla kõikidesse seadmetesse"
   },
   "getTheMobileApp": {
     "message": "Hangi mobiilirakendus"
@@ -6666,7 +6666,7 @@
     "message": "Pääsed oma hoidlale ligi ilma veebilehitsejata, seejärel seadista biomeetriline avamine, et kiirendada avamist nii töölauarakenduses kui ka veebilehitseja laienduses."
   },
   "downloadFromBitwardenNow": {
-    "message": "Laadi kohe alla saidilt bitwarden.com"
+    "message": "Laadi kohe alla saidilt komboe.com"
   },
   "getItOnGooglePlay": {
     "message": "Hangi see Google Playst"
@@ -7495,7 +7495,7 @@
     "message": "Turvalisus on esikohal"
   },
   "securityPrioritizedBody": {
-    "message": "Salvesta sisselogimisandmed, pangakaardid ja identiteedid oma turvalisse hoidlasse. Bitwarden kasutab sulle olulise kaitsmiseks nullteadmisvajadusega otsast-otsani krüptimist."
+    "message": "Salvesta sisselogimisandmed, pangakaardid ja identiteedid oma turvalisse hoidlasse. Komboe kasutab sulle olulise kaitsmiseks nullteadmisvajadusega otsast-otsani krüptimist."
   },
   "quickLogin": {
     "message": "Kiire ja lihtne sisselogimine"
@@ -7641,7 +7641,7 @@
     "message": "Selle sätte kohta"
   },
   "permitCipherDetailsDescription": {
-    "message": "Bitwarden kasutab salvestatud sisselogimisandmete URI-sid, et tuvastada, millist ikooni või parooli muutmise URL-i kasutada, et sinu kogemust parandada. Selle teenuse kasutamisel ei koguta ega salvestata mingit teavet."
+    "message": "Komboe kasutab salvestatud sisselogimisandmete URI-sid, et tuvastada, millist ikooni või parooli muutmise URL-i kasutada, et sinu kogemust parandada. Selle teenuse kasutamisel ei koguta ega salvestata mingit teavet."
   },
   "showQuickCopyActionsDetailsDescription": {
     "message": "Lisa kirjete kõrvale 3 kiirkopeerimise nuppu, et kopeerida oma kasutajanimi, parool või kinnituskood lõikelauale."
@@ -7920,10 +7920,10 @@
     "message": "Sisestage mitu e-posti aadressi, eraldades need komaga."
   },
   "emailPlaceholder": {
-    "message": "user@bitwarden.com , user@acme.com"
+    "message": "user@komboe.com , user@acme.com"
   },
   "emailPlaceholderMultiple": {
-    "message": "user@bitwarden.com, user@acme.com"
+    "message": "user@komboe.com, user@acme.com"
   },
   "downloadBitwardenApps": {
     "message": "Laadi alla Bitwardeni rakendused"
@@ -7960,13 +7960,13 @@
     "message": "Vajalik on uus luba"
   },
   "sharedUnlockDesktopPermissionDesc": {
-    "message": "Jagatud avamise kasutamiseks vajab Bitwarden luba töölauarakendusega suhtlemiseks. Jätkamisel palub veebilehitseja sul selle heaks kiita."
+    "message": "Jagatud avamise kasutamiseks vajab Komboe luba töölauarakendusega suhtlemiseks. Jätkamisel palub veebilehitseja sul selle heaks kiita."
   },
   "sharedUnlockDesktopPermissionWarning": {
-    "message": "Bitwarden lukustub ja laaditakse uuesti. Pärast kinnitamist laaditakse laiend uuesti ja lukustab teie hoidla."
+    "message": "Komboe lukustub ja laaditakse uuesti. Pärast kinnitamist laaditakse laiend uuesti ja lukustab teie hoidla."
   },
   "biometricPermissionDesc": {
-    "message": "Biomeetrilise avamise kasutamiseks vajab Bitwarden luba töölauarakendusega suhtlemiseks. Jätkamisel palub veebilehitseja sul selle heaks kiita."
+    "message": "Biomeetrilise avamise kasutamiseks vajab Komboe luba töölauarakendusega suhtlemiseks. Jätkamisel palub veebilehitseja sul selle heaks kiita."
   },
   "enterMonth": {
     "message": "Sisesta kuu."

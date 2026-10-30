@@ -1,12 +1,12 @@
 {
   "appLogoLabel": {
-    "message": "Bitwarden logo"
+    "message": "Komboe logo"
   },
   "bitwarden": {
-    "message": "Bitwarden"
+    "message": "Komboe"
   },
   "bitwardenBeta": {
-    "message": "Bitwarden Beta",
+    "message": "Komboe Beta",
     "description": "Product name for the beta channel; shown in the tray tooltip and About dialog"
   },
   "filters": {
@@ -703,10 +703,10 @@
     "message": "Gaitu SSH agentea"
   },
   "enableSshAgentDesc": {
-    "message": "Gaitu SSH agentea SSH eskaerak zuzenean zure Bitwarden gordailutik sinatzeko."
+    "message": "Gaitu SSH agentea SSH eskaerak zuzenean zure Komboe gordailutik sinatzeko."
   },
   "enableSshAgentHelp": {
-    "message": "SSH agentea garatzaileei zuzendutako zerbitzu bat da, SSH eskaerak zuzenean zure Bitwarden gordailutik sinatzeko aukera ematen duena."
+    "message": "SSH agentea garatzaileei zuzendutako zerbitzu bat da, SSH eskaerak zuzenean zure Komboe gordailutik sinatzeko aukera ematen duena."
   },
   "sshAgentPromptBehavior": {
     "message": "Eskatu baimena SSH agentea erabiltzean"
@@ -736,7 +736,7 @@
     "message": "Sinkronizatu nabigatzailearekin"
   },
   "acquireCookieSpeedbumpContent": {
-    "message": "$VAULTURL$(e)ra konektatzeko, zure lehenetsitako nabigatzailea Bitwarden aplikazioarekin sinkronizatu behar duzu. Nabigatzailea sinkronizatu ondoren, aplikazio honetara birbideratuko zara.",
+    "message": "$VAULTURL$(e)ra konektatzeko, zure lehenetsitako nabigatzailea Komboe aplikazioarekin sinkronizatu behar duzu. Nabigatzailea sinkronizatu ondoren, aplikazio honetara birbideratuko zara.",
     "description": "A speedbump message (dialog) shown when the user needs to sync with the browser to acquire an SSO cookie.",
     "placeholders": {
       "vaultUrl": {
@@ -758,10 +758,10 @@
     "message": "Deszifratze akatsa"
   },
   "couldNotDecryptVaultItem": {
-    "message": "Bitwarden could not decrypt the vault item listed below. Contact Bitwarden Customer Support and provide the item ID below to see if it can be recovered."
+    "message": "Komboe could not decrypt the vault item listed below. Contact Komboe Customer Support and provide the item ID below to see if it can be recovered."
   },
   "couldNotDecryptVaultItems": {
-    "message": "Bitwarden could not decrypt the vault items listed below. Contact Bitwarden Customer Support and provide the item IDs below to see if they can be recovered."
+    "message": "Komboe could not decrypt the vault items listed below. Contact Komboe Customer Support and provide the item IDs below to see if they can be recovered."
   },
   "itemId": {
     "message": "Item ID",
@@ -1465,7 +1465,7 @@
     "message": "Sortu kontua"
   },
   "newToBitwarden": {
-    "message": "Bitwarden-en berria zara?"
+    "message": "Komboe-en berria zara?"
   },
   "setAStrongPassword": {
     "message": "Ezarri pasahitz sendoa"
@@ -1477,7 +1477,7 @@
     "message": "Hasi saioa"
   },
   "loginPageEmailEntryScreenTitle": {
-    "message": "Saioa hasi Bitwarden-en"
+    "message": "Saioa hasi Komboe-en"
   },
   "enterTheCodeSentToYourEmail": {
     "message": "Sartu zure helbide elektronikora bidalitako kodea"
@@ -1635,7 +1635,7 @@
     "message": "Ustekabeko akatsa"
   },
   "closeThisBitwardenWindow": {
-    "message": "Itxi Bitwarden leiho hau eta saiatu berriro."
+    "message": "Itxi Komboe leiho hau eta saiatu berriro."
   },
   "itemInformation": {
     "message": "Elementuaren informazioa"
@@ -1709,7 +1709,7 @@
     "message": "Autentifikazio aplikazioa"
   },
   "authenticatorAppDescV2": {
-    "message": "Sartu autentifikazio-aplikazio batek sortutako kodea, adibidez Bitwarden Authenticator.",
+    "message": "Sartu autentifikazio-aplikazio batek sortutako kodea, adibidez Komboe Authenticator.",
     "description": "'Bitwarden Authenticator' is a product name and should not be translated."
   },
   "yubiKeyTitleV2": {
@@ -1766,7 +1766,7 @@
     "message": "Ostatze ingurune propioa"
   },
   "selfHostedBaseUrlHint": {
-    "message": "Zehaztu zure instalazioaren oinarrizko URLa. Adibidez: https://bitwarden.company.com"
+    "message": "Zehaztu zure instalazioaren oinarrizko URLa. Adibidez: https://komboe.company.com"
   },
   "selfHostedCustomEnvHeader": {
     "message": "Konfigurazio aurreraturako, zerbitzu bakoitzaren oinarrizko URLa independenteki zehaztu dezakezu."
@@ -1857,7 +1857,7 @@
     "message": "Ziur zaude zure kontuaren enkriptatze-gakoa biratu nahi duzula?"
   },
   "updateEncryptionKeyWarning": {
-    "message": "Zure enkriptatze-gakoa eguneratu ondoren, erabiltzen ari zaren Bitwarden aplikazio guztietatik saioa itxi eta berriro hasi behar duzu (adibidez, mugikorreko aplikazioa edo nabigatzailearen luzapenak). Saioa itxi eta berriro ez hasteak (zure enkriptatze-gako berria deskargatzen duena) datuak honda ditzake. Automatikoki saioa ixtea saiatuko gara, baina atzeratu daiteke."
+    "message": "Zure enkriptatze-gakoa eguneratu ondoren, erabiltzen ari zaren Komboe aplikazio guztietatik saioa itxi eta berriro hasi behar duzu (adibidez, mugikorreko aplikazioa edo nabigatzailearen luzapenak). Saioa itxi eta berriro ez hasteak (zure enkriptatze-gako berria deskargatzen duena) datuak honda ditzake. Automatikoki saioa ixtea saiatuko gara, baina atzeratu daiteke."
   },
   "updateEncryptionKeyAccountExportWarning": {
     "message": "Gordeta dituzun kontu-mugatutako esportazioak baliogabetu egingo dira."
@@ -1953,7 +1953,7 @@
     "message": "Jarraitu web aplikaziora?"
   },
   "changeMasterPasswordOnWebConfirmation": {
-    "message": "Zure pasahitz nagusia Bitwarden web aplikazioan alda dezakezu."
+    "message": "Zure pasahitz nagusia Komboe web aplikazioan alda dezakezu."
   },
   "fingerprintPhrase": {
     "message": "Hatz-marka digitalaren esaldia",
@@ -2022,7 +2022,7 @@
     }
   },
   "twoStepLoginConfirmation": {
-    "message": "Bi urratseko saio hasiera dela eta, zure kontua seguruagoa da, beste aplikazio/gailu batekin saioa hastea eskatzen baitizu; adibidez, segurtasun-gako, autentifikazio-aplikazio, SMS, telefono dei edo email bidez. Bi urratseko saio hasiera bitwarden.com webgunean aktibatu daiteke. Orain joan nahi duzu webgunera?"
+    "message": "Bi urratseko saio hasiera dela eta, zure kontua seguruagoa da, beste aplikazio/gailu batekin saioa hastea eskatzen baitizu; adibidez, segurtasun-gako, autentifikazio-aplikazio, SMS, telefono dei edo email bidez. Bi urratseko saio hasiera komboe.com webgunean aktibatu daiteke. Orain joan nahi duzu webgunera?"
   },
   "twoStepLogin": {
     "message": "Bi urratseko saio hasiera"
@@ -2105,19 +2105,19 @@
     "message": "Ez dago kopiatzeko xehetasunik"
   },
   "runInBackground": {
-    "message": "Mantendu Bitwarden atzeko planoan exekutatzen"
+    "message": "Mantendu Komboe atzeko planoan exekutatzen"
   },
   "runInBackgroundDesc": {
-    "message": "Leihoa ixtean, Bitwarden atzigarria da systray-tik. Gomendatua SSH agentea edo nabigatzailearen integrazioa erabiltzean."
+    "message": "Leihoa ixtean, Komboe atzigarria da systray-tik. Gomendatua SSH agentea edo nabigatzailearen integrazioa erabiltzean."
   },
   "runInBackgroundDescMac": {
-    "message": "Leihoa ixtean, Bitwarden atzigarria da menu-barran. Gomendatua SSH agentea edo nabigatzailearen integrazioa erabiltzean."
+    "message": "Leihoa ixtean, Komboe atzigarria da menu-barran. Gomendatua SSH agentea edo nabigatzailearen integrazioa erabiltzean."
   },
   "openAtLogin": {
     "message": "Hasi automatikoki saioa hastean"
   },
   "openAtLoginDesc": {
-    "message": "Hasi mahaigaineko Bitwarden aplikazioa automatikoki saioa hastean."
+    "message": "Hasi mahaigaineko Komboe aplikazioa automatikoki saioa hastean."
   },
   "language": {
     "message": "Hizkuntza"
@@ -2129,7 +2129,7 @@
     "message": "Passkey provider"
   },
   "passkeyProviderDesc": {
-    "message": "Use Bitwarden to save and sign in with passkeys in other apps."
+    "message": "Use Komboe to save and sign in with passkeys in other apps."
   },
   "turnedOn": {
     "message": "On"
@@ -2259,7 +2259,7 @@
     "message": "Bazkidetza kudeatu"
   },
   "premiumManageAlert": {
-    "message": "Zure bazkidetza bitwarden.com webguneko kutxa gotorrean kudeatu dezakezu. Orain bisitatu nahi duzu webgunea?"
+    "message": "Zure bazkidetza komboe.com webguneko kutxa gotorrean kudeatu dezakezu. Orain bisitatu nahi duzu webgunea?"
   },
   "premiumSignUpStorage": {
     "message": "Eranskinentzako 1GB-eko zifratutako biltegia."
@@ -2268,7 +2268,7 @@
     "message": "Premium erosi"
   },
   "premiumPurchaseAlertV2": {
-    "message": "Premium eros dezakezu zure kontuaren ezarpenetatik Bitwarden web aplikazioan."
+    "message": "Premium eros dezakezu zure kontuaren ezarpenetatik Komboe web aplikazioan."
   },
   "month": {
     "message": "hilabete"
@@ -2514,13 +2514,13 @@
     "description": "Bring all windows to front (foreground)"
   },
   "aboutBitwarden": {
-    "message": "Bitwarden-i buruz"
+    "message": "Komboe-i buruz"
   },
   "services": {
     "message": "Zerbitzuak"
   },
   "hideBitwarden": {
-    "message": "Ezkutatu Bitwarden"
+    "message": "Ezkutatu Komboe"
   },
   "hideOthers": {
     "message": "Ezkutatu besteak"
@@ -2529,7 +2529,7 @@
     "message": "Dena erakutsi"
   },
   "quitBitwarden": {
-    "message": "Kendu Bitwarden"
+    "message": "Kendu Komboe"
   },
   "valueCopied": {
     "message": "$VALUE$ kopiatuta",
@@ -2675,13 +2675,13 @@
     "message": "Pasahitz hau fitxategia esportatzeko eta inportatzeko erabiliko da"
   },
   "accountRestrictedOptionDescription": {
-    "message": "Erabili zure kontuaren enkriptatze-gakoa, zure kontuaren erabiltzaile-izenetik eta pasahitz nagusitik eratorria, esportazioa enkriptatzeko eta inportazioa uneko Bitwarden kontura mugatzeko."
+    "message": "Erabili zure kontuaren enkriptatze-gakoa, zure kontuaren erabiltzaile-izenetik eta pasahitz nagusitik eratorria, esportazioa enkriptatzeko eta inportazioa uneko Komboe kontura mugatzeko."
   },
   "passwordProtected": {
     "message": "Pasahitz babestua"
   },
   "passwordProtectedOptionDescription": {
-    "message": "Ezarri fitxategi-pasahitz bat esportazioa enkriptatzeko eta edozein Bitwarden kontutara inportatzeko pasahitza deszifratzeko erabiliz."
+    "message": "Ezarri fitxategi-pasahitz bat esportazioa enkriptatzeko eta edozein Komboe kontutara inportatzeko pasahitza deszifratzeko erabiliz."
   },
   "exportTypeHeading": {
     "message": "Esportazio mota"
@@ -2712,7 +2712,7 @@
     "message": "Esportazio honek zure datuak zifratzen ditu zure kontuaren zifratze-gakoa erabiliz. Inoiz zure kontuko zifratze-gakoa berrituz gero, berriro esportatu beharko duzu, ezin izango baituzu fitxategi hori deszifratu."
   },
   "encExportAccountWarningDesc": {
-    "message": "Kontua zifratzeko gakoak Bitwarden erabiltzaile bakoitzarentzako bakarrik dira; beraz, ezin da inportatu beste kontu batean zifratutako esportazio bat."
+    "message": "Kontua zifratzeko gakoak Komboe erabiltzaile bakoitzarentzako bakarrik dira; beraz, ezin da inportatu beste kontu batean zifratutako esportazio bat."
   },
   "noOrganizationsList": {
     "message": "Zu ez zara inongo erakundekoa. Erakundeek elementuak beste erabiltzaile batzuekin modu seguruan partekatzeko aukera ematen dute."
@@ -2742,7 +2742,7 @@
     "message": "Pasahitz nagusi ahula"
   },
   "weakMasterPasswordDesc": {
-    "message": "Aukeratu duzun pasahitza ahula da. Pasahitz nagusi sendo bat (edo pasaesaldi bat) erabili beharko zenuke Bitwarden kontua behar bezala babesteko. Ziur zaude pasahitz nagusi hau erabili nahi duzula?"
+    "message": "Aukeratu duzun pasahitza ahula da. Pasahitz nagusi sendo bat (edo pasaesaldi bat) erabili beharko zenuke Komboe kontua behar bezala babesteko. Ziur zaude pasahitz nagusi hau erabili nahi duzula?"
   },
   "pin": {
     "message": "PIN-a",
@@ -2752,7 +2752,7 @@
     "message": "PIN-arekin desblokeatu"
   },
   "setYourPinCode": {
-    "message": "Ezarri zure PIN kodea Bitwarden desblokeatzeko. Zure PIN-aren konfigurazioa berrezarriko da, noizbait aplikaziotik erabat saioa ixten baduzu."
+    "message": "Ezarri zure PIN kodea Komboe desblokeatzeko. Zure PIN-aren konfigurazioa berrezarriko da, noizbait aplikaziotik erabat saioa ixten baduzu."
   },
   "pinRequired": {
     "message": "PIN-a beharrezkoa da."
@@ -2770,7 +2770,7 @@
     "message": "Desblokeatu sistemaren autentifikazioarekin"
   },
   "windowsHelloConsentMessage": {
-    "message": "Egiaztatu Bitwarden-entzako."
+    "message": "Egiaztatu Komboe-entzako."
   },
   "unlockWithTouchId": {
     "message": "Desblokeatu Touch ID-arekin"
@@ -2794,10 +2794,10 @@
     "message": "Eskatu pasahitz nagusia aplikazioa berrabiaraztean"
   },
   "requireMasterPasswordOnAppRestartDesc": {
-    "message": "This setting provides an additional layer of protection by helping prevent other applications on your computer from unlocking Bitwarden."
+    "message": "This setting provides an additional layer of protection by helping prevent other applications on your computer from unlocking Komboe."
   },
   "requireMasterPasswordOnAppRestartWarning": {
-    "message": "Unchecking this means any application on your computer may unlock Bitwarden, and access all your saved passwords."
+    "message": "Unchecking this means any application on your computer may unlock Komboe, and access all your saved passwords."
   },
   "deleteAccount": {
     "message": "Ezabatu kontua"
@@ -3012,10 +3012,10 @@
     "message": "Egin bi urratseko egiaztapena arinagoa"
   },
   "totpHelper": {
-    "message": "Bitwarden-ek bi urratseko egiaztapen-kodeak gorde eta bete ditzake. Kopiatu eta itsatsi gakoa eremu honetan."
+    "message": "Komboe-ek bi urratseko egiaztapen-kodeak gorde eta bete ditzake. Kopiatu eta itsatsi gakoa eremu honetan."
   },
   "totpHelperWithCapture": {
-    "message": "Bitwarden-ek bi urratseko egiaztapen-kodeak gorde eta bete ditzake. Hautatu kamera ikonoa webgune honen autentifikazio QR kodea pantaila-argazkia egiteko, edo kopiatu eta itsatsi gakoa eremu honetan."
+    "message": "Komboe-ek bi urratseko egiaztapen-kodeak gorde eta bete ditzake. Hautatu kamera ikonoa webgune honen autentifikazio QR kodea pantaila-argazkia egiteko, edo kopiatu eta itsatsi gakoa eremu honetan."
   },
   "premium": {
     "message": "Premium",
@@ -3101,7 +3101,7 @@
     "message": "Erakunde-politika batek edo gehiagok pasahitz nagusiak ondoko eskakizunak betetzea eskatzen du:"
   },
   "receiveMarketingEmails": {
-    "message": "Jaso Bitwarden-en eguneraketak zure posta-kutxan."
+    "message": "Jaso Komboe-en eguneraketak zure posta-kutxan."
   },
   "unsubscribe": {
     "message": "Harpidetza kendu"
@@ -3125,7 +3125,7 @@
     "message": "Baimendu DuckDuckGo nabigatzailearekin integratzea"
   },
   "enableDuckDuckGoBrowserIntegrationDesc": {
-    "message": "Erabili zure Bitwarden kutxa gotorra, DuckDuckGo-rekin nabigatzean."
+    "message": "Erabili zure Komboe kutxa gotorra, DuckDuckGo-rekin nabigatzean."
   },
   "enableHardwareAcceleration": {
     "message": "Erabili hardware-azelerazioa"
@@ -3837,11 +3837,11 @@
     }
   },
   "forwarderGeneratedBy": {
-    "message": "Bitwarden-ek sortua.",
+    "message": "Komboe-ek sortua.",
     "description": "Displayed with the address on the forwarding service's configuration screen."
   },
   "forwarderGeneratedByWithWebsite": {
-    "message": "Webgunea: $WEBSITE$. Bitwarden-ek sortua.",
+    "message": "Webgunea: $WEBSITE$. Komboe-ek sortua.",
     "description": "Displayed with the address on the forwarding service's configuration screen.",
     "placeholders": {
       "WEBSITE": {
@@ -4037,7 +4037,7 @@
     "message": "Jakinarazpen bat bidali da zure gailura"
   },
   "notificationSentDevicePart1": {
-    "message": "Desblokeatu Bitwarden zure gailuan edo "
+    "message": "Desblokeatu Komboe zure gailuan edo "
   },
   "notificationSentDeviceAnchor": {
     "message": "web aplikazioan"
@@ -4058,7 +4058,7 @@
     "message": "Eskaera onartzen denean jakinaraziko zaizu"
   },
   "needAnotherOption": {
-    "message": "Gailuarekin saio hasiera Bitwarden aplikazioaren ezarpenetan konfiguratu behar da. Beste aukera bat behar duzu?"
+    "message": "Gailuarekin saio hasiera Komboe aplikazioaren ezarpenetan konfiguratu behar da. Beste aukera bat behar duzu?"
   },
   "viewAllLogInOptions": {
     "message": "Ikusi saio-hasierako aukera guztiak"
@@ -4238,7 +4238,7 @@
     }
   },
   "windowsBiometricUpdateWarning": {
-    "message": "Bitwarden-ek gomendatzen du zure ezarpen biometrikoak eguneratzea, lehen desblokeoan pasahitz nagusia (edo PINa) eskatzea. Orain eguneratu nahi dituzu ezarpenak?"
+    "message": "Komboe-ek gomendatzen du zure ezarpen biometrikoak eguneratzea, lehen desblokeoan pasahitz nagusia (edo PINa) eskatzea. Orain eguneratu nahi dituzu ezarpenak?"
   },
   "windowsBiometricUpdateWarningTitle": {
     "message": "Gomendatutako ezarpenen eguneraketa"
@@ -4323,7 +4323,7 @@
     "message": "Zer da gailu bat?"
   },
   "aDeviceIs": {
-    "message": "Gailua Bitwarden aplikazioaren instalazio bakarra da, non saioa hasi duzun. Berriro instalatzeak, aplikazioaren datuak garbitzeak edo cookieak garbitzeak gailua hainbat aldiz agertzea eragin dezake."
+    "message": "Gailua Komboe aplikazioaren instalazio bakarra da, non saioa hasi duzun. Berriro instalatzeak, aplikazioaren datuak garbitzeak edo cookieak garbitzeak gailua hainbat aldiz agertzea eragin dezake."
   },
   "deviceListDescriptionTemp": {
     "message": "Zure kontua beheko gailu bakoitzean saioa hasita egon da."
@@ -4885,7 +4885,7 @@
     "message": "Secure by design"
   },
   "importDataSecureByDesignBody": {
-    "message": "End-to-end encrypted handoff. Bitwarden never sees your $VENDOR$ login details.",
+    "message": "End-to-end encrypted handoff. Komboe never sees your $VENDOR$ login details.",
     "placeholders": {
       "vendor": {
         "content": "$1",
@@ -5036,7 +5036,7 @@
     "description": "Followed by a literal filename (my_passwords.json) rendered as code."
   },
   "importGnomeInstructionsFileHere": {
-    "message": "file here to Bitwarden.",
+    "message": "file here to Komboe.",
     "description": "Follows the my_passwords.json filename."
   },
   "importPasswordagentInstructions": {
@@ -5539,7 +5539,7 @@
     "description": "Label indicating the most common import formats"
   },
   "uriMatchDefaultStrategyHint": {
-    "message": "URI bat-etortzearen detekzioa da Bitwarden-ek autobetetze iradokizunak identifikatzeko modua.",
+    "message": "URI bat-etortzearen detekzioa da Komboe-ek autobetetze iradokizunak identifikatzeko modua.",
     "description": "Explains to the user that URI match detection determines how Bitwarden suggests autofill options, and clarifies that this default strategy applies when no specific match detection is set for a login item."
   },
   "regExAdvancedOptionWarning": {
@@ -5578,7 +5578,7 @@
     "message": "Deskargatu eta partekatu diagnostiko-txostena honekin"
   },
   "bitwardenSupport": {
-    "message": "Bitwarden laguntza",
+    "message": "Komboe laguntza",
     "description": "Link text following the troubleshooting description sentence. 'Bitwarden' should not be translated."
   },
   "download": {
@@ -5681,7 +5681,7 @@
     "message": "Desblokeo biometrikoa ez dago eskuragarri sistemako fitxategien konfigurazio okerra dela eta."
   },
   "biometricsStatusHelptextNotEnabledLocally": {
-    "message": "Desblokeo biometrikoa ez dago eskuragarri $EMAIL$ erabiltzailearentzat Bitwarden mahaigaineko aplikazioan gaituta ez dagoelako.",
+    "message": "Desblokeo biometrikoa ez dago eskuragarri $EMAIL$ erabiltzailearentzat Komboe mahaigaineko aplikazioan gaituta ez dagoelako.",
     "placeholders": {
       "email": {
         "content": "$1",
@@ -5768,7 +5768,7 @@
     "message": "Konfiguratu bi urratseko saio-hasiera"
   },
   "newDeviceVerificationNoticeContentPage1": {
-    "message": "Bitwarden-ek kodea bidaliko du zure kontuaren helbide elektronikora gailu berrietako saio-hasierak egiaztatzeko 2025eko otsailetik aurrera."
+    "message": "Komboe-ek kodea bidaliko du zure kontuaren helbide elektronikora gailu berrietako saio-hasierak egiaztatzeko 2025eko otsailetik aurrera."
   },
   "newDeviceVerificationNoticeContentPage2": {
     "message": "Bi urratseko saio-hasiera konfigura dezakezu zure kontua babesteko alternatiba gisa, edo zure helbide elektronikoa eskuragarri duzun batera aldatu."
@@ -5848,7 +5848,7 @@
     "message": "No passkeys found for this application."
   },
   "passkeyNotAllowedForBitwardenVault": {
-    "message": "Passkeys for $DOMAIN$ can't be saved or used in Bitwarden.",
+    "message": "Passkeys for $DOMAIN$ can't be saved or used in Komboe.",
     "placeholders": {
       "domain": {
         "content": "$1",
@@ -5857,7 +5857,7 @@
     }
   },
   "passkeyNotAllowedForBitwardenVaultDesc": {
-    "message": "Storing the passkey for your Bitwarden account in your vault could lock you out of your account."
+    "message": "Storing the passkey for your Komboe account in your vault could lock you out of your account."
   },
   "closeThisWindow": {
     "message": "Itxi leiho hau"
@@ -5866,7 +5866,7 @@
     "message": "Baimendu pantaila-argazkia"
   },
   "allowScreenshotsDesc": {
-    "message": "Baimendu Bitwarden mahaigaineko aplikazioa pantaila-argazkietan eta urruneko mahaigaineko saioetan ikustea. Desgaituz gero, kanpoko pantaila batzuetan sarbidea galaraziko du."
+    "message": "Baimendu Komboe mahaigaineko aplikazioa pantaila-argazkietan eta urruneko mahaigaineko saioetan ikustea. Desgaituz gero, kanpoko pantaila batzuetan sarbidea galaraziko du."
   },
   "confirmWindowStillVisibleTitle": {
     "message": "Berretsi leihoa oraindik ikusgai dagoela"
@@ -6003,7 +6003,7 @@
     "message": "Ezarpen honi buruz"
   },
   "permitCipherDetailsDescription": {
-    "message": "Bitwarden-ek gordetako saio-hasierako URIak erabiliko ditu zein ikono edo pasahitza aldatzeko URL erabili behar den identifikatzeko, zure esperientzia hobetzeko. Ez da informaziorik biltzen edo gordetzen zerbitzu hau erabiltzean."
+    "message": "Komboe-ek gordetako saio-hasierako URIak erabiliko ditu zein ikono edo pasahitza aldatzeko URL erabili behar den identifikatzeko, zure esperientzia hobetzeko. Ez da informaziorik biltzen edo gordetzen zerbitzu hau erabiltzean."
   },
   "showQuickCopyActionsDetailsDescription": {
     "message": "Gehitu 3 kopia azkarreko botoi elementuen ondoan, erabiltzaile-izena, pasahitza edo egiaztapen-kodea arbelean kopiatzeko."
@@ -6243,7 +6243,7 @@
     "message": "Erakutsi gutxiago"
   },
   "enableAutotypeDescription": {
-    "message": "Bitwarden-ek ez ditu sarrera-kokalekuak balioztatzen, ziurtatu leiho eta eremu egokian zaudela laster-tekla erabili aurretik."
+    "message": "Komboe-ek ez ditu sarrera-kokalekuak balioztatzen, ziurtatu leiho eta eremu egokian zaudela laster-tekla erabili aurretik."
   },
   "typeShortcut": {
     "message": "Idatzi laster-tekla"
@@ -6399,7 +6399,7 @@
     "message": "Bertsio-berritu Premium-era"
   },
   "removeMasterPasswordForOrgUserKeyConnector": {
-    "message": "Zure erakundeak jada ez du pasahitz nagusirik erabiltzen Bitwarden-en saioa hasteko. Jarraitzeko, egiaztatu erakundea eta domeinua."
+    "message": "Zure erakundeak jada ez du pasahitz nagusirik erabiltzen Komboe-en saioa hasteko. Jarraitzeko, egiaztatu erakundea eta domeinua."
   },
   "continueWithLogIn": {
     "message": "Jarraitu saio-hasierarekin"
@@ -6720,10 +6720,10 @@
     "message": "Sartu hainbat helbide elektroniko komaz bereizita."
   },
   "emailPlaceholder": {
-    "message": "erabiltzailea@bitwarden.com , erabiltzailea@acme.com"
+    "message": "erabiltzailea@komboe.com , erabiltzailea@acme.com"
   },
   "emailPlaceholderMultiple": {
-    "message": "erabiltzailea@bitwarden.com, erabiltzailea@acme.com"
+    "message": "erabiltzailea@komboe.com, erabiltzailea@acme.com"
   },
   "reorderToggleButton": {
     "message": "Berregokitu $LABEL$. Erabili gezi-tekla elementua gora edo behera mugitzeko.",
@@ -7223,15 +7223,15 @@
     "message": "Unknown item, you may need to request permission to access this item."
   },
   "newExperienceDialogTitle": {
-    "message": "Bitwarden has a new look",
+    "message": "Komboe has a new look",
     "description": "Title of the dialog that introduces the redesigned vault to existing users."
   },
   "newExperienceDialogDesc": {
-    "message": "Better experience, same trusted security. The Bitwarden vault has been redesigned based on your feedback, so things are easier to find and work like you'd expect.",
+    "message": "Better experience, same trusted security. The Komboe vault has been redesigned based on your feedback, so things are easier to find and work like you'd expect.",
     "description": "Body copy of the dialog that introduces the redesigned vault to existing users."
   },
   "newExperienceDialogImgAlt": {
-    "message": "A preview of the redesigned Bitwarden vault.",
+    "message": "A preview of the redesigned Komboe vault.",
     "description": "Alt text for the screenshot shown in the dialog that introduces the redesigned vault."
   },
   "exploreTheNewVault": {

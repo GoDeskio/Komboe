@@ -1,20 +1,20 @@
 {
   "appName": {
-    "message": "Bitwarden"
+    "message": "Komboe"
   },
   "appLogoLabel": {
-    "message": "រូបសញ្ញា Bitwarden"
+    "message": "រូបសញ្ញា Komboe"
   },
   "extName": {
-    "message": "កម្មវិធីគ្រប់គ្រងពាក្យសម្ងាត់ Bitwarden",
+    "message": "កម្មវិធីគ្រប់គ្រងពាក្យសម្ងាត់ Komboe",
     "description": "Extension name, MUST be less than 40 characters (Safari restriction)"
   },
   "extNameBeta": {
-    "message": "Bitwarden Password Manager Beta",
+    "message": "Komboe Password Manager Beta",
     "description": "Extension name for the beta channel, MUST be less than 40 characters (Safari restriction)"
   },
   "extDesc": {
-    "message": "នៅផ្ទះ នៅកន្លែងធ្វើការ ឬពេលធ្វើដំណើរ Bitwarden ការពារពាក្យសម្ងាត់ សោចូល និងព័ត៌មានសំខាន់ៗរបស់អ្នកយ៉ាងងាយស្រួល",
+    "message": "នៅផ្ទះ នៅកន្លែងធ្វើការ ឬពេលធ្វើដំណើរ Komboe ការពារពាក្យសម្ងាត់ សោចូល និងព័ត៌មានសំខាន់ៗរបស់អ្នកយ៉ាងងាយស្រួល",
     "description": "Extension description, MUST be less than 112 characters (Safari restriction)"
   },
   "loginOrCreateNewAccount": {
@@ -27,7 +27,7 @@
     "message": "បង្កើតគណនី"
   },
   "newToBitwarden": {
-    "message": "ថ្មីចំពោះ Bitwarden?"
+    "message": "ថ្មីចំពោះ Komboe?"
   },
   "logInWithPasskey": {
     "message": "ចូលដោយសោចូល"
@@ -324,22 +324,22 @@
     "message": "បន្តទៅកម្មវិធីគេហទំព័រ?"
   },
   "continueToWebAppDesc": {
-    "message": "ស្វែងយល់ពីមុខងារបន្ថែមទៀតនៃគណនី Bitwarden របស់អ្នកនៅលើកម្មវិធីគេហទំព័រ។"
+    "message": "ស្វែងយល់ពីមុខងារបន្ថែមទៀតនៃគណនី Komboe របស់អ្នកនៅលើកម្មវិធីគេហទំព័រ។"
   },
   "continueToHelpCenter": {
     "message": "បន្តទៅមជ្ឈមណ្ឌលជំនួយ?"
   },
   "continueToHelpCenterDesc": {
-    "message": "ស្វែងយល់បន្ថែមអំពីរបៀបប្រើ Bitwarden នៅមជ្ឈមណ្ឌលជំនួយ។"
+    "message": "ស្វែងយល់បន្ថែមអំពីរបៀបប្រើ Komboe នៅមជ្ឈមណ្ឌលជំនួយ។"
   },
   "continueToBrowserExtensionStore": {
     "message": "បន្តទៅហាងផ្នែកបន្ថែមកម្មវិធីរុករក?"
   },
   "continueToBrowserExtensionStoreDesc": {
-    "message": "ជួយអ្នកផ្សេងទៀតឱ្យដឹងថា Bitwarden សមស្របសម្រាប់ពួកគេឬអត់។ ចូលទៅហាងផ្នែកបន្ថែមរបស់កម្មវិធីរុករកអ្នក ហើយផ្តល់ការវាយតម្លៃឥឡូវនេះ។"
+    "message": "ជួយអ្នកផ្សេងទៀតឱ្យដឹងថា Komboe សមស្របសម្រាប់ពួកគេឬអត់។ ចូលទៅហាងផ្នែកបន្ថែមរបស់កម្មវិធីរុករកអ្នក ហើយផ្តល់ការវាយតម្លៃឥឡូវនេះ។"
   },
   "changeMasterPasswordOnWebConfirmation": {
-    "message": "អ្នកអាចផ្លាស់ប្តូរពាក្យសម្ងាត់មេរបស់អ្នកនៅលើកម្មវិធីគេហទំព័រ Bitwarden។"
+    "message": "អ្នកអាចផ្លាស់ប្តូរពាក្យសម្ងាត់មេរបស់អ្នកនៅលើកម្មវិធីគេហទំព័រ Komboe។"
   },
   "fingerprintPhrase": {
     "message": "ឃ្លាស្នាមម្រាមដៃ",
@@ -356,43 +356,43 @@
     "message": "ចាកចេញ"
   },
   "aboutBitwarden": {
-    "message": "អំពី Bitwarden"
+    "message": "អំពី Komboe"
   },
   "about": {
     "message": "អំពី"
   },
   "moreFromBitwarden": {
-    "message": "ព័ត៌មានបន្ថែមពី Bitwarden"
+    "message": "ព័ត៌មានបន្ថែមពី Komboe"
   },
   "continueToBitwardenDotCom": {
-    "message": "បន្តទៅ bitwarden.com?"
+    "message": "បន្តទៅ komboe.com?"
   },
   "bitwardenForBusiness": {
-    "message": "Bitwarden សម្រាប់អាជីវកម្ម"
+    "message": "Komboe សម្រាប់អាជីវកម្ម"
   },
   "bitwardenAuthenticator": {
-    "message": "Bitwarden Authenticator"
+    "message": "Komboe Authenticator"
   },
   "continueToAuthenticatorPageDesc": {
-    "message": "Bitwarden Authenticator អនុញ្ញាតឱ្យអ្នករក្សាទុកសោផ្ទៀងផ្ទាត់ និងបង្កើតកូដ TOTP សម្រាប់ដំណើរការផ្ទៀងផ្ទាត់ពីរជំហាន។ ស្វែងយល់បន្ថែមនៅគេហទំព័រ bitwarden.com"
+    "message": "Komboe Authenticator អនុញ្ញាតឱ្យអ្នករក្សាទុកសោផ្ទៀងផ្ទាត់ និងបង្កើតកូដ TOTP សម្រាប់ដំណើរការផ្ទៀងផ្ទាត់ពីរជំហាន។ ស្វែងយល់បន្ថែមនៅគេហទំព័រ komboe.com"
   },
   "bitwardenSecretsManager": {
-    "message": "Bitwarden Secrets Manager"
+    "message": "Komboe Secrets Manager"
   },
   "continueToSecretsManagerPageDesc": {
-    "message": "រក្សាទុក គ្រប់គ្រង និងចែករំលែកអាថ៌កំបាំងអ្នកអភិវឌ្ឍន៍ដោយសុវត្ថិភាពជាមួយ Bitwarden Secrets Manager។ ស្វែងយល់បន្ថែមនៅគេហទំព័រ bitwarden.com។"
+    "message": "រក្សាទុក គ្រប់គ្រង និងចែករំលែកអាថ៌កំបាំងអ្នកអភិវឌ្ឍន៍ដោយសុវត្ថិភាពជាមួយ Komboe Secrets Manager។ ស្វែងយល់បន្ថែមនៅគេហទំព័រ komboe.com។"
   },
   "passwordlessDotDev": {
     "message": "Passwordless.dev"
   },
   "continueToPasswordlessDotDevPageDesc": {
-    "message": "បង្កើតបទពិសោធន៍ចូលដ៏រលូន និងសុវត្ថិភាពដោយគ្មានពាក្យសម្ងាត់ប្រពៃណីជាមួយ Passwordless.dev។ ស្វែងយល់បន្ថែមនៅគេហទំព័រ bitwarden.com។"
+    "message": "បង្កើតបទពិសោធន៍ចូលដ៏រលូន និងសុវត្ថិភាពដោយគ្មានពាក្យសម្ងាត់ប្រពៃណីជាមួយ Passwordless.dev។ ស្វែងយល់បន្ថែមនៅគេហទំព័រ komboe.com។"
   },
   "freeBitwardenFamilies": {
-    "message": "Bitwarden Families ឥតគិតថ្លៃ"
+    "message": "Komboe Families ឥតគិតថ្លៃ"
   },
   "freeBitwardenFamiliesPageDesc": {
-    "message": "អ្នកមានសិទ្ធិទទួលបាន Bitwarden Families ឥតគិតថ្លៃ។ ប្រើប្រាស់ការផ្តល់ជូននេះថ្ងៃនេះនៅក្នុងកម្មវិធីគេហទំព័រ។"
+    "message": "អ្នកមានសិទ្ធិទទួលបាន Komboe Families ឥតគិតថ្លៃ។ ប្រើប្រាស់ការផ្តល់ជូននេះថ្ងៃនេះនៅក្នុងកម្មវិធីគេហទំព័រ។"
   },
   "version": {
     "message": "កំណែ"
@@ -458,13 +458,13 @@
     "message": "ជំនួយ & មតិកែលម្អ"
   },
   "helpCenter": {
-    "message": "មជ្ឈមណ្ឌលជំនួយ Bitwarden"
+    "message": "មជ្ឈមណ្ឌលជំនួយ Komboe"
   },
   "communityForums": {
-    "message": "រុករកវេទិកាសហគមន៍ Bitwarden"
+    "message": "រុករកវេទិកាសហគមន៍ Komboe"
   },
   "contactSupport": {
-    "message": "ទាក់ទងជំនួយ Bitwarden"
+    "message": "ទាក់ទងជំនួយ Komboe"
   },
   "sync": {
     "message": "ធ្វើសមកាលកម្ម"
@@ -486,7 +486,7 @@
     "message": "បង្កើតពាក្យសម្ងាត់រឹងមាំ និងប្លែកដោយស្វ័យប្រវត្តិសម្រាប់ការចូលរបស់អ្នក។"
   },
   "bitWebVaultApp": {
-    "message": "កម្មវិធីគេហទំព័រ Bitwarden"
+    "message": "កម្មវិធីគេហទំព័រ Komboe"
   },
   "select": {
     "message": "ជ្រើសរើស"
@@ -850,7 +850,7 @@
     "message": "ទាញយក បន្ទាប់មកចែករំលែករបាយការណ៍វិនិច្ឆ័យជាមួយ"
   },
   "bitwardenSupport": {
-    "message": "ជំនួយ Bitwarden",
+    "message": "ជំនួយ Komboe",
     "description": "Link text following the troubleshooting description sentence. 'Bitwarden' should not be translated."
   },
   "download": {
@@ -1067,10 +1067,10 @@
     "message": "ធ្វើឱ្យការផ្ទៀងផ្ទាត់ពីរជំហានរលូន"
   },
   "totpHelper": {
-    "message": "Bitwarden អាចរក្សាទុក និងបំពេញកូដផ្ទៀងផ្ទាត់ពីរជំហាន។ ចម្លង និងបិទភ្ជាប់សោទៅក្នុងវាលនេះ។"
+    "message": "Komboe អាចរក្សាទុក និងបំពេញកូដផ្ទៀងផ្ទាត់ពីរជំហាន។ ចម្លង និងបិទភ្ជាប់សោទៅក្នុងវាលនេះ។"
   },
   "totpHelperWithCapture": {
-    "message": "Bitwarden អាចរក្សាទុក និងបំពេញកូដផ្ទៀងផ្ទាត់ពីរជំហាន។ ជ្រើសរើសរូបតំណាងកាមេរ៉ាដើម្បីថតរូបកូដ QR ឧបករណ៍ផ្ទៀងផ្ទាត់របស់គេហទំព័រនេះ ឬចម្លង និងបិទភ្ជាប់សោទៅក្នុងវាលនេះ។"
+    "message": "Komboe អាចរក្សាទុក និងបំពេញកូដផ្ទៀងផ្ទាត់ពីរជំហាន។ ជ្រើសរើសរូបតំណាងកាមេរ៉ាដើម្បីថតរូបកូដ QR ឧបករណ៍ផ្ទៀងផ្ទាត់របស់គេហទំព័រនេះ ឬចម្លង និងបិទភ្ជាប់សោទៅក្នុងវាលនេះ។"
   },
   "learnMoreAboutAuthenticators": {
     "message": "ស្វែងយល់បន្ថែមអំពីឧបករណ៍ផ្ទៀងផ្ទាត់"
@@ -1157,10 +1157,10 @@
     "message": "បញ្ចូលឈ្មោះ។"
   },
   "twoStepLoginConfirmation": {
-    "message": "ការចូលពីរជំហានធ្វើឱ្យគណនីរបស់អ្នកកាន់តែសុវត្ថិភាពដោយតម្រូវឱ្យអ្នកផ្ទៀងផ្ទាត់ការចូលជាមួយឧបករណ៍ផ្សេងទៀត ដូចជាសោសុវត្ថិភាព កម្មវិធីផ្ទៀងផ្ទាត់ SMS ការហៅទូរស័ព្ទ ឬអ៊ីមែល។ ការចូលពីរជំហានអាចរៀបចំនៅលើឃ្លាំងសម្ងាត់គេហទំព័រ bitwarden.com។ តើអ្នកចង់ចូលទៅគេហទំព័រឥឡូវនេះទេ?"
+    "message": "ការចូលពីរជំហានធ្វើឱ្យគណនីរបស់អ្នកកាន់តែសុវត្ថិភាពដោយតម្រូវឱ្យអ្នកផ្ទៀងផ្ទាត់ការចូលជាមួយឧបករណ៍ផ្សេងទៀត ដូចជាសោសុវត្ថិភាព កម្មវិធីផ្ទៀងផ្ទាត់ SMS ការហៅទូរស័ព្ទ ឬអ៊ីមែល។ ការចូលពីរជំហានអាចរៀបចំនៅលើឃ្លាំងសម្ងាត់គេហទំព័រ komboe.com។ តើអ្នកចង់ចូលទៅគេហទំព័រឥឡូវនេះទេ?"
   },
   "twoStepLoginConfirmationContent": {
-    "message": "ធ្វើឱ្យគណនីរបស់អ្នកកាន់តែសុវត្ថិភាពដោយរៀបចំការចូលពីរជំហាននៅក្នុងកម្មវិធីគេហទំព័រ Bitwarden។"
+    "message": "ធ្វើឱ្យគណនីរបស់អ្នកកាន់តែសុវត្ថិភាពដោយរៀបចំការចូលពីរជំហាននៅក្នុងកម្មវិធីគេហទំព័រ Komboe។"
   },
   "twoStepLoginConfirmationTitle": {
     "message": "បន្តទៅកម្មវិធីគេហទំព័រ?"
@@ -1313,7 +1313,7 @@
     "message": "លោតទៅការកំណត់"
   },
   "notificationAddDesc": {
-    "message": "តើ Bitwarden គួរចងចាំពាក្យសម្ងាត់នេះសម្រាប់អ្នកទេ?"
+    "message": "តើ Komboe គួរចងចាំពាក្យសម្ងាត់នេះសម្រាប់អ្នកទេ?"
   },
   "notificationAddSave": {
     "message": "រក្សាទុក"
@@ -1349,11 +1349,11 @@
     }
   },
   "notificationLoginSaveConfirmation": {
-    "message": "បានរក្សាទុកទៅ Bitwarden។",
+    "message": "បានរក្សាទុកទៅ Komboe។",
     "description": "Shown to user after item is saved."
   },
   "notificationLoginUpdatedConfirmation": {
-    "message": "បានធ្វើបច្ចុប្បន្នភាពក្នុង Bitwarden។",
+    "message": "បានធ្វើបច្ចុប្បន្នភាពក្នុង Komboe។",
     "description": "Shown to user after item is updated."
   },
   "selectItemAriaLabel": {
@@ -1451,13 +1451,13 @@
     "message": "សួរដើម្បីរក្សាទុកសោចូលថ្មី ឬចូលដោយប្រើសោចូលដែលរក្សាទុកក្នុងឃ្លាំងសម្ងាត់របស់អ្នក។ អនុវត្តចំពោះគណនីដែលបានចូលទាំងអស់។"
   },
   "notificationChangeDesc": {
-    "message": "តើអ្នកចង់ធ្វើបច្ចុប្បន្នភាពពាក្យសម្ងាត់នេះក្នុង Bitwarden ទេ?"
+    "message": "តើអ្នកចង់ធ្វើបច្ចុប្បន្នភាពពាក្យសម្ងាត់នេះក្នុង Komboe ទេ?"
   },
   "notificationChangeSave": {
     "message": "ធ្វើបច្ចុប្បន្នភាព"
   },
   "notificationUnlockDesc": {
-    "message": "ដោះសោឃ្លាំងសម្ងាត់ Bitwarden របស់អ្នកដើម្បីបញ្ចប់សំណើបំពេញដោយស្វ័យប្រវត្តិ។"
+    "message": "ដោះសោឃ្លាំងសម្ងាត់ Komboe របស់អ្នកដើម្បីបញ្ចប់សំណើបំពេញដោយស្វ័យប្រវត្តិ។"
   },
   "notificationUnlock": {
     "message": "ដោះសោ"
@@ -1605,10 +1605,10 @@
     "message": "ពាក្យសម្ងាត់នេះនឹងត្រូវប្រើដើម្បីនាំចេញ និងនាំចូលឯកសារនេះ"
   },
   "accountRestrictedOptionDescription": {
-    "message": "ប្រើសោឌិគ្រីបគណនីរបស់អ្នក ដែលបានមកពីឈ្មោះអ្នកប្រើ និងពាក្យសម្ងាត់មេរបស់គណនី ដើម្បីឌិគ្រីបការនាំចេញ និងដាក់កំហិតការនាំចូលត្រឹមតែគណនី Bitwarden បច្ចុប្បន្ន។"
+    "message": "ប្រើសោឌិគ្រីបគណនីរបស់អ្នក ដែលបានមកពីឈ្មោះអ្នកប្រើ និងពាក្យសម្ងាត់មេរបស់គណនី ដើម្បីឌិគ្រីបការនាំចេញ និងដាក់កំហិតការនាំចូលត្រឹមតែគណនី Komboe បច្ចុប្បន្ន។"
   },
   "passwordProtectedOptionDescription": {
-    "message": "កំណត់ពាក្យសម្ងាត់ឯកសារដើម្បីឌិគ្រីបការនាំចេញ និងនាំចូលវាទៅគណនី Bitwarden ណាមួយដោយប្រើពាក្យសម្ងាត់សម្រាប់ការឌិគ្រីប។"
+    "message": "កំណត់ពាក្យសម្ងាត់ឯកសារដើម្បីឌិគ្រីបការនាំចេញ និងនាំចូលវាទៅគណនី Komboe ណាមួយដោយប្រើពាក្យសម្ងាត់សម្រាប់ការឌិគ្រីប។"
   },
   "exportTypeHeading": {
     "message": "ប្រភេទនាំចេញ"
@@ -1637,7 +1637,7 @@
     "message": "ការនាំចេញនេះឌិគ្រីបទិន្នន័យរបស់អ្នកដោយប្រើសោឌិគ្រីបគណនីរបស់អ្នក។ ប្រសិនបើអ្នកផ្លាស់ប្តូរសោឌិគ្រីបគណនី អ្នកគួរនាំចេញម្តងទៀត ព្រោះអ្នកនឹងមិនអាចឌិគ្រីបឯកសារនាំចេញនេះបានទេ។"
   },
   "encExportAccountWarningDesc": {
-    "message": "សោឌិគ្រីបគណនីមានតែមួយគត់សម្រាប់គណនីអ្នកប្រើ Bitwarden នីមួយៗ ដូច្នេះអ្នកមិនអាចនាំចូលការនាំចេញដែលបានឌិគ្រីបទៅគណនីផ្សេងបានទេ។"
+    "message": "សោឌិគ្រីបគណនីមានតែមួយគត់សម្រាប់គណនីអ្នកប្រើ Komboe នីមួយៗ ដូច្នេះអ្នកមិនអាចនាំចូលការនាំចេញដែលបានឌិគ្រីបទៅគណនីផ្សេងបានទេ។"
   },
   "exportMasterPassword": {
     "message": "បញ្ចូលពាក្យសម្ងាត់មេរបស់អ្នកដើម្បីនាំចេញទិន្នន័យឃ្លាំងសម្ងាត់របស់អ្នក។"
@@ -1661,7 +1661,7 @@
     "message": "បន្ថែមថតដែលបានចែករំលែក"
   },
   "bitwardenForBusinessPageDesc": {
-    "message": "Bitwarden សម្រាប់អាជីវកម្មអនុញ្ញាតឱ្យអ្នកចែករំលែកធាតុឃ្លាំងសម្ងាត់របស់អ្នកជាមួយអ្នកផ្សេងដោយប្រើអង្គការ។ ស្វែងយល់បន្ថែមនៅគេហទំព័រ bitwarden.com។"
+    "message": "Komboe សម្រាប់អាជីវកម្មអនុញ្ញាតឱ្យអ្នកចែករំលែកធាតុឃ្លាំងសម្ងាត់របស់អ្នកជាមួយអ្នកផ្សេងដោយប្រើអង្គការ។ ស្វែងយល់បន្ថែមនៅគេហទំព័រ komboe.com។"
   },
   "moveToOrganization": {
     "message": "ផ្លាស់ទីទៅអង្គការ"
@@ -1815,7 +1815,7 @@
     "message": "គ្រប់គ្រងសមាជិកភាព"
   },
   "premiumManageAlert": {
-    "message": "អ្នកអាចគ្រប់គ្រងសមាជិកភាពរបស់អ្នកនៅលើឃ្លាំងសម្ងាត់គេហទំព័រ bitwarden.com។ តើអ្នកចង់ចូលទៅគេហទំព័រឥឡូវនេះទេ?"
+    "message": "អ្នកអាចគ្រប់គ្រងសមាជិកភាពរបស់អ្នកនៅលើឃ្លាំងសម្ងាត់គេហទំព័រ komboe.com។ តើអ្នកចង់ចូលទៅគេហទំព័រឥឡូវនេះទេ?"
   },
   "premiumRefresh": {
     "message": "ផ្ទុកសមាជិកភាពឡើងវិញ"
@@ -1863,7 +1863,7 @@
     "message": "ទិញ Premium"
   },
   "premiumPurchaseAlertV2": {
-    "message": "អ្នកអាចទិញ Premium ពីការកំណត់គណនីរបស់អ្នកនៅលើកម្មវិធីគេហទំព័រ Bitwarden។"
+    "message": "អ្នកអាចទិញ Premium ពីការកំណត់គណនីរបស់អ្នកនៅលើកម្មវិធីគេហទំព័រ Komboe។"
   },
   "premiumFeatures": {
     "message": "ដំឡើងទៅ Premium ហើយទទួលបាន៖"
@@ -1969,7 +1969,7 @@
     "message": "កម្មវិធីផ្ទៀងផ្ទាត់"
   },
   "authenticatorAppDescV2": {
-    "message": "បញ្ចូលកូដដែលបង្កើតដោយកម្មវិធីផ្ទៀងផ្ទាត់ដូចជា Bitwarden Authenticator។",
+    "message": "បញ្ចូលកូដដែលបង្កើតដោយកម្មវិធីផ្ទៀងផ្ទាត់ដូចជា Komboe Authenticator។",
     "description": "'Bitwarden Authenticator' is a product name and should not be translated."
   },
   "yubiKeyTitleV2": {
@@ -2002,7 +2002,7 @@
     "message": "បរិស្ថានដំឡើងដោយខ្លួនឯង"
   },
   "selfHostedBaseUrlHint": {
-    "message": "បញ្ជាក់ URL មូលដ្ឋាននៃការដំឡើង Bitwarden ដែលដំឡើងនៅក្នុងតំបន់របស់អ្នក។ ឧទាហរណ៍៖ https://bitwarden.company.com"
+    "message": "បញ្ជាក់ URL មូលដ្ឋាននៃការដំឡើង Komboe ដែលដំឡើងនៅក្នុងតំបន់របស់អ្នក។ ឧទាហរណ៍៖ https://komboe.company.com"
   },
   "selfHostedCustomEnvHeader": {
     "message": "សម្រាប់ការកំណត់កម្រិតខ្ពស់ អ្នកអាចបញ្ជាក់ URL មូលដ្ឋាននៃសេវាកម្មនីមួយៗដោយឡែក។"
@@ -2055,7 +2055,7 @@
     "message": "រកសំណើបំពេញដោយស្វ័យប្រវត្តិយ៉ាងងាយស្រួល"
   },
   "autofillSpotlightDesc": {
-    "message": "បិទការកំណត់បំពេញដោយស្វ័យប្រវត្តិរបស់កម្មវិធីរុករកអ្នក ដើម្បីកុំឱ្យវាប៉ះទង្គិចជាមួយ Bitwarden។"
+    "message": "បិទការកំណត់បំពេញដោយស្វ័យប្រវត្តិរបស់កម្មវិធីរុករកអ្នក ដើម្បីកុំឱ្យវាប៉ះទង្គិចជាមួយ Komboe។"
   },
   "turnOffBrowserAutofill": {
     "message": "បិទការបំពេញដោយស្វ័យប្រវត្តិ $BROWSER$",
@@ -2112,7 +2112,7 @@
     "message": "បង្ហាញសំណើបំពេញដោយស្វ័យប្រវត្តិនៅលើវាលទម្រង់"
   },
   "howDoesBitwardenProtectFromPhishing": {
-    "message": "តើ Bitwarden ការពារទិន្នន័យរបស់អ្នកពីការបន្លំដូចម្តេច?"
+    "message": "តើ Komboe ការពារទិន្នន័យរបស់អ្នកពីការបន្លំដូចម្តេច?"
   },
   "currentWebsite": {
     "message": "គេហទំព័របច្ចុប្បន្ន"
@@ -3021,7 +3021,7 @@
     "message": "ពាក្យសម្ងាត់មេខ្សោយ"
   },
   "weakMasterPasswordDesc": {
-    "message": "ពាក្យសម្ងាត់មេដែលអ្នកបានជ្រើសរើសគឺខ្សោយ។ អ្នកគួរប្រើពាក្យសម្ងាត់មេរឹងមាំ (ឬឃ្លាសម្ងាត់) ដើម្បីការពារគណនី Bitwarden របស់អ្នកឱ្យបានត្រឹមត្រូវ។ តើអ្នកប្រាកដជាចង់ប្រើពាក្យសម្ងាត់មេនេះមែនទេ?"
+    "message": "ពាក្យសម្ងាត់មេដែលអ្នកបានជ្រើសរើសគឺខ្សោយ។ អ្នកគួរប្រើពាក្យសម្ងាត់មេរឹងមាំ (ឬឃ្លាសម្ងាត់) ដើម្បីការពារគណនី Komboe របស់អ្នកឱ្យបានត្រឹមត្រូវ។ តើអ្នកប្រាកដជាចង់ប្រើពាក្យសម្ងាត់មេនេះមែនទេ?"
   },
   "rotateAccountEncKey": {
     "message": "បង្វិលសោឌិគ្រីបគណនីរបស់ខ្ញុំផងដែរ"
@@ -3033,7 +3033,7 @@
     "message": "តើអ្នកប្រាកដជាចង់បង្វិលសោឌិគ្រីបគណនីរបស់អ្នកមែនទេ?"
   },
   "updateEncryptionKeyWarning": {
-    "message": "បន្ទាប់ពីធ្វើបច្ចុប្បន្នភាពសោឌិគ្រីបរបស់អ្នក អ្នកត្រូវចាកចេញ ហើយចូលម្តងទៀតទៅកម្មវិធី Bitwarden ទាំងអស់ដែលអ្នកកំពុងប្រើ (ដូចជាកម្មវិធីទូរស័ព្ទ ឬផ្នែកបន្ថែមកម្មវិធីរុករក)។ ការមិនចាកចេញ និងចូលម្តងទៀត (ដែលទាញយកសោឌិគ្រីបថ្មីរបស់អ្នក) អាចបណ្តាលឱ្យទិន្នន័យខូច។ យើងនឹងព្យាយាមចាកចេញអ្នកដោយស្វ័យប្រវត្តិ ប៉ុន្តែវាអាចមានការយឺតយ៉ាវ។"
+    "message": "បន្ទាប់ពីធ្វើបច្ចុប្បន្នភាពសោឌិគ្រីបរបស់អ្នក អ្នកត្រូវចាកចេញ ហើយចូលម្តងទៀតទៅកម្មវិធី Komboe ទាំងអស់ដែលអ្នកកំពុងប្រើ (ដូចជាកម្មវិធីទូរស័ព្ទ ឬផ្នែកបន្ថែមកម្មវិធីរុករក)។ ការមិនចាកចេញ និងចូលម្តងទៀត (ដែលទាញយកសោឌិគ្រីបថ្មីរបស់អ្នក) អាចបណ្តាលឱ្យទិន្នន័យខូច។ យើងនឹងព្យាយាមចាកចេញអ្នកដោយស្វ័យប្រវត្តិ ប៉ុន្តែវាអាចមានការយឺតយ៉ាវ។"
   },
   "updateEncryptionKeyAccountExportWarning": {
     "message": "ការនាំចេញដែលដាក់កំហិតតាមគណនីដែលអ្នកបានរក្សាទុកនឹងក្លាយជាមិនត្រឹមត្រូវ។"
@@ -3061,10 +3061,10 @@
     "message": "កំណត់ PIN"
   },
   "setYourPinCode": {
-    "message": "កំណត់កូដ PIN របស់អ្នកសម្រាប់ដោះសោ Bitwarden។ ការកំណត់ PIN របស់អ្នកនឹងត្រូវបានកំណត់ឡើងវិញប្រសិនបើអ្នកចាកចេញពីកម្មវិធីទាំងស្រុង។"
+    "message": "កំណត់កូដ PIN របស់អ្នកសម្រាប់ដោះសោ Komboe។ ការកំណត់ PIN របស់អ្នកនឹងត្រូវបានកំណត់ឡើងវិញប្រសិនបើអ្នកចាកចេញពីកម្មវិធីទាំងស្រុង។"
   },
   "setPinCode": {
-    "message": "អ្នកអាចប្រើ PIN នេះដើម្បីដោះសោ Bitwarden។ PIN របស់អ្នកនឹងត្រូវបានកំណត់ឡើងវិញប្រសិនបើអ្នកចាកចេញពីកម្មវិធីទាំងស្រុង។"
+    "message": "អ្នកអាចប្រើ PIN នេះដើម្បីដោះសោ Komboe។ PIN របស់អ្នកនឹងត្រូវបានកំណត់ឡើងវិញប្រសិនបើអ្នកចាកចេញពីកម្មវិធីទាំងស្រុង។"
   },
   "pinRequired": {
     "message": "ត្រូវការកូដ PIN។"
@@ -3085,7 +3085,7 @@
     "message": "កំពុងរង់ចាំការបញ្ជាក់ពីកុំព្យូទ័រ"
   },
   "awaitDesktopDesc": {
-    "message": "សូមបញ្ជាក់ដោយប្រើជីវមាត្រនៅក្នុងកម្មវិធីកុំព្យូទ័រ Bitwarden ដើម្បីរៀបចំជីវមាត្រសម្រាប់កម្មវិធីរុករក។"
+    "message": "សូមបញ្ជាក់ដោយប្រើជីវមាត្រនៅក្នុងកម្មវិធីកុំព្យូទ័រ Komboe ដើម្បីរៀបចំជីវមាត្រសម្រាប់កម្មវិធីរុករក។"
   },
   "lockWithMasterPassOnRestart": {
     "message": "ចាក់សោដោយពាក្យសម្ងាត់មេនៅពេលចាប់ផ្ដើមកម្មវិធីរុករកឡើងវិញ"
@@ -3200,7 +3200,7 @@
     "message": "ទម្រង់នេះត្រូវបានផ្តល់ដោយដែនផ្សេងពី URI នៃការចូលដែលបានរក្សាទុករបស់អ្នក។ ជ្រើសរើសយល់ព្រមដើម្បីបំពេញដោយស្វ័យប្រវត្តិតទៅ ឬបោះបង់ដើម្បីបញ្ឈប់។"
   },
   "autofillIframeWarningTip": {
-    "message": "ដើម្បីការពារការព្រមាននេះនៅពេលអនាគត សូមរក្សាទុក URI នេះ $HOSTNAME$ ទៅធាតុចូល Bitwarden របស់អ្នកសម្រាប់គេហទំព័រនេះ។",
+    "message": "ដើម្បីការពារការព្រមាននេះនៅពេលអនាគត សូមរក្សាទុក URI នេះ $HOSTNAME$ ទៅធាតុចូល Komboe របស់អ្នកសម្រាប់គេហទំព័រនេះ។",
     "placeholders": {
       "hostname": {
         "content": "$1",
@@ -3209,7 +3209,7 @@
     }
   },
   "topLayerHijackWarning": {
-    "message": "ទំព័រនេះកំពុងរំខានដល់បទពិសោធន៍ Bitwarden។ ម៉ឺនុយក្នុងបន្ទាត់ Bitwarden ត្រូវបានបិទជាបណ្ដោះអាសន្នជាវិធានការសុវត្ថិភាព។"
+    "message": "ទំព័រនេះកំពុងរំខានដល់បទពិសោធន៍ Komboe។ ម៉ឺនុយក្នុងបន្ទាត់ Komboe ត្រូវបានបិទជាបណ្ដោះអាសន្នជាវិធានការសុវត្ថិភាព។"
   },
   "setMasterPassword": {
     "message": "កំណត់ពាក្យសម្ងាត់មេ"
@@ -3266,7 +3266,7 @@
     "message": "ពាក្យសម្ងាត់មេថ្មីរបស់អ្នកមិនបំពេញតម្រូវការគោលនយោបាយទេ។"
   },
   "receiveMarketingEmails": {
-    "message": "ទទួលបានព័ត៌មានថ្មីៗពី Bitwarden ក្នុងប្រអប់សំបុត្ររបស់អ្នក។"
+    "message": "ទទួលបានព័ត៌មានថ្មីៗពី Komboe ក្នុងប្រអប់សំបុត្ររបស់អ្នក។"
   },
   "unsubscribe": {
     "message": "ឈប់ជាវ"
@@ -3311,13 +3311,13 @@
     "message": "ការរួមបញ្ចូលកម្មវិធីរុករកមិនត្រូវបានរៀបចំទេ"
   },
   "desktopIntegrationDisabledDesc": {
-    "message": "ការរួមបញ្ចូលកម្មវិធីរុករកមិនត្រូវបានរៀបចំនៅក្នុងកម្មវិធីកុំព្យូទ័រ Bitwarden ទេ។ សូមរៀបចំវានៅក្នុងការកំណត់ក្នុងកម្មវិធីកុំព្យូទ័រ។"
+    "message": "ការរួមបញ្ចូលកម្មវិធីរុករកមិនត្រូវបានរៀបចំនៅក្នុងកម្មវិធីកុំព្យូទ័រ Komboe ទេ។ សូមរៀបចំវានៅក្នុងការកំណត់ក្នុងកម្មវិធីកុំព្យូទ័រ។"
   },
   "startDesktopTitle": {
-    "message": "ចាប់ផ្ដើមកម្មវិធីកុំព្យូទ័រ Bitwarden"
+    "message": "ចាប់ផ្ដើមកម្មវិធីកុំព្យូទ័រ Komboe"
   },
   "startDesktopDesc": {
-    "message": "កម្មវិធីកុំព្យូទ័រ Bitwarden ត្រូវចាប់ផ្ដើមជាមុនសិន មុនពេលអាចប្រើការដោះសោដោយជីវមាត្រ។"
+    "message": "កម្មវិធីកុំព្យូទ័រ Komboe ត្រូវចាប់ផ្ដើមជាមុនសិន មុនពេលអាចប្រើការដោះសោដោយជីវមាត្រ។"
   },
   "errorEnableBiometricTitle": {
     "message": "មិនអាចរៀបចំជីវមាត្របានទេ"
@@ -3371,13 +3371,13 @@
     "message": "ជីវមាត្របានបរាជ័យ"
   },
   "biometricsFailedDesc": {
-    "message": "ជីវមាត្រមិនអាចបញ្ចប់បានទេ សូមពិចារណាប្រើពាក្យសម្ងាត់មេ ឬចាកចេញ។ ប្រសិនបើបញ្ហានេះនៅតែបន្ត សូមទាក់ទងជំនួយ Bitwarden។"
+    "message": "ជីវមាត្រមិនអាចបញ្ចប់បានទេ សូមពិចារណាប្រើពាក្យសម្ងាត់មេ ឬចាកចេញ។ ប្រសិនបើបញ្ហានេះនៅតែបន្ត សូមទាក់ទងជំនួយ Komboe។"
   },
   "nativeMessagingPermissionErrorTitle": {
     "message": "មិនបានផ្តល់ការអនុញ្ញាតទេ"
   },
   "nativeMessagingPermissionErrorDesc": {
-    "message": "បើគ្មានការអនុញ្ញាតឱ្យទំនាក់ទំនងជាមួយកម្មវិធីកុំព្យូទ័រ Bitwarden យើងមិនអាចផ្តល់ជីវមាត្រនៅក្នុងផ្នែកបន្ថែមកម្មវិធីរុករកបានទេ។ សូមព្យាយាមម្តងទៀត។"
+    "message": "បើគ្មានការអនុញ្ញាតឱ្យទំនាក់ទំនងជាមួយកម្មវិធីកុំព្យូទ័រ Komboe យើងមិនអាចផ្តល់ជីវមាត្រនៅក្នុងផ្នែកបន្ថែមកម្មវិធីរុករកបានទេ។ សូមព្យាយាមម្តងទៀត។"
   },
   "nativeMessagingPermissionSidebarTitle": {
     "message": "កំហុសសំណើការអនុញ្ញាត"
@@ -3414,7 +3414,7 @@
     "message": "ដែនមិនរាប់បញ្ចូល"
   },
   "excludedDomainsDesc": {
-    "message": "Bitwarden នឹងមិនសួរដើម្បីរក្សាទុកព័ត៌មានចូលសម្រាប់ដែនទាំងនេះទេ។ អ្នកត្រូវផ្ទុកទំព័រឡើងវិញដើម្បីឱ្យការផ្លាស់ប្តូរមានប្រសិទ្ធភាព។"
+    "message": "Komboe នឹងមិនសួរដើម្បីរក្សាទុកព័ត៌មានចូលសម្រាប់ដែនទាំងនេះទេ។ អ្នកត្រូវផ្ទុកទំព័រឡើងវិញដើម្បីឱ្យការផ្លាស់ប្តូរមានប្រសិទ្ធភាព។"
   },
   "blockedDomainsDesc": {
     "message": "ការបំពេញដោយស្វ័យប្រវត្តិ និងមុខងារពាក់ព័ន្ធផ្សេងទៀតនឹងមិនត្រូវបានផ្តល់ជូនសម្រាប់គេហទំព័រទាំងនេះទេ។ អ្នកត្រូវផ្ទុកទំព័រឡើងវិញដើម្បីឱ្យការផ្លាស់ប្តូរមានប្រសិទ្ធភាព។"
@@ -3546,24 +3546,24 @@
     "message": "រូបភាពបង្ហាញបញ្ជីការចូលដែលមានហានិភ័យ។"
   },
   "welcomeDialogGraphicAlt": {
-    "message": "រូបភាពបង្ហាញប្លង់នៃទំព័រឃ្លាំងសម្ងាត់ Bitwarden។"
+    "message": "រូបភាពបង្ហាញប្លង់នៃទំព័រឃ្លាំងសម្ងាត់ Komboe។"
   },
   "generatePasswordSlideDesc": {
-    "message": "បង្កើតពាក្យសម្ងាត់រឹងមាំ និងប្លែកយ៉ាងឆាប់រហ័សដោយប្រើម៉ឺនុយបំពេញដោយស្វ័យប្រវត្តិ Bitwarden នៅលើគេហទំព័រដែលមានហានិភ័យ។",
+    "message": "បង្កើតពាក្យសម្ងាត់រឹងមាំ និងប្លែកយ៉ាងឆាប់រហ័សដោយប្រើម៉ឺនុយបំពេញដោយស្វ័យប្រវត្តិ Komboe នៅលើគេហទំព័រដែលមានហានិភ័យ។",
     "description": "Description of the generate password slide on the at-risk password page carousel"
   },
   "generatePasswordSlideImgAltPeriod": {
-    "message": "រូបភាពបង្ហាញម៉ឺនុយបំពេញដោយស្វ័យប្រវត្តិ Bitwarden ដែលបង្ហាញពាក្យសម្ងាត់ដែលបានបង្កើត។"
+    "message": "រូបភាពបង្ហាញម៉ឺនុយបំពេញដោយស្វ័យប្រវត្តិ Komboe ដែលបង្ហាញពាក្យសម្ងាត់ដែលបានបង្កើត។"
   },
   "updateInBitwarden": {
-    "message": "ធ្វើបច្ចុប្បន្នភាពក្នុង Bitwarden"
+    "message": "ធ្វើបច្ចុប្បន្នភាពក្នុង Komboe"
   },
   "updateInBitwardenSlideDesc": {
-    "message": "បន្ទាប់មក Bitwarden នឹងបង្ហាញការសួរដើម្បីធ្វើបច្ចុប្បន្នភាពពាក្យសម្ងាត់នៅក្នុងកម្មវិធីគ្រប់គ្រងពាក្យសម្ងាត់។",
+    "message": "បន្ទាប់មក Komboe នឹងបង្ហាញការសួរដើម្បីធ្វើបច្ចុប្បន្នភាពពាក្យសម្ងាត់នៅក្នុងកម្មវិធីគ្រប់គ្រងពាក្យសម្ងាត់។",
     "description": "Description of the update in Bitwarden slide on the at-risk password page carousel"
   },
   "updateInBitwardenSlideImgAltPeriod": {
-    "message": "រូបភាពបង្ហាញការជូនដំណឹងរបស់ Bitwarden ដែលសួរអ្នកប្រើឱ្យធ្វើបច្ចុប្បន្នភាពការចូល។"
+    "message": "រូបភាពបង្ហាញការជូនដំណឹងរបស់ Komboe ដែលសួរអ្នកប្រើឱ្យធ្វើបច្ចុប្បន្នភាពការចូល។"
   },
   "turnOnAutofill": {
     "message": "បើកការបំពេញដោយស្វ័យប្រវត្តិ"
@@ -4078,10 +4078,10 @@
     "message": "កំហុសក្នុងការទាញយកទិន្នន័យបំពេញដោយស្វ័យប្រវត្តិ"
   },
   "couldNotDecryptVaultItem": {
-    "message": "Bitwarden មិនអាចឌិគ្រីបធាតុឃ្លាំងសម្ងាត់ដែលបានរាយខាងក្រោមបានទេ។ សូមទាក់ទងជំនួយអតិថិជន Bitwarden ហើយផ្តល់ ID ធាតុខាងក្រោមដើម្បីមើលថាតើវាអាចសង្គ្រោះបានឬអត់។"
+    "message": "Komboe មិនអាចឌិគ្រីបធាតុឃ្លាំងសម្ងាត់ដែលបានរាយខាងក្រោមបានទេ។ សូមទាក់ទងជំនួយអតិថិជន Komboe ហើយផ្តល់ ID ធាតុខាងក្រោមដើម្បីមើលថាតើវាអាចសង្គ្រោះបានឬអត់។"
   },
   "couldNotDecryptVaultItems": {
-    "message": "Bitwarden មិនអាចឌិគ្រីបធាតុឃ្លាំងសម្ងាត់ដែលបានរាយខាងក្រោមបានទេ។ សូមទាក់ទងជំនួយអតិថិជន Bitwarden ហើយផ្តល់ ID ធាតុខាងក្រោមដើម្បីមើលថាតើពួកវាអាចសង្គ្រោះបានឬអត់។"
+    "message": "Komboe មិនអាចឌិគ្រីបធាតុឃ្លាំងសម្ងាត់ដែលបានរាយខាងក្រោមបានទេ។ សូមទាក់ទងជំនួយអតិថិជន Komboe ហើយផ្តល់ ID ធាតុខាងក្រោមដើម្បីមើលថាតើពួកវាអាចសង្គ្រោះបានឬអត់។"
   },
   "itemId": {
     "message": "ID ធាតុ",
@@ -4191,11 +4191,11 @@
     }
   },
   "forwarderGeneratedBy": {
-    "message": "បង្កើតដោយ Bitwarden។",
+    "message": "បង្កើតដោយ Komboe។",
     "description": "Displayed with the address on the forwarding service's configuration screen."
   },
   "forwarderGeneratedByWithWebsite": {
-    "message": "គេហទំព័រ៖ $WEBSITE$។ បង្កើតដោយ Bitwarden។",
+    "message": "គេហទំព័រ៖ $WEBSITE$។ បង្កើតដោយ Komboe។",
     "description": "Displayed with the address on the forwarding service's configuration screen.",
     "placeholders": {
       "WEBSITE": {
@@ -4417,7 +4417,7 @@
     "message": "ការជូនដំណឹងត្រូវបានផ្ញើទៅឧបករណ៍របស់អ្នក។"
   },
   "notificationSentDevicePart1": {
-    "message": "ដោះសោ Bitwarden នៅលើឧបករណ៍របស់អ្នក ឬនៅលើ"
+    "message": "ដោះសោ Komboe នៅលើឧបករណ៍របស់អ្នក ឬនៅលើ"
   },
   "notificationSentDeviceAnchor": {
     "message": "កម្មវិធីគេហទំព័រ"
@@ -4917,15 +4917,15 @@
     "message": "រំលងទៅខ្លឹមសារ"
   },
   "bitwardenOverlayButton": {
-    "message": "ប៊ូតុងម៉ឺនុយបំពេញដោយស្វ័យប្រវត្តិ Bitwarden",
+    "message": "ប៊ូតុងម៉ឺនុយបំពេញដោយស្វ័យប្រវត្តិ Komboe",
     "description": "Page title for the iframe containing the overlay button"
   },
   "toggleBitwardenVaultOverlay": {
-    "message": "បិទ/បើកម៉ឺនុយបំពេញដោយស្វ័យប្រវត្តិ Bitwarden",
+    "message": "បិទ/បើកម៉ឺនុយបំពេញដោយស្វ័យប្រវត្តិ Komboe",
     "description": "Screen reader and tool tip label for the overlay button"
   },
   "bitwardenVault": {
-    "message": "ម៉ឺនុយបំពេញដោយស្វ័យប្រវត្តិ Bitwarden",
+    "message": "ម៉ឺនុយបំពេញដោយស្វ័យប្រវត្តិ Komboe",
     "description": "Page title in overlay"
   },
   "unlockYourAccountToViewMatchingLogins": {
@@ -4997,7 +4997,7 @@
     "description": "Screen reader text (aria-label) for new identity button within inline menu"
   },
   "bitwardenOverlayMenuAvailable": {
-    "message": "ម៉ឺនុយបំពេញដោយស្វ័យប្រវត្តិ Bitwarden អាចប្រើបាន។ ចុចគ្រាប់ចុចព្រួញចុះក្រោមដើម្បីជ្រើសរើស។",
+    "message": "ម៉ឺនុយបំពេញដោយស្វ័យប្រវត្តិ Komboe អាចប្រើបាន។ ចុចគ្រាប់ចុចព្រួញចុះក្រោមដើម្បីជ្រើសរើស។",
     "description": "Screen reader text for announcing when the overlay opens on the page"
   },
   "turnOn": {
@@ -5369,7 +5369,7 @@
     "message": "Secure by design"
   },
   "importDataSecureByDesignBody": {
-    "message": "End-to-end encrypted handoff. Bitwarden never sees your $VENDOR$ login details.",
+    "message": "End-to-end encrypted handoff. Komboe never sees your $VENDOR$ login details.",
     "placeholders": {
       "vendor": {
         "content": "$1",
@@ -5520,7 +5520,7 @@
     "description": "Followed by a literal filename (my_passwords.json) rendered as code."
   },
   "importGnomeInstructionsFileHere": {
-    "message": "ឯកសារនៅទីនេះទៅ Bitwarden។",
+    "message": "ឯកសារនៅទីនេះទៅ Komboe។",
     "description": "Follows the my_passwords.json filename."
   },
   "importPasswordagentInstructions": {
@@ -6091,7 +6091,7 @@
     "message": "គណនីសកម្ម"
   },
   "bitwardenAccount": {
-    "message": "គណនី Bitwarden"
+    "message": "គណនី Komboe"
   },
   "availableAccounts": {
     "message": "គណនីដែលអាចប្រើបាន"
@@ -6137,7 +6137,7 @@
     "description": "Label indicating the most common import formats"
   },
   "uriMatchDefaultStrategyHint": {
-    "message": "ការរកឃើញការផ្គូផ្គង URI គឺជារបៀបដែល Bitwarden កំណត់អត្តសញ្ញាណសំណើបំពេញដោយស្វ័យប្រវត្តិ។",
+    "message": "ការរកឃើញការផ្គូផ្គង URI គឺជារបៀបដែល Komboe កំណត់អត្តសញ្ញាណសំណើបំពេញដោយស្វ័យប្រវត្តិ។",
     "description": "Explains to the user that URI match detection determines how Bitwarden suggests autofill options, and clarifies that this default strategy applies when no specific match detection is set for a login item."
   },
   "regExAdvancedOptionWarning": {
@@ -6181,15 +6181,15 @@
     "description": "Body content for dialog which asks if the user wants to proceed to the browser's keyboard shortcut settings page"
   },
   "overrideDefaultBrowserAutofillTitle": {
-    "message": "ធ្វើឱ្យ Bitwarden ជាកម្មវិធីគ្រប់គ្រងពាក្យសម្ងាត់លំនាំដើមរបស់អ្នក?",
+    "message": "ធ្វើឱ្យ Komboe ជាកម្មវិធីគ្រប់គ្រងពាក្យសម្ងាត់លំនាំដើមរបស់អ្នក?",
     "description": "Dialog title facilitating the ability to override a chrome browser's default autofill behavior"
   },
   "overrideDefaultBrowserAutofillDescription": {
-    "message": "ការមិនអើពើជម្រើសនេះអាចបង្កឱ្យមានការប៉ះទង្គិចរវាងសំណើបំពេញដោយស្វ័យប្រវត្តិរបស់ Bitwarden និងរបស់កម្មវិធីរុករកអ្នក។",
+    "message": "ការមិនអើពើជម្រើសនេះអាចបង្កឱ្យមានការប៉ះទង្គិចរវាងសំណើបំពេញដោយស្វ័យប្រវត្តិរបស់ Komboe និងរបស់កម្មវិធីរុករកអ្នក។",
     "description": "Dialog message facilitating the ability to override a chrome browser's default autofill behavior"
   },
   "overrideDefaultBrowserAutoFillSettings": {
-    "message": "ធ្វើឱ្យ Bitwarden ជាកម្មវិធីគ្រប់គ្រងពាក្យសម្ងាត់លំនាំដើមរបស់អ្នក",
+    "message": "ធ្វើឱ្យ Komboe ជាកម្មវិធីគ្រប់គ្រងពាក្យសម្ងាត់លំនាំដើមរបស់អ្នក",
     "description": "Label for the setting that allows overriding the default browser autofill settings"
   },
   "defaultPasswordManagerCalloutTitle": {
@@ -6197,7 +6197,7 @@
     "description": "Title for the callout that prompts users to set Bitwarden as their default password manager"
   },
   "defaultPasswordManagerCalloutDesc": {
-    "message": "អ្នកនឹងត្រូវបានសួរឱ្យផ្តល់ការអនុញ្ញាតកម្មវិធីរុករក $BROWSER$ ដើម្បីធ្វើឱ្យ Bitwarden ជាកម្មវិធីគ្រប់គ្រងពាក្យសម្ងាត់លំនាំដើមរបស់អ្នក។",
+    "message": "អ្នកនឹងត្រូវបានសួរឱ្យផ្តល់ការអនុញ្ញាតកម្មវិធីរុករក $BROWSER$ ដើម្បីធ្វើឱ្យ Komboe ជាកម្មវិធីគ្រប់គ្រងពាក្យសម្ងាត់លំនាំដើមរបស់អ្នក។",
     "description": "Description for the callout that prompts users to set Bitwarden as their default password manager",
     "placeholders": {
       "browser": {
@@ -6207,11 +6207,11 @@
     }
   },
   "privacyPermissionAdditionNotGrantedTitle": {
-    "message": "មិនអាចកំណត់ Bitwarden ជាកម្មវិធីគ្រប់គ្រងពាក្យសម្ងាត់លំនាំដើមបានទេ",
+    "message": "មិនអាចកំណត់ Komboe ជាកម្មវិធីគ្រប់គ្រងពាក្យសម្ងាត់លំនាំដើមបានទេ",
     "description": "Title for the dialog that appears when the user has not granted the extension permission to set privacy settings"
   },
   "privacyPermissionAdditionNotGrantedDescription": {
-    "message": "អ្នកត្រូវផ្តល់ការអនុញ្ញាតភាពឯកជនកម្មវិធីរុករកទៅ Bitwarden ដើម្បីកំណត់វាជាកម្មវិធីគ្រប់គ្រងពាក្យសម្ងាត់លំនាំដើម។",
+    "message": "អ្នកត្រូវផ្តល់ការអនុញ្ញាតភាពឯកជនកម្មវិធីរុករកទៅ Komboe ដើម្បីកំណត់វាជាកម្មវិធីគ្រប់គ្រងពាក្យសម្ងាត់លំនាំដើម។",
     "description": "Description for the dialog that appears when the user has not granted the extension permission to set privacy settings"
   },
   "makeDefault": {
@@ -6219,10 +6219,10 @@
     "description": "Button text for the setting that allows overriding the default browser autofill settings"
   },
   "defaultPasswordManagerPromptTitle": {
-    "message": "ធ្វើឱ្យ Bitwarden ជាកម្មវិធីគ្រប់គ្រងពាក្យសម្ងាត់លំនាំដើមរបស់កម្មវិធីរុករកអ្នក"
+    "message": "ធ្វើឱ្យ Komboe ជាកម្មវិធីគ្រប់គ្រងពាក្យសម្ងាត់លំនាំដើមរបស់កម្មវិធីរុករកអ្នក"
   },
   "defaultPasswordManagerPromptTitleV2": {
-    "message": "ធ្វើឱ្យ Bitwarden ជាកម្មវិធីគ្រប់គ្រងពាក្យសម្ងាត់លំនាំដើមរបស់អ្នក",
+    "message": "ធ្វើឱ្យ Komboe ជាកម្មវិធីគ្រប់គ្រងពាក្យសម្ងាត់លំនាំដើមរបស់អ្នក",
     "description": "Label for the setting to make Bitwarden the default password manager"
   },
   "defaultPasswordManagerSettingHintV2": {
@@ -6234,13 +6234,13 @@
     "description": "Link text to browser autofill settings in the default password manager setting hint."
   },
   "defaultPasswordManagerPromptStep2AfterAllow": {
-    "message": "ពីការសួររបស់កម្មវិធីរុករកដើម្បីផ្តល់ការអនុញ្ញាតដល់ Bitwarden ក្នុងការផ្លាស់ប្តូរការកំណត់របស់អ្នក។"
+    "message": "ពីការសួររបស់កម្មវិធីរុករកដើម្បីផ្តល់ការអនុញ្ញាតដល់ Komboe ក្នុងការផ្លាស់ប្តូរការកំណត់របស់អ្នក។"
   },
   "defaultPasswordManagerPromptStep3": {
     "message": "យើងនឹងបិទកម្មវិធីគ្រប់គ្រងពាក្យសម្ងាត់ដែលមានស្រាប់ក្នុងកម្មវិធីរុករករបស់អ្នក ដើម្បីឱ្យអ្នកអាចទទួលបានបទពិសោធន៍ចូលដ៏សុវត្ថិភាព។"
   },
   "defaultPasswordManagerSuccessToast": {
-    "message": "បានធ្វើឱ្យ Bitwarden ជាកម្មវិធីគ្រប់គ្រងពាក្យសម្ងាត់កម្មវិធីរុករកលំនាំដើមរបស់អ្នក"
+    "message": "បានធ្វើឱ្យ Komboe ជាកម្មវិធីគ្រប់គ្រងពាក្យសម្ងាត់កម្មវិធីរុករកលំនាំដើមរបស់អ្នក"
   },
   "allow": {
     "message": "អនុញ្ញាត",
@@ -6648,16 +6648,16 @@
     "message": "ទាញយកឯកសារភ្ជាប់"
   },
   "downloadBitwarden": {
-    "message": "ទាញយក Bitwarden"
+    "message": "ទាញយក Komboe"
   },
   "downloadBitwardenOnAllDevices": {
-    "message": "ទាញយក Bitwarden នៅលើឧបករណ៍ទាំងអស់"
+    "message": "ទាញយក Komboe នៅលើឧបករណ៍ទាំងអស់"
   },
   "getTheMobileApp": {
     "message": "ទទួលបានកម្មវិធីទូរស័ព្ទ"
   },
   "getTheMobileAppDesc": {
-    "message": "ចូលប្រើពាក្យសម្ងាត់របស់អ្នកគ្រប់ពេលជាមួយកម្មវិធីទូរស័ព្ទ Bitwarden។"
+    "message": "ចូលប្រើពាក្យសម្ងាត់របស់អ្នកគ្រប់ពេលជាមួយកម្មវិធីទូរស័ព្ទ Komboe។"
   },
   "getTheDesktopApp": {
     "message": "ទទួលបានកម្មវិធីកុំព្យូទ័រ"
@@ -6666,7 +6666,7 @@
     "message": "ចូលប្រើឃ្លាំងសម្ងាត់របស់អ្នកដោយគ្មានកម្មវិធីរុករក បន្ទាប់មករៀបចំការដោះសោដោយជីវមាត្រដើម្បីបង្កើនល្បឿនការដោះសោទាំងក្នុងកម្មវិធីកុំព្យូទ័រ និងផ្នែកបន្ថែមកម្មវិធីរុករក។"
   },
   "downloadFromBitwardenNow": {
-    "message": "ទាញយកពី bitwarden.com ឥឡូវនេះ"
+    "message": "ទាញយកពី komboe.com ឥឡូវនេះ"
   },
   "getItOnGooglePlay": {
     "message": "ទទួលបាននៅលើ Google Play"
@@ -7210,10 +7210,10 @@
     "message": "ការដោះសោដោយជីវមាត្រមិនអាចប្រើបានទេ ដោយសារឯកសារប្រព័ន្ធត្រូវបានកំណត់ខុស។"
   },
   "biometricsStatusHelptextDesktopDisconnected": {
-    "message": "ការដោះសោដោយជីវមាត្រមិនអាចប្រើបានទេ ព្រោះកម្មវិធីកុំព្យូទ័រ Bitwarden ត្រូវបានបិទ។"
+    "message": "ការដោះសោដោយជីវមាត្រមិនអាចប្រើបានទេ ព្រោះកម្មវិធីកុំព្យូទ័រ Komboe ត្រូវបានបិទ។"
   },
   "biometricsStatusHelptextNotEnabledInDesktop": {
-    "message": "ការដោះសោដោយជីវមាត្រមិនអាចប្រើបានទេ ព្រោះវាមិនត្រូវបានបើកសម្រាប់ $EMAIL$ នៅក្នុងកម្មវិធីកុំព្យូទ័រ Bitwarden។",
+    "message": "ការដោះសោដោយជីវមាត្រមិនអាចប្រើបានទេ ព្រោះវាមិនត្រូវបានបើកសម្រាប់ $EMAIL$ នៅក្នុងកម្មវិធីកុំព្យូទ័រ Komboe។",
     "placeholders": {
       "email": {
         "content": "$1",
@@ -7245,7 +7245,7 @@
     "description": "Notification message for when a password has been regenerated"
   },
   "saveToBitwarden": {
-    "message": "រក្សាទុកទៅ Bitwarden",
+    "message": "រក្សាទុកទៅ Komboe",
     "description": "Confirmation message for saving a login to Bitwarden"
   },
   "spaceCharacterDescriptor": {
@@ -7489,13 +7489,13 @@
     "message": "Use folders to organize vault items. They're just for you. No one else will see or use them."
   },
   "introCarouselLabel": {
-    "message": "សូមស្វាគមន៍មកកាន់ Bitwarden"
+    "message": "សូមស្វាគមន៍មកកាន់ Komboe"
   },
   "securityPrioritized": {
     "message": "សុវត្ថិភាព ជាអាទិភាព"
   },
   "securityPrioritizedBody": {
-    "message": "រក្សាទុកការចូល កាត និងអត្តសញ្ញាណទៅឃ្លាំងសម្ងាត់របស់អ្នក។ Bitwarden ប្រើការឌិគ្រីបពីចុងដល់ចុងបែបគ្មានចំណេះដឹង ដើម្បីការពារអ្វីដែលសំខាន់សម្រាប់អ្នក។"
+    "message": "រក្សាទុកការចូល កាត និងអត្តសញ្ញាណទៅឃ្លាំងសម្ងាត់របស់អ្នក។ Komboe ប្រើការឌិគ្រីបពីចុងដល់ចុងបែបគ្មានចំណេះដឹង ដើម្បីការពារអ្វីដែលសំខាន់សម្រាប់អ្នក។"
   },
   "quickLogin": {
     "message": "ការចូលរហ័ស និងងាយស្រួល"
@@ -7513,7 +7513,7 @@
     "message": "ទិន្នន័យរបស់អ្នក នៅពេល និងកន្លែងដែលអ្នកត្រូវការ"
   },
   "secureDevicesBody": {
-    "message": "រក្សាទុកពាក្យសម្ងាត់គ្មានដែនកំណត់នៅលើឧបករណ៍គ្មានដែនកំណត់ជាមួយកម្មវិធីទូរស័ព្ទ កម្មវិធីរុករក និងកម្មវិធីកុំព្យូទ័រ Bitwarden។"
+    "message": "រក្សាទុកពាក្យសម្ងាត់គ្មានដែនកំណត់នៅលើឧបករណ៍គ្មានដែនកំណត់ជាមួយកម្មវិធីទូរស័ព្ទ កម្មវិធីរុករក និងកម្មវិធីកុំព្យូទ័រ Komboe។"
   },
   "nudgeBadgeAria": {
     "message": "ការជូនដំណឹង 1"
@@ -7522,7 +7522,7 @@
     "message": "នាំចូលពាក្យសម្ងាត់ដែលមានស្រាប់"
   },
   "emptyVaultNudgeBody": {
-    "message": "ប្រើការនាំចូលដើម្បីផ្ទេរការចូលទៅ Bitwarden បានយ៉ាងឆាប់រហ័សដោយមិនចាំបាច់បន្ថែមដោយដៃ។"
+    "message": "ប្រើការនាំចូលដើម្បីផ្ទេរការចូលទៅ Komboe បានយ៉ាងឆាប់រហ័សដោយមិនចាំបាច់បន្ថែមដោយដៃ។"
   },
   "emptyVaultNudgeButton": {
     "message": "នាំចូលឥឡូវនេះ"
@@ -7641,7 +7641,7 @@
     "message": "អំពីការកំណត់នេះ"
   },
   "permitCipherDetailsDescription": {
-    "message": "Bitwarden នឹងប្រើ URI ចូលដែលបានរក្សាទុកដើម្បីកំណត់អត្តសញ្ញាណរូបតំណាង ឬ URL ផ្លាស់ប្តូរពាក្យសម្ងាត់ដែលគួរប្រើ ដើម្បីកែលម្អបទពិសោធន៍របស់អ្នក។ គ្មានព័ត៌មានត្រូវបានប្រមូល ឬរក្សាទុកទេនៅពេលអ្នកប្រើសេវាកម្មនេះ។"
+    "message": "Komboe នឹងប្រើ URI ចូលដែលបានរក្សាទុកដើម្បីកំណត់អត្តសញ្ញាណរូបតំណាង ឬ URL ផ្លាស់ប្តូរពាក្យសម្ងាត់ដែលគួរប្រើ ដើម្បីកែលម្អបទពិសោធន៍របស់អ្នក។ គ្មានព័ត៌មានត្រូវបានប្រមូល ឬរក្សាទុកទេនៅពេលអ្នកប្រើសេវាកម្មនេះ។"
   },
   "showQuickCopyActionsDetailsDescription": {
     "message": "បន្ថែមប៊ូតុងចម្លងរហ័ស 3 នៅជាប់ធាតុដើម្បីចម្លងឈ្មោះអ្នកប្រើ ពាក្យសម្ងាត់ ឬកូដផ្ទៀងផ្ទាត់របស់អ្នកទៅក្តារតម្បៀតខ្ទាស់។"
@@ -7650,7 +7650,7 @@
     "message": "អ្នកគ្មានសិទ្ធិមើលទំព័រនេះទេ។ សូមព្យាយាមចូលដោយគណនីផ្សេង។"
   },
   "wasmNotSupported": {
-    "message": "WebAssembly មិនត្រូវបានស្គាល់នៅលើកម្មវិធីរុករករបស់អ្នក ឬមិនត្រូវបានបើកទេ។ WebAssembly ត្រូវការដើម្បីប្រើកម្មវិធី Bitwarden។",
+    "message": "WebAssembly មិនត្រូវបានស្គាល់នៅលើកម្មវិធីរុករករបស់អ្នក ឬមិនត្រូវបានបើកទេ។ WebAssembly ត្រូវការដើម្បីប្រើកម្មវិធី Komboe។",
     "description": "'WebAssembly' is a technical term and should not be translated."
   },
   "showMore": {
@@ -7738,7 +7738,7 @@
     "message": "កំហុស៖ មិនអាចឌិគ្រីបបានទេ"
   },
   "removeMasterPasswordForOrgUserKeyConnector": {
-    "message": "អង្គការរបស់អ្នកលែងប្រើពាក្យសម្ងាត់មេដើម្បីចូល Bitwarden ទៀតទេ។ ដើម្បីបន្ត សូមផ្ទៀងផ្ទាត់អង្គការ និងដែន។"
+    "message": "អង្គការរបស់អ្នកលែងប្រើពាក្យសម្ងាត់មេដើម្បីចូល Komboe ទៀតទេ។ ដើម្បីបន្ត សូមផ្ទៀងផ្ទាត់អង្គការ និងដែន។"
   },
   "continueWithLogIn": {
     "message": "បន្តជាមួយការចូល"
@@ -7824,7 +7824,7 @@
     "message": "កំណត់វិធីដោះសោដើម្បីផ្លាស់ប្តូរសកម្មភាពអស់ពេលរបស់អ្នក"
   },
   "sessionTimeoutSuppressedByConnectedDevice": {
-    "message": "គ្រប់គ្រងដោយកម្មវិធីកុំព្យូទ័រ Bitwarden។ បើកកម្មវិធីកុំព្យូទ័រដើម្បីកែសម្រួល។"
+    "message": "គ្រប់គ្រងដោយកម្មវិធីកុំព្យូទ័រ Komboe។ បើកកម្មវិធីកុំព្យូទ័រដើម្បីកែសម្រួល។"
   },
   "percentageCompleted": {
     "message": "បានបញ្ចប់ $PERCENT$%",
@@ -7920,13 +7920,13 @@
     "message": "បញ្ចូលអ៊ីមែលច្រើនដោយបំបែកដោយក្បៀស។"
   },
   "emailPlaceholder": {
-    "message": "user@bitwarden.com , user@acme.com"
+    "message": "user@komboe.com , user@acme.com"
   },
   "emailPlaceholderMultiple": {
-    "message": "user@bitwarden.com, user@acme.com"
+    "message": "user@komboe.com, user@acme.com"
   },
   "downloadBitwardenApps": {
-    "message": "ទាញយកកម្មវិធី Bitwarden"
+    "message": "ទាញយកកម្មវិធី Komboe"
   },
   "emailProtected": {
     "message": "អ៊ីមែលត្រូវបានការពារ"
@@ -7945,13 +7945,13 @@
     "message": "Sync unlock with desktop app"
   },
   "syncUnlockWithDesktopDescription": {
-    "message": "The Bitwarden browser extension and desktop app lock and unlock together."
+    "message": "The Komboe browser extension and desktop app lock and unlock together."
   },
   "syncUnlockWithWeb": {
     "message": "Sync unlock with web app"
   },
   "syncUnlockWithWebDescription": {
-    "message": "The Bitwarden browser extension and web app lock and unlock together."
+    "message": "The Komboe browser extension and web app lock and unlock together."
   },
   "sharedUnlockUnavailableUntrustedDevice": {
     "message": "ការដោះសោរួមគ្នាមិនអាចប្រើបានទេ ព្រោះអ្នកបានជ្រើសរើសមិនចងចាំឧបករណ៍នេះ។ ដើម្បីបើកការកំណត់នេះ សូមព្យាយាមចូលម្តងទៀត។"
@@ -7960,13 +7960,13 @@
     "message": "ត្រូវការការអនុញ្ញាតថ្មី"
   },
   "sharedUnlockDesktopPermissionDesc": {
-    "message": "ដើម្បីប្រើការដោះសោរួមគ្នា Bitwarden ត្រូវការការអនុញ្ញាតឱ្យទំនាក់ទំនងជាមួយកម្មវិធីកុំព្យូទ័រ។ នៅពេលអ្នកបន្ត កម្មវិធីរុករករបស់អ្នកនឹងសួរឱ្យអ្នកអនុម័តវា។"
+    "message": "ដើម្បីប្រើការដោះសោរួមគ្នា Komboe ត្រូវការការអនុញ្ញាតឱ្យទំនាក់ទំនងជាមួយកម្មវិធីកុំព្យូទ័រ។ នៅពេលអ្នកបន្ត កម្មវិធីរុករករបស់អ្នកនឹងសួរឱ្យអ្នកអនុម័តវា។"
   },
   "sharedUnlockDesktopPermissionWarning": {
-    "message": "Bitwarden នឹងចាក់សោ និងផ្ទុកឡើងវិញ។ បន្ទាប់ពីអ្នកអនុម័ត ផ្នែកបន្ថែមនឹងផ្ទុកឡើងវិញ ហើយនឹងចាក់សោឃ្លាំងសម្ងាត់របស់អ្នក។"
+    "message": "Komboe នឹងចាក់សោ និងផ្ទុកឡើងវិញ។ បន្ទាប់ពីអ្នកអនុម័ត ផ្នែកបន្ថែមនឹងផ្ទុកឡើងវិញ ហើយនឹងចាក់សោឃ្លាំងសម្ងាត់របស់អ្នក។"
   },
   "biometricPermissionDesc": {
-    "message": "ដើម្បីប្រើការដោះសោដោយជីវមាត្រ Bitwarden ត្រូវការការអនុញ្ញាតឱ្យទំនាក់ទំនងជាមួយកម្មវិធីកុំព្យូទ័រ។ នៅពេលអ្នកបន្ត កម្មវិធីរុករករបស់អ្នកនឹងសួរឱ្យអ្នកអនុម័តវា។"
+    "message": "ដើម្បីប្រើការដោះសោដោយជីវមាត្រ Komboe ត្រូវការការអនុញ្ញាតឱ្យទំនាក់ទំនងជាមួយកម្មវិធីកុំព្យូទ័រ។ នៅពេលអ្នកបន្ត កម្មវិធីរុករករបស់អ្នកនឹងសួរឱ្យអ្នកអនុម័តវា។"
   },
   "enterMonth": {
     "message": "បញ្ចូលខែ។"
@@ -8451,15 +8451,15 @@
     "message": "ធាតុមិនស្គាល់ អ្នកប្រហែលជាត្រូវស្នើសុំការអនុញ្ញាតដើម្បីចូលប្រើធាតុនេះ។"
   },
   "newExperienceDialogTitle": {
-    "message": "Bitwarden has a new look",
+    "message": "Komboe has a new look",
     "description": "Title of the dialog that introduces the redesigned vault to existing users."
   },
   "newExperienceDialogDesc": {
-    "message": "Better experience, same trusted security. The Bitwarden vault has been redesigned based on your feedback, so things are easier to find and work like you'd expect.",
+    "message": "Better experience, same trusted security. The Komboe vault has been redesigned based on your feedback, so things are easier to find and work like you'd expect.",
     "description": "Body copy of the dialog that introduces the redesigned vault to existing users."
   },
   "newExperienceDialogImgAlt": {
-    "message": "A preview of the redesigned Bitwarden vault.",
+    "message": "A preview of the redesigned Komboe vault.",
     "description": "Alt text for the screenshot shown in the dialog that introduces the redesigned vault."
   },
   "exploreTheNewVault": {

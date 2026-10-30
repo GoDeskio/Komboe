@@ -1,20 +1,20 @@
 {
   "appName": {
-    "message": "Bitwarden"
+    "message": "Komboe"
   },
   "appLogoLabel": {
-    "message": "„Bitwarden“ logotipas"
+    "message": "„Komboe“ logotipas"
   },
   "extName": {
-    "message": "„Bitwarden“ slaptažodžių tvarkyklė",
+    "message": "„Komboe“ slaptažodžių tvarkyklė",
     "description": "Extension name, MUST be less than 40 characters (Safari restriction)"
   },
   "extNameBeta": {
-    "message": "„Bitwarden“ slaptažodžių tvarkyklė beta",
+    "message": "„Komboe“ slaptažodžių tvarkyklė beta",
     "description": "Extension name for the beta channel, MUST be less than 40 characters (Safari restriction)"
   },
   "extDesc": {
-    "message": "Namuose, darbe ar kelyje, „Bitwarden“ apsaugo jūsų slaptažodžius, raktažodžius ir svarbią informaciją",
+    "message": "Namuose, darbe ar kelyje, „Komboe“ apsaugo jūsų slaptažodžius, raktažodžius ir svarbią informaciją",
     "description": "Extension description, MUST be less than 112 characters (Safari restriction)"
   },
   "loginOrCreateNewAccount": {
@@ -27,7 +27,7 @@
     "message": "Sukurti paskyrą"
   },
   "newToBitwarden": {
-    "message": "Pirmą kartą „Bitwarden“?"
+    "message": "Pirmą kartą „Komboe“?"
   },
   "logInWithPasskey": {
     "message": "Prisijungti naudojant prieigos raktą"
@@ -324,22 +324,22 @@
     "message": "Tęsti į žiniatinklio programą?"
   },
   "continueToWebAppDesc": {
-    "message": "Atraskite daugiau savo „Bitwarden“ paskyros funkcijų žiniatinklio programoje."
+    "message": "Atraskite daugiau savo „Komboe“ paskyros funkcijų žiniatinklio programoje."
   },
   "continueToHelpCenter": {
     "message": "Eiti į pagalbos centrą?"
   },
   "continueToHelpCenterDesc": {
-    "message": "Pagalbos centre sužinokite daugiau, kaip naudotis „Bitwarden“."
+    "message": "Pagalbos centre sužinokite daugiau, kaip naudotis „Komboe“."
   },
   "continueToBrowserExtensionStore": {
     "message": "Eiti į naršyklės plėtinių svetainę?"
   },
   "continueToBrowserExtensionStoreDesc": {
-    "message": "Padėkite kitiems sužinoti ar B„itwarden“ yra jiems tinkamas. Apsilankykite naršyklės plėtinių svetainėje ir įvertinkite „Bitwarden“."
+    "message": "Padėkite kitiems sužinoti ar B„itwarden“ yra jiems tinkamas. Apsilankykite naršyklės plėtinių svetainėje ir įvertinkite „Komboe“."
   },
   "changeMasterPasswordOnWebConfirmation": {
-    "message": "Pagrindinį slaptažodį galite pakeisti „Bitwarden“ žiniatinklio programoje."
+    "message": "Pagrindinį slaptažodį galite pakeisti „Komboe“ žiniatinklio programoje."
   },
   "fingerprintPhrase": {
     "message": "Pirštų atspaudų frazė",
@@ -356,43 +356,43 @@
     "message": "Atsijungti"
   },
   "aboutBitwarden": {
-    "message": "Apie Bitwarden"
+    "message": "Apie Komboe"
   },
   "about": {
     "message": "Apie"
   },
   "moreFromBitwarden": {
-    "message": "Daugiau iš Bitwarden"
+    "message": "Daugiau iš Komboe"
   },
   "continueToBitwardenDotCom": {
-    "message": "Eiti į bitwarden.com?"
+    "message": "Eiti į komboe.com?"
   },
   "bitwardenForBusiness": {
-    "message": "Bitwarden Verslui"
+    "message": "Komboe Verslui"
   },
   "bitwardenAuthenticator": {
-    "message": "Bitwarden Authenticator"
+    "message": "Komboe Authenticator"
   },
   "continueToAuthenticatorPageDesc": {
-    "message": "„Bitwarden Authenticator“ leidžia saugoti autentifikavimo raktus ir generuoti TOTP kodus dviejų etapų patvirtinimui. Sužinokite daugiau bitwarden.com svetainėje"
+    "message": "„Komboe Authenticator“ leidžia saugoti autentifikavimo raktus ir generuoti TOTP kodus dviejų etapų patvirtinimui. Sužinokite daugiau komboe.com svetainėje"
   },
   "bitwardenSecretsManager": {
-    "message": "Bitwarden Secrets Manager"
+    "message": "Komboe Secrets Manager"
   },
   "continueToSecretsManagerPageDesc": {
-    "message": "Saugiai saugokite, tvarkykite ir dalinkitės kūrėjų slaptais duomenimis su „Bitwarden Secrets Manager“. Sužinokite daugiau bitwarden.com svetainėje."
+    "message": "Saugiai saugokite, tvarkykite ir dalinkitės kūrėjų slaptais duomenimis su „Komboe Secrets Manager“. Sužinokite daugiau komboe.com svetainėje."
   },
   "passwordlessDotDev": {
     "message": "Passwordless.dev"
   },
   "continueToPasswordlessDotDevPageDesc": {
-    "message": "Sukurkite sklandžią ir saugią prisijungimo patirtį be tradicinių slaptažodžių su Passwordless.dev. Sužinokite daugiau bitwarden.com svetainėje."
+    "message": "Sukurkite sklandžią ir saugią prisijungimo patirtį be tradicinių slaptažodžių su Passwordless.dev. Sužinokite daugiau komboe.com svetainėje."
   },
   "freeBitwardenFamilies": {
-    "message": "Nemokamas „Bitwarden Families“"
+    "message": "Nemokamas „Komboe Families“"
   },
   "freeBitwardenFamiliesPageDesc": {
-    "message": "Jūs turite galimybę gauti nemokamą „Bitwarden Families“ paskyrą. Pasinaudokite šiuo pasiūlymu šiandien Interneto svetainėje."
+    "message": "Jūs turite galimybę gauti nemokamą „Komboe Families“ paskyrą. Pasinaudokite šiuo pasiūlymu šiandien Interneto svetainėje."
   },
   "version": {
     "message": "Versija"
@@ -458,13 +458,13 @@
     "message": "Pagalba ir atsiliepimai"
   },
   "helpCenter": {
-    "message": "„Bitwarden“ Pagalbos centras"
+    "message": "„Komboe“ Pagalbos centras"
   },
   "communityForums": {
-    "message": "Naršyti „Bitwarden“ bendruomenės forumus"
+    "message": "Naršyti „Komboe“ bendruomenės forumus"
   },
   "contactSupport": {
-    "message": "Susisiekti su „Bitwarden“ palaikymo komanda"
+    "message": "Susisiekti su „Komboe“ palaikymo komanda"
   },
   "sync": {
     "message": "Sinchronizuoti"
@@ -486,7 +486,7 @@
     "message": "Automatiškai generuokite stiprius, unikalius prisijungimo slaptažodžius."
   },
   "bitWebVaultApp": {
-    "message": "Bitwarden Interneto svetainė"
+    "message": "Komboe Interneto svetainė"
   },
   "select": {
     "message": "Pasirinkti"
@@ -850,7 +850,7 @@
     "message": "Atsisiųskite ir bendrinkite diagnostikos ataskaitą su"
   },
   "bitwardenSupport": {
-    "message": "Bitwarden palaikymas",
+    "message": "Komboe palaikymas",
     "description": "Link text following the troubleshooting description sentence. 'Bitwarden' should not be translated."
   },
   "download": {
@@ -1067,10 +1067,10 @@
     "message": "Padaryti dviejų veiksnių patvirtinimą sklandų"
   },
   "totpHelper": {
-    "message": "Bitwarden gali saugoti ir užpildyti 2 žingsnių patvirtinimo kodus. Nukopijuokite ir įklijuokite raktą į šį lauką."
+    "message": "Komboe gali saugoti ir užpildyti 2 žingsnių patvirtinimo kodus. Nukopijuokite ir įklijuokite raktą į šį lauką."
   },
   "totpHelperWithCapture": {
-    "message": "Bitwarden gali saugoti ir užpildyti 2 žingsnių patvirtinimo kodus. Pasirinkite kameros piktogramą, kad padarytumėte šios svetainės autentifikatoriaus QR kodo ekrano kopiją, arba nukopijuokite ir įklijuokite raktą į šį lauką."
+    "message": "Komboe gali saugoti ir užpildyti 2 žingsnių patvirtinimo kodus. Pasirinkite kameros piktogramą, kad padarytumėte šios svetainės autentifikatoriaus QR kodo ekrano kopiją, arba nukopijuokite ir įklijuokite raktą į šį lauką."
   },
   "learnMoreAboutAuthenticators": {
     "message": "Sužinokite daugiau apie autentifikatorius"
@@ -1157,10 +1157,10 @@
     "message": "Įveskite vardą."
   },
   "twoStepLoginConfirmation": {
-    "message": "Prisijungus dviem veiksmais, jūsų paskyra tampa saugesnė, reikalaujant patvirtinti prisijungimą naudojant kitą įrenginį, pvz., saugos raktą, autentifikavimo programėlę, SMS, telefono skambutį ar el. paštą. Dviejų žingsnių prisijungimą galima įjungti „bitwarden.com“ interneto saugykloje. Ar norite dabar apsilankyti svetainėje?"
+    "message": "Prisijungus dviem veiksmais, jūsų paskyra tampa saugesnė, reikalaujant patvirtinti prisijungimą naudojant kitą įrenginį, pvz., saugos raktą, autentifikavimo programėlę, SMS, telefono skambutį ar el. paštą. Dviejų žingsnių prisijungimą galima įjungti „komboe.com“ interneto saugykloje. Ar norite dabar apsilankyti svetainėje?"
   },
   "twoStepLoginConfirmationContent": {
-    "message": "Padarykite savo paskyrą saugesnę nustatydami dviejų žingsnių prisijungimą Bitwarden internetinėje programoje."
+    "message": "Padarykite savo paskyrą saugesnę nustatydami dviejų žingsnių prisijungimą Komboe internetinėje programoje."
   },
   "twoStepLoginConfirmationTitle": {
     "message": "Tęsti į žiniatinklio programą?"
@@ -1313,7 +1313,7 @@
     "message": "Pereiti prie nustatymo"
   },
   "notificationAddDesc": {
-    "message": "Ar „Bitwarden“ turėtų įsiminti šį slaptažodį už Jus?"
+    "message": "Ar „Komboe“ turėtų įsiminti šį slaptažodį už Jus?"
   },
   "notificationAddSave": {
     "message": "Išsaugoti"
@@ -1349,7 +1349,7 @@
     }
   },
   "notificationLoginSaveConfirmation": {
-    "message": "išsaugotas į Bitwarden.",
+    "message": "išsaugotas į Komboe.",
     "description": "Shown to user after item is saved."
   },
   "notificationLoginUpdatedConfirmation": {
@@ -1451,13 +1451,13 @@
     "message": "Paprašykite išsaugoti naujus prieigos raktus arba prisijungti naudodant saugykloje saugomus prieigos raktus. Taikoma visoms prisijungusioms paskyroms."
   },
   "notificationChangeDesc": {
-    "message": "Ar nori atnaujinti šį slaptažodį „Bitwarden“ programėlėje?"
+    "message": "Ar nori atnaujinti šį slaptažodį „Komboe“ programėlėje?"
   },
   "notificationChangeSave": {
     "message": "Atnaujinti"
   },
   "notificationUnlockDesc": {
-    "message": "Atrakinkite savo „Bitwarden“ saugyklą, kad užbaigtumėte automatinio užpildymo užklausą."
+    "message": "Atrakinkite savo „Komboe“ saugyklą, kad užbaigtumėte automatinio užpildymo užklausą."
   },
   "notificationUnlock": {
     "message": "Atrakinti"
@@ -1605,10 +1605,10 @@
     "message": "Šis slaptažodis bus naudojamas eksportuojant ir importuojant šį failą"
   },
   "accountRestrictedOptionDescription": {
-    "message": "Naudokite savo paskyros šifravimo raktą, gautą iš jūsų paskyros vartotojo vardo ir pagrindinio slaptažodžio, kad užšifruotumėte eksportą ir apribotumėte importą tik į dabartinę Bitwarden paskyrą."
+    "message": "Naudokite savo paskyros šifravimo raktą, gautą iš jūsų paskyros vartotojo vardo ir pagrindinio slaptažodžio, kad užšifruotumėte eksportą ir apribotumėte importą tik į dabartinę Komboe paskyrą."
   },
   "passwordProtectedOptionDescription": {
-    "message": "Nustatykite failo slaptažodį, kad užšifruotumėte eksportą ir importuotumėte jį į bet kurią Bitwarden paskyrą, naudodami slaptažodį iššifravimui."
+    "message": "Nustatykite failo slaptažodį, kad užšifruotumėte eksportą ir importuotumėte jį į bet kurią Komboe paskyrą, naudodami slaptažodį iššifravimui."
   },
   "exportTypeHeading": {
     "message": "Eksporto tipas"
@@ -1637,7 +1637,7 @@
     "message": "Šis duomenų exportavimas užšifruoja jūsų duomenis naudodamas jūsų prieigos kodų raktu. Jei jūs kada nuspręsite pakeisti prieigos kodų raktą, jūs turėtumėte per naują eksportuoti duomenis, nes kitaip, jūs negalėsite iššifruoti išeksportuotų duomenų."
   },
   "encExportAccountWarningDesc": {
-    "message": "Paskyros šifravimo raktai yra unikalūs kiekvienai „Bitwarden“ vartotojo paskyrai, todėl negalite importuoti užšifruoto eksportavimo į kitą paskyrą."
+    "message": "Paskyros šifravimo raktai yra unikalūs kiekvienai „Komboe“ vartotojo paskyrai, todėl negalite importuoti užšifruoto eksportavimo į kitą paskyrą."
   },
   "exportMasterPassword": {
     "message": "Įveskite pagrindinį slaptažodį norint išsinešti saugyklos duomenis."
@@ -1661,7 +1661,7 @@
     "message": "Pridėti bendrinamą aplanką"
   },
   "bitwardenForBusinessPageDesc": {
-    "message": "„Bitwarden for Business“ leidžia bendrinti saugyklos elementus su kitais naudojant organizaciją. Sužinokite daugiau bitwarden.com svetainėje."
+    "message": "„Komboe for Business“ leidžia bendrinti saugyklos elementus su kitais naudojant organizaciją. Sužinokite daugiau komboe.com svetainėje."
   },
   "moveToOrganization": {
     "message": "Perkelti į organizaciją"
@@ -1815,7 +1815,7 @@
     "message": "Tvarkyti narystę"
   },
   "premiumManageAlert": {
-    "message": "Savo narystę galite tvarkyti „bitwarden.com“ žiniatinklio saugykloje. Ar norite apsilankyti svetainėje dabar?"
+    "message": "Savo narystę galite tvarkyti „komboe.com“ žiniatinklio saugykloje. Ar norite apsilankyti svetainėje dabar?"
   },
   "premiumRefresh": {
     "message": "Atnaujinti narystę"
@@ -1863,7 +1863,7 @@
     "message": "Įsigyti Premium"
   },
   "premiumPurchaseAlertV2": {
-    "message": "Galite įsigyti Premium iš savo paskyros nustatymų Bitwarden žiniatinklio programoje."
+    "message": "Galite įsigyti Premium iš savo paskyros nustatymų Komboe žiniatinklio programoje."
   },
   "premiumFeatures": {
     "message": "Atnaujinkite į Premium ir gaukite:"
@@ -1969,7 +1969,7 @@
     "message": "Autentifikavimo programa"
   },
   "authenticatorAppDescV2": {
-    "message": "Įveskite autentifikatoriaus programėlės sugeneruotą kodą, pvz., „Bitwarden Authenticator“.",
+    "message": "Įveskite autentifikatoriaus programėlės sugeneruotą kodą, pvz., „Komboe Authenticator“.",
     "description": "'Bitwarden Authenticator' is a product name and should not be translated."
   },
   "yubiKeyTitleV2": {
@@ -2002,7 +2002,7 @@
     "message": "Savarankiškai sukurta aplinka"
   },
   "selfHostedBaseUrlHint": {
-    "message": "Nurodykite savo vietinėje infrastruktūroje talpinamo „Bitwarden“ diegimo bazinį URL. Pavyzdys: https://bitwarden.company.com"
+    "message": "Nurodykite savo vietinėje infrastruktūroje talpinamo „Komboe“ diegimo bazinį URL. Pavyzdys: https://komboe.company.com"
   },
   "selfHostedCustomEnvHeader": {
     "message": "Norėdami atlikti išplėstinę konfigūraciją, galite atskirai nurodyti kiekvienos paslaugos bazinį URL."
@@ -2055,7 +2055,7 @@
     "message": "Lengvai raskite automatinio užpildymo pasiūlymus"
   },
   "autofillSpotlightDesc": {
-    "message": "Išjunkite naršyklės automatinio užpildymo nustatymus, kad jie nekonfliktuotų su „Bitwarden“."
+    "message": "Išjunkite naršyklės automatinio užpildymo nustatymus, kad jie nekonfliktuotų su „Komboe“."
   },
   "turnOffBrowserAutofill": {
     "message": "Išjunkite „$BROWSER$“ automatinį užpildymą",
@@ -2112,7 +2112,7 @@
     "message": "Rodyti automatinio užpildymo pasiūlymus formos laukuose"
   },
   "howDoesBitwardenProtectFromPhishing": {
-    "message": "Kaip „Bitwarden“ apsaugo jūsų duomenis nuo sukčiavimo?"
+    "message": "Kaip „Komboe“ apsaugo jūsų duomenis nuo sukčiavimo?"
   },
   "currentWebsite": {
     "message": "Dabartinė svetainė"
@@ -3021,7 +3021,7 @@
     "message": "Silpnas pagrindinis slaptažodis"
   },
   "weakMasterPasswordDesc": {
-    "message": "Jūsų pasirinktas pagrindinis slaptažodis yra silpnas. Turėtumėte naudoti stiprų pagrindinį slaptažodį (arba slaptafrazę), kad tinkamai apsaugotumėte savo „Bitwarden“ paskyrą. Ar tikrai norite naudoti šį pagrindinį slaptažodį?"
+    "message": "Jūsų pasirinktas pagrindinis slaptažodis yra silpnas. Turėtumėte naudoti stiprų pagrindinį slaptažodį (arba slaptafrazę), kad tinkamai apsaugotumėte savo „Komboe“ paskyrą. Ar tikrai norite naudoti šį pagrindinį slaptažodį?"
   },
   "rotateAccountEncKey": {
     "message": "Taip pat pakeisti mano paskyros šifravimo raktą"
@@ -3033,7 +3033,7 @@
     "message": "Ar tikrai norite pakeisti savo paskyros šifravimo raktą?"
   },
   "updateEncryptionKeyWarning": {
-    "message": "Atnaujinę šifravimo raktą, turite atsijungti ir vėl prisijungti prie visų šiuo metu naudojamų „Bitwarden“ programų (pvz., mobiliosios programėlės ar naršyklės plėtinių). Jei neatsijungsite ir vėl neprisijungsite (taip atsisiunčiant naują šifravimo raktą), duomenys gali būti sugadinti. Bandysime jus atjungti automatiškai, tačiau tai gali užtrukti."
+    "message": "Atnaujinę šifravimo raktą, turite atsijungti ir vėl prisijungti prie visų šiuo metu naudojamų „Komboe“ programų (pvz., mobiliosios programėlės ar naršyklės plėtinių). Jei neatsijungsite ir vėl neprisijungsite (taip atsisiunčiant naują šifravimo raktą), duomenys gali būti sugadinti. Bandysime jus atjungti automatiškai, tačiau tai gali užtrukti."
   },
   "updateEncryptionKeyAccountExportWarning": {
     "message": "Visi išsaugoti paskyros apriboti eksportai taps negaliojantys."
@@ -3061,10 +3061,10 @@
     "message": "Nustatyti PIN"
   },
   "setYourPinCode": {
-    "message": "Nustatykite savo PIN kodą, kad atrakintumėte „Bitwarden“. Jūsų PIN nustatymai bus nustatyti iš naujo, jei kada nors visiškai atsijungsite nuo programos."
+    "message": "Nustatykite savo PIN kodą, kad atrakintumėte „Komboe“. Jūsų PIN nustatymai bus nustatyti iš naujo, jei kada nors visiškai atsijungsite nuo programos."
   },
   "setPinCode": {
-    "message": "Galite naudoti šį PIN, kad atrakintumėte „Bitwarden“. PIN bus iš naujo nustatytas, jei kada nors visiškai atsijungsite nuo programos."
+    "message": "Galite naudoti šį PIN, kad atrakintumėte „Komboe“. PIN bus iš naujo nustatytas, jei kada nors visiškai atsijungsite nuo programos."
   },
   "pinRequired": {
     "message": "PIN kodas yra privalomas."
@@ -3085,7 +3085,7 @@
     "message": "Laukiama patvirtinimo iš darbalaukio"
   },
   "awaitDesktopDesc": {
-    "message": "Patvirtinkite naudodami biometrinius duomenis „Bitwarden“ darbalaukio programoje, kad nustatytumėte naršyklės biometrinius duomenis."
+    "message": "Patvirtinkite naudodami biometrinius duomenis „Komboe“ darbalaukio programoje, kad nustatytumėte naršyklės biometrinius duomenis."
   },
   "lockWithMasterPassOnRestart": {
     "message": "Užrakinkite pagrindiniu slaptažodžiu paleidus naršyklę iš naujo"
@@ -3200,7 +3200,7 @@
     "message": "Formą priglobia kitas domenas nei išsaugoto prisijungimo URI. Pasirinkite „Gerai“, kad vis tiek pildytumėte automatiškai arba „Atšaukti“, kad sustabdytumėte."
   },
   "autofillIframeWarningTip": {
-    "message": "Norėdami išvengti šio įspėjimo ateityje išsaugokite šį URI $HOSTNAME$, Jūsų „Bitwarden“, šios svetainės, prisijungimo elemente.",
+    "message": "Norėdami išvengti šio įspėjimo ateityje išsaugokite šį URI $HOSTNAME$, Jūsų „Komboe“, šios svetainės, prisijungimo elemente.",
     "placeholders": {
       "hostname": {
         "content": "$1",
@@ -3209,7 +3209,7 @@
     }
   },
   "topLayerHijackWarning": {
-    "message": "Šis puslapis trukdo „Bitwarden“ veikimui. Saugumo sumetimais „Bitwarden“ tiesioginis meniu buvo laikinai išjungtas."
+    "message": "Šis puslapis trukdo „Komboe“ veikimui. Saugumo sumetimais „Komboe“ tiesioginis meniu buvo laikinai išjungtas."
   },
   "setMasterPassword": {
     "message": "Pagrindinio slaptažodžio nustatymas"
@@ -3266,7 +3266,7 @@
     "message": "Tavo naujasis pagrindinis slaptažodis neatitinka politikos reikalavimų."
   },
   "receiveMarketingEmails": {
-    "message": "Gaukite „Bitwarden“ naujienas savo pašto dėžutėje."
+    "message": "Gaukite „Komboe“ naujienas savo pašto dėžutėje."
   },
   "unsubscribe": {
     "message": "Atsisakyti prenumeratos"
@@ -3311,13 +3311,13 @@
     "message": "Naršyklės integracija nėra nustatyta"
   },
   "desktopIntegrationDisabledDesc": {
-    "message": "Naršyklės integravimas nenustatytas Bitwarden darbalaukio programoje. Nustatykite jį darbalaukio programos nustatymuose."
+    "message": "Naršyklės integravimas nenustatytas Komboe darbalaukio programoje. Nustatykite jį darbalaukio programos nustatymuose."
   },
   "startDesktopTitle": {
-    "message": "Paleiskite Bitwarden darbalaukio programą"
+    "message": "Paleiskite Komboe darbalaukio programą"
   },
   "startDesktopDesc": {
-    "message": "Reikia paleisti Bitwarden darbalaukio programą prieš naudojant atrakinimą biometriniais duomenimis."
+    "message": "Reikia paleisti Komboe darbalaukio programą prieš naudojant atrakinimą biometriniais duomenimis."
   },
   "errorEnableBiometricTitle": {
     "message": "Nepavyko nustatyti biometrinių duomenų"
@@ -3371,13 +3371,13 @@
     "message": "Biometrika nepavyko"
   },
   "biometricsFailedDesc": {
-    "message": "Biometriniai duomenys negali būti užpildyti, apsvarstyk galimybę naudoti pagrindinį slaptažodį arba atsijungti. Jei tai tęsiasi, kreipkitės į Bitwarden pagalbą."
+    "message": "Biometriniai duomenys negali būti užpildyti, apsvarstyk galimybę naudoti pagrindinį slaptažodį arba atsijungti. Jei tai tęsiasi, kreipkitės į Komboe pagalbą."
   },
   "nativeMessagingPermissionErrorTitle": {
     "message": "Leidimas nesuteiktas"
   },
   "nativeMessagingPermissionErrorDesc": {
-    "message": "Be leidimo bendrauti su „Bitwarden“ darbalaukio programa negalime teikti biometrinių funkcijų naršyklės plėtinyje. Bandykite dar kartą."
+    "message": "Be leidimo bendrauti su „Komboe“ darbalaukio programa negalime teikti biometrinių funkcijų naršyklės plėtinyje. Bandykite dar kartą."
   },
   "nativeMessagingPermissionSidebarTitle": {
     "message": "Leidimo užklausos klaida"
@@ -3414,7 +3414,7 @@
     "message": "Išskirti domenai"
   },
   "excludedDomainsDesc": {
-    "message": "„Bitwarden“ neprašys išsaugoti šių domenų prisijungimo duomenų. Turite atnaujinti puslapį, kad pokyčiai pradėtų galioti."
+    "message": "„Komboe“ neprašys išsaugoti šių domenų prisijungimo duomenų. Turite atnaujinti puslapį, kad pokyčiai pradėtų galioti."
   },
   "blockedDomainsDesc": {
     "message": "Automatinis užpildymas ir kitos susijusios funkcijos nebus siūlomos šiose svetainėse. Pakeitimams įsigalioti turite atnaujinti puslapį."
@@ -3546,24 +3546,24 @@
     "message": "Rizikingų prisijungimų sąrašo iliustracija."
   },
   "welcomeDialogGraphicAlt": {
-    "message": "„Bitwarden“ saugyklos puslapio išdėstymo iliustracija."
+    "message": "„Komboe“ saugyklos puslapio išdėstymo iliustracija."
   },
   "generatePasswordSlideDesc": {
-    "message": "Greitai sugeneruokite stiprų, unikalų slaptažodį naudodami „Bitwarden“ automatinio užpildymo meniu rizikingoje svetainėje.",
+    "message": "Greitai sugeneruokite stiprų, unikalų slaptažodį naudodami „Komboe“ automatinio užpildymo meniu rizikingoje svetainėje.",
     "description": "Description of the generate password slide on the at-risk password page carousel"
   },
   "generatePasswordSlideImgAltPeriod": {
-    "message": "„Bitwarden“ automatinio užpildymo meniu, rodančio sugeneruotą slaptažodį, iliustracija."
+    "message": "„Komboe“ automatinio užpildymo meniu, rodančio sugeneruotą slaptažodį, iliustracija."
   },
   "updateInBitwarden": {
-    "message": "Atnaujinti „Bitwarden“"
+    "message": "Atnaujinti „Komboe“"
   },
   "updateInBitwardenSlideDesc": {
-    "message": "Tada „Bitwarden“ paragins atnaujinti slaptažodį slaptažodžių tvarkyklėje.",
+    "message": "Tada „Komboe“ paragins atnaujinti slaptažodį slaptažodžių tvarkyklėje.",
     "description": "Description of the update in Bitwarden slide on the at-risk password page carousel"
   },
   "updateInBitwardenSlideImgAltPeriod": {
-    "message": "„Bitwarden“ pranešimo, raginančio vartotoją atnaujinti prisijungimą, iliustracija."
+    "message": "„Komboe“ pranešimo, raginančio vartotoją atnaujinti prisijungimą, iliustracija."
   },
   "turnOnAutofill": {
     "message": "Įjungti automatinį užpildymą"
@@ -4078,10 +4078,10 @@
     "message": "Klaida gaunant automatinio užpildymo duomenis"
   },
   "couldNotDecryptVaultItem": {
-    "message": "„Bitwarden“ negalėjo iššifruoti žemiau nurodyto saugyklos elemento. Susisiekite su „Bitwarden“ klientų aptarnavimu ir pateikite žemiau nurodytą elemento ID, kad būtų galima patikrinti, ar jį galima atkurti."
+    "message": "„Komboe“ negalėjo iššifruoti žemiau nurodyto saugyklos elemento. Susisiekite su „Komboe“ klientų aptarnavimu ir pateikite žemiau nurodytą elemento ID, kad būtų galima patikrinti, ar jį galima atkurti."
   },
   "couldNotDecryptVaultItems": {
-    "message": "„Bitwarden“ negalėjo iššifruoti žemiau nurodytų saugyklos elementų. Susisiekite su „Bitwarden“ klientų aptarnavimu ir pateikite žemiau nurodytus elementų ID, kad būtų galima patikrinti, ar juos galima atkurti."
+    "message": "„Komboe“ negalėjo iššifruoti žemiau nurodytų saugyklos elementų. Susisiekite su „Komboe“ klientų aptarnavimu ir pateikite žemiau nurodytus elementų ID, kad būtų galima patikrinti, ar juos galima atkurti."
   },
   "itemId": {
     "message": "Elemento ID",
@@ -4191,11 +4191,11 @@
     }
   },
   "forwarderGeneratedBy": {
-    "message": "Sugeneravo „Bitwarden“.",
+    "message": "Sugeneravo „Komboe“.",
     "description": "Displayed with the address on the forwarding service's configuration screen."
   },
   "forwarderGeneratedByWithWebsite": {
-    "message": "Svetainė: $WEBSITE$. Sugeneravo „Bitwarden“.",
+    "message": "Svetainė: $WEBSITE$. Sugeneravo „Komboe“.",
     "description": "Displayed with the address on the forwarding service's configuration screen.",
     "placeholders": {
       "WEBSITE": {
@@ -4417,7 +4417,7 @@
     "message": "Į jūsų įrenginį išsiųstas pranešimas."
   },
   "notificationSentDevicePart1": {
-    "message": "Atrakinkite „Bitwarden“ savo įrenginyje arba"
+    "message": "Atrakinkite „Komboe“ savo įrenginyje arba"
   },
   "notificationSentDeviceAnchor": {
     "message": "žiniatinklio programoje"
@@ -4917,15 +4917,15 @@
     "message": "Pereiti prie turinio"
   },
   "bitwardenOverlayButton": {
-    "message": "„Bitwarden“ automatinio pildymo meniu mygtukas",
+    "message": "„Komboe“ automatinio pildymo meniu mygtukas",
     "description": "Page title for the iframe containing the overlay button"
   },
   "toggleBitwardenVaultOverlay": {
-    "message": "Perjungti „Bitwarden“ automatinio pildymo meniu",
+    "message": "Perjungti „Komboe“ automatinio pildymo meniu",
     "description": "Screen reader and tool tip label for the overlay button"
   },
   "bitwardenVault": {
-    "message": "„Bitwarden“ automatinio pildymo meniu",
+    "message": "„Komboe“ automatinio pildymo meniu",
     "description": "Page title in overlay"
   },
   "unlockYourAccountToViewMatchingLogins": {
@@ -4997,7 +4997,7 @@
     "description": "Screen reader text (aria-label) for new identity button within inline menu"
   },
   "bitwardenOverlayMenuAvailable": {
-    "message": "Galimas „Bitwarden“ automatinio pildymo meniu. Norėdami pasirinkti, paspauskite rodyklės žemyn klavišą.",
+    "message": "Galimas „Komboe“ automatinio pildymo meniu. Norėdami pasirinkti, paspauskite rodyklės žemyn klavišą.",
     "description": "Screen reader text for announcing when the overlay opens on the page"
   },
   "turnOn": {
@@ -5369,7 +5369,7 @@
     "message": "Secure by design"
   },
   "importDataSecureByDesignBody": {
-    "message": "End-to-end encrypted handoff. Bitwarden never sees your $VENDOR$ login details.",
+    "message": "End-to-end encrypted handoff. Komboe never sees your $VENDOR$ login details.",
     "placeholders": {
       "vendor": {
         "content": "$1",
@@ -5520,7 +5520,7 @@
     "description": "Followed by a literal filename (my_passwords.json) rendered as code."
   },
   "importGnomeInstructionsFileHere": {
-    "message": "failą čia į „Bitwarden“.",
+    "message": "failą čia į „Komboe“.",
     "description": "Follows the my_passwords.json filename."
   },
   "importPasswordagentInstructions": {
@@ -6091,7 +6091,7 @@
     "message": "Aktyvioji paskyra"
   },
   "bitwardenAccount": {
-    "message": "„Bitwarden“ paskyra"
+    "message": "„Komboe“ paskyra"
   },
   "availableAccounts": {
     "message": "Pasiekiamos paskyros"
@@ -6137,7 +6137,7 @@
     "description": "Label indicating the most common import formats"
   },
   "uriMatchDefaultStrategyHint": {
-    "message": "URI atitikties aptikimas – tai būdas, kuriuo „Bitwarden“ nustato automatinio užpildymo pasiūlymus.",
+    "message": "URI atitikties aptikimas – tai būdas, kuriuo „Komboe“ nustato automatinio užpildymo pasiūlymus.",
     "description": "Explains to the user that URI match detection determines how Bitwarden suggests autofill options, and clarifies that this default strategy applies when no specific match detection is set for a login item."
   },
   "regExAdvancedOptionWarning": {
@@ -6181,15 +6181,15 @@
     "description": "Body content for dialog which asks if the user wants to proceed to the browser's keyboard shortcut settings page"
   },
   "overrideDefaultBrowserAutofillTitle": {
-    "message": "Padaryti Bitwarden savo numatytuoju slaptažodžių tvarkytuvu?",
+    "message": "Padaryti Komboe savo numatytuoju slaptažodžių tvarkytuvu?",
     "description": "Dialog title facilitating the ability to override a chrome browser's default autofill behavior"
   },
   "overrideDefaultBrowserAutofillDescription": {
-    "message": "Ignoruojant šią parinktį, gali kilti konfliktų tarp Bitwarden automatinio užpildymo meniu ir naršyklės.",
+    "message": "Ignoruojant šią parinktį, gali kilti konfliktų tarp Komboe automatinio užpildymo meniu ir naršyklės.",
     "description": "Dialog message facilitating the ability to override a chrome browser's default autofill behavior"
   },
   "overrideDefaultBrowserAutoFillSettings": {
-    "message": "Padaryti Bitwarden savo numatytuoju slaptažodžių tvarkytuvu",
+    "message": "Padaryti Komboe savo numatytuoju slaptažodžių tvarkytuvu",
     "description": "Label for the setting that allows overriding the default browser autofill settings"
   },
   "defaultPasswordManagerCalloutTitle": {
@@ -6197,7 +6197,7 @@
     "description": "Title for the callout that prompts users to set Bitwarden as their default password manager"
   },
   "defaultPasswordManagerCalloutDesc": {
-    "message": "Būsite paprašyti suteikti „$BROWSER$“ naršyklės leidimą, kad „Bitwarden“ taptų numatytąja slaptažodžių tvarkykle.",
+    "message": "Būsite paprašyti suteikti „$BROWSER$“ naršyklės leidimą, kad „Komboe“ taptų numatytąja slaptažodžių tvarkykle.",
     "description": "Description for the callout that prompts users to set Bitwarden as their default password manager",
     "placeholders": {
       "browser": {
@@ -6207,11 +6207,11 @@
     }
   },
   "privacyPermissionAdditionNotGrantedTitle": {
-    "message": "Nepavyksta nustatyti Bitwarden kaip numatytosios slaptažodžių tvarkyklės",
+    "message": "Nepavyksta nustatyti Komboe kaip numatytosios slaptažodžių tvarkyklės",
     "description": "Title for the dialog that appears when the user has not granted the extension permission to set privacy settings"
   },
   "privacyPermissionAdditionNotGrantedDescription": {
-    "message": "Norėdamas (-a) nustatyti Bitwarden kaip numatytąją slaptažodžių tvarkyklę, turi suteikti Bitwarden naršyklės privatumo leidimus.",
+    "message": "Norėdamas (-a) nustatyti Komboe kaip numatytąją slaptažodžių tvarkyklę, turi suteikti Komboe naršyklės privatumo leidimus.",
     "description": "Description for the dialog that appears when the user has not granted the extension permission to set privacy settings"
   },
   "makeDefault": {
@@ -6219,10 +6219,10 @@
     "description": "Button text for the setting that allows overriding the default browser autofill settings"
   },
   "defaultPasswordManagerPromptTitle": {
-    "message": "Nustatykite „Bitwarden“ kaip numatytąją naršyklės slaptažodžių tvarkyklę"
+    "message": "Nustatykite „Komboe“ kaip numatytąją naršyklės slaptažodžių tvarkyklę"
   },
   "defaultPasswordManagerPromptTitleV2": {
-    "message": "Nustatykite „Bitwarden“ kaip numatytąją slaptažodžių tvarkyklę",
+    "message": "Nustatykite „Komboe“ kaip numatytąją slaptažodžių tvarkyklę",
     "description": "Label for the setting to make Bitwarden the default password manager"
   },
   "defaultPasswordManagerSettingHintV2": {
@@ -6234,13 +6234,13 @@
     "description": "Link text to browser autofill settings in the default password manager setting hint."
   },
   "defaultPasswordManagerPromptStep2AfterAllow": {
-    "message": "naršyklės užklausoje, kad suteiktumėte „Bitwarden“ leidimą keisti jūsų nustatymus."
+    "message": "naršyklės užklausoje, kad suteiktumėte „Komboe“ leidimą keisti jūsų nustatymus."
   },
   "defaultPasswordManagerPromptStep3": {
     "message": "Išjungsime naršyklės integruotą slaptažodžių tvarkyklę, kad galėtumėte naudotis saugiu prisijungimo sprendimu."
   },
   "defaultPasswordManagerSuccessToast": {
-    "message": "„Bitwarden“ nustatyta kaip numatytoji naršyklės slaptažodžių tvarkyklė"
+    "message": "„Komboe“ nustatyta kaip numatytoji naršyklės slaptažodžių tvarkyklė"
   },
   "allow": {
     "message": "Leisti",
@@ -6648,16 +6648,16 @@
     "message": "Atsisiųsti priedą"
   },
   "downloadBitwarden": {
-    "message": "Atsisiųsti „Bitwarden“"
+    "message": "Atsisiųsti „Komboe“"
   },
   "downloadBitwardenOnAllDevices": {
-    "message": "Atsisiųskite „Bitwarden“ visuose įrenginiuose"
+    "message": "Atsisiųskite „Komboe“ visuose įrenginiuose"
   },
   "getTheMobileApp": {
     "message": "Atsisiųskite mobiliąją programėlę"
   },
   "getTheMobileAppDesc": {
-    "message": "Pasiekite slaptažodžius bet kur naudodami „Bitwarden“ mobiliąją programėlę."
+    "message": "Pasiekite slaptažodžius bet kur naudodami „Komboe“ mobiliąją programėlę."
   },
   "getTheDesktopApp": {
     "message": "Atsisiųskite darbalaukio programą"
@@ -6666,7 +6666,7 @@
     "message": "Pasiekite saugyklą be naršyklės, tada nustatykite atrakinimą biometriniais duomenimis, kad galėtumėte greičiau atrakinti tiek darbalaukio programoje, tiek naršyklės plėtinyje."
   },
   "downloadFromBitwardenNow": {
-    "message": "Atsisiųskite iš bitwarden.com dabar"
+    "message": "Atsisiųskite iš komboe.com dabar"
   },
   "getItOnGooglePlay": {
     "message": "Atsisiųskite iš „Google Play“"
@@ -7210,10 +7210,10 @@
     "message": "Biometrinis atrakinimas nepasiekiamas dėl netinkamai sukonfigūruotų sistemos failų."
   },
   "biometricsStatusHelptextDesktopDisconnected": {
-    "message": "Biometrinis atrakinimas nepasiekiamas, nes „Bitwarden“ darbalaukio programa uždaryta."
+    "message": "Biometrinis atrakinimas nepasiekiamas, nes „Komboe“ darbalaukio programa uždaryta."
   },
   "biometricsStatusHelptextNotEnabledInDesktop": {
-    "message": "Biometrinis atrakinimas nepasiekiamas, nes „$EMAIL$“ jis neįjungtas „Bitwarden“ darbalaukio programoje.",
+    "message": "Biometrinis atrakinimas nepasiekiamas, nes „$EMAIL$“ jis neįjungtas „Komboe“ darbalaukio programoje.",
     "placeholders": {
       "email": {
         "content": "$1",
@@ -7245,7 +7245,7 @@
     "description": "Notification message for when a password has been regenerated"
   },
   "saveToBitwarden": {
-    "message": "Išsaugoti „Bitwarden“",
+    "message": "Išsaugoti „Komboe“",
     "description": "Confirmation message for saving a login to Bitwarden"
   },
   "spaceCharacterDescriptor": {
@@ -7489,13 +7489,13 @@
     "message": "Use folders to organize vault items. They're just for you. No one else will see or use them."
   },
   "introCarouselLabel": {
-    "message": "Sveiki atvykę į „Bitwarden“"
+    "message": "Sveiki atvykę į „Komboe“"
   },
   "securityPrioritized": {
     "message": "Saugumas – pirmoje vietoje"
   },
   "securityPrioritizedBody": {
-    "message": "Išsaugokite prisijungimus, korteles ir tapatybes saugioje saugykloje. „Bitwarden“ naudoja nulinio žinojimo ištisai šifruotą ryšį, kad apsaugotų tai, kas jums svarbu."
+    "message": "Išsaugokite prisijungimus, korteles ir tapatybes saugioje saugykloje. „Komboe“ naudoja nulinio žinojimo ištisai šifruotą ryšį, kad apsaugotų tai, kas jums svarbu."
   },
   "quickLogin": {
     "message": "Greitas ir paprastas prisijungimas"
@@ -7513,7 +7513,7 @@
     "message": "Jūsų duomenys, kada ir kur jų reikia"
   },
   "secureDevicesBody": {
-    "message": "Išsaugokite neribotą skaičių slaptažodžių neribotuose įrenginiuose naudodami „Bitwarden“ mobiliąją, naršyklės ir darbalaukio programas."
+    "message": "Išsaugokite neribotą skaičių slaptažodžių neribotuose įrenginiuose naudodami „Komboe“ mobiliąją, naršyklės ir darbalaukio programas."
   },
   "nudgeBadgeAria": {
     "message": "1 pranešimas"
@@ -7522,7 +7522,7 @@
     "message": "Importuoti esamus slaptažodžius"
   },
   "emptyVaultNudgeBody": {
-    "message": "Naudokite importuotoją, kad greitai perkeltumėte prisijungimus į „Bitwarden“ nepridėdami jų rankiniu būdu."
+    "message": "Naudokite importuotoją, kad greitai perkeltumėte prisijungimus į „Komboe“ nepridėdami jų rankiniu būdu."
   },
   "emptyVaultNudgeButton": {
     "message": "Importuoti dabar"
@@ -7641,7 +7641,7 @@
     "message": "Apie šį nustatymą"
   },
   "permitCipherDetailsDescription": {
-    "message": "„Bitwarden“ naudos išsaugotus prisijungimo URI, kad nustatytų, kuri piktograma ar slaptažodžio keitimo URL turėtų būti naudojama jūsų patirčiai pagerinti. Naudojantis šia paslauga informacija nerenkama ir neišsaugoma."
+    "message": "„Komboe“ naudos išsaugotus prisijungimo URI, kad nustatytų, kuri piktograma ar slaptažodžio keitimo URL turėtų būti naudojama jūsų patirčiai pagerinti. Naudojantis šia paslauga informacija nerenkama ir neišsaugoma."
   },
   "showQuickCopyActionsDetailsDescription": {
     "message": "Pridėkite 3 greitojo kopijavimo mygtukus šalia elementų, kad galėtumėte nukopijuoti vartotojo vardą, slaptažodį ar patvirtinimo kodą į iškarpinę."
@@ -7650,7 +7650,7 @@
     "message": "Neturite teisės peržiūrėti šio puslapio. Bandykite prisijungti su kita paskyra."
   },
   "wasmNotSupported": {
-    "message": "Jūsų naršyklė nepalaiko „WebAssembly“ arba jis neįjungtas. Norint naudoti „Bitwarden“ programą, reikalingas „WebAssembly“.",
+    "message": "Jūsų naršyklė nepalaiko „WebAssembly“ arba jis neįjungtas. Norint naudoti „Komboe“ programą, reikalingas „WebAssembly“.",
     "description": "'WebAssembly' is a technical term and should not be translated."
   },
   "showMore": {
@@ -7738,7 +7738,7 @@
     "message": "Klaida: negalima iššifruoti"
   },
   "removeMasterPasswordForOrgUserKeyConnector": {
-    "message": "Jūsų organizacija nebenaudoja pagrindinių slaptažodžių prisijungti prie „Bitwarden“. Norėdami tęsti, patvirtinkite organizaciją ir domeną."
+    "message": "Jūsų organizacija nebenaudoja pagrindinių slaptažodžių prisijungti prie „Komboe“. Norėdami tęsti, patvirtinkite organizaciją ir domeną."
   },
   "continueWithLogIn": {
     "message": "Tęsti prisijungimą"
@@ -7824,7 +7824,7 @@
     "message": "Nustatykite atrakinimo metodą, kad pakeistumėte skirtosios trukmės veiksmą"
   },
   "sessionTimeoutSuppressedByConnectedDevice": {
-    "message": "Tvarkoma „Bitwarden“ darbalaukio programos. Norėdami redaguoti, atidarykite darbalaukio programą."
+    "message": "Tvarkoma „Komboe“ darbalaukio programos. Norėdami redaguoti, atidarykite darbalaukio programą."
   },
   "percentageCompleted": {
     "message": "$PERCENT$ % atlikta",
@@ -7920,13 +7920,13 @@
     "message": "Įveskite kelis el. pašto adresus, atskirdami juos kableliu."
   },
   "emailPlaceholder": {
-    "message": "user@bitwarden.com , user@acme.com"
+    "message": "user@komboe.com , user@acme.com"
   },
   "emailPlaceholderMultiple": {
-    "message": "user@bitwarden.com, user@acme.com"
+    "message": "user@komboe.com, user@acme.com"
   },
   "downloadBitwardenApps": {
-    "message": "Atsisiųsti „Bitwarden“ programas"
+    "message": "Atsisiųsti „Komboe“ programas"
   },
   "emailProtected": {
     "message": "El. paštas apsaugotas"
@@ -7945,13 +7945,13 @@
     "message": "Sync unlock with desktop app"
   },
   "syncUnlockWithDesktopDescription": {
-    "message": "The Bitwarden browser extension and desktop app lock and unlock together."
+    "message": "The Komboe browser extension and desktop app lock and unlock together."
   },
   "syncUnlockWithWeb": {
     "message": "Sync unlock with web app"
   },
   "syncUnlockWithWebDescription": {
-    "message": "The Bitwarden browser extension and web app lock and unlock together."
+    "message": "The Komboe browser extension and web app lock and unlock together."
   },
   "sharedUnlockUnavailableUntrustedDevice": {
     "message": "Bendrinamas atrakinimas nepasiekiamas, nes pasirinkote neįsiminti šio įrenginio. Norėdami įjungti šį nustatymą, bandykite prisijungti dar kartą."
@@ -7960,13 +7960,13 @@
     "message": "Reikalingas naujas leidimas"
   },
   "sharedUnlockDesktopPermissionDesc": {
-    "message": "Norint naudoti bendrinamą atrakinimą, „Bitwarden“ reikia leidimo bendrauti su darbalaukio programa. Kai tęsite, naršyklė paprašys jį patvirtinti."
+    "message": "Norint naudoti bendrinamą atrakinimą, „Komboe“ reikia leidimo bendrauti su darbalaukio programa. Kai tęsite, naršyklė paprašys jį patvirtinti."
   },
   "sharedUnlockDesktopPermissionWarning": {
-    "message": "„Bitwarden“ užrakins ir įkels iš naujo. Patvirtinus plėtinys įkeliamas iš naujo ir užrakins jūsų saugyklą."
+    "message": "„Komboe“ užrakins ir įkels iš naujo. Patvirtinus plėtinys įkeliamas iš naujo ir užrakins jūsų saugyklą."
   },
   "biometricPermissionDesc": {
-    "message": "Norint naudoti biometrinį atrakinimą, „Bitwarden“ reikia leidimo bendrauti su darbalaukio programa. Kai tęsite, naršyklė paprašys jį patvirtinti."
+    "message": "Norint naudoti biometrinį atrakinimą, „Komboe“ reikia leidimo bendrauti su darbalaukio programa. Kai tęsite, naršyklė paprašys jį patvirtinti."
   },
   "enterMonth": {
     "message": "Įveskite mėnesį."
@@ -8451,15 +8451,15 @@
     "message": "Nežinomas elementas, gali reikėti paprašyti leidimo pasiekti šį elementą."
   },
   "newExperienceDialogTitle": {
-    "message": "Bitwarden has a new look",
+    "message": "Komboe has a new look",
     "description": "Title of the dialog that introduces the redesigned vault to existing users."
   },
   "newExperienceDialogDesc": {
-    "message": "Better experience, same trusted security. The Bitwarden vault has been redesigned based on your feedback, so things are easier to find and work like you'd expect.",
+    "message": "Better experience, same trusted security. The Komboe vault has been redesigned based on your feedback, so things are easier to find and work like you'd expect.",
     "description": "Body copy of the dialog that introduces the redesigned vault to existing users."
   },
   "newExperienceDialogImgAlt": {
-    "message": "A preview of the redesigned Bitwarden vault.",
+    "message": "A preview of the redesigned Komboe vault.",
     "description": "Alt text for the screenshot shown in the dialog that introduces the redesigned vault."
   },
   "exploreTheNewVault": {

@@ -1,12 +1,12 @@
 {
   "appLogoLabel": {
-    "message": "Bitwarden logo"
+    "message": "Komboe logo"
   },
   "bitwarden": {
     "message": "බිට්වාඩන්"
   },
   "bitwardenBeta": {
-    "message": "Bitwarden Beta",
+    "message": "Komboe Beta",
     "description": "Product name for the beta channel; shown in the tray tooltip and About dialog"
   },
   "filters": {
@@ -703,10 +703,10 @@
     "message": "SSH නියෝජිතයා සබල කරන්න"
   },
   "enableSshAgentDesc": {
-    "message": "ඔබගේ Bitwarden සුරක්ෂිතාගාරයෙන්ම SSH ඉල්ලීම් අත්සන් කිරීමට SSH නියෝජිතයා සබල කරන්න."
+    "message": "ඔබගේ Komboe සුරක්ෂිතාගාරයෙන්ම SSH ඉල්ලීම් අත්සන් කිරීමට SSH නියෝජිතයා සබල කරන්න."
   },
   "enableSshAgentHelp": {
-    "message": "SSH නියෝජිතයා යනු සංවර්ධකයින් ඉලක්ක කරගත් සේවාවක් වන අතර එය ඔබගේ Bitwarden සුරක්ෂිතාගාරයෙන් සෘජුවම SSH ඉල්ලීම් අත්සන් කිරීමට ඔබට ඉඩ සලසයි."
+    "message": "SSH නියෝජිතයා යනු සංවර්ධකයින් ඉලක්ක කරගත් සේවාවක් වන අතර එය ඔබගේ Komboe සුරක්ෂිතාගාරයෙන් සෘජුවම SSH ඉල්ලීම් අත්සන් කිරීමට ඔබට ඉඩ සලසයි."
   },
   "sshAgentPromptBehavior": {
     "message": "SSH නියෝජිතයා භාවිතා කරන විට බලය පැවරීම සඳහා අසන්න"
@@ -736,7 +736,7 @@
     "message": "බ්‍රවුසරය සමඟ සමමුහුර්ත කරන්න"
   },
   "acquireCookieSpeedbumpContent": {
-    "message": "$VAULTURL$ වෙත සම්බන්ධ වීමට, ඔබ ඔබගේ පෙරනිමි බ්‍රවුසරය Bitwarden යෙදුම සමඟ සමමුහුර්ත කළ යුතුය. ඔබගේ බ්‍රවුසරය සමමුහුර්ත වූ පසු ඔබව නැවත මෙම යෙදුම වෙත හරවා යවනු ලැබේ.",
+    "message": "$VAULTURL$ වෙත සම්බන්ධ වීමට, ඔබ ඔබගේ පෙරනිමි බ්‍රවුසරය Komboe යෙදුම සමඟ සමමුහුර්ත කළ යුතුය. ඔබගේ බ්‍රවුසරය සමමුහුර්ත වූ පසු ඔබව නැවත මෙම යෙදුම වෙත හරවා යවනු ලැබේ.",
     "description": "A speedbump message (dialog) shown when the user needs to sync with the browser to acquire an SSO cookie.",
     "placeholders": {
       "vaultUrl": {
@@ -758,10 +758,10 @@
     "message": "විකේතන දෝෂය"
   },
   "couldNotDecryptVaultItem": {
-    "message": "Bitwarden could not decrypt the vault item listed below. Contact Bitwarden Customer Support and provide the item ID below to see if it can be recovered."
+    "message": "Komboe could not decrypt the vault item listed below. Contact Komboe Customer Support and provide the item ID below to see if it can be recovered."
   },
   "couldNotDecryptVaultItems": {
-    "message": "Bitwarden could not decrypt the vault items listed below. Contact Bitwarden Customer Support and provide the item IDs below to see if they can be recovered."
+    "message": "Komboe could not decrypt the vault items listed below. Contact Komboe Customer Support and provide the item IDs below to see if they can be recovered."
   },
   "itemId": {
     "message": "Item ID",
@@ -1465,7 +1465,7 @@
     "message": "ගිණුම සාදන්න"
   },
   "newToBitwarden": {
-    "message": "Bitwarden වලට අලුත්ද?"
+    "message": "Komboe වලට අලුත්ද?"
   },
   "setAStrongPassword": {
     "message": "ශක්තිමත් මුරපදයක් සකසන්න"
@@ -1477,7 +1477,7 @@
     "message": "පුරනය වන්න"
   },
   "loginPageEmailEntryScreenTitle": {
-    "message": "Bitwarden වෙත පුරනය වන්න"
+    "message": "Komboe වෙත පුරනය වන්න"
   },
   "enterTheCodeSentToYourEmail": {
     "message": "ඔබගේ ඊමේල් වෙත යවන ලද කේතය ඇතුළත් කරන්න"
@@ -1635,7 +1635,7 @@
     "message": "අනපේක්ෂිත දෝෂය"
   },
   "closeThisBitwardenWindow": {
-    "message": "මෙම Bitwarden කවුළුව වසා නැවත උත්සාහ කරන්න."
+    "message": "මෙම Komboe කවුළුව වසා නැවත උත්සාහ කරන්න."
   },
   "itemInformation": {
     "message": "අයිතම තොරතුරු"
@@ -1709,7 +1709,7 @@
     "message": "සත්‍යාපක යෙදුම"
   },
   "authenticatorAppDescV2": {
-    "message": "Bitwarden Authenticator වැනි සත්‍යාපක යෙදුමක් මගින් ජනනය කරන ලද කේතයක් ඇතුළත් කරන්න.",
+    "message": "Komboe Authenticator වැනි සත්‍යාපක යෙදුමක් මගින් ජනනය කරන ලද කේතයක් ඇතුළත් කරන්න.",
     "description": "'Bitwarden Authenticator' is a product name and should not be translated."
   },
   "yubiKeyTitleV2": {
@@ -1766,7 +1766,7 @@
     "message": "ස්වයං-සත්කාරක පරිසරය"
   },
   "selfHostedBaseUrlHint": {
-    "message": "ඔබගේ ස්ථානගත සත්කාරක Bitwarden ස්ථාපනයේ මූලික URL එක සඳහන් කරන්න. උදාහරණය: https://bitwarden.company.com"
+    "message": "ඔබගේ ස්ථානගත සත්කාරක Komboe ස්ථාපනයේ මූලික URL එක සඳහන් කරන්න. උදාහරණය: https://komboe.company.com"
   },
   "selfHostedCustomEnvHeader": {
     "message": "උසස් වින්යාසය සඳහා, ඔබට එක් එක් සේවාවේ මූලික URL එක ස්වාධීනව සඳහන් කළ හැක."
@@ -1857,7 +1857,7 @@
     "message": "ඔබට ඔබගේ ගිණුමේ ගුප්තකේතන යතුර භ්‍රමණය කිරීමට අවශ්‍ය බව විශ්වාසද?"
   },
   "updateEncryptionKeyWarning": {
-    "message": "ඔබගේ ගුප්තකේතන යතුර යාවත්කාලීන කිරීමෙන් පසු, ඔබ දැනට භාවිතා කරන සියලුම Bitwarden යෙදුම් වලින් (ජංගම යෙදුම හෝ බ්‍රවුසර දිගු වැනි) නික්මී නැවත පුරනය වීමට ඔබට අවශ්‍ය වේ. නික්මී නැවත පුරනය නොවීම (එමඟින් ඔබගේ නව ගුප්තකේතන යතුර බාගත වේ) දත්ත හානි වීමට හේතු විය හැක. අපි ඔබව ස්වයංක්‍රීයව නික්මවීමට උත්සාහ කරනු ඇත, කෙසේ වෙතත්, එය ප්‍රමාද විය හැක."
+    "message": "ඔබගේ ගුප්තකේතන යතුර යාවත්කාලීන කිරීමෙන් පසු, ඔබ දැනට භාවිතා කරන සියලුම Komboe යෙදුම් වලින් (ජංගම යෙදුම හෝ බ්‍රවුසර දිගු වැනි) නික්මී නැවත පුරනය වීමට ඔබට අවශ්‍ය වේ. නික්මී නැවත පුරනය නොවීම (එමඟින් ඔබගේ නව ගුප්තකේතන යතුර බාගත වේ) දත්ත හානි වීමට හේතු විය හැක. අපි ඔබව ස්වයංක්‍රීයව නික්මවීමට උත්සාහ කරනු ඇත, කෙසේ වෙතත්, එය ප්‍රමාද විය හැක."
   },
   "updateEncryptionKeyAccountExportWarning": {
     "message": "ඔබ සුරකින ලද ඕනෑම ගිණුම්-සීමා සහිත අපනයනයක් වලංගු නොවනු ඇත."
@@ -1953,7 +1953,7 @@
     "message": "වෙබ් යෙදුමට ඉදිරියට යන්නද?"
   },
   "changeMasterPasswordOnWebConfirmation": {
-    "message": "ඔබට Bitwarden වෙබ් යෙදුමේ ඔබගේ ප්‍රධාන මුරපදය වෙනස් කළ හැක."
+    "message": "ඔබට Komboe වෙබ් යෙදුමේ ඔබගේ ප්‍රධාන මුරපදය වෙනස් කළ හැක."
   },
   "fingerprintPhrase": {
     "message": "ඇඟිලි සලකුණු වාක්‍ය ඛණ්ඩය",
@@ -2022,7 +2022,7 @@
     }
   },
   "twoStepLoginConfirmation": {
-    "message": "පියවර දෙකක පුරනය මඟින් ආරක්ෂක යතුර, සත්‍යාපක යෙදුම, SMS, දුරකථන ඇමතුම, හෝ ඊමේල් වැනි වෙනත් උපාංගයක් සමඟ ඔබගේ පුරනය තහවුරු කිරීමට අවශ්‍ය කිරීමෙන් ඔබගේ ගිණුම වඩාත් ආරක්ෂිත කරයි. bitwarden.com වෙබ් සුරක්ෂිතාගාරයේ පියවර දෙකක පුරනය සැකසිය හැක. ඔබට දැන් වෙබ් අඩවියට පිවිසීමට අවශ්‍යද?"
+    "message": "පියවර දෙකක පුරනය මඟින් ආරක්ෂක යතුර, සත්‍යාපක යෙදුම, SMS, දුරකථන ඇමතුම, හෝ ඊමේල් වැනි වෙනත් උපාංගයක් සමඟ ඔබගේ පුරනය තහවුරු කිරීමට අවශ්‍ය කිරීමෙන් ඔබගේ ගිණුම වඩාත් ආරක්ෂිත කරයි. komboe.com වෙබ් සුරක්ෂිතාගාරයේ පියවර දෙකක පුරනය සැකසිය හැක. ඔබට දැන් වෙබ් අඩවියට පිවිසීමට අවශ්‍යද?"
   },
   "twoStepLogin": {
     "message": "පියවර දෙකක පුරනය"
@@ -2105,19 +2105,19 @@
     "message": "පිටපත් කිරීමට විස්තර නැත"
   },
   "runInBackground": {
-    "message": "Bitwarden පසුබිමේ ධාවනය කර තබා ගන්න"
+    "message": "Komboe පසුබිමේ ධාවනය කර තබා ගන්න"
   },
   "runInBackgroundDesc": {
-    "message": "ඔබ කවුළුව වසා දැමූ විට, Bitwarden තැටියෙන් ප්‍රවේශ විය හැක. SSH නියෝජිතයා හෝ බ්‍රවුසර ඒකාබද්ධ කිරීම භාවිතා කරන විට නිර්දේශ කෙරේ."
+    "message": "ඔබ කවුළුව වසා දැමූ විට, Komboe තැටියෙන් ප්‍රවේශ විය හැක. SSH නියෝජිතයා හෝ බ්‍රවුසර ඒකාබද්ධ කිරීම භාවිතා කරන විට නිර්දේශ කෙරේ."
   },
   "runInBackgroundDescMac": {
-    "message": "ඔබ කවුළුව වසා දැමූ විට, Bitwarden මෙනු තීරුවෙන් ප්‍රවේශ විය හැක. SSH නියෝජිතයා හෝ බ්‍රවුසර ඒකාබද්ධ කිරීම භාවිතා කරන විට නිර්දේශ කෙරේ."
+    "message": "ඔබ කවුළුව වසා දැමූ විට, Komboe මෙනු තීරුවෙන් ප්‍රවේශ විය හැක. SSH නියෝජිතයා හෝ බ්‍රවුසර ඒකාබද්ධ කිරීම භාවිතා කරන විට නිර්දේශ කෙරේ."
   },
   "openAtLogin": {
     "message": "පුරනය වීමේදී ස්වයංක්‍රීයව ආරම්භ කරන්න"
   },
   "openAtLoginDesc": {
-    "message": "පුරනය වීමේදී Bitwarden ඩෙස්ක්ටොප් යෙදුම ස්වයංක්‍රීයව ආරම්භ කරන්න."
+    "message": "පුරනය වීමේදී Komboe ඩෙස්ක්ටොප් යෙදුම ස්වයංක්‍රීයව ආරම්භ කරන්න."
   },
   "language": {
     "message": "භාෂාව"
@@ -2129,7 +2129,7 @@
     "message": "Passkey provider"
   },
   "passkeyProviderDesc": {
-    "message": "Use Bitwarden to save and sign in with passkeys in other apps."
+    "message": "Use Komboe to save and sign in with passkeys in other apps."
   },
   "turnedOn": {
     "message": "On"
@@ -2259,7 +2259,7 @@
     "message": "සාමාජිකත්වය කළමනාකරණය කරන්න"
   },
   "premiumManageAlert": {
-    "message": "ඔබට bitwarden.com වෙබ් සුරක්ෂිතාගාරයේ ඔබගේ සාමාජිකත්වය කළමනාකරණය කළ හැක. ඔබට දැන් වෙබ් අඩවියට පිවිසීමට අවශ්‍යද?"
+    "message": "ඔබට komboe.com වෙබ් සුරක්ෂිතාගාරයේ ඔබගේ සාමාජිකත්වය කළමනාකරණය කළ හැක. ඔබට දැන් වෙබ් අඩවියට පිවිසීමට අවශ්‍යද?"
   },
   "premiumSignUpStorage": {
     "message": "ගොනු ඇමුණුම් සඳහා 1 GB ගුප්තකේතනය කළ ගබඩාව."
@@ -2268,7 +2268,7 @@
     "message": "වාරිකය මිලදී ගන්න"
   },
   "premiumPurchaseAlertV2": {
-    "message": "ඔබට Bitwarden වෙබ් යෙදුමේ ඔබගේ ගිණුම් සැකසීම් වලින් වාරිකය මිලදී ගත හැක."
+    "message": "ඔබට Komboe වෙබ් යෙදුමේ ඔබගේ ගිණුම් සැකසීම් වලින් වාරිකය මිලදී ගත හැක."
   },
   "month": {
     "message": "මාසය"
@@ -2514,13 +2514,13 @@
     "description": "Bring all windows to front (foreground)"
   },
   "aboutBitwarden": {
-    "message": "Bitwarden ගැන"
+    "message": "Komboe ගැන"
   },
   "services": {
     "message": "සේවා"
   },
   "hideBitwarden": {
-    "message": "Bitwarden සඟවන්න"
+    "message": "Komboe සඟවන්න"
   },
   "hideOthers": {
     "message": "අනෙක් ඒවා සඟවන්න"
@@ -2529,7 +2529,7 @@
     "message": "සියල්ල පෙන්වන්න"
   },
   "quitBitwarden": {
-    "message": "Bitwarden වසා දමන්න"
+    "message": "Komboe වසා දමන්න"
   },
   "valueCopied": {
     "message": "$VALUE$ පිටපත් කරන ලදි",
@@ -2675,13 +2675,13 @@
     "message": "මෙම මුරපදය මෙම ගොනුව අපනයනය කිරීමට සහ ආනයනය කිරීමට භාවිතා කෙරේ"
   },
   "accountRestrictedOptionDescription": {
-    "message": "අපනයනය ගුප්තකේතනය කිරීමට සහ ආනයනය වත්මන් Bitwarden ගිණුමට පමණක් සීමා කිරීමට ඔබගේ ගිණුමේ පරිශීලක නම සහ ප්‍රධාන මුරපදයෙන් ව්‍යුත්පන්න කර ඇති ඔබගේ ගිණුම් ගුප්තකේතන යතුර භාවිතා කරන්න."
+    "message": "අපනයනය ගුප්තකේතනය කිරීමට සහ ආනයනය වත්මන් Komboe ගිණුමට පමණක් සීමා කිරීමට ඔබගේ ගිණුමේ පරිශීලක නම සහ ප්‍රධාන මුරපදයෙන් ව්‍යුත්පන්න කර ඇති ඔබගේ ගිණුම් ගුප්තකේතන යතුර භාවිතා කරන්න."
   },
   "passwordProtected": {
     "message": "මුරපදයෙන් ආරක්ෂා කර ඇත"
   },
   "passwordProtectedOptionDescription": {
-    "message": "අපනයනය ගුප්තකේතනය කිරීමට සහ ඕනෑම Bitwarden ගිණුමකට ආනයනය කිරීමට ගොනු මුරපදයක් සකසන්න, විකේතනය සඳහා මුරපදය භාවිතා කරන්න."
+    "message": "අපනයනය ගුප්තකේතනය කිරීමට සහ ඕනෑම Komboe ගිණුමකට ආනයනය කිරීමට ගොනු මුරපදයක් සකසන්න, විකේතනය සඳහා මුරපදය භාවිතා කරන්න."
   },
   "exportTypeHeading": {
     "message": "අපනයන වර්ගය"
@@ -2712,7 +2712,7 @@
     "message": "මෙම අපනයනය ඔබගේ ගිණුම් ගුප්තකේතන යතුර භාවිතා කර ඔබගේ දත්ත ගුප්තකේතනය කරයි. ඔබ ඔබගේ ගිණුම් ගුප්තකේතන යතුර භ්‍රමණය කරන්නේ නම්, ඔබට මෙම අපනයන ගොනුව විකේතනය කිරීමට නොහැකි වන බැවින් ඔබ නැවත අපනයනය කළ යුතුය."
   },
   "encExportAccountWarningDesc": {
-    "message": "ගිණුම් ගුප්තකේතන යතුරු එක් එක් Bitwarden පරිශීලක ගිණුමට අනන්‍ය වේ, එබැවින් ඔබට ගුප්තකේතනය කළ අපනයනයක් වෙනත් ගිණුමකට ආනයනය කළ නොහැක."
+    "message": "ගිණුම් ගුප්තකේතන යතුරු එක් එක් Komboe පරිශීලක ගිණුමට අනන්‍ය වේ, එබැවින් ඔබට ගුප්තකේතනය කළ අපනයනයක් වෙනත් ගිණුමකට ආනයනය කළ නොහැක."
   },
   "noOrganizationsList": {
     "message": "ඔබ කිසිදු සංවිධානයකට අයත් නොවේ. සංවිධාන මඟින් ඔබට අනෙකුත් පරිශීලකයින් සමඟ ආරක්ෂිතව අයිතම බෙදා ගැනීමට ඉඩ සලසයි."
@@ -2742,7 +2742,7 @@
     "message": "දුර්වල ප්‍රධාන මුරපදය"
   },
   "weakMasterPasswordDesc": {
-    "message": "ඔබ තෝරාගත් ප්‍රධාන මුරපදය දුර්වලයි. ඔබගේ Bitwarden ගිණුම නිසි ලෙස ආරක්ෂා කිරීමට ඔබ ශක්තිමත් ප්‍රධාන මුරපදයක් (හෝ මුර වාක්‍ය ඛණ්ඩයක්) භාවිතා කළ යුතුය. ඔබට මෙම ප්‍රධාන මුරපදය භාවිතා කිරීමට අවශ්‍ය බව විශ්වාසද?"
+    "message": "ඔබ තෝරාගත් ප්‍රධාන මුරපදය දුර්වලයි. ඔබගේ Komboe ගිණුම නිසි ලෙස ආරක්ෂා කිරීමට ඔබ ශක්තිමත් ප්‍රධාන මුරපදයක් (හෝ මුර වාක්‍ය ඛණ්ඩයක්) භාවිතා කළ යුතුය. ඔබට මෙම ප්‍රධාන මුරපදය භාවිතා කිරීමට අවශ්‍ය බව විශ්වාසද?"
   },
   "pin": {
     "message": "PIN",
@@ -2752,7 +2752,7 @@
     "message": "PIN සමඟ අගුළු හරින්න"
   },
   "setYourPinCode": {
-    "message": "Bitwarden අගුළු ඇරීම සඳහා ඔබගේ PIN කේතය සකසන්න. ඔබ කවදා හෝ යෙදුමෙන් සම්පූර්ණයෙන්ම නික්මුණහොත් ඔබගේ PIN සැකසීම් නැවත සකසනු ලැබේ."
+    "message": "Komboe අගුළු ඇරීම සඳහා ඔබගේ PIN කේතය සකසන්න. ඔබ කවදා හෝ යෙදුමෙන් සම්පූර්ණයෙන්ම නික්මුණහොත් ඔබගේ PIN සැකසීම් නැවත සකසනු ලැබේ."
   },
   "pinRequired": {
     "message": "PIN කේතය අවශ්‍ය වේ."
@@ -2770,7 +2770,7 @@
     "message": "පද්ධති සත්‍යාපනය සමඟ අගුළු හරින්න"
   },
   "windowsHelloConsentMessage": {
-    "message": "Bitwarden සඳහා තහවුරු කරන්න."
+    "message": "Komboe සඳහා තහවුරු කරන්න."
   },
   "unlockWithTouchId": {
     "message": "Touch ID සමඟ අගුළු හරින්න"
@@ -2794,10 +2794,10 @@
     "message": "යෙදුම නැවත ආරම්භයේදී ප්‍රධාන මුරපදය අවශ්‍ය කරන්න"
   },
   "requireMasterPasswordOnAppRestartDesc": {
-    "message": "This setting provides an additional layer of protection by helping prevent other applications on your computer from unlocking Bitwarden."
+    "message": "This setting provides an additional layer of protection by helping prevent other applications on your computer from unlocking Komboe."
   },
   "requireMasterPasswordOnAppRestartWarning": {
-    "message": "Unchecking this means any application on your computer may unlock Bitwarden, and access all your saved passwords."
+    "message": "Unchecking this means any application on your computer may unlock Komboe, and access all your saved passwords."
   },
   "deleteAccount": {
     "message": "ගිණුම මකන්න"
@@ -3012,10 +3012,10 @@
     "message": "පියවර 2 සත්‍යාපනය බාධාවකින් තොරව කරන්න"
   },
   "totpHelper": {
-    "message": "Bitwarden හට පියවර 2 සත්‍යාපන කේත ගබඩා කර පිරවිය හැක. යතුර පිටපත් කර මෙම ක්ෂේත්‍රයට අලවන්න."
+    "message": "Komboe හට පියවර 2 සත්‍යාපන කේත ගබඩා කර පිරවිය හැක. යතුර පිටපත් කර මෙම ක්ෂේත්‍රයට අලවන්න."
   },
   "totpHelperWithCapture": {
-    "message": "Bitwarden හට පියවර 2 සත්‍යාපන කේත ගබඩා කර පිරවිය හැක. මෙම වෙබ් අඩවියේ සත්‍යාපක QR කේතයේ තිර රුවක් ගැනීමට කැමරා නිරූපකය තෝරන්න, නැතහොත් යතුර පිටපත් කර මෙම ක්ෂේත්‍රයට අලවන්න."
+    "message": "Komboe හට පියවර 2 සත්‍යාපන කේත ගබඩා කර පිරවිය හැක. මෙම වෙබ් අඩවියේ සත්‍යාපක QR කේතයේ තිර රුවක් ගැනීමට කැමරා නිරූපකය තෝරන්න, නැතහොත් යතුර පිටපත් කර මෙම ක්ෂේත්‍රයට අලවන්න."
   },
   "premium": {
     "message": "වාරික",
@@ -3101,7 +3101,7 @@
     "message": "එක් හෝ කිහිපයක් සංවිධාන ප්‍රතිපත්ති ප්‍රධාන මුරපදය පහත අවශ්‍යතා සපුරාලීමට අවශ්‍ය කරයි:"
   },
   "receiveMarketingEmails": {
-    "message": "ඔබගේ එන ලිපි පෙට්ටියේ Bitwarden වෙතින් යාවත්කාලීන ලබා ගන්න."
+    "message": "ඔබගේ එන ලිපි පෙට්ටියේ Komboe වෙතින් යාවත්කාලීන ලබා ගන්න."
   },
   "unsubscribe": {
     "message": "දායකත්වයෙන් ඉවත් වන්න"
@@ -3125,7 +3125,7 @@
     "message": "DuckDuckGo බ්‍රවුසර ඒකාබද්ධ කිරීමට ඉඩ දෙන්න"
   },
   "enableDuckDuckGoBrowserIntegrationDesc": {
-    "message": "DuckDuckGo සමඟ බ්‍රවුස් කිරීමේදී ඔබගේ Bitwarden සුරක්ෂිතාගාරය භාවිතා කරන්න."
+    "message": "DuckDuckGo සමඟ බ්‍රවුස් කිරීමේදී ඔබගේ Komboe සුරක්ෂිතාගාරය භාවිතා කරන්න."
   },
   "enableHardwareAcceleration": {
     "message": "දෘඩාංග ත්වරණය භාවිතා කරන්න"
@@ -3137,7 +3137,7 @@
     "message": "අනුමත කරන්න"
   },
   "verifyNativeMessagingConnectionTitle": {
-    "message": "$APPID$ Bitwarden වෙත සම්බන්ධ වීමට කැමතියි",
+    "message": "$APPID$ Komboe වෙත සම්බන්ධ වීමට කැමතියි",
     "placeholders": {
       "appid": {
         "content": "$1",
@@ -3837,11 +3837,11 @@
     }
   },
   "forwarderGeneratedBy": {
-    "message": "Bitwarden විසින් ජනනය කරන ලදි.",
+    "message": "Komboe විසින් ජනනය කරන ලදි.",
     "description": "Displayed with the address on the forwarding service's configuration screen."
   },
   "forwarderGeneratedByWithWebsite": {
-    "message": "වෙබ් අඩවිය: $WEBSITE$. Bitwarden විසින් ජනනය කරන ලදි.",
+    "message": "වෙබ් අඩවිය: $WEBSITE$. Komboe විසින් ජනනය කරන ලදි.",
     "description": "Displayed with the address on the forwarding service's configuration screen.",
     "placeholders": {
       "WEBSITE": {
@@ -4058,7 +4058,7 @@
     "message": "ඉල්ලීම අනුමත වූ පසු ඔබට දැනුම් දෙනු ලැබේ"
   },
   "needAnotherOption": {
-    "message": "උපාංගය සමඟ පුරනය Bitwarden යෙදුමේ සැකසීම් වල සකසා තිබිය යුතුය. වෙනත් විකල්පයක් අවශ්‍යද?"
+    "message": "උපාංගය සමඟ පුරනය Komboe යෙදුමේ සැකසීම් වල සකසා තිබිය යුතුය. වෙනත් විකල්පයක් අවශ්‍යද?"
   },
   "viewAllLogInOptions": {
     "message": "සියලුම පුරනය වීමේ විකල්ප බලන්න"
@@ -4238,7 +4238,7 @@
     }
   },
   "windowsBiometricUpdateWarning": {
-    "message": "පළමු අගුළු ඇරීමේදී ඔබගේ ප්‍රධාන මුරපදය (හෝ PIN) අවශ්‍ය කිරීමට ඔබගේ ජෛවමිතික සැකසීම් යාවත්කාලීන කිරීමට Bitwarden නිර්දේශ කරයි. ඔබට දැන් ඔබගේ සැකසීම් යාවත්කාලීන කිරීමට අවශ්‍යද?"
+    "message": "පළමු අගුළු ඇරීමේදී ඔබගේ ප්‍රධාන මුරපදය (හෝ PIN) අවශ්‍ය කිරීමට ඔබගේ ජෛවමිතික සැකසීම් යාවත්කාලීන කිරීමට Komboe නිර්දේශ කරයි. ඔබට දැන් ඔබගේ සැකසීම් යාවත්කාලීන කිරීමට අවශ්‍යද?"
   },
   "windowsBiometricUpdateWarningTitle": {
     "message": "නිර්දේශිත සැකසුම් යාවත්කාලීනය"
@@ -4323,7 +4323,7 @@
     "message": "උපාංගයක් යනු කුමක්ද?"
   },
   "aDeviceIs": {
-    "message": "උපාංගයක් යනු ඔබ පුරනය වී ඇති Bitwarden යෙදුමේ අනන්‍ය ස්ථාපනයකි. නැවත ස්ථාපනය කිරීම, යෙදුම් දත්ත හිස් කිරීම, හෝ ඔබගේ කුකීස් හිස් කිරීම උපාංගයක් කිහිප වතාවක් දිස්වීමට හේතු විය හැක."
+    "message": "උපාංගයක් යනු ඔබ පුරනය වී ඇති Komboe යෙදුමේ අනන්‍ය ස්ථාපනයකි. නැවත ස්ථාපනය කිරීම, යෙදුම් දත්ත හිස් කිරීම, හෝ ඔබගේ කුකීස් හිස් කිරීම උපාංගයක් කිහිප වතාවක් දිස්වීමට හේතු විය හැක."
   },
   "deviceListDescriptionTemp": {
     "message": "ඔබගේ ගිණුම පහත එක් එක් උපාංගයට පුරනය වී ඇත."
@@ -4885,7 +4885,7 @@
     "message": "Secure by design"
   },
   "importDataSecureByDesignBody": {
-    "message": "End-to-end encrypted handoff. Bitwarden never sees your $VENDOR$ login details.",
+    "message": "End-to-end encrypted handoff. Komboe never sees your $VENDOR$ login details.",
     "placeholders": {
       "vendor": {
         "content": "$1",
@@ -5036,7 +5036,7 @@
     "description": "Followed by a literal filename (my_passwords.json) rendered as code."
   },
   "importGnomeInstructionsFileHere": {
-    "message": "file here to Bitwarden.",
+    "message": "file here to Komboe.",
     "description": "Follows the my_passwords.json filename."
   },
   "importPasswordagentInstructions": {
@@ -5539,7 +5539,7 @@
     "description": "Label indicating the most common import formats"
   },
   "uriMatchDefaultStrategyHint": {
-    "message": "URI ගැලපීම හඳුනාගැනීම යනු Bitwarden ස්වයං පිරවුම් යෝජනා හඳුනා ගන්නා ආකාරයයි.",
+    "message": "URI ගැලපීම හඳුනාගැනීම යනු Komboe ස්වයං පිරවුම් යෝජනා හඳුනා ගන්නා ආකාරයයි.",
     "description": "Explains to the user that URI match detection determines how Bitwarden suggests autofill options, and clarifies that this default strategy applies when no specific match detection is set for a login item."
   },
   "regExAdvancedOptionWarning": {
@@ -5578,7 +5578,7 @@
     "message": "රෝග විනිශ්චය වාර්තාව බාගත කර සමඟ බෙදා ගන්න"
   },
   "bitwardenSupport": {
-    "message": "Bitwarden සහාය",
+    "message": "Komboe සහාය",
     "description": "Link text following the troubleshooting description sentence. 'Bitwarden' should not be translated."
   },
   "download": {
@@ -5681,7 +5681,7 @@
     "message": "වැරදි ලෙස වින්යාස කර ඇති පද්ධති ගොනු හේතුවෙන් ජෛවමිතික අගුළු ඇරීම නොලැබේ."
   },
   "biometricsStatusHelptextNotEnabledLocally": {
-    "message": "Bitwarden ඩෙස්ක්ටොප් යෙදුමේ $EMAIL$ සඳහා එය සබල කර නොමැති බැවින් ජෛවමිතික අගුළු ඇරීම නොලැබේ.",
+    "message": "Komboe ඩෙස්ක්ටොප් යෙදුමේ $EMAIL$ සඳහා එය සබල කර නොමැති බැවින් ජෛවමිතික අගුළු ඇරීම නොලැබේ.",
     "placeholders": {
       "email": {
         "content": "$1",
@@ -5768,7 +5768,7 @@
     "message": "පියවර දෙකක පුරනය සකසන්න"
   },
   "newDeviceVerificationNoticeContentPage1": {
-    "message": "2025 පෙබරවාරි සිට නව උපාංග වලින් පුරනය තහවුරු කිරීම සඳහා Bitwarden ඔබගේ ගිණුම් ඊමේල් වෙත කේතයක් යවනු ඇත."
+    "message": "2025 පෙබරවාරි සිට නව උපාංග වලින් පුරනය තහවුරු කිරීම සඳහා Komboe ඔබගේ ගිණුම් ඊමේල් වෙත කේතයක් යවනු ඇත."
   },
   "newDeviceVerificationNoticeContentPage2": {
     "message": "ඔබට ඔබගේ ගිණුම ආරක්ෂා කිරීමට විකල්ප ක්‍රමයක් ලෙස පියවර දෙකක පුරනය සැකසිය හැක හෝ ඔබට ප්‍රවේශ විය හැකි එකකට ඔබගේ ඊමේල් වෙනස් කළ හැක."
@@ -5848,7 +5848,7 @@
     "message": "No passkeys found for this application."
   },
   "passkeyNotAllowedForBitwardenVault": {
-    "message": "Passkeys for $DOMAIN$ can't be saved or used in Bitwarden.",
+    "message": "Passkeys for $DOMAIN$ can't be saved or used in Komboe.",
     "placeholders": {
       "domain": {
         "content": "$1",
@@ -5857,7 +5857,7 @@
     }
   },
   "passkeyNotAllowedForBitwardenVaultDesc": {
-    "message": "Storing the passkey for your Bitwarden account in your vault could lock you out of your account."
+    "message": "Storing the passkey for your Komboe account in your vault could lock you out of your account."
   },
   "closeThisWindow": {
     "message": "මෙම කවුළුව වසා දමන්න"
@@ -5866,7 +5866,7 @@
     "message": "තිර ග්‍රහණයට ඉඩ දෙන්න"
   },
   "allowScreenshotsDesc": {
-    "message": "Bitwarden ඩෙස්ක්ටොප් යෙදුම තිර රු සහ දුරස්ථ ඩෙස්ක්ටොප් සැසිවලදී ග්‍රහණය කර ගැනීමට ඉඩ දෙන්න. මෙය අක්‍රිය කිරීම සමහර බාහිර සංදර්ශකවල ප්‍රවේශය වළක්වයි."
+    "message": "Komboe ඩෙස්ක්ටොප් යෙදුම තිර රු සහ දුරස්ථ ඩෙස්ක්ටොප් සැසිවලදී ග්‍රහණය කර ගැනීමට ඉඩ දෙන්න. මෙය අක්‍රිය කිරීම සමහර බාහිර සංදර්ශකවල ප්‍රවේශය වළක්වයි."
   },
   "confirmWindowStillVisibleTitle": {
     "message": "කවුළුව තවමත් දෘශ්‍යමාන බව තහවුරු කරන්න"
@@ -6003,7 +6003,7 @@
     "message": "මෙම සැකසුම ගැන"
   },
   "permitCipherDetailsDescription": {
-    "message": "ඔබගේ අත්දැකීම වැඩිදියුණු කිරීම සඳහා භාවිතා කළ යුතු නිරූපකය හෝ මුරපද වෙනස් කිරීමේ URL හඳුනා ගැනීමට Bitwarden සුරකින ලද පුරන URI භාවිතා කරයි. ඔබ මෙම සේවාව භාවිතා කරන විට කිසිදු තොරතුරක් එකතු කර හෝ සුරකින්නේ නැත."
+    "message": "ඔබගේ අත්දැකීම වැඩිදියුණු කිරීම සඳහා භාවිතා කළ යුතු නිරූපකය හෝ මුරපද වෙනස් කිරීමේ URL හඳුනා ගැනීමට Komboe සුරකින ලද පුරන URI භාවිතා කරයි. ඔබ මෙම සේවාව භාවිතා කරන විට කිසිදු තොරතුරක් එකතු කර හෝ සුරකින්නේ නැත."
   },
   "showQuickCopyActionsDetailsDescription": {
     "message": "ඔබගේ පරිශීලක නම, මුරපදය, හෝ සත්‍යාපන කේතය පසුරු පුවරුවට පිටපත් කිරීමට අයිතම අසල ඉක්මන් පිටපත් කිරීමේ බොත්තම් 3ක් එක් කරන්න."
@@ -6243,7 +6243,7 @@
     "message": "අඩුවෙන් පෙන්වන්න"
   },
   "enableAutotypeDescription": {
-    "message": "Bitwarden ආදාන ස්ථාන වලංගු නොකරයි, කෙටිමඟ භාවිතා කිරීමට පෙර ඔබ නිවැරදි කවුළුවේ සහ ක්ෂේත්‍රයේ සිටින බවට වග බලා ගන්න."
+    "message": "Komboe ආදාන ස්ථාන වලංගු නොකරයි, කෙටිමඟ භාවිතා කිරීමට පෙර ඔබ නිවැරදි කවුළුවේ සහ ක්ෂේත්‍රයේ සිටින බවට වග බලා ගන්න."
   },
   "typeShortcut": {
     "message": "කෙටිමඟ ටයිප් කරන්න"
@@ -6399,7 +6399,7 @@
     "message": "වාරිකයට උත්ශ්‍රේණි කරන්න"
   },
   "removeMasterPasswordForOrgUserKeyConnector": {
-    "message": "ඔබගේ සංවිධානය තවදුරටත් Bitwarden වෙත පුරනය වීමට ප්‍රධාන මුරපද භාවිතා නොකරයි. ඉදිරියට යාමට, සංවිධානය සහ වසම තහවුරු කරන්න."
+    "message": "ඔබගේ සංවිධානය තවදුරටත් Komboe වෙත පුරනය වීමට ප්‍රධාන මුරපද භාවිතා නොකරයි. ඉදිරියට යාමට, සංවිධානය සහ වසම තහවුරු කරන්න."
   },
   "continueWithLogIn": {
     "message": "පුරනය සමඟ ඉදිරියට යන්න"
@@ -6720,10 +6720,10 @@
     "message": "කොමාවකින් වෙන් කර බහු ඊමේල් ඇතුළත් කරන්න."
   },
   "emailPlaceholder": {
-    "message": "user@bitwarden.com , user@acme.com"
+    "message": "user@komboe.com , user@acme.com"
   },
   "emailPlaceholderMultiple": {
-    "message": "user@bitwarden.com, user@acme.com"
+    "message": "user@komboe.com, user@acme.com"
   },
   "reorderToggleButton": {
     "message": "$LABEL$ නැවත ඇණවුම් කරන්න. අයිතමය ඉහළට හෝ පහළට ගෙන යාමට ඊතල යතුර භාවිතා කරන්න.",
@@ -7223,15 +7223,15 @@
     "message": "Unknown item, you may need to request permission to access this item."
   },
   "newExperienceDialogTitle": {
-    "message": "Bitwarden has a new look",
+    "message": "Komboe has a new look",
     "description": "Title of the dialog that introduces the redesigned vault to existing users."
   },
   "newExperienceDialogDesc": {
-    "message": "Better experience, same trusted security. The Bitwarden vault has been redesigned based on your feedback, so things are easier to find and work like you'd expect.",
+    "message": "Better experience, same trusted security. The Komboe vault has been redesigned based on your feedback, so things are easier to find and work like you'd expect.",
     "description": "Body copy of the dialog that introduces the redesigned vault to existing users."
   },
   "newExperienceDialogImgAlt": {
-    "message": "A preview of the redesigned Bitwarden vault.",
+    "message": "A preview of the redesigned Komboe vault.",
     "description": "Alt text for the screenshot shown in the dialog that introduces the redesigned vault."
   },
   "exploreTheNewVault": {

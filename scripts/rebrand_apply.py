@@ -36,10 +36,20 @@ for p in glob.glob(f"{C}/apps/web/src/locales/*/messages.json") + glob.glob(f"{C
     rw(p, locale)
 
 # 2. page titles / PWA manifest
-for p in [f"{C}/apps/web/src/index.html", f"{C}/apps/web/src/404.html", f"{C}/apps/web/src/connectors/*.html"]:
-    for q in glob.glob(p): rw(q, sub_text)
+BLUE = re.compile(r"#175DDC", re.I)
+for p in [f"{C}/apps/web/src/index.html", f"{C}/apps/web/src/404.html", f"{C}/apps/web/src/connectors/**/*.html"]:
+    for q in glob.glob(p, recursive=True): rw(q, lambda t: BLUE.sub("#0B1F3A", sub_text(t)))
 rw(f"{C}/apps/web/src/manifest.json", lambda t: t.replace('"Bitwarden Vault"', '"Komboe Vault"')
    .replace("#175DDC", "#0B1F3A"))
+
+# 2b. browser extension, desktop and CLI: locale strings, product names, theme color
+for p in (glob.glob(f"{C}/apps/browser/src/_locales/*/messages.json") + glob.glob(f"{C}/apps/desktop/src/locales/*/messages.json")):
+    rw(p, locale)
+for p in [f"{C}/apps/desktop/electron-builder.json", f"{C}/apps/desktop/src/package.json"]:
+    rw(p, lambda t: BLUE.sub("#0B1F3A", t.replace('"productName": "Bitwarden"', '"productName": "Komboe"')
+                              .replace('"name": "Bitwarden",', '"name": "Komboe",')))
+for p in glob.glob(f"{C}/apps/browser/src/**/*.html", recursive=True):
+    rw(p, lambda t: BLUE.sub("#0B1F3A", t))
 
 # 3. artwork: padlock-K PNG (unchanged shape) at each size upstream used
 def png(src, size):
@@ -52,10 +62,14 @@ DARK = f"{B}/variants/komboe-dark-transparent.png"
 targets = {f"{C}/apps/web/src/images/icons/*.png": ICON, f"{C}/apps/web/src/images/logo-dark@2x.png": DARK,
            f"{C}/apps/web/src/images/logo-primary@2x.png": DARK, f"{C}/apps/web/src/images/logo-white@2x.png": LIGHT,
            f"{S}/src/static/images/vaultwarden-icon.png": ICON, f"{S}/src/static/images/vaultwarden-favicon.png": ICON,
-           f"{S}/src/static/images/logo-gray.png": LIGHT}
+           f"{S}/src/static/images/logo-gray.png": LIGHT,
+           f"{C}/apps/browser/src/images/icon*.png": ICON, f"{C}/apps/desktop/resources/icon.png": ICON,
+           f"{C}/apps/desktop/resources/icons/*.png": ICON}
 for pat, src in targets.items():
     for p in glob.glob(pat):
         new = png(src, Image.open(p).size)
+        if "_gray" in os.path.basename(p):  # disabled-state icons stay grey (same shape)
+            im = Image.open(io.BytesIO(new)); g = im.convert("LA").convert("RGBA"); b = io.BytesIO(); g.save(b, "PNG", optimize=True); new = b.getvalue()
         if open(p, "rb").read() != new:
             open(p, "wb").write(new); changed.append(os.path.relpath(p, ROOT))
 

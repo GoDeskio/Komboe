@@ -1,12 +1,12 @@
 {
   "appLogoLabel": {
-    "message": "Bitwarden logotips"
+    "message": "Komboe logotips"
   },
   "bitwarden": {
-    "message": "Bitwarden"
+    "message": "Komboe"
   },
   "bitwardenBeta": {
-    "message": "Bitwarden Beta",
+    "message": "Komboe Beta",
     "description": "Product name for the beta channel; shown in the tray tooltip and About dialog"
   },
   "filters": {
@@ -703,10 +703,10 @@
     "message": "Iespējot SSH aģentu"
   },
   "enableSshAgentDesc": {
-    "message": "Iespējo SSH aģentu, lai parakstītu SSH pieprasījumus tieši no savas Bitwarden glabātavas."
+    "message": "Iespējo SSH aģentu, lai parakstītu SSH pieprasījumus tieši no savas Komboe glabātavas."
   },
   "enableSshAgentHelp": {
-    "message": "SSH aģents ir izstrādātājiem paredzēts pakalpojums, kas ļauj parakstīt SSH pieprasījumus tieši no savas Bitwarden glabātavas."
+    "message": "SSH aģents ir izstrādātājiem paredzēts pakalpojums, kas ļauj parakstīt SSH pieprasījumus tieši no savas Komboe glabātavas."
   },
   "sshAgentPromptBehavior": {
     "message": "Vaicāt pilnvarošanu, kad izmanto SSH aģentu"
@@ -736,7 +736,7 @@
     "message": "Sinhronizēt ar pārlūku"
   },
   "acquireCookieSpeedbumpContent": {
-    "message": "Lai izveidotu savienojumu ar $VAULTURL$, jums ir jāsinhronizē noklusējuma pārlūks ar Bitwarden lietotni. Kad pārlūks būs sinhronizēts, jūs tiksiet novirzīts atpakaļ uz šo lietotni.",
+    "message": "Lai izveidotu savienojumu ar $VAULTURL$, jums ir jāsinhronizē noklusējuma pārlūks ar Komboe lietotni. Kad pārlūks būs sinhronizēts, jūs tiksiet novirzīts atpakaļ uz šo lietotni.",
     "description": "A speedbump message (dialog) shown when the user needs to sync with the browser to acquire an SSO cookie.",
     "placeholders": {
       "vaultUrl": {
@@ -758,10 +758,10 @@
     "message": "Atšifrēšanas kļūda"
   },
   "couldNotDecryptVaultItem": {
-    "message": "Bitwarden nevarēja atšifrēt zemāk norādīto glabātavas vienumu. Jāsazinās ar Bitwarden klientu atbalstu un jānorāda zemāk esošo vienuma ID, lai noskaidrotu, vai to var atgūt."
+    "message": "Komboe nevarēja atšifrēt zemāk norādīto glabātavas vienumu. Jāsazinās ar Komboe klientu atbalstu un jānorāda zemāk esošo vienuma ID, lai noskaidrotu, vai to var atgūt."
   },
   "couldNotDecryptVaultItems": {
-    "message": "Bitwarden nevarēja atšifrēt zemāk norādītos glabātavas vienumus. Jāsazinās ar Bitwarden klientu atbalstu un jānorāda zemāk esošos vienumu ID, lai noskaidrotu, vai tos var atgūt."
+    "message": "Komboe nevarēja atšifrēt zemāk norādītos glabātavas vienumus. Jāsazinās ar Komboe klientu atbalstu un jānorāda zemāk esošos vienumu ID, lai noskaidrotu, vai tos var atgūt."
   },
   "itemId": {
     "message": "Vienuma ID",
@@ -1465,7 +1465,7 @@
     "message": "Izveidot kontu"
   },
   "newToBitwarden": {
-    "message": "Bitwarden iepriekš nav izmantots?"
+    "message": "Komboe iepriekš nav izmantots?"
   },
   "setAStrongPassword": {
     "message": "Jāiestata droša parole"
@@ -1477,7 +1477,7 @@
     "message": "Pieteikties"
   },
   "loginPageEmailEntryScreenTitle": {
-    "message": "Pieteikties Bitwarden"
+    "message": "Pieteikties Komboe"
   },
   "enterTheCodeSentToYourEmail": {
     "message": "Jāievada e-pastā nosūtītais kods"
@@ -1635,7 +1635,7 @@
     "message": "Neparedzēta kļūda"
   },
   "closeThisBitwardenWindow": {
-    "message": "Šis Bitwarden logs jāaizver un jāmēģina vēlreiz."
+    "message": "Šis Komboe logs jāaizver un jāmēģina vēlreiz."
   },
   "itemInformation": {
     "message": "Vienuma informācija"
@@ -1709,7 +1709,7 @@
     "message": "Autentificētāja lietotne"
   },
   "authenticatorAppDescV2": {
-    "message": "Jāievada autentificētāja lietotnes, piemēram, Bitwarden Authenticator, izveidots kods.",
+    "message": "Jāievada autentificētāja lietotnes, piemēram, Komboe Authenticator, izveidots kods.",
     "description": "'Bitwarden Authenticator' is a product name and should not be translated."
   },
   "yubiKeyTitleV2": {
@@ -1857,7 +1857,7 @@
     "message": "Vai tiešām vēlaties atjaunot sava konta šifrēšanas atslēgu?"
   },
   "updateEncryptionKeyWarning": {
-    "message": "Pēc šifrēšanas atslēgas atjaunināšanas ir nepieciešams atteikties un tad pieteikties visās Bitwarden lietotnēs, kas pašreiz tiek izmantotas (piemēram, tālruņa lietotnē vai pārlūku paplašinājumā). Ja tas netiks darīts (tā tiek lejupielādēta jaunā šifrēšanas atslēga), dati var tikt bojāti. Tiks veikts automātisks atteikšanās mēģinājums, tomēr tas var notikt ar aizkavi."
+    "message": "Pēc šifrēšanas atslēgas atjaunināšanas ir nepieciešams atteikties un tad pieteikties visās Komboe lietotnēs, kas pašreiz tiek izmantotas (piemēram, tālruņa lietotnē vai pārlūku paplašinājumā). Ja tas netiks darīts (tā tiek lejupielādēta jaunā šifrēšanas atslēga), dati var tikt bojāti. Tiks veikts automātisks atteikšanās mēģinājums, tomēr tas var notikt ar aizkavi."
   },
   "updateEncryptionKeyAccountExportWarning": {
     "message": "Jebkuras saglabātās konta ierobežotās izguves kļūs nederīgas."
@@ -1953,7 +1953,7 @@
     "message": "Pāriet uz tīmekļa lietotni?"
   },
   "changeMasterPasswordOnWebConfirmation": {
-    "message": "Savu galveno paroli var mainīt Bitwarden tīmekļa lietotnē."
+    "message": "Savu galveno paroli var mainīt Komboe tīmekļa lietotnē."
   },
   "fingerprintPhrase": {
     "message": "Atpazīšanas vārdkopa",
@@ -2022,7 +2022,7 @@
     }
   },
   "twoStepLoginConfirmation": {
-    "message": "Divpakāpju pieteikšanās padara kontu krietni drošāku, pieprasot apstiprināt pieteikšanos ar tādu citu ierīču vai pakalpojumu starpniecību kā drošības atslēga, autentificētāja lietotne, īsziņa, tālruņa zvans vai e-pasts. Divpakāpju pieteikšanos var iespējot bitwarden.com tīmekļa glabātavā. Vai tagad apmeklēt tīmekļvietni?"
+    "message": "Divpakāpju pieteikšanās padara kontu krietni drošāku, pieprasot apstiprināt pieteikšanos ar tādu citu ierīču vai pakalpojumu starpniecību kā drošības atslēga, autentificētāja lietotne, īsziņa, tālruņa zvans vai e-pasts. Divpakāpju pieteikšanos var iespējot komboe.com tīmekļa glabātavā. Vai tagad apmeklēt tīmekļvietni?"
   },
   "twoStepLogin": {
     "message": "Divpakāpju pieteikšanās"
@@ -2105,19 +2105,19 @@
     "message": "Nav ko kopēt"
   },
   "runInBackground": {
-    "message": "Turpināt Bitwarden darbību fonā"
+    "message": "Turpināt Komboe darbību fonā"
   },
   "runInBackgroundDesc": {
-    "message": "Aizverot logu, Bitwarden ir pieejams no sistēmas teknes. Ieteicams, ja izmantojat SSH aģentu vai pārlūka integrāciju."
+    "message": "Aizverot logu, Komboe ir pieejams no sistēmas teknes. Ieteicams, ja izmantojat SSH aģentu vai pārlūka integrāciju."
   },
   "runInBackgroundDescMac": {
-    "message": "Aizverot logu, Bitwarden ir pieejams no izvēlņu joslas. Ieteicams, ja izmantojat SSH aģentu vai pārlūka integrāciju."
+    "message": "Aizverot logu, Komboe ir pieejams no izvēlņu joslas. Ieteicams, ja izmantojat SSH aģentu vai pārlūka integrāciju."
   },
   "openAtLogin": {
     "message": "Automātiski sāknēt pēc pieteikšanās"
   },
   "openAtLoginDesc": {
-    "message": "Automātiski sāknēt Bitwarden darbvirsmas lietotni pēc pieteikšanās."
+    "message": "Automātiski sāknēt Komboe darbvirsmas lietotni pēc pieteikšanās."
   },
   "language": {
     "message": "Valoda"
@@ -2129,7 +2129,7 @@
     "message": "Passkey provider"
   },
   "passkeyProviderDesc": {
-    "message": "Use Bitwarden to save and sign in with passkeys in other apps."
+    "message": "Use Komboe to save and sign in with passkeys in other apps."
   },
   "turnedOn": {
     "message": "On"
@@ -2259,7 +2259,7 @@
     "message": "Pārvaldīt dalību"
   },
   "premiumManageAlert": {
-    "message": "Dalību ir iespējams pārvaldīt bitwarden.com tīmekļa glabātavā. Vai tagad apmeklēt tīmekļvietni?"
+    "message": "Dalību ir iespējams pārvaldīt komboe.com tīmekļa glabātavā. Vai tagad apmeklēt tīmekļvietni?"
   },
   "premiumSignUpStorage": {
     "message": "1 GB šifrētas krātuves datņu pielikumiem."
@@ -2268,7 +2268,7 @@
     "message": "Iegādāties Premium"
   },
   "premiumPurchaseAlertV2": {
-    "message": "Premium var iegādāties Bitwarden tīmekļa lietotnē sava konta iestatījumos."
+    "message": "Premium var iegādāties Komboe tīmekļa lietotnē sava konta iestatījumos."
   },
   "month": {
     "message": "mēnesis"
@@ -2514,13 +2514,13 @@
     "description": "Bring all windows to front (foreground)"
   },
   "aboutBitwarden": {
-    "message": "Par Bitwarden"
+    "message": "Par Komboe"
   },
   "services": {
     "message": "Pakalpojumi"
   },
   "hideBitwarden": {
-    "message": "Paslēpt Bitwarden"
+    "message": "Paslēpt Komboe"
   },
   "hideOthers": {
     "message": "Paslēpt citus"
@@ -2529,7 +2529,7 @@
     "message": "Rādīt visu"
   },
   "quitBitwarden": {
-    "message": "Izslēgt Bitwarden"
+    "message": "Izslēgt Komboe"
   },
   "valueCopied": {
     "message": "$VALUE$ ir starpliktuvē",
@@ -2675,13 +2675,13 @@
     "message": "Šī parole tiks izmantota, lai izgūtu un ievietotu šo datni"
   },
   "accountRestrictedOptionDescription": {
-    "message": "Jāizmanto konta šifrēšanas atslēga, kas iegūta no lietotājvārda un galvenās paroles, lai šifrētu izguvi un atļautu ievietošanu tikai pašreizējā Bitwarden kontā."
+    "message": "Jāizmanto konta šifrēšanas atslēga, kas iegūta no lietotājvārda un galvenās paroles, lai šifrētu izguvi un atļautu ievietošanu tikai pašreizējā Komboe kontā."
   },
   "passwordProtected": {
     "message": "Aizsargāts ar paroli"
   },
   "passwordProtectedOptionDescription": {
-    "message": "Uzstādīt paroli, lai šifrētu izguvi un tad to ievietotu jebkurā Bitwarden kontā, izmantojot atšifrēšanas paroli."
+    "message": "Uzstādīt paroli, lai šifrētu izguvi un tad to ievietotu jebkurā Komboe kontā, izmantojot atšifrēšanas paroli."
   },
   "exportTypeHeading": {
     "message": "Izgūšanas veids"
@@ -2712,7 +2712,7 @@
     "message": "Šī izguve šifrē datus ar konta šifrēšanas atslēgu. Ja tā jebkad tiks mainīta, izvadi vajadzētu veikt vēlreiz, jo vairs nebūs iespējams atšifrēt šo datni."
   },
   "encExportAccountWarningDesc": {
-    "message": "Katram Bitwarden kontam ir neatkārtojamas šifrēšanas atslēgas, tādēļ nav iespējams ievietot šifrētu izguvi citā kontā."
+    "message": "Katram Komboe kontam ir neatkārtojamas šifrēšanas atslēgas, tādēļ nav iespējams ievietot šifrētu izguvi citā kontā."
   },
   "noOrganizationsList": {
     "message": "Tu neesi iekļauts nevienā apvienībā. Apvienības sniedz iespēju droši kopīgot vienumus ar citiem lietotājiem."
@@ -2742,7 +2742,7 @@
     "message": "Vāja galvenā parole"
   },
   "weakMasterPasswordDesc": {
-    "message": "Izvēlētā galvenā parole ir vāja. Ir ieteicams izmantot spēcīgu galveno paroli (vai paroles vārdu salikumu), lai pienācīgi aizsargātu Bitwarden kontu. Vai tiešām izmanto šo galveno paroli?"
+    "message": "Izvēlētā galvenā parole ir vāja. Ir ieteicams izmantot spēcīgu galveno paroli (vai paroles vārdu salikumu), lai pienācīgi aizsargātu Komboe kontu. Vai tiešām izmanto šo galveno paroli?"
   },
   "pin": {
     "message": "PIN",
@@ -2752,7 +2752,7 @@
     "message": "Atslēgt ar PIN"
   },
   "setYourPinCode": {
-    "message": "Iestatīt PIN kodu Bitwarden atslēgšanai. PIN iestatījumi tiks atiestatīti pēc pilnīgas izrakstīšanās no lietotnes."
+    "message": "Iestatīt PIN kodu Komboe atslēgšanai. PIN iestatījumi tiks atiestatīti pēc pilnīgas izrakstīšanās no lietotnes."
   },
   "pinRequired": {
     "message": "Ir nepieciešams PIN kods."
@@ -2770,7 +2770,7 @@
     "message": "Atslēgt ar sistēmas autentifikāciju"
   },
   "windowsHelloConsentMessage": {
-    "message": "Apstiprināt Bitwarden."
+    "message": "Apstiprināt Komboe."
   },
   "unlockWithTouchId": {
     "message": "Atslēgt ar Touch ID"
@@ -2794,10 +2794,10 @@
     "message": "Pieprasīt galveno paroli pēc lietotnes atkārtotas palaišanas"
   },
   "requireMasterPasswordOnAppRestartDesc": {
-    "message": "This setting provides an additional layer of protection by helping prevent other applications on your computer from unlocking Bitwarden."
+    "message": "This setting provides an additional layer of protection by helping prevent other applications on your computer from unlocking Komboe."
   },
   "requireMasterPasswordOnAppRestartWarning": {
-    "message": "Unchecking this means any application on your computer may unlock Bitwarden, and access all your saved passwords."
+    "message": "Unchecking this means any application on your computer may unlock Komboe, and access all your saved passwords."
   },
   "deleteAccount": {
     "message": "Izdzēst kontu"
@@ -3012,10 +3012,10 @@
     "message": "Padarīt divpakāpju apliecināšanu plūdenu"
   },
   "totpHelper": {
-    "message": "Bitwarden var glabāt un aizpildīt divpakāpju apliecinājuma kodus. Atslēga jāievieto starpliktuvē un jāielīmē šajā laukā."
+    "message": "Komboe var glabāt un aizpildīt divpakāpju apliecinājuma kodus. Atslēga jāievieto starpliktuvē un jāielīmē šajā laukā."
   },
   "totpHelperWithCapture": {
-    "message": "Bitwarden var glabāt un aizpildīt divpakāpju apliecinājuma kodus. Jāizvēlas kameras ikona, lai veiktu tīmekļvietnes autentificētāja kvadrātkoda ekrānuzņēmumu, vai jāievieto starpliktuvē atslēga un jāielīmē šajā laukā."
+    "message": "Komboe var glabāt un aizpildīt divpakāpju apliecinājuma kodus. Jāizvēlas kameras ikona, lai veiktu tīmekļvietnes autentificētāja kvadrātkoda ekrānuzņēmumu, vai jāievieto starpliktuvē atslēga un jāielīmē šajā laukā."
   },
   "premium": {
     "message": "Premium",
@@ -3101,7 +3101,7 @@
     "message": "Viena vai vairākas organizācijas politikas pieprasa, lai galvenā parole atbilstu šādām prasībām:"
   },
   "receiveMarketingEmails": {
-    "message": "Saņemiet Bitwarden atjauninājumus savā pastkastītē."
+    "message": "Saņemiet Komboe atjauninājumus savā pastkastītē."
   },
   "unsubscribe": {
     "message": "Atteikt abonēšanu"
@@ -3125,7 +3125,7 @@
     "message": "Atļaut sasaistīšanu ar DuckDuckGo pārlūku"
   },
   "enableDuckDuckGoBrowserIntegrationDesc": {
-    "message": "Izmantot Bitwarden glabātavu, kad pārlūko ar DuckDuckGo."
+    "message": "Izmantot Komboe glabātavu, kad pārlūko ar DuckDuckGo."
   },
   "enableHardwareAcceleration": {
     "message": "Izmantot aparatūras paātrināšanu"
@@ -3137,7 +3137,7 @@
     "message": "Apstiprināt"
   },
   "verifyNativeMessagingConnectionTitle": {
-    "message": "$APPID$ pieprasa savienojumu ar Bitwarden",
+    "message": "$APPID$ pieprasa savienojumu ar Komboe",
     "placeholders": {
       "appid": {
         "content": "$1",
@@ -3837,11 +3837,11 @@
     }
   },
   "forwarderGeneratedBy": {
-    "message": "Izveidoja Bitwarden.",
+    "message": "Izveidoja Komboe.",
     "description": "Displayed with the address on the forwarding service's configuration screen."
   },
   "forwarderGeneratedByWithWebsite": {
-    "message": "Tīmekļvietne: $WEBSITE$. Izveidoja Bitwarden.",
+    "message": "Tīmekļvietne: $WEBSITE$. Izveidoja Komboe.",
     "description": "Displayed with the address on the forwarding service's configuration screen.",
     "placeholders": {
       "WEBSITE": {
@@ -4037,7 +4037,7 @@
     "message": "Uz ierīci tika nosūtīts paziņojums"
   },
   "notificationSentDevicePart1": {
-    "message": "Bitwarden jāatslēdz savā ierīcē vai "
+    "message": "Komboe jāatslēdz savā ierīcē vai "
   },
   "notificationSentDeviceAnchor": {
     "message": "tīmekļa lietotnē"
@@ -4058,7 +4058,7 @@
     "message": "Tiks paziņots, tiklīdz pieprasījums būs apstiprināts"
   },
   "needAnotherOption": {
-    "message": "Ir jāuzstāda pieteikšanās ar ierīci Bitwarden lietotnes iestatījumos. Nepieciešama cita iespēja?"
+    "message": "Ir jāuzstāda pieteikšanās ar ierīci Komboe lietotnes iestatījumos. Nepieciešama cita iespēja?"
   },
   "viewAllLogInOptions": {
     "message": "Apskatīt visas pieteikšanās iespējas"
@@ -4238,7 +4238,7 @@
     }
   },
   "windowsBiometricUpdateWarning": {
-    "message": "Bitwarden iesaka atjaunināt biometrijas iestatījumus, lai pieprasītu galveno paroli (vai PIN) pirmās atslēgšanas laikā. Vai atjaunināt iestatījumus tagad?"
+    "message": "Komboe iesaka atjaunināt biometrijas iestatījumus, lai pieprasītu galveno paroli (vai PIN) pirmās atslēgšanas laikā. Vai atjaunināt iestatījumus tagad?"
   },
   "windowsBiometricUpdateWarningTitle": {
     "message": "Ieteicamie iestatījumu atjauninājumi"
@@ -4885,7 +4885,7 @@
     "message": "Secure by design"
   },
   "importDataSecureByDesignBody": {
-    "message": "End-to-end encrypted handoff. Bitwarden never sees your $VENDOR$ login details.",
+    "message": "End-to-end encrypted handoff. Komboe never sees your $VENDOR$ login details.",
     "placeholders": {
       "vendor": {
         "content": "$1",
@@ -5036,7 +5036,7 @@
     "description": "Followed by a literal filename (my_passwords.json) rendered as code."
   },
   "importGnomeInstructionsFileHere": {
-    "message": "file here to Bitwarden.",
+    "message": "file here to Komboe.",
     "description": "Follows the my_passwords.json filename."
   },
   "importPasswordagentInstructions": {
@@ -5539,7 +5539,7 @@
     "description": "Label indicating the most common import formats"
   },
   "uriMatchDefaultStrategyHint": {
-    "message": "URI atbilstības noteikšana ir veids, kā Bitwarden atpazīst automātiskās aizpildes ieteikumus.",
+    "message": "URI atbilstības noteikšana ir veids, kā Komboe atpazīst automātiskās aizpildes ieteikumus.",
     "description": "Explains to the user that URI match detection determines how Bitwarden suggests autofill options, and clarifies that this default strategy applies when no specific match detection is set for a login item."
   },
   "regExAdvancedOptionWarning": {
@@ -5578,7 +5578,7 @@
     "message": "Lejupielādējiet un kopīgojiet diagnostikas ziņojumu ar"
   },
   "bitwardenSupport": {
-    "message": "Bitwarden atbalsts",
+    "message": "Komboe atbalsts",
     "description": "Link text following the troubleshooting description sentence. 'Bitwarden' should not be translated."
   },
   "download": {
@@ -5681,7 +5681,7 @@
     "message": "Atslēgšana ar biometriju nav pieejama nepareizi konfigurētu sistēmas datņu dēļ."
   },
   "biometricsStatusHelptextNotEnabledLocally": {
-    "message": "Atslēgšana ar biometriju nav pieejama, jo tā nav iespējota $EMAIL$ Bitwarden darbvirsmas lietotnē.",
+    "message": "Atslēgšana ar biometriju nav pieejama, jo tā nav iespējota $EMAIL$ Komboe darbvirsmas lietotnē.",
     "placeholders": {
       "email": {
         "content": "$1",
@@ -5768,7 +5768,7 @@
     "message": "Iestatīt divpakāpju pieteikšanos"
   },
   "newDeviceVerificationNoticeContentPage1": {
-    "message": "Bitwarden, sākot ar 2025. gada februāri, nosūtīs kodu uz konta e-pasta adresi, lai apliecinātu pieteikšanos jaunās ierīcēs."
+    "message": "Komboe, sākot ar 2025. gada februāri, nosūtīs kodu uz konta e-pasta adresi, lai apliecinātu pieteikšanos jaunās ierīcēs."
   },
   "newDeviceVerificationNoticeContentPage2": {
     "message": "Var iestatīt divpakāpju pieteikšanos kā citu veidu, kā aizsargāt savu kontu, vai iestatīt savu e-pasta adresi uz tādu, kurai ir piekļuve."
@@ -5848,7 +5848,7 @@
     "message": "No passkeys found for this application."
   },
   "passkeyNotAllowedForBitwardenVault": {
-    "message": "Passkeys for $DOMAIN$ can't be saved or used in Bitwarden.",
+    "message": "Passkeys for $DOMAIN$ can't be saved or used in Komboe.",
     "placeholders": {
       "domain": {
         "content": "$1",
@@ -5857,7 +5857,7 @@
     }
   },
   "passkeyNotAllowedForBitwardenVaultDesc": {
-    "message": "Storing the passkey for your Bitwarden account in your vault could lock you out of your account."
+    "message": "Storing the passkey for your Komboe account in your vault could lock you out of your account."
   },
   "closeThisWindow": {
     "message": "Aizvērt šo logu"
@@ -5866,7 +5866,7 @@
     "message": "Atļaut ekrāna tveršanu"
   },
   "allowScreenshotsDesc": {
-    "message": "Ļaut Bitwarden darbvirsmas lietotni tvert ekrānuzņēmumos un rādīt attālās darbvirsmas sesijās. Atspējošana liegs piekļuvi atsevišķos ārējos ekrānos."
+    "message": "Ļaut Komboe darbvirsmas lietotni tvert ekrānuzņēmumos un rādīt attālās darbvirsmas sesijās. Atspējošana liegs piekļuvi atsevišķos ārējos ekrānos."
   },
   "confirmWindowStillVisibleTitle": {
     "message": "Apstirpināt, ka logs joprojām ir redzams"
@@ -6003,7 +6003,7 @@
     "message": "Par šo iestatījumu"
   },
   "permitCipherDetailsDescription": {
-    "message": "Bitwarden izmantos saglabātos pieteikšanās vienuma URI, lai noteiktu, kuru ikonu vai paroles nomaiņas URL izmantot, lai uzlabotu pieredzi. Šī pakalpojuma izmantošanas laikā nekāda informācija netiek ievākta vai saglabāta."
+    "message": "Komboe izmantos saglabātos pieteikšanās vienuma URI, lai noteiktu, kuru ikonu vai paroles nomaiņas URL izmantot, lai uzlabotu pieredzi. Šī pakalpojuma izmantošanas laikā nekāda informācija netiek ievākta vai saglabāta."
   },
   "showQuickCopyActionsDetailsDescription": {
     "message": "Pievieno 3 ātrās kopēšanas pogas blakus vienumiem, lai starpliktuvē ievietotu lietotājvārdu, paroli vai apliecinājuma kodu."
@@ -6243,7 +6243,7 @@
     "message": "Rādīt mazāk"
   },
   "enableAutotypeDescription": {
-    "message": "Bitwarden nepārbauda ievades atrašanās vietas, jāpārliecinās, ka atrodies pareizajā logā un laukā, pirms saīsnes izmantošanas."
+    "message": "Komboe nepārbauda ievades atrašanās vietas, jāpārliecinās, ka atrodies pareizajā logā un laukā, pirms saīsnes izmantošanas."
   },
   "typeShortcut": {
     "message": "Ievadīt īsinājumtaustiņus"
@@ -6399,7 +6399,7 @@
     "message": "Uzlabot uz Premium"
   },
   "removeMasterPasswordForOrgUserKeyConnector": {
-    "message": "Apvienība vairs neizmanto galvenās paroles, lai pieteiktos Bitwarden. Lai turpinātu, jāapliecina apvienība un domēns."
+    "message": "Apvienība vairs neizmanto galvenās paroles, lai pieteiktos Komboe. Lai turpinātu, jāapliecina apvienība un domēns."
   },
   "continueWithLogIn": {
     "message": "Turpināt ar pieteikšanos"
@@ -6720,10 +6720,10 @@
     "message": "Ievadiet vairākus e-pastus, atdalot tos ar komatu."
   },
   "emailPlaceholder": {
-    "message": "user@bitwarden.com , user@acme.com"
+    "message": "user@komboe.com , user@acme.com"
   },
   "emailPlaceholderMultiple": {
-    "message": "user@bitwarden.com, user@acme.com"
+    "message": "user@komboe.com, user@acme.com"
   },
   "reorderToggleButton": {
     "message": "Pārkārtot $LABEL$. Izmantojiet bulttaustiņus, lai pārvietotu vienumu uz augšu vai uz leju.",
@@ -7223,15 +7223,15 @@
     "message": "Unknown item, you may need to request permission to access this item."
   },
   "newExperienceDialogTitle": {
-    "message": "Bitwarden has a new look",
+    "message": "Komboe has a new look",
     "description": "Title of the dialog that introduces the redesigned vault to existing users."
   },
   "newExperienceDialogDesc": {
-    "message": "Better experience, same trusted security. The Bitwarden vault has been redesigned based on your feedback, so things are easier to find and work like you'd expect.",
+    "message": "Better experience, same trusted security. The Komboe vault has been redesigned based on your feedback, so things are easier to find and work like you'd expect.",
     "description": "Body copy of the dialog that introduces the redesigned vault to existing users."
   },
   "newExperienceDialogImgAlt": {
-    "message": "A preview of the redesigned Bitwarden vault.",
+    "message": "A preview of the redesigned Komboe vault.",
     "description": "Alt text for the screenshot shown in the dialog that introduces the redesigned vault."
   },
   "exploreTheNewVault": {

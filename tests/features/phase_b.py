@@ -187,6 +187,18 @@ def _():
 def _():
     if not pw("generator"): return ("partial", "generator present in vendored web vault; Playwright spec not passed yet")
     return DONE("username/passphrase generator in web vault (Playwright)")
+def _report(n, steps, done_msg, part_msg):
+    @t(n)
+    def _():
+        if all(pw(x) for x in steps): return DONE(done_msg)
+        return ("partial", part_msg + "; Playwright check not passed")
+_report(68, ["report-weak", "report-reused"], "weak + reused password reports list exactly the seeded weak/reused items (Playwright, web vault)", "weak/reused report is client-side")
+_report(70, ["report-exposed"], "exposed-password report via HIBP k-anonymity range API (only 5-char SHA-1 prefixes leave the client; Playwright)", "k-anonymity exposed-password check is client-side")
+_report(71, ["report-inactive-2fa"], "inactive two-step login report flags seeded github.com login (2fa.directory list; Playwright)", "inactive 2FA report is client-side")
+_report(72, ["report-unsecured"], "unsecured (http://) website report lists only the seeded http item (Playwright)", "unsecured website report is client-side")
+_report(78, ["export-encrypted"], "password-protected JSON export: downloaded file is ciphertext and independently decrypts (PBKDF2+AES-256-CBC+HMAC) to the vault items (Playwright)", "password-protected export is client-side")
+@t(100)
+def _(): T[46][0](); return ("partial", "AES-256-CBC+HMAC and Argon2id verified; XChaCha20 not implemented: it needs a new EncString type in the shared client crypto SDK + server-side passthrough, a client-wide format change deferred to avoid a fork-only, incompatible vault format")
 @t(85)
 def _():
     m, msgs = _manifest("komboe-firefox.zip"); assert "browser_specific_settings" in m or "applications" in m

@@ -7,5 +7,13 @@
   "admin-console": "passed",
   "org-family": "passed",
   "split-off": "passed",
-  "extension-loads": "failed"
+  "report-weak": "passed",
+  "report-reused": "passed",
+  "report-unsecured": "passed",
+  "report-inactive-2fa": "passed",
+  "report-exposed": "passed",
+  "export-encrypted": "passed",
+  "extension-loads": "passed",
+  "extension-login": "passed",
+  "extension-autofill": "passed"
 }

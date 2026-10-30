@@ -6,3 +6,4 @@ target/
 *.env
 .DS_Store
 tests/playwright/fixtures.local.json
+__pycache__/

@@ -1,6 +1,6 @@
-// Komboe web vault + family console + extension E2E (Playwright library, system Chrome).
+// Komboe web vault + family console + extension E2E (Playwright library, system Chrome for the vault, bundled Chromium for the extension).
 // Usage: node e2e.mjs   (env: KOMBOE_WEB=https://localhost:8443, PLAYWRIGHT_DIR, CHROME, KOMBOE_EXT_DIR)
-import fs from "fs"; import path from "path"; import { fileURLToPath } from "url";
+import fs from "fs"; import path from "path"; import crypto from "crypto"; import { fileURLToPath } from "url";
 const here = path.dirname(fileURLToPath(import.meta.url));
 const { chromium } = await import(path.join(process.env.PLAYWRIGHT_DIR || "/workspace/up/bw-oss/node_modules/playwright", "index.mjs"));
 const WEB = process.env.KOMBOE_WEB || "https://localhost:8443";
@@ -121,18 +121,96 @@ await step("split-off", async () => {
   const vp = await c2.newPage(); await vaultLogin(vp, fx.kid); await vp.getByText("Game account").first().waitFor({ timeout: 15000 });
   await shot(vp, "family-split-member-vault"); await c2.close();
 });
-await browser.close();
 
 const ext = process.env.KOMBOE_EXT_DIR;
 const withTimeout = (ms, f) => async () => { let t; try { return await Promise.race([f(), new Promise((_, r) => (t = setTimeout(() => r(new Error("timeout " + ms + "ms")), ms)))]); } finally { clearTimeout(t); } };
-if (ext && fs.existsSync(path.join(ext, "manifest.json"))) await step("extension-loads", withTimeout(60000, async () => {
-  const ec = await chromium.launchPersistentContext(fs.mkdtempSync("/tmp/kext-"), { executablePath: CHROME, headless: true, ignoreHTTPSErrors: true,
-    args: ["--no-sandbox", "--headless=new", "--disable-features=DisableLoadExtensionCommandLineSwitch", `--disable-extensions-except=${ext}`, `--load-extension=${ext}`], viewport: { width: 400, height: 640 } });
-  let sw = ec.serviceWorkers()[0] || await ec.waitForEvent("serviceworker", { timeout: 20000 });
-  const id = sw.url().split("/")[2]; const pp = await ec.newPage(); await pp.goto(`chrome-extension://${id}/popup/index.html`); await pp.waitForTimeout(4000);
-  const body = await pp.evaluate(() => document.body.innerText); await pp.screenshot({ path: path.join(SHOTS, "extension-popup.png") });
-  await ec.close(); if (!/Komboe/.test(body)) throw new Error("popup not rebranded: " + body.slice(0, 120));
-}));
+// Vault health reports + password-protected export, as a separate user seeded with weak/reused/http items.
+const hctx = await browser.newContext({ ignoreHTTPSErrors: true, viewport: { width: 1280, height: 820 }, acceptDownloads: true });
+const hp = await hctx.newPage(); hp.setDefaultTimeout(30000);
+let healthIn = false;
+try { await vaultLogin(hp, fx.health); healthIn = true; } catch (e) { notes["health-login"] = String(e.message || e).slice(0, 200); }
+const REPORTS = { "report-weak": ["weak-passwords-report", /Weak reused A.*Weak reused B/s, /Strong unique/],
+  "report-reused": ["reused-passwords-report", /Reused 2 times/, /Strong unique/],
+  "report-unsecured": ["unsecured-websites-report", /We found 1 items.*Weak reused A/s, /Weak reused B|Strong unique/],
+  "report-inactive-2fa": ["inactive-two-factor-report", /Weak reused B/, null],   // github.com via 2fa.directory (public)
+  "report-exposed": ["exposed-passwords-report", /Weak reused A.*Exposed/s, /Strong unique/] };   // HIBP k-anonymity range API
+for (const [name, [route, must, mustNot]] of Object.entries(REPORTS)) if (healthIn) await step(name, async () => {
+  await hp.goto(WEB + "/#/reports/" + route); await hp.waitForTimeout(3000);
+  const chk = hp.locator("main").getByRole("button", { name: /^check/i }); if (await chk.count()) { await chk.first().click(); }
+  await hp.waitForFunction((re) => new RegExp(re, "s").test(document.querySelector("main")?.innerText || ""), must.source, { timeout: 30000 });
+  const txt = await hp.locator("main").innerText(); if (mustNot && mustNot.test(txt)) throw new Error("report lists an item it should not");
+  await hp.screenshot({ path: path.join(SHOTS, name + ".png") });
+});
+if (healthIn) await step("export-encrypted", async () => {
+  await hp.goto(WEB + "/#/tools/export"); await hp.waitForTimeout(3000);
+  const sk = hp.locator(".cdk-overlay-container button", { hasText: "Skip" }); if (await sk.count()) await sk.first().click();
+  await hp.selectOption("select[formcontrolname=format]", { label: ".json (Encrypted)" });
+  await hp.getByText("Password protected").click();
+  const FP = "Export-Pass-123!"; await hp.fill("input[formcontrolname=filePassword]", FP); await hp.fill("input[formcontrolname=confirmFilePassword]", FP);
+  const dl = hp.waitForEvent("download", { timeout: 60000 });
+  await hp.getByRole("button", { name: "Export", exact: true }).click();
+  await hp.locator("input#masterPassword").fill(fx.health.pw); await hp.getByRole("button", { name: "Continue" }).click();
+  const f = "/tmp/komboe-export-test.json"; await (await dl).saveAs(f); const j = JSON.parse(fs.readFileSync(f, "utf8")); fs.unlinkSync(f);
+  if (!j.passwordProtected || /Weak reused/.test(j.data)) throw new Error("export is not password-protected ciphertext");
+  const names = decryptExport(j, FP).items.map((i) => i.name).sort().join(",");
+  if (names !== "Strong unique,Weak reused A,Weak reused B") throw new Error("decrypted export mismatch: " + names);
+});
+await hctx.close();
+
+// Decrypt a Bitwarden-format password-protected export independently (PBKDF2-SHA256 -> HKDF-expand enc/mac -> AES-256-CBC + HMAC).
+function decryptExport(j, pw) {
+  const key = crypto.pbkdf2Sync(pw, j.salt, j.kdfIterations, 32, "sha256");
+  const ex = (info) => crypto.createHmac("sha256", key).update(Buffer.concat([Buffer.from(info), Buffer.from([1])])).digest();
+  const enc = ex("enc"), mac = ex("mac"); const [t, rest] = j.data.split(".");
+  if (j.kdfType !== 0 || t !== "2") throw new Error("unexpected kdf/enc type");
+  const [iv, ct, m] = rest.split("|").map((x) => Buffer.from(x, "base64"));
+  if (!crypto.timingSafeEqual(crypto.createHmac("sha256", mac).update(Buffer.concat([iv, ct])).digest(), m)) throw new Error("bad MAC");
+  const d = crypto.createDecipheriv("aes-256-cbc", enc, iv); return JSON.parse(Buffer.concat([d.update(ct), d.final()]).toString());
+}
+
+await browser.close();
+
+// Extension: Playwright's bundled Chromium (branded Chrome ignores --load-extension). A desktop-Chrome UA is forced
+// because the extension treats "HeadlessChrome" as Safari and the popup never finishes loading.
+const UA = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36";
+if (ext && fs.existsSync(path.join(ext, "manifest.json"))) {
+  let ec, pp, id;
+  await step("extension-loads", withTimeout(120000, async () => {
+    ec = await chromium.launchPersistentContext(fs.mkdtempSync("/tmp/kext-"), { channel: "chromium", headless: true, ignoreHTTPSErrors: true,
+      args: ["--no-sandbox", `--user-agent=${UA}`, `--disable-extensions-except=${ext}`, `--load-extension=${ext}`], viewport: { width: 400, height: 640 } });
+    const sw = ec.serviceWorkers()[0] || await ec.waitForEvent("serviceworker", { timeout: 20000 });
+    id = sw.url().split("/")[2]; pp = await ec.newPage(); pp.setDefaultTimeout(30000); await pp.waitForTimeout(8000);
+    for (let i = 0; i < 4; i++) { await pp.goto(`chrome-extension://${id}/popup/index.html`);
+      try { await pp.waitForSelector("#default-password-manager-prompt_button_skip-for-now, #email", { timeout: 20000 }); break; } catch { /* retry */ } }
+    const body = await pp.evaluate(() => document.body.innerText); await pp.screenshot({ path: path.join(SHOTS, "extension-popup.png") });
+    if (!/Komboe/.test(body)) throw new Error("popup not rebranded: " + body.slice(0, 120));
+  }));
+  if (results["extension-loads"] === "passed") await step("extension-login", withTimeout(150000, async () => {
+    const sk = pp.locator("#default-password-manager-prompt_button_skip-for-now"); if (await sk.count()) await sk.click();
+    for (let i = 0; i < 5 && !(await pp.getByText("Accessing").count()); i++) {
+      await pp.waitForTimeout(2000); const li = pp.locator("a, button").filter({ hasText: /^\s*Log in\s*$/ });
+      if (await li.count()) await li.last().click().catch(() => {}); await pp.waitForTimeout(3000); }
+    try { await pp.getByText("Accessing").first().waitFor({ timeout: 20000 }); }
+    catch (e) { await pp.screenshot({ path: "/tmp/fail-ext-login.png" }); throw new Error("no server picker: " + (await pp.evaluate(() => document.body.innerText)).replace(/\s+/g, " ").slice(0, 200)); }
+    await pp.locator("button", { hasText: /bitwarden\.com|Choose your Komboe server/ }).first().click(); await pp.locator("button", { hasText: "self-hosted" }).first().click();
+    await pp.getByLabel("Server URL").fill(WEB); await pp.getByRole("button", { name: "Save" }).click(); await pp.waitForTimeout(1500);
+    await pp.fill("#email", fx.ext.email); await pp.getByRole("button", { name: "Continue" }).click();
+    await pp.fill("#masterPassword", fx.ext.pw); await pp.getByRole("button", { name: "Log in", exact: true }).click();
+    await pp.getByText("Autofill test").first().waitFor({ timeout: 60000 }); await pp.screenshot({ path: path.join(SHOTS, "extension-vault.png") });
+  }));
+  if (results["extension-login"] === "passed") await step("extension-autofill", withTimeout(90000, async () => {
+    await ec.route("https://autofill.komboe.test/**", (r) => r.fulfill({ contentType: "text/html", body:
+      '<!doctype html><title>Login</title><form><label>Email <input id="u" type="email" autocomplete="username"></label>' +
+      '<label>Password <input id="p" type="password" autocomplete="current-password"></label><button>Sign in</button></form>' }));
+    const tp = await ec.newPage(); await tp.setViewportSize({ width: 1000, height: 700 });
+    await tp.goto("https://autofill.komboe.test/login"); await tp.waitForTimeout(3000); await tp.click("#u"); await tp.waitForTimeout(3000);
+    await tp.screenshot({ path: path.join(SHOTS, "extension-inline-menu.png") });
+    for (let i = 0; i < 3 && !(await tp.inputValue("#u")); i++) { await tp.mouse.click(150, 60); await tp.waitForTimeout(2500); }
+    const u = await tp.inputValue("#u"), pw = await tp.inputValue("#p");
+    if (u !== "auto@komboe.test" || pw !== "Autofill-Pass-1") throw new Error(`autofill got user=${u} pwlen=${pw.length}`);
+  }));
+  if (ec) await ec.close().catch(() => {});
+}
 fs.writeFileSync(path.join(here, "results.json"), JSON.stringify(results, null, 2) + "\n");
 fs.writeFileSync(path.join(here, "notes.json"), JSON.stringify(notes, null, 2) + "\n");
 console.log("RESULTS", JSON.stringify(results)); process.exit(0);

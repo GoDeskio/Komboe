@@ -42,9 +42,27 @@ def totp(secret_b32, t=None):
     mac = hmac.new(key, struct.pack(">Q", int((t or time.time()) // 30)), hashlib.sha1).digest()
     o = mac[-1] & 15; return f"{(struct.unpack('>I', mac[o:o+4])[0] & 0x7fffffff) % 1000000:06d}"
 
+MAILPIT = os.environ.get("KOMBOE_MAILPIT", "http://127.0.0.1:8025")
+def mailpit(to, subject="", wait=10):
+    """Newest Mailpit message to `to` whose subject contains `subject` (full JSON incl. HTML/Text)."""
+    end = time.time() + wait
+    while True:
+        msgs = []
+        for f in ("to", "bcc"):  # forwarded alias mail keeps the alias in To; the mailbox is the envelope (Bcc) recipient
+            q = urllib.parse.quote(f'{f}:"{to}"')
+            msgs += json.loads(urllib.request.urlopen(f"{MAILPIT}/api/v1/search?query={q}&limit=50").read())["messages"]
+        msgs.sort(key=lambda m: m["Created"], reverse=True)
+        for m in msgs:
+            if subject.lower() in m["Subject"].lower(): return json.loads(urllib.request.urlopen(f"{MAILPIT}/api/v1/message/{m['ID']}").read())
+        if time.time() > end: raise AssertionError(f"no mail to {to} with subject containing {subject!r}")
+        time.sleep(0.3)
+def mailpit_token(to):
+    m = mailpit(to, "Verify")
+    return urllib.parse.unquote(re.search(r"token=([^&\"'\s]+)", m["Text"] + m["HTML"]).group(1))
+
 class User:
-    def __init__(self, kdf=0):
-        self.email = f"ft-{uuid.uuid4().hex[:10]}@komboe.test"; self.pw = "Komboe-FT-" + uuid.uuid4().hex; self.kdf = kdf
+    def __init__(self, kdf=0, email=None, pw=None):
+        self.email = email or f"ft-{uuid.uuid4().hex[:10]}@komboe.test"; self.pw = pw or "Komboe-FT-" + uuid.uuid4().hex; self.kdf = kdf
         if kdf == 0:
             self.it = 600_000; self.mk = hashlib.pbkdf2_hmac("sha256", self.pw.encode(), self.email.encode(), self.it, 32)
         else:
@@ -55,6 +73,7 @@ class User:
         self.uk = os.urandom(64); self.priv = rsa.generate_private_key(public_exponent=65537, key_size=2048)
         self.pub = self.priv.public_key().public_bytes(serialization.Encoding.DER, serialization.PublicFormat.SubjectPublicKeyInfo)
         tok = http("POST", "/identity/accounts/register/send-verification-email", {"email": self.email, "name": "FT"})
+        if not tok: tok = mailpit_token(self.email)  # SMTP enabled: token only arrives by mail
         body = {"email": self.email, "emailVerificationToken": tok, "masterPasswordHash": self.hash, "kdf": kdf,
                 "kdfIterations": self.it, "userSymmetricKey": enc(self.uk, stretch(self.mk)),
                 "userAsymmetricKeys": {"publicKey": b64(self.pub), "encryptedPrivateKey": enc(self.priv.private_bytes(
@@ -181,7 +200,9 @@ def _():
     oid, ok, oaep = org(); u, v = a(), b()
     r = u.api("POST", f"/api/organizations/{oid}/users/invite", {"emails": [v.email], "type": 2, "collections": [{"id": S["col"], "readOnly": True, "hidePasswords": False, "manage": False}], "accessAll": False, "permissions": {}, "groups": []})
     mem = next(m for m in u.api("GET", f"/api/organizations/{oid}/users")["data"] if m["email"] == v.email)
-    if mem["status"] == 0: v.api("POST", f"/api/organizations/{oid}/users/{mem['id']}/accept", {"token": "", "resetPasswordKey": None})
+    if mem["status"] == 0:
+        tok = urllib.parse.unquote(re.search(r"token=([^&\"'\s<]+)", mailpit(v.email, "Join")["Text"]).group(1)) if os.environ.get("KOMBOE_SMTP") else ""
+        v.api("POST", f"/api/organizations/{oid}/users/{mem['id']}/accept", {"token": tok, "resetPasswordKey": None})
     pk = u.api("GET", f"/api/users/{v.id}/public-key")["publicKey"]
     from cryptography.hazmat.primitives.serialization import load_der_public_key
     u.api("POST", f"/api/organizations/{oid}/users/{mem['id']}/confirm", {"key": "4." + b64(load_der_public_key(ub64(pk)).encrypt(ok, oaep))})

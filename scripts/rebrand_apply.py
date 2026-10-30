@@ -265,4 +265,18 @@ for p in [f"{D}/src/main.ts", f"{D}/src/app/app.component.ts",
 rw(f"{C}/apps/web/src/connectors/duo-redirect.ts", lambda t: t.replace('const mobileDesktopCallback = "bitwarden://duo-callback";',
    'const mobileDesktopCallback = "komboe://duo-callback";'))
 
+# 11. Phase G: email notifications carry no Vaultwarden/Bitwarden names (footer link, sender name, invite text)
+T = f"{S}/src/static/templates/email"
+rw(f"{T}/email_footer_text.hbs", lambda t: t.replace("Github: https://github.com/dani-garcia/vaultwarden", "Komboe: https://komboe.com"))
+rw(f"{T}/email_footer.hbs", lambda t: t.replace('href="https://github.com/dani-garcia/vaultwarden"', 'href="https://komboe.com"').replace('alt="GitHub"', 'alt="Komboe"'))
+for f in ("invite_accepted.hbs", "invite_accepted.html.hbs"):
+    rw(f"{T}/{f}", lambda t: t.replace("the vaultwarden server", "the Komboe server"))
+rw(f"{S}/src/config.rs", lambda t: t.replace('invitation_org_name:    String, true,   def,    "Vaultwarden".to_owned();', 'invitation_org_name:    String, true,   def,    "Komboe".to_owned();')
+   .replace('smtp_from_name:                String, true,   def,     "Vaultwarden".to_owned();', 'smtp_from_name:                String, true,   def,     "Komboe".to_owned();'))
+
+_mg = f"{S}/src/static/images/mail-github.png"   # footer icon -> Komboe mark (was GitHub octocat)
+if os.path.exists(f"{B}/favicon/pwa-192.png"):
+    from PIL import Image
+    Image.open(f"{B}/favicon/pwa-192.png").convert("RGBA").resize((60, 60), Image.LANCZOS).save(_mg)
+
 print(f"rebrand: {len(changed)} files changed")

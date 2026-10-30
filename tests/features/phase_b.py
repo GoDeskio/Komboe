@@ -3,6 +3,7 @@
 from cryptography.hazmat.primitives.serialization import load_der_public_key
 
 OAEP = apad.OAEP(mgf=apad.MGF1(hashes.SHA1()), algorithm=hashes.SHA1(), label=None)
+here = os.path.dirname(os.path.abspath(__file__))
 ART = os.environ.get("KOMBOE_ARTIFACTS", "/workspace/artifacts")
 
 def mkorg(u, name="Fam"):
@@ -17,7 +18,11 @@ def mkorg(u, name="Fam"):
 def add_member(owner, oid, ok, v, typ=2):
     owner.api("POST", f"/api/organizations/{oid}/users/invite", {"emails": [v.email], "type": typ, "collections": [], "accessAll": False, "permissions": {}, "groups": []})
     mem = next(m for m in owner.api("GET", f"/api/organizations/{oid}/users")["data"] if m["email"] == v.email)
-    if mem["status"] == 0: v.api("POST", f"/api/organizations/{oid}/users/{mem['id']}/accept", {"token": "", "resetPasswordKey": None})
+    if mem["status"] == 0:
+        tok = ""
+        if os.environ.get("KOMBOE_SMTP"):  # mail enabled: the accept token only arrives in the invite email
+            b = mailpit(v.email, "Join"); tok = urllib.parse.unquote(re.search(r"token=([^&\"'\s<]+)", b["Text"] + b["HTML"]).group(1))
+        v.api("POST", f"/api/organizations/{oid}/users/{mem['id']}/accept", {"token": tok, "resetPasswordKey": None})
     pk = owner.api("GET", f"/api/users/{v.id}/public-key")["publicKey"]
     owner.api("POST", f"/api/organizations/{oid}/users/{mem['id']}/confirm", {"key": "4." + b64(load_der_public_key(ub64(pk)).encrypt(ok, OAEP))})
     return mem["id"]

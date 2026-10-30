@@ -81,6 +81,18 @@
   "hiddenNetwork": {
     "message": "Hidden network"
   },
+  "typeBookmark": {
+    "message": "Bookmark"
+  },
+  "typeBookmarkSubtitle": {
+    "message": "Saved web address"
+  },
+  "bookmarkDetails": {
+    "message": "Bookmark"
+  },
+  "bookmarkUrl": {
+    "message": "URL"
+  },
   "typeLoginSubtitle": {
     "message": "Website or app"
   },
@@ -388,6 +400,18 @@
   "viewItemHeaderWifi": {
     "message": "View Wi-Fi",
     "description": "Header for view Wi-Fi item"
+  },
+  "addItemHeaderBookmark": {
+    "message": "Add bookmark",
+    "description": "Header for new bookmark item"
+  },
+  "editItemHeaderBookmark": {
+    "message": "Edit bookmark",
+    "description": "Header for edit bookmark item"
+  },
+  "viewItemHeaderBookmark": {
+    "message": "View bookmark",
+    "description": "Header for view bookmark item"
   },
   "editItemHeaderSecureNote": {
     "message": "Edit secure note",

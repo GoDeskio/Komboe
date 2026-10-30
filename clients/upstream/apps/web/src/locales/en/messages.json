@@ -1195,6 +1195,18 @@
   "hiddenNetwork": {
     "message": "Hidden network"
   },
+  "typeBookmark": {
+    "message": "Bookmark"
+  },
+  "typeBookmarkSubtitle": {
+    "message": "Saved web address"
+  },
+  "bookmarkDetails": {
+    "message": "Bookmark"
+  },
+  "bookmarkUrl": {
+    "message": "URL"
+  },
   "folders": {
     "message": "Folders"
   },
@@ -1504,6 +1516,10 @@
     "message": "Add Wi-Fi",
     "description": "Header for new Wi-Fi item"
   },
+  "addItemHeaderBookmark": {
+    "message": "Add bookmark",
+    "description": "Header for new bookmark item"
+  },
   "newItemHeaderTextSendV2": {
     "message": "New text",
     "description": "Header for new text send"
@@ -1552,6 +1568,10 @@
     "message": "Edit Wi-Fi",
     "description": "Header for edit Wi-Fi item"
   },
+  "editItemHeaderBookmark": {
+    "message": "Edit bookmark",
+    "description": "Header for edit bookmark item"
+  },
   "editItemHeaderTextSendV2": {
     "message": "Edit text",
     "description": "Header for edit text send"
@@ -1599,6 +1619,10 @@
   "viewItemHeaderWifi": {
     "message": "View Wi-Fi",
     "description": "Header for view Wi-Fi item"
+  },
+  "viewItemHeaderBookmark": {
+    "message": "View bookmark",
+    "description": "Header for view bookmark item"
   },
   "viewItemHeaderLoginSentenceCase": {
     "message": "View login",

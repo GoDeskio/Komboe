@@ -52,7 +52,7 @@ import {
   DIALOG_CIPHER_MENU_ITEMS,
 } from "@bitwarden/common/vault/types/cipher-menu-items";
 import { CipherViewLikeUtils } from "@bitwarden/common/vault/utils/cipher-view-like-utils";
-import { KOMBOE_WIFI_TYPE } from "@bitwarden/common/vault/utils/komboe-wifi";
+import { isKomboeMenuTemplate } from "@bitwarden/common/vault/utils/komboe-wifi";
 import { BitwardenIcon, ChipFilterOption } from "@bitwarden/components";
 import { Vfo1TerminologyService } from "@bitwarden/vault";
 
@@ -300,7 +300,7 @@ export class VaultPopupListFiltersService {
 
       return cipherMenuItems
         .filter((item) => {
-          if (item.type === KOMBOE_WIFI_TYPE) {
+          if (isKomboeMenuTemplate(item.type)) {
             return false;
           }
           const restriction = restrictedTypes.find((r) => r.cipherType === item.type);

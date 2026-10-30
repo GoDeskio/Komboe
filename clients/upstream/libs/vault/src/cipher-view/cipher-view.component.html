@@ -92,13 +92,17 @@
     <app-wifi-view [cipher]="cipher()!"></app-wifi-view>
   }
 
+  @if (hasBookmark()) {
+    <app-bookmark-view [cipher]="cipher()!"></app-bookmark-view>
+  }
+
   <!-- ADDITIONAL OPTIONS -->
   @if (cipher()?.notes) {
     <app-additional-options [notes]="cipher()!.notes"> </app-additional-options>
   }
 
   <!-- CUSTOM FIELDS -->
-  @if (cipher()?.hasFields && !hasWifi()) {
+  @if (cipher()?.hasFields && !hasWifi() && !hasBookmark()) {
     <app-custom-fields-v2 [cipher]="cipher()"> </app-custom-fields-v2>
   }
 

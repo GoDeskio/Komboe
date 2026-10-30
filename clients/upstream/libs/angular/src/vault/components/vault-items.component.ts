@@ -26,7 +26,7 @@ import {
   CIPHER_MENU_ITEMS,
   DIALOG_CIPHER_MENU_ITEMS,
 } from "@bitwarden/common/vault/types/cipher-menu-items";
-import { KOMBOE_WIFI_TYPE } from "@bitwarden/common/vault/utils/komboe-wifi";
+import { isKomboeMenuTemplate } from "@bitwarden/common/vault/utils/komboe-wifi";
 import {
   CipherViewLike,
   CipherViewLikeUtils,
@@ -65,7 +65,7 @@ export class VaultItemsComponent<C extends CipherViewLike> implements OnDestroy 
       const availableMenuItems = newItemTypesEnabled ? DIALOG_CIPHER_MENU_ITEMS : CIPHER_MENU_ITEMS;
       // Filter out restricted and feature-flagged item types
       return availableMenuItems.filter((itemType) => {
-        if (itemType.type === KOMBOE_WIFI_TYPE) {
+        if (isKomboeMenuTemplate(itemType.type)) {
           return false;
         }
         return !restrictedItemTypes.some(

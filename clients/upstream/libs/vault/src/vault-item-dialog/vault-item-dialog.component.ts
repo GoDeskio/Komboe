@@ -35,7 +35,12 @@ import { CipherService } from "@bitwarden/common/vault/abstractions/cipher.servi
 import { PremiumUpgradePromptService } from "@bitwarden/common/vault/abstractions/premium-upgrade-prompt.service";
 import { ViewPasswordHistoryService } from "@bitwarden/common/vault/abstractions/view-password-history.service";
 import { CipherType } from "@bitwarden/common/vault/enums";
-import { isKomboeWifi, KOMBOE_WIFI_TYPE } from "@bitwarden/common/vault/utils/komboe-wifi";
+import {
+  isKomboeBookmark,
+  isKomboeWifi,
+  KOMBOE_BOOKMARK_TYPE,
+  KOMBOE_WIFI_TYPE,
+} from "@bitwarden/common/vault/utils/komboe-wifi";
 import { CipherData } from "@bitwarden/common/vault/models/data/cipher.data";
 import { Cipher } from "@bitwarden/common/vault/models/domain/cipher";
 import { CipherView } from "@bitwarden/common/vault/models/view/cipher.view";
@@ -708,6 +713,7 @@ export class VaultItemDialogComponent implements OnInit, OnDestroy {
         [CipherType.DriversLicense]: "viewItemHeaderLicense",
         [CipherType.Passport]: "viewItemHeaderPassport",
         [KOMBOE_WIFI_TYPE]: "viewItemHeaderWifi",
+        [KOMBOE_BOOKMARK_TYPE]: "viewItemHeaderBookmark",
       },
       new: {
         [CipherType.Login]: "addItemHeaderLogin",
@@ -721,6 +727,7 @@ export class VaultItemDialogComponent implements OnInit, OnDestroy {
         [CipherType.DriversLicense]: "addItemHeaderDriversLicense",
         [CipherType.Passport]: "addItemHeaderPassport",
         [KOMBOE_WIFI_TYPE]: "addItemHeaderWifi",
+        [KOMBOE_BOOKMARK_TYPE]: "addItemHeaderBookmark",
       },
       edit: {
         [CipherType.Login]: "editItemHeaderLoginSentenceCase",
@@ -734,11 +741,17 @@ export class VaultItemDialogComponent implements OnInit, OnDestroy {
         [CipherType.DriversLicense]: "editItemHeaderLicense",
         [CipherType.Passport]: "editItemHeaderPassport",
         [KOMBOE_WIFI_TYPE]: "editItemHeaderWifi",
+        [KOMBOE_BOOKMARK_TYPE]: "editItemHeaderBookmark",
       },
     };
     let type = this.cipher?.type ?? this.formConfig.cipherType;
     if (this.formConfig?.cipherType === KOMBOE_WIFI_TYPE || isKomboeWifi(this.cipher)) {
       type = KOMBOE_WIFI_TYPE;
+    } else if (
+      this.formConfig?.cipherType === KOMBOE_BOOKMARK_TYPE ||
+      isKomboeBookmark(this.cipher)
+    ) {
+      type = KOMBOE_BOOKMARK_TYPE;
     }
     let mode: "view" | "edit" | "new" = "view";
 

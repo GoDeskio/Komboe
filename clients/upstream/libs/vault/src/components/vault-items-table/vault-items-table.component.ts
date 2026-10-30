@@ -29,7 +29,7 @@ import { CipherType } from "@bitwarden/common/vault/enums";
 import { TreeNode } from "@bitwarden/common/vault/models/domain/tree-node";
 import { FolderView } from "@bitwarden/common/vault/models/view/folder.view";
 import { DIALOG_CIPHER_MENU_ITEMS } from "@bitwarden/common/vault/types/cipher-menu-items";
-import { KOMBOE_WIFI_TYPE } from "@bitwarden/common/vault/utils/komboe-wifi";
+import { isKomboeMenuTemplate } from "@bitwarden/common/vault/utils/komboe-wifi";
 import {
   CipherViewLike,
   CipherViewLikeUtils,
@@ -145,7 +145,7 @@ const SEARCH_FILTER_KEY = "search";
  * step as types are added.
  */
 const CIPHER_TYPE_MENU_ITEMS = DIALOG_CIPHER_MENU_ITEMS.filter(
-  (item) => item.type !== KOMBOE_WIFI_TYPE,
+  (item) => !isKomboeMenuTemplate(item.type),
 );
 
 const ALL_CIPHER_TYPES: CipherType[] = CIPHER_TYPE_MENU_ITEMS.map((item) => item.type);

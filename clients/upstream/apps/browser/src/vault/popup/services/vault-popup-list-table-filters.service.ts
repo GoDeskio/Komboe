@@ -42,7 +42,7 @@ import {
   DIALOG_CIPHER_MENU_ITEMS,
 } from "@bitwarden/common/vault/types/cipher-menu-items";
 import { CipherViewLikeUtils } from "@bitwarden/common/vault/utils/cipher-view-like-utils";
-import { KOMBOE_WIFI_TYPE } from "@bitwarden/common/vault/utils/komboe-wifi";
+import { isKomboeMenuTemplate } from "@bitwarden/common/vault/utils/komboe-wifi";
 import { getNestedFolderTree } from "@bitwarden/common/vault/utils/folder-utils";
 import { ChipFilterOption, getAvatarDefaultColor } from "@bitwarden/components";
 import { idString, MY_VAULT, NO_FOLDER, orgIconTile, personalIconTile } from "@bitwarden/vault";
@@ -302,7 +302,7 @@ export class VaultPopupListTableFiltersService {
       const cipherMenuItems = allowNewItemTypes ? DIALOG_CIPHER_MENU_ITEMS : CIPHER_MENU_ITEMS;
       return cipherMenuItems
         .filter((item) => {
-          if (item.type === KOMBOE_WIFI_TYPE || !presentTypes.has(item.type)) {
+          if (isKomboeMenuTemplate(item.type) || !presentTypes.has(item.type)) {
             return false;
           }
           const restriction = restrictedTypes.find((r) => r.cipherType === item.type);

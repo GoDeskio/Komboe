@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#0B1F3A"><title>Komboe Family &amp; Company</title>
+<link rel="stylesheet" href="family-console.css"></head>
+<body>
+<header><span class="logo">Komboe</span> <span>Family &amp; Company console</span> <a href="/">Back to vault</a></header>
+<main>
+<section id="login" class="card"><h2>Unlock</h2>
+<p class="hint">Your master password is used only in this browser to derive the login hash (PBKDF2). The server never gets it, and admins never get vault keys.</p>
+<form id="loginForm"><label>Email <input id="email" type="email" required autocomplete="username"></label>
+<label>Master password <input id="password" type="password" required autocomplete="current-password"></label>
+<button type="submit">Log in</button></form><p id="loginErr" class="err"></p></section>
+<section id="app" hidden>
+<div class="card"><h2>Your organizations</h2><div id="orgs"></div>
+<form id="newOrgForm" class="row"><input id="newOrgName" placeholder="New family name" required><select id="newOrgKind"><option value="family">Family</option><option value="company">Company</option></select><button>Create</button></form>
+<p class="hint">New organizations are created here with keys generated in your browser (WebCrypto) and wrapped to your public key.</p></div>
+<div id="orgView" class="card" hidden><h2 id="orgTitle"></h2>
+<h3>Plan</h3><form id="planForm" class="row"><select id="planKind"><option value="family">Family</option><option value="company">Company</option></select>
+<label>Seats <input id="planSeats" type="number" min="1" max="10000"></label><label>Price per member (cents) <input id="planPrice" type="number" min="0"></label><button>Save plan</button></form>
+<p id="planInfo" class="hint"></p><p id="quote" class="hint"></p>
+<h3>Members</h3><p class="hint">Admins see account details only. Member vaults are end-to-end encrypted and cannot be read here.</p>
+<table id="members"><thead><tr><th>Email</th><th>Name</th><th>Role</th><th>Status</th><th>2FA</th><th>Personal items</th><th>Vault readable</th></tr></thead><tbody></tbody></table>
+<h3>Split-off requests</h3><table id="splits"><thead><tr><th>Member</th><th>Note</th><th>Status</th><th></th></tr></thead><tbody></tbody></table>
+<form id="splitForm" class="row"><input id="splitNote" placeholder="Why do you want to start your own family?"><button>Request split-off</button></form>
+<p id="orgMsg" class="err"></p></div>
+<div id="mine" class="card" hidden><h2>My split-off requests</h2><table id="mySplits"><tbody></tbody></table></div>
+</section></main>
+<script src="family-console.js"></script></body></html>

@@ -10,7 +10,7 @@ rw(f"{S}/app/build.gradle.kts", lambda t: t.replace('applicationId = "com.x8bit.
    .replace('archivesName.set("com.x8bit.bitwarden")', 'archivesName.set("io.komboe.android")')
    .replace('            applicationIdSuffix = ".dev"\n', ''))
 for p in glob.glob(f"{S}/app/src/*/res/values/strings_non_localized.xml"):
-    rw(p, lambda t: re.sub(r'(name="app_name"[^>]*>)Bitwarden( Beta| Dev)?<', r'\1Komboe\2<', t))
+    rw(p, lambda t: re.sub(r'(name="app_name"[^>]*>)(?:Bitwarden|Komboe)( Beta| Dev)?<', r"\1Komboe<", t))
 for p in glob.glob(f"{S}/app/src/main/res/values*/strings.xml"):
     rw(p, lambda t: "".join(l if re.search(r"copyright|licen[cs]e|bitwarden\.com|@", l, re.I) else re.sub(r"\bBitwarden\b", "Komboe", l) for l in t.splitlines(True)))
 try:

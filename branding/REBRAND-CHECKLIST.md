@@ -15,3 +15,9 @@
   altered by `scripts/rebrand_apply.py`). A separate "Komboe" product line is shown beside it. Decide the final footer wording.
 - Android: built from bitwarden/android (GPL-3.0) with the Bitwarden SDK (`com.bitwarden:sdk-android`, from sdk-internal,
   GPL-3.0 per the npm package of the same source). Confirm before distribution.
+
+## Phase C branding gaps (closed)
+- Server picker (extension/desktop): Bitwarden cloud regions (bitwarden.com/.eu) are no longer offered; label reads "Choose your Komboe server" until a self-hosted URL is saved. Web vault on self-host already hides its region selector.
+- Autofill inline menu / notification icons: upstream blue #175DDC -> Komboe violet #6D4AFF.
+- Android debug build label: "Komboe" (was "Komboe Dev").
+- Still open: the inline-menu button glyph is the upstream shield *shape* (now violet); replace with the padlock-K glyph (shape locked) in a follow-up.

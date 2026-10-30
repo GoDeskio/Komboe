@@ -84,9 +84,7 @@ pub fn routes() -> Vec<Route> {
         delete_group,
         bulk_delete_groups,
         get_group_members,
-        put_reset_password_enrollment,
-        get_reset_password_details,
-        put_recover_account,
+        // Komboe: account recovery / admin password reset routes removed (zero-knowledge, no escrow).
         get_org_export,
         post_api_key,
         rotate_api_key,
@@ -2042,6 +2040,11 @@ async fn put_policy(
     // Now that groups are available we can enforce this option when wanted.
     // We put this behind a config option to prevent breaking current installation.
     // Maybe we want to enable this by default in the future, but currently it is disabled by default.
+    // Komboe: the Account Recovery (admin password reset) policy can never be enabled.
+    if pol_type_enum == OrgPolicyType::ResetPassword && data.enabled {
+        err!("Account recovery is not available in Komboe (zero-knowledge: no admin reset or key escrow).")
+    }
+
     if CONFIG.enforce_single_org_with_reset_pw_policy() {
         if pol_type_enum == OrgPolicyType::ResetPassword && data.enabled {
             let single_org_policy_enabled =
@@ -2787,6 +2790,7 @@ async fn get_organization_keys(org_id: OrganizationId, headers: OrgMemberHeaders
 
 // Will allow to reset 2FA too
 // https://github.com/bitwarden/clients/blob/web-v2026.4.2/libs/admin-console/src/common/organization-user/models/requests/organization-user-reset-password.request.ts
+#[allow(dead_code)] // Komboe: route not mounted
 #[put("/organizations/<org_id>/users/<member_id>/recover-account", data = "<data>")]
 async fn put_recover_account(
     org_id: OrganizationId,
@@ -2887,6 +2891,7 @@ async fn recover_account(
     Ok(())
 }
 
+#[allow(dead_code)] // Komboe: route not mounted
 #[get("/organizations/<org_id>/users/<member_id>/reset-password-details")]
 async fn get_reset_password_details(
     org_id: OrganizationId,
@@ -2960,6 +2965,7 @@ async fn check_reset_password_applicable(org_id: &OrganizationId, conn: &DbConn)
     Ok(())
 }
 
+#[allow(dead_code)] // Komboe: route not mounted
 #[put("/organizations/<org_id>/users/<user_id>/reset-password-enrollment", data = "<data>")]
 async fn put_reset_password_enrollment(
     org_id: OrganizationId,

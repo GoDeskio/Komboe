@@ -21,7 +21,7 @@
     "message": "所有關鍵應用程式"
   },
   "appLogoLabel": {
-    "message": "Bitwarden logo"
+    "message": "Komboe logo"
   },
   "criticalApplications": {
     "message": "關鍵應用程式"
@@ -236,7 +236,7 @@
     "message": "追蹤整個團隊的改善情況"
   },
   "membersAreAutomaticallyNotified": {
-    "message": "成員會在 Bitwarden 擴充功能中自動收到高風險密碼通知，無需額外催促。"
+    "message": "成員會在 Komboe 擴充功能中自動收到高風險密碼通知，無需額外催促。"
   },
   "importYourOrgDataToGetStarted": {
     "message": "匯入組織資料以開始使用"
@@ -399,7 +399,7 @@
     }
   },
   "membersWillReceiveSecurityTask": {
-    "message": "您組織的成員將被指派變更高風險密碼的任務。他們會在 Bitwarden 瀏覽器擴充套件中收到通知。"
+    "message": "您組織的成員將被指派變更高風險密碼的任務。他們會在 Komboe 瀏覽器擴充套件中收到通知。"
   },
   "membersAtRiskCount": {
     "message": "$COUNT$ 位有風險的成員",
@@ -847,10 +847,10 @@
     "message": "無縫兩步驟驗證"
   },
   "totpHelper": {
-    "message": "Bitwarden 可以儲存並填入兩步驟驗證碼。複製金鑰並貼上到此欄位。"
+    "message": "Komboe 可以儲存並填入兩步驟驗證碼。複製金鑰並貼上到此欄位。"
   },
   "totpHelperWithCapture": {
-    "message": "Bitwarden 可以儲存並填入兩步驟驗證碼。選擇相機圖示來截取此網站的驗證器QR code，或手動複製金鑰並貼上到此欄位。"
+    "message": "Komboe 可以儲存並填入兩步驟驗證碼。選擇相機圖示來截取此網站的驗證器QR code，或手動複製金鑰並貼上到此欄位。"
   },
   "totpCapture": {
     "message": "從目前網頁掃描驗證器二維碼"
@@ -2209,7 +2209,7 @@
     "message": "使用裝置登入"
   },
   "loginWithDeviceEnabledNote": {
-    "message": "必須先在 Bitwarden 應用程式設定中開啟後，才可以使用裝置登入。要改用其他選項嗎？"
+    "message": "必須先在 Komboe 應用程式設定中開啟後，才可以使用裝置登入。要改用其他選項嗎？"
   },
   "needAnotherOptionV1": {
     "message": "需要另一個選項嗎？"
@@ -2326,7 +2326,7 @@
     "message": "建立帳戶"
   },
   "newToBitwarden": {
-    "message": "第一次使用 Bitwarden？"
+    "message": "第一次使用 Komboe？"
   },
   "setAStrongPassword": {
     "message": "設定一個強密碼"
@@ -2344,7 +2344,7 @@
     "message": "登入"
   },
   "loginPageEmailEntryScreenTitle": {
-    "message": "登入 Bitwarden"
+    "message": "登入 Komboe"
   },
   "enterTheCodeSentToYourEmail": {
     "message": "輸入傳送到您電子郵件信箱的驗證碼"
@@ -2374,7 +2374,7 @@
     "message": "什麼是裝置？"
   },
   "aDeviceIs": {
-    "message": "裝置是您登入 Bitwarden 應用程式的唯一安裝環境。重新安裝、清除應用程式資料或清除 Cookie 可能導致裝置出現多次。"
+    "message": "裝置是您登入 Komboe 應用程式的唯一安裝環境。重新安裝、清除應用程式資料或清除 Cookie 可能導致裝置出現多次。"
   },
   "logInInitiated": {
     "message": "登入已發起"
@@ -2681,7 +2681,7 @@
     "message": "通知已傳送至您的裝置。"
   },
   "notificationSentDevicePart1": {
-    "message": "在你的裝置或其他裝置上解鎖 Bitwarden "
+    "message": "在你的裝置或其他裝置上解鎖 Komboe "
   },
   "accessAttemptBy": {
     "message": "來自 $EMAIL$ 的存取嘗試",
@@ -2705,7 +2705,7 @@
     "message": "在核准前請確保您的指紋短語與下面完全相符。"
   },
   "notificationSentDeviceComplete": {
-    "message": "在您的裝置上解鎖 Bitwarden。批准前請確認指紋短語與下方所示相符。"
+    "message": "在您的裝置上解鎖 Komboe。批准前請確認指紋短語與下方所示相符。"
   },
   "aNotificationWasSentToYourDevice": {
     "message": "已傳送通知至您的裝置"
@@ -2766,7 +2766,7 @@
     "message": "驗證器應用程式"
   },
   "authenticatorAppDescV2": {
-    "message": "輸入驗證器應用程式產生的驗證碼，例如 Bitwarden 驗證器。",
+    "message": "輸入驗證器應用程式產生的驗證碼，例如 Komboe 驗證器。",
     "description": "'Bitwarden Authenticator' is a product name and should not be translated."
   },
   "yubiKeyTitleV2": {
@@ -2919,7 +2919,7 @@
     "message": "將使用您帳戶的加密金鑰來加密匯出的資料，若您更新了帳戶的加密金鑰，請重新匯出，否則將無法解密匯出的檔案。"
   },
   "encExportAccountWarningDesc": {
-    "message": "每個 Bitwarden 使用者帳戶的帳戶加密金鑰都不相同，因此無法將已加密匯出的檔案匯入至不同帳戶中。"
+    "message": "每個 Komboe 使用者帳戶的帳戶加密金鑰都不相同，因此無法將已加密匯出的檔案匯入至不同帳戶中。"
   },
   "exportNoun": {
     "message": "匯出",
@@ -3008,10 +3008,10 @@
     "message": "此 KeePass 資料庫過大，無法匯入。"
   },
   "accountRestrictedOptionDescription": {
-    "message": "使用衍生自您帳戶的使用者名稱與主密碼的加密金鑰，加密此匯出檔案，並限制只能匯入到目前的 Bitwarden 帳戶。"
+    "message": "使用衍生自您帳戶的使用者名稱與主密碼的加密金鑰，加密此匯出檔案，並限制只能匯入到目前的 Komboe 帳戶。"
   },
   "passwordProtectedOptionDescription": {
-    "message": "設定一組檔案密碼來加密匯出的資料，並使用此密碼解密以匯入至任意 Bitwarden 帳戶。"
+    "message": "設定一組檔案密碼來加密匯出的資料，並使用此密碼解密以匯入至任意 Komboe 帳戶。"
   },
   "exportTypeHeading": {
     "message": "匯出類型"
@@ -3182,7 +3182,7 @@
     "message": "等待請求"
   },
   "logBackInOthersToo": {
-    "message": "請重新登入。若您還在使用其他 Bitwarden 應用程式，也請登出後再重新登入。"
+    "message": "請重新登入。若您還在使用其他 Komboe 應用程式，也請登出後再重新登入。"
   },
   "changeMasterPassword": {
     "message": "變更主密碼"
@@ -3215,7 +3215,7 @@
     }
   },
   "kdfIterationsWarning": {
-    "message": "若將 KDF 迭代次數設定太高會導致在 CPU 較慢的裝置上登入（與解鎖）Bitwarden 時降低效能。我們建議您以 $INCREMENT$ 的增量值遞增並在所有的裝置上測試。",
+    "message": "若將 KDF 迭代次數設定太高會導致在 CPU 較慢的裝置上登入（與解鎖）Komboe 時降低效能。我們建議您以 $INCREMENT$ 的增量值遞增並在所有的裝置上測試。",
     "placeholders": {
       "increment": {
         "content": "$1",
@@ -3261,10 +3261,10 @@
     "message": "啟用新裝置登入保護"
   },
   "turnOffNewDeviceLoginProtectionModalDesc": {
-    "message": "請在下方繼續操作，以關閉 Bitwarden 在您從新裝置登入時發送的驗證電子郵件。"
+    "message": "請在下方繼續操作，以關閉 Komboe 在您從新裝置登入時發送的驗證電子郵件。"
   },
   "turnOnNewDeviceLoginProtectionModalDesc": {
-    "message": "請在下方繼續操作，以啟用 Bitwarden 在您從新裝置登入時發送的驗證電子郵件。"
+    "message": "請在下方繼續操作，以啟用 Komboe 在您從新裝置登入時發送的驗證電子郵件。"
   },
   "turnOffNewDeviceLoginProtectionWarning": {
     "message": "當新裝置登入保護關閉時，任何知道您主密碼的人都可以從任何裝置存取您的帳號。若要在不使用驗證電子郵件的情況下保護帳號，請設定兩步驟登入。"
@@ -3707,7 +3707,7 @@
     "message": "Secure by design"
   },
   "importDataSecureByDesignBody": {
-    "message": "End-to-end encrypted handoff. Bitwarden never sees your $VENDOR$ login details.",
+    "message": "End-to-end encrypted handoff. Komboe never sees your $VENDOR$ login details.",
     "placeholders": {
       "vendor": {
         "content": "$1",
@@ -3858,7 +3858,7 @@
     "description": "Followed by a literal filename (my_passwords.json) rendered as code."
   },
   "importGnomeInstructionsFileHere": {
-    "message": "檔案到 Bitwarden。",
+    "message": "檔案到 Komboe。",
     "description": "Follows the my_passwords.json filename."
   },
   "importPasswordagentInstructions": {
@@ -3991,7 +3991,7 @@
     "message": "網域規則"
   },
   "domainRulesDesc": {
-    "message": "如果您在多個不同網站使用相同的登入資料，您可以將這些網站標記為「通用」。Bitwarden 會為您設定 「全域」域名。"
+    "message": "如果您在多個不同網站使用相同的登入資料，您可以將這些網站標記為「通用」。Komboe 會為您設定 「全域」域名。"
   },
   "globalEqDomains": {
     "message": "全域通用網域"
@@ -4039,7 +4039,7 @@
     "message": "爲您的組織啟用兩步驟登入。"
   },
   "twoStepLoginEnterpriseDescStart": {
-    "message": "要為成員實施 Bitwarden 兩步驟登入選項，請使用 ",
+    "message": "要為成員實施 Komboe 兩步驟登入選項，請使用 ",
     "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enforce Bitwarden Two-step Login options for members by using the Two-step Login Policy.'"
   },
   "twoStepLoginPolicy": {
@@ -4052,7 +4052,7 @@
     "message": "如果您已經設定好或計畫要使用 SSO 登入，兩步驟登入可能已經由您的身分提供機關開啟。"
   },
   "twoStepLoginRecoveryWarning": {
-    "message": "啟用兩步驟登入可能會將您永久鎖定在您的 Bitwarden 帳戶外。如果您無法正常使用兩步驟登入方式（例如，您遺失了裝置），則可以使用復原碼存取您的帳戶。 如果您失去帳戶的存取權限，Bitwarden 也無法幫助您。所以我們建議您記下或列印復原碼，並將其妥善保存。"
+    "message": "啟用兩步驟登入可能會將您永久鎖定在您的 Komboe 帳戶外。如果您無法正常使用兩步驟登入方式（例如，您遺失了裝置），則可以使用復原碼存取您的帳戶。 如果您失去帳戶的存取權限，Komboe 也無法幫助您。所以我們建議您記下或列印復原碼，並將其妥善保存。"
   },
   "restrictedItemTypePolicy": {
     "message": "移除付款卡項目類型"
@@ -4074,7 +4074,7 @@
     "message": "由於一或多個組織設有政策，您無法匯入支付卡至您的密碼庫。"
   },
   "yourSingleUseRecoveryCode": {
-    "message": "您的單次使用恢復碼可用於在失去兩步驟登入提供者存取權時關閉兩步驟登入。Bitwarden 建議您將恢復碼寫下並妥善保管。"
+    "message": "您的單次使用恢復碼可用於在失去兩步驟登入提供者存取權時關閉兩步驟登入。Komboe 建議您將恢復碼寫下並妥善保管。"
   },
   "viewRecoveryCode": {
     "message": "檢視復原碼"
@@ -4172,13 +4172,13 @@
     }
   },
   "continueToExternalUrlDesc": {
-    "message": "您將離開 Bitwarden 並在新視窗開啟外部網站。"
+    "message": "您將離開 Komboe 並在新視窗開啟外部網站。"
   },
   "twoStepContinueToBitwardenUrlTitle": {
-    "message": "繼續前往 bitwarden.com？"
+    "message": "繼續前往 komboe.com？"
   },
   "twoStepContinueToBitwardenUrlDesc": {
-    "message": "您可以使用 Bitwarden 驗證器儲存驗證器金鑰，並為兩步驟驗證流程產生 TOTP 代碼。前往 bitwarden.com 網站以了解更多資訊。"
+    "message": "您可以使用 Komboe 驗證器儲存驗證器金鑰，並為兩步驟驗證流程產生 TOTP 代碼。前往 komboe.com 網站以了解更多資訊。"
   },
   "twoStepAuthenticatorScanCodeV2": {
     "message": "使用驗證應用程式掃描下方的 QR 碼，或輸入金鑰。"
@@ -4220,7 +4220,7 @@
     "message": "儲存表單"
   },
   "twoFactorYubikeyWarning": {
-    "message": "由於平台限制，無法於所有 Bitwarden 應用程式中使用 YubiKey。請開啟另一套兩步驟登入方式，以確保可在 YubiKey 無法使用時還能存取您的帳戶。支援的平台有："
+    "message": "由於平台限制，無法於所有 Komboe 應用程式中使用 YubiKey。請開啟另一套兩步驟登入方式，以確保可在 YubiKey 無法使用時還能存取您的帳戶。支援的平台有："
   },
   "twoFactorYubikeySupportUsb": {
     "message": "具有 USB 連接埠的電腦上的網頁版密碼庫、桌面應用程式、命令列介面以及所有瀏覽器擴充套件均可使用您的 YubiKey 。"
@@ -4271,7 +4271,7 @@
     "message": "停用全部鑰匙"
   },
   "twoFactorDuoDesc": {
-    "message": "請輸入來自您的 Duo 管理面板的 Bitwarden 應用程式資訊。"
+    "message": "請輸入來自您的 Duo 管理面板的 Komboe 應用程式資訊。"
   },
   "twoFactorDuoClientId": {
     "message": "用戶端 ID"
@@ -4322,7 +4322,7 @@
     "message": "儲存表單"
   },
   "twoFactorU2fWarning": {
-    "message": "由於平台限制，無法於所有 Bitwarden 應用程式中使用 FIDO U2F。請開啟另一套兩步驟登入方式，以確保 FIDO U2F 無法使用時還能存取您的帳戶。支援的平台有："
+    "message": "由於平台限制，無法於所有 Komboe 應用程式中使用 FIDO U2F。請開啟另一套兩步驟登入方式，以確保 FIDO U2F 無法使用時還能存取您的帳戶。支援的平台有："
   },
   "twoFactorU2fSupportWeb": {
     "message": "桌上型電腦/筆記型電腦上支援 U2F 的瀏覽器（啟用了 FIDO U2F 的 Chrome、Opera、Vivaldi 或 Firefox）中的網頁版密碼庫和瀏覽器擴充套件。"
@@ -4337,7 +4337,7 @@
     "message": "讀取安全鑰匙時發生問題。請再試一次。"
   },
   "twoFactorRecoveryYourCode": {
-    "message": "您的 Bitwarden 兩步驟登入復原碼"
+    "message": "您的 Komboe 兩步驟登入復原碼"
   },
   "twoFactorRecoveryNoCode": {
     "message": "您目前尚未啟用任何兩步驟登入方式。啟用後，即可回到此處取得復原碼。"
@@ -4390,7 +4390,7 @@
     "message": "未設定兩步驟登入"
   },
   "inactive2faReportDesc": {
-    "message": "兩步驟登入為您的帳戶增加了一層保護。使用 Bitwarden 驗證器或使用其他方法為這些帳戶啟用兩步驟登入。"
+    "message": "兩步驟登入為您的帳戶增加了一層保護。使用 Komboe 驗證器或使用其他方法為這些帳戶啟用兩步驟登入。"
   },
   "inactive2faFound": {
     "message": "發現未啟用 2FA 的登入"
@@ -4427,7 +4427,7 @@
     "message": "以及"
   },
   "passkeyLoginReportHowToUse": {
-    "message": "如何在 Bitwarden 中使用通行金鑰。"
+    "message": "如何在 Komboe 中使用通行金鑰。"
   },
   "passkeyLoginFound": {
     "message": "支援通行金鑰的登入項目"
@@ -4695,7 +4695,7 @@
     }
   },
   "bitwardenFamiliesPlan": {
-    "message": "Bitwarden 家庭計劃。"
+    "message": "Komboe 家庭計劃。"
   },
   "addons": {
     "message": "附加項目"
@@ -4894,7 +4894,7 @@
     "message": "如果您現在取消，您的存取權限將持續至"
   },
   "churnOfferPreambleSuffix": {
-    "message": "。但作為長期支持 Bitwarden 的用戶，我們想先提供您一項專屬優惠。"
+    "message": "。但作為長期支持 Komboe 的用戶，我們想先提供您一項專屬優惠。"
   },
   "churnOfferDiscountHeading": {
     "message": "訂閱享有 $DISCOUNT$ 折扣",
@@ -4907,7 +4907,7 @@
     }
   },
   "churnOfferDiscountBody": {
-    "message": "感謝您長期支持 Bitwarden，我們提供您下一個 $DURATION$ 服務期間享有 $DISCOUNT$ 折扣。",
+    "message": "感謝您長期支持 Komboe，我們提供您下一個 $DURATION$ 服務期間享有 $DISCOUNT$ 折扣。",
     "description": "Body copy on the churn-mitigation offer card. DISCOUNT = discount amount; DURATION = service duration (e.g. 'year' or '6 months')",
     "placeholders": {
       "discount": {
@@ -4969,7 +4969,7 @@
     }
   },
   "churnOfferDiscountBodyRecurringAmount": {
-    "message": "感謝您長期支持 Bitwarden，我們提供您在接下來的 $DURATION$ 期間，每個 $INTERVAL$ 可折抵 $AMOUNT$。",
+    "message": "感謝您長期支持 Komboe，我們提供您在接下來的 $DURATION$ 期間，每個 $INTERVAL$ 可折抵 $AMOUNT$。",
     "description": "Body copy on the churn-mitigation offer card for a fixed-amount discount that repeats each billing period. AMOUNT = discount amount (e.g. '$15.00'); INTERVAL = billing interval unit (e.g. 'month'); DURATION = discount duration (e.g. 'year' or '6 months')",
     "placeholders": {
       "amount": {
@@ -5418,7 +5418,7 @@
     }
   },
   "trialThankYou": {
-    "message": "感謝您申請 Bitwarden for $PLAN$！",
+    "message": "感謝您申請 Komboe for $PLAN$！",
     "placeholders": {
       "plan": {
         "content": "$1",
@@ -5427,7 +5427,7 @@
     }
   },
   "trialSecretsManagerThankYou": {
-    "message": "感謝您申請 Bitwarden 機密管理 $PLAN$！",
+    "message": "感謝您申請 Komboe 機密管理 $PLAN$！",
     "placeholders": {
       "plan": {
         "content": "$1",
@@ -5563,7 +5563,7 @@
     "message": "SSO 外部 ID"
   },
   "ssoExternalIdDesc": {
-    "message": "SSO 外部 ID 是 Bitwarden 與您設定的 SSO 提供者之間的一個未加密參考。"
+    "message": "SSO 外部 ID 是 Komboe 與您設定的 SSO 提供者之間的一個未加密參考。"
   },
   "nestCollectionUnder": {
     "message": "將集合嵌套在"
@@ -5617,13 +5617,13 @@
     "message": "邀請"
   },
   "inviteUserDesc": {
-    "message": "在下方輸入 Bitwarden 帳戶的電子郵件位址，以邀請新使用者加入您的組織。若他們沒有 Bitwarden 帳戶，系統將提示他們建立新帳戶。"
+    "message": "在下方輸入 Komboe 帳戶的電子郵件位址，以邀請新使用者加入您的組織。若他們沒有 Komboe 帳戶，系統將提示他們建立新帳戶。"
   },
   "inviteUserDescription": {
     "message": "在下方輸入電子郵件地址，以邀請新使用者加入您的組織。"
   },
   "inviteUserDescSharedFolders": {
-    "message": "在下方輸入新使用者的 Bitwarden 帳戶電子郵件地址，以邀請其加入您的組織保管庫。如果對方尚未擁有 Bitwarden 帳戶，系統會提示其建立新帳戶。",
+    "message": "在下方輸入新使用者的 Komboe 帳戶電子郵件地址，以邀請其加入您的組織保管庫。如果對方尚未擁有 Komboe 帳戶，系統會提示其建立新帳戶。",
     "description": "VFO1 (shared folder terminology) variant of inviteUserDesc, shown when the vfo1-foundation flag is enabled."
   },
   "inviteMultipleEmailDesc": {
@@ -5766,10 +5766,10 @@
     "message": "CLI 命令列介面"
   },
   "bitWebVault": {
-    "message": "Bitwarden 網頁版密碼庫"
+    "message": "Komboe 網頁版密碼庫"
   },
   "bitSecretsManager": {
-    "message": "Bitwarden Secrets Manager"
+    "message": "Komboe Secrets Manager"
   },
   "loggedIn": {
     "message": "已登入"
@@ -7082,7 +7082,7 @@
     "message": "按一下此處來新增付款方式。"
   },
   "freeTrialSalesAssistedContactRep": {
-    "message": "請聯絡您的 Bitwarden 業務代表以設定帳單。"
+    "message": "請聯絡您的 Komboe 業務代表以設定帳單。"
   },
   "joinOrganization": {
     "message": "加入組織"
@@ -7115,7 +7115,7 @@
     "message": "返回註冊"
   },
   "joinOrganizationDesc": {
-    "message": "您已被邀請加入以上組織。若想接受邀請，您需要登入或建立新的 Bitwarden 帳戶。"
+    "message": "您已被邀請加入以上組織。若想接受邀請，您需要登入或建立新的 Komboe 帳戶。"
   },
   "finishJoiningThisOrganizationBySettingAMasterPassword": {
     "message": "設定主密碼以完成加入這個組織"
@@ -7256,10 +7256,10 @@
     "message": "如果您的帳戶存在，我們將傳送一封包含詳細指示的電子郵件。"
   },
   "deleteRecoverConfirmDesc": {
-    "message": "您已要求刪除您的 Bitwarden 帳戶。請點選下方的按鈕確認。"
+    "message": "您已要求刪除您的 Komboe 帳戶。請點選下方的按鈕確認。"
   },
   "deleteRecoverOrgConfirmDesc": {
-    "message": "您已要求刪除您的 Bitwarden 組織。"
+    "message": "您已要求刪除您的 Komboe 組織。"
   },
   "myOrganization": {
     "message": "我的組織"
@@ -7593,7 +7593,7 @@
     }
   },
   "updateEncryptionKeyWarning": {
-    "message": "更新加密金鑰後，您需要登出並重新登入目前使用的所有 Bitwarden 應用程式（如行動應用程式或瀏覽器擴充套件）。登出和重新登入（這會下載新的加密金鑰）失敗可能會導致資料損毀。我們將嘗試自動登出，但可能會有所延遲。"
+    "message": "更新加密金鑰後，您需要登出並重新登入目前使用的所有 Komboe 應用程式（如行動應用程式或瀏覽器擴充套件）。登出和重新登入（這會下載新的加密金鑰）失敗可能會導致資料損毀。我們將嘗試自動登出，但可能會有所延遲。"
   },
   "updateEncryptionKeyAccountExportWarning": {
     "message": "您保存的任何受限制匯出帳號將失效。"
@@ -7629,7 +7629,7 @@
     "message": "您未選取任何内容。"
   },
   "receiveMarketingEmails": {
-    "message": "在您的收件匣中接收來自 Bitwarden 的更新資訊。"
+    "message": "在您的收件匣中接收來自 Komboe 的更新資訊。"
   },
   "subscribe": {
     "message": "訂閱"
@@ -7730,7 +7730,7 @@
     "message": "將連結複製並貼到團隊找得到的地方，例如新人到職檢查清單、Slack #new-joiners 頻道、Notion 文件或電子郵件範本。"
   },
   "viewBitwardenOnboardingGuide": {
-    "message": "查看 Bitwarden 新手指南"
+    "message": "查看 Komboe 新手指南"
   },
   "coachMarkStepOfTotal": {
     "message": "$CURRENT$ / $TOTAL$",
@@ -7974,7 +7974,7 @@
     "message": "API 金鑰"
   },
   "apiKeyDesc": {
-    "message": "您的 API 金鑰可用於驗證 Bitwarden 公用 API。"
+    "message": "您的 API 金鑰可用於驗證 Komboe 公用 API。"
   },
   "apiKeyRotateDesc": {
     "message": "輪換 API 金鑰將使前一份金鑰失效。若您認為目前的金鑰不再安全，您可以輪換您的 API 金鑰。"
@@ -7983,7 +7983,7 @@
     "message": "您的 API 金鑰擁有對組織的完整存取權限，請儲存在安全的地方。"
   },
   "userApiKeyDesc": {
-    "message": "您的 API 金鑰可用於在 Bitwarden CLI 中進行身分驗證。"
+    "message": "您的 API 金鑰可用於在 Komboe CLI 中進行身分驗證。"
   },
   "userApiKeyWarning": {
     "message": "您的 API 金鑰是另一套替代的身分驗證機制，請儲存在安全的地方。"
@@ -8333,7 +8333,7 @@
     "description": "VFO1 terminology variant of 'singleOrgPolicyDescV2'"
   },
   "singleOrgBlockCreateMessage": {
-    "message": "您目前的組織原則不允許您加入多個組織。請聯絡您的組織管理員或從其他 Bitwarden 帳戶註冊。"
+    "message": "您目前的組織原則不允許您加入多個組織。請聯絡您的組織管理員或從其他 Komboe 帳戶註冊。"
   },
   "singleOrgPolicyMemberWarning": {
     "message": "不符合規範的成員將被置於撤銷狀態，直到他們離開所有其他組織。管理員不受此限制，並可在符合規範後恢復成員資格。"
@@ -8584,7 +8584,7 @@
     "message": "遇到問題嗎？請下載並將診斷報告分享給"
   },
   "bitwardenSupport": {
-    "message": "Bitwarden 支援團隊",
+    "message": "Komboe 支援團隊",
     "description": "Link text that follows the troubleshooting description sentence. 'Bitwarden' should not be translated."
   },
   "download": {
@@ -8645,7 +8645,7 @@
     "message": "編輯緊急聯絡人"
   },
   "inviteEmergencyContactDesc": {
-    "message": "透過在下方輸入他們的 Bitwarden 帳戶的電子郵件地址，來邀請新的緊急聯絡人。若他們還沒有 Bitwarden 帳戶，系統將提示他們建立新帳戶。"
+    "message": "透過在下方輸入他們的 Komboe 帳戶的電子郵件地址，來邀請新的緊急聯絡人。若他們還沒有 Komboe 帳戶，系統將提示他們建立新帳戶。"
   },
   "emergencyAccessRecoveryInitiated": {
     "message": "緊急存取已發起"
@@ -8684,7 +8684,7 @@
     "message": "已邀請使用者。"
   },
   "acceptEmergencyAccess": {
-    "message": "您已被邀請成為上述使用者的緊急聯絡人。要接受邀請，您需要登入或建立新的 Bitwarden 帳戶。"
+    "message": "您已被邀請成為上述使用者的緊急聯絡人。要接受邀請，您需要登入或建立新的 Komboe 帳戶。"
   },
   "emergencyInviteAcceptFailed": {
     "message": "無法接受邀請。請向使用者要求傳送新的邀請。"
@@ -8870,7 +8870,7 @@
     "message": "如何開啟自動使用者確認"
   },
   "autoConfirmExtension1": {
-    "message": "開啟你的 Bitwarden 瀏覽器擴充套件"
+    "message": "開啟你的 Komboe 瀏覽器擴充套件"
   },
   "autoConfirmExtension2": {
     "message": "選擇",
@@ -8881,7 +8881,7 @@
     "description": "This is a fragment of a larger sencence. The whole sentence will read: 'Select Turn on'"
   },
   "autoConfirmExtensionOpened": {
-    "message": "已成功開啟 Bitwarden 瀏覽器擴充套件。您現在可以啟用自動使用者確認設定。"
+    "message": "已成功開啟 Komboe 瀏覽器擴充套件。您現在可以啟用自動使用者確認設定。"
   },
   "autoConfirmPolicyEditDescription": {
     "message": "在管理員的裝置解鎖時，邀請到組織的新使用者將自動獲得確認。開啟此原則之前，請先閱讀並同意以下內容：",
@@ -9094,7 +9094,7 @@
     "description": "VFO1 terminology variant of 'uriMatchDetectionPolicyDesc', shown in the policies list"
   },
   "uriMatchDetectionPolicyDescV2": {
-    "message": "設定網站位址（URI）哪些部分必須相符，Bitwarden 才會建議可自動填入的登入項目。此政策不適用於擁有者與管理員。"
+    "message": "設定網站位址（URI）哪些部分必須相符，Komboe 才會建議可自動填入的登入項目。此政策不適用於擁有者與管理員。"
   },
   "uriMatchDetectionOptionsLabel": {
     "message": "預設 URI 相符偵測"
@@ -9253,7 +9253,7 @@
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendAccessTaglineProductDesc": {
-    "message": "Bitwarden Send 可以輕鬆、安全地向其他人傳輸敏感的暫存資訊。",
+    "message": "Komboe Send 可以輕鬆、安全地向其他人傳輸敏感的暫存資訊。",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendAccessTaglineLearnMore": {
@@ -9280,7 +9280,7 @@
     "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more, see how it works, **or** try it now.'"
   },
   "developmentDevOpsAndITTeamsChooseBWSecret": {
-    "message": "開發、DevOps 及 IT 團隊選擇 Bitwarden Secrets Manager 來安全管理和部署其基礎設施及機器憑證。"
+    "message": "開發、DevOps 及 IT 團隊選擇 Komboe Secrets Manager 來安全管理和部署其基礎設施及機器憑證。"
   },
   "centralizeSecretsManagement": {
     "message": "集中管理憑證。"
@@ -9316,10 +9316,10 @@
     "message": "新增備註"
   },
   "bitwardenSecretsManager": {
-    "message": "Bitwarden 密鑰管理"
+    "message": "Komboe 密鑰管理"
   },
   "moreProductsFromBitwarden": {
-    "message": "更多來自 Bitwarden 的產品"
+    "message": "更多來自 Komboe 的產品"
   },
   "requestAccessToSecretsManager": {
     "message": "請求存取 Secrets Manager"
@@ -9331,7 +9331,7 @@
     "message": "Secrets Manager 存取請求已透過電子郵件發送給管理員。"
   },
   "requestAccessSMDefaultEmailContent": {
-    "message": "您好，\n\n我想為我們的團隊申請 Bitwarden Secrets Manager 的訂閱，您的支援對我們非常重要！\n\nBitwarden Secrets Manager 是一套端對端加密的憑證管理解決方案，可安全地儲存、分享及部署機器憑證，例如 API 金鑰、資料庫密碼及驗證憑證。\n\nSecrets Manager 將協助我們：\n\n- 提升安全性\n- 精簡操作流程\n- 防止高成本的憑證外洩\n\n如需為我們的團隊申請免費試用，請聯絡 Bitwarden。\n\n感謝您的協助！"
+    "message": "您好，\n\n我想為我們的團隊申請 Komboe Secrets Manager 的訂閱，您的支援對我們非常重要！\n\nKomboe Secrets Manager 是一套端對端加密的憑證管理解決方案，可安全地儲存、分享及部署機器憑證，例如 API 金鑰、資料庫密碼及驗證憑證。\n\nSecrets Manager 將協助我們：\n\n- 提升安全性\n- 精簡操作流程\n- 防止高成本的憑證外洩\n\n如需為我們的團隊申請免費試用，請聯絡 Komboe。\n\n感謝您的協助！"
   },
   "giveMembersAccess": {
     "message": "授予成員存取權："
@@ -9365,7 +9365,7 @@
     "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more about Bitwarden Send or sign up to **try it today.**'"
   },
   "sendAccessCreatorIdentifier": {
-    "message": "Bitwarden 成員 $USER_IDENTIFIER$ 與您分享下列資訊",
+    "message": "Komboe 成員 $USER_IDENTIFIER$ 與您分享下列資訊",
     "placeholders": {
       "user_identifier": {
         "content": "$1",
@@ -9390,7 +9390,7 @@
     "description": "Toast message shown when a user clicks the resend code link on the Send access page. 'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "viewSendHiddenEmailWarning": {
-    "message": "建立此 Send 的 Bitwarden 使用者已選擇隱藏他們的電子郵件地址。在使用或下載此連結的內容之前，應確保您信任此連結的來源。",
+    "message": "建立此 Send 的 Komboe 使用者已選擇隱藏他們的電子郵件地址。在使用或下載此連結的內容之前，應確保您信任此連結的來源。",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "expirationDateIsInvalid": {
@@ -9762,10 +9762,10 @@
     "message": "解密發生錯誤"
   },
   "couldNotDecryptVaultItem": {
-    "message": "Bitwarden 無法解密下列密碼庫項目。請聯絡 Bitwarden 客戶支援，並提供下方的項目 ID，以確認是否能復原。"
+    "message": "Komboe 無法解密下列密碼庫項目。請聯絡 Komboe 客戶支援，並提供下方的項目 ID，以確認是否能復原。"
   },
   "couldNotDecryptVaultItems": {
-    "message": "Bitwarden 無法解密下列密碼庫項目。請聯絡 Bitwarden 客戶支援，並提供下方的項目 ID，以確認是否能復原。"
+    "message": "Komboe 無法解密下列密碼庫項目。請聯絡 Komboe 客戶支援，並提供下方的項目 ID，以確認是否能復原。"
   },
   "itemId": {
     "message": "項目 ID",
@@ -9788,7 +9788,7 @@
     "message": "提供者設定"
   },
   "setupProviderLoginDesc": {
-    "message": "已邀請您設定一個新的提供者。若要繼續，您需要登入或建立一個新的 Bitwarden 帳戶。"
+    "message": "已邀請您設定一個新的提供者。若要繼續，您需要登入或建立一個新的 Komboe 帳戶。"
   },
   "setupProviderDesc": {
     "message": "請在下方輸入詳細資訊以完成提供者設定。若您有任何問題，請聯絡客戶支援。"
@@ -9819,13 +9819,13 @@
     "message": "服務使用者可以存取和管理所有客戶組織。"
   },
   "providerInviteUserDesc": {
-    "message": "透過在下方輸入他們的 Bitwarden 帳戶電子郵件位址，來邀請新的使用者加入您的提供者。若他們還沒有 Bitwarden 帳戶，將提示他們建立新帳戶。"
+    "message": "透過在下方輸入他們的 Komboe 帳戶電子郵件位址，來邀請新的使用者加入您的提供者。若他們還沒有 Komboe 帳戶，將提示他們建立新帳戶。"
   },
   "joinProvider": {
     "message": "加入提供者"
   },
   "joinProviderDesc": {
-    "message": "您已受邀請加入上方所列的提供者。若想接受邀請，您需要登入或建立新的 Bitwarden 帳戶。"
+    "message": "您已受邀請加入上方所列的提供者。若想接受邀請，您需要登入或建立新的 Komboe 帳戶。"
   },
   "providerInviteAcceptFailed": {
     "message": "無法接受邀請。請要求提供者管理員傳送新的邀請。"
@@ -9977,7 +9977,7 @@
     "message": "工作階段逾時動作"
   },
   "sessionTimeoutSuppressedByConnectedDevice": {
-    "message": "由 Bitwarden 瀏覽器擴充功能管理。請開啟瀏覽器應用程式進行編輯。"
+    "message": "由 Komboe 瀏覽器擴充功能管理。請開啟瀏覽器應用程式進行編輯。"
   },
   "immediately": {
     "message": "立即"
@@ -10235,7 +10235,7 @@
     "message": "單一登入設定已儲存"
   },
   "sponsoredFamilies": {
-    "message": "免費的 Bitwarden 家庭方案"
+    "message": "免費的 Komboe 家庭方案"
   },
   "sponsoredBitwardenFamilies": {
     "message": "受贊助家庭"
@@ -10256,28 +10256,28 @@
     "message": "尚無非成員兌換贊助的 Families 方案。"
   },
   "sponsorshipFreeBitwardenFamilies": {
-    "message": "您組織的成員符合免費 Bitwarden 家庭方案資格。您可以為非 Bitwarden 組織成員的員工贊助免費 Bitwarden 家庭方案。贊助非成員需要您組織中有可用的座位。"
+    "message": "您組織的成員符合免費 Komboe 家庭方案資格。您可以為非 Komboe 組織成員的員工贊助免費 Komboe 家庭方案。贊助非成員需要您組織中有可用的座位。"
   },
   "sponsorshipFreeBitwardenFamiliesV2": {
-    "message": "您的成員符合兌換贊助 Families 方案的資格。您可以為非 Bitwarden 組織成員的員工贊助 Families 方案，但組織內必須有可用席位。"
+    "message": "您的成員符合兌換贊助 Families 方案的資格。您可以為非 Komboe 組織成員的員工贊助 Families 方案，但組織內必須有可用席位。"
   },
   "sponsoredFamiliesRemoveActiveSponsorship": {
     "message": "當您移除有效的贊助後，該座位將在受贊助組織的續訂日期後於您的組織中可用。"
   },
   "sponsoredFamiliesEligible": {
-    "message": "您與家庭成員可使用免費的 Bitwarden 家庭方案。就算不在上班時間，也可以使用您的私人電子郵件來兌換此方案，以保障您的資料安全。"
+    "message": "您與家庭成員可使用免費的 Komboe 家庭方案。就算不在上班時間，也可以使用您的私人電子郵件來兌換此方案，以保障您的資料安全。"
   },
   "sponsoredFamiliesEligibleV2": {
-    "message": "您和家人符合免費取得贊助 Families 方案的資格。請使用個人電子郵件地址兌換此方案，讓您的資料保持安全，並與 Bitwarden 工作帳戶分開。"
+    "message": "您和家人符合免費取得贊助 Families 方案的資格。請使用個人電子郵件地址兌換此方案，讓您的資料保持安全，並與 Komboe 工作帳戶分開。"
   },
   "sponsoredFamiliesEligibleCard": {
-    "message": "立即兌換您的免費 Bitwarden 家庭方案，即使不在上班時間也能夠保障您的資料安全。"
+    "message": "立即兌換您的免費 Komboe 家庭方案，即使不在上班時間也能夠保障您的資料安全。"
   },
   "sponsoredFamiliesIncludeMessage": {
-    "message": "Bitwarden 家庭方案內容包含"
+    "message": "Komboe 家庭方案內容包含"
   },
   "sponsoredFamiliesIncludeMessageV2": {
-    "message": "Bitwarden Families 方案包含"
+    "message": "Komboe Families 方案包含"
   },
   "sponsoredFamiliesPremiumAccess": {
     "message": "最多 6 位使用者的付費方案存取權限"
@@ -10298,7 +10298,7 @@
     "message": "已兌換家庭方案的成員將顯示於此"
   },
   "membersWithSponsoredFamilies": {
-    "message": "您組織的成員符合免費 Bitwarden 家庭方案資格。在此可查看已贊助家庭組織的成員。"
+    "message": "您組織的成員符合免費 Komboe 家庭方案資格。在此可查看已贊助家庭組織的成員。"
   },
   "organizationHasMemberMessage": {
     "message": "無法向 $EMAIL$ 發送贊助，因為他們是您組織的成員。",
@@ -10328,7 +10328,7 @@
     "message": "您想兌換哪一個免費家庭邀請呢？"
   },
   "sponsoredFamiliesEmail": {
-    "message": "輸入您的個人電子郵件以兌換 Bitwarden 家庭方案"
+    "message": "輸入您的個人電子郵件以兌換 Komboe 家庭方案"
   },
   "sponsoredFamiliesLeaveCopy": {
     "message": "如果您移除邀請或被贊助組織移除，您的家庭贊助將在下一個續費日逾期。"
@@ -10337,7 +10337,7 @@
     "message": "接受現有組織的邀請或建立一個新的家庭組織。"
   },
   "acceptSponsoredFamiliesPlanHelp": {
-    "message": "$ORGANIZATION$ 已為您贊助免費的 Bitwarden Families 方案！您可以將這個免費方案套用至現有家庭密碼庫，或建立新的家庭密碼庫。",
+    "message": "$ORGANIZATION$ 已為您贊助免費的 Komboe Families 方案！您可以將這個免費方案套用至現有家庭密碼庫，或建立新的家庭密碼庫。",
     "description": "Sponsored Families redemption page. The single 'or' is the approved copy.",
     "placeholders": {
       "organization": {
@@ -10347,11 +10347,11 @@
     }
   },
   "acceptSponsoredFamiliesPlanHelpNoOrg": {
-    "message": "您已獲得免費的 Bitwarden Families 贊助方案！您可以將這個免費方案套用至現有家庭密碼庫，或建立新的家庭密碼庫。",
+    "message": "您已獲得免費的 Komboe Families 贊助方案！您可以將這個免費方案套用至現有家庭密碼庫，或建立新的家庭密碼庫。",
     "description": "Fallback for the redemption page when the sponsoring organization name is unavailable. The single 'or' is the approved copy."
   },
   "setupSponsoredFamiliesLoginDesc": {
-    "message": "您已被邀請加入一個免費的 Bitwarden 家庭方案組織。若要繼續，您必須登入至接受邀請的帳戶。"
+    "message": "您已被邀請加入一個免費的 Komboe 家庭方案組織。若要繼續，您必須登入至接受邀請的帳戶。"
   },
   "sponsoredFamiliesAcceptFailed": {
     "message": "無法接受邀請。請透過您的企業帳戶重新傳送邀請郵件，然後再試一次。"
@@ -10366,7 +10366,7 @@
     }
   },
   "sponsoredFamiliesOffer": {
-    "message": "兌換免費的 Bitwarden 家庭方案"
+    "message": "兌換免費的 Komboe 家庭方案"
   },
   "acceptSponsoredFamiliesPlan": {
     "message": "接受贊助的 Families 方案"
@@ -10375,7 +10375,7 @@
     "message": "贊助方案詳細資料"
   },
   "sponsoredFamiliesOfferRedeemed": {
-    "message": "已成功兌換免費的 Bitwarden 家庭方案"
+    "message": "已成功兌換免費的 Komboe 家庭方案"
   },
   "redeemed": {
     "message": "已兌換"
@@ -10506,7 +10506,7 @@
     "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Connect login with SSO to your self-hosted decryption key server. Using this option, members won’t need to use their master passwords to decrypt vault data. The require SSO authentication and single organization policies are required to set up Key Connector decryption. Contact Bitwarden Support for set up assistance.'"
   },
   "memberDecryptionKeyConnectorDescEnd": {
-    "message": "以用於設定 Key Connector 解密。聯絡 Bitwarden 支援以取得設定協助。",
+    "message": "以用於設定 Key Connector 解密。聯絡 Komboe 支援以取得設定協助。",
     "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Connect login with SSO to your self-hosted decryption key server. Using this option, members won’t need to use their master passwords to decrypt vault data. The require SSO authentication and single organization policies are required to set up Key Connector decryption. Contact Bitwarden Support for set up assistance.'"
   },
   "keyConnectorPolicyRestriction": {
@@ -10616,7 +10616,7 @@
     "message": "自訂環境"
   },
   "selfHostedBaseUrlHint": {
-    "message": "指定您自架的 Bitwarden 伺服器的網域 URL。例如：https://bitwarden.company.com"
+    "message": "指定您自架的 Komboe 伺服器的網域 URL。例如：https://komboe.company.com"
   },
   "selfHostedCustomEnvHeader": {
     "message": "適用於進階設定。您可以單獨指定各個服務的網域 URL。"
@@ -10664,7 +10664,7 @@
     "message": "計費同步權杖"
   },
   "automaticBillingSyncDesc": {
-    "message": "自動同步可解鎖家庭贊助，並允許您在不上傳檔案的情況下同步授權。在 Bitwarden 雲端伺服器更新後，請選擇「同步授權」以套用更改。"
+    "message": "自動同步可解鎖家庭贊助，並允許您在不上傳檔案的情況下同步授權。在 Komboe 雲端伺服器更新後，請選擇「同步授權」以套用更改。"
   },
   "active": {
     "message": "生效中"
@@ -11027,11 +11027,11 @@
     }
   },
   "forwarderGeneratedBy": {
-    "message": "由 Bitwarden 產生。",
+    "message": "由 Komboe 產生。",
     "description": "Displayed with the address on the forwarding service's configuration screen."
   },
   "forwarderGeneratedByWithWebsite": {
-    "message": "網站：$WEBSITE$。由 Bitwarden 產生。",
+    "message": "網站：$WEBSITE$。由 Komboe 產生。",
     "description": "Displayed with the address on the forwarding service's configuration screen.",
     "placeholders": {
       "WEBSITE": {
@@ -12252,7 +12252,7 @@
     "message": "更多設定"
   },
   "moreFromBitwarden": {
-    "message": "來自 Bitwarden 的更多產品"
+    "message": "來自 Komboe 的更多產品"
   },
   "switchProducts": {
     "message": "切換產品"
@@ -13145,7 +13145,7 @@
     "message": "使用者在 TDE 離職流程中設定了主密碼。"
   },
   "startYour7DayFreeTrialOfBitwardenFor": {
-    "message": "為 $ORG$ 開始您的 Bitwarden 7 天免費試用",
+    "message": "為 $ORG$ 開始您的 Komboe 7 天免費試用",
     "placeholders": {
       "org": {
         "content": "$1",
@@ -13154,7 +13154,7 @@
     }
   },
   "startYour7DayFreeTrialOfBitwardenSecretsManagerFor": {
-    "message": "為 $ORG$ 開始您的 Bitwarden 機密管理 7 天免費試用",
+    "message": "為 $ORG$ 開始您的 Komboe 機密管理 7 天免費試用",
     "placeholders": {
       "org": {
         "content": "$1",
@@ -13559,7 +13559,7 @@
     "message": "開始使用您的保管庫"
   },
   "onboardingChecklistSubtitle": {
-    "message": "完成以下步驟，保護您的個人資料安全，並充分發揮 Bitwarden 的功能。"
+    "message": "完成以下步驟，保護您的個人資料安全，並充分發揮 Komboe 的功能。"
   },
   "dismissThisChecklist": {
     "message": "關閉此檢查清單"
@@ -13656,7 +13656,7 @@
     "description": "Label indicating the most common import formats"
   },
   "uriMatchDefaultStrategyHint": {
-    "message": "URI 相符偵測是 Bitwarden 用來判定自動填入建議的方式。",
+    "message": "URI 相符偵測是 Komboe 用來判定自動填入建議的方式。",
     "description": "Explains to the user that URI match detection determines how Bitwarden suggests autofill options, and clarifies that this default strategy applies when no specific match detection is set for a login item."
   },
   "regExAdvancedOptionWarning": {
@@ -13700,13 +13700,13 @@
     "message": "確認詳情"
   },
   "smFreeTrialThankYou": {
-    "message": "感謝您註冊 Bitwarden Secrets Manager！"
+    "message": "感謝您註冊 Komboe Secrets Manager！"
   },
   "smFreeTrialConfirmationEmail": {
     "message": "我們已向你的電子郵件地址傳送了一封確認電子郵件"
   },
   "sorryToSeeYouGo": {
-    "message": "很遺憾您要離開！請透過分享取消原因來協助改善 Bitwarden。",
+    "message": "很遺憾您要離開！請透過分享取消原因來協助改善 Komboe。",
     "description": "A message shown to users as part of an offboarding survey asking them to provide more information on their subscription cancelation."
   },
   "selectCancellationReason": {
@@ -14264,20 +14264,20 @@
     "message": "整合"
   },
   "integrationsDesc": {
-    "message": "自動將 Bitwarden 機密管理中的機密同步到第三方服務。"
+    "message": "自動將 Komboe 機密管理中的機密同步到第三方服務。"
   },
   "sdks": {
     "message": "軟體開發工具包"
   },
   "sdksDesc": {
-    "message": "使用 Bitwarden 機密管理軟體開發工具包於下列程式語言來建立你自己的應用程式。"
+    "message": "使用 Komboe 機密管理軟體開發工具包於下列程式語言來建立你自己的應用程式。"
   },
   "ssoDescStart": {
     "message": "設定",
     "description": "This represents the beginning of a sentence, broken up to include links. The full sentence will be 'Configure single sign-on for Bitwarden using the implementation guide for your Identity Provider."
   },
   "ssoDescEnd": {
-    "message": "於 Bitwarden，並依你的身分識別提供者的實作指南進行設定。",
+    "message": "於 Komboe，並依你的身分識別提供者的實作指南進行設定。",
     "description": "This represents the end of a sentence, broken up to include links. The full sentence will be 'Configure single sign-on for Bitwarden using the implementation guide for your Identity Provider."
   },
   "userProvisioning": {
@@ -14291,26 +14291,26 @@
     "description": "This represents the beginning of a sentence, broken up to include links. The full sentence will be 'Configure SCIM (System for Cross-domain Identity Management) to automatically provision users and groups to Bitwarden using the implementation guide for your Identity Provider"
   },
   "scimIntegrationDescEnd": {
-    "message": "（跨網域身分識別管理系統，SCIM），並依你的身分識別提供者的實作指南，自動將使用者與群組佈建到 Bitwarden。",
+    "message": "（跨網域身分識別管理系統，SCIM），並依你的身分識別提供者的實作指南，自動將使用者與群組佈建到 Komboe。",
     "description": "This represents the end of a sentence, broken up to include links. The full sentence will be 'Configure SCIM (System for Cross-domain Identity Management) to automatically provision users and groups to Bitwarden using the implementation guide for your Identity Provider"
   },
   "bwdc": {
-    "message": "Bitwarden 目錄連接器"
+    "message": "Komboe 目錄連接器"
   },
   "bwdcDesc": {
-    "message": "依你的身分識別提供者的實作指南，設定 Bitwarden 目錄連接器以自動佈建使用者與群組。"
+    "message": "依你的身分識別提供者的實作指南，設定 Komboe 目錄連接器以自動佈建使用者與群組。"
   },
   "eventManagement": {
     "message": "事件管理"
   },
   "eventManagementDesc": {
-    "message": "依你的平台實作指南，將 Bitwarden 的事件記錄整合至你的 SIEM（安全資訊與事件管理）系統。"
+    "message": "依你的平台實作指南，將 Komboe 的事件記錄整合至你的 SIEM（安全資訊與事件管理）系統。"
   },
   "deviceManagement": {
     "message": "裝置管理"
   },
   "deviceManagementDesc": {
-    "message": "依你的平台實作指南，為 Bitwarden 設定裝置管理。"
+    "message": "依你的平台實作指南，為 Komboe 設定裝置管理。"
   },
   "crowdstrikeEventIntegrationDesc": {
     "message": "將事件資料傳送至你的 Logscale 執行個體"
@@ -14532,22 +14532,22 @@
     "message": "從提供者入口網站管理計費"
   },
   "continueSettingUp": {
-    "message": "繼續設定 Bitwarden"
+    "message": "繼續設定 Komboe"
   },
   "continueSettingUpFreeTrial": {
-    "message": "繼續設定您的 Bitwarden 免費試用"
+    "message": "繼續設定您的 Komboe 免費試用"
   },
   "continueSettingUpPasswordManager": {
-    "message": "繼續設定您的 Bitwarden 密碼管理器"
+    "message": "繼續設定您的 Komboe 密碼管理器"
   },
   "continueSettingUpFreeTrialPasswordManager": {
-    "message": "繼續設定您的 Bitwarden 密碼管理器免費試用"
+    "message": "繼續設定您的 Komboe 密碼管理器免費試用"
   },
   "continueSettingUpSecretsManager": {
-    "message": "繼續設定您的 Bitwarden 機密管理免費試用"
+    "message": "繼續設定您的 Komboe 機密管理免費試用"
   },
   "continueSettingUpFreeTrialSecretsManager": {
-    "message": "繼續設定您的 Bitwarden 機密管理免費試用"
+    "message": "繼續設定您的 Komboe 機密管理免費試用"
   },
   "enterTeamsOrgInfo": {
     "message": "輸入您的團隊組織資訊"
@@ -14857,14 +14857,14 @@
     "description": "This will be displayed as part of a larger sentence. The whole sentence reads: 'Notice: Later this month, client vault privacy will be improved and provider members will no longer have direct access to client vault items. For questions, please contact Bitwarden support'."
   },
   "contactBitwardenSupport": {
-    "message": "請聯絡 Bitwarden 支援。",
+    "message": "請聯絡 Komboe 支援。",
     "description": "This will be displayed as part of a larger sentence. The whole sentence reads: 'Notice: Later this month, client vault privacy will be improved and provider members will no longer have direct access to client vault items. For questions, please contact Bitwarden support'. 'Bitwarden' should not be translated"
   },
   "sponsored": {
     "message": "贊助"
   },
   "licenseAndBillingManagementDesc": {
-    "message": "在 Bitwarden 雲端伺服器完成更新後，請上傳你的授權檔以套用最新變更。"
+    "message": "在 Komboe 雲端伺服器完成更新後，請上傳你的授權檔以套用最新變更。"
   },
   "addToFolder": {
     "message": "新增到資料夾"
@@ -14982,7 +14982,7 @@
     "message": "CVV 號碼是什麼？"
   },
   "learnMoreAboutApi": {
-    "message": "瞭解更多關於 Bitwarden API 的資訊"
+    "message": "瞭解更多關於 Komboe API 的資訊"
   },
   "fileSends": {
     "message": "檔案 Send"
@@ -15159,7 +15159,7 @@
     "message": "你的機密管理訂閱將依所選方案升級"
   },
   "bitwardenPasswordManager": {
-    "message": "Bitwarden 密碼管理工具"
+    "message": "Komboe 密碼管理工具"
   },
   "secretsManagerComplimentaryPasswordManager": {
     "message": "你贈送的一年期密碼管理器訂閱將升級至所選方案。在贈送期間結束前不會收費。"
@@ -15237,7 +15237,7 @@
     "description": "This represents the beginning of a sentence. The full sentence will be 'Manage subscription from the Provider Portal', but 'Provider Portal' will be a link and thus cannot be included in the translation file."
   },
   "toHostBitwardenOnYourOwnServer": {
-    "message": "若要在自己的伺服器上託管 Bitwarden，你需要上傳授權檔。為支援自建組織的免費家庭方案與進階計費功能，你需要在自建組織中設定自動同步。"
+    "message": "若要在自己的伺服器上託管 Komboe，你需要上傳授權檔。為支援自建組織的免費家庭方案與進階計費功能，你需要在自建組織中設定自動同步。"
   },
   "selfHostingTitleProper": {
     "message": "自架"
@@ -15361,7 +15361,7 @@
     "message": "刪除成功"
   },
   "freeFamiliesSponsorship": {
-    "message": "移除免費的 Bitwarden 家庭贊助"
+    "message": "移除免費的 Komboe 家庭贊助"
   },
   "freeFamiliesSponsorshipPolicyTitleV2": {
     "message": "移除贊助的 Families 方案"
@@ -15439,10 +15439,10 @@
     "message": "自動宣告網域"
   },
   "automaticDomainClaimProcess": {
-    "message": "Bitwarden 會在前 72 小時內嘗試宣告該網域 3 次。若無法宣告，請檢查主機上的 DNS 紀錄並手動宣告。若 7 天內仍未宣告，該網域將自你的組織移除。"
+    "message": "Komboe 會在前 72 小時內嘗試宣告該網域 3 次。若無法宣告，請檢查主機上的 DNS 紀錄並手動宣告。若 7 天內仍未宣告，該網域將自你的組織移除。"
   },
   "automaticDomainClaimProcess1": {
-    "message": "Bitwarden 將在 72 小時內嘗試宣告該網域。若無法成功宣告，請驗證您的 DNS 記錄並手動宣告。未被宣告的網域將於 7 天後移除。"
+    "message": "Komboe 將在 72 小時內嘗試宣告該網域。若無法成功宣告，請驗證您的 DNS 記錄並手動宣告。未被宣告的網域將於 7 天後移除。"
   },
   "automaticDomainClaimProcess2": {
     "message": "宣告完成後，系統將透過電子郵件通知使用已宣告網域的現有成員，關於"
@@ -15610,19 +15610,19 @@
     "message": "複製私密金鑰"
   },
   "openingExtension": {
-    "message": "正在開啟 Bitwarden 瀏覽器擴充套件"
+    "message": "正在開啟 Komboe 瀏覽器擴充套件"
   },
   "somethingWentWrong": {
     "message": "出了點問題..."
   },
   "openingExtensionError": {
-    "message": "開啟 Bitwarden 瀏覽器擴充套件時發生問題。請點擊按鈕立即開啟。"
+    "message": "開啟 Komboe 瀏覽器擴充套件時發生問題。請點擊按鈕立即開啟。"
   },
   "openExtension": {
     "message": "開啟擴充功能"
   },
   "doNotHaveExtension": {
-    "message": "尚未安裝 Bitwarden 瀏覽器擴充套件？"
+    "message": "尚未安裝 Komboe 瀏覽器擴充套件？"
   },
   "installExtension": {
     "message": "安裝擴充套件"
@@ -15631,7 +15631,7 @@
     "message": "已開啟瀏覽器擴充套件"
   },
   "openedExtensionViewAtRiskPasswords": {
-    "message": "已成功開啟 Bitwarden 瀏覽器擴充套件。你現在可以檢視風險密碼。"
+    "message": "已成功開啟 Komboe 瀏覽器擴充套件。你現在可以檢視風險密碼。"
   },
   "resellerRenewalWarningMsg": {
     "message": "你的訂閱即將續約。為確保服務不中斷，請於 $RENEWAL_DATE$ 前聯絡 $RESELLER$ 確認續約。",
@@ -15647,7 +15647,7 @@
     }
   },
   "resellerRenewalWarningMsgV2": {
-    "message": "您的訂閱即將續訂。為確保服務不中斷，請在 $RENEWAL_DATE$ 前聯絡您的 Bitwarden 供應商確認續訂。",
+    "message": "您的訂閱即將續訂。為確保服務不中斷，請在 $RENEWAL_DATE$ 前聯絡您的 Komboe 供應商確認續訂。",
     "placeholders": {
       "renewal_date": {
         "content": "$1",
@@ -15686,7 +15686,7 @@
     }
   },
   "resellerPastDueWarningMsgV2": {
-    "message": "您的訂閱發票尚未付款。為確保服務不中斷，請在 $GRACE_PERIOD_END$ 前聯絡您的 Bitwarden 供應商。",
+    "message": "您的訂閱發票尚未付款。為確保服務不中斷，請在 $GRACE_PERIOD_END$ 前聯絡您的 Komboe 供應商。",
     "placeholders": {
       "grace_period_end": {
         "content": "$1",
@@ -15838,7 +15838,7 @@
     "message": "升級以檢視你組織的事件記錄。"
   },
   "upgradeEventLogMessage": {
-    "message": "這些事件僅為範例，並不反映你 Bitwarden 組織內的真實事件。"
+    "message": "這些事件僅為範例，並不反映你 Komboe 組織內的真實事件。"
   },
   "viewEvents": {
     "message": "檢視事件"
@@ -16019,7 +16019,7 @@
     "message": "一鍵安全自動填入你的密碼"
   },
   "setupExtensionPageDescription": {
-    "message": "取得 Bitwarden 瀏覽器擴充套件，立刻開始自動填入"
+    "message": "取得 Komboe 瀏覽器擴充套件，立刻開始自動填入"
   },
   "getTheExtension": {
     "message": "取得擴充功能"
@@ -16037,19 +16037,19 @@
     "message": "改用網頁版"
   },
   "bitwardenExtensionInstalled": {
-    "message": "已安裝 Bitwarden 擴充套件！"
+    "message": "已安裝 Komboe 擴充套件！"
   },
   "bitwardenExtensionIsInstalled": {
-    "message": "已安裝 Bitwarden 擴充套件！"
+    "message": "已安裝 Komboe 擴充套件！"
   },
   "openExtensionToAutofill": {
     "message": "開啟擴充套件以登入並開始自動填入。"
   },
   "openBitwardenExtension": {
-    "message": "開啟 Bitwarden 擴充套件"
+    "message": "開啟 Komboe 擴充套件"
   },
   "gettingStartedWithBitwardenPart1": {
-    "message": "若想取得使用 Bitwarden 的入門技巧，請前往",
+    "message": "若想取得使用 Komboe 的入門技巧，請前往",
     "description": "This will be displayed as part of a larger sentence. The whole sentence reads: 'For tips on getting started with Bitwarden visit the Learning Center and Help Center'"
   },
   "gettingStartedWithBitwardenPart2": {
@@ -16061,7 +16061,7 @@
     "description": "This will be used as part of a larger sentence, broken up to include the Bitwarden icon. The full sentence will read 'If the extension didn't open, you may need to open Bitwarden from the icon [Bitwarden Icon] on the toolbar.'"
   },
   "openExtensionFromToolbarPart2": {
-    "message": "來開啟 Bitwarden。",
+    "message": "來開啟 Komboe。",
     "description": "This will be used as part of a larger sentence, broken up to include the Bitwarden icon. The full sentence will read 'If the extension didn't open, you may need to open Bitwarden from the icon [Bitwarden Icon] on the toolbar.'"
   },
   "gettingStartedWithBitwardenPart3": {
@@ -16069,7 +16069,7 @@
     "description": "This will be displayed as part of a larger sentence. The whole sentence reads: 'For tips on getting started with Bitwarden visit the Learning Center and Help Center'"
   },
   "setupExtensionContentAlt": {
-    "message": "透過 Bitwarden 瀏覽器擴充套件，你可以輕鬆建立新的登入、從瀏覽器工具列直接存取已儲存的登入，並使用 Bitwarden 自動填入快速登入帳號。"
+    "message": "透過 Komboe 瀏覽器擴充套件，你可以輕鬆建立新的登入、從瀏覽器工具列直接存取已儲存的登入，並使用 Komboe 自動填入快速登入帳號。"
   },
   "restart": {
     "message": "重新啟動"
@@ -16101,7 +16101,7 @@
     "message": "關於此設定"
   },
   "permitCipherDetailsDescription": {
-    "message": "Bitwarden 會使用已儲存的登入 URI 來判斷應顯示的圖示或變更密碼網址，以改善你的使用體驗。使用此服務時，不會收集或儲存任何資訊。"
+    "message": "Komboe 會使用已儲存的登入 URI 來判斷應顯示的圖示或變更密碼網址，以改善你的使用體驗。使用此服務時，不會收集或儲存任何資訊。"
   },
   "showQuickCopyActionsDetailsDescription": {
     "message": "在項目旁新增 3 個快速複製按鈕，將使用者名稱、密碼或驗證碼複製到剪貼簿。"
@@ -16171,7 +16171,7 @@
     }
   },
   "restoreProviderPortalAccessViaCustomerSupport": {
-    "message": "若要恢復存取你的供應商入口網站，請聯絡 Bitwarden 客戶支援以續約你的訂閱。",
+    "message": "若要恢復存取你的供應商入口網站，請聯絡 Komboe 客戶支援以續約你的訂閱。",
     "description": "A message shown in a non-dismissible dialog to any user of a suspended providers."
   },
   "restoreProviderPortalAccessViaPaymentMethod": {
@@ -16213,7 +16213,7 @@
     "message": "訂閱已取消"
   },
   "providersubCanceledmessage": {
-    "message": "若要重新訂閱，請聯絡 Bitwarden 客戶支援。"
+    "message": "若要重新訂閱，請聯絡 Komboe 客戶支援。"
   },
   "showAll": {
     "message": "顯示全部"
@@ -16356,7 +16356,7 @@
     "message": "自訂方案"
   },
   "planDescCustom": {
-    "message": "Bitwarden 可隨各種規模的企業擴展，以保護密碼與敏感資訊。若你屬於大型企業，請聯絡業務以索取報價。"
+    "message": "Komboe 可隨各種規模的企業擴展，以保護密碼與敏感資訊。若你屬於大型企業，請聯絡業務以索取報價。"
   },
   "builtInAuthenticator": {
     "message": "內建驗證器"
@@ -16473,7 +16473,7 @@
     "message": "計算你所在地區的稅額時發生錯誤。請再試一次。"
   },
   "individualUpgradeWelcomeMessage": {
-    "message": "歡迎使用 Bitwarden"
+    "message": "歡迎使用 Komboe"
   },
   "individualUpgradeDescriptionMessage": {
     "message": "升級進階版解鎖更多安全功能，或使用家庭方案開始分享項目"
@@ -16494,7 +16494,7 @@
     "message": "立即升級"
   },
   "getAdvancedOnlineSecurityWithBitwardenPremium": {
-    "message": "透過 Bitwarden Premium 取得進階線上安全防護。"
+    "message": "透過 Komboe Premium 取得進階線上安全防護。"
   },
   "formWillCreateNewFamiliesOrgMessage": {
     "message": "填寫此表單將建立新的家庭組織。你可以從管理主控台升級你的免費組織。"
@@ -16503,7 +16503,7 @@
     "message": "處理你的升級時發生錯誤。請再試一次。"
   },
   "bitwardenFreeplanMessage": {
-    "message": "你目前使用 Bitwarden 免費方案"
+    "message": "你目前使用 Komboe 免費方案"
   },
   "upgradeCompleteSecurity": {
     "message": "升級以獲得完整的安全防護"
@@ -16521,7 +16521,7 @@
     "message": "演算法"
   },
   "encryptionKeySettingsHowShouldWeEncryptYourData": {
-    "message": "選擇 Bitwarden 應如何加密你的密碼庫資料。所有選項都很安全，但更強的方法能提供更好的防護——特別是對抗暴力破解攻擊。對多數使用者，Bitwarden 建議使用預設設定。"
+    "message": "選擇 Komboe 應如何加密你的密碼庫資料。所有選項都很安全，但更強的方法能提供更好的防護——特別是對抗暴力破解攻擊。對多數使用者，Komboe 建議使用預設設定。"
   },
   "encryptionKeySettingsIncreaseImproveSecurity": {
     "message": "將上述數值提高到預設以上可以增進安全性，但也可能導致你的密碼庫解鎖時間變長。"
@@ -16552,10 +16552,10 @@
     "description": "VFO1 terminology variant of 'blockClaimedDomainAccountCreationDesc', shown in the policies list"
   },
   "blockClaimedDomainAccountCreationDescV2": {
-    "message": "禁止成員使用您已宣告的網域，在組織外建立 Bitwarden 帳戶。"
+    "message": "禁止成員使用您已宣告的網域，在組織外建立 Komboe 帳戶。"
   },
   "blockClaimedDomainAccountCreationDescV2Vfo1": {
-    "message": "禁止成員使用您已宣告的網域，在組織密碼庫之外建立 Bitwarden 帳戶。",
+    "message": "禁止成員使用您已宣告的網域，在組織密碼庫之外建立 Komboe 帳戶。",
     "description": "VFO1 terminology variant of 'blockClaimedDomainAccountCreationDescV2'"
   },
   "blockClaimedDomainAccountCreationPrerequisiteV2": {
@@ -16593,7 +16593,7 @@
     }
   },
   "removeMasterPasswordForOrgUserKeyConnector": {
-    "message": "您的組織已不再使用主密碼登入 Bitwarden。若要繼續，請驗證組織與網域。"
+    "message": "您的組織已不再使用主密碼登入 Komboe。若要繼續，請驗證組織與網域。"
   },
   "continueWithLogIn": {
     "message": "繼續登入"
@@ -16796,7 +16796,7 @@
     "message": "拒絕並離開"
   },
   "youHaveBitwardenPremium": {
-    "message": "您已擁有 Bitwarden 進階版"
+    "message": "您已擁有 Komboe 進階版"
   },
   "viewAndManagePremiumSubscription": {
     "message": "檢視並管理您的進階版訂閱"
@@ -16835,13 +16835,13 @@
     "message": "已經有訂閱了嗎？"
   },
   "alreadyHaveSubscriptionSelfHostedMessage": {
-    "message": "請在您的 Bitwarden 雲端帳號中開啟訂閱頁面並下載授權檔案，接著返回此畫面並於下方上傳。"
+    "message": "請在您的 Komboe 雲端帳號中開啟訂閱頁面並下載授權檔案，接著返回此畫面並於下方上傳。"
   },
   "alreadyHaveSubscriptionSelfHostedMessageV2": {
-    "message": "請在您的 Bitwarden 帳號中開啟訂閱頁面並下載授權檔案，接著返回此畫面並於下方上傳。"
+    "message": "請在您的 Komboe 帳號中開啟訂閱頁面並下載授權檔案，接著返回此畫面並於下方上傳。"
   },
   "alreadyHaveSubscriptionSelfHostedMessageV3": {
-    "message": "在您的雲端環境中登入 Bitwarden 帳戶，開啟訂閱頁面並下載授權檔案。接著返回此畫面並上傳該檔案。"
+    "message": "在您的雲端環境中登入 Komboe 帳戶，開啟訂閱頁面並下載授權檔案。接著返回此畫面並上傳該檔案。"
   },
   "viewAllPlans": {
     "message": "查看所有方案"
@@ -16927,10 +16927,10 @@
     "message": "取得擴充功能以輕鬆存取您的密碼庫"
   },
   "extensionPromptBody": {
-    "message": "安裝瀏覽器擴充功能後，您即可在各個網站使用 Bitwarden。它會自動填入密碼，讓您一鍵登入帳號。"
+    "message": "安裝瀏覽器擴充功能後，您即可在各個網站使用 Komboe。它會自動填入密碼，讓您一鍵登入帳號。"
   },
   "extensionPromptImageAlt": {
-    "message": "顯示 Bitwarden 擴充功能於目前網頁自動填入項目的瀏覽器畫面。"
+    "message": "顯示 Komboe 擴充功能於目前網頁自動填入項目的瀏覽器畫面。"
   },
   "skip": {
     "message": "略過"
@@ -16951,10 +16951,10 @@
     "message": "請以逗號分隔輸入多個電子郵件地址。"
   },
   "emailPlaceholder": {
-    "message": "user@bitwarden.com , user@acme.com"
+    "message": "user@komboe.com , user@acme.com"
   },
   "emailPlaceholderMultiple": {
-    "message": "user@bitwarden.com, user@acme.com"
+    "message": "user@komboe.com, user@acme.com"
   },
   "whenYouRemoveStorage": {
     "message": "當您移除儲存空間時，將會獲得按比例計算的帳戶抵扣金額，並自動套用至下一期帳單。"
@@ -16978,10 +16978,10 @@
     "message": "Send 密碼無效"
   },
   "vaultWelcomeDialogTitle": {
-    "message": "成功登入！歡迎使用 Bitwarden"
+    "message": "成功登入！歡迎使用 Komboe"
   },
   "vaultWelcomeDialogDescription": {
-    "message": "將您的所有密碼與個人資訊儲存在 Bitwarden 密碼庫中。我們將帶您快速導覽。"
+    "message": "將您的所有密碼與個人資訊儲存在 Komboe 密碼庫中。我們將帶您快速導覽。"
   },
   "vaultWelcomeDialogPrimaryCta": {
     "message": "開始導覽"
@@ -17203,7 +17203,7 @@
     "message": "Switch between products"
   },
   "coachmarkSwitchProductsDescription": {
-    "message": "Click to see other Bitwarden products you have access to, or discover new products and plans."
+    "message": "Click to see other Komboe products you have access to, or discover new products and plans."
   },
   "coachmarkVaultListTitle": {
     "message": "All your vaults in one place"
@@ -17239,7 +17239,7 @@
     "message": "協助成員改善"
   },
   "aiCoachmarkHelpMembersDescription": {
-    "message": "選取關鍵應用程式後，提示成員變更高風險密碼。他們將在 Bitwarden 擴充功能中收到通知。"
+    "message": "選取關鍵應用程式後，提示成員變更高風險密碼。他們將在 Komboe 擴充功能中收到通知。"
   },
   "aiCoachmarkRunReportTitle": {
     "message": "掌握最新風險"
@@ -18247,7 +18247,7 @@
     "message": "付款成功"
   },
   "paymentSuccessfulProcessingMessage": {
-    "message": "您的升級正在處理中，可能需要幾分鐘後才會在 Bitwarden 中看到 Premium 功能。"
+    "message": "您的升級正在處理中，可能需要幾分鐘後才會在 Komboe 中看到 Premium 功能。"
   },
   "planPurchased": {
     "message": "方案已購買"
@@ -18452,7 +18452,7 @@
     "message": "服務帳戶按比例計算的費用"
   },
   "newExperienceDialogTitle": {
-    "message": "Bitwarden 有了新外觀",
+    "message": "Komboe 有了新外觀",
     "description": "Title of the dialog that introduces the redesigned vault to existing users."
   },
   "newExperienceDialogDesc": {

@@ -21,7 +21,7 @@
     "message": "All critical apps"
   },
   "appLogoLabel": {
-    "message": "Bitwarden-logo"
+    "message": "Komboe-logo"
   },
   "criticalApplications": {
     "message": "Kritiske programmer"
@@ -236,7 +236,7 @@
     "message": "Track improvements across your team"
   },
   "membersAreAutomaticallyNotified": {
-    "message": "Members are automatically notified of at-risk passwords in their Bitwarden extension. No chasing required."
+    "message": "Members are automatically notified of at-risk passwords in their Komboe extension. No chasing required."
   },
   "importYourOrgDataToGetStarted": {
     "message": "Import your org data to get started"
@@ -399,7 +399,7 @@
     }
   },
   "membersWillReceiveSecurityTask": {
-    "message": "Members of your organization will be assigned a task to change vulnerable passwords. They’ll receive a notification within their Bitwarden browser extension."
+    "message": "Members of your organization will be assigned a task to change vulnerable passwords. They’ll receive a notification within their Komboe browser extension."
   },
   "membersAtRiskCount": {
     "message": "$COUNT$ members at-risk",
@@ -847,10 +847,10 @@
     "message": "Gjør 2-trinnsbekreftelse sømløs"
   },
   "totpHelper": {
-    "message": "Bitwarden can store and fill 2-step verification codes. Copy and paste the key into this field."
+    "message": "Komboe can store and fill 2-step verification codes. Copy and paste the key into this field."
   },
   "totpHelperWithCapture": {
-    "message": "Bitwarden can store and fill 2-step verification codes. Select the camera icon to take a screenshot of this website's authenticator QR code, or copy and paste the key into this field."
+    "message": "Komboe can store and fill 2-step verification codes. Select the camera icon to take a screenshot of this website's authenticator QR code, or copy and paste the key into this field."
   },
   "totpCapture": {
     "message": "Scan authenticator QR code from current webpage"
@@ -2209,7 +2209,7 @@
     "message": "Logg på med enhet"
   },
   "loginWithDeviceEnabledNote": {
-    "message": "Logg på med enhet må settes opp i Bitwarden-innstillingene. Trenger du et annet alternativ?"
+    "message": "Logg på med enhet må settes opp i Komboe-innstillingene. Trenger du et annet alternativ?"
   },
   "needAnotherOptionV1": {
     "message": "Trenger du et annet alternativ?"
@@ -2326,7 +2326,7 @@
     "message": "Opprett en konto"
   },
   "newToBitwarden": {
-    "message": "Er du ny til Bitwarden?"
+    "message": "Er du ny til Komboe?"
   },
   "setAStrongPassword": {
     "message": "Velg et sterkt passord"
@@ -2344,7 +2344,7 @@
     "message": "Logg på"
   },
   "loginPageEmailEntryScreenTitle": {
-    "message": "Logg inn på Bitwarden"
+    "message": "Logg inn på Komboe"
   },
   "enterTheCodeSentToYourEmail": {
     "message": "Skriv inn koden du har fått tilsendt på e-post"
@@ -2374,7 +2374,7 @@
     "message": "What is a device?"
   },
   "aDeviceIs": {
-    "message": "A device is a unique installation of the Bitwarden app where you have logged in. Reinstalling, clearing app data, or clearing your cookies could result in a device appearing multiple times."
+    "message": "A device is a unique installation of the Komboe app where you have logged in. Reinstalling, clearing app data, or clearing your cookies could result in a device appearing multiple times."
   },
   "logInInitiated": {
     "message": "Pålogging startet"
@@ -2681,7 +2681,7 @@
     "message": "Et varsel har blitt sendt til enheten din."
   },
   "notificationSentDevicePart1": {
-    "message": "Unlock Bitwarden on your device or on the "
+    "message": "Unlock Komboe on your device or on the "
   },
   "accessAttemptBy": {
     "message": "Access attempt by $EMAIL$",
@@ -2705,7 +2705,7 @@
     "message": "Make sure the Fingerprint phrase matches the one below before approving."
   },
   "notificationSentDeviceComplete": {
-    "message": "Unlock Bitwarden on your device. Make sure the Fingerprint phrase matches the one below before approving."
+    "message": "Unlock Komboe on your device. Make sure the Fingerprint phrase matches the one below before approving."
   },
   "aNotificationWasSentToYourDevice": {
     "message": "Et varsel ble sendt til enheten din"
@@ -2766,7 +2766,7 @@
     "message": "Autentiseringsapp"
   },
   "authenticatorAppDescV2": {
-    "message": "Skriv inn en kode generert av en autentiseringsapp som Bitwarden Authenticator.",
+    "message": "Skriv inn en kode generert av en autentiseringsapp som Komboe Authenticator.",
     "description": "'Bitwarden Authenticator' is a product name and should not be translated."
   },
   "yubiKeyTitleV2": {
@@ -2919,7 +2919,7 @@
     "message": "Denne eksporteringen krypterer dataene dine ved hjelp av din kontos krypteringsnøkkel. Hvis du noen gang endrer krypteringsnøkkelen til kontoen din, bør du eksportere dataene igjen, ettersom du da ikke vil kunne dekryptere denne eksportfilen."
   },
   "encExportAccountWarningDesc": {
-    "message": "Kontokrypteringsnøkler er unike for hver Bitwarden sin brukerkonto, og du kan ikke importere en kryptert eksport til en annen konto."
+    "message": "Kontokrypteringsnøkler er unike for hver Komboe sin brukerkonto, og du kan ikke importere en kryptert eksport til en annen konto."
   },
   "exportNoun": {
     "message": "Eksporter",
@@ -3008,10 +3008,10 @@
     "message": "This KeePass database is too large to import."
   },
   "accountRestrictedOptionDescription": {
-    "message": "Bruk kontokrypteringsnøkkelen, avledet fra ditt kontobrukernavn og hovedpassord, for å kryptere eksporten og hindre import til andre kontoer enn den aktuelle Bitwarden-kontoen."
+    "message": "Bruk kontokrypteringsnøkkelen, avledet fra ditt kontobrukernavn og hovedpassord, for å kryptere eksporten og hindre import til andre kontoer enn den aktuelle Komboe-kontoen."
   },
   "passwordProtectedOptionDescription": {
-    "message": "Sett et filpassord for kryptering av eksporten. Bruk passordet for å dekryptere og importere til en hvilken som helst Bitwarden-konto."
+    "message": "Sett et filpassord for kryptering av eksporten. Bruk passordet for å dekryptere og importere til en hvilken som helst Komboe-konto."
   },
   "exportTypeHeading": {
     "message": "Eksport-type"
@@ -3182,7 +3182,7 @@
     "message": "Avventende forespørsel"
   },
   "logBackInOthersToo": {
-    "message": "Vennligst logg inn på nytt. Dersom du bruker andre Bitwarden-applikasjoner logg av og på på dem også."
+    "message": "Vennligst logg inn på nytt. Dersom du bruker andre Komboe-applikasjoner logg av og på på dem også."
   },
   "changeMasterPassword": {
     "message": "Endre hovedpassordet"
@@ -3215,7 +3215,7 @@
     }
   },
   "kdfIterationsWarning": {
-    "message": "Å velge for mange KDF-gjentakelser kan føre til dårlig ytelse når du logger inn på (og låser opp) Bitwarden på enheter med tregere CPUer. Vi anbefaler at du øker verdien trinnvis, $INCREMENT$ om gangen, og å så teste det på alle dine enheter.",
+    "message": "Å velge for mange KDF-gjentakelser kan føre til dårlig ytelse når du logger inn på (og låser opp) Komboe på enheter med tregere CPUer. Vi anbefaler at du øker verdien trinnvis, $INCREMENT$ om gangen, og å så teste det på alle dine enheter.",
     "placeholders": {
       "increment": {
         "content": "$1",
@@ -3228,7 +3228,7 @@
     "description": "Memory refers to computer memory (RAM). MB is short for megabytes."
   },
   "argon2Warning": {
-    "message": "Å velge for mange KDF-iterasjoner kan føre til dårlig ytelse når du logger inn (og låser opp) Bitwarden på enheter med tregere CPUer. Vi anbefaler at du øker verdien trinnvis for å deretter teste alle dine enheter."
+    "message": "Å velge for mange KDF-iterasjoner kan føre til dårlig ytelse når du logger inn (og låser opp) Komboe på enheter med tregere CPUer. Vi anbefaler at du øker verdien trinnvis for å deretter teste alle dine enheter."
   },
   "kdfParallelism": {
     "message": "KDF-parallellitet"
@@ -3707,7 +3707,7 @@
     "message": "Secure by design"
   },
   "importDataSecureByDesignBody": {
-    "message": "End-to-end encrypted handoff. Bitwarden never sees your $VENDOR$ login details.",
+    "message": "End-to-end encrypted handoff. Komboe never sees your $VENDOR$ login details.",
     "placeholders": {
       "vendor": {
         "content": "$1",
@@ -3858,7 +3858,7 @@
     "description": "Followed by a literal filename (my_passwords.json) rendered as code."
   },
   "importGnomeInstructionsFileHere": {
-    "message": "file here to Bitwarden.",
+    "message": "file here to Komboe.",
     "description": "Follows the my_passwords.json filename."
   },
   "importPasswordagentInstructions": {
@@ -3991,7 +3991,7 @@
     "message": "Domeneregler"
   },
   "domainRulesDesc": {
-    "message": "Hvis du har den samme innloggingen på flere forskjellige nettstedsdomene, kan du merke nettstedet som \"tilsvarende\". \"Forvalgte\" domener er de som har blitt forhåndsvalgt for deg av Bitwarden."
+    "message": "Hvis du har den samme innloggingen på flere forskjellige nettstedsdomene, kan du merke nettstedet som \"tilsvarende\". \"Forvalgte\" domener er de som har blitt forhåndsvalgt for deg av Komboe."
   },
   "globalEqDomains": {
     "message": "Standard samsvaringsdomener"
@@ -4039,7 +4039,7 @@
     "message": "Enable two-step login for your organization."
   },
   "twoStepLoginEnterpriseDescStart": {
-    "message": "Enforce Bitwarden Two-step Login options for members by using the ",
+    "message": "Enforce Komboe Two-step Login options for members by using the ",
     "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enforce Bitwarden Two-step Login options for members by using the Two-step Login Policy.'"
   },
   "twoStepLoginPolicy": {
@@ -4052,7 +4052,7 @@
     "message": "Dersom du har satt opp SSO eller planlegger det, så kan det være tofaktor-innlogging allerede kreves via din identitetstjeneste."
   },
   "twoStepLoginRecoveryWarning": {
-    "message": "Å skru på 2-trinnsinnlogging kan låse deg permanent ut av din Bitwarden-konto. En gjenopprettingskode gir deg tilgang til kontoen din i det tilfellet at du ikke lenger kan bruke din vanlige 2-trinnsinnloggingsleverandør (f.eks. at du mister enheten din). Bitwarden-kundestøtten vil ikke kunne hjelpe deg dersom du mister tilgang til kontoen din. Vi anbefaler at du skriver ned eller skriver ut gjenopprettingskoden og legger den på en trygg plass."
+    "message": "Å skru på 2-trinnsinnlogging kan låse deg permanent ut av din Komboe-konto. En gjenopprettingskode gir deg tilgang til kontoen din i det tilfellet at du ikke lenger kan bruke din vanlige 2-trinnsinnloggingsleverandør (f.eks. at du mister enheten din). Komboe-kundestøtten vil ikke kunne hjelpe deg dersom du mister tilgang til kontoen din. Vi anbefaler at du skriver ned eller skriver ut gjenopprettingskoden og legger den på en trygg plass."
   },
   "restrictedItemTypePolicy": {
     "message": "Remove card item type"
@@ -4074,7 +4074,7 @@
     "message": "A policy set by 1 or more organizations prevents you from importing cards to your vaults."
   },
   "yourSingleUseRecoveryCode": {
-    "message": "Your single-use recovery code can be used to turn off two-step login in the event that you lose access to your two-step login provider. Bitwarden recommends you write down the recovery code and keep it in a safe place."
+    "message": "Your single-use recovery code can be used to turn off two-step login in the event that you lose access to your two-step login provider. Komboe recommends you write down the recovery code and keep it in a safe place."
   },
   "viewRecoveryCode": {
     "message": "Vis gjenopprettingskode"
@@ -4172,13 +4172,13 @@
     }
   },
   "continueToExternalUrlDesc": {
-    "message": "You are leaving Bitwarden and launching an external website in a new window."
+    "message": "You are leaving Komboe and launching an external website in a new window."
   },
   "twoStepContinueToBitwardenUrlTitle": {
-    "message": "Vil du fortsette til bitwarden.com?"
+    "message": "Vil du fortsette til komboe.com?"
   },
   "twoStepContinueToBitwardenUrlDesc": {
-    "message": "Bitwarden Authenticator allows you to store authenticator keys and generate TOTP codes for 2-step verification flows. Learn more on the bitwarden.com website."
+    "message": "Komboe Authenticator allows you to store authenticator keys and generate TOTP codes for 2-step verification flows. Learn more on the komboe.com website."
   },
   "twoStepAuthenticatorScanCodeV2": {
     "message": "Scan the QR code below with your authenticator app or enter the key."
@@ -4220,7 +4220,7 @@
     "message": "Lagre skjemaet."
   },
   "twoFactorYubikeyWarning": {
-    "message": "På grunn av plattformbegrensninger, kan YubiKey-er ikke bli brukt på alle Bitwarden-apper. Du burde skru på en annen 2-trinnsinnloggingsleverandør, sånn at du kan få tilgang til din konto når YubiKeys ikke kan bli brukt. Støttede plattformer:"
+    "message": "På grunn av plattformbegrensninger, kan YubiKey-er ikke bli brukt på alle Komboe-apper. Du burde skru på en annen 2-trinnsinnloggingsleverandør, sånn at du kan få tilgang til din konto når YubiKeys ikke kan bli brukt. Støttede plattformer:"
   },
   "twoFactorYubikeySupportUsb": {
     "message": "Netthvelvet, datamaskinprogrammet, ledetekst, og alle nettleserutvidelser, på en enhet med en USB-port som støtter din YubiKey."
@@ -4271,7 +4271,7 @@
     "message": "Deaktiver alle YubiKey-ene"
   },
   "twoFactorDuoDesc": {
-    "message": "Skriv inn Bitwarden-appinformasjonen i ditt Duo Admin-panel."
+    "message": "Skriv inn Komboe-appinformasjonen i ditt Duo Admin-panel."
   },
   "twoFactorDuoClientId": {
     "message": "Client Id"
@@ -4322,7 +4322,7 @@
     "message": "Lagre skjemaet."
   },
   "twoFactorU2fWarning": {
-    "message": "På grunn av plattformbegrensninger, kan FIDO U2F ikke bli brukt på alle Bitwarden-apper. Du burde skru på en annen 2-trinnsinnloggingsleverandør, sånn at du kan få tilgang til din konto når FIDO U2F ikke kan bli brukt. Støttede plattformer:"
+    "message": "På grunn av plattformbegrensninger, kan FIDO U2F ikke bli brukt på alle Komboe-apper. Du burde skru på en annen 2-trinnsinnloggingsleverandør, sånn at du kan få tilgang til din konto når FIDO U2F ikke kan bli brukt. Støttede plattformer:"
   },
   "twoFactorU2fSupportWeb": {
     "message": "Netthvelv og nettleserutvidelser, på en datamaskin med en U2F-støttende nettleser (Chrome, Opera, Vivaldi, eller Firefox med FIDO U2F aktivert)."
@@ -4337,7 +4337,7 @@
     "message": "Det oppsto et problem med å lese sikkerhetsnøkkelen. Prøv igjen."
   },
   "twoFactorRecoveryYourCode": {
-    "message": "Din 2-trinnsinnloggingsgjenopprettingskode for Bitwarden"
+    "message": "Din 2-trinnsinnloggingsgjenopprettingskode for Komboe"
   },
   "twoFactorRecoveryNoCode": {
     "message": "Du har ikke aktivert noen 2-trinnsinnloggingsleverandører ennå. Etter at du har aktivert en 2-trinnsinnloggingsleverandør, kan du komme tilbake hit for å se din gjenopprettingskode."
@@ -4427,7 +4427,7 @@
     "message": "and "
   },
   "passkeyLoginReportHowToUse": {
-    "message": "how to use them in Bitwarden."
+    "message": "how to use them in Komboe."
   },
   "passkeyLoginFound": {
     "message": "Logins that support passkeys"
@@ -4500,7 +4500,7 @@
     "message": "Rapport om svake passord"
   },
   "weakPasswordsReportDesc": {
-    "message": "Svake passord kan lett bli gjettet på av hackere og automatiserte verktøy som brukes til å knekke passord. Bitwarden sin passordgenerator kan hjelpe deg med å opprette sterke passord."
+    "message": "Svake passord kan lett bli gjettet på av hackere og automatiserte verktøy som brukes til å knekke passord. Komboe sin passordgenerator kan hjelpe deg med å opprette sterke passord."
   },
   "weakPasswordsFound": {
     "message": "Svake passord ble funnet"
@@ -4695,7 +4695,7 @@
     }
   },
   "bitwardenFamiliesPlan": {
-    "message": "Bitwarden Familie-plan."
+    "message": "Komboe Familie-plan."
   },
   "addons": {
     "message": "Utvidelser"
@@ -4907,7 +4907,7 @@
     }
   },
   "churnOfferDiscountBody": {
-    "message": "As a thank-you for being a long-time Bitwarden customer, we'd like to offer you a $DISCOUNT$ discount on your next $DURATION$ of service.",
+    "message": "As a thank-you for being a long-time Komboe customer, we'd like to offer you a $DISCOUNT$ discount on your next $DURATION$ of service.",
     "description": "Body copy on the churn-mitigation offer card. DISCOUNT = discount amount; DURATION = service duration (e.g. 'year' or '6 months')",
     "placeholders": {
       "discount": {
@@ -4969,7 +4969,7 @@
     }
   },
   "churnOfferDiscountBodyRecurringAmount": {
-    "message": "As a thank-you for being a long-time Bitwarden customer, we'd like to offer you $AMOUNT$ off each $INTERVAL$ for the next $DURATION$.",
+    "message": "As a thank-you for being a long-time Komboe customer, we'd like to offer you $AMOUNT$ off each $INTERVAL$ for the next $DURATION$.",
     "description": "Body copy on the churn-mitigation offer card for a fixed-amount discount that repeats each billing period. AMOUNT = discount amount (e.g. '$15.00'); INTERVAL = billing interval unit (e.g. 'month'); DURATION = discount duration (e.g. 'year' or '6 months')",
     "placeholders": {
       "amount": {
@@ -5418,7 +5418,7 @@
     }
   },
   "trialThankYou": {
-    "message": "Takk for at du registrerte deg hos Bitwarden for $PLAN$!",
+    "message": "Takk for at du registrerte deg hos Komboe for $PLAN$!",
     "placeholders": {
       "plan": {
         "content": "$1",
@@ -5427,7 +5427,7 @@
     }
   },
   "trialSecretsManagerThankYou": {
-    "message": "Thanks for signing up for Bitwarden Secrets Manager for $PLAN$!",
+    "message": "Thanks for signing up for Komboe Secrets Manager for $PLAN$!",
     "placeholders": {
       "plan": {
         "content": "$1",
@@ -5563,7 +5563,7 @@
     "message": "Ekstern SSO-ID"
   },
   "ssoExternalIdDesc": {
-    "message": "Ekstern SSO-ID er en ukryptert referanse mellom Bitwarden og den konfigurerte SSO-leverandøren din."
+    "message": "Ekstern SSO-ID er en ukryptert referanse mellom Komboe og den konfigurerte SSO-leverandøren din."
   },
   "nestCollectionUnder": {
     "message": "Plasser samling under"
@@ -5617,13 +5617,13 @@
     "message": "Inviter"
   },
   "inviteUserDesc": {
-    "message": "Inviter en ny bruker til din organisasjon ved å skrive inn E-postadressen til Bitwarden-kontoen deres nedenfor. Hvis de ikke allerede har en Bitwarden-konto, vil de bli forespurt om å lage en ny konto."
+    "message": "Inviter en ny bruker til din organisasjon ved å skrive inn E-postadressen til Komboe-kontoen deres nedenfor. Hvis de ikke allerede har en Komboe-konto, vil de bli forespurt om å lage en ny konto."
   },
   "inviteUserDescription": {
     "message": "Invite new users to your organization by entering their email address below."
   },
   "inviteUserDescSharedFolders": {
-    "message": "Invite a new user to your organization vault by entering their Bitwarden account email address below. If they do not have a Bitwarden account already, they will be prompted to create a new account.",
+    "message": "Invite a new user to your organization vault by entering their Komboe account email address below. If they do not have a Komboe account already, they will be prompted to create a new account.",
     "description": "VFO1 (shared folder terminology) variant of inviteUserDesc, shown when the vfo1-foundation flag is enabled."
   },
   "inviteMultipleEmailDesc": {
@@ -5766,10 +5766,10 @@
     "message": "Ledetekst"
   },
   "bitWebVault": {
-    "message": "Bitwarden Web vault"
+    "message": "Komboe Web vault"
   },
   "bitSecretsManager": {
-    "message": "Bitwarden Secrets Manager"
+    "message": "Komboe Secrets Manager"
   },
   "loggedIn": {
     "message": "Pålogget."
@@ -7082,7 +7082,7 @@
     "message": "Click here to add a payment method."
   },
   "freeTrialSalesAssistedContactRep": {
-    "message": "Contact your Bitwarden sales representative to set up billing."
+    "message": "Contact your Komboe sales representative to set up billing."
   },
   "joinOrganization": {
     "message": "Bli med i organisasjon"
@@ -7115,7 +7115,7 @@
     "message": "Return to registration"
   },
   "joinOrganizationDesc": {
-    "message": "Du har blitt invitert til å bli med i organisasjonen som er listet opp ovenfor. For å godkjenne invitasjonen, må du enten logge på eller lage en ny Bitwarden-konto."
+    "message": "Du har blitt invitert til å bli med i organisasjonen som er listet opp ovenfor. For å godkjenne invitasjonen, må du enten logge på eller lage en ny Komboe-konto."
   },
   "finishJoiningThisOrganizationBySettingAMasterPassword": {
     "message": "Finish joining this organization by setting a master password."
@@ -7256,10 +7256,10 @@
     "message": "Dersom kontoen din eksisterer, har vi sendt deg en E-post med ytterligere instrukser."
   },
   "deleteRecoverConfirmDesc": {
-    "message": "Du har bedt om å slette Bitwarden-kontoen din. Klikk knappen nedenfor for å bekrefte."
+    "message": "Du har bedt om å slette Komboe-kontoen din. Klikk knappen nedenfor for å bekrefte."
   },
   "deleteRecoverOrgConfirmDesc": {
-    "message": "You have requested to delete your Bitwarden organization."
+    "message": "You have requested to delete your Komboe organization."
   },
   "myOrganization": {
     "message": "Min organisasjon"
@@ -7593,7 +7593,7 @@
     }
   },
   "updateEncryptionKeyWarning": {
-    "message": "Etter å ha oppdatert krypteringsnøkkelen din, er du påkrevd å logge av og på på alle Bitwarden-appene og -programmene som du bruker for øyeblikket (deriblant mobilappen og nettleserutvidelsene). Å ikke logge av og på igjen (noe som vil laste ned din nye krypteringsnøkkel) kan føre til datakorrumpering. Vi vil forsøke å logge deg av automatisk, men det kan kanskje bli forsinket."
+    "message": "Etter å ha oppdatert krypteringsnøkkelen din, er du påkrevd å logge av og på på alle Komboe-appene og -programmene som du bruker for øyeblikket (deriblant mobilappen og nettleserutvidelsene). Å ikke logge av og på igjen (noe som vil laste ned din nye krypteringsnøkkel) kan føre til datakorrumpering. Vi vil forsøke å logge deg av automatisk, men det kan kanskje bli forsinket."
   },
   "updateEncryptionKeyAccountExportWarning": {
     "message": "Any account restricted exports you have saved will become invalid."
@@ -7629,7 +7629,7 @@
     "message": "Du har ikke valgt noe."
   },
   "receiveMarketingEmails": {
-    "message": "Receive updates from Bitwarden in your inbox."
+    "message": "Receive updates from Komboe in your inbox."
   },
   "subscribe": {
     "message": "Abonnér"
@@ -7730,7 +7730,7 @@
     "message": "Copy and paste the link where your team will find it: your onboarding checklist, a Slack #new-joiners channel, Notion docs, or an email template."
   },
   "viewBitwardenOnboardingGuide": {
-    "message": "View Bitwarden onboarding guide"
+    "message": "View Komboe onboarding guide"
   },
   "coachMarkStepOfTotal": {
     "message": "$CURRENT$ of $TOTAL$",
@@ -7909,7 +7909,7 @@
     "message": "Svakt hovedpassord"
   },
   "weakMasterPasswordDesc": {
-    "message": "Hovedpassordet du har valgt er svakt. Du bør bruke et sterkt hovedpassord (eller en passordfrase) for å sikre Bitwarden-kontoen din på en forsvarlig måte. Er du sikker på at du vil bruke dette superpassordet?"
+    "message": "Hovedpassordet du har valgt er svakt. Du bør bruke et sterkt hovedpassord (eller en passordfrase) for å sikre Komboe-kontoen din på en forsvarlig måte. Er du sikker på at du vil bruke dette superpassordet?"
   },
   "rotateAccountEncKey": {
     "message": "Oppdater også krypteringsnøkkelen til kontoen min"
@@ -7974,7 +7974,7 @@
     "message": "API-nøkkel"
   },
   "apiKeyDesc": {
-    "message": "API-nøkkelen din kan brukes til å godkjenne til den offentlige API-en for Bitwarden."
+    "message": "API-nøkkelen din kan brukes til å godkjenne til den offentlige API-en for Komboe."
   },
   "apiKeyRotateDesc": {
     "message": "Hvis du roterer API-nøkkel, blir den forrige nøkkelen ugyldig. Du kan rotere API-nøkkelen din hvis du mener at den nåværende nøkkelen ikke lenger er trygt å bruke."
@@ -7983,7 +7983,7 @@
     "message": "Din API-nøkkel har full tilgang til organisasjonen. Det bør holdes hemmelig."
   },
   "userApiKeyDesc": {
-    "message": "API-nøkkelen din kan brukes til å godkjenne i Bitwarden sin CLI."
+    "message": "API-nøkkelen din kan brukes til å godkjenne i Komboe sin CLI."
   },
   "userApiKeyWarning": {
     "message": "Din API-nøkkel er en alternativ autentiseringsmekanisme. Det bør holdes hemmelig."
@@ -8333,7 +8333,7 @@
     "description": "VFO1 terminology variant of 'singleOrgPolicyDescV2'"
   },
   "singleOrgBlockCreateMessage": {
-    "message": "Din nåværende organisasjon har en policy som ikke lar deg bli med i mer enn én organisasjon. Kontakt din organisasjons admins eller registrer deg fra en annen Bitwarden-konto."
+    "message": "Din nåværende organisasjon har en policy som ikke lar deg bli med i mer enn én organisasjon. Kontakt din organisasjons admins eller registrer deg fra en annen Komboe-konto."
   },
   "singleOrgPolicyMemberWarning": {
     "message": "Non-compliant members will be placed in revoked status until they leave all other organizations. Administrators are exempt and can restore members once compliance is met."
@@ -8584,7 +8584,7 @@
     "message": "Experiencing an issue? Download then share the diagnostic report with"
   },
   "bitwardenSupport": {
-    "message": "Bitwarden support",
+    "message": "Komboe support",
     "description": "Link text that follows the troubleshooting description sentence. 'Bitwarden' should not be translated."
   },
   "download": {
@@ -8645,7 +8645,7 @@
     "message": "Rediger nødkontakt"
   },
   "inviteEmergencyContactDesc": {
-    "message": "Inviter en ny nødkontakt ved å skrive inn e-postadressen til deres Bitwarden-konto nedenfor. Dersom de ikke allerede har en Bitwarden-konto, vil de bli bedt om å opprette en ny konto."
+    "message": "Inviter en ny nødkontakt ved å skrive inn e-postadressen til deres Komboe-konto nedenfor. Dersom de ikke allerede har en Komboe-konto, vil de bli bedt om å opprette en ny konto."
   },
   "emergencyAccessRecoveryInitiated": {
     "message": "Nødtilgang initiert"
@@ -8684,7 +8684,7 @@
     "message": "Invitert bruker."
   },
   "acceptEmergencyAccess": {
-    "message": "Du har blitt invitert til å bli en nødkontakt for brukeren som er listet ovenfor. For å godkjenne invitasjonen, må du logge på eller lage en ny Bitwarden-konto."
+    "message": "Du har blitt invitert til å bli en nødkontakt for brukeren som er listet ovenfor. For å godkjenne invitasjonen, må du logge på eller lage en ny Komboe-konto."
   },
   "emergencyInviteAcceptFailed": {
     "message": "Klarte ikke å godkjenne invitasjonen. Be brukeren om å sende en ny invitasjon."
@@ -8870,7 +8870,7 @@
     "message": "How to turn on automatic user confirmation"
   },
   "autoConfirmExtension1": {
-    "message": "Open your Bitwarden extension"
+    "message": "Open your Komboe extension"
   },
   "autoConfirmExtension2": {
     "message": "Velg",
@@ -8881,7 +8881,7 @@
     "description": "This is a fragment of a larger sencence. The whole sentence will read: 'Select Turn on'"
   },
   "autoConfirmExtensionOpened": {
-    "message": "Successfully opened the Bitwarden browser extension. You can now activate the automatic user confirmation setting."
+    "message": "Successfully opened the Komboe browser extension. You can now activate the automatic user confirmation setting."
   },
   "autoConfirmPolicyEditDescription": {
     "message": "New users invited to the organization will be automatically confirmed when an admin’s device is unlocked. Before turning on this policy, please review and agree to the following: ",
@@ -9015,7 +9015,7 @@
     "message": "Deaktiver Send"
   },
   "disableSendPolicyDesc": {
-    "message": "Ikke tillat brukere å opprette eller endre en Bitwarden Send. Å slette en eksisterende Send er fortsatt tillatt.",
+    "message": "Ikke tillat brukere å opprette eller endre en Komboe Send. Å slette en eksisterende Send er fortsatt tillatt.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "disableSendExemption": {
@@ -9094,7 +9094,7 @@
     "description": "VFO1 terminology variant of 'uriMatchDetectionPolicyDesc', shown in the policies list"
   },
   "uriMatchDetectionPolicyDescV2": {
-    "message": "Set a default for which parts of a website address (URI) need to match for Bitwarden to suggest a login for autofill. This policy won't be enforced for owners and admins."
+    "message": "Set a default for which parts of a website address (URI) need to match for Komboe to suggest a login for autofill. This policy won't be enforced for owners and admins."
   },
   "uriMatchDetectionOptionsLabel": {
     "message": "Standard URI-samsvarsgjenkjenning"
@@ -9121,7 +9121,7 @@
     "message": "Default"
   },
   "fillAssistRuleSourceDefaultDesc": {
-    "message": "Use the Bitwarden-reviewed autofill rule set."
+    "message": "Use the Komboe-reviewed autofill rule set."
   },
   "fillAssistRuleSourceCustom": {
     "message": "Custom"
@@ -9253,7 +9253,7 @@
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendAccessTaglineProductDesc": {
-    "message": "Bitwarden Send sender sensitiv, midlertidig informasjon til andre enkelt og sikkert.",
+    "message": "Komboe Send sender sensitiv, midlertidig informasjon til andre enkelt og sikkert.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendAccessTaglineLearnMore": {
@@ -9280,7 +9280,7 @@
     "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more, see how it works, **or** try it now.'"
   },
   "developmentDevOpsAndITTeamsChooseBWSecret": {
-    "message": "Development, DevOps, and IT teams choose Bitwarden Secrets Manager to securely manage and deploy their infrastructure and machine secrets."
+    "message": "Development, DevOps, and IT teams choose Komboe Secrets Manager to securely manage and deploy their infrastructure and machine secrets."
   },
   "centralizeSecretsManagement": {
     "message": "Centralize secrets management."
@@ -9316,10 +9316,10 @@
     "message": "Add a note"
   },
   "bitwardenSecretsManager": {
-    "message": "Bitwarden Secrets Manager"
+    "message": "Komboe Secrets Manager"
   },
   "moreProductsFromBitwarden": {
-    "message": "More products from Bitwarden"
+    "message": "More products from Komboe"
   },
   "requestAccessToSecretsManager": {
     "message": "Request access to Secrets Manager"
@@ -9331,7 +9331,7 @@
     "message": "Access request for secrets manager email sent to admins."
   },
   "requestAccessSMDefaultEmailContent": {
-    "message": "Hi,\n\nI am requesting a subscription to Bitwarden Secrets Manager for our team. Your support would mean a great deal!\n\nBitwarden Secrets Manager is an end-to-end encrypted secrets management solution for securely storing, sharing, and deploying machine credentials like API keys, database passwords, and authentication certificates.\n\nSecrets Manager will help us to:\n\n- Improve security\n- Streamline operations\n- Prevent costly secret leaks\n\nTo request a free trial for our team, please reach out to Bitwarden.\n\nThank you for your help!"
+    "message": "Hi,\n\nI am requesting a subscription to Komboe Secrets Manager for our team. Your support would mean a great deal!\n\nKomboe Secrets Manager is an end-to-end encrypted secrets management solution for securely storing, sharing, and deploying machine credentials like API keys, database passwords, and authentication certificates.\n\nSecrets Manager will help us to:\n\n- Improve security\n- Streamline operations\n- Prevent costly secret leaks\n\nTo request a free trial for our team, please reach out to Komboe.\n\nThank you for your help!"
   },
   "giveMembersAccess": {
     "message": "Give members access:"
@@ -9365,7 +9365,7 @@
     "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more about Bitwarden Send or sign up to **try it today.**'"
   },
   "sendAccessCreatorIdentifier": {
-    "message": "Bitwarden member $USER_IDENTIFIER$ shared the following with you",
+    "message": "Komboe member $USER_IDENTIFIER$ shared the following with you",
     "placeholders": {
       "user_identifier": {
         "content": "$1",
@@ -9390,7 +9390,7 @@
     "description": "Toast message shown when a user clicks the resend code link on the Send access page. 'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "viewSendHiddenEmailWarning": {
-    "message": "Bitwarden-brukeren som opprettet denne sendingen, har valgt å skjule deres e-postadresse. Du bør forsikre deg om at du stoler på kilden til denne lenken før du bruker eller laster ned innholdet.",
+    "message": "Komboe-brukeren som opprettet denne sendingen, har valgt å skjule deres e-postadresse. Du bør forsikre deg om at du stoler på kilden til denne lenken før du bruker eller laster ned innholdet.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "expirationDateIsInvalid": {
@@ -9762,10 +9762,10 @@
     "message": "Dekrypteringsfeil"
   },
   "couldNotDecryptVaultItem": {
-    "message": "Bitwarden could not decrypt the vault item listed below. Contact Bitwarden Customer Support and provide the item ID below to see if it can be recovered."
+    "message": "Komboe could not decrypt the vault item listed below. Contact Komboe Customer Support and provide the item ID below to see if it can be recovered."
   },
   "couldNotDecryptVaultItems": {
-    "message": "Bitwarden could not decrypt the vault items listed below. Contact Bitwarden Customer Support and provide the item IDs below to see if they can be recovered."
+    "message": "Komboe could not decrypt the vault items listed below. Contact Komboe Customer Support and provide the item IDs below to see if they can be recovered."
   },
   "itemId": {
     "message": "Item ID",
@@ -9788,7 +9788,7 @@
     "message": "Oppsett av søkeleverandør"
   },
   "setupProviderLoginDesc": {
-    "message": "Du har blitt invitert til å sette opp en ny leverandør. For å fortsette, må du logge på eller lage en ny Bitwarden-konto."
+    "message": "Du har blitt invitert til å sette opp en ny leverandør. For å fortsette, må du logge på eller lage en ny Komboe-konto."
   },
   "setupProviderDesc": {
     "message": "Skriv inn opplysningene nedenfor for å fullføre leverandøroppsettet. Kontakt kundestøtte hvis du har spørsmål."
@@ -9819,13 +9819,13 @@
     "message": "Tjenestebrukere kan få tilgang til og administrere alle kundeorganisasjoner."
   },
   "providerInviteUserDesc": {
-    "message": "Inviter en ny bruker til leverandøren din ved å skrive inn E-postadressen til Bitwarden-kontoen deres nedenfor. Dersom de ikke allerede har en Bitwarden-konto, vil de bli bedt om å opprette en ny konto."
+    "message": "Inviter en ny bruker til leverandøren din ved å skrive inn E-postadressen til Komboe-kontoen deres nedenfor. Dersom de ikke allerede har en Komboe-konto, vil de bli bedt om å opprette en ny konto."
   },
   "joinProvider": {
     "message": "Koble til leverandør"
   },
   "joinProviderDesc": {
-    "message": "Du har blitt invitert til å bli med i leverandøren som er listet opp ovenfor. For å godkjenne invitasjonen, må du enten logge på eller lage en ny Bitwarden-konto."
+    "message": "Du har blitt invitert til å bli med i leverandøren som er listet opp ovenfor. For å godkjenne invitasjonen, må du enten logge på eller lage en ny Komboe-konto."
   },
   "providerInviteAcceptFailed": {
     "message": "Klarte ikke å godkjenne invitasjonen. Spør en leverandøradministrator om å sende en ny invitasjon."
@@ -9977,7 +9977,7 @@
     "message": "Handling ved tidsavbrudd"
   },
   "sessionTimeoutSuppressedByConnectedDevice": {
-    "message": "Managed by the Bitwarden browser extension app. Open the browser app to edit."
+    "message": "Managed by the Komboe browser extension app. Open the browser app to edit."
   },
   "immediately": {
     "message": "Umiddelbart"
@@ -10235,7 +10235,7 @@
     "message": "Konfigurasjon for enkel pålogging (SSO) lagret"
   },
   "sponsoredFamilies": {
-    "message": "Gratis Bitwarden Familier"
+    "message": "Gratis Komboe Familier"
   },
   "sponsoredBitwardenFamilies": {
     "message": "Sponsored families"
@@ -10256,28 +10256,28 @@
     "message": "No non-members have redeemed the Sponsored Family Plan."
   },
   "sponsorshipFreeBitwardenFamilies": {
-    "message": "Members of your organization are eligible for Free Bitwarden Families. You can sponsor Free Bitwarden Families for employees who are not a member of your Bitwarden organization. Sponsoring a non-member requires an available seat within your organization."
+    "message": "Members of your organization are eligible for Free Komboe Families. You can sponsor Free Komboe Families for employees who are not a member of your Komboe organization. Sponsoring a non-member requires an available seat within your organization."
   },
   "sponsorshipFreeBitwardenFamiliesV2": {
-    "message": "Your members are eligible to redeem a Sponsored Families Plan. You can sponsor a Families plan for employees who are not members of your Bitwarden organization, but this will require available seats within your organization."
+    "message": "Your members are eligible to redeem a Sponsored Families Plan. You can sponsor a Families plan for employees who are not members of your Komboe organization, but this will require available seats within your organization."
   },
   "sponsoredFamiliesRemoveActiveSponsorship": {
     "message": "When you remove an active sponsorship, a seat within your organization will be available after the renewal date of the sponsored organization."
   },
   "sponsoredFamiliesEligible": {
-    "message": "Du og din familie er kvalifisert for Free Bitwarden Familier. Løs inn med din personlige e-post for å holde dataene dine sikre, selv om du ikke er på jobb."
+    "message": "Du og din familie er kvalifisert for Free Komboe Familier. Løs inn med din personlige e-post for å holde dataene dine sikre, selv om du ikke er på jobb."
   },
   "sponsoredFamiliesEligibleV2": {
-    "message": "You and your family are eligible for a Sponsored Families Plan at no additional cost to you. Redeem this plan with your personal email to keep your data secure and separate from your Bitwarden work account."
+    "message": "You and your family are eligible for a Sponsored Families Plan at no additional cost to you. Redeem this plan with your personal email to keep your data secure and separate from your Komboe work account."
   },
   "sponsoredFamiliesEligibleCard": {
-    "message": "Løs inn din Free Bitwarden for Familier-abonnement i dag for å holde dataene sikre, selv om du ikke er på jobb."
+    "message": "Løs inn din Free Komboe for Familier-abonnement i dag for å holde dataene sikre, selv om du ikke er på jobb."
   },
   "sponsoredFamiliesIncludeMessage": {
-    "message": "The Bitwarden for Families plan includes"
+    "message": "The Komboe for Families plan includes"
   },
   "sponsoredFamiliesIncludeMessageV2": {
-    "message": "The Bitwarden Families plan includes"
+    "message": "The Komboe Families plan includes"
   },
   "sponsoredFamiliesPremiumAccess": {
     "message": "Premiumtilgang for opptil 6 brukere"
@@ -10298,7 +10298,7 @@
     "message": "Members who have redeemed family plans will display here"
   },
   "membersWithSponsoredFamilies": {
-    "message": "Members of your organization are eligible for Free Bitwarden Families. Here you can see members who have sponsored a Families organization."
+    "message": "Members of your organization are eligible for Free Komboe Families. Here you can see members who have sponsored a Families organization."
   },
   "organizationHasMemberMessage": {
     "message": "A sponsorship cannot be sent to $EMAIL$ because they are a member of your organization.",
@@ -10328,7 +10328,7 @@
     "message": "Hvilket gratis familier tilbyr deg å innløse?"
   },
   "sponsoredFamiliesEmail": {
-    "message": "Skriv inn din personlige e-post til Bitwarden sin familier"
+    "message": "Skriv inn din personlige e-post til Komboe sin familier"
   },
   "sponsoredFamiliesLeaveCopy": {
     "message": "Hvis du forlater eller fjernes fra sponsor organisasjonen, vil din familieplan utløpe etter utløpet av faktureringsperioden."
@@ -10337,7 +10337,7 @@
     "message": "Godta tilbudet til en eksisterende organisasjon eller opprett en ny Familie-organisasjon."
   },
   "acceptSponsoredFamiliesPlanHelp": {
-    "message": "$ORGANIZATION$ has sponsored a free Bitwarden Families plan for you! You can apply your complimentary plan to an existing family vault or create a new one.",
+    "message": "$ORGANIZATION$ has sponsored a free Komboe Families plan for you! You can apply your complimentary plan to an existing family vault or create a new one.",
     "description": "Sponsored Families redemption page. The single 'or' is the approved copy.",
     "placeholders": {
       "organization": {
@@ -10347,11 +10347,11 @@
     }
   },
   "acceptSponsoredFamiliesPlanHelpNoOrg": {
-    "message": "You've been sponsored a free Bitwarden Families plan! You can apply your complimentary plan to an existing family vault or create a new one.",
+    "message": "You've been sponsored a free Komboe Families plan! You can apply your complimentary plan to an existing family vault or create a new one.",
     "description": "Fallback for the redemption page when the sponsoring organization name is unavailable. The single 'or' is the approved copy."
   },
   "setupSponsoredFamiliesLoginDesc": {
-    "message": "Du har blitt tilbudt en gratis Bitwarden Familier Planlegg-organisasjon. For å fortsette må du logge inn på kontoen som mottok tilbudet."
+    "message": "Du har blitt tilbudt en gratis Komboe Familier Planlegg-organisasjon. For å fortsette må du logge inn på kontoen som mottok tilbudet."
   },
   "sponsoredFamiliesAcceptFailed": {
     "message": "Tilbudet kan ikke godtas. Vennligst send tilbuds-e-posten fra din virksomhetskonto, og forsøk igen."
@@ -10366,7 +10366,7 @@
     }
   },
   "sponsoredFamiliesOffer": {
-    "message": "Aksepter gratis Bitwarden Familier"
+    "message": "Aksepter gratis Komboe Familier"
   },
   "acceptSponsoredFamiliesPlan": {
     "message": "Accept Sponsored Families Plan"
@@ -10375,7 +10375,7 @@
     "message": "Sponsored plan details"
   },
   "sponsoredFamiliesOfferRedeemed": {
-    "message": "Gratis Bitwarden Familier-tilbud er innløst"
+    "message": "Gratis Komboe Familier-tilbud er innløst"
   },
   "redeemed": {
     "message": "Innløst"
@@ -10506,7 +10506,7 @@
     "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Connect login with SSO to your self-hosted decryption key server. Using this option, members won’t need to use their master passwords to decrypt vault data. The require SSO authentication and single organization policies are required to set up Key Connector decryption. Contact Bitwarden Support for set up assistance.'"
   },
   "memberDecryptionKeyConnectorDescEnd": {
-    "message": "er påkrevd for å konfigurere dekryptering med Key Connector. Kontakt Bitwarden Support for hjelp med oppsett.",
+    "message": "er påkrevd for å konfigurere dekryptering med Key Connector. Kontakt Komboe Support for hjelp med oppsett.",
     "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Connect login with SSO to your self-hosted decryption key server. Using this option, members won’t need to use their master passwords to decrypt vault data. The require SSO authentication and single organization policies are required to set up Key Connector decryption. Contact Bitwarden Support for set up assistance.'"
   },
   "keyConnectorPolicyRestriction": {
@@ -10616,7 +10616,7 @@
     "message": "Tilpasset miljø"
   },
   "selfHostedBaseUrlHint": {
-    "message": "Specify the base URL of your on-premises hosted Bitwarden installation. Example: https://bitwarden.company.com"
+    "message": "Specify the base URL of your on-premises hosted Komboe installation. Example: https://komboe.company.com"
   },
   "selfHostedCustomEnvHeader": {
     "message": "For advanced configuration, you can specify the base URL of each service independently."
@@ -10664,7 +10664,7 @@
     "message": "Vis faktureringssynkroniseringstoken"
   },
   "automaticBillingSyncDesc": {
-    "message": "Automatic sync unlocks Families sponsorships and allows you to sync your license without uploading a file. After making updates in the Bitwarden cloud server, select Sync License to apply changes."
+    "message": "Automatic sync unlocks Families sponsorships and allows you to sync your license without uploading a file. After making updates in the Komboe cloud server, select Sync License to apply changes."
   },
   "active": {
     "message": "Aktiv"
@@ -11027,11 +11027,11 @@
     }
   },
   "forwarderGeneratedBy": {
-    "message": "Generert av Bitwarden.",
+    "message": "Generert av Komboe.",
     "description": "Displayed with the address on the forwarding service's configuration screen."
   },
   "forwarderGeneratedByWithWebsite": {
-    "message": "Nettsted: $WEBSITE$. Generert av Bitwarden.",
+    "message": "Nettsted: $WEBSITE$. Generert av Komboe.",
     "description": "Displayed with the address on the forwarding service's configuration screen.",
     "placeholders": {
       "WEBSITE": {
@@ -12252,7 +12252,7 @@
     "message": "Flere innstillinger"
   },
   "moreFromBitwarden": {
-    "message": "Mer fra Bitwarden"
+    "message": "Mer fra Komboe"
   },
   "switchProducts": {
     "message": "Bytt produkter"
@@ -13145,7 +13145,7 @@
     "message": "User set a master password during TDE offboarding."
   },
   "startYour7DayFreeTrialOfBitwardenFor": {
-    "message": "Start your 7-Day free trial of Bitwarden for $ORG$",
+    "message": "Start your 7-Day free trial of Komboe for $ORG$",
     "placeholders": {
       "org": {
         "content": "$1",
@@ -13154,7 +13154,7 @@
     }
   },
   "startYour7DayFreeTrialOfBitwardenSecretsManagerFor": {
-    "message": "Start your 7-Day free trial of Bitwarden Secrets Manager for $ORG$",
+    "message": "Start your 7-Day free trial of Komboe Secrets Manager for $ORG$",
     "placeholders": {
       "org": {
         "content": "$1",
@@ -13559,7 +13559,7 @@
     "message": "Get started with your vault"
   },
   "onboardingChecklistSubtitle": {
-    "message": "Complete these steps to secure your personal data and get the most out of Bitwarden"
+    "message": "Complete these steps to secure your personal data and get the most out of Komboe"
   },
   "dismissThisChecklist": {
     "message": "Dismiss this checklist"
@@ -13656,7 +13656,7 @@
     "description": "Label indicating the most common import formats"
   },
   "uriMatchDefaultStrategyHint": {
-    "message": "URI match detection is how Bitwarden identifies autofill suggestions.",
+    "message": "URI match detection is how Komboe identifies autofill suggestions.",
     "description": "Explains to the user that URI match detection determines how Bitwarden suggests autofill options, and clarifies that this default strategy applies when no specific match detection is set for a login item."
   },
   "regExAdvancedOptionWarning": {
@@ -13700,13 +13700,13 @@
     "message": "Bekreftelsesdetaljer"
   },
   "smFreeTrialThankYou": {
-    "message": "Thank you for signing up for Bitwarden Secrets Manager!"
+    "message": "Thank you for signing up for Komboe Secrets Manager!"
   },
   "smFreeTrialConfirmationEmail": {
     "message": "We've sent a confirmation email to your email at "
   },
   "sorryToSeeYouGo": {
-    "message": "Sorry to see you go! Help improve Bitwarden by sharing why you're canceling.",
+    "message": "Sorry to see you go! Help improve Komboe by sharing why you're canceling.",
     "description": "A message shown to users as part of an offboarding survey asking them to provide more information on their subscription cancelation."
   },
   "selectCancellationReason": {
@@ -14264,20 +14264,20 @@
     "message": "Integreringer"
   },
   "integrationsDesc": {
-    "message": "Automatically sync secrets from Bitwarden Secrets Manager to a third-party service."
+    "message": "Automatically sync secrets from Komboe Secrets Manager to a third-party service."
   },
   "sdks": {
     "message": "SDK-er"
   },
   "sdksDesc": {
-    "message": "Bruk Bitwarden Secrets Manager SDK i følgende programmeringsspråk for å bygge dine egne applikasjoner."
+    "message": "Bruk Komboe Secrets Manager SDK i følgende programmeringsspråk for å bygge dine egne applikasjoner."
   },
   "ssoDescStart": {
     "message": "Konfigurer",
     "description": "This represents the beginning of a sentence, broken up to include links. The full sentence will be 'Configure single sign-on for Bitwarden using the implementation guide for your Identity Provider."
   },
   "ssoDescEnd": {
-    "message": "for Bitwarden ved bruk av implementeringsveiledningen for identitetsleverandøren din.",
+    "message": "for Komboe ved bruk av implementeringsveiledningen for identitetsleverandøren din.",
     "description": "This represents the end of a sentence, broken up to include links. The full sentence will be 'Configure single sign-on for Bitwarden using the implementation guide for your Identity Provider."
   },
   "userProvisioning": {
@@ -14291,26 +14291,26 @@
     "description": "This represents the beginning of a sentence, broken up to include links. The full sentence will be 'Configure SCIM (System for Cross-domain Identity Management) to automatically provision users and groups to Bitwarden using the implementation guide for your Identity Provider"
   },
   "scimIntegrationDescEnd": {
-    "message": "(System for Cross-domain Identity Management) to automatically provision users and groups to Bitwarden using the implementation guide for your Identity Provider.",
+    "message": "(System for Cross-domain Identity Management) to automatically provision users and groups to Komboe using the implementation guide for your Identity Provider.",
     "description": "This represents the end of a sentence, broken up to include links. The full sentence will be 'Configure SCIM (System for Cross-domain Identity Management) to automatically provision users and groups to Bitwarden using the implementation guide for your Identity Provider"
   },
   "bwdc": {
-    "message": "Bitwarden Directory Connector"
+    "message": "Komboe Directory Connector"
   },
   "bwdcDesc": {
-    "message": "Configure Bitwarden Directory Connector to automatically provision users and groups using the implementation guide for your Identity Provider."
+    "message": "Configure Komboe Directory Connector to automatically provision users and groups using the implementation guide for your Identity Provider."
   },
   "eventManagement": {
     "message": "Event management"
   },
   "eventManagementDesc": {
-    "message": "Integrate Bitwarden event logs with your SIEM (system information and event management) system by using the implementation guide for your platform."
+    "message": "Integrate Komboe event logs with your SIEM (system information and event management) system by using the implementation guide for your platform."
   },
   "deviceManagement": {
     "message": "Device management"
   },
   "deviceManagementDesc": {
-    "message": "Configure device management for Bitwarden using the implementation guide for your platform."
+    "message": "Configure device management for Komboe using the implementation guide for your platform."
   },
   "crowdstrikeEventIntegrationDesc": {
     "message": "Send event data to your Logscale instance"
@@ -14532,22 +14532,22 @@
     "message": "Manage billing from the Provider Portal"
   },
   "continueSettingUp": {
-    "message": "Continue setting up Bitwarden"
+    "message": "Continue setting up Komboe"
   },
   "continueSettingUpFreeTrial": {
-    "message": "Continue setting up your free trial of Bitwarden"
+    "message": "Continue setting up your free trial of Komboe"
   },
   "continueSettingUpPasswordManager": {
-    "message": "Continue setting up Bitwarden Password Manager"
+    "message": "Continue setting up Komboe Password Manager"
   },
   "continueSettingUpFreeTrialPasswordManager": {
-    "message": "Continue setting up your free trial of Bitwarden Password Manager"
+    "message": "Continue setting up your free trial of Komboe Password Manager"
   },
   "continueSettingUpSecretsManager": {
-    "message": "Continue setting up Bitwarden Secrets Manager"
+    "message": "Continue setting up Komboe Secrets Manager"
   },
   "continueSettingUpFreeTrialSecretsManager": {
-    "message": "Continue setting up your free trial of Bitwarden Secrets Manager"
+    "message": "Continue setting up your free trial of Komboe Secrets Manager"
   },
   "enterTeamsOrgInfo": {
     "message": "Enter your Teams organization information"
@@ -14857,14 +14857,14 @@
     "description": "This will be displayed as part of a larger sentence. The whole sentence reads: 'Notice: Later this month, client vault privacy will be improved and provider members will no longer have direct access to client vault items. For questions, please contact Bitwarden support'."
   },
   "contactBitwardenSupport": {
-    "message": "contact Bitwarden support.",
+    "message": "contact Komboe support.",
     "description": "This will be displayed as part of a larger sentence. The whole sentence reads: 'Notice: Later this month, client vault privacy will be improved and provider members will no longer have direct access to client vault items. For questions, please contact Bitwarden support'. 'Bitwarden' should not be translated"
   },
   "sponsored": {
     "message": "Sponsored"
   },
   "licenseAndBillingManagementDesc": {
-    "message": "After making updates in the Bitwarden cloud server, upload your license file to apply the most recent changes."
+    "message": "After making updates in the Komboe cloud server, upload your license file to apply the most recent changes."
   },
   "addToFolder": {
     "message": "Legg til i mappe"
@@ -14982,7 +14982,7 @@
     "message": "What is a CVV number?"
   },
   "learnMoreAboutApi": {
-    "message": "Learn more about Bitwarden's API"
+    "message": "Learn more about Komboe's API"
   },
   "fileSends": {
     "message": "File Sends"
@@ -15159,7 +15159,7 @@
     "message": "Your Secrets Manager subscription will upgrade based on the plan selected"
   },
   "bitwardenPasswordManager": {
-    "message": "Bitwarden passordbehandler"
+    "message": "Komboe passordbehandler"
   },
   "secretsManagerComplimentaryPasswordManager": {
     "message": "Your complimentary one year Password Manager subscription will upgrade to the selected plan. You will not be charged until the complimentary period is over."
@@ -15237,7 +15237,7 @@
     "description": "This represents the beginning of a sentence. The full sentence will be 'Manage subscription from the Provider Portal', but 'Provider Portal' will be a link and thus cannot be included in the translation file."
   },
   "toHostBitwardenOnYourOwnServer": {
-    "message": "To host Bitwarden on your own server, you will need to upload your license file. To support Free Families plans and advanced billing capabilities for your self-hosted organization, you will need to set up automatic sync in your self-hosted organization."
+    "message": "To host Komboe on your own server, you will need to upload your license file. To support Free Families plans and advanced billing capabilities for your self-hosted organization, you will need to set up automatic sync in your self-hosted organization."
   },
   "selfHostingTitleProper": {
     "message": "Self-Hosting"
@@ -15361,7 +15361,7 @@
     "message": "Vellykket slettet"
   },
   "freeFamiliesSponsorship": {
-    "message": "Remove Free Bitwarden Families sponsorship"
+    "message": "Remove Free Komboe Families sponsorship"
   },
   "freeFamiliesSponsorshipPolicyTitleV2": {
     "message": "Remove sponsored Families plan"
@@ -15439,10 +15439,10 @@
     "message": "Automatic Claimed Domains"
   },
   "automaticDomainClaimProcess": {
-    "message": "Bitwarden will attempt to claim the domain 3 times during the first 72 hours. If the domain can’t be claimed, check the DNS record in your host and manually claim. The domain will be removed from your organization in 7 days if it is not claimed."
+    "message": "Komboe will attempt to claim the domain 3 times during the first 72 hours. If the domain can’t be claimed, check the DNS record in your host and manually claim. The domain will be removed from your organization in 7 days if it is not claimed."
   },
   "automaticDomainClaimProcess1": {
-    "message": "Bitwarden will attempt to claim the domain within 72 hours. If the domain can't be claimed, verify your DNS record and claim manually. Unclaimed domains are removed after 7 days."
+    "message": "Komboe will attempt to claim the domain within 72 hours. If the domain can't be claimed, verify your DNS record and claim manually. Unclaimed domains are removed after 7 days."
   },
   "automaticDomainClaimProcess2": {
     "message": "Once claimed, existing members with claimed domains will be emailed about the "
@@ -15610,19 +15610,19 @@
     "message": "Kopiér privat nøkkel"
   },
   "openingExtension": {
-    "message": "Opening the Bitwarden browser extension"
+    "message": "Opening the Komboe browser extension"
   },
   "somethingWentWrong": {
     "message": "Something went wrong..."
   },
   "openingExtensionError": {
-    "message": "We had trouble opening the Bitwarden browser extension. Click the button to open it now."
+    "message": "We had trouble opening the Komboe browser extension. Click the button to open it now."
   },
   "openExtension": {
     "message": "Åpne utvidelsen"
   },
   "doNotHaveExtension": {
-    "message": "Don't have the Bitwarden browser extension?"
+    "message": "Don't have the Komboe browser extension?"
   },
   "installExtension": {
     "message": "Installer utvidelsen"
@@ -15631,7 +15631,7 @@
     "message": "Opened the browser extension"
   },
   "openedExtensionViewAtRiskPasswords": {
-    "message": "Successfully opened the Bitwarden browser extension. You can now review your at-risk passwords."
+    "message": "Successfully opened the Komboe browser extension. You can now review your at-risk passwords."
   },
   "resellerRenewalWarningMsg": {
     "message": "Your subscription will renew soon. To ensure uninterrupted service, contact $RESELLER$ to confirm your renewal before $RENEWAL_DATE$.",
@@ -15647,7 +15647,7 @@
     }
   },
   "resellerRenewalWarningMsgV2": {
-    "message": "Your subscription will renew soon. To ensure uninterrupted service, contact your Bitwarden provider to confirm your renewal before $RENEWAL_DATE$.",
+    "message": "Your subscription will renew soon. To ensure uninterrupted service, contact your Komboe provider to confirm your renewal before $RENEWAL_DATE$.",
     "placeholders": {
       "renewal_date": {
         "content": "$1",
@@ -15686,7 +15686,7 @@
     }
   },
   "resellerPastDueWarningMsgV2": {
-    "message": "The invoice for your subscription has not been paid. To ensure uninterrupted service, contact your Bitwarden provider before $GRACE_PERIOD_END$.",
+    "message": "The invoice for your subscription has not been paid. To ensure uninterrupted service, contact your Komboe provider before $GRACE_PERIOD_END$.",
     "placeholders": {
       "grace_period_end": {
         "content": "$1",
@@ -15838,7 +15838,7 @@
     "message": "Upgrade to see event logs from your organization."
   },
   "upgradeEventLogMessage": {
-    "message": "These events are examples only and do not reflect real events within your Bitwarden organization."
+    "message": "These events are examples only and do not reflect real events within your Komboe organization."
   },
   "viewEvents": {
     "message": "View Events"
@@ -16019,7 +16019,7 @@
     "message": "Autofill your passwords securely with one click"
   },
   "setupExtensionPageDescription": {
-    "message": "Get the Bitwarden browser extension and start autofilling today"
+    "message": "Get the Komboe browser extension and start autofilling today"
   },
   "getTheExtension": {
     "message": "Skaff deg utvidelsen"
@@ -16037,19 +16037,19 @@
     "message": "Skip to web app"
   },
   "bitwardenExtensionInstalled": {
-    "message": "Bitwarden extension installed!"
+    "message": "Komboe extension installed!"
   },
   "bitwardenExtensionIsInstalled": {
-    "message": "Bitwarden extension is installed!"
+    "message": "Komboe extension is installed!"
   },
   "openExtensionToAutofill": {
     "message": "Open the extension to log in and start autofilling."
   },
   "openBitwardenExtension": {
-    "message": "Åpne Bitwarden-utvidelsen"
+    "message": "Åpne Komboe-utvidelsen"
   },
   "gettingStartedWithBitwardenPart1": {
-    "message": "For tips on getting started with Bitwarden visit the",
+    "message": "For tips on getting started with Komboe visit the",
     "description": "This will be displayed as part of a larger sentence. The whole sentence reads: 'For tips on getting started with Bitwarden visit the Learning Center and Help Center'"
   },
   "gettingStartedWithBitwardenPart2": {
@@ -16057,7 +16057,7 @@
     "description": "This will be displayed as part of a larger sentence. The whole sentence reads: 'For tips on getting started with Bitwarden visit the Learning Center and Help Center'"
   },
   "openExtensionFromToolbarPart1": {
-    "message": "If the extension didn't open, you may need to open Bitwarden from the icon ",
+    "message": "If the extension didn't open, you may need to open Komboe from the icon ",
     "description": "This will be used as part of a larger sentence, broken up to include the Bitwarden icon. The full sentence will read 'If the extension didn't open, you may need to open Bitwarden from the icon [Bitwarden Icon] on the toolbar.'"
   },
   "openExtensionFromToolbarPart2": {
@@ -16069,7 +16069,7 @@
     "description": "This will be displayed as part of a larger sentence. The whole sentence reads: 'For tips on getting started with Bitwarden visit the Learning Center and Help Center'"
   },
   "setupExtensionContentAlt": {
-    "message": "With the Bitwarden browser extension you can easily create new logins, access your saved logins directly from your browser toolbar, and sign in to accounts quickly using Bitwarden autofill."
+    "message": "With the Komboe browser extension you can easily create new logins, access your saved logins directly from your browser toolbar, and sign in to accounts quickly using Komboe autofill."
   },
   "restart": {
     "message": "Omstart"
@@ -16101,7 +16101,7 @@
     "message": "Om denne innstillingen"
   },
   "permitCipherDetailsDescription": {
-    "message": "Bitwarden will use saved login URIs to identify which icon or change password URL should be used to improve your experience. No information is collected or saved when you use this service."
+    "message": "Komboe will use saved login URIs to identify which icon or change password URL should be used to improve your experience. No information is collected or saved when you use this service."
   },
   "showQuickCopyActionsDetailsDescription": {
     "message": "Add 3 quick copy buttons next to items to copy your username, password, or verification code to the clipboard."
@@ -16171,7 +16171,7 @@
     }
   },
   "restoreProviderPortalAccessViaCustomerSupport": {
-    "message": "To restore access to your provider portal, contact Bitwarden Customer Support to renew your subscription.",
+    "message": "To restore access to your provider portal, contact Komboe Customer Support to renew your subscription.",
     "description": "A message shown in a non-dismissible dialog to any user of a suspended providers."
   },
   "restoreProviderPortalAccessViaPaymentMethod": {
@@ -16213,7 +16213,7 @@
     "message": "Abonnementet har blitt avbrutt"
   },
   "providersubCanceledmessage": {
-    "message": "To resubscribe, contact Bitwarden Customer Support."
+    "message": "To resubscribe, contact Komboe Customer Support."
   },
   "showAll": {
     "message": "Show all"
@@ -16356,7 +16356,7 @@
     "message": "Custom plan"
   },
   "planDescCustom": {
-    "message": "Bitwarden scales with businesses of all sizes to secure passwords and sensitive information. If you're part of a large enterprise, contact sales to request a quote."
+    "message": "Komboe scales with businesses of all sizes to secure passwords and sensitive information. If you're part of a large enterprise, contact sales to request a quote."
   },
   "builtInAuthenticator": {
     "message": "Built-in authenticator"
@@ -16473,7 +16473,7 @@
     "message": "There was an error calculating tax for your location. Please try again."
   },
   "individualUpgradeWelcomeMessage": {
-    "message": "Velkommen til Bitwarden"
+    "message": "Velkommen til Komboe"
   },
   "individualUpgradeDescriptionMessage": {
     "message": "Unlock more security features with Premium, or start sharing items with Families"
@@ -16494,7 +16494,7 @@
     "message": "Oppgrader nå"
   },
   "getAdvancedOnlineSecurityWithBitwardenPremium": {
-    "message": "Get advanced online security with Bitwarden premium."
+    "message": "Get advanced online security with Komboe premium."
   },
   "formWillCreateNewFamiliesOrgMessage": {
     "message": "Completing this form will create a new Families organization. You can upgrade your Free organization from the Admin Console."
@@ -16503,7 +16503,7 @@
     "message": "We encountered an error while processing your upgrade. Please try again."
   },
   "bitwardenFreeplanMessage": {
-    "message": "You have the Bitwarden Free plan"
+    "message": "You have the Komboe Free plan"
   },
   "upgradeCompleteSecurity": {
     "message": "Upgrade for complete security"
@@ -16521,7 +16521,7 @@
     "message": "Algoritme"
   },
   "encryptionKeySettingsHowShouldWeEncryptYourData": {
-    "message": "Choose how Bitwarden should encrypt your vault data. All options are secure, but stronger methods offer better protection - especially against brute-force attacks. Bitwarden recommends the default setting for most users."
+    "message": "Choose how Komboe should encrypt your vault data. All options are secure, but stronger methods offer better protection - especially against brute-force attacks. Komboe recommends the default setting for most users."
   },
   "encryptionKeySettingsIncreaseImproveSecurity": {
     "message": "Increasing the values above the default will improve security, but your vault may take longer to unlock as a result."
@@ -16552,10 +16552,10 @@
     "description": "VFO1 terminology variant of 'blockClaimedDomainAccountCreationDesc', shown in the policies list"
   },
   "blockClaimedDomainAccountCreationDescV2": {
-    "message": "Block members from using your claimed domain to create Bitwarden accounts outside your organization."
+    "message": "Block members from using your claimed domain to create Komboe accounts outside your organization."
   },
   "blockClaimedDomainAccountCreationDescV2Vfo1": {
-    "message": "Block members from using your claimed domain to create Bitwarden accounts outside of your organization vault.",
+    "message": "Block members from using your claimed domain to create Komboe accounts outside of your organization vault.",
     "description": "VFO1 terminology variant of 'blockClaimedDomainAccountCreationDescV2'"
   },
   "blockClaimedDomainAccountCreationPrerequisiteV2": {
@@ -16593,7 +16593,7 @@
     }
   },
   "removeMasterPasswordForOrgUserKeyConnector": {
-    "message": "Your organization is no longer using master passwords to log into Bitwarden. To continue, verify the organization and domain."
+    "message": "Your organization is no longer using master passwords to log into Komboe. To continue, verify the organization and domain."
   },
   "continueWithLogIn": {
     "message": "Fortsett med innlogging"
@@ -16796,7 +16796,7 @@
     "message": "Decline and leave"
   },
   "youHaveBitwardenPremium": {
-    "message": "You have Bitwarden Premium"
+    "message": "You have Komboe Premium"
   },
   "viewAndManagePremiumSubscription": {
     "message": "View and manage your Premium subscription"
@@ -16835,13 +16835,13 @@
     "message": "Already have a subscription?"
   },
   "alreadyHaveSubscriptionSelfHostedMessage": {
-    "message": "Open the subscription page on your Bitwarden cloud account and download your license file. Then return to this screen and upload it below."
+    "message": "Open the subscription page on your Komboe cloud account and download your license file. Then return to this screen and upload it below."
   },
   "alreadyHaveSubscriptionSelfHostedMessageV2": {
-    "message": "Open the subscription page on your Bitwarden account and download your license file. Then return to this screen and upload it below."
+    "message": "Open the subscription page on your Komboe account and download your license file. Then return to this screen and upload it below."
   },
   "alreadyHaveSubscriptionSelfHostedMessageV3": {
-    "message": "On your cloud environment, log in to your Bitwarden account, open the subscription page, and download your license file. Then, return to this screen and upload it."
+    "message": "On your cloud environment, log in to your Komboe account, open the subscription page, and download your license file. Then, return to this screen and upload it."
   },
   "viewAllPlans": {
     "message": "View all plans"
@@ -16927,10 +16927,10 @@
     "message": "Get the extension for easy vault access"
   },
   "extensionPromptBody": {
-    "message": "With the browser extension installed, you'll take Bitwarden everywhere online. It'll fill in passwords, so you can log into your accounts with a single click."
+    "message": "With the browser extension installed, you'll take Komboe everywhere online. It'll fill in passwords, so you can log into your accounts with a single click."
   },
   "extensionPromptImageAlt": {
-    "message": "A web browser showing the Bitwarden extension with autofill items for the current webpage."
+    "message": "A web browser showing the Komboe extension with autofill items for the current webpage."
   },
   "skip": {
     "message": "Hopp over"
@@ -16951,10 +16951,10 @@
     "message": "Enter multiple emails by separating with a comma."
   },
   "emailPlaceholder": {
-    "message": "user@bitwarden.com , user@acme.com"
+    "message": "user@komboe.com , user@acme.com"
   },
   "emailPlaceholderMultiple": {
-    "message": "user@bitwarden.com, user@acme.com"
+    "message": "user@komboe.com, user@acme.com"
   },
   "whenYouRemoveStorage": {
     "message": "When you remove storage, you will receive a prorated account credit that will automatically go toward your next bill."
@@ -16978,10 +16978,10 @@
     "message": "Invalid Send password"
   },
   "vaultWelcomeDialogTitle": {
-    "message": "You're in! Welcome to Bitwarden"
+    "message": "You're in! Welcome to Komboe"
   },
   "vaultWelcomeDialogDescription": {
-    "message": "Lagre alle passordene dine og personlig informasjon i Bitwarden-hvelvet ditt. Vi viser deg rundt."
+    "message": "Lagre alle passordene dine og personlig informasjon i Komboe-hvelvet ditt. Vi viser deg rundt."
   },
   "vaultWelcomeDialogPrimaryCta": {
     "message": "Start tour"
@@ -17203,7 +17203,7 @@
     "message": "Switch between products"
   },
   "coachmarkSwitchProductsDescription": {
-    "message": "Click to see other Bitwarden products you have access to, or discover new products and plans."
+    "message": "Click to see other Komboe products you have access to, or discover new products and plans."
   },
   "coachmarkVaultListTitle": {
     "message": "All your vaults in one place"
@@ -17239,7 +17239,7 @@
     "message": "Help members improve"
   },
   "aiCoachmarkHelpMembersDescription": {
-    "message": "Once you've selected critical applications, prompt members to change at-risk passwords. They'll receive a message in their Bitwarden extension."
+    "message": "Once you've selected critical applications, prompt members to change at-risk passwords. They'll receive a message in their Komboe extension."
   },
   "aiCoachmarkRunReportTitle": {
     "message": "Stay on top of new risks"
@@ -18247,7 +18247,7 @@
     "message": "Payment successful"
   },
   "paymentSuccessfulProcessingMessage": {
-    "message": "Your upgrade is being processed. It may be a few minutes before you see Premium features in Bitwarden."
+    "message": "Your upgrade is being processed. It may be a few minutes before you see Premium features in Komboe."
   },
   "planPurchased": {
     "message": "Plan purchased"
@@ -18452,15 +18452,15 @@
     "message": "Service accounts prorated charge"
   },
   "newExperienceDialogTitle": {
-    "message": "Bitwarden has a new look",
+    "message": "Komboe has a new look",
     "description": "Title of the dialog that introduces the redesigned vault to existing users."
   },
   "newExperienceDialogDesc": {
-    "message": "Better experience, same trusted security. The Bitwarden vault has been redesigned based on your feedback, so things are easier to find and work like you'd expect.",
+    "message": "Better experience, same trusted security. The Komboe vault has been redesigned based on your feedback, so things are easier to find and work like you'd expect.",
     "description": "Body copy of the dialog that introduces the redesigned vault to existing users."
   },
   "newExperienceDialogImgAlt": {
-    "message": "A preview of the redesigned Bitwarden vault.",
+    "message": "A preview of the redesigned Komboe vault.",
     "description": "Alt text for the screenshot shown in the dialog that introduces the redesigned vault."
   },
   "exploreTheNewVault": {

@@ -1,4 +1,4 @@
-/**** START Static Vaultwarden changes ****/
+/**** START Static Komboe changes ****/
 /* This combines all selectors extending it into one */
 %vw-hide {
   display: none !important;
@@ -15,7 +15,7 @@ bit-nav-item[route="settings/subscription"] {
   @extend %vw-hide;
 }
 
-/* Hide any link pointing to Free Bitwarden Families */
+/* Hide any link pointing to Free Komboe Families */
 a[href$="/settings/sponsored-families"] {
   @extend %vw-hide;
 }
@@ -103,7 +103,7 @@ app-security > app-two-factor-setup > form {
   @extend %vw-hide;
 }
 
-/* Change collapsed menu icon to Vaultwarden */
+/* Change collapsed menu icon to Komboe */
 bit-nav-logo bit-nav-item a:before {
   content: "";
   background-image: url("../images/icon-white.svg");
@@ -127,8 +127,8 @@ ng-dropdown-panel div.ng-dropdown-panel-items div:has(> [title="Firefox Relay"])
 ng-dropdown-panel div.ng-dropdown-panel-items div:has(> [title="DuckDuckGo"]) {
   @extend %vw-hide;
 }
-/**** END Static Vaultwarden Changes ****/
-/**** START Dynamic Vaultwarden Changes ****/
+/**** END Static Komboe Changes ****/
+/**** START Dynamic Komboe Changes ****/
 {{#if signup_disabled}}
 /* From web vault 2025.1.2 and onwards, the signup button is hidden
   when signups are disabled as the web vault checks the /api/config endpoint.
@@ -202,7 +202,7 @@ div:has(> app-change-email) {
   @extend %vw-hide;
 }
 {{/unless}}
-/**** End Dynamic Vaultwarden Changes ****/
+/**** End Dynamic Komboe Changes ****/
 /**** Include a special user stylesheet for custom changes ****/
 {{#if load_user_scss}}
 {{> scss/user.vaultwarden.scss }}

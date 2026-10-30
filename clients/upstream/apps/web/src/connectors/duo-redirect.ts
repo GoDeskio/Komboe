@@ -1,7 +1,7 @@
 import { buildMobileDeeplinkUriFromParam, getQsParam } from "./common";
 import { TranslationService } from "./translation.service";
 
-const mobileDesktopCallback = "bitwarden://duo-callback";
+const mobileDesktopCallback = "komboe://duo-callback";
 let localeService: TranslationService | null = null;
 
 window.addEventListener("load", async () => {

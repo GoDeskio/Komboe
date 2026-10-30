@@ -448,15 +448,15 @@ export class Main {
           this.logService.error("Error while setting up native messaging:", err);
         }
 
-        app.removeAsDefaultProtocolClient("bitwarden");
+        app.removeAsDefaultProtocolClient("komboe");
         if (process.env.NODE_ENV === "development" && process.platform === "win32") {
           // Fix development build on Windows requiring a different protocol client
-          app.setAsDefaultProtocolClient("bitwarden", process.execPath, [
+          app.setAsDefaultProtocolClient("komboe", process.execPath, [
             process.argv[1],
             path.resolve(process.argv[2]),
           ]);
         } else {
-          app.setAsDefaultProtocolClient("bitwarden");
+          app.setAsDefaultProtocolClient("komboe");
         }
 
         // Process protocol for macOS
@@ -481,7 +481,7 @@ export class Main {
 
   private processDeepLink(argv: string[]): void {
     argv
-      .filter((s) => s.indexOf("bitwarden://") === 0)
+      .filter((s) => s.indexOf("komboe://") === 0)
       .forEach((s) => {
         this.messagingService.send("deepLink", { urlString: s });
       });

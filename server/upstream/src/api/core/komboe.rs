@@ -143,6 +143,11 @@ async fn put_plan(org_id: OrganizationId, data: Json<PlanData>, headers: Headers
     let plan = OrgPlan { org_uuid: org_id.to_string(), kind: d.kind, seats,
         price_cents: d.price_per_member_cents.unwrap_or(DEFAULT_FAMILY_PRICE_CENTS).max(0), parent_org_uuid: parent, updated_at: now() };
     plan.clone().save(&conn).await?;
+    let on = org_name(&org_id, &conn).await;
+    let msg = format!("The plan for {on} is now {} with {} seats at {}.{:02} per member per month. Billing provider: {}.",
+        plan.kind, plan.seats, plan.price_cents / 100, plan.price_cents % 100,
+        if std::env::var("KOMBOE_STRIPE_TEST_KEY").is_ok() { "Stripe (test mode)" } else { "not connected (no charges)" });
+    notify_admins(&org_id, &UserId::from(String::new()), &format!("Billing notice: {on} plan updated"), &msg, &conn).await;
     Ok(Json(plan.to_json(used)))
 }
 
@@ -251,6 +256,11 @@ async fn create_split(org_id: OrganizationId, data: Json<SplitData>, headers: He
         status: "pending".into(), note: data.into_inner().note.map(|n| n.chars().take(500).collect()), new_org_uuid: None,
         decided_by: None, created_at: now(), decided_at: None };
     r.clone().save(&conn).await?;
+    let on = org_name(&org_id, &conn).await;
+    notify_admins(&org_id, &headers.user.uuid, &format!("Split-off request in {on}"),
+        &format!("{} asked to leave {on} with their personal vault and start their own family. Review it in the Komboe family console.", headers.user.email), &conn).await;
+    notify_user(&r.user_uuid, &format!("Your split-off request for {on} was sent"),
+        &format!("We sent your request to the admins of {on}. You will get an email when they decide."), &conn).await;
     Ok(Json(r.to_json(&conn).await))
 }
 
@@ -280,6 +290,14 @@ async fn decide(id: &str, approve: bool, headers: &Headers, conn: &DbConn) -> Js
     r.decided_by = Some(headers.user.uuid.to_string());
     r.decided_at = Some(now());
     r.clone().save(conn).await?;
+    let on = org_name(&OrganizationId::from(r.org_uuid.clone()), conn).await;
+    if approve {
+        notify_user(&r.user_uuid, &format!("Your split-off from {on} was approved"),
+            "An admin approved your request. Sign in to Komboe to create your new family; your personal vault comes with you.", conn).await;
+    } else {
+        notify_user(&r.user_uuid, &format!("Your split-off from {on} was declined"),
+            "An admin declined your request. You are still a member and nothing in your vault changed.", conn).await;
+    }
     Ok(Json(r.to_json(conn).await))
 }
 
@@ -336,7 +354,48 @@ async fn complete_split(id: &str, data: Json<CompleteData>, headers: Headers, co
     r.status = "completed".into();
     r.new_org_uuid = Some(new_org.to_string());
     r.clone().save(&conn).await?;
+    let on = org_name(&old_org, &conn).await;
+    notify_admins(&old_org, &headers.user.uuid, &format!("A member left {on}"),
+        &format!("{} completed their approved split-off and left {on}. One seat is free again.", headers.user.email), &conn).await;
+    notify_user(&r.user_uuid, "Your new Komboe family is ready",
+        &format!("You left {on} and now own your own family plan. Your personal vault is unchanged."), &conn).await;
     Ok(Json(r.to_json(&conn).await))
+}
+
+
+// ---------------------------------------------------------------- notifications (branded, no vault data)
+
+async fn org_name(org: &OrganizationId, conn: &DbConn) -> String {
+    Organization::find_by_uuid(org, conn).await.map(|o| o.name).unwrap_or_else(|| "your organization".into())
+}
+async fn email_of(user: &str, conn: &DbConn) -> Option<String> {
+    User::find_by_uuid(&UserId::from(user.to_string()), conn).await.map(|u| u.email)
+}
+/// Mail every confirmed owner/admin of `org` (except `skip`). Failures are logged, never fatal.
+async fn notify_admins(org: &OrganizationId, skip: &UserId, subject: &str, message: &str, conn: &DbConn) {
+    if !CONFIG.mail_enabled() { return; }
+    for m in Membership::find_by_org(org, conn).await {
+        let admin = m.atype == MembershipType::Owner as i32 || m.atype == MembershipType::Admin as i32;
+        if admin && m.status == MembershipStatus::Confirmed as i32 && m.user_uuid != *skip {
+            if let Some(e) = email_of(&m.user_uuid, conn).await {
+                if let Err(e) = crate::mail::send_komboe_notice(&e, subject, message).await { error!("komboe notice: {e:#?}"); }
+            }
+        }
+    }
+}
+pub(crate) async fn notify_user(user: &str, subject: &str, message: &str, conn: &DbConn) {
+    if !CONFIG.mail_enabled() { return; }
+    if let Some(e) = email_of(user, conn).await {
+        if let Err(e) = crate::mail::send_komboe_notice(&e, subject, message).await { error!("komboe notice: {e:#?}"); }
+    }
+}
+
+/// Tell a Send's owner it was opened. The Send's name is encrypted, so only counts are included.
+pub(crate) async fn notify_send_opened(send: &crate::db::models::Send, conn: &DbConn) {
+    let Some(owner) = send.user_uuid.as_ref() else { return };
+    let left = match send.max_access_count { Some(m) => format!(" {} of {m} allowed views used.", send.access_count), None => String::new() };
+    notify_user(owner, "Your Komboe Send was opened",
+        &format!("Someone opened one of your Sends (view {}).{left} If you did not share this link, delete the Send in Komboe.", send.access_count), conn).await;
 }
 
 // ---------------------------------------------------------------- aliases (SimpleLogin-compatible subset)

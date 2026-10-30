@@ -676,6 +676,10 @@ async fn post_password(data: Json<ChangePassData>, headers: Headers, conn: DbCon
     // If you do logout the user it will causes issues at the client side.
     // Adding the device uuid will prevent this.
     nt.send_logout(&user, Some(&headers.device), &conn).await;
+    if save_result.is_ok() {
+        crate::api::core::komboe::notify_user(&user.uuid, "Your Komboe master password was changed",
+            "The master password for your Komboe account was just changed and your other sessions were signed out. If this was not you, contact your Komboe admin right away.", &conn).await;
+    }
 
     save_result
 }

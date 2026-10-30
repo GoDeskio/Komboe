@@ -765,3 +765,18 @@ async fn send_email(address: &str, subject: &str, body_html: String, body_text: 
 
     send_with_selected_transport(email).await
 }
+
+/// Komboe: generic branded notice (split-off requests/decisions, plan and billing changes).
+pub async fn send_komboe_notice(address: &str, subject: &str, message: &str) -> EmptyResult {
+    let (subject, body_html, body_text) = get_text(
+        "email/komboe_notice",
+        json!({
+            "url": CONFIG.domain(),
+            "img_src": CONFIG._smtp_img_src(),
+            "subject": subject,
+            "message": message,
+        }),
+    )?;
+
+    send_email(address, &subject, body_html, body_text).await
+}

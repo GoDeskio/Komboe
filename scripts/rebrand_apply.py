@@ -227,4 +227,56 @@ FACE = ('@font-face {\n  font-family: Sora;\n  src: url("~@bitwarden/components/
         ':root { --font-brand: Sora, Inter, ui-sans-serif, system-ui, sans-serif; }\nh1, .komboe-brand { font-family: var(--font-brand); letter-spacing: -0.01em; }\n')
 rw(f"{C}/libs/components/src/theme.css", lambda t: t if "font-family: Sora" in t else t.replace("@font-face {\n  font-family: Inter;", FACE + "\n@font-face {\n  font-family: Inter;", 1))
 
+# 10. Phase F: desktop package metadata + URL scheme. Windows VersionInfo CompanyName/LegalCopyright come from
+# package.json "author" and electron-builder "copyright"; deb Maintainer/Vendor from "author"/"homepage".
+# Desktop deep links move from bitwarden:// to komboe:// so Komboe never claims the Bitwarden desktop scheme.
+# Upstream copyright stays in LICENSE/NOTICE/README credit; only this product's own metadata changes.
+D = f"{C}/apps/desktop"
+def ebuilder2(t):
+    d = json.loads(t)
+    d["copyright"] = "Copyright \u00a9 2026 GoDesk. Komboe is based on Bitwarden clients (GPL-3.0)."
+    d.setdefault("win", {}).setdefault("signtoolOptions", {})["publisherName"] = "GoDesk"
+    a = d.setdefault("appx", {})
+    a.update(applicationId="komboedesktop", identityName="GoDesk.Komboe", publisher="CN=GoDesk",
+             publisherDisplayName="GoDesk", displayName="Komboe")
+    if "mas" in d: d["mas"]["identity"] = "GoDesk"
+    if "snap" in d:
+        d["snap"]["summary"] = "Komboe is a secure, self-hosted password manager for all of your devices."
+        d["snap"]["description"] = "Password Manager\n**Installation**\nKomboe requires access to the `password-manager-service`. Run `sudo snap connect komboe:password-manager-service` after installation."
+    if isinstance(d.get("publish"), dict) and "bitwarden.com" in d["publish"].get("url", ""):
+        d["publish"]["url"] = "https://downloads.komboe.com/desktop"   # never pull Bitwarden auto-updates
+    for pr in d.get("protocols", []):
+        pr["name"] = "Komboe"; pr["schemes"] = ["komboe"]
+    return json.dumps(d, indent=2, ensure_ascii=False) + "\n"
+for p in [f"{D}/electron-builder.json", f"{D}/electron-builder.beta.json"]:
+    if os.path.exists(p): rw(p, ebuilder2)
+def pkg(t):
+    d = json.loads(t)
+    d["author"] = "GoDesk <hello@komboe.com> (https://komboe.com)"; d["homepage"] = "https://komboe.com"
+    d["description"] = "Komboe: a secure, self-hosted password manager for all of your devices."
+    return json.dumps(d, indent=2, ensure_ascii=False) + "\n"
+rw(f"{D}/src/package.json", pkg)
+SCHEME = lambda t: t.replace('"bitwarden://', '"komboe://').replace('ProtocolClient("bitwarden"', 'ProtocolClient("komboe"')
+for p in [f"{D}/src/main.ts", f"{D}/src/app/app.component.ts",
+          f"{C}/libs/auth/src/common/services/sso-redirect/sso-url.service.ts",
+          f"{C}/libs/importer/src/components/lastpass/lastpass-direct-import.service.ts"]:
+    if os.path.exists(p): rw(p, SCHEME)
+# web Duo connector: desktop hand-off uses komboe://; mobile keeps its own scheme
+rw(f"{C}/apps/web/src/connectors/duo-redirect.ts", lambda t: t.replace('const mobileDesktopCallback = "bitwarden://duo-callback";',
+   'const mobileDesktopCallback = "komboe://duo-callback";'))
+
+# 11. Phase G: email notifications carry no Vaultwarden/Bitwarden names (footer link, sender name, invite text)
+T = f"{S}/src/static/templates/email"
+rw(f"{T}/email_footer_text.hbs", lambda t: t.replace("Github: https://github.com/dani-garcia/vaultwarden", "Komboe: https://komboe.com"))
+rw(f"{T}/email_footer.hbs", lambda t: t.replace('href="https://github.com/dani-garcia/vaultwarden"', 'href="https://komboe.com"').replace('alt="GitHub"', 'alt="Komboe"'))
+for f in ("invite_accepted.hbs", "invite_accepted.html.hbs"):
+    rw(f"{T}/{f}", lambda t: t.replace("the vaultwarden server", "the Komboe server"))
+rw(f"{S}/src/config.rs", lambda t: t.replace('invitation_org_name:    String, true,   def,    "Vaultwarden".to_owned();', 'invitation_org_name:    String, true,   def,    "Komboe".to_owned();')
+   .replace('smtp_from_name:                String, true,   def,     "Vaultwarden".to_owned();', 'smtp_from_name:                String, true,   def,     "Komboe".to_owned();'))
+
+_mg = f"{S}/src/static/images/mail-github.png"   # footer icon -> Komboe mark (was GitHub octocat)
+if os.path.exists(f"{B}/favicon/pwa-192.png"):
+    from PIL import Image
+    Image.open(f"{B}/favicon/pwa-192.png").convert("RGBA").resize((60, 60), Image.LANCZOS).save(_mg)
+
 print(f"rebrand: {len(changed)} files changed")

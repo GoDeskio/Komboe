@@ -75,6 +75,15 @@ def main():
 
     # 1. register (verification-token flow; SIGNUPS_VERIFY off locally)
     tok = http("POST", "/identity/accounts/register/send-verification-email", {"email": email, "name": "RT"})
+    if not tok:  # SMTP enabled: the token arrives by mail (Mailpit on the test server)
+        import re, time
+        mp = os.environ.get("KOMBOE_MAILPIT", "http://127.0.0.1:8025")
+        for _ in range(30):
+            ms = json.loads(urllib.request.urlopen(mp + "/api/v1/search?query=" + urllib.parse.quote(f'to:"{email}"')).read())["messages"]
+            if ms: break
+            time.sleep(0.3)
+        m = json.loads(urllib.request.urlopen(mp + "/api/v1/message/" + ms[0]["ID"]).read())
+        tok = urllib.parse.unquote(re.search(r"token=([^&\"'\s<]+)", m["Text"]).group(1))
     http("POST", "/identity/accounts/register/finish", {
         "email": email, "emailVerificationToken": tok, "masterPasswordHash": pw_hash, "masterPasswordHint": None,
         "userSymmetricKey": protected_key, "kdf": 0, "kdfIterations": ITER,

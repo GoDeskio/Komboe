@@ -379,6 +379,7 @@ async fn post_access(headers: SendHeaders, conn: DbConn, nt: Notify<'_>) -> Json
 }
 
 async fn process_access(send: Send, conn: DbConn, nt: Notify<'_>) -> JsonResult {
+    crate::api::core::komboe::notify_send_opened(&send, &conn).await;
     nt.send_send_update(
         UpdateType::SyncSendUpdate,
         &send,
@@ -423,6 +424,7 @@ fn check_send_file_id(send: &Send, file_id: &SendFileId) -> EmptyResult {
 }
 
 async fn process_access_file(send: Send, file_id: SendFileId, host: Host, conn: DbConn, nt: Notify<'_>) -> JsonResult {
+    crate::api::core::komboe::notify_send_opened(&send, &conn).await;
     nt.send_send_update(
         UpdateType::SyncSendUpdate,
         &send,

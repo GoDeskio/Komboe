@@ -7,7 +7,7 @@
   "productName": "Bitwarden Beta",
   "appId": "com.bitwarden.beta.desktop",
   "buildDependenciesFromSource": true,
-  "copyright": "Copyright © 2015-2026 Bitwarden Inc.",
+  "copyright": "Copyright © 2026 GoDesk. Komboe is based on Bitwarden clients (GPL-3.0).",
   "directories": {
     "buildResources": "resources",
     "output": "dist",
@@ -28,7 +28,7 @@
   "generateUpdatesFilesForAllChannels": true,
   "publish": {
     "provider": "generic",
-    "url": "https://artifacts.bitwarden.com/desktop"
+    "url": "https://downloads.komboe.com/desktop"
   },
   "mac": {
     "electronUpdaterCompatibility": ">=0.0.1",
@@ -92,7 +92,10 @@
       "Contents/PlugIns/autofill-extension.appex",
       "Frameworks/Electron Framework.framework/(Electron Framework|Libraries|Resources|Versions/Current)/.*"
     ],
-    "target": ["dmg", "zip"],
+    "target": [
+      "dmg",
+      "zip"
+    ],
     "artifactName": "Bitwarden-${version}-${arch}-mac.${ext}"
   },
   "dmg": {
@@ -121,11 +124,18 @@
   "win": {
     "electronUpdaterCompatibility": ">=0.0.1",
     "icon": "icon.beta.ico",
-    "target": ["portable", "nsis-web", "appx"],
-    "signExts": [".dll", ".node"],
+    "target": [
+      "portable",
+      "nsis-web",
+      "appx"
+    ],
+    "signExts": [
+      ".dll",
+      ".node"
+    ],
     "signtoolOptions": {
       "sign": "./sign.js",
-      "publisherName": "Bitwarden Inc."
+      "publisherName": "GoDesk"
     },
     "extraFiles": [
       {
@@ -174,10 +184,10 @@
     "customExtensionsPath": "../custom-appx-extensions.beta.xml",
     "minVersion": "10.0.14393.0",
     "maxVersionTested": "10.0.26100.0",
-    "applicationId": "BitwardenBeta",
-    "identityName": "8bitSolutionsLLC.BitwardenBeta",
-    "publisher": "CN=14D52771-DE3C-4886-B8BF-825BA7690418",
-    "publisherDisplayName": "Bitwarden Inc",
+    "applicationId": "komboedesktop",
+    "identityName": "GoDesk.Komboe",
+    "publisher": "CN=GoDesk",
+    "publisherDisplayName": "GoDesk",
     "languages": [
       "en-US",
       "af",
@@ -241,12 +251,15 @@
       "vi",
       "zh-cn",
       "zh-tw"
-    ]
+    ],
+    "displayName": "Komboe"
   },
   "protocols": [
     {
-      "name": "Bitwarden",
-      "schemes": ["bitwarden"]
+      "name": "Komboe",
+      "schemes": [
+        "komboe"
+      ]
     }
   ]
 }

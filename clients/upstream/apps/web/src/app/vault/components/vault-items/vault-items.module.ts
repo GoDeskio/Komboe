@@ -1,0 +1,49 @@
+import { ScrollingModule } from "@angular/cdk/scrolling";
+import { CommonModule } from "@angular/common";
+import { NgModule } from "@angular/core";
+import { RouterModule } from "@angular/router";
+
+import { PremiumBadgeComponent } from "@bitwarden/angular/billing/components/premium-badge";
+import {
+  ScrollLayoutDirective,
+  TableModule,
+  TooltipDirective,
+  IconModule,
+} from "@bitwarden/components";
+import { ShareLinkMenuItemDirective } from "@bitwarden/tools-share";
+import { VaultItemCopyActionsComponent, Vfo1I18nPipe, Vfo1IconPipe } from "@bitwarden/vault";
+
+import { CollectionNameBadgeComponent } from "../../../admin-console/organizations/collections";
+import { GroupNameBadgeComponent } from "../../../admin-console/organizations/collections/group-badge/group-name-badge.component";
+import { SharedModule } from "../../../shared/shared.module";
+import { OrganizationBadgeModule } from "../../individual-vault/organization-badge/organization-badge.module";
+import { PipesModule } from "../../individual-vault/pipes/pipes.module";
+
+import { VaultCipherRowComponent } from "./vault-cipher-row.component";
+import { VaultCollectionRowComponent } from "./vault-collection-row.component";
+import { VaultItemsComponent } from "./vault-items.component";
+
+@NgModule({
+  imports: [
+    CommonModule,
+    RouterModule,
+    ScrollingModule,
+    SharedModule,
+    TableModule,
+    TooltipDirective,
+    OrganizationBadgeModule,
+    CollectionNameBadgeComponent,
+    GroupNameBadgeComponent,
+    PipesModule,
+    VaultItemCopyActionsComponent,
+    ScrollLayoutDirective,
+    PremiumBadgeComponent,
+    IconModule,
+    Vfo1I18nPipe,
+    Vfo1IconPipe,
+    ShareLinkMenuItemDirective,
+  ],
+  declarations: [VaultItemsComponent, VaultCipherRowComponent, VaultCollectionRowComponent],
+  exports: [VaultItemsComponent],
+})
+export class VaultItemsModule {}

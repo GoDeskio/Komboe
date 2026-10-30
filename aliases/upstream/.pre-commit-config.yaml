@@ -1,0 +1,25 @@
+exclude: "(migrations|static/node_modules|static/assets|static/vendor)"
+default_language_version:
+  python: python3
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.2.0
+    hooks:
+      - id: check-yaml
+      - id: trailing-whitespace
+  - repo: https://github.com/djlint/djLint
+    rev: v1.35.3
+    hooks:
+      - id: djlint-jinja
+        types: [file]
+        files: \.html$
+        entry: djlint --reformat
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    # Ruff version.
+    rev: v0.1.5
+    hooks:
+      # Run the linter.
+      - id: ruff
+        args: [ --fix ]
+      # Run the formatter.
+      - id: ruff-format

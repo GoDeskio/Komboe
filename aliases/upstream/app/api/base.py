@@ -1,0 +1,89 @@
+from functools import wraps
+from typing import Tuple, Optional
+
+import arrow
+from flask import Blueprint, request, jsonify, g
+from flask_login import current_user
+
+from app import constants
+from app.db import Session
+from app.models import ApiKey
+from app.session import is_session_sudo_mode_active
+
+api_bp = Blueprint(name="api", import_name=__name__, url_prefix="/api")
+
+SUDO_MODE_MINUTES_VALID = 5
+
+
+def authorize_request() -> Optional[Tuple[str, int]]:
+    api_code = request.headers.get("Authentication")
+    api_key = ApiKey.get_by(code=api_code)
+
+    if not api_key:
+        if current_user.is_authenticated:
+            if current_user.is_authenticated and request.headers.get(
+                constants.HEADER_ALLOW_API_COOKIES
+            ):
+                g.user = current_user
+        else:
+            return jsonify(error="Wrong api key"), 401
+    else:
+        # Update api key stats
+        api_key.last_used = arrow.now()
+        api_key.times += 1
+        Session.commit()
+
+        g.user = api_key.user
+
+    # Session user without the allow-cookies header: no user was resolved
+    if not hasattr(g, "user"):
+        return jsonify(error="Wrong api key"), 401
+
+    if g.user.disabled:
+        return jsonify(error="Disabled account"), 403
+
+    if not g.user.is_active():
+        return jsonify(error="Account does not exist"), 401
+
+    g.api_key = api_key
+    return None
+
+
+def check_sudo_mode_is_active(api_key: ApiKey) -> bool:
+    return bool(
+        api_key.sudo_mode_at
+        and api_key.sudo_mode_at >= arrow.now().shift(minutes=-SUDO_MODE_MINUTES_VALID)
+    )
+
+
+def require_api_auth(f):
+    @wraps(f)
+    def decorated(*args, **kwargs):
+        error_return = authorize_request()
+        if error_return:
+            return error_return
+        return f(*args, **kwargs)
+
+    return decorated
+
+
+def check_session_sudo_mode_is_active() -> bool:
+    # The session sudo mode is only a valid proof for the user it was granted
+    # to. Without this check a session with a fresh sudo mode could approve a
+    # sensitive action performed as another user, e.g. via an api key sent in
+    # the same request
+    return is_session_sudo_mode_active(g.user.id, SUDO_MODE_MINUTES_VALID * 60)
+
+
+def require_api_sudo(f):
+    @wraps(f)
+    def decorated(*args, **kwargs):
+        error_return = authorize_request()
+        if error_return:
+            return error_return
+        api_key_sudo = g.api_key and check_sudo_mode_is_active(g.api_key)
+        if not api_key_sudo and not check_session_sudo_mode_is_active():
+            return jsonify(error="Need sudo"), 440
+        return f(*args, **kwargs)
+
+    return decorated

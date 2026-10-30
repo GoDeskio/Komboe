@@ -1,0 +1,289 @@
+/**
+ * The `style.scss` file is used to generate `style.css`. Do not modify the CSS file directly.
+ * Instead, make changes to the SCSS file and regenerate the CSS.
+ *
+ * npx sass ./libs/angular/src/scss/bwicons/styles/style.scss ./libs/angular/src/scss/bwicons/styles/style.css --no-source-map 2>&1
+ */
+
+$icomoon-font-family: "bwi-font" !default;
+$icomoon-font-path: "~@bitwarden/angular/src/scss/bwicons/fonts/" !default;
+
+// New font sheet? Update the font-face information below
+@font-face {
+  font-family: "#{$icomoon-font-family}";
+  src:
+    url($icomoon-font-path + "bwi-font.svg") format("svg"),
+    url($icomoon-font-path + "bwi-font.ttf") format("truetype"),
+    url($icomoon-font-path + "bwi-font.woff") format("woff"),
+    url($icomoon-font-path + "bwi-font.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+// Base Class
+.bwi {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: "#{$icomoon-font-family}" !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  display: inline-block;
+  /* Better Font Rendering */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+// Fixed Width Icons
+.bwi-fw {
+  width: calc(18em / 14);
+  text-align: center;
+}
+
+// Sizing Changes
+.bwi-sm {
+  font-size: 0.875em;
+}
+
+.bwi-lg {
+  font-size: calc(4em / 3);
+  line-height: calc(3em / 4);
+  vertical-align: -15%;
+}
+
+.bwi-2x {
+  font-size: 2em;
+}
+
+.bwi-3x {
+  font-size: 3em;
+}
+
+.bwi-4x {
+  font-size: 4em;
+}
+
+// Spin Animations
+.bwi-spin {
+  animation: bwi-spin 2s infinite linear;
+}
+
+@keyframes bwi-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(359deg);
+  }
+}
+
+// List Icons
+.bwi-ul {
+  padding-left: 0;
+  margin-left: calc(30em / 14);
+  list-style-type: none;
+  > li {
+    position: relative;
+  }
+}
+
+.bwi-li {
+  position: absolute;
+  left: calc(-30em / 14);
+  width: calc(30em / 14);
+  top: calc(2em / 14);
+  text-align: center;
+  &.bwi-lg {
+    left: calc(-30em / 14) + calc(4em / 14);
+  }
+}
+
+// Rotation
+.bwi-rotate-270 {
+  transform: rotate(270deg);
+}
+
+// Auto-generated - do not edit manually
+// Bidirectional icon name support (both Figma and legacy BWI names)
+$icons: (
+  "access-connector": "\f180",
+  "accessibility": "\f17f",
+  "add": "\f17d",
+  "add-circle": "\f17e",
+  "admin-console": "\f17c",
+  "angle-down": "\f17b",
+  "angle-left": "\f17a",
+  "angle-right": "\f179",
+  "angle-up": "\f177",
+  "angle-up-down": "\f178",
+  "archive": "\f176",
+  "arrow-down": "\f175",
+  "arrow-filled-down": "\f174",
+  "arrow-filled-left": "\f173",
+  "arrow-filled-right": "\f172",
+  "arrow-filled-up": "\f171",
+  "arrow-left": "\f170",
+  "arrow-right": "\f16f",
+  "arrow-up": "\f16e",
+  "attach": "\f16d",
+  "autofill": "\f16c",
+  "bank": "\f16b",
+  "bitcoin": "\f16a",
+  "bitwarden-shield": "\f169",
+  "browser": "\f168",
+  "bug": "\f167",
+  "business": "\f166",
+  "calendar": "\f165",
+  "camera": "\f164",
+  "check": "\f162",
+  "check-circle": "\f163",
+  "circle": "\f161",
+  "clear": "\f160",
+  "clock": "\f15f",
+  "close": "\f15e",
+  "collapse-nav": "\f15d",
+  "collection": "\f15b",
+  "collection-shared": "\f15c",
+  "copy": "\f15a",
+  "credit-card": "\f159",
+  "dashboard": "\f158",
+  "delete": "\f157",
+  "desktop": "\f155",
+  "desktop-user": "\f156",
+  "diamond": "\f154",
+  "dollar": "\f153",
+  "download": "\f152",
+  "drag": "\f151",
+  "duplicate": "\f150",
+  "edit": "\f14e",
+  "edit-alt": "\f14f",
+  "encrypted": "\f14d",
+  "error": "\f14c",
+  "expand-nav": "\f14b",
+  "extension": "\f14a",
+  "external-link": "\f149",
+  "family": "\f148",
+  "file": "\f146",
+  "file-text": "\f147",
+  "filter": "\f145",
+  "folder": "\f144",
+  "generate": "\f143",
+  "gift": "\f142",
+  "grid": "\f141",
+  "groups": "\f140",
+  "handshake": "\f13f",
+  "hashtag": "\f13e",
+  "help": "\f13d",
+  "identity": "\f13c",
+  "info": "\f13b",
+  "key": "\f13a",
+  "list": "\f138",
+  "list-alt": "\f139",
+  "loading": "\f137",
+  "lock": "\f135",
+  "lock-filled": "\f136",
+  "login": "\f134",
+  "mail": "\f133",
+  "managed-credential": "\f132",
+  "mobile": "\f131",
+  "more-horizontal": "\f130",
+  "more-vertical": "\f12f",
+  "msp": "\f12e",
+  "new-window": "\f12d",
+  "note": "\f12c",
+  "notifications": "\f12b",
+  "numbered-list": "\f12a",
+  "palette": "\f129",
+  "passkey": "\f128",
+  "passport": "\f127",
+  "pause-circle": "\f126",
+  "paypal": "\f125",
+  "pin": "\f124",
+  "receipt": "\f123",
+  "redo": "\f122",
+  "refresh": "\f121",
+  "resume": "\f120",
+  "rocket": "\f11f",
+  "search": "\f11e",
+  "send": "\f11d",
+  "settings": "\f11b",
+  "settings-filled": "\f11c",
+  "share": "\f119",
+  "share-link": "\f11a",
+  "shared-folder": "\f118",
+  "sign-in": "\f117",
+  "sign-out": "\f116",
+  "sliders": "\f115",
+  "sso": "\f114",
+  "star": "\f112",
+  "star-filled": "\f113",
+  "subtract": "\f110",
+  "subtract-circle": "\f111",
+  "tag": "\f10f",
+  "target-system": "\f10e",
+  "terminal": "\f10d",
+  "unarchive": "\f10c",
+  "undo": "\f10b",
+  "unlock": "\f10a",
+  "unpin": "\f109",
+  "upload": "\f108",
+  "user": "\f107",
+  "vault": "\f106",
+  "visibility": "\f104",
+  "visibility-off": "\f105",
+  "warning": "\f103",
+  "wireless": "\f102",
+  "wrench": "\f101",
+  "bell": "\f12b",
+  "billing": "\f123",
+  "brush": "\f129",
+  "cli": "\f10d",
+  "clone": "\f15a",
+  "cog": "\f11b",
+  "cog-f": "\f11c",
+  "down-solid": "\f174",
+  "drag-and-drop": "\f151",
+  "ellipsis-h": "\f130",
+  "ellipsis-v": "\f12f",
+  "envelope": "\f133",
+  "exclamation-triangle": "\f103",
+  "eye": "\f104",
+  "eye-slash": "\f105",
+  "files": "\f150",
+  "globe": "\f134",
+  "id-card": "\f13c",
+  "import": "\f108",
+  "info-circle": "\f13b",
+  "lock-encrypted": "\f14d",
+  "lock-f": "\f136",
+  "minus-circle": "\f111",
+  "paperclip": "\f16d",
+  "pencil": "\f14f",
+  "pencil-square": "\f14e",
+  "plus": "\f17d",
+  "plus-circle": "\f17e",
+  "popout": "\f12d",
+  "premium": "\f154",
+  "provider": "\f13f",
+  "puzzle": "\f14a",
+  "question-circle": "\f13d",
+  "shield": "\f169",
+  "spinner": "\f137",
+  "star-f": "\f113",
+  "sticky-note": "\f12c",
+  "trash": "\f157",
+  "universal-access": "\f17f",
+  "up-down-btn": "\f178",
+  "up-solid": "\f171",
+  "user-monitor": "\f156",
+  "users": "\f140",
+);
+
+@each $name, $glyph in $icons {
+  .bwi-#{$name}:before {
+    content: $glyph;
+  }
+}

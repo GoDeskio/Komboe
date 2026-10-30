@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+  {% call text() %}
+    <h1>Your subscription is ending soon.</h1>
+  {% endcall %}
+
+  {% call text() %}
+    Your subscription ends on
+    <b>{{ coinbase_subscription.end_at.format("YYYY-MM-DD") }}</b>
+  {% endcall %}
+
+  {% call text() %}
+    Due to Coinbase removing Coinbase Commerce, which SimpleLogin had been using until now,
+    you can no longer extend your subscription using cryptocurrency.
+  {% endcall %}
+
+  {% call text() %}
+    Please <a href="https://app.simplelogin.io/dashboard/support">contact us</a>
+    to renew your subscription.
+  {% endcall %}
+
+  {{ render_text('Best,
+    <br />
+    SimpleLogin Team.') }}
+{% endblock %}

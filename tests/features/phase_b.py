@@ -148,10 +148,18 @@ def _():
     return ("done" if ok else "partial", "autofill content scripts built into the extension" + ("; Playwright autofill passed" if ok else "; autofill E2E not run"))
 @t(88)
 def _():
-    import subprocess; p = art("komboe-cli-linux-x64")
+    import subprocess, tempfile; p = art("komboe-linux-x64")
     if not p: return ("partial", "CLI sources vendored; binary not built yet")
-    v = subprocess.run([p, "--version"], capture_output=True, text=True, timeout=60).stdout.strip()
-    assert v, "no version"; return DONE(f"CLI binary {os.path.basename(p)} --version {v}")
+    v = subprocess.run([p, "--version"], capture_output=True, text=True, timeout=60).stdout.strip(); assert v, "no version"
+    tls, cert = os.environ.get("KOMBOE_TLS_URL", "https://localhost:8443"), os.path.join(os.environ.get("KOMBOE_TLS_DIR", "/workspace/run/tls"), "cert.pem")
+    if not os.path.exists(cert): return ("partial", f"CLI {os.path.basename(p)} {v} built; no local TLS instance to log in against")
+    u = User(); d = tempfile.mkdtemp()
+    env = dict(os.environ, XDG_CONFIG_HOME=d, NODE_EXTRA_CA_CERTS=cert, KPW=u.pw); env.pop("BITWARDENCLI_APPDATA_DIR", None)
+    run = lambda *a: subprocess.run([p, *a], capture_output=True, text=True, timeout=120, env=env)
+    run("config", "server", tls); assert os.path.isdir(os.path.join(d, "Komboe CLI")), "data dir not 'Komboe CLI'"
+    sess = run("login", u.email, "--passwordenv", "KPW", "--raw").stdout.strip().splitlines()[-1]
+    items = json.loads(run("list", "items", "--session", sess).stdout)
+    return DONE(f"CLI `komboe` {v}: config server (HTTPS), login, list items ({len(items)}) ok; data dir 'Komboe CLI'")
 @t(81)
 def _():
     p = art("komboe-desktop-linux-x64.AppImage") or art("komboe-desktop-linux-x64.tar.gz")

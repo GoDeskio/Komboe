@@ -91,20 +91,20 @@
    * ======================================== */
 
   /* Brand Colors */
-  --color-brand-050: #eef6ff;
-  --color-brand-100: #dbeafe;
-  --color-brand-200: #bedbff;
-  --color-brand-300: #8ec5ff;
-  --color-brand-400: #6baefa;
-  --color-brand-500: #418bfb;
-  --color-brand-600: #2a70f4;
-  --color-brand-700: #175ddc;
-  --color-brand-700-rgb: 23, 93, 220;
-  --color-brand-800: #0d43af;
-  --color-brand-900: #0c3276;
-  --color-brand-950: #162455;
-  --color-brand-800-rgb: 13, 67, 175;
-  --color-brand-950-rgb: 22, 36, 85;
+  --color-brand-050: #f4f1ff;
+  --color-brand-100: #ebe5ff;
+  --color-brand-200: #d9ceff;
+  --color-brand-300: #c4b7ff;
+  --color-brand-400: #a48dff;
+  --color-brand-500: #7c5cff;
+  --color-brand-600: #6d4aff;
+  --color-brand-700: #5a36f0;
+  --color-brand-700-rgb: 90, 54, 240;
+  --color-brand-800: #4a28c9;
+  --color-brand-900: #3e24b4;
+  --color-brand-950: #24166b;
+  --color-brand-800-rgb: 74, 40, 201;
+  --color-brand-950-rgb: 36, 22, 107;
 
   /* Gray Colors */
   --color-gray-050: #f7f9fa;

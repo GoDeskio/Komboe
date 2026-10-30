@@ -403,13 +403,13 @@ export class ServiceContainer {
     } else if (process.env.BITWARDENCLI_APPDATA_DIR) {
       p = path.resolve(process.env.BITWARDENCLI_APPDATA_DIR);
     } else if (process.platform === "darwin") {
-      p = path.join(process.env.HOME ?? "", "Library/Application Support/Bitwarden CLI");
+      p = path.join(process.env.HOME ?? "", "Library/Application Support/Komboe CLI");
     } else if (process.platform === "win32") {
-      p = path.join(process.env.APPDATA ?? "", "Bitwarden CLI");
+      p = path.join(process.env.APPDATA ?? "", "Komboe CLI");
     } else if (process.env.XDG_CONFIG_HOME) {
-      p = path.join(process.env.XDG_CONFIG_HOME, "Bitwarden CLI");
+      p = path.join(process.env.XDG_CONFIG_HOME, "Komboe CLI");
     } else {
-      p = path.join(process.env.HOME ?? "", ".config/Bitwarden CLI");
+      p = path.join(process.env.HOME ?? "", ".config/Komboe CLI");
     }
 
     const logoutCallback = async () => await this.logout();

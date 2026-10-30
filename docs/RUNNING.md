@@ -49,13 +49,17 @@ Currently 8/9 steps pass; `extension-loads` fails because branded Chrome ignores
 
 ## CLI (local testing only)
 ```sh
-export BITWARDENCLI_APPDATA_DIR=/tmp/kcli NODE_EXTRA_CA_CERTS=tls/cert.pem
-komboe-cli-linux-x64 config server https://localhost:8443
-komboe-cli-linux-x64 login you@example.test --passwordenv KPW --raw   # prints session
-komboe-cli-linux-x64 list items --session <session>
+export NODE_EXTRA_CA_CERTS=tls/cert.pem
+komboe config server https://localhost:8443
+komboe login you@example.test --passwordenv KPW --raw   # prints session
+komboe list items --session <session>
 ```
-Build: `NODE_ENV=production npx webpack` in `apps/cli`, then `npx pkg . --targets node22-linux-x64`.
-The binary still uses upstream names internally (`bw`, "Bitwarden CLI" app-data dir): rebrand pending.
+Build: `NODE_ENV=production npx webpack` in `apps/cli`, then `npx pkg . --targets node22-linux-x64 --output komboe-linux-x64`.
+
+**Migration note (CLI rename):** the command is now `komboe` (was `bw`) and its data dir is `Komboe CLI`
+(`~/.config/Komboe CLI`, `%APPDATA%\Komboe CLI`, `~/Library/Application Support/Komboe CLI`). Existing upstream
+CLI users can move their old `Bitwarden CLI` dir to the new name, or set `BITWARDENCLI_APPDATA_DIR` to keep using it.
+The env var names (`BITWARDENCLI_*`, `BW_SESSION`) are unchanged for script compatibility.
 
 ## Not buildable on this box
 - Desktop (Electron): `desktop_native` needs pkg-config + libdbus/libsecret dev headers, which aren't installed (apt is broken here).

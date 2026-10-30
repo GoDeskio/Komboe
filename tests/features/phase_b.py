@@ -169,6 +169,8 @@ def _():
     if deb:
         info = subprocess.run(["dpkg-deb", "-f", deb, "Package", "Version"], capture_output=True, text=True).stdout
         assert "Package: komboe" in info, f"deb package name: {info!r}"; got.append("deb " + " ".join(info.split()))
+        de = subprocess.run(f"dpkg-deb --fsys-tarfile '{deb}' | tar xO ./usr/share/applications/komboe.desktop", shell=True, capture_output=True, text=True).stdout
+        assert "StartupWMClass=komboe" in de, "desktop entry StartupWMClass must equal the runtime WM_CLASS 'komboe'"; got.append("WM_CLASS komboe")
     if ai: got.append(f"AppImage {os.path.getsize(ai)//2**20} MB")
     e2e = pw("desktop-launch") and pw("desktop-login")
     return ("partial", "Linux desktop built (" + "; ".join(got) + "); " +
@@ -183,7 +185,9 @@ def _():
     if bt:
         badge = subprocess.run([bt[-1], "dump", "badging", p], capture_output=True, text=True).stdout
         assert "application-label:'Komboe'" in badge, "app label is not 'Komboe'"
-    return ("partial", "Android debug APK io.komboe.android (label 'Komboe') built from pinned bitwarden/android (fdroid flavor); not run on a device/emulator here; iOS needs macOS")
+    names = zipfile.ZipFile(p).namelist()
+    assert all(f"res/drawable/{n}.xml" in names for n in ("logo_bitwarden", "logo_shield_icon", "logo_bitwarden_icon")), "in-app logos must be VectorDrawables"
+    return ("partial", "Android debug APK io.komboe.android (label 'Komboe', Sora wordmark header + padlock-K splash as VectorDrawables) built from pinned bitwarden/android (fdroid flavor); not run on a device/emulator here; iOS needs macOS")
 
 # ---- Playwright UI coverage
 def pw(name):

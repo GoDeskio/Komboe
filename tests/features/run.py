@@ -25,14 +25,14 @@ ADMIN = os.environ.get("KOMBOE_ADMIN_TOKEN")
 class HTTPErr(Exception):
     def __init__(s, code, body): super().__init__(f"{code}: {body[:300]}"); s.code = code; s.body = body
 
-def http(method, path, body=None, form=None, token=None, raw=False, headers=None):
+def http(method, path, body=None, form=None, token=None, raw=False, headers=None, base=None):
     h = {"Device-Type": "10", "Bitwarden-Client-Name": "cli", "Bitwarden-Client-Version": "2026.10.1", "Accept": "application/json"}
     h.update(headers or {}); data = None
     if form is not None: data = urllib.parse.urlencode(form).encode(); h["Content-Type"] = "application/x-www-form-urlencoded"
     elif body is not None: data = json.dumps(body).encode(); h["Content-Type"] = "application/json"
     if token: h["Authorization"] = "Bearer " + token
     try:
-        with urllib.request.urlopen(urllib.request.Request(URL + path, data=data, method=method, headers=h)) as r:
+        with urllib.request.urlopen(urllib.request.Request((base or URL) + path, data=data, method=method, headers=h)) as r:
             b = r.read(); return b if raw else (json.loads(b) if b else None)
     except urllib.error.HTTPError as e:
         raise HTTPErr(e.code, e.read().decode(errors="replace"))
@@ -282,8 +282,8 @@ def _():
     v.dev = None; v.login({"twoFactorProvider": "0", "twoFactorToken": totp(k, time.time() + 30), "twoFactorRemember": "0"})
     return DONE("TOTP 2FA enrol, enforced, login with code")
 P(48, "WebAuthn 2FA vendored; needs a virtual authenticator (Playwright, Phase B)")
-X(49, "Duo/YubiKey/email 2FA need external accounts or SMTP")
-P(50, "passkey login (WebAuthn PRF) vendored; needs virtual authenticator")
+X(49, "Duo/YubiKey need external accounts; email 2FA needs server SMTP, and enabling it changes signup to mailed tokens (needs a dedicated test instance)")
+P(50, "passkey login (WebAuthn PRF) UI vendored; server has no passkey-login endpoints and cannot be rebuilt on this box (disk)")
 P(51, "login-with-device (auth-requests) vendored; needs a second client")
 P(52, "biometric/PIN unlock are desktop/mobile client features (Phase B)")
 X(53, "YubiKey challenge-response unlock: Komboe-original")
@@ -336,7 +336,7 @@ X(93, "Docker image: docker unavailable on build box; native binary used")
 def _():
     assert DB and os.path.exists(DB), "KOMBOE_DB not set"; return DONE("single native binary + SQLite file")
 X(95, "HA/clustering: Phase B (Postgres backend)")
-P(96, "S3 attachment backend exists upstream (s3 feature); not built")
+P(96, "S3 attachment backend exists upstream (s3 cargo feature); needs a server rebuild (disk) + local MinIO")
 @t(97)
 def _():
     import subprocess; r = subprocess.run([sys.executable, os.path.join(ROOT, "tests/e2e/roundtrip.py")], capture_output=True, text=True, env=os.environ)
@@ -353,7 +353,8 @@ X(104, "free tier: Phase B billing")
 X(105, "Proton-style UI: under review")
 X(106, "secrets manager: upstream code excluded (bitwarden_license); reimplement later")
 
-exec(compile(open(os.path.join(os.path.dirname(__file__), "phase_b.py")).read(), "phase_b.py", "exec"))
+for _f in ("phase_b.py", "phase_e.py"):
+    exec(compile(open(os.path.join(os.path.dirname(__file__), _f)).read(), _f, "exec"))
 
 def main():
     feats = {}

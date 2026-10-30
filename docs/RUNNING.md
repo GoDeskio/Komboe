@@ -63,4 +63,12 @@ The env var names (`BITWARDENCLI_*`, `BW_SESSION`) are unchanged for script comp
 
 ## Not buildable on this box
 - Desktop (Electron): `desktop_native` needs pkg-config + libdbus/libsecret dev headers, which aren't installed (apt is broken here).
-- Android: no JDK or Android SDK.
+
+## Android debug APK (no apt needed)
+Portable toolchain in `/workspace/tools`: Temurin JDK 21 (upstream `jvmTarget = 21`; JDK 17 is also there but too old) and
+Android commandline-tools. `GITHUB_TOKEN` (any token with `read:packages`) is needed because upstream pulls
+`com.bitwarden:sdk-android` from GitHub Packages.
+```sh
+GITHUB_TOKEN=... bash mobile/android-build.sh   # pin: mobile/ANDROID_UPSTREAM_PIN, rebrand: mobile/android_rebrand.py
+```
+Output: `io.komboe.android-fdroid.apk` (fdroid flavor, no Google Play services/Firebase), package id `io.komboe.android`.

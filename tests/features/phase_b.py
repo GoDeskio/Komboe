@@ -162,9 +162,16 @@ def _():
     return DONE(f"CLI `komboe` {v}: config server (HTTPS), login, list items ({len(items)}) ok; data dir 'Komboe CLI'")
 @t(81)
 def _():
-    p = art("komboe-desktop-linux-x64.AppImage") or art("komboe-desktop-linux-x64.tar.gz")
-    if not p: return ("blocked", "desktop build not produced yet")
-    return ("partial", f"desktop Linux build {os.path.basename(p)}; Windows/macOS not built (unsigned cross-builds need wine/macOS)")
+    import subprocess
+    ai, deb = art("komboe-desktop-x86_64.AppImage"), art("komboe-desktop-amd64.deb")
+    if not (ai or deb): return ("blocked", "desktop build not produced yet (see desktop/desktop-build.sh)")
+    got = []
+    if deb:
+        info = subprocess.run(["dpkg-deb", "-f", deb, "Package", "Version"], capture_output=True, text=True).stdout
+        pkg = " ".join(info.split()); got.append("deb " + pkg + ("" if "komboe" in info.lower() else " [package name still upstream; fixed in rebrand step 7, rebuild pending]"))
+    if ai: got.append(f"AppImage {os.path.getsize(ai)//2**20} MB")
+    return ("partial", "Linux desktop built (" + "; ".join(got) + "), launches on X11 (manual smoke); "
+            "automated Electron E2E blocked by locked fuses (no inspector); Windows/macOS not built")
 @t(83)
 def _():
     import zipfile; p = art("komboe-android-debug.apk")

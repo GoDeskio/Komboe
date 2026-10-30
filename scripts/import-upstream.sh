@@ -11,7 +11,7 @@ git diff --quiet && git diff --cached --quiet || { echo "tree not clean" >&2; ex
 
 import() { # prefix repo tag
   local prefix=$1 repo=$2 tag=$3
-  if [ -d "$prefix/.upstream" ]; then git subtree pull --prefix="$prefix/upstream" "$repo" "$tag" --squash -m "Update $prefix to $tag"
+  if [ -d "$prefix/upstream" ]; then git subtree pull --prefix="$prefix/upstream" "$repo" "$tag" --squash -m "Update $prefix to $tag"
   else git subtree add --prefix="$prefix/upstream" "$repo" "$tag" --squash -m "Import $prefix at $tag"; fi
 }
 

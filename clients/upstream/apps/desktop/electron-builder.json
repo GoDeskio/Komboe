@@ -6,7 +6,7 @@
   "productName": "Komboe",
   "appId": "io.komboe.desktop",
   "buildDependenciesFromSource": true,
-  "copyright": "Copyright \u00a9 2015-2026 Bitwarden Inc.",
+  "copyright": "Copyright © 2026 GoDesk. Komboe is based on Bitwarden clients (GPL-3.0).",
   "directories": {
     "buildResources": "resources",
     "output": "dist",
@@ -27,7 +27,7 @@
   "generateUpdatesFilesForAllChannels": true,
   "publish": {
     "provider": "generic",
-    "url": "https://artifacts.bitwarden.com/desktop"
+    "url": "https://downloads.komboe.com/desktop"
   },
   "mac": {
     "electronUpdaterCompatibility": ">=0.0.1",
@@ -108,7 +108,7 @@
     ],
     "signtoolOptions": {
       "sign": "./sign.js",
-      "publisherName": "Bitwarden Inc."
+      "publisherName": "GoDesk"
     },
     "extraFiles": [
       {
@@ -191,7 +191,7 @@
     }
   },
   "mas": {
-    "identity": "Bitwarden Inc",
+    "identity": "GoDesk",
     "entitlements": "resources/entitlements.mas.plist",
     "entitlementsInherit": "resources/entitlements.mas.inherit.plist",
     "entitlementsLoginHelper": "resources/entitlements.mas.loginhelper.plist",
@@ -217,13 +217,13 @@
   "appx": {
     "artifactName": "${productName}-${version}-${arch}.${ext}",
     "backgroundColor": "#0B1F3A",
-    "applicationId": "bitwardendesktop",
-    "identityName": "8bitSolutionsLLC.bitwardendesktop",
-    "publisher": "CN=14D52771-DE3C-4886-B8BF-825BA7690418",
+    "applicationId": "komboedesktop",
+    "identityName": "GoDesk.Komboe",
+    "publisher": "CN=GoDesk",
     "minVersion": "10.0.14393.0",
     "maxVersionTested": "10.0.26100.0",
     "customExtensionsPath": "../custom-appx-extensions.stable.xml",
-    "publisherDisplayName": "Bitwarden Inc",
+    "publisherDisplayName": "GoDesk",
     "languages": [
       "en-US",
       "af",
@@ -287,7 +287,8 @@
       "vi",
       "zh-cn",
       "zh-tw"
-    ]
+    ],
+    "displayName": "Komboe"
   },
   "deb": {
     "artifactName": "${productName}-${version}-${arch}.${ext}",
@@ -310,8 +311,8 @@
     ]
   },
   "snap": {
-    "summary": "Bitwarden is a secure and free password manager for all of your devices.",
-    "description": "Password Manager\n**Installation**\nBitwarden requires access to the `password-manager-service`. Please enable it through permissions or by running `sudo snap connect bitwarden:password-manager-service` after installation. See https://btwrdn.com/install-snap for details.",
+    "summary": "Komboe is a secure, self-hosted password manager for all of your devices.",
+    "description": "Password Manager\n**Installation**\nKomboe requires access to the `password-manager-service`. Run `sudo snap connect komboe:password-manager-service` after installation.",
     "autoStart": true,
     "base": "core22",
     "confinement": "strict",
@@ -348,7 +349,7 @@
     {
       "name": "Komboe",
       "schemes": [
-        "bitwarden"
+        "komboe"
       ]
     }
   ]

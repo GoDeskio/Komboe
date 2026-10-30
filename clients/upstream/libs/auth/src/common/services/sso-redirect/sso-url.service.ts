@@ -1,6 +1,6 @@
 import { ClientType } from "@bitwarden/common/enums";
 
-export const DESKTOP_SSO_CALLBACK: string = "bitwarden://sso-callback";
+export const DESKTOP_SSO_CALLBACK: string = "komboe://sso-callback";
 
 export class SsoUrlService {
   /**

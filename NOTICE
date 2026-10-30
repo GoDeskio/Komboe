@@ -1,0 +1,9 @@
+Komboe
+Copyright (C) 2026 GoDesk and Komboe contributors. Licensed under AGPL-3.0.
+
+This product will include software derived from:
+- Bitwarden clients (https://github.com/bitwarden/clients), Copyright Bitwarden Inc., GPL-3.0.
+  Code under bitwarden_license/ (Bitwarden License) is NOT included.
+- Vaultwarden (https://github.com/dani-garcia/vaultwarden), Copyright Vaultwarden contributors, AGPL-3.0.
+- SimpleLogin (https://github.com/simple-login/app), Copyright SimpleLogin, AGPL-3.0.
+Trademarks belong to their owners; no endorsement is implied.

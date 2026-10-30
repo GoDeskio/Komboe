@@ -58,16 +58,15 @@
           [bitAction]="checkPassword"
         ></button>
       }
-      @if (viewHiddenFields) {
-        <button
-          type="button"
-          bitIconButton
-          bitSuffix
-          data-testid="toggle-password-visibility"
-          bitPasswordInputToggle
-          (toggledChange)="logVisibleEvent($event, EventType.Cipher_ClientToggledPasswordVisible)"
-        ></button>
-      }
+      <button
+        type="button"
+        bitIconButton
+        bitSuffix
+        data-testid="toggle-password-visibility"
+        bitPasswordInputToggle
+        [disabled]="!viewHiddenFields"
+        (toggledChange)="logVisibleEvent($event, EventType.Cipher_ClientToggledPasswordVisible)"
+      ></button>
       @if (loginDetailsForm.controls.password.enabled) {
         <button
           type="button"
@@ -121,16 +120,15 @@
         </bit-popover>
       </bit-label>
       <input bitInput formControlName="totp" type="password" class="tw-font-mono" />
-      @if (viewHiddenFields) {
-        <button
-          type="button"
-          bitIconButton
-          bitSuffix
-          data-testid="toggle-totp-visibility"
-          bitPasswordInputToggle
-          (toggledChange)="logVisibleEvent($event, EventType.Cipher_ClientToggledTOTPSeedVisible)"
-        ></button>
-      }
+      <button
+        type="button"
+        bitIconButton
+        bitSuffix
+        data-testid="toggle-totp-visibility"
+        bitPasswordInputToggle
+        [disabled]="!viewHiddenFields"
+        (toggledChange)="logVisibleEvent($event, EventType.Cipher_ClientToggledTOTPSeedVisible)"
+      ></button>
       @if (canCaptureTotp) {
         <button
           type="button"

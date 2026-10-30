@@ -19,7 +19,7 @@
       </bit-form-control>
     }
 
-    @if (!hasCustomFields && !isPartialEdit && allowNewField) {
+    @if (!hideCustomFields && !hasCustomFields && !isPartialEdit && allowNewField) {
       <button
         bitLink
         startIcon="bwi-plus"
@@ -33,7 +33,9 @@
   </bit-card>
 </section>
 
-<vault-custom-fields
-  (numberOfFieldsChange)="handleCustomFieldChange($event)"
-  [disableSectionMargin]="disableSectionMargin"
-></vault-custom-fields>
+@if (!hideCustomFields) {
+  <vault-custom-fields
+    (numberOfFieldsChange)="handleCustomFieldChange($event)"
+    [disableSectionMargin]="disableSectionMargin"
+  ></vault-custom-fields>
+}

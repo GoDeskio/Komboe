@@ -407,11 +407,20 @@ describe("vault filter service", () => {
         );
       });
 
-      it("omits new item types", async () => {
+      it("includes bank, license, and passport templates", async () => {
         const filters = await firstValueFrom(vaultFilterService.cipherTypeFilters$);
 
-        expect(filters.map((f) => f.id)).not.toContain("bankAccount");
-        expect(filters.map((f) => f.id)).not.toContain("driversLicense");
+        expect(filters.map((f) => f.id)).toEqual([
+          "favorites",
+          "login",
+          "card",
+          "bankAccount",
+          "identity",
+          "driversLicense",
+          "passport",
+          "note",
+          "sshKey",
+        ]);
       });
 
       it("uses bwi-globe for login", async () => {

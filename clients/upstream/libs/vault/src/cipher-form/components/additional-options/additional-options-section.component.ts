@@ -64,6 +64,9 @@ export class AdditionalOptionsSectionComponent implements OnInit {
   // eslint-disable-next-line @angular-eslint/prefer-signals
   @Input() disableSectionMargin: boolean;
 
+  /** Wi-Fi (and other templates) own their fields, so the generic custom-field editor stays hidden. */
+  @Input() hideCustomFields = false;
+
   /** True when the form allows new fields to be added */
   get allowNewField(): boolean {
     return this.additionalOptionsForm.enabled;

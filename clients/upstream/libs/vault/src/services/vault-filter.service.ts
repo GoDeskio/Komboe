@@ -152,42 +152,30 @@ export class VaultFilterService implements VaultFilterServiceAbstraction {
             type: CipherType.Card,
             icon: "bwi-credit-card",
           },
-          ...(newItemTypes
-            ? [
-                {
-                  id: "bankAccount",
-                  name: this.i18nService.t("bankAccount"),
-                  type: CipherType.BankAccount,
-                  icon: "bwi-bank",
-                } as CipherTypeFilter,
-              ]
-            : []),
+          {
+            id: "bankAccount",
+            name: this.i18nService.t("bankAccount"),
+            type: CipherType.BankAccount,
+            icon: "bwi-bank",
+          },
           {
             id: "identity",
             name: this.i18nService.t("typeIdentity"),
             type: CipherType.Identity,
             icon: newItemTypes ? "bwi-user" : "bwi-id-card",
           },
-          ...(newItemTypes
-            ? [
-                {
-                  id: "driversLicense",
-                  name: this.i18nService.t("typeDriversLicense"),
-                  type: CipherType.DriversLicense,
-                  icon: "bwi-id-card",
-                } as CipherTypeFilter,
-              ]
-            : []),
-          ...(newItemTypes
-            ? [
-                {
-                  id: "passport",
-                  name: this.i18nService.t("typePassport"),
-                  type: CipherType.Passport,
-                  icon: "bwi-passport",
-                } as CipherTypeFilter,
-              ]
-            : []),
+          {
+            id: "driversLicense",
+            name: this.i18nService.t("typeDriversLicense"),
+            type: CipherType.DriversLicense,
+            icon: "bwi-id-card",
+          },
+          {
+            id: "passport",
+            name: this.i18nService.t("typePassport"),
+            type: CipherType.Passport,
+            icon: "bwi-passport",
+          },
           {
             id: "note",
             name: this.i18nService.t("typeSecureNote"),

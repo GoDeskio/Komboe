@@ -27,6 +27,7 @@ import { FolderService } from "@bitwarden/common/vault/abstractions/folder/folde
 import { VaultSettingsService } from "@bitwarden/common/vault/abstractions/vault-settings/vault-settings.service";
 import { CipherType } from "@bitwarden/common/vault/enums";
 import { CipherView } from "@bitwarden/common/vault/models/view/cipher.view";
+import { isKomboeWifi } from "@bitwarden/common/vault/utils/komboe-wifi";
 import { SecurityTaskType, TaskService } from "@bitwarden/common/vault/tasks";
 import { CalloutModule, SearchModule, TypographyModule } from "@bitwarden/components";
 
@@ -45,6 +46,7 @@ import { LoginCredentialsViewComponent } from "./login-credentials/login-credent
 import { PassportViewComponent } from "./passport-sections/passport-view.component";
 import { SshKeyViewComponent } from "./sshkey-sections/sshkey-view.component";
 import { ViewIdentitySectionsComponent } from "./view-identity-sections/view-identity-sections.component";
+import { WifiViewComponent } from "./wifi-sections/wifi-view.component";
 
 // FIXME(https://bitwarden.atlassian.net/browse/CL-764): Migrate to OnPush
 // eslint-disable-next-line @angular-eslint/prefer-on-push-component-change-detection
@@ -69,6 +71,7 @@ import { ViewIdentitySectionsComponent } from "./view-identity-sections/view-ide
     ViewIdentitySectionsComponent,
     LoginCredentialsViewComponent,
     AutofillOptionsViewComponent,
+    WifiViewComponent,
     TypographyModule,
   ],
 })
@@ -279,6 +282,8 @@ export class CipherViewComponent {
 
     return Array.from(Object.values(cipher.driversLicense)).some((value) => Boolean(value));
   });
+
+  readonly hasWifi = computed(() => isKomboeWifi(this.cipher()));
 
   readonly hasPassport = computed(() => {
     const cipher = this.cipher();

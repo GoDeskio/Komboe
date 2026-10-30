@@ -36,6 +36,7 @@
         <bit-label>{{ "yubikeyX" | i18n: (i + 1).toString() }}</bit-label>
         <bit-form-field *ngIf="!keys[i].existingKey">
           <input bitInput type="password" formControlName="key" appInputVerbatim />
+          <button type="button" bitIconButton bitSuffix bitPasswordInputToggle></button>
         </bit-form-field>
         <div class="tw-flex tw-justify-between tw-mb-4" *ngIf="keys[i].existingKey">
           <span class="tw-mr-2 tw-self-center">{{ keys[i].existingKey }}</span>

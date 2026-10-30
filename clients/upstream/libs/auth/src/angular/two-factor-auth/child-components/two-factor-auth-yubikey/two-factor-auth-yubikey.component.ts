@@ -11,6 +11,7 @@ import {
   LinkModule,
   TypographyModule,
   FormFieldModule,
+  IconButtonModule,
   AsyncActionsModule,
 } from "@bitwarden/components";
 
@@ -28,6 +29,7 @@ import {
     TypographyModule,
     ReactiveFormsModule,
     FormFieldModule,
+    IconButtonModule,
     AsyncActionsModule,
     FormsModule,
   ],

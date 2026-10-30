@@ -1177,6 +1177,24 @@
   "typeBankAccount": {
     "message": "Bank account"
   },
+  "typeWifi": {
+    "message": "Wi-Fi"
+  },
+  "typeWifiSubtitle": {
+    "message": "Wireless network"
+  },
+  "wifiDetails": {
+    "message": "Wi-Fi details"
+  },
+  "ssid": {
+    "message": "SSID"
+  },
+  "wifiSecurity": {
+    "message": "Security"
+  },
+  "hiddenNetwork": {
+    "message": "Hidden network"
+  },
   "folders": {
     "message": "Folders"
   },
@@ -1482,6 +1500,10 @@
     "message": "Add passport",
     "description": "Header for new passport item type"
   },
+  "addItemHeaderWifi": {
+    "message": "Add Wi-Fi",
+    "description": "Header for new Wi-Fi item"
+  },
   "newItemHeaderTextSendV2": {
     "message": "New text",
     "description": "Header for new text send"
@@ -1526,6 +1548,10 @@
     "message": "Edit passport",
     "description": "Header for edit passport item type"
   },
+  "editItemHeaderWifi": {
+    "message": "Edit Wi-Fi",
+    "description": "Header for edit Wi-Fi item"
+  },
   "editItemHeaderTextSendV2": {
     "message": "Edit text",
     "description": "Header for edit text send"
@@ -1569,6 +1595,10 @@
   "viewItemHeaderPassport": {
     "message": "View passport",
     "description": "Header for view passport item type"
+  },
+  "viewItemHeaderWifi": {
+    "message": "View Wi-Fi",
+    "description": "Header for view Wi-Fi item"
   },
   "viewItemHeaderLoginSentenceCase": {
     "message": "View login",

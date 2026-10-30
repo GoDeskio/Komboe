@@ -1,4 +1,5 @@
 import { CipherType } from "../enums";
+import { KOMBOE_WIFI_TYPE } from "../utils/komboe-wifi";
 
 /**
  * Represents a menu item for creating a new cipher of a specific type
@@ -31,10 +32,28 @@ export const CIPHER_MENU_ITEMS = Object.freeze([
     subtitleKey: "typeCardSubtitle",
   },
   {
+    type: CipherType.BankAccount,
+    icon: "bwi-bank",
+    labelKey: "typeBankAccount",
+    subtitleKey: "typeBankAccountSubtitle",
+  },
+  {
     type: CipherType.Identity,
     icon: "bwi-id-card",
     labelKey: "typeIdentity",
     subtitleKey: "typeIdentitySubtitle",
+  },
+  {
+    type: CipherType.DriversLicense,
+    icon: "bwi-id-card",
+    labelKey: "typeDriversLicense",
+    subtitleKey: "typeDriversLicenseSubtitle",
+  },
+  {
+    type: CipherType.Passport,
+    icon: "bwi-passport",
+    labelKey: "typePassport",
+    subtitleKey: "typePassportSubtitle",
   },
   {
     type: CipherType.SecureNote,
@@ -48,42 +67,19 @@ export const CIPHER_MENU_ITEMS = Object.freeze([
     labelKey: "typeSshKey",
     subtitleKey: "typeSshKeySubtitle",
   },
+  {
+    type: KOMBOE_WIFI_TYPE,
+    icon: "bwi-wireless",
+    labelKey: "typeWifi",
+    subtitleKey: "typeWifiSubtitle",
+  },
 ] as const) satisfies readonly CipherMenuItem[];
 
-const bankAccountItem: CipherMenuItem = {
-  type: CipherType.BankAccount,
-  icon: "bwi-bank",
-  labelKey: "typeBankAccount",
-  subtitleKey: "typeBankAccountSubtitle",
-};
-
-const passportItem: CipherMenuItem = {
-  type: CipherType.Passport,
-  icon: "bwi-passport",
-  labelKey: "typePassport",
-  subtitleKey: "typePassportSubtitle",
-};
-
-const driversLicenseItem: CipherMenuItem = {
-  type: CipherType.DriversLicense,
-  icon: "bwi-id-card",
-  labelKey: "typeDriversLicense",
-  subtitleKey: "typeDriversLicenseSubtitle",
-};
-
 /**
- * Updated menu items for new item dialog. This list should only be used
- * when `FeatureFlag.PM32009NewItemTypes` is enabled, otherwise use `CIPHER_MENU_ITEMS`.
- * When `FeatureFlag.PM32009NewItemTypes` is turned on in production, this list should replace `CIPHER_MENU_ITEMS`.
+ * Updated menu items for the new item dialog. Same templates as {@link CIPHER_MENU_ITEMS},
+ * with the dialog's icon and label tweaks.
  */
-export const DIALOG_CIPHER_MENU_ITEMS = [
-  ...CIPHER_MENU_ITEMS.slice(0, 2),
-  bankAccountItem,
-  ...CIPHER_MENU_ITEMS.slice(2, 3),
-  driversLicenseItem,
-  passportItem,
-  ...CIPHER_MENU_ITEMS.slice(3),
-].map((item) => {
+export const DIALOG_CIPHER_MENU_ITEMS = CIPHER_MENU_ITEMS.map((item) => {
   if (item.type === CipherType.Login) {
     return {
       ...item,

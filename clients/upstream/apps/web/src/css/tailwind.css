@@ -88,6 +88,17 @@
     content: url("../images/logo-white.svg");
   }
 
+  /* Komboe vault: quiet surfaces, the locked padlock-K logo, Sora for the wordmark. */
+  html.theme_light body {
+    background-color: #f5f4fb;
+  }
+  html.theme_dark body {
+    background-color: #121018;
+  }
+  bit-nav-logo {
+    font-family: Sora, Inter, sans-serif;
+  }
+
   #web-authn-frame {
     height: 40px;
 

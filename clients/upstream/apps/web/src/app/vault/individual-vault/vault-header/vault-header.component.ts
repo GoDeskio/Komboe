@@ -68,6 +68,15 @@ import { PipesModule } from "../pipes/pipes.module";
 export class VaultHeaderComponent {
   private readonly vfo1TerminologyService = inject(Vfo1TerminologyService);
 
+  /** Light and dark stay on the document element so the locked logo swaps with the theme. */
+  toggleTheme(): void {
+    const html = document.documentElement;
+    const dark = html.classList.contains("theme_dark");
+    html.classList.toggle("theme_dark", !dark);
+    html.classList.toggle("theme_light", dark);
+    window.localStorage.setItem("global_theming_selection", dark ? "light" : "dark");
+  }
+
   protected readonly Unassigned = Unassigned;
   protected readonly All = All;
   protected readonly CollectionDialogTabType = CollectionDialogTabType;

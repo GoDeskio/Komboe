@@ -101,7 +101,7 @@ async function consoleLogin(cp, u) {
 }
 await step("org-family", async () => {
   const cp = await ctx.newPage(); await consoleLogin(cp, fx.owner);
-  await cp.locator(".org", { hasText: "Rivera Family" }).getByRole("button", { name: "Open" }).click();
+  await cp.locator(".org", { hasText: fx.orgName || "Rivera Family" }).getByRole("button", { name: "Open" }).click();
   await cp.waitForSelector("#members tbody tr"); const t = await cp.locator("#members").innerText();
   if (!t.includes(fx.kid.email) || !t.includes("No (encrypted)")) throw new Error("member row missing");
   await shot(cp, "family-console-admin");
@@ -114,7 +114,7 @@ await step("split-off", async () => {
   cp.once("dialog", (d) => d.accept("Jordan's family"));
   await cp.getByRole("button", { name: "Create my family and move" }).click();
   await cp.locator(".org", { hasText: "Jordan's family" }).waitFor({ timeout: 30000 });
-  if (await cp.locator(".org", { hasText: "Rivera Family" }).count()) throw new Error("still in old family");
+  if (await cp.locator(".org", { hasText: fx.orgName || "Rivera Family" }).count()) throw new Error("still in old family");
   if (!(await cp.locator(".org", { hasText: "Jordan's family" }).innerText()).includes("Owner")) throw new Error("not owner of new family");
   await shot(cp, "family-split-done");
   // personal vault still there

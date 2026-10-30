@@ -18,8 +18,8 @@ assert "127.0.0.1" in URL or "localhost" in URL, "emails.py is local/test only"
 BAD = re.compile(r"bitwarden|vaultwarden", re.I)
 RES = []
 
-def check(kind, to, subj, extra=None):
-    m = mailpit(to, subj)
+def check(kind, to, subj, extra=None, wait=None):
+    m = mailpit(to, subj, wait) if wait else mailpit(to, subj)
     body = (m.get("HTML") or "") + "\n" + (m.get("Text") or "")
     probs = []
     if (m["From"].get("Name") or "") != "Komboe": probs.append(f"From name {m['From'].get('Name')!r}")
@@ -29,7 +29,7 @@ def check(kind, to, subj, extra=None):
     if "Komboe" not in body + m["Subject"]: probs.append("no Komboe branding")
     links = set(_html.unescape(u) for u in re.findall(r'href="([^"]+)"', m.get("HTML") or "")) | set(re.findall(r"https?://[^\s<>\"')]+", m.get("Text") or ""))
     for u in links:
-        if not (u.startswith(URL) or re.match(r"https?://(www\.)?komboe\.com", u) or u.startswith("mailto:")): probs.append(f"foreign link {u}")
+        if not (u.startswith(URL) or re.match(r"https?://(localhost|127\.0\.0\.1)(:\d+)?(/|$)", u) or re.match(r"https?://(www\.)?komboe\.com", u) or u.startswith("mailto:")): probs.append(f"foreign link {u}")
     if extra:
         try: extra(m, body)
         except Exception as e: probs.append(f"{type(e).__name__}: {e}"[:200])
@@ -135,6 +135,36 @@ def main():
         e.api("POST", f"/api/emergency-access/{ea['id']}/initiate"); g.api("POST", f"/api/emergency-access/{ea['id']}/approve")
         check("emergency recovery approved", e.email, "Approved")
     step("emergency access", emergency)
+    def dbx(sql, *a):
+        import sqlite3; c = sqlite3.connect(os.environ.get("KOMBOE_DB", "/workspace/run/mt/data/db.sqlite3"), timeout=30); c.execute(sql, a); c.commit(); c.close()
+    def emergency_jobs():
+        # Scheduled jobs: server must run with EMERGENCY_*_SCHEDULE="*/5 * * * * *"; we backdate recovery_initiated_at to trigger them.
+        g, e = User(), User()
+        g.api("POST", "/api/emergency-access/invite", {"email": e.email, "type": 1, "waitTimeDays": 2})
+        ea = g.api("GET", "/api/emergency-access/trusted")["data"][0]
+        check("emergency invite (jobs)", e.email, "Emergency", lambda m, b: e.api("POST", f"/api/emergency-access/{ea['id']}/accept", {"token": tok_from(b)}))
+        pk = g.api("GET", f"/api/users/{e.id}/public-key")["publicKey"]
+        g.api("POST", f"/api/emergency-access/{ea['id']}/confirm", {"key": "4." + b64(load_der_public_key(ub64(pk)).encrypt(g.uk, ns["OAEP"]))})
+        e.api("POST", f"/api/emergency-access/{ea['id']}/initiate")
+        dbx("UPDATE emergency_access SET recovery_initiated_at = datetime('now','-36 hours'), last_notification_at = NULL WHERE uuid = ?", ea["id"])
+        time.sleep(7); check("emergency recovery reminder (job)", g.email, "is pending", wait=45)
+        dbx("UPDATE emergency_access SET recovery_initiated_at = datetime('now','-3 days') WHERE uuid = ?", ea["id"])
+        time.sleep(7); check("emergency recovery timed out (job, to grantor)", g.email, "granted", wait=45)
+        check("emergency recovery approved (job, to grantee)", e.email, "Approved")
+        st = g.api("GET", "/api/emergency-access/trusted")["data"][0]["status"]
+        assert st == 4, f"status {st} != RecoveryApproved (4)"
+    step("emergency jobs", emergency_jobs)
+    def incomplete2fa():
+        # Server must run with INCOMPLETE_2FA_SCHEDULE="*/5 * * * * *"; we backdate the incomplete login past INCOMPLETE_2FA_TIME_LIMIT.
+        u = User()
+        u.api("POST", "/api/two-factor/send-email", {"email": u.email, "masterPasswordHash": u.hash})
+        code = re.search(r"\b(\d{6})\b", mailpit(u.email, "Login Verification Code")["Text"]).group(1)
+        u.api("PUT", "/api/two-factor/email", {"email": u.email, "token": code, "masterPasswordHash": u.hash})
+        try: u.login()
+        except HTTPErr: pass
+        dbx("UPDATE twofactor_incomplete SET login_time = datetime('now','-1 day') WHERE user_uuid = ?", u.id)
+        time.sleep(7); check("incomplete 2FA login (job)", u.email, "Incomplete Two-Step Login", wait=45)
+    step("incomplete 2FA login", incomplete2fa)
     def send():
         u = User(); sk = os.urandom(16)
         from cryptography.hazmat.primitives.kdf.hkdf import HKDF; from cryptography.hazmat.primitives import hashes

@@ -29,6 +29,11 @@ server/upstream/target/release/vaultwarden
 For the test suites, also relax rate limits (`LOGIN_RATELIMIT_SECONDS=1 LOGIN_RATELIMIT_MAX_BURST=10000`,
 same for `ADMIN_` and `UNAUTHENTICATED_`).
 
+## Vault dashboard (Proton-style layout, Komboe branding)
+`python3 -m komboe.platform --db /tmp/komboe-platform.sqlite3 --port 8765` serves the three-pane vault at `http://127.0.0.1:8765/`.
+The master password and item fields are encrypted in the browser (PBKDF2, AES-256-CBC+HMAC). The wordmark is Sora; the padlock-K image is the locked logo variant, served unchanged.
+`python3 tests/features/dashboard_e2e.py` drives it in headless Chrome.
+
 ## Tests
 ```sh
 python3 tests/e2e/roundtrip.py                       # register/login/create/sync + DB holds only ciphertext

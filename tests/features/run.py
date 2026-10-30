@@ -18,6 +18,8 @@ from cryptography.hazmat.primitives import hashes, serialization
 from cryptography.hazmat.primitives.asymmetric import rsa, padding as apad
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
+if ROOT not in sys.path:
+    sys.path.insert(0, ROOT)
 URL = os.environ.get("KOMBOE_URL", "http://127.0.0.1:8000").rstrip("/")
 DB = os.environ.get("KOMBOE_DB")
 ADMIN = os.environ.get("KOMBOE_ADMIN_TOKEN")
@@ -353,8 +355,10 @@ X(104, "free tier: Phase B billing")
 X(105, "Proton-style UI: under review")
 X(106, "secrets manager: upstream code excluded (bitwarden_license); reimplement later")
 
-for _f in ("phase_b.py", "phase_e.py"):
-    exec(compile(open(os.path.join(os.path.dirname(__file__), _f)).read(), _f, "exec"))
+for _f in ("phase_b.py", "phase_e.py", "phase_ui.py", "phase_original.py", "phase_enterprise.py", "phase_rest.py"):
+    _p = os.path.join(os.path.dirname(__file__), _f)
+    if os.path.exists(_p):
+        exec(compile(open(_p).read(), _f, "exec"))
 
 def main():
     feats = {}

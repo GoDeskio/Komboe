@@ -175,7 +175,7 @@ def _():
     e2e = pw("desktop-launch") and pw("desktop-login")
     return ("partial", "Linux desktop built (" + "; ".join(got) + "); " +
             ("Playwright E2E over CDP passes (window title Komboe, self-hosted picker, login, vault)" if e2e else "desktop E2E not passing") +
-            "; Windows (no native Rust module without a Windows/mingw toolchain) and macOS not built")
+            "; " + _win_desktop()[1] + "; macOS not built (needs a Mac)")
 @t(83)
 def _():
     import zipfile; p = art("komboe-android-debug.apk")
@@ -226,7 +226,20 @@ def _():
     return DONE("Firefox extension zip built and rebranded")
 @t(87)
 def _(): _manifest("komboe-chrome-mv3.zip"); return ("partial", "Chromium MV3 zip loads in Vivaldi; Tor Browser uses the Firefox build; not tested in either")
-X(82, "Windows desktop build: needs wine/Windows runner for electron-builder; not built on the Linux box")
+def _win_desktop():
+    import zipfile
+    exe, z = art("komboe-desktop-win-x64-setup.exe"), art("komboe-desktop-win-x64.zip")
+    if not (exe and z): return ("blocked", "Windows desktop not built (see desktop/desktop-build-win.ps1)")
+    with open(exe, "rb") as f: head = f.read(2); f.seek(0); blob = f.read()
+    assert head == b"MZ" and b"Nullsoft" in blob, "setup exe is not an NSIS installer"
+    names = zipfile.ZipFile(z).namelist()
+    for n in ("Komboe.exe", "desktop_proxy.exe", "resources/app.asar"):
+        assert any(x.endswith(n) for x in names), f"portable zip missing {n}"
+    shot = os.path.exists(os.path.join(here, "../../docs/screenshots/desktop-windows-login.png"))
+    return ("done", f"Windows x64 NSIS installer ({os.path.getsize(exe)//2**20} MB) + portable zip ({os.path.getsize(z)//2**20} MB) with native Rust helpers; "
+            + ("installed app launches as 'Komboe' with padlock-K/Sora branding (docs/screenshots/desktop-windows-login.png); " if shot else "") + "unsigned")
+@t(82)
+def _(): return _win_desktop()
 X(86, "Safari extension needs macOS/Xcode")
 @t(38)
 def _():

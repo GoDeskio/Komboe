@@ -170,7 +170,11 @@ def _():
     import zipfile; p = art("komboe-android-debug.apk")
     if not p: return ("blocked", "mobile: Android debug APK not built (see mobile/android-build.sh); iOS needs macOS")
     man = zipfile.ZipFile(p).read("AndroidManifest.xml"); assert "io.komboe.android".encode("utf-16-le") in man, "package id"
-    return ("partial", "Android debug APK io.komboe.android built from pinned bitwarden/android (fdroid flavor); not run on a device/emulator here; iOS needs macOS")
+    import glob, subprocess; bt = sorted(glob.glob("/workspace/tools/android-sdk/build-tools/*/aapt2"))
+    if bt:
+        badge = subprocess.run([bt[-1], "dump", "badging", p], capture_output=True, text=True).stdout
+        assert "application-label:'Komboe'" in badge, "app label is not 'Komboe'"
+    return ("partial", "Android debug APK io.komboe.android (label 'Komboe') built from pinned bitwarden/android (fdroid flavor); not run on a device/emulator here; iOS needs macOS")
 
 # ---- Playwright UI coverage
 def pw(name):

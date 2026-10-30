@@ -5,6 +5,8 @@
 >
   <div class="tw-mb-1">
     <bit-menu #environmentOptions>
+      <!-- Komboe: Bitwarden-hosted regions are not offered; Komboe is self-hosted only -->
+      <ng-container *ngIf="false">
       <button
         *ngFor="let region of availableRegions$ | async; let i = index"
         bitMenuItem
@@ -20,6 +22,7 @@
         ></bit-icon>
         <span>{{ region.domain }}</span>
       </button>
+      </ng-container>
       <button
         bitMenuItem
         type="button"
@@ -39,7 +42,7 @@
       {{ "accessing" | i18n }}:
       <button [bitMenuTriggerFor]="environmentOptions" bitLink type="button">
         <b class="tw-text-primary-600 tw-font-medium">{{
-          data.selectedRegion?.domain || ("selfHostedServer" | i18n)
+          data.selectedRegion ? ("komboeChooseServer" | i18n) : ("selfHostedServer" | i18n)
         }}</b>
         <bit-icon name="bwi-angle-down" class="bwi-fw bwi-sm"></bit-icon>
       </button>

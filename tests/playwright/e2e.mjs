@@ -192,7 +192,9 @@ if (ext && fs.existsSync(path.join(ext, "manifest.json"))) {
       if (await li.count()) await li.last().click().catch(() => {}); await pp.waitForTimeout(3000); }
     try { await pp.getByText("Accessing").first().waitFor({ timeout: 20000 }); }
     catch (e) { await pp.screenshot({ path: "/tmp/fail-ext-login.png" }); throw new Error("no server picker: " + (await pp.evaluate(() => document.body.innerText)).replace(/\s+/g, " ").slice(0, 200)); }
-    await pp.locator("button", { hasText: /bitwarden\.com|Choose your Komboe server/ }).first().click(); await pp.locator("button", { hasText: "self-hosted" }).first().click();
+    await pp.locator("button", { hasText: "Choose your Komboe server" }).first().click(); await pp.waitForTimeout(800);
+    if (/bitwarden\.(com|eu)/.test(await pp.evaluate(() => document.body.innerText))) throw new Error("server picker still offers Bitwarden cloud regions");
+    await pp.screenshot({ path: path.join(SHOTS, "extension-server-picker.png") }); await pp.locator("button", { hasText: "self-hosted" }).first().click();
     await pp.getByLabel("Server URL").fill(WEB); await pp.getByRole("button", { name: "Save" }).click(); await pp.waitForTimeout(1500);
     await pp.fill("#email", fx.ext.email); await pp.getByRole("button", { name: "Continue" }).click();
     await pp.fill("#masterPassword", fx.ext.pw); await pp.getByRole("button", { name: "Log in", exact: true }).click();

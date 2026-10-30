@@ -124,5 +124,25 @@ FOOT = '<div bitTypography="body2">&copy; {{ year }} Bitwarden Inc.</div>'
 for p in [f"{C}/apps/web/src/app/layouts/frontend-layout.component.html", f"{C}/libs/components/src/anon-layout/anon-layout.component.html"]:
     rw(p, lambda t: t.replace(FOOT, '<div bitTypography="body2">Komboe</div>\n' + FOOT) if '>Komboe</div>' not in t else t)
 
+# 6. Phase C branding gaps: no Bitwarden cloud regions in the server picker, violet autofill icons, Android label
+ENV = f"{C}/libs/angular/src/auth/environment-selector/environment-selector.component.html"
+def envsel(t):
+    t = t.replace('      <button\n        *ngFor="let region of availableRegions$ | async; let i = index"',
+                  '      <!-- Komboe: Bitwarden-hosted regions are not offered; Komboe is self-hosted only -->\n'
+                  '      <ng-container *ngIf="false">\n      <button\n        *ngFor="let region of availableRegions$ | async; let i = index"')
+    t = t.replace('        <span>{{ region.domain }}</span>\n      </button>\n', '        <span>{{ region.domain }}</span>\n      </button>\n      </ng-container>\n', 1)
+    return t.replace('data.selectedRegion?.domain || ("selfHostedServer" | i18n)',
+                     'data.selectedRegion ? ("komboeChooseServer" | i18n) : ("selfHostedServer" | i18n)')
+rw(ENV, envsel)
+def addmsg(t):
+    if '"komboeChooseServer"' in t: return t
+    i = t.rstrip().rfind("}"); j = t.rstrip()[:i].rstrip()
+    return j + ',\n  "komboeChooseServer": {\n    "message": "Choose your Komboe server"\n  }\n}\n'
+for p in [f"{C}/apps/browser/src/_locales/en/messages.json", f"{C}/apps/web/src/locales/en/messages.json", f"{C}/apps/desktop/src/locales/en/messages.json"]:
+    rw(p, addmsg)
+for p in glob.glob(f"{C}/apps/browser/src/autofill/**/*", recursive=True):
+    if os.path.isfile(p) and re.search(r"\.(ts|scss|css|html|snap)$", p) and ".stories." not in p:
+        rw(p, lambda t: re.sub(r"#175ddc", "#6D4AFF", t, flags=re.I))
+
 print(f"rebrand: {len(changed)} files changed")
 if "-v" in sys.argv: print("\n".join(changed))

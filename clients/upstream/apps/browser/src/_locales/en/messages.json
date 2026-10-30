@@ -8477,5 +8477,8 @@
   },
   "resetToDefault": {
     "message": "Reset to default"
+  },
+  "komboeChooseServer": {
+    "message": "Choose your Komboe server"
   }
 }

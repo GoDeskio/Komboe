@@ -1,0 +1,11 @@
+{
+  "login": "passed",
+  "item-crud": "passed",
+  "generator": "passed",
+  "alias-generator": "passed",
+  "send": "passed",
+  "admin-console": "passed",
+  "org-family": "passed",
+  "split-off": "passed",
+  "extension-loads": "failed"
+}

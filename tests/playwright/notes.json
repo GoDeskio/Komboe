@@ -1,0 +1,3 @@
+{
+  "extension-loads": "browserContext.waitForEvent: Timeout 20000ms exceeded while waiting for event \"serviceworker\""
+}

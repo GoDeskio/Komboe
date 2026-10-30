@@ -1,0 +1,57 @@
+<section [formGroup]="gpgForm" class="tw-mb-5 bit-compact:tw-mb-4">
+  <bit-section-header>
+    <h2 bitTypography="h6">{{ "gpgKeyDetails" | i18n }}</h2>
+  </bit-section-header>
+  <bit-card>
+    <bit-form-field>
+      <bit-label>{{ "gpgKeyId" | i18n }}</bit-label>
+      <input bitInput formControlName="keyId" data-testid="gpg-key-id" />
+    </bit-form-field>
+    <bit-form-field>
+      <bit-label>{{ "gpgFingerprint" | i18n }}</bit-label>
+      <input bitInput formControlName="fingerprint" data-testid="gpg-fingerprint" />
+    </bit-form-field>
+    <bit-form-field>
+      <bit-label>{{ "email" | i18n }}</bit-label>
+      <input bitInput formControlName="email" data-testid="gpg-email" />
+    </bit-form-field>
+    <bit-form-field>
+      <bit-label>{{ "gpgPublicKey" | i18n }}</bit-label>
+      <textarea bitInput formControlName="publicKey" rows="4" data-testid="gpg-public-key"></textarea>
+    </bit-form-field>
+    <bit-form-field>
+      <bit-label>{{ "gpgPrivateKey" | i18n }}</bit-label>
+      <input
+        bitInput
+        type="password"
+        formControlName="privateKey"
+        class="tw-font-mono"
+        data-testid="gpg-private-key"
+      />
+      <button
+        type="button"
+        bitIconButton
+        bitSuffix
+        bitPasswordInputToggle
+        data-testid="toggle-gpg-private-key"
+      ></button>
+    </bit-form-field>
+    <bit-form-field disableMargin>
+      <bit-label>{{ "gpgPassphrase" | i18n }}</bit-label>
+      <input
+        bitInput
+        type="password"
+        formControlName="passphrase"
+        class="tw-font-mono"
+        data-testid="gpg-passphrase"
+      />
+      <button
+        type="button"
+        bitIconButton
+        bitSuffix
+        bitPasswordInputToggle
+        data-testid="toggle-gpg-passphrase"
+      ></button>
+    </bit-form-field>
+  </bit-card>
+</section>

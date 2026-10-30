@@ -27,7 +27,7 @@ import { FolderService } from "@bitwarden/common/vault/abstractions/folder/folde
 import { VaultSettingsService } from "@bitwarden/common/vault/abstractions/vault-settings/vault-settings.service";
 import { CipherType } from "@bitwarden/common/vault/enums";
 import { CipherView } from "@bitwarden/common/vault/models/view/cipher.view";
-import { isKomboeBookmark, isKomboeWifi } from "@bitwarden/common/vault/utils/komboe-wifi";
+import { isKomboeBookmark, isKomboeGpg, isKomboeWifi } from "@bitwarden/common/vault/utils/komboe-wifi";
 import { SecurityTaskType, TaskService } from "@bitwarden/common/vault/tasks";
 import { CalloutModule, SearchModule, TypographyModule } from "@bitwarden/components";
 
@@ -47,6 +47,7 @@ import { PassportViewComponent } from "./passport-sections/passport-view.compone
 import { SshKeyViewComponent } from "./sshkey-sections/sshkey-view.component";
 import { ViewIdentitySectionsComponent } from "./view-identity-sections/view-identity-sections.component";
 import { BookmarkViewComponent } from "./bookmark-sections/bookmark-view.component";
+import { GpgViewComponent } from "./gpg-sections/gpg-view.component";
 import { WifiViewComponent } from "./wifi-sections/wifi-view.component";
 
 // FIXME(https://bitwarden.atlassian.net/browse/CL-764): Migrate to OnPush
@@ -74,6 +75,7 @@ import { WifiViewComponent } from "./wifi-sections/wifi-view.component";
     AutofillOptionsViewComponent,
     WifiViewComponent,
     BookmarkViewComponent,
+    GpgViewComponent,
     TypographyModule,
   ],
 })
@@ -288,6 +290,8 @@ export class CipherViewComponent {
   readonly hasWifi = computed(() => isKomboeWifi(this.cipher()));
 
   readonly hasBookmark = computed(() => isKomboeBookmark(this.cipher()));
+
+  readonly hasGpg = computed(() => isKomboeGpg(this.cipher()));
 
   readonly hasPassport = computed(() => {
     const cipher = this.cipher();

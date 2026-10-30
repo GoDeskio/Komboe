@@ -1,0 +1,70 @@
+<section class="tw-mb-5 bit-compact:tw-mb-4">
+  <bit-section-header>
+    <h2 bitTypography="h6">{{ "gpgKeyDetails" | i18n }}</h2>
+  </bit-section-header>
+  <bit-card>
+    @if (value(keyIdName)) {
+      <bit-form-field>
+        <bit-label>{{ "gpgKeyId" | i18n }}</bit-label>
+        <input readonly bitInput [value]="value(keyIdName)" data-testid="gpg-key-id" />
+      </bit-form-field>
+    }
+    @if (value(fingerprintName)) {
+      <bit-form-field>
+        <bit-label>{{ "gpgFingerprint" | i18n }}</bit-label>
+        <input readonly bitInput [value]="value(fingerprintName)" data-testid="gpg-fingerprint" />
+      </bit-form-field>
+    }
+    @if (value(emailName)) {
+      <bit-form-field>
+        <bit-label>{{ "email" | i18n }}</bit-label>
+        <input readonly bitInput [value]="value(emailName)" data-testid="gpg-email" />
+      </bit-form-field>
+    }
+    @if (value(publicName)) {
+      <bit-form-field>
+        <bit-label>{{ "gpgPublicKey" | i18n }}</bit-label>
+        <textarea readonly bitInput rows="4" [value]="value(publicName)" data-testid="gpg-public-key"></textarea>
+      </bit-form-field>
+    }
+    @if (value(privateName)) {
+      <bit-form-field>
+        <bit-label>{{ "gpgPrivateKey" | i18n }}</bit-label>
+        <input
+          readonly
+          bitInput
+          type="password"
+          [value]="value(privateName)"
+          class="tw-font-mono"
+          data-testid="gpg-private-key"
+        />
+        <button
+          type="button"
+          bitIconButton
+          bitSuffix
+          bitPasswordInputToggle
+          data-testid="toggle-gpg-private-key"
+        ></button>
+      </bit-form-field>
+    }
+    @if (value(passphraseName)) {
+      <bit-form-field disableMargin>
+        <bit-label>{{ "gpgPassphrase" | i18n }}</bit-label>
+        <input
+          readonly
+          bitInput
+          type="password"
+          [value]="value(passphraseName)"
+          data-testid="gpg-passphrase"
+        />
+        <button
+          type="button"
+          bitIconButton
+          bitSuffix
+          bitPasswordInputToggle
+          data-testid="toggle-gpg-passphrase"
+        ></button>
+      </bit-form-field>
+    }
+  </bit-card>
+</section>

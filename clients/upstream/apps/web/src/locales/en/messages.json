@@ -1207,6 +1207,30 @@
   "bookmarkUrl": {
     "message": "URL"
   },
+  "typeGpgKey": {
+    "message": "GPG key"
+  },
+  "typeGpgKeySubtitle": {
+    "message": "OpenPGP key pair"
+  },
+  "gpgKeyDetails": {
+    "message": "GPG key"
+  },
+  "gpgKeyId": {
+    "message": "Key ID"
+  },
+  "gpgFingerprint": {
+    "message": "Fingerprint"
+  },
+  "gpgPublicKey": {
+    "message": "Public key"
+  },
+  "gpgPrivateKey": {
+    "message": "Private key"
+  },
+  "gpgPassphrase": {
+    "message": "Passphrase"
+  },
   "folders": {
     "message": "Folders"
   },
@@ -1520,6 +1544,10 @@
     "message": "Add bookmark",
     "description": "Header for new bookmark item"
   },
+  "addItemHeaderGpg": {
+    "message": "Add GPG key",
+    "description": "Header for new GPG key item"
+  },
   "newItemHeaderTextSendV2": {
     "message": "New text",
     "description": "Header for new text send"
@@ -1572,6 +1600,10 @@
     "message": "Edit bookmark",
     "description": "Header for edit bookmark item"
   },
+  "editItemHeaderGpg": {
+    "message": "Edit GPG key",
+    "description": "Header for edit GPG key item"
+  },
   "editItemHeaderTextSendV2": {
     "message": "Edit text",
     "description": "Header for edit text send"
@@ -1623,6 +1655,10 @@
   "viewItemHeaderBookmark": {
     "message": "View bookmark",
     "description": "Header for view bookmark item"
+  },
+  "viewItemHeaderGpg": {
+    "message": "View GPG key",
+    "description": "Header for view GPG key item"
   },
   "viewItemHeaderLoginSentenceCase": {
     "message": "View login",

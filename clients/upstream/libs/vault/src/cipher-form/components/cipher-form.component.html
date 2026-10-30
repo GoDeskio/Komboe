@@ -66,9 +66,16 @@
       ></vault-bookmark-section>
     }
 
+    @if (komboeGpg) {
+      <vault-gpg-section
+        [disabled]="config.mode === 'partial-edit'"
+        [originalCipherView]="originalCipherView"
+      ></vault-gpg-section>
+    }
+
     <vault-additional-options-section
       [disableSectionMargin]="config.mode !== 'edit'"
-      [hideCustomFields]="komboeWifi || komboeBookmark"
+      [hideCustomFields]="komboeWifi || komboeBookmark || komboeGpg"
     ></vault-additional-options-section>
 
     <!-- Attachments are only available for existing ciphers -->

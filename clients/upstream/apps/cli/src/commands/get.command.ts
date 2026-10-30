@@ -640,6 +640,31 @@ export class GetCommand extends DownloadCommand {
         template = bookmark;
         break;
       }
+      case "item.gpg": {
+        const gpg = CipherExport.template();
+        gpg.type = CipherType.SecureNote;
+        gpg.name = "GPG key";
+        gpg.notes = "";
+        gpg.secureNote = SecureNoteExport.template();
+        const field = (name: string, value: string, type: FieldType) => {
+          const exported = FieldExport.template();
+          exported.name = name;
+          exported.value = value;
+          exported.type = type;
+          return exported;
+        };
+        gpg.fields = [
+          field("__komboe", "gpg", FieldType.Text),
+          field("Key ID", "", FieldType.Text),
+          field("Fingerprint", "", FieldType.Text),
+          field("Email", "", FieldType.Text),
+          field("Public key", "", FieldType.Text),
+          field("Private key", "", FieldType.Hidden),
+          field("Passphrase", "", FieldType.Hidden),
+        ];
+        template = gpg;
+        break;
+      }
       case "folder":
         template = FolderExport.template();
         break;

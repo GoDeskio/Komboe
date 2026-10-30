@@ -96,13 +96,17 @@
     <app-bookmark-view [cipher]="cipher()!"></app-bookmark-view>
   }
 
+  @if (hasGpg()) {
+    <app-gpg-view [cipher]="cipher()!"></app-gpg-view>
+  }
+
   <!-- ADDITIONAL OPTIONS -->
   @if (cipher()?.notes) {
     <app-additional-options [notes]="cipher()!.notes"> </app-additional-options>
   }
 
   <!-- CUSTOM FIELDS -->
-  @if (cipher()?.hasFields && !hasWifi() && !hasBookmark()) {
+  @if (cipher()?.hasFields && !hasWifi() && !hasBookmark() && !hasGpg()) {
     <app-custom-fields-v2 [cipher]="cipher()"> </app-custom-fields-v2>
   }
 

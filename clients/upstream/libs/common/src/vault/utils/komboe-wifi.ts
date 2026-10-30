@@ -7,21 +7,69 @@ import { FieldView } from "../models/view/field.view";
  */
 export const KOMBOE_WIFI_TYPE = 9001 as CipherType;
 export const KOMBOE_BOOKMARK_TYPE = 9002 as CipherType;
+export const KOMBOE_GPG_TYPE = 9003 as CipherType;
 
 export const KOMBOE_TEMPLATE_FIELD = "__komboe";
 export const KOMBOE_WIFI_TEMPLATE = "wifi";
 export const KOMBOE_BOOKMARK_TEMPLATE = "bookmark";
+export const KOMBOE_GPG_TEMPLATE = "gpg";
 
 export const KOMBOE_WIFI_SSID = "SSID";
 export const KOMBOE_WIFI_PASSWORD = "Password";
 export const KOMBOE_WIFI_SECURITY = "Security";
 export const KOMBOE_WIFI_HIDDEN = "Hidden network";
 export const KOMBOE_BOOKMARK_URL = "URL";
+export const KOMBOE_GPG_KEY_ID = "Key ID";
+export const KOMBOE_GPG_FINGERPRINT = "Fingerprint";
+export const KOMBOE_GPG_EMAIL = "Email";
+export const KOMBOE_GPG_PUBLIC = "Public key";
+export const KOMBOE_GPG_PRIVATE = "Private key";
+export const KOMBOE_GPG_PASSPHRASE = "Passphrase";
 
 type FieldLike = { name?: string; value?: string; type?: number };
 
 export function isKomboeMenuTemplate(type: number | undefined): boolean {
-  return type === KOMBOE_WIFI_TYPE || type === KOMBOE_BOOKMARK_TYPE;
+  return type === KOMBOE_WIFI_TYPE || type === KOMBOE_BOOKMARK_TYPE || type === KOMBOE_GPG_TYPE;
+}
+
+export function isKomboeGpg(
+  cipher: { type?: number; fields?: FieldLike[] } | null | undefined,
+): boolean {
+  if (!cipher) {
+    return false;
+  }
+  if (cipher.type === KOMBOE_GPG_TYPE) {
+    return true;
+  }
+  return (cipher.fields ?? []).some(
+    (field) => field.name === KOMBOE_TEMPLATE_FIELD && field.value === KOMBOE_GPG_TEMPLATE,
+  );
+}
+
+export function komboeGpgFields(values: {
+  keyId: string;
+  fingerprint: string;
+  email: string;
+  publicKey: string;
+  privateKey: string;
+  passphrase: string;
+}): FieldView[] {
+  const make = (name: string, value: string, type: FieldType) => {
+    const field = new FieldView();
+    field.name = name;
+    field.value = value;
+    field.type = type;
+    return field;
+  };
+  return [
+    make(KOMBOE_TEMPLATE_FIELD, KOMBOE_GPG_TEMPLATE, FieldType.Text),
+    make(KOMBOE_GPG_KEY_ID, values.keyId, FieldType.Text),
+    make(KOMBOE_GPG_FINGERPRINT, values.fingerprint, FieldType.Text),
+    make(KOMBOE_GPG_EMAIL, values.email, FieldType.Text),
+    make(KOMBOE_GPG_PUBLIC, values.publicKey, FieldType.Text),
+    make(KOMBOE_GPG_PRIVATE, values.privateKey, FieldType.Hidden),
+    make(KOMBOE_GPG_PASSPHRASE, values.passphrase, FieldType.Hidden),
+  ];
 }
 
 export function isKomboeBookmark(

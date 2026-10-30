@@ -37,8 +37,10 @@ import { ViewPasswordHistoryService } from "@bitwarden/common/vault/abstractions
 import { CipherType } from "@bitwarden/common/vault/enums";
 import {
   isKomboeBookmark,
+  isKomboeGpg,
   isKomboeWifi,
   KOMBOE_BOOKMARK_TYPE,
+  KOMBOE_GPG_TYPE,
   KOMBOE_WIFI_TYPE,
 } from "@bitwarden/common/vault/utils/komboe-wifi";
 import { CipherData } from "@bitwarden/common/vault/models/data/cipher.data";
@@ -714,6 +716,7 @@ export class VaultItemDialogComponent implements OnInit, OnDestroy {
         [CipherType.Passport]: "viewItemHeaderPassport",
         [KOMBOE_WIFI_TYPE]: "viewItemHeaderWifi",
         [KOMBOE_BOOKMARK_TYPE]: "viewItemHeaderBookmark",
+        [KOMBOE_GPG_TYPE]: "viewItemHeaderGpg",
       },
       new: {
         [CipherType.Login]: "addItemHeaderLogin",
@@ -728,6 +731,7 @@ export class VaultItemDialogComponent implements OnInit, OnDestroy {
         [CipherType.Passport]: "addItemHeaderPassport",
         [KOMBOE_WIFI_TYPE]: "addItemHeaderWifi",
         [KOMBOE_BOOKMARK_TYPE]: "addItemHeaderBookmark",
+        [KOMBOE_GPG_TYPE]: "addItemHeaderGpg",
       },
       edit: {
         [CipherType.Login]: "editItemHeaderLoginSentenceCase",
@@ -742,6 +746,7 @@ export class VaultItemDialogComponent implements OnInit, OnDestroy {
         [CipherType.Passport]: "editItemHeaderPassport",
         [KOMBOE_WIFI_TYPE]: "editItemHeaderWifi",
         [KOMBOE_BOOKMARK_TYPE]: "editItemHeaderBookmark",
+        [KOMBOE_GPG_TYPE]: "editItemHeaderGpg",
       },
     };
     let type = this.cipher?.type ?? this.formConfig.cipherType;
@@ -752,6 +757,8 @@ export class VaultItemDialogComponent implements OnInit, OnDestroy {
       isKomboeBookmark(this.cipher)
     ) {
       type = KOMBOE_BOOKMARK_TYPE;
+    } else if (this.formConfig?.cipherType === KOMBOE_GPG_TYPE || isKomboeGpg(this.cipher)) {
+      type = KOMBOE_GPG_TYPE;
     }
     let mode: "view" | "edit" | "new" = "view";
 

@@ -1,5 +1,5 @@
 import { CipherType } from "../enums";
-import { KOMBOE_BOOKMARK_TYPE, KOMBOE_WIFI_TYPE } from "../utils/komboe-wifi";
+import { KOMBOE_BOOKMARK_TYPE, KOMBOE_GPG_TYPE, KOMBOE_WIFI_TYPE } from "../utils/komboe-wifi";
 
 /**
  * Represents a menu item for creating a new cipher of a specific type
@@ -78,6 +78,12 @@ export const CIPHER_MENU_ITEMS = Object.freeze([
     icon: "bwi-external-link",
     labelKey: "typeBookmark",
     subtitleKey: "typeBookmarkSubtitle",
+  },
+  {
+    type: KOMBOE_GPG_TYPE,
+    icon: "bwi-shield",
+    labelKey: "typeGpgKey",
+    subtitleKey: "typeGpgKeySubtitle",
   },
 ] as const) satisfies readonly CipherMenuItem[];
 

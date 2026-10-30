@@ -72,10 +72,10 @@ bash desktop/desktop-build.sh   # desktop_native (Rust) -> npm run build -> elec
 Outputs `Komboe-<ver>-x86_64.AppImage` and a `.deb`; the app id is `io.komboe.desktop` and the executable is `komboe`. Launch it with
 `./komboe --no-sandbox` (no user namespaces here). Smoke check: it launches on X11. The current artifacts predate two fixes in rebrand step 7,
 the window title (`<title>Komboe</title>`) and the deb package name (`komboe`), so rebuild to pick them up (needs ~3 GB free disk).
-`tests/playwright/desktop.mjs` can't attach yet, because the release Electron fuses turn off the inspector Playwright needs.
+`tests/playwright/desktop.mjs` launches the unpacked app with `--remote-debugging-port` and attaches with `chromium.connectOverCDP` (the release fuses block `--inspect`, but CDP works). Set `KOMBOE_DESKTOP=apps/desktop/dist/linux-unpacked`; `tests/playwright/run.sh` runs it after the web/extension suite. Known gap: the X11 WM_CLASS is still `bitwarden` (it comes from the upstream package name).
 
 ## Not buildable on this box
-- Windows desktop: electron-builder needs wine plus mono/NSIS, which can't be installed here without apt. Build on a Windows CI runner instead.
+- Windows desktop: NSIS needs wine, and even the portable `zip` target needs the Windows build of the native Rust module (`desktop_napi`), which needs mingw-w64 or MSVC. Neither is on this box, so a zip would not run. Build on a Windows CI runner.
 - iOS, Safari and macOS desktop: need macOS.
 
 ## Android debug APK (no apt needed)
@@ -86,3 +86,6 @@ Android commandline-tools. `GITHUB_TOKEN` (any token with `read:packages`) is ne
 GITHUB_TOKEN=... bash mobile/android-build.sh   # pin: mobile/ANDROID_UPSTREAM_PIN, rebrand: mobile/android_rebrand.py
 ```
 Output: `io.komboe.android-fdroid.apk` (fdroid flavor, no Google Play services/Firebase), package id `io.komboe.android`.
+
+### Android icons
+`mobile/android_rebrand.py` swaps the launcher foreground, monochrome and in-app logo vectors for padlock-K PNGs in `drawable-nodpi` (adaptive icons override the mipmaps on API 26+). The build needs `GITHUB_TOKEN` with read:packages to fetch the SDK from GitHub Packages. Check with `aapt2 dump badging` (label `Komboe`, package `io.komboe.android`).

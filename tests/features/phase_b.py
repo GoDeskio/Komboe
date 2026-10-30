@@ -168,10 +168,12 @@ def _():
     got = []
     if deb:
         info = subprocess.run(["dpkg-deb", "-f", deb, "Package", "Version"], capture_output=True, text=True).stdout
-        pkg = " ".join(info.split()); got.append("deb " + pkg + ("" if "komboe" in info.lower() else " [package name still upstream; fixed in rebrand step 7, rebuild pending]"))
+        assert "Package: komboe" in info, f"deb package name: {info!r}"; got.append("deb " + " ".join(info.split()))
     if ai: got.append(f"AppImage {os.path.getsize(ai)//2**20} MB")
-    return ("partial", "Linux desktop built (" + "; ".join(got) + "), launches on X11 (manual smoke); "
-            "automated Electron E2E blocked by locked fuses (no inspector); Windows/macOS not built")
+    e2e = pw("desktop-launch") and pw("desktop-login")
+    return ("partial", "Linux desktop built (" + "; ".join(got) + "); " +
+            ("Playwright E2E over CDP passes (window title Komboe, self-hosted picker, login, vault)" if e2e else "desktop E2E not passing") +
+            "; Windows (no native Rust module without a Windows/mingw toolchain) and macOS not built")
 @t(83)
 def _():
     import zipfile; p = art("komboe-android-debug.apk")
@@ -209,7 +211,11 @@ _report(71, ["report-inactive-2fa"], "inactive two-step login report flags seede
 _report(72, ["report-unsecured"], "unsecured (http://) website report lists only the seeded http item (Playwright)", "unsecured website report is client-side")
 _report(78, ["export-encrypted"], "password-protected JSON export: downloaded file is ciphertext and independently decrypts (PBKDF2+AES-256-CBC+HMAC) to the vault items (Playwright)", "password-protected export is client-side")
 @t(100)
-def _(): T[46][0](); return ("partial", "AES-256-CBC+HMAC and Argon2id verified; XChaCha20 not implemented: it needs a new EncString type in the shared client crypto SDK + server-side passthrough, a client-wide format change deferred to avoid a fork-only, incompatible vault format")
+def _():
+    T[46][0](); here = os.path.dirname(os.path.abspath(__file__))
+    assert os.path.exists(os.path.join(here, "../../docs/design/xchacha20.md")), "design doc missing"
+    return ("partial", "AES-256-CBC+HMAC and Argon2id verified; XChaCha20-Poly1305 = upstream EncString type 7 (COSE) via account-encryption v2; "
+            "design in docs/design/xchacha20.md; needs server schema/endpoints for signing keys + security state behind KOMBOE_AEAD_V2 (not built: no Vaultwarden rebuild on this box)")
 @t(85)
 def _():
     m, msgs = _manifest("komboe-firefox.zip"); assert "browser_specific_settings" in m or "applications" in m
@@ -218,3 +224,48 @@ def _():
 def _(): _manifest("komboe-chrome-mv3.zip"); return ("partial", "Chromium MV3 zip loads in Vivaldi; Tor Browser uses the Firefox build; not tested in either")
 X(82, "Windows desktop build: needs wine/Windows runner for electron-builder; not built on the Linux box")
 X(86, "Safari extension needs macOS/Xcode")
+@t(38)
+def _():
+    """Public org API: owner fetches the org API key, logs in as the org (client_credentials, scope api.organization),
+    and syncs a member directory through /api/public/organization/import, then removes it again (deleted=true)."""
+    u = User(); oid, _ok = mkorg(u, "Public API Org")
+    key = u.api("POST", f"/api/organizations/{oid}/api-key", {"masterPasswordHash": u.hash})["apiKey"]
+    tok = http("POST", "/identity/connect/token", form={"grant_type": "client_credentials", "scope": "api.organization",
+               "client_id": f"organization.{oid}", "client_secret": key, "deviceType": "8", "deviceIdentifier": str(uuid.uuid4()), "deviceName": "ft"})["access_token"]
+    try:
+        http("POST", "/identity/connect/token", form={"grant_type": "client_credentials", "scope": "api.organization",
+             "client_id": f"organization.{oid}", "client_secret": "wrong", "deviceType": "8", "deviceIdentifier": str(uuid.uuid4()), "deviceName": "ft"})
+        raise AssertionError("wrong org api secret accepted")
+    except HTTPErr: pass
+    em = f"dir-{uuid.uuid4().hex[:8]}@komboe.test"
+    http("POST", "/api/public/organization/import", {"groups": [], "members": [{"email": em, "externalId": "ext-1", "deleted": False}],
+         "overwriteExisting": False}, token=tok)
+    emails = [m["email"] for m in u.api("GET", f"/api/organizations/{oid}/users")["data"]]
+    assert em in emails, f"imported member missing: {emails}"
+    http("POST", "/api/public/organization/import", {"groups": [], "members": [{"email": em, "externalId": "ext-1", "deleted": True}],
+         "overwriteExisting": False}, token=tok)
+    st = {m["email"]: m["status"] for m in u.api("GET", f"/api/organizations/{oid}/users")["data"]}
+    assert st.get(em) == -1, f"deleted member not revoked: {st.get(em)}"
+    return DONE("public org API: org API key -> client_credentials (api.organization), wrong secret rejected, directory import invites then revokes a member")
+@t(48)
+def _():
+    """WebAuthn 2FA: enrol a (software) P-256 security key, login is refused without it, then passes with a signed assertion.
+    Also checks a replayed or wrong-key assertion is refused. The software authenticator is test-only (tests/features/webauthn_soft.py)."""
+    import sys; sys.path.insert(0, os.path.dirname(os.path.abspath(__file__))); from webauthn_soft import SoftAuthenticator
+    origin = http("GET", "/api/config")["environment"]["vault"].rstrip("/")
+    v = User(); key = SoftAuthenticator(origin)
+    ch = v.api("POST", "/api/two-factor/get-webauthn-challenge", {"masterPasswordHash": v.hash})
+    v.api("PUT", "/api/two-factor/webauthn", {"id": 1, "name": "soft key", "masterPasswordHash": v.hash, "deviceResponse": key.create(ch)})
+    def attempt(extra=None):
+        v.dev = None
+        try: v.login(extra); return None
+        except HTTPErr as e: return e
+    e = attempt(); assert e and e.code == 400 and "TwoFactor" in str(e), "login without WebAuthn allowed"
+    opts = json.loads(e.body)["TwoFactorProviders2"]["7"]
+    asrt = key.get(opts)
+    assert attempt({"twoFactorProvider": "7", "twoFactorToken": json.dumps(asrt), "twoFactorRemember": "0"}) is None, "valid assertion refused"
+    other = SoftAuthenticator(origin); other.cred = key.cred
+    e2 = attempt(); bad = other.get(json.loads(e2.body)["TwoFactorProviders2"]["7"])
+    assert attempt({"twoFactorProvider": "7", "twoFactorToken": json.dumps(bad), "twoFactorRemember": "0"}) is not None, "wrong-key assertion accepted"
+    assert attempt({"twoFactorProvider": "7", "twoFactorToken": json.dumps(asrt), "twoFactorRemember": "0"}) is not None, "replayed assertion accepted"
+    return DONE("WebAuthn 2FA: enrol P-256 key, enforced at login, signed assertion accepted; wrong key and replay refused (server-side, software authenticator)")

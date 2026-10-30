@@ -23,7 +23,7 @@ DB = os.environ.get("KOMBOE_DB")
 ADMIN = os.environ.get("KOMBOE_ADMIN_TOKEN")
 
 class HTTPErr(Exception):
-    def __init__(s, code, body): super().__init__(f"{code}: {body[:300]}"); s.code = code
+    def __init__(s, code, body): super().__init__(f"{code}: {body[:300]}"); s.code = code; s.body = body
 
 def http(method, path, body=None, form=None, token=None, raw=False, headers=None):
     h = {"Device-Type": "10", "Bitwarden-Client-Name": "cli", "Bitwarden-Client-Version": "2026.10.1", "Accept": "application/json"}

@@ -1,0 +1,242 @@
+import { mock, MockProxy } from "jest-mock-extended";
+import { BehaviorSubject } from "rxjs";
+
+import { ApiService } from "@bitwarden/common/abstractions/api.service";
+import { TokenService } from "@bitwarden/common/auth/abstractions/token.service";
+import { TwoFactorService } from "@bitwarden/common/auth/two-factor";
+import { BillingAccountProfileStateService } from "@bitwarden/common/billing/abstractions/account/billing-account-profile-state.service";
+import { AccountCryptographicStateService } from "@bitwarden/common/key-management/account-cryptography/account-cryptographic-state.service";
+import { FakeMasterPasswordService } from "@bitwarden/common/key-management/master-password/services/fake-master-password.service";
+import {
+  VaultTimeoutAction,
+  VaultTimeoutSettingsService,
+} from "@bitwarden/common/key-management/vault-timeout";
+import { AppIdService } from "@bitwarden/common/platform/abstractions/app-id.service";
+import { ConfigService } from "@bitwarden/common/platform/abstractions/config/config.service";
+import {
+  Environment,
+  EnvironmentService,
+} from "@bitwarden/common/platform/abstractions/environment.service";
+import { LogService } from "@bitwarden/common/platform/abstractions/log.service";
+import { MessagingService } from "@bitwarden/common/platform/abstractions/messaging.service";
+import { PlatformUtilsService } from "@bitwarden/common/platform/abstractions/platform-utils.service";
+import { Utils } from "@bitwarden/common/platform/misc/utils";
+import { FakeAccountService, mockAccountServiceWith } from "@bitwarden/common/spec";
+import { UserId } from "@bitwarden/common/types/guid";
+import { KdfConfigService, KeyService } from "@bitwarden/key-management";
+// eslint-disable-next-line no-restricted-imports
+import { EncryptService } from "@bitwarden/legacy-crypto";
+import { UnlockService } from "@bitwarden/unlock";
+
+import { InternalUserDecryptionOptionsServiceAbstraction } from "../abstractions/user-decryption-options.service.abstraction";
+import { UserApiLoginCredentials } from "../models/domain/login-credentials";
+
+import { identityTokenResponseFactory } from "./login.strategy.spec-util";
+import { UserApiLoginStrategy } from "./user-api-login.strategy";
+
+describe("UserApiLoginStrategy", () => {
+  let accountService: FakeAccountService;
+  let masterPasswordService: FakeMasterPasswordService;
+
+  let keyService: MockProxy<KeyService>;
+  let encryptService: MockProxy<EncryptService>;
+  let apiService: MockProxy<ApiService>;
+  let tokenService: MockProxy<TokenService>;
+  let appIdService: MockProxy<AppIdService>;
+  let platformUtilsService: MockProxy<PlatformUtilsService>;
+  let messagingService: MockProxy<MessagingService>;
+  let logService: MockProxy<LogService>;
+  let twoFactorService: MockProxy<TwoFactorService>;
+  let userDecryptionOptionsService: MockProxy<InternalUserDecryptionOptionsServiceAbstraction>;
+  let unlockService: MockProxy<UnlockService>;
+  let environmentService: MockProxy<EnvironmentService>;
+  let billingAccountProfileStateService: MockProxy<BillingAccountProfileStateService>;
+  let vaultTimeoutSettingsService: MockProxy<VaultTimeoutSettingsService>;
+  let kdfConfigService: MockProxy<KdfConfigService>;
+  let configService: MockProxy<ConfigService>;
+  let accountCryptographicStateService: MockProxy<AccountCryptographicStateService>;
+
+  let apiLogInStrategy: UserApiLoginStrategy;
+  let credentials: UserApiLoginCredentials;
+
+  const mockVaultTimeoutAction = VaultTimeoutAction.Lock;
+  const mockVaultTimeout = 1000;
+
+  const userId = Utils.newGuid() as UserId;
+  const deviceId = Utils.newGuid();
+  const keyConnectorUrl = "KEY_CONNECTOR_URL";
+  const apiClientId = "API_CLIENT_ID";
+  const apiClientSecret = "API_CLIENT_SECRET";
+
+  beforeEach(async () => {
+    accountService = mockAccountServiceWith(userId);
+    masterPasswordService = new FakeMasterPasswordService();
+
+    keyService = mock<KeyService>();
+    encryptService = mock<EncryptService>();
+
+    apiService = mock<ApiService>();
+    tokenService = mock<TokenService>();
+    appIdService = mock<AppIdService>();
+    platformUtilsService = mock<PlatformUtilsService>();
+    messagingService = mock<MessagingService>();
+    logService = mock<LogService>();
+    twoFactorService = mock<TwoFactorService>();
+    userDecryptionOptionsService = mock<InternalUserDecryptionOptionsServiceAbstraction>();
+    unlockService = mock<UnlockService>();
+    environmentService = mock<EnvironmentService>();
+    billingAccountProfileStateService = mock<BillingAccountProfileStateService>();
+    vaultTimeoutSettingsService = mock<VaultTimeoutSettingsService>();
+    kdfConfigService = mock<KdfConfigService>();
+    configService = mock<ConfigService>();
+    accountCryptographicStateService = mock<AccountCryptographicStateService>();
+
+    appIdService.getAppId.mockResolvedValue(deviceId);
+    tokenService.getTwoFactorToken.mockResolvedValue(null);
+    tokenService.decodeAccessToken.mockResolvedValue({
+      sub: userId,
+    });
+
+    apiLogInStrategy = new UserApiLoginStrategy(
+      undefined,
+      unlockService,
+      accountService,
+      masterPasswordService,
+      keyService,
+      encryptService,
+      apiService,
+      tokenService,
+      appIdService,
+      platformUtilsService,
+      messagingService,
+      logService,
+      twoFactorService,
+      userDecryptionOptionsService,
+      billingAccountProfileStateService,
+      vaultTimeoutSettingsService,
+      kdfConfigService,
+      environmentService,
+      configService,
+      accountCryptographicStateService,
+    );
+
+    credentials = new UserApiLoginCredentials(apiClientId, apiClientSecret);
+
+    const mockVaultTimeoutActionBSub = new BehaviorSubject<VaultTimeoutAction>(
+      mockVaultTimeoutAction,
+    );
+    vaultTimeoutSettingsService.getVaultTimeoutActionByUserId$.mockReturnValue(
+      mockVaultTimeoutActionBSub.asObservable(),
+    );
+
+    const mockVaultTimeoutBSub = new BehaviorSubject<number>(mockVaultTimeout);
+    vaultTimeoutSettingsService.getVaultTimeoutByUserId$.mockReturnValue(
+      mockVaultTimeoutBSub.asObservable(),
+    );
+  });
+
+  it("sends api key credentials to the server", async () => {
+    apiService.postIdentityToken.mockResolvedValue(identityTokenResponseFactory());
+    await apiLogInStrategy.logIn(credentials);
+
+    expect(apiService.postIdentityToken).toHaveBeenCalledWith(
+      expect.objectContaining({
+        clientId: apiClientId,
+        clientSecret: apiClientSecret,
+        device: expect.objectContaining({
+          identifier: deviceId,
+        }),
+        twoFactor: expect.objectContaining({
+          provider: null,
+          token: null,
+        }),
+      }),
+    );
+  });
+
+  it("sets the local environment after a successful login", async () => {
+    apiService.postIdentityToken.mockResolvedValue(identityTokenResponseFactory());
+
+    await apiLogInStrategy.logIn(credentials);
+
+    expect(tokenService.setClientId).toHaveBeenCalledWith(
+      apiClientId,
+      mockVaultTimeoutAction,
+      mockVaultTimeout,
+    );
+    expect(tokenService.setClientSecret).toHaveBeenCalledWith(
+      apiClientSecret,
+      mockVaultTimeoutAction,
+      mockVaultTimeout,
+    );
+    expect(environmentService.seedUserEnvironment).toHaveBeenCalled();
+  });
+
+  it("sets the encrypted user key and private key from the identity token response", async () => {
+    const tokenResponse = identityTokenResponseFactory();
+
+    apiService.postIdentityToken.mockResolvedValue(tokenResponse);
+
+    await apiLogInStrategy.logIn(credentials);
+
+    expect(accountCryptographicStateService.setAccountCryptographicState).toHaveBeenCalledWith(
+      { V1: { private_key: tokenResponse.privateKey } },
+      userId,
+    );
+  });
+
+  it("unlocks an enrolled Key Connector user with the unlock service", async () => {
+    const tokenResponse = identityTokenResponseFactory(undefined, {
+      HasMasterPassword: false,
+      KeyConnectorOption: { KeyConnectorUrl: keyConnectorUrl },
+    });
+    tokenResponse.apiUseKeyConnector = true;
+
+    const env = mock<Environment>();
+    env.getKeyConnectorUrl.mockReturnValue(keyConnectorUrl);
+    environmentService.environment$ = new BehaviorSubject(env);
+
+    apiService.postIdentityToken.mockResolvedValue(tokenResponse);
+
+    await apiLogInStrategy.logIn(credentials);
+
+    expect(unlockService.unlockWithKeyConnector).toHaveBeenCalledWith(userId, {
+      url: keyConnectorUrl,
+      keyConnectorKeyWrappedUserKey: tokenResponse.key!.encryptedString!,
+    });
+  });
+
+  it("sets account cryptographic state when accountKeysResponseModel is present", async () => {
+    const accountKeysData = {
+      publicKeyEncryptionKeyPair: {
+        publicKey: "testPublicKey",
+        wrappedPrivateKey: "testPrivateKey",
+      },
+    };
+
+    const tokenResponse = identityTokenResponseFactory();
+    // Add accountKeysResponseModel to the response
+    (tokenResponse as any).accountKeysResponseModel = {
+      publicKeyEncryptionKeyPair: accountKeysData.publicKeyEncryptionKeyPair,
+      toWrappedAccountCryptographicState: jest.fn().mockReturnValue({
+        V1: {
+          private_key: "testPrivateKey",
+        },
+      }),
+    };
+
+    apiService.postIdentityToken.mockResolvedValue(tokenResponse);
+
+    await apiLogInStrategy.logIn(credentials);
+
+    expect(accountCryptographicStateService.setAccountCryptographicState).toHaveBeenCalledTimes(1);
+    expect(accountCryptographicStateService.setAccountCryptographicState).toHaveBeenCalledWith(
+      {
+        V1: {
+          private_key: "testPrivateKey",
+        },
+      },
+      userId,
+    );
+  });
+});

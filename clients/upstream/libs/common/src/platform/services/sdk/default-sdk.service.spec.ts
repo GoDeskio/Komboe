@@ -1,0 +1,313 @@
+import { mock, MockProxy } from "jest-mock-extended";
+import { BehaviorSubject, firstValueFrom, of } from "rxjs";
+
+// This import has been flagged as unallowed for this class. It may be involved in a circular dependency loop.
+// eslint-disable-next-line no-restricted-imports
+import { KdfConfigService, KeyService } from "@bitwarden/key-management";
+// eslint-disable-next-line no-restricted-imports
+import { EncryptedString, PBKDF2KdfConfig, SymmetricCryptoKey } from "@bitwarden/legacy-crypto";
+import { Measurement } from "@bitwarden/logging";
+import { PasswordManagerClient, WrappedAccountCryptographicState } from "@bitwarden/sdk-internal";
+
+import {
+  ObservableTracker,
+  FakeAccountService,
+  FakeStateProvider,
+  mockAccountServiceWith,
+  mockAccountInfoWith,
+  mockManagedSettingsService,
+} from "../../../../spec";
+import { ApiService } from "../../../abstractions/api.service";
+import { AccountCryptographicStateService } from "../../../key-management/account-cryptography/account-cryptographic-state.service";
+import { V2UpgradeTokenStateService } from "../../../key-management/upgrade-token/abstractions/v2-upgrade-token-state.service.abstraction";
+import { UserId } from "../../../types/guid";
+import { UserKey } from "../../../types/key";
+import { AppIdService } from "../../abstractions/app-id.service";
+import { ConfigService } from "../../abstractions/config/config.service";
+import { Environment, EnvironmentService } from "../../abstractions/environment.service";
+import { LogService } from "../../abstractions/log.service";
+import { PlatformUtilsService } from "../../abstractions/platform-utils.service";
+import { SdkClientFactory } from "../../abstractions/sdk/sdk-client-factory";
+import { SdkLoadService } from "../../abstractions/sdk/sdk-load.service";
+import { asUuid } from "../../abstractions/sdk/sdk.service";
+import { Rc } from "../../misc/reference-counting/rc";
+import { Utils } from "../../misc/utils";
+
+import { DefaultSdkService } from "./default-sdk.service";
+
+class TestSdkLoadService extends SdkLoadService {
+  protected override load(): Promise<void> {
+    // Simulate successful WASM load
+    return Promise.resolve();
+  }
+}
+
+describe("DefaultSdkService", () => {
+  const appId = "app-id";
+
+  let sdkClientFactory!: MockProxy<SdkClientFactory>;
+  let environmentService!: MockProxy<EnvironmentService>;
+  let platformUtilsService!: MockProxy<PlatformUtilsService>;
+  let kdfConfigService!: MockProxy<KdfConfigService>;
+  let keyService!: MockProxy<KeyService>;
+  let accountCryptographicStateService!: MockProxy<AccountCryptographicStateService>;
+  let configService!: MockProxy<ConfigService>;
+  let service!: DefaultSdkService;
+  let accountService!: FakeAccountService;
+  let fakeStateProvider!: FakeStateProvider;
+  let apiService!: MockProxy<ApiService>;
+  let upgradeTokenStateService!: MockProxy<V2UpgradeTokenStateService>;
+  let appIdService!: MockProxy<AppIdService>;
+
+  beforeEach(async () => {
+    await new TestSdkLoadService().loadAndInit();
+
+    sdkClientFactory = mock<SdkClientFactory>();
+    environmentService = mock<EnvironmentService>();
+    platformUtilsService = mock<PlatformUtilsService>();
+    kdfConfigService = mock<KdfConfigService>();
+    keyService = mock<KeyService>();
+    accountCryptographicStateService = mock<AccountCryptographicStateService>();
+    apiService = mock<ApiService>();
+    const mockUserId = Utils.newGuid() as UserId;
+    accountService = mockAccountServiceWith(mockUserId);
+    fakeStateProvider = new FakeStateProvider(accountService);
+    configService = mock<ConfigService>();
+    upgradeTokenStateService = mock<V2UpgradeTokenStateService>();
+    appIdService = mock<AppIdService>();
+    appIdService.getAppId.mockResolvedValue(appId);
+
+    configService.serverConfig$ = new BehaviorSubject(null);
+
+    // Can't use `of(mock<Environment>())` for some reason
+    environmentService.environment$ = new BehaviorSubject(mock<Environment>());
+
+    service = new DefaultSdkService(
+      sdkClientFactory,
+      environmentService,
+      platformUtilsService,
+      accountService,
+      () => kdfConfigService,
+      () => keyService,
+      () => accountCryptographicStateService,
+      () => apiService,
+      fakeStateProvider,
+      () => configService,
+      upgradeTokenStateService,
+      mockManagedSettingsService(),
+      appIdService,
+      mock<LogService>({ startMeasurement: () => mock<Measurement>() }),
+    );
+  });
+
+  describe("client$ without BW user", () => {
+    beforeEach(() => {
+      sdkClientFactory.createSdkClient.mockResolvedValue(createMockClient());
+    });
+
+    it("creates the SDK client with the app ID as the device identifier", async () => {
+      await firstValueFrom(service.client$);
+
+      const [, settings] = sdkClientFactory.createSdkClient.mock.calls[0];
+      expect(settings?.deviceIdentifier).toBe(appId);
+    });
+  });
+
+  describe("userClient$", () => {
+    describe("given the user is logged in", () => {
+      const userId = "0da62ebd-98bb-4f42-a846-64e8555087d7" as UserId;
+      beforeEach(() => {
+        environmentService.getEnvironment$
+          .calledWith(userId)
+          .mockReturnValue(new BehaviorSubject(mock<Environment>()));
+        accountService.accounts$ = of({
+          [userId]: mockAccountInfoWith({
+            email: "email",
+            name: "name",
+          }),
+        });
+        kdfConfigService.getKdfConfig$
+          .calledWith(userId)
+          .mockReturnValue(of(PBKDF2KdfConfig.createDefault()));
+        keyService.userKey$
+          .calledWith(userId)
+          .mockReturnValue(of(new SymmetricCryptoKey(new Uint8Array(64)) as UserKey));
+        keyService.encryptedOrgKeys$.calledWith(userId).mockReturnValue(of({}));
+        accountCryptographicStateService.accountCryptographicState$
+          .calledWith(userId)
+          .mockReturnValue(
+            of({
+              V1: {
+                private_key: "private-key" as EncryptedString,
+              },
+            }),
+          );
+        upgradeTokenStateService.v2UpgradeToken$.calledWith(userId).mockReturnValue(of(null));
+      });
+
+      describe("given the SDK client factory creates a client", () => {
+        let mockClient!: MockProxy<PasswordManagerClient>;
+
+        beforeEach(() => {
+          mockClient = createMockClient();
+          sdkClientFactory.createSdkClient.mockResolvedValue(mockClient);
+        });
+
+        it("creates an internal SDK client when called the first time", async () => {
+          await firstValueFrom(service.userClient$(userId));
+
+          expect(sdkClientFactory.createSdkClient).toHaveBeenCalled();
+        });
+
+        it("creates the SDK client with the app ID as the device identifier", async () => {
+          await firstValueFrom(service.userClient$(userId));
+
+          const [, settings] = sdkClientFactory.createSdkClient.mock.calls[0];
+          expect(settings?.deviceIdentifier).toBe(appId);
+        });
+
+        it("provides the user's access token from the API service to the SDK client", async () => {
+          apiService.getActiveBearerToken.calledWith(userId).mockResolvedValue("access-token");
+          await firstValueFrom(service.userClient$(userId));
+
+          const [tokenProvider] = sdkClientFactory.createSdkClient.mock.calls[0];
+          await expect(tokenProvider.get_access_token()).resolves.toBe("access-token");
+          expect(apiService.getActiveBearerToken).toHaveBeenCalledWith(userId);
+        });
+
+        it("does not create an SDK client when called the second time with same userId", async () => {
+          const subject_1 = new BehaviorSubject<Rc<PasswordManagerClient> | undefined>(undefined);
+          const subject_2 = new BehaviorSubject<Rc<PasswordManagerClient> | undefined>(undefined);
+
+          // Use subjects to ensure the subscription is kept alive
+          service.userClient$(userId).subscribe(subject_1);
+          service.userClient$(userId).subscribe(subject_2);
+
+          // Let the async client initialization in internalClient$ settle.
+          await new Promise((resolve) => setTimeout(resolve, 0));
+
+          expect(subject_1.value.take().value).toBe(mockClient);
+          expect(subject_2.value.take().value).toBe(mockClient);
+          expect(sdkClientFactory.createSdkClient).toHaveBeenCalledTimes(1);
+        });
+
+        it("destroys the internal SDK client when all subscriptions are closed", async () => {
+          jest.useFakeTimers();
+          const subject_1 = new BehaviorSubject<Rc<PasswordManagerClient> | undefined>(undefined);
+          const subject_2 = new BehaviorSubject<Rc<PasswordManagerClient> | undefined>(undefined);
+          const subscription_1 = service.userClient$(userId).subscribe(subject_1);
+          const subscription_2 = service.userClient$(userId).subscribe(subject_2);
+          await jest.advanceTimersByTimeAsync(0);
+
+          subscription_1.unsubscribe();
+          subscription_2.unsubscribe();
+
+          await jest.advanceTimersByTimeAsync(0);
+          expect(mockClient.free).not.toHaveBeenCalled();
+
+          await jest.advanceTimersByTimeAsync(1000);
+          expect(mockClient.free).toHaveBeenCalledTimes(1);
+          jest.useRealTimers();
+        });
+
+        it("does not destroy the internal SDK client if resubscribed within 1 second", async () => {
+          jest.useFakeTimers();
+          const subject_1 = new BehaviorSubject<Rc<PasswordManagerClient> | undefined>(undefined);
+          const subscription_1 = service.userClient$(userId).subscribe(subject_1);
+          await jest.advanceTimersByTimeAsync(0);
+
+          subscription_1.unsubscribe();
+          await jest.advanceTimersByTimeAsync(500);
+          expect(mockClient.free).not.toHaveBeenCalled();
+
+          // Resubscribe before the 1 second delay
+          const subject_2 = new BehaviorSubject<Rc<PasswordManagerClient> | undefined>(undefined);
+          const subscription_2 = service.userClient$(userId).subscribe(subject_2);
+          await jest.advanceTimersByTimeAsync(1000);
+
+          // Client should not be freed since we resubscribed
+          expect(mockClient.free).not.toHaveBeenCalled();
+          expect(sdkClientFactory.createSdkClient).toHaveBeenCalledTimes(1);
+          subscription_2.unsubscribe();
+          jest.useRealTimers();
+        });
+
+        it("emits a new locked client and frees the previous unlocked client when the userKey is unset", async () => {
+          const userKey$ = new BehaviorSubject(
+            new SymmetricCryptoKey(new Uint8Array(64)) as UserKey,
+          );
+          keyService.userKey$.calledWith(userId).mockReturnValue(userKey$);
+
+          const userClientTracker = new ObservableTracker(service.userClient$(userId), false);
+          await userClientTracker.pauseUntilReceived(1, 200);
+
+          userKey$.next(undefined);
+          await userClientTracker.pauseUntilReceived(2);
+
+          expect(mockClient.free).toHaveBeenCalledTimes(1);
+          expect(sdkClientFactory.createSdkClient).toHaveBeenCalledTimes(2);
+          expect(userClientTracker.emissions[1]).toBeDefined();
+        });
+
+        it("completes the subscription and frees the internal SDK client when the environment is unset (logout)", async () => {
+          const env$ = new BehaviorSubject<Environment | undefined>(mock<Environment>());
+          environmentService.getEnvironment$
+            .calledWith(userId)
+            .mockReturnValue(env$ as BehaviorSubject<Environment>);
+
+          const userClientTracker = new ObservableTracker(service.userClient$(userId), false);
+          await userClientTracker.pauseUntilReceived(1);
+
+          env$.next(undefined);
+          await userClientTracker.expectCompletion();
+
+          expect(mockClient.free).toHaveBeenCalledTimes(1);
+        });
+      });
+    });
+  });
+
+  describe("push methods", () => {
+    const userId = "0da62ebd-98bb-4f42-a846-64e8555087d7" as UserId;
+
+    it("resolves unlock with null without creating a client", async () => {
+      await expect(
+        service.unlock(userId, {
+          userId: asUuid(userId),
+          method: { clientManagedState: {} },
+          accountCryptographicState: mock<WrappedAccountCryptographicState>(),
+        }),
+      ).resolves.toBeNull();
+      expect(sdkClientFactory.createSdkClient).not.toHaveBeenCalled();
+    });
+
+    it("resolves lock, setFlags and setOrgKeys without creating a client", async () => {
+      await expect(service.lock(userId)).resolves.toBeUndefined();
+      await expect(service.setFlags(userId, new Map([["flag", true]]))).resolves.toBeUndefined();
+      await expect(service.setOrgKeys(userId, {})).resolves.toBeUndefined();
+      expect(sdkClientFactory.createSdkClient).not.toHaveBeenCalled();
+    });
+
+    it("returns from logout without creating a client", () => {
+      expect(() => service.logout(userId)).not.toThrow();
+      expect(sdkClientFactory.createSdkClient).not.toHaveBeenCalled();
+    });
+  });
+});
+
+function createMockClient(): MockProxy<PasswordManagerClient> {
+  const client = mock<PasswordManagerClient>();
+  client.crypto.mockReturnValue(mock());
+  client.platform.mockReturnValue({
+    state: jest.fn().mockReturnValue(mock()),
+    load_flags: jest.fn().mockReturnValue(mock()),
+    free: mock(),
+    [Symbol.dispose]: jest.fn(),
+  });
+  client.km_state_bridge.mockReturnValue({
+    register_bridge_impl: jest.fn(),
+    free: mock(),
+    [Symbol.dispose]: jest.fn(),
+  } as any);
+  return client;
+}

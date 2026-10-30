@@ -1,0 +1,239 @@
+import { ComponentFixture, TestBed } from "@angular/core/testing";
+import { FormControl } from "@angular/forms";
+import { mock, MockProxy } from "jest-mock-extended";
+import { of } from "rxjs";
+
+import { AccountService } from "@bitwarden/common/auth/abstractions/account.service";
+import { InternalMasterPasswordServiceAbstraction } from "@bitwarden/common/key-management/master-password/abstractions/master-password.service.abstraction";
+import {
+  MasterKeyWrappedUserKey,
+  MasterPasswordSalt,
+  MasterPasswordUnlockData,
+} from "@bitwarden/common/key-management/master-password/types/master-password.types";
+import { I18nService } from "@bitwarden/common/platform/abstractions/i18n.service";
+import { SdkService } from "@bitwarden/common/platform/abstractions/sdk/sdk.service";
+import { FakeAccountService, makeEncString, mockAccountServiceWith } from "@bitwarden/common/spec";
+import { UserId } from "@bitwarden/common/types/guid";
+import { DIALOG_DATA, DialogRef, ToastService } from "@bitwarden/components";
+// eslint-disable-next-line no-restricted-imports
+import { Argon2KdfConfig, KdfType, PBKDF2KdfConfig } from "@bitwarden/legacy-crypto";
+
+import { SharedModule } from "../../shared";
+
+import { ChangeKdfConfirmationComponent } from "./change-kdf-confirmation.component";
+
+describe("ChangeKdfConfirmationComponent", () => {
+  let component: ChangeKdfConfirmationComponent;
+  let fixture: ComponentFixture<ChangeKdfConfirmationComponent>;
+
+  // Mock Services
+  let mockI18nService: MockProxy<I18nService>;
+  let mockToastService: MockProxy<ToastService>;
+  let mockDialogRef: MockProxy<DialogRef<ChangeKdfConfirmationComponent>>;
+  let accountService: FakeAccountService;
+  let mockSdkService: MockProxy<SdkService>;
+  let mockMasterPasswordService: MockProxy<InternalMasterPasswordServiceAbstraction>;
+
+  const mockUserId = "user-id" as UserId;
+  const mockEmail = "email";
+  const mockMasterPassword = "master-password";
+  const mockDialogData = jest.fn();
+  const kdfConfig = new PBKDF2KdfConfig(600_001);
+
+  const mockWrappedUserKey = makeEncString("wrappedUserKey");
+  const mockUnlockData = new MasterPasswordUnlockData(
+    mockEmail as MasterPasswordSalt,
+    kdfConfig,
+    mockWrappedUserKey.encryptedString as unknown as MasterKeyWrappedUserKey,
+  );
+
+  // SDK reference chain: sdk.take() -> ref.value.user_crypto_management().change_kdf(...)
+  const changeKdf = jest.fn();
+  const mockRef = {
+    value: {
+      user_crypto_management: jest.fn().mockReturnValue({ change_kdf: changeKdf }),
+    },
+    [Symbol.dispose]: jest.fn(),
+  };
+  const mockSdk = {
+    take: jest.fn().mockReturnValue(mockRef),
+  };
+
+  beforeEach(() => {
+    mockI18nService = mock<I18nService>();
+    mockToastService = mock<ToastService>();
+    mockDialogRef = mock<DialogRef<ChangeKdfConfirmationComponent>>();
+    accountService = mockAccountServiceWith(mockUserId, { email: mockEmail });
+    mockSdkService = mock<SdkService>();
+    mockMasterPasswordService = mock<InternalMasterPasswordServiceAbstraction>();
+
+    mockI18nService.t.mockImplementation((key) => `${key}-used-i18n`);
+
+    mockSdkService.userClient$ = jest.fn(() => of(mockSdk)) as any;
+    mockMasterPasswordService.masterPasswordUnlockData$ = jest.fn(() => of(mockUnlockData)) as any;
+
+    mockDialogData.mockReturnValue({
+      kdf: KdfType.PBKDF2_SHA256,
+      kdfConfig,
+    });
+
+    TestBed.configureTestingModule({
+      declarations: [ChangeKdfConfirmationComponent],
+      imports: [SharedModule],
+      providers: [
+        { provide: I18nService, useValue: mockI18nService },
+        { provide: AccountService, useValue: accountService },
+        { provide: ToastService, useValue: mockToastService },
+        { provide: DialogRef, useValue: mockDialogRef },
+        { provide: SdkService, useValue: mockSdkService },
+        {
+          provide: InternalMasterPasswordServiceAbstraction,
+          useValue: mockMasterPasswordService,
+        },
+        {
+          provide: DIALOG_DATA,
+          useFactory: mockDialogData,
+        },
+      ],
+    });
+  });
+
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
+
+  describe("Component Initialization", () => {
+    it("should create component with PBKDF2 config", () => {
+      const fixture = TestBed.createComponent(ChangeKdfConfirmationComponent);
+      const component = fixture.componentInstance;
+
+      expect(component).toBeTruthy();
+      expect(component.kdfConfig).toBeInstanceOf(PBKDF2KdfConfig);
+      expect(component.kdfConfig.iterations).toBe(600_001);
+    });
+
+    it("should create component with Argon2id config", () => {
+      mockDialogData.mockReturnValue({
+        kdf: KdfType.Argon2id,
+        kdfConfig: new Argon2KdfConfig(4, 65, 5),
+      });
+
+      const fixture = TestBed.createComponent(ChangeKdfConfirmationComponent);
+      const component = fixture.componentInstance;
+
+      expect(component).toBeTruthy();
+      expect(component.kdfConfig).toBeInstanceOf(Argon2KdfConfig);
+      const kdfConfig = component.kdfConfig as Argon2KdfConfig;
+      expect(kdfConfig.iterations).toBe(4);
+      expect(kdfConfig.memory).toBe(65);
+      expect(kdfConfig.parallelism).toBe(5);
+    });
+
+    it("should initialize form with required master password field", () => {
+      const fixture = TestBed.createComponent(ChangeKdfConfirmationComponent);
+      const component = fixture.componentInstance;
+
+      expect(component.form.controls.masterPassword).toBeInstanceOf(FormControl);
+      expect(component.form.controls.masterPassword.value).toEqual(null);
+      expect(component.form.controls.masterPassword.hasError("required")).toBe(true);
+    });
+  });
+
+  describe("Form Validation", () => {
+    beforeEach(() => {
+      fixture = TestBed.createComponent(ChangeKdfConfirmationComponent);
+      component = fixture.componentInstance;
+    });
+
+    it("should be invalid when master password is empty", () => {
+      component.form.controls.masterPassword.setValue("");
+      expect(component.form.invalid).toBe(true);
+    });
+
+    it("should be valid when master password is provided", () => {
+      component.form.controls.masterPassword.setValue(mockMasterPassword);
+      expect(component.form.valid).toBe(true);
+    });
+  });
+
+  describe("submit method", () => {
+    describe("should not update kdf and not show success toast", () => {
+      beforeEach(() => {
+        fixture = TestBed.createComponent(ChangeKdfConfirmationComponent);
+        component = fixture.componentInstance;
+
+        component.form.controls.masterPassword.setValue(mockMasterPassword);
+      });
+
+      it("when form is invalid", async () => {
+        // Arrange
+        component.form.controls.masterPassword.setValue("");
+        expect(component.form.invalid).toBe(true);
+
+        // Act
+        await component.submit();
+
+        // Assert
+        expect(changeKdf).not.toHaveBeenCalled();
+      });
+
+      it("when no active account", async () => {
+        accountService.activeAccount$ = of(null);
+
+        await expect(component.submit()).rejects.toThrow("Null or undefined account");
+
+        expect(changeKdf).not.toHaveBeenCalled();
+      });
+
+      it("when kdf is invalid", async () => {
+        // Arrange
+        component.kdfConfig = new PBKDF2KdfConfig(1);
+
+        // Act
+        await expect(component.submit()).rejects.toThrow();
+
+        expect(changeKdf).not.toHaveBeenCalled();
+      });
+    });
+
+    describe("should update kdf and show success toast", () => {
+      it("should set loading to true during submission", async () => {
+        // Arrange
+        let loadingDuringExecution = false;
+        changeKdf.mockImplementation(async () => {
+          loadingDuringExecution = component.loading;
+        });
+
+        const fixture = TestBed.createComponent(ChangeKdfConfirmationComponent);
+        const component = fixture.componentInstance;
+
+        component.form.controls.masterPassword.setValue(mockMasterPassword);
+
+        // Act
+        await component.submit();
+
+        expect(loadingDuringExecution).toBe(true);
+        expect(component.loading).toBe(false);
+      });
+
+      it("shows a success toast and closes the dialog without logging out", async () => {
+        // Arrange
+        const fixture = TestBed.createComponent(ChangeKdfConfirmationComponent);
+        const component = fixture.componentInstance;
+
+        component.form.controls.masterPassword.setValue(mockMasterPassword);
+
+        // Act
+        await component.submit();
+
+        // Assert
+        expect(changeKdf).toHaveBeenCalledWith(mockMasterPassword, kdfConfig.toSdkConfig());
+        expect(mockToastService.showToast).toHaveBeenCalledWith({
+          variant: "success",
+          message: "encKeySettingsChanged-used-i18n",
+        });
+        expect(mockDialogRef.close).toHaveBeenCalled();
+      });
+    });
+  });
+});

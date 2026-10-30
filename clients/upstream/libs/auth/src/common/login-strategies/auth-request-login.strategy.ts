@@ -1,0 +1,96 @@
+import { Observable, map, BehaviorSubject } from "rxjs";
+import { Jsonify } from "type-fest";
+
+import { AuthResult } from "@bitwarden/common/auth/models/domain/auth-result";
+import { PasswordTokenRequest } from "@bitwarden/common/auth/models/request/identity-token/password-token.request";
+import { TokenTwoFactorRequest } from "@bitwarden/common/auth/models/request/identity-token/token-two-factor.request";
+import { IdentityTokenResponse } from "@bitwarden/common/auth/models/response/identity-token.response";
+import { DeviceTrustServiceAbstraction } from "@bitwarden/common/key-management/device-trust/abstractions/device-trust.service.abstraction";
+import { UserId } from "@bitwarden/common/types/guid";
+import { UnlockService } from "@bitwarden/unlock";
+
+import { AuthRequestLoginCredentials } from "../models/domain/login-credentials";
+import { CacheData } from "../services/login-strategies/login-strategy.state";
+
+import { LoginStrategy, LoginStrategyData } from "./login.strategy";
+
+export class AuthRequestLoginStrategyData implements LoginStrategyData {
+  readonly tokenRequest: PasswordTokenRequest;
+  readonly authRequestCredentials: AuthRequestLoginCredentials;
+
+  constructor(fields: AuthRequestLoginStrategyData) {
+    this.tokenRequest = fields.tokenRequest;
+    this.authRequestCredentials = fields.authRequestCredentials;
+  }
+
+  static fromJSON(obj: Jsonify<AuthRequestLoginStrategyData>): AuthRequestLoginStrategyData {
+    return new AuthRequestLoginStrategyData({
+      tokenRequest: PasswordTokenRequest.fromJSON(obj.tokenRequest),
+      authRequestCredentials: AuthRequestLoginCredentials.fromJSON(obj.authRequestCredentials),
+    });
+  }
+}
+
+export class AuthRequestLoginStrategy extends LoginStrategy<AuthRequestLoginStrategyData> {
+  email$: Observable<string | undefined>;
+  accessCode$: Observable<string | undefined>;
+  authRequestId$: Observable<string | undefined>;
+
+  protected cache: BehaviorSubject<AuthRequestLoginStrategyData | undefined>;
+
+  constructor(
+    data: AuthRequestLoginStrategyData | undefined,
+    private unlockService: UnlockService,
+    private deviceTrustService: DeviceTrustServiceAbstraction,
+    ...sharedDeps: ConstructorParameters<typeof LoginStrategy>
+  ) {
+    super(...sharedDeps);
+
+    this.cache = new BehaviorSubject(data);
+    this.email$ = this.cache.pipe(map((data) => data?.tokenRequest.email));
+    this.accessCode$ = this.cache.pipe(map((data) => data?.authRequestCredentials.accessCode));
+    this.authRequestId$ = this.cache.pipe(
+      map((data) => data?.authRequestCredentials.authRequestId),
+    );
+  }
+
+  override async logIn(credentials: AuthRequestLoginCredentials) {
+    const tokenRequest = new PasswordTokenRequest(
+      credentials.email,
+      credentials.accessCode,
+      await this.buildTwoFactor(credentials.twoFactor, credentials.email),
+      await this.buildDeviceRequest(),
+    );
+    tokenRequest.setAuthRequestAccessCode(credentials.authRequestId);
+    this.cache.next(
+      new AuthRequestLoginStrategyData({ tokenRequest, authRequestCredentials: credentials }),
+    );
+
+    const [authResult] = await this.startLogIn();
+    return authResult;
+  }
+
+  override async logInTwoFactor(twoFactor: TokenTwoFactorRequest): Promise<AuthResult> {
+    const data = this.cache.value;
+    this.cache.next(data);
+
+    return super.logInTwoFactor(twoFactor);
+  }
+
+  protected override async unlock(response: IdentityTokenResponse, userId: UserId): Promise<void> {
+    // Login with device: the approving device supplies an already-decrypted user key.
+    const { decryptedUserKey } = this.getLoginStrategyDataOrThrow().authRequestCredentials;
+    if (decryptedUserKey == null) {
+      throw new Error("Cannot unlock: the approving device did not supply a decrypted user key.");
+    }
+    await this.unlockService.unlockWithDecryptedUserKey(userId, decryptedUserKey);
+    // Establish trust if required after setting user key
+    await this.deviceTrustService.trustDeviceIfRequired(userId);
+  }
+
+  exportCache(): CacheData {
+    return {
+      authRequest: this.cache.value,
+    };
+  }
+}

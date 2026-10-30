@@ -1,0 +1,1269 @@
+// FIXME: Update this file to be type safe and remove this and next line
+// @ts-strict-ignore
+import {
+  Component,
+  EventEmitter,
+  Inject,
+  Input,
+  OnDestroy,
+  OnInit,
+  Output,
+  resource,
+  signal,
+  ViewChild,
+} from "@angular/core";
+import { toSignal } from "@angular/core/rxjs-interop";
+import { FormBuilder, Validators } from "@angular/forms";
+import { Router } from "@angular/router";
+import { combineLatest, firstValueFrom, map, Subject, switchMap, takeUntil } from "rxjs";
+import { debounceTime } from "rxjs/operators";
+
+import { ApiService } from "@bitwarden/common/abstractions/api.service";
+import { OrganizationApiServiceAbstraction } from "@bitwarden/common/admin-console/abstractions/organization/organization-api.service.abstraction";
+import {
+  getOrganizationById,
+  OrganizationService,
+  singleOrganizationPolicyApplies$,
+} from "@bitwarden/common/admin-console/abstractions/organization/organization.service.abstraction";
+import { PolicyService } from "@bitwarden/common/admin-console/abstractions/policy/policy.service.abstraction";
+import { Organization } from "@bitwarden/common/admin-console/models/domain/organization";
+import { OrganizationKeysRequest } from "@bitwarden/common/admin-console/models/request/organization-keys.request";
+import { OrganizationUpgradeRequest } from "@bitwarden/common/admin-console/models/request/organization-upgrade.request";
+import { AccountService } from "@bitwarden/common/auth/abstractions/account.service";
+import { getUserId } from "@bitwarden/common/auth/services/account.service";
+import { PlanInterval, PlanType, ProductTierType } from "@bitwarden/common/billing/enums";
+import { OrganizationSubscriptionResponse } from "@bitwarden/common/billing/models/response/organization-subscription.response";
+import { PlanResponse } from "@bitwarden/common/billing/models/response/plan.response";
+import { FeatureFlag } from "@bitwarden/common/enums/feature-flag.enum";
+import { ErrorResponse } from "@bitwarden/common/models/response/error.response";
+import { ListResponse } from "@bitwarden/common/models/response/list.response";
+import { ConfigService } from "@bitwarden/common/platform/abstractions/config/config.service";
+import { I18nService } from "@bitwarden/common/platform/abstractions/i18n.service";
+import { MessagingService } from "@bitwarden/common/platform/abstractions/messaging.service";
+import { OrganizationId } from "@bitwarden/common/types/guid";
+import { SyncService } from "@bitwarden/common/vault/abstractions/sync/sync.service.abstraction";
+import {
+  CardComponent,
+  DIALOG_DATA,
+  DialogConfig,
+  DialogRef,
+  DialogService,
+  SpinnerComponent,
+  ToastService,
+} from "@bitwarden/components";
+import { KeyService } from "@bitwarden/key-management";
+// eslint-disable-next-line no-restricted-imports
+import { LegacyCompatKeyService } from "@bitwarden/legacy-crypto";
+import { CartSummaryComponent } from "@bitwarden/pricing";
+import { Vfo1I18nPipe, Vfo1TerminologyService } from "@bitwarden/vault";
+import {
+  OrganizationSubscriptionPlan,
+  OrganizationPlanChangePreviewRequest,
+  SubscriberBillingClient,
+  PreviewInvoiceClient,
+} from "@bitwarden/web-vault/app/billing/clients";
+import { OrganizationWarningsService } from "@bitwarden/web-vault/app/billing/organizations/warnings/services";
+import {
+  EnterBillingAddressComponent,
+  EnterPaymentMethodComponent,
+  getBillingAddressFromForm,
+} from "@bitwarden/web-vault/app/billing/payment/components";
+import {
+  BillingAddress,
+  getCardBrandIcon,
+  MaskedPaymentMethod,
+} from "@bitwarden/web-vault/app/billing/payment/types";
+import { BitwardenSubscriber } from "@bitwarden/web-vault/app/billing/types";
+
+import { BillingNotificationService } from "../services/billing-notification.service";
+import { InvoicePreviewService } from "../services/invoice-preview.service";
+import { BillingSharedModule } from "../shared/billing-shared.module";
+
+type ChangePlanDialogParams = {
+  organizationId: string;
+  productTierType: ProductTierType;
+  subscription?: OrganizationSubscriptionResponse;
+};
+
+// FIXME: update to use a const object instead of a typescript enum
+// eslint-disable-next-line @bitwarden/platform/no-enums
+export enum ChangePlanDialogResultType {
+  Closed = "closed",
+  Submitted = "submitted",
+}
+
+// FIXME: update to use a const object instead of a typescript enum
+// eslint-disable-next-line @bitwarden/platform/no-enums
+export enum PlanCardState {
+  Selected = "selected",
+  NotSelected = "not_selected",
+  Disabled = "disabled",
+}
+
+export const openChangePlanDialog = (
+  dialogService: DialogService,
+  dialogConfig: DialogConfig<ChangePlanDialogParams>,
+) =>
+  dialogService.open<ChangePlanDialogResultType, ChangePlanDialogParams>(
+    ChangePlanDialogComponent,
+    dialogConfig,
+  );
+
+type PlanCard = {
+  name: string;
+  selected: boolean;
+};
+
+interface OnSuccessArgs {
+  organizationId: string;
+}
+
+// FIXME(https://bitwarden.atlassian.net/browse/CL-764): Migrate to OnPush
+// eslint-disable-next-line @angular-eslint/prefer-on-push-component-change-detection
+@Component({
+  templateUrl: "./change-plan-dialog.component.html",
+  imports: [
+    BillingSharedModule,
+    EnterPaymentMethodComponent,
+    EnterBillingAddressComponent,
+    CardComponent,
+    CartSummaryComponent,
+    SpinnerComponent,
+    Vfo1I18nPipe,
+  ],
+})
+export class ChangePlanDialogComponent implements OnInit, OnDestroy {
+  // FIXME(https://bitwarden.atlassian.net/browse/CL-903): Migrate to Signals
+  // eslint-disable-next-line @angular-eslint/prefer-signals
+  @ViewChild(EnterPaymentMethodComponent) enterPaymentMethodComponent: EnterPaymentMethodComponent;
+
+  // FIXME(https://bitwarden.atlassian.net/browse/CL-903): Migrate to Signals
+  // eslint-disable-next-line @angular-eslint/prefer-signals
+  @Input() acceptingSponsorship = false;
+  // FIXME(https://bitwarden.atlassian.net/browse/CL-903): Migrate to Signals
+  // eslint-disable-next-line @angular-eslint/prefer-signals
+  @Input() organizationId: string;
+  // FIXME(https://bitwarden.atlassian.net/browse/CL-903): Migrate to Signals
+  // eslint-disable-next-line @angular-eslint/prefer-signals
+  @Input() showFree = false;
+  // FIXME(https://bitwarden.atlassian.net/browse/CL-903): Migrate to Signals
+  // eslint-disable-next-line @angular-eslint/prefer-signals
+  @Input() showCancel = false;
+
+  // FIXME(https://bitwarden.atlassian.net/browse/CL-903): Migrate to Signals
+  // eslint-disable-next-line @angular-eslint/prefer-signals
+  @Input()
+  get productTier(): ProductTierType {
+    return this._productTier;
+  }
+
+  set productTier(product: ProductTierType) {
+    this._productTier = product;
+    this.formGroup?.controls?.productTier?.setValue(product);
+  }
+
+  protected estimatedTax: number = 0;
+  protected estimatedTotal?: number;
+  private _productTier = ProductTierType.Free;
+  private _familyPlan: PlanType;
+
+  // FIXME(https://bitwarden.atlassian.net/browse/CL-903): Migrate to Signals
+  // eslint-disable-next-line @angular-eslint/prefer-signals
+  @Input()
+  get plan(): PlanType {
+    return this._plan;
+  }
+
+  set plan(plan: PlanType) {
+    this._plan = plan;
+    this.formGroup?.controls?.plan?.setValue(plan);
+  }
+
+  private _plan = PlanType.Free;
+  // FIXME(https://bitwarden.atlassian.net/browse/CL-903): Migrate to Signals
+  // eslint-disable-next-line @angular-eslint/prefer-signals
+  @Input() providerId?: string;
+  // FIXME(https://bitwarden.atlassian.net/browse/CL-903): Migrate to Signals
+  // eslint-disable-next-line @angular-eslint/prefer-output-emitter-ref
+  @Output() onSuccess = new EventEmitter<OnSuccessArgs>();
+  // FIXME(https://bitwarden.atlassian.net/browse/CL-903): Migrate to Signals
+  // eslint-disable-next-line @angular-eslint/prefer-output-emitter-ref
+  @Output() onCanceled = new EventEmitter<void>();
+  // FIXME(https://bitwarden.atlassian.net/browse/CL-903): Migrate to Signals
+  // eslint-disable-next-line @angular-eslint/prefer-output-emitter-ref
+  @Output() onTrialBillingSuccess = new EventEmitter();
+
+  protected loading = true;
+  protected planCards: PlanCard[];
+  protected ResultType = ChangePlanDialogResultType;
+
+  selfHosted = false;
+  productTypes = ProductTierType;
+  formPromise: Promise<string>;
+  singleOrgPolicyAppliesToActiveUser = false;
+  isInTrialFlow = false;
+  discount = 0;
+
+  formGroup = this.formBuilder.group({
+    name: [""],
+    billingEmail: ["", [Validators.email]],
+    businessOwned: [false],
+    premiumAccessAddon: [false],
+    additionalSeats: [0, [Validators.min(0), Validators.max(100000)]],
+    clientOwnerEmail: ["", [Validators.email]],
+    plan: [this.plan],
+    productTier: [this.productTier],
+  });
+
+  billingFormGroup = this.formBuilder.group({
+    paymentMethod: EnterPaymentMethodComponent.getFormGroup(),
+    billingAddress: EnterBillingAddressComponent.getFormGroup(),
+  });
+
+  planType: string;
+  selectedPlan: PlanResponse;
+  selectedInterval: number = 1;
+  planIntervals = PlanInterval;
+  passwordManagerPlans: PlanResponse[];
+  secretsManagerPlans: PlanResponse[];
+  organization: Organization;
+  sub: OrganizationSubscriptionResponse;
+  dialogHeaderName: string;
+  currentPlanName: string;
+  showPayment: boolean = false;
+  totalOpened: boolean = false;
+  currentPlan: PlanResponse;
+  isCardStateDisabled = false;
+  focusedIndex: number | null = null;
+  plans: ListResponse<PlanResponse>;
+  isSubscriptionCanceled: boolean = false;
+  secretsManagerTotal: number;
+
+  paymentMethod: MaskedPaymentMethod | null;
+  billingAddress: BillingAddress | null;
+
+  private destroy$ = new Subject<void>();
+
+  /**
+   * Signal indicating whether the plan change preview cart feature is enabled.
+   */
+  protected readonly previewCartEnabled = toSignal(
+    this.configService.getFeatureFlag$(FeatureFlag.PM36631_PreviewDrivenCart),
+    { initialValue: false },
+  );
+
+  /**
+   * Signal holding the current plan change request.
+   */
+  private readonly planChangeRequest = signal<OrganizationPlanChangePreviewRequest | undefined>(
+    undefined,
+    {
+      equal: (a, b) =>
+        a?.tier === b?.tier &&
+        a?.cadence === b?.cadence &&
+        a?.billingAddress.country === b?.billingAddress.country &&
+        a?.billingAddress.postalCode === b?.billingAddress.postalCode &&
+        a?.billingAddress.taxId?.code === b?.billingAddress.taxId?.code &&
+        a?.billingAddress.taxId?.value === b?.billingAddress.taxId?.value,
+    },
+  );
+
+  protected planChangeCart = resource({
+    params: () => (this.previewCartEnabled() ? this.planChangeRequest() : undefined),
+    loader: async ({ params }) => {
+      try {
+        return await this.invoicePreviewService.previewPlanChangeCart(this.organizationId, params);
+      } catch (error) {
+        this.billingNotificationService.showError(
+          this.i18nService.t(this.messageForPreviewError(error)),
+        );
+        throw error;
+      }
+    },
+  });
+
+  // Message shown in the error callout, from the resource's returned error object.
+  protected get previewErrorMessageKey(): string {
+    return this.messageForPreviewError(this.planChangeCart.error());
+  }
+
+  // A 400 means the request was rejected on user input — for this request that's the billing
+  // address (plan/cadence are fixed enums). Anything else is a generic preview failure.
+  private messageForPreviewError(error: unknown): string {
+    // The resource wraps a non-Error rejection (ErrorResponse isn't an Error) and puts the
+    // original on `cause`, so unwrap that before inspecting the status.
+    const response =
+      error instanceof ErrorResponse ? error : (error as { cause?: unknown } | undefined)?.cause;
+    return response instanceof ErrorResponse && response.statusCode === 400
+      ? "billingPreviewInvalidAddressError"
+      : "invoicePreviewErrorMessage";
+  }
+
+  protected get showPreviewCart(): boolean {
+    return this.previewCartEnabled() && !this.isSubscriptionCanceled;
+  }
+
+  // With the preview cart on, block submission until the cost preview has loaded so a plan change
+  // can't be committed without its cost shown.
+  protected get isSubmitDisabled(): boolean {
+    return this.showPreviewCart && !this.planChangeCart.hasValue();
+  }
+
+  protected get trialLengthDays(): number {
+    return this.selectedPlan?.trialPeriodDays ?? 0;
+  }
+
+  // A free org upgrading to a paid plan that carries a trial: the total is charged when the trial ends.
+  protected get isFreeUpgradeWithTrial(): boolean {
+    return this.currentPlan?.productTier === ProductTierType.Free && this.trialLengthDays > 0;
+  }
+
+  protected get isTrialing(): boolean {
+    return this.sub?.subscription?.status === "trialing";
+  }
+
+  // When the current trial ends and the total is charged.
+  protected get trialEndDate(): string | undefined {
+    return this.sub?.subscription?.trialEndDate;
+  }
+
+  // Whole days left in the current trial, or 0 when the subscription is not trialing.
+  protected get remainingTrialDays(): number {
+    if (!this.isTrialing || !this.trialEndDate) {
+      return 0;
+    }
+    const msPerDay = 1000 * 60 * 60 * 24;
+    const remaining = new Date(this.trialEndDate).getTime() - Date.now();
+    return Math.max(0, Math.ceil(remaining / msPerDay));
+  }
+
+  // The chrome i18n format has no plural support, so pick the singular key on the trial's last day.
+  protected get trialRemainingMessageKey(): string {
+    return this.remainingTrialDays === 1
+      ? "planChangeTrialRemaining"
+      : "planChangeTrialRemainingPlural";
+  }
+
+  constructor(
+    @Inject(DIALOG_DATA) private dialogParams: ChangePlanDialogParams,
+    private dialogRef: DialogRef<ChangePlanDialogResultType>,
+    private toastService: ToastService,
+    private apiService: ApiService,
+    private i18nService: I18nService,
+    private keyService: KeyService,
+    private legacyCompatKeyService: LegacyCompatKeyService,
+    private router: Router,
+    private syncService: SyncService,
+    private policyService: PolicyService,
+    private organizationService: OrganizationService,
+    private messagingService: MessagingService,
+    private formBuilder: FormBuilder,
+    private organizationApiService: OrganizationApiServiceAbstraction,
+    private accountService: AccountService,
+    private billingNotificationService: BillingNotificationService,
+    private subscriberBillingClient: SubscriberBillingClient,
+    private previewInvoiceClient: PreviewInvoiceClient,
+    private organizationWarningsService: OrganizationWarningsService,
+    private vfo1TerminologyService: Vfo1TerminologyService,
+    private invoicePreviewService: InvoicePreviewService,
+    private configService: ConfigService,
+  ) {}
+
+  async ngOnInit(): Promise<void> {
+    if (this.dialogParams.organizationId) {
+      this.currentPlanName = this.resolvePlanName(this.dialogParams.productTierType);
+      this.sub =
+        this.dialogParams.subscription ??
+        (await this.organizationApiService.getSubscription(this.dialogParams.organizationId));
+      this.dialogHeaderName = this.resolveHeaderName(this.sub);
+      this.organizationId = this.dialogParams.organizationId;
+      this.currentPlan = this.sub?.plan;
+      this.selectedPlan = this.sub?.plan;
+      const userId = await firstValueFrom(
+        this.accountService.activeAccount$.pipe(map((a) => a?.id)),
+      );
+      this.organization = await firstValueFrom(
+        this.organizationService
+          .organizations$(userId)
+          .pipe(getOrganizationById(this.organizationId)),
+      );
+      if (this.sub?.subscription?.status !== "canceled") {
+        try {
+          const subscriber: BitwardenSubscriber = { type: "organization", data: this.organization };
+          const [paymentMethod, billingAddress] = await Promise.all([
+            this.subscriberBillingClient.getPaymentMethod(subscriber),
+            this.subscriberBillingClient.getBillingAddress(subscriber),
+          ]);
+
+          this.paymentMethod = paymentMethod;
+          this.billingAddress = billingAddress;
+        } catch (error) {
+          this.billingNotificationService.handleError(error);
+        }
+      }
+    }
+
+    if (!this.selfHosted) {
+      this.plans = await this.apiService.getPlans();
+      this.passwordManagerPlans = this.plans.data.filter((plan) => !!plan.PasswordManager);
+      this.secretsManagerPlans = this.plans.data.filter((plan) => !!plan.SecretsManager);
+
+      if (
+        this.productTier === ProductTierType.Enterprise ||
+        this.productTier === ProductTierType.Teams
+      ) {
+        this.formGroup.controls.businessOwned.setValue(true);
+      }
+    }
+
+    this._familyPlan = PlanType.FamiliesAnnually;
+    if (this.currentPlan && this.currentPlan.productTier !== ProductTierType.Enterprise) {
+      const upgradedPlan = this.passwordManagerPlans.find((plan) =>
+        this.currentPlan.productTier === ProductTierType.Free
+          ? plan.type === this._familyPlan
+          : plan.upgradeSortOrder == this.currentPlan.upgradeSortOrder + 1,
+      );
+
+      this.plan = upgradedPlan.type;
+      this.productTier = upgradedPlan.productTier;
+    }
+    this.upgradeFlowPrefillForm();
+
+    this.accountService.activeAccount$
+      .pipe(
+        getUserId,
+        switchMap((userId) => singleOrganizationPolicyApplies$(userId, this.policyService)),
+        takeUntil(this.destroy$),
+      )
+      .subscribe((policyAppliesToActiveUser) => {
+        this.singleOrgPolicyAppliesToActiveUser = policyAppliesToActiveUser;
+      });
+
+    if (!this.selfHosted) {
+      this.changedProduct();
+    }
+
+    this.planCards = [
+      {
+        name: this.i18nService.t("planNameTeams"),
+        selected: true,
+      },
+      {
+        name: this.i18nService.t("planNameEnterprise"),
+        selected: false,
+      },
+    ];
+
+    await this.setInitialPlanSelection();
+    if (!this.isSubscriptionCanceled) {
+      await this.refreshCostSummary();
+    }
+
+    combineLatest([
+      this.billingFormGroup.controls.billingAddress.controls.country.valueChanges,
+      this.billingFormGroup.controls.billingAddress.controls.postalCode.valueChanges,
+      this.billingFormGroup.controls.billingAddress.controls.taxId.valueChanges,
+    ])
+      .pipe(
+        debounceTime(1000),
+        switchMap(async () => await this.refreshCostSummary()),
+        takeUntil(this.destroy$),
+      )
+      .subscribe();
+
+    this.loading = false;
+  }
+
+  resolveHeaderName(subscription: OrganizationSubscriptionResponse): string {
+    if (subscription.subscription != null) {
+      this.isSubscriptionCanceled =
+        subscription.subscription.cancelled && this.sub?.plan.productTier !== ProductTierType.Free;
+      if (this.isSubscriptionCanceled) {
+        return this.i18nService.t("restartSubscription");
+      }
+    }
+
+    return this.vfo1TerminologyService.enabled()
+      ? this.i18nService.t("upgradeYourPlan")
+      : this.i18nService.t(
+          "upgradeFreeOrganization",
+          this.resolvePlanName(this.dialogParams.productTierType),
+        );
+  }
+
+  async setInitialPlanSelection() {
+    this.focusedIndex = this.selectableProducts.length - 1;
+    if (!this.isSubscriptionCanceled) {
+      await this.selectPlan(this.getPlanByType(ProductTierType.Enterprise));
+    } else {
+      await this.selectPlan(this.reSubscribablePlan);
+    }
+  }
+
+  getPlanByType(productTier: ProductTierType) {
+    return this.selectableProducts.find((product) => product.productTier === productTier);
+  }
+
+  isSecretsManagerTrial(): boolean {
+    // A schedule-derived discount (e.g. a deferred price-migration coupon) is not an SM trial,
+    // even when it applies to a subscription product.
+    if (this.sub?.customerDiscount?.isFromSchedule) {
+      return false;
+    }
+
+    return (
+      this.sub?.subscription?.items?.some((item) =>
+        this.sub?.customerDiscount?.appliesTo?.includes(item.productId),
+      ) ?? false
+    );
+  }
+
+  async planTypeChanged() {
+    await this.selectPlan(this.getPlanByType(ProductTierType.Enterprise));
+  }
+
+  async updateInterval(event: number) {
+    this.selectedInterval = event;
+    await this.planTypeChanged();
+  }
+
+  protected getPlanIntervals() {
+    return [
+      {
+        name: PlanInterval[PlanInterval.Annually],
+        value: PlanInterval.Annually,
+      },
+      {
+        name: PlanInterval[PlanInterval.Monthly],
+        value: PlanInterval.Monthly,
+      },
+    ];
+  }
+
+  optimizedNgForRender(index: number) {
+    return index;
+  }
+
+  protected getPlanCardContainerClasses(plan: PlanResponse, index: number) {
+    let cardState: PlanCardState;
+
+    if (plan == this.currentPlan) {
+      cardState = PlanCardState.Disabled;
+      this.isCardStateDisabled = true;
+      this.focusedIndex = index;
+    } else if (plan == this.selectedPlan) {
+      cardState = PlanCardState.Selected;
+      this.isCardStateDisabled = false;
+      this.focusedIndex = index;
+    } else if (
+      this.selectedInterval === PlanInterval.Monthly &&
+      plan.productTier == ProductTierType.Families
+    ) {
+      cardState = PlanCardState.Disabled;
+      this.isCardStateDisabled = true;
+      this.focusedIndex = this.selectableProducts.length - 1;
+    } else {
+      cardState = PlanCardState.NotSelected;
+      this.isCardStateDisabled = false;
+    }
+
+    switch (cardState) {
+      case PlanCardState.Selected: {
+        return [
+          "tw-cursor-pointer",
+          "tw-block",
+          "tw-rounded",
+          "tw-border",
+          "tw-border-solid",
+          "tw-border-primary-600",
+          "hover:tw-border-primary-700",
+          "tw-border-2",
+          "!tw-border-primary-700",
+          "tw-rounded-lg",
+        ];
+      }
+      case PlanCardState.NotSelected: {
+        return [
+          "tw-cursor-pointer",
+          "tw-block",
+          "tw-rounded",
+          "tw-border",
+          "tw-border-solid",
+          "tw-border-secondary-300",
+          "hover:tw-border-text-main",
+          "focus:tw-border-2",
+          "focus:tw-border-primary-700",
+        ];
+      }
+      case PlanCardState.Disabled: {
+        if (this.isSubscriptionCanceled) {
+          return [
+            "tw-cursor-not-allowed",
+            "tw-bg-secondary-100",
+            "tw-font-normal",
+            "tw-bg-blur",
+            "tw-text-muted",
+            "tw-block",
+            "tw-rounded",
+            "tw-w-80",
+          ];
+        }
+
+        return [
+          "tw-cursor-not-allowed",
+          "tw-bg-secondary-100",
+          "tw-font-normal",
+          "tw-bg-blur",
+          "tw-text-muted",
+          "tw-block",
+          "tw-rounded",
+        ];
+      }
+    }
+  }
+
+  protected async selectPlan(plan: PlanResponse) {
+    if (
+      this.selectedInterval === PlanInterval.Monthly &&
+      plan.productTier == ProductTierType.Families
+    ) {
+      return;
+    }
+
+    if (plan === this.currentPlan && !this.isSubscriptionCanceled) {
+      return;
+    }
+    this.selectedPlan = plan;
+    // Clear the previous plan's server total so the summary falls back to the client
+    // estimate for the newly selected plan until the refresh resolves.
+    this.estimatedTotal = undefined;
+    this.formGroup.patchValue({ productTier: plan.productTier });
+
+    try {
+      await this.refreshCostSummary();
+    } catch {
+      this.estimatedTax = 0;
+      this.estimatedTotal = undefined;
+    }
+  }
+
+  ngOnDestroy() {
+    this.destroy$.next();
+    this.destroy$.complete();
+  }
+
+  get upgradeRequiresPaymentMethod() {
+    const isFreeTier = this.organization?.productTierType === ProductTierType.Free;
+    const shouldHideFree = !this.showFree;
+    const hasNoPaymentSource = !this.paymentMethod;
+
+    return isFreeTier && shouldHideFree && hasNoPaymentSource;
+  }
+
+  get selectedPlanInterval() {
+    if (this.isSubscriptionCanceled) {
+      return this.currentPlan.isAnnual ? "year" : "month";
+    }
+    return this.selectedPlan.isAnnual ? "year" : "month";
+  }
+
+  get reSubscribablePlan() {
+    if (!this.currentPlan) {
+      throw new Error(
+        "Current plan must be set to find the re-subscribable plan for a cancelled subscription.",
+      );
+    }
+    if (!this.currentPlan.disabled) {
+      return this.currentPlan;
+    }
+    return (
+      this.passwordManagerPlans.find(
+        (plan) =>
+          plan.productTier === this.currentPlan.productTier &&
+          plan.isAnnual === this.currentPlan.isAnnual &&
+          !plan.disabled,
+      ) ?? this.currentPlan
+    );
+  }
+
+  get selectableProducts() {
+    if (this.isSubscriptionCanceled) {
+      return [this.reSubscribablePlan];
+    }
+
+    if (this.acceptingSponsorship) {
+      const familyPlan = this.passwordManagerPlans.find((plan) => plan.type === this._familyPlan);
+      this.discount = familyPlan.PasswordManager.basePrice;
+      return [familyPlan];
+    }
+
+    const businessOwnedIsChecked = this.formGroup.controls.businessOwned.value;
+
+    const result = this.passwordManagerPlans.filter(
+      (plan) =>
+        plan.type !== PlanType.Custom &&
+        (!businessOwnedIsChecked || plan.canBeUsedByBusiness) &&
+        (this.showFree || plan.productTier !== ProductTierType.Free) &&
+        (plan.productTier === ProductTierType.Free ||
+          plan.productTier === ProductTierType.TeamsStarter ||
+          (this.selectedInterval === PlanInterval.Annually && plan.isAnnual) ||
+          (this.selectedInterval === PlanInterval.Monthly && !plan.isAnnual)) &&
+        (plan.productTier !== ProductTierType.Families || plan.type === this._familyPlan) &&
+        (!this.currentPlan || this.currentPlan.upgradeSortOrder < plan.upgradeSortOrder) &&
+        this.planIsEnabled(plan),
+    );
+
+    if (
+      this.currentPlan.productTier === ProductTierType.Free &&
+      this.selectedInterval === PlanInterval.Monthly &&
+      !this.organization.useSecretsManager
+    ) {
+      const familyPlan = this.passwordManagerPlans.find(
+        (plan) => plan.productTier == ProductTierType.Families,
+      );
+      result.push(familyPlan);
+    }
+
+    if (
+      this.organization.useSecretsManager &&
+      this.currentPlan.productTier === ProductTierType.Free
+    ) {
+      const familyPlanIndex = result.findIndex(
+        (plan) => plan.productTier === ProductTierType.Families,
+      );
+
+      if (familyPlanIndex !== -1) {
+        result.splice(familyPlanIndex, 1);
+      }
+    }
+
+    if (this.currentPlan.productTier !== ProductTierType.Free) {
+      result.push(this.currentPlan);
+    }
+
+    result.sort((planA, planB) => planA.displaySortOrder - planB.displaySortOrder);
+
+    return result;
+  }
+
+  get selectablePlans() {
+    const selectedProductTierType = this.formGroup.controls.productTier.value;
+    const result =
+      this.passwordManagerPlans?.filter(
+        (plan) => plan.productTier === selectedProductTierType && this.planIsEnabled(plan),
+      ) || [];
+
+    result.sort((planA, planB) => planA.displaySortOrder - planB.displaySortOrder);
+    return result;
+  }
+
+  get storageGb() {
+    return Math.max(
+      0,
+      (this.sub?.maxStorageGb ?? 0) - this.selectedPlan.PasswordManager.baseStorageGb,
+    );
+  }
+
+  passwordManagerSeatTotal(plan: PlanResponse): number {
+    if (!plan.PasswordManager.hasAdditionalSeatsOption || this.isSecretsManagerTrial()) {
+      return 0;
+    }
+
+    return plan.PasswordManager.seatPrice * Math.abs(this.sub?.seats || 0);
+  }
+
+  secretsManagerSeatTotal(plan: PlanResponse, seats: number): number {
+    if (!plan.SecretsManager.hasAdditionalSeatsOption) {
+      return 0;
+    }
+
+    return plan.SecretsManager.seatPrice * Math.abs(seats || 0);
+  }
+
+  additionalStorageTotal(plan: PlanResponse): number {
+    if (!plan.PasswordManager.hasAdditionalStorageOption) {
+      return 0;
+    }
+
+    return plan.PasswordManager.additionalStoragePricePerGb * this.storageGb;
+  }
+
+  additionalStoragePriceMonthly(selectedPlan: PlanResponse) {
+    return selectedPlan.PasswordManager.additionalStoragePricePerGb;
+  }
+
+  additionalServiceAccountTotal(plan: PlanResponse): number {
+    if (
+      !plan.SecretsManager.hasAdditionalServiceAccountOption ||
+      this.additionalServiceAccount == 0
+    ) {
+      return 0;
+    }
+
+    return plan.SecretsManager.additionalPricePerServiceAccount * this.additionalServiceAccount;
+  }
+
+  get passwordManagerSubtotal() {
+    if (!this.selectedPlan || !this.selectedPlan.PasswordManager) {
+      return 0;
+    }
+
+    let subTotal = this.selectedPlan.PasswordManager.basePrice;
+    if (this.selectedPlan.PasswordManager.hasAdditionalSeatsOption) {
+      subTotal += this.passwordManagerSeatTotal(this.selectedPlan);
+    }
+    if (this.selectedPlan.PasswordManager.hasPremiumAccessOption) {
+      subTotal += this.selectedPlan.PasswordManager.premiumAccessOptionPrice;
+    }
+    if (this.selectedPlan.PasswordManager.hasAdditionalStorageOption) {
+      subTotal += this.additionalStorageTotal(this.selectedPlan);
+    }
+    return subTotal - this.discount;
+  }
+
+  secretsManagerSubtotal() {
+    const plan = this.selectedPlan;
+    if (!plan || !plan.SecretsManager) {
+      return this.secretsManagerTotal || 0;
+    }
+
+    if (this.secretsManagerTotal) {
+      return this.secretsManagerTotal;
+    }
+
+    this.secretsManagerTotal =
+      plan.SecretsManager.basePrice +
+      this.secretsManagerSeatTotal(plan, this.sub?.smSeats) +
+      this.additionalServiceAccountTotal(plan);
+    return this.secretsManagerTotal;
+  }
+
+  get passwordManagerSeats() {
+    if (!this.selectedPlan) {
+      return 0;
+    }
+
+    if (this.selectedPlan.productTier === ProductTierType.Families) {
+      return this.selectedPlan.PasswordManager.baseSeats;
+    }
+    return this.sub?.seats;
+  }
+
+  get total() {
+    if (!this.organization || !this.selectedPlan) {
+      return 0;
+    }
+
+    if (this.organization.useSecretsManager) {
+      return this.passwordManagerSubtotal + this.secretsManagerSubtotal() + this.estimatedTax;
+    }
+    return this.passwordManagerSubtotal + this.estimatedTax;
+  }
+
+  get teamsStarterPlanIsAvailable() {
+    return this.selectablePlans.some((plan) => plan.type === PlanType.TeamsStarter);
+  }
+
+  get additionalServiceAccount() {
+    if (!this.currentPlan || !this.currentPlan.SecretsManager) {
+      return 0;
+    }
+
+    const baseServiceAccount = this.currentPlan.SecretsManager?.baseServiceAccount || 0;
+    const usedServiceAccounts =
+      (this.sub?.smServiceAccounts || 0) - (this.sub?.smServiceAccountsGrace || 0);
+
+    const additionalServiceAccounts = baseServiceAccount - usedServiceAccounts;
+
+    return additionalServiceAccounts <= 0 ? Math.abs(additionalServiceAccounts) : 0;
+  }
+
+  changedProduct() {
+    const selectedPlan = this.selectablePlans[0];
+
+    this.setPlanType(selectedPlan.type);
+    this.handlePremiumAddonAccess(selectedPlan.PasswordManager.hasPremiumAccessOption);
+    this.handleAdditionalSeats(selectedPlan.PasswordManager.hasAdditionalSeatsOption);
+  }
+
+  setPlanType(planType: PlanType) {
+    this.formGroup.controls.plan.setValue(planType);
+  }
+
+  handlePremiumAddonAccess(hasPremiumAccessOption: boolean) {
+    this.formGroup.controls.premiumAccessAddon.setValue(!hasPremiumAccessOption);
+  }
+
+  handleAdditionalSeats(selectedPlanHasAdditionalSeatsOption: boolean) {
+    if (!selectedPlanHasAdditionalSeatsOption) {
+      this.formGroup.controls.additionalSeats.setValue(0);
+      return;
+    }
+
+    if (this.currentPlan && !this.currentPlan.PasswordManager.hasAdditionalSeatsOption) {
+      this.formGroup.controls.additionalSeats.setValue(this.currentPlan.PasswordManager.baseSeats);
+      return;
+    }
+
+    if (this.organization) {
+      this.formGroup.controls.additionalSeats.setValue(this.organization.seats);
+      return;
+    }
+
+    this.formGroup.controls.additionalSeats.setValue(1);
+  }
+
+  submit = async () => {
+    this.formGroup.markAllAsTouched();
+    this.billingFormGroup.markAllAsTouched();
+    if (this.formGroup.invalid || (this.billingFormGroup.invalid && !this.paymentMethod)) {
+      return;
+    }
+
+    const doSubmit = async (): Promise<string> => {
+      let orgId: string;
+      const sub = this.sub?.subscription;
+      const isCanceled = sub?.status === "canceled";
+      const isCancelledDowngradedToFreeOrg =
+        sub?.cancelled && this.organization.productTierType === ProductTierType.Free;
+
+      if (isCanceled || isCancelledDowngradedToFreeOrg) {
+        await this.restartSubscription();
+        orgId = this.organizationId;
+      } else {
+        orgId = await this.updateOrganization();
+      }
+      this.toastService.showToast({
+        variant: "success",
+        title: null,
+        message: this.isSubscriptionCanceled
+          ? this.i18nService.t("restartOrganizationSubscription")
+          : this.i18nService.t("organizationUpgraded"),
+      });
+
+      await this.syncService.fullSync(true);
+
+      if (!this.acceptingSponsorship && !this.isInTrialFlow) {
+        await this.router.navigate(["/organizations/" + orgId + "/billing/subscription"]);
+      }
+
+      if (this.isInTrialFlow) {
+        this.onTrialBillingSuccess.emit({
+          orgId: orgId,
+          subLabelText: this.billingSubLabelText(),
+        });
+      }
+
+      return orgId;
+    };
+
+    this.formPromise = doSubmit();
+    const organizationId = await this.formPromise;
+    this.onSuccess.emit({ organizationId: organizationId });
+    // TODO: No one actually listening to this message?
+    this.messagingService.send("organizationCreated", { organizationId });
+    await this.dialogRef.close();
+  };
+
+  private async restartSubscription() {
+    const paymentMethod = await this.enterPaymentMethodComponent.tokenize();
+    const billingAddress = getBillingAddressFromForm(this.billingFormGroup.controls.billingAddress);
+    await this.subscriberBillingClient.restartSubscription(
+      { type: "organization", data: this.organization },
+      paymentMethod,
+      billingAddress,
+    );
+    this.organizationWarningsService.refreshInactiveSubscriptionWarning();
+  }
+
+  private async updateOrganization() {
+    const request = new OrganizationUpgradeRequest();
+    if (this.selectedPlan.productTier !== ProductTierType.Families) {
+      request.additionalSeats = this.sub?.seats;
+    }
+    if (this.sub?.maxStorageGb > this.selectedPlan.PasswordManager.baseStorageGb) {
+      request.additionalStorageGb =
+        this.sub?.maxStorageGb - this.selectedPlan.PasswordManager.baseStorageGb;
+    }
+    request.premiumAccessAddon =
+      this.selectedPlan.PasswordManager.hasPremiumAccessOption &&
+      this.formGroup.controls.premiumAccessAddon.value;
+    request.planType = this.selectedPlan.type;
+    if (this.showPayment) {
+      request.billingAddressCountry = this.billingFormGroup.controls.billingAddress.value.country;
+      request.billingAddressPostalCode =
+        this.billingFormGroup.controls.billingAddress.value.postalCode;
+    }
+
+    // Secrets Manager
+    this.buildSecretsManagerRequest(request);
+
+    if (this.upgradeRequiresPaymentMethod || this.showPayment || !this.paymentMethod) {
+      const paymentMethod = await this.enterPaymentMethodComponent.tokenize();
+      const billingAddress = getBillingAddressFromForm(
+        this.billingFormGroup.controls.billingAddress,
+      );
+
+      const subscriber: BitwardenSubscriber = { type: "organization", data: this.organization };
+      // These need to be synchronous so one of them can create the Customer in the case we're upgrading from Free.
+      await this.subscriberBillingClient.updateBillingAddress(subscriber, billingAddress);
+      await this.subscriberBillingClient.updatePaymentMethod(subscriber, paymentMethod, null);
+    }
+
+    // Backfill pub/priv key if necessary
+    if (!this.organization.hasPublicAndPrivateKeys) {
+      const userId = await firstValueFrom(
+        this.accountService.activeAccount$.pipe(map((a) => a?.id)),
+      );
+      const orgShareKey = await firstValueFrom(
+        this.keyService
+          .orgKeys$(userId)
+          .pipe(map((orgKeys) => orgKeys?.[this.organizationId as OrganizationId] ?? null)),
+      );
+      const orgKeys = await this.legacyCompatKeyService.makeKeyPair(orgShareKey);
+      request.keys = new OrganizationKeysRequest(orgKeys[0], orgKeys[1].encryptedString);
+    }
+
+    await this.organizationApiService.upgrade(this.organizationId, request);
+    return this.organizationId;
+  }
+
+  private billingSubLabelText(): string {
+    const selectedPlan = this.selectedPlan;
+    const price =
+      selectedPlan.PasswordManager.basePrice === 0
+        ? selectedPlan.PasswordManager.seatPrice
+        : selectedPlan.PasswordManager.basePrice;
+    let text = "";
+
+    if (selectedPlan.isAnnual) {
+      text += `${this.i18nService.t("annual")} ($${price}/${this.i18nService.t("yr")})`;
+    } else {
+      text += `${this.i18nService.t("monthly")} ($${price}/${this.i18nService.t("monthAbbr")})`;
+    }
+
+    return text;
+  }
+
+  private buildSecretsManagerRequest(request: OrganizationUpgradeRequest): void {
+    request.useSecretsManager = this.organization.useSecretsManager;
+    if (!this.organization.useSecretsManager) {
+      return;
+    }
+
+    if (
+      this.selectedPlan.SecretsManager.hasAdditionalSeatsOption &&
+      this.currentPlan.productTier === ProductTierType.Free
+    ) {
+      request.additionalSmSeats = this.organization.seats;
+    } else {
+      request.additionalSmSeats = this.sub?.smSeats;
+      request.additionalServiceAccounts = this.additionalServiceAccount;
+    }
+  }
+
+  private upgradeFlowPrefillForm() {
+    if (this.acceptingSponsorship) {
+      this.formGroup.controls.productTier.setValue(ProductTierType.Families);
+      this.changedProduct();
+      return;
+    }
+
+    if (this.currentPlan && this.currentPlan.productTier !== ProductTierType.Enterprise) {
+      const upgradedPlan = this.passwordManagerPlans.find((plan) => {
+        if (this.currentPlan.productTier === ProductTierType.Free) {
+          return plan.type === this._familyPlan;
+        }
+
+        if (
+          this.currentPlan.productTier === ProductTierType.Families &&
+          !this.teamsStarterPlanIsAvailable
+        ) {
+          return plan.type === PlanType.TeamsAnnually;
+        }
+
+        return plan.upgradeSortOrder === this.currentPlan.upgradeSortOrder + 1;
+      });
+
+      this.plan = upgradedPlan.type;
+      this.productTier = upgradedPlan.productTier;
+      this.changedProduct();
+    }
+  }
+
+  private planIsEnabled(plan: PlanResponse) {
+    return !plan.disabled && !plan.legacyYear;
+  }
+
+  toggleShowPayment() {
+    this.showPayment = true;
+  }
+
+  toggleTotalOpened() {
+    this.totalOpened = !this.totalOpened;
+  }
+
+  resolvePlanName(productTier: ProductTierType) {
+    switch (productTier) {
+      case ProductTierType.Enterprise:
+        return this.i18nService.t("planNameEnterprise");
+      case ProductTierType.Free:
+        return this.i18nService.t("planNameFree");
+      case ProductTierType.Families:
+        return this.i18nService.t("planNameFamilies");
+      case ProductTierType.Teams:
+        return this.i18nService.t("planNameTeams");
+      case ProductTierType.TeamsStarter:
+        return this.i18nService.t("planNameTeamsStarter");
+    }
+  }
+
+  onKeydown(event: KeyboardEvent, index: number) {
+    const cardElements = Array.from(document.querySelectorAll(".product-card")) as HTMLElement[];
+    let newIndex = index;
+    const direction = event.key === "ArrowRight" || event.key === "ArrowDown" ? 1 : -1;
+
+    if (["ArrowRight", "ArrowDown", "ArrowLeft", "ArrowUp"].includes(event.key)) {
+      do {
+        newIndex = (newIndex + direction + cardElements.length) % cardElements.length;
+      } while (this.isCardDisabled(newIndex) && newIndex !== index);
+
+      event.preventDefault();
+
+      setTimeout(() => {
+        const card = cardElements[newIndex];
+        if (!(
+          card.classList.contains("tw-bg-secondary-100") && card.classList.contains("tw-text-muted")
+        )) {
+          card?.focus();
+        }
+      }, 0);
+    }
+  }
+
+  async onFocus(index: number) {
+    this.focusedIndex = index;
+    await this.selectPlan(this.selectableProducts[index]);
+  }
+
+  isCardDisabled(index: number): boolean {
+    const card = this.selectableProducts[index];
+    return card === (this.currentPlan || this.isCardStateDisabled);
+  }
+
+  manageSelectableProduct(index: number) {
+    return index;
+  }
+
+  /**
+   * Refreshes the estimated sales tax and total for the current plan change.
+   */
+  // Routes cost-summary refreshes to the preview-driven cart or the legacy tax summary by flag.
+  private async refreshCostSummary(): Promise<void> {
+    if (this.showPreviewCart) {
+      this.refreshPlanChangePreview();
+    } else {
+      await this.refreshSalesTax();
+    }
+  }
+
+  private refreshPlanChangePreview(): void {
+    this.planChangeRequest.set(this.buildPlanChangePreviewRequest());
+  }
+
+  /**
+   * Builds the request object for previewing an organization plan change.
+   * @returns The request object for previewing an organization plan change, or undefined if no valid billing address is available.
+   */
+  private buildPlanChangePreviewRequest(): OrganizationPlanChangePreviewRequest | undefined {
+    const billingAddress = this.billingFormGroup.controls.billingAddress.valid
+      ? getBillingAddressFromForm(this.billingFormGroup.controls.billingAddress)
+      : this.billingAddress;
+
+    if (billingAddress == null) {
+      return undefined;
+    }
+
+    const plan = this.getPlanFromLegacyEnum(this.selectedPlan.type);
+    if (plan == null) {
+      return undefined;
+    }
+
+    return {
+      tier: plan.tier,
+      cadence: plan.cadence,
+      billingAddress: {
+        country: billingAddress.country,
+        postalCode: billingAddress.postalCode,
+        taxId: billingAddress.taxId,
+      },
+    };
+  }
+
+  private async refreshSalesTax(): Promise<void> {
+    if (this.billingFormGroup.controls.billingAddress.invalid && !this.billingAddress) {
+      return;
+    }
+
+    const billingAddress = this.billingFormGroup.controls.billingAddress.valid
+      ? getBillingAddressFromForm(this.billingFormGroup.controls.billingAddress)
+      : this.billingAddress;
+
+    const taxAmounts =
+      await this.previewInvoiceClient.previewTaxForOrganizationSubscriptionPlanChange(
+        this.organizationId,
+        this.getPlanFromLegacyEnum(this.selectedPlan.type),
+        billingAddress,
+      );
+
+    this.estimatedTax = taxAmounts.tax;
+    this.estimatedTotal = taxAmounts.total;
+  }
+
+  /**
+   * Converts a legacy PlanType enum value to an OrganizationSubscriptionPlan object.
+   */
+  private getPlanFromLegacyEnum(planType: PlanType): OrganizationSubscriptionPlan {
+    switch (planType) {
+      case PlanType.FamiliesAnnually:
+      case PlanType.FamiliesAnnually2025:
+        return { tier: "families", cadence: "annually" };
+      case PlanType.TeamsMonthly:
+        return { tier: "teams", cadence: "monthly" };
+      case PlanType.TeamsAnnually:
+        return { tier: "teams", cadence: "annually" };
+      case PlanType.EnterpriseMonthly:
+        return { tier: "enterprise", cadence: "monthly" };
+      case PlanType.EnterpriseAnnually:
+        return { tier: "enterprise", cadence: "annually" };
+    }
+  }
+
+  protected canUpdatePaymentInformation(): boolean {
+    return (
+      this.upgradeRequiresPaymentMethod ||
+      this.showPayment ||
+      !this.paymentMethod ||
+      this.isSubscriptionCanceled
+    );
+  }
+
+  get submitButtonLabel(): string {
+    if (
+      this.organization &&
+      this.sub &&
+      this.organization.productTierType !== ProductTierType.Free &&
+      this.sub.subscription?.status === "canceled"
+    ) {
+      return this.i18nService.t("restart");
+    } else {
+      return this.i18nService.t("upgrade");
+    }
+  }
+
+  get supportsTaxId() {
+    return this.formGroup.value.productTier !== ProductTierType.Families;
+  }
+
+  getCardBrandIcon = () => getCardBrandIcon(this.paymentMethod);
+}

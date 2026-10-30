@@ -1,0 +1,1175 @@
+import base64
+import json
+from urllib.parse import urlparse, parse_qs
+
+from flask import url_for
+
+from app.db import Session
+from app.jose_utils import verify_id_token, decode_id_token
+from app.models import Alias, Client, User, ClientUser, RedirectUri
+
+from app.oauth.views.authorize import (
+    get_host_name_and_scheme,
+    generate_access_token,
+    construct_url,
+    sign_suggested_email,
+)
+from app.models import CustomDomain, Mailbox
+from tests.utils import (
+    login,
+    random_domain,
+    random_string,
+    random_email,
+    create_new_user,
+)
+
+
+def generate_random_uri() -> str:
+    return f"https://{random_domain()}/callback"
+
+
+def test_get_host_name_and_scheme():
+    assert get_host_name_and_scheme("http://localhost:8000?a=b") == (
+        "localhost",
+        "http",
+    )
+
+    assert get_host_name_and_scheme(
+        "https://www.bubblecode.net/en/2016/01/22/understanding-oauth2/#Implicit_Grant"
+    ) == ("www.bubblecode.net", "https")
+
+
+def test_generate_access_token(flask_client):
+    access_token = generate_access_token()
+    assert len(access_token) == 40
+
+
+def test_construct_url():
+    url = construct_url("http://ab.cd", {"x": "1 2"})
+    assert url == "http://ab.cd?x=1%202"
+
+
+def test_authorize_page_non_login_user(flask_client):
+    """make sure to display login page for non-authenticated user"""
+    user = User.create(random_email(), random_string())
+    Session.commit()
+
+    client = Client.create_new(random_string(), user.id)
+    Session.commit()
+
+    uri = generate_random_uri()
+    RedirectUri.create(
+        client_id=client.id,
+        uri=uri,
+        commit=True,
+    )
+
+    r = flask_client.get(
+        url_for(
+            "oauth.authorize",
+            client_id=client.oauth_client_id,
+            state="teststate",
+            redirect_uri=uri,
+            response_type="code",
+        )
+    )
+
+    html = r.get_data(as_text=True)
+    assert r.status_code == 200
+    assert "Sign in to accept sharing data with" in html
+
+
+def test_authorize_page_login_user_non_supported_flow(flask_client):
+    """return 400 if the flow is not supported"""
+    user = login(flask_client)
+    client = Client.create_new("test client", user.id)
+    Session.commit()
+
+    # Not provide any flow
+    r = flask_client.get(
+        url_for(
+            "oauth.authorize",
+            client_id=client.oauth_client_id,
+            state="teststate",
+            redirect_uri="http://localhost",
+            # not provide response_type param here
+        )
+    )
+
+    # Provide a not supported flow
+    html = r.get_data(as_text=True)
+    assert r.status_code == 400
+    assert "SimpleLogin only support the following OIDC flows" in html
+
+    r = flask_client.get(
+        url_for(
+            "oauth.authorize",
+            client_id=client.oauth_client_id,
+            state="teststate",
+            redirect_uri="http://localhost",
+            # SL does not support this flow combination
+            response_type="code token id_token",
+        )
+    )
+
+    html = r.get_data(as_text=True)
+    assert r.status_code == 400
+    assert "SimpleLogin only support the following OIDC flows" in html
+
+
+def test_authorize_page_login_user(flask_client):
+    """make sure to display authorization page for authenticated user"""
+    user = login(flask_client)
+    client = Client.create_new("test client", user.id)
+
+    Session.commit()
+
+    uri = generate_random_uri()
+    RedirectUri.create(
+        client_id=client.id,
+        uri=uri,
+        commit=True,
+    )
+
+    r = flask_client.get(
+        url_for(
+            "oauth.authorize",
+            client_id=client.oauth_client_id,
+            state="teststate",
+            redirect_uri=uri,
+            response_type="code",
+        )
+    )
+
+    html = r.get_data(as_text=True)
+    assert r.status_code == 200
+    assert f"{user.email} (Personal Email)" in html
+
+
+def test_authorize_code_flow_no_openid_scope(flask_client):
+    """make sure the authorize redirects user to correct page for the *Code Flow*
+    and when the *openid* scope is not present
+    , ie when response_type=code, openid not in scope
+    """
+
+    user = login(flask_client)
+    client = Client.create_new("test client", user.id)
+    Session.commit()
+    domain = random_domain()
+    uri = f"https://{domain}/callback"
+    RedirectUri.create(
+        client_id=client.id,
+        uri=uri,
+        commit=True,
+    )
+
+    # user allows client on the authorization page
+    r = flask_client.post(
+        url_for(
+            "oauth.authorize",
+            client_id=client.oauth_client_id,
+            state="teststate",
+            redirect_uri=uri,
+            response_type="code",
+        ),
+        data={
+            "button": "allow",
+            "suggested-email": "x@sl.lan",
+            "signed-suggested-email": sign_suggested_email("x@sl.lan"),
+            "suggested-name": "AB CD",
+        },
+        # user will be redirected to client page, do not allow redirection here
+        # to assert the redirect url
+        # follow_redirects=True,
+    )
+
+    assert r.status_code == 302  # user gets redirected back to client page
+
+    # r.location will have this form http://localhost?state=teststate&code=knuyjepwvg
+    o = urlparse(r.location)
+    assert o.netloc == domain
+    assert not o.fragment
+
+    # parse the query, should return something like
+    # {'state': ['teststate'], 'code': ['knuyjepwvg']}
+    queries = parse_qs(o.query)
+    assert len(queries) == 2
+
+    assert queries["state"] == ["teststate"]
+    assert len(queries["code"]) == 1
+
+    # Exchange the code to get access_token
+    basic_auth_headers = base64.b64encode(
+        f"{client.oauth_client_id}:{client.oauth_client_secret}".encode()
+    ).decode("utf-8")
+
+    r = flask_client.post(
+        url_for("oauth.token"),
+        headers={"Authorization": "Basic " + basic_auth_headers},
+        data={"grant_type": "authorization_code", "code": queries["code"][0]},
+    )
+
+    # r.json should have this format
+    # {
+    #   'access_token': 'avmhluhonsouhcwwailydwvhankspptgidoggcbu',
+    #   'expires_in': 3600,
+    #   'scope': '',
+    #   'token_type': 'bearer',
+    #   'user': {
+    #     'avatar_url': None,
+    #     'client': 'test client',
+    #     'email': 'x@y.z',
+    #     'email_verified': True,
+    #     'id': 1,
+    #     'name': 'AB CD'
+    #   }
+    # }
+    assert r.status_code == 200
+    assert r.json["access_token"]
+    assert r.json["expires_in"] == 3600
+    assert not r.json["scope"]
+    assert r.json["token_type"] == "Bearer"
+
+    client_user = ClientUser.get_by(client_id=client.id)
+
+    assert r.json["user"] == {
+        "avatar_url": None,
+        "client": "test client",
+        "email": "x@sl.lan",
+        "email_verified": True,
+        "id": client_user.id,
+        "name": "AB CD",
+        "sub": str(client_user.id),
+    }
+
+
+def test_authorize_code_flow_with_openid_scope(flask_client):
+    """make sure the authorize redirects user to correct page for the *Code Flow*
+    and when the *openid* scope is present
+    , ie when response_type=code, openid in scope
+
+    The authorize endpoint should stay the same: return the *code*.
+    The token endpoint however should now return id_token in addition to the access_token
+    """
+
+    user = login(flask_client)
+    client = Client.create_new("test client", user.id)
+
+    Session.commit()
+
+    domain = random_domain()
+    uri = f"https://{domain}/callback"
+    RedirectUri.create(
+        client_id=client.id,
+        uri=uri,
+        commit=True,
+    )
+
+    # user allows client on the authorization page
+    r = flask_client.post(
+        url_for(
+            "oauth.authorize",
+            client_id=client.oauth_client_id,
+            state="teststate",
+            redirect_uri=uri,
+            response_type="code",
+            scope="openid",  # openid is in scope
+        ),
+        data={
+            "button": "allow",
+            "suggested-email": "x@sl.lan",
+            "signed-suggested-email": sign_suggested_email("x@sl.lan"),
+            "suggested-name": "AB CD",
+        },
+        # user will be redirected to client page, do not allow redirection here
+        # to assert the redirect url
+        # follow_redirects=True,
+    )
+
+    assert r.status_code == 302  # user gets redirected back to client page
+
+    # r.location will have this form http://localhost?state=teststate&code=knuyjepwvg
+    o = urlparse(r.location)
+    assert o.netloc == domain
+    assert not o.fragment
+
+    # parse the query, should return something like
+    # {'state': ['teststate'], 'code': ['knuyjepwvg'], 'scope': ["openid"]}
+    queries = parse_qs(o.query)
+    assert len(queries) == 3
+
+    assert queries["state"] == ["teststate"]
+    assert len(queries["code"]) == 1
+
+    # Exchange the code to get access_token
+    basic_auth_headers = base64.b64encode(
+        f"{client.oauth_client_id}:{client.oauth_client_secret}".encode()
+    ).decode("utf-8")
+
+    r = flask_client.post(
+        url_for("oauth.token"),
+        headers={"Authorization": "Basic " + basic_auth_headers},
+        data={"grant_type": "authorization_code", "code": queries["code"][0]},
+    )
+
+    # r.json should have this format
+    # {
+    #   'access_token': 'avmhluhonsouhcwwailydwvhankspptgidoggcbu',
+    #   'expires_in': 3600,
+    #   'scope': '',
+    #   'token_type': 'bearer',
+    #   'user': {
+    #     'avatar_url': None,
+    #     'client': 'test client',
+    #     'email': 'x@y.z',
+    #     'email_verified': True,
+    #     'id': 1,
+    #     'name': 'AB CD'
+    #   }
+    # }
+    assert r.status_code == 200
+    assert r.json["access_token"]
+    assert r.json["expires_in"] == 3600
+    assert r.json["scope"] == "openid"
+    assert r.json["token_type"] == "Bearer"
+
+    client_user = ClientUser.get_by(client_id=client.id)
+
+    assert r.json["user"] == {
+        "avatar_url": None,
+        "client": "test client",
+        "email": "x@sl.lan",
+        "email_verified": True,
+        "id": client_user.id,
+        "name": "AB CD",
+        "sub": str(client_user.id),
+    }
+
+    # id_token must be returned
+    assert r.json["id_token"]
+
+    # id_token must be a valid, correctly signed JWT
+    assert verify_id_token(r.json["id_token"])
+
+
+def test_authorize_code_flow_with_openid_and_other_scopes_returns_nonce(flask_client):
+    """make sure the nonce supplied in the authorization request is forwarded
+    to the id_token when openid is combined with other scopes,
+    ie when response_type=code, scope="openid email"
+    """
+
+    user = login(flask_client)
+    client = Client.create_new("test client", user.id)
+
+    Session.commit()
+
+    domain = random_domain()
+    uri = f"https://{domain}/callback"
+    RedirectUri.create(
+        client_id=client.id,
+        uri=uri,
+        commit=True,
+    )
+
+    nonce = "test-nonce-123"
+
+    # user allows client on the authorization page
+    r = flask_client.post(
+        url_for(
+            "oauth.authorize",
+            client_id=client.oauth_client_id,
+            state="teststate",
+            redirect_uri=uri,
+            response_type="code",
+            scope="openid email",  # openid combined with another scope
+            nonce=nonce,
+        ),
+        data={
+            "button": "allow",
+            "suggested-email": "x@sl.lan",
+            "signed-suggested-email": sign_suggested_email("x@sl.lan"),
+            "suggested-name": "AB CD",
+        },
+    )
+
+    assert r.status_code == 302  # user gets redirected back to client page
+
+    o = urlparse(r.location)
+    queries = parse_qs(o.query)
+
+    # Exchange the code to get access_token
+    basic_auth_headers = base64.b64encode(
+        f"{client.oauth_client_id}:{client.oauth_client_secret}".encode()
+    ).decode("utf-8")
+
+    r = flask_client.post(
+        url_for("oauth.token"),
+        headers={"Authorization": "Basic " + basic_auth_headers},
+        data={"grant_type": "authorization_code", "code": queries["code"][0]},
+    )
+
+    assert r.status_code == 200
+    assert r.json["id_token"]
+    assert verify_id_token(r.json["id_token"])
+
+    decoded = decode_id_token(r.json["id_token"])
+    claims = json.loads(decoded.claims)
+    assert claims["nonce"] == nonce
+
+
+def test_authorize_token_flow(flask_client):
+    """make sure the authorize redirects user to correct page for the *Token Flow*
+    , ie when response_type=token
+    The /authorize endpoint should return an access_token
+    """
+
+    user = login(flask_client)
+    client = Client.create_new("test client", user.id)
+
+    Session.commit()
+    domain = random_domain()
+    uri = f"https://{domain}/callback"
+    RedirectUri.create(
+        client_id=client.id,
+        uri=uri,
+        commit=True,
+    )
+
+    # user allows client on the authorization page
+    r = flask_client.post(
+        url_for(
+            "oauth.authorize",
+            client_id=client.oauth_client_id,
+            state="teststate",
+            redirect_uri=uri,
+            response_type="token",  # token flow
+        ),
+        data={
+            "button": "allow",
+            "suggested-email": "x@sl.lan",
+            "signed-suggested-email": sign_suggested_email("x@sl.lan"),
+            "suggested-name": "AB CD",
+        },
+        # user will be redirected to client page, do not allow redirection here
+        # to assert the redirect url
+        # follow_redirects=True,
+    )
+
+    assert r.status_code == 302  # user gets redirected back to client page
+
+    # r.location will have this form http://localhost?state=teststate&code=knuyjepwvg
+    o = urlparse(r.location)
+    assert o.netloc == domain
+
+    # in token flow, access_token is in fragment and not query
+    assert o.fragment
+    assert not o.query
+
+    # parse the fragment, should return something like
+    # {'state': ['teststate'], 'access_token': ['knuyjepwvg']}
+    queries = parse_qs(o.fragment)
+    assert len(queries) == 2
+
+    assert queries["state"] == ["teststate"]
+
+    # access_token must be returned
+    assert len(queries["access_token"]) == 1
+
+
+def test_authorize_id_token_flow(flask_client):
+    """make sure the authorize redirects user to correct page for the *ID-Token Flow*
+    , ie when response_type=id_token
+    The /authorize endpoint should return an id_token
+    """
+
+    user = login(flask_client)
+    client = Client.create_new("test client", user.id)
+
+    Session.commit()
+    domain = random_domain()
+    uri = f"https://{domain}/callback"
+    RedirectUri.create(
+        client_id=client.id,
+        uri=uri,
+        commit=True,
+    )
+
+    # user allows client on the authorization page
+    r = flask_client.post(
+        url_for(
+            "oauth.authorize",
+            client_id=client.oauth_client_id,
+            state="teststate",
+            redirect_uri=uri,
+            response_type="id_token",  # id_token flow
+        ),
+        data={
+            "button": "allow",
+            "suggested-email": "x@sl.lan",
+            "signed-suggested-email": sign_suggested_email("x@sl.lan"),
+            "suggested-name": "AB CD",
+        },
+        # user will be redirected to client page, do not allow redirection here
+        # to assert the redirect url
+        # follow_redirects=True,
+    )
+
+    assert r.status_code == 302  # user gets redirected back to client page
+
+    # r.location will have this form http://localhost?state=teststate&code=knuyjepwvg
+    o = urlparse(r.location)
+    assert o.netloc == domain
+    assert not o.fragment
+    assert o.query
+
+    # parse the fragment, should return something like
+    # {'state': ['teststate'], 'id_token': ['knuyjepwvg']}
+    queries = parse_qs(o.query)
+    assert len(queries) == 2
+
+    assert queries["state"] == ["teststate"]
+
+    # access_token must be returned
+    assert len(queries["id_token"]) == 1
+
+    # id_token must be a valid, correctly signed JWT
+    assert verify_id_token(queries["id_token"][0])
+
+
+def test_authorize_token_id_token_flow(flask_client):
+    """make sure the authorize redirects user to correct page for the *ID-Token Token Flow*
+    , ie when response_type=id_token,token
+    The /authorize endpoint should return an id_token and access_token
+    id_token, once decoded, should contain *at_hash* in payload
+    """
+
+    user = login(flask_client)
+    client = Client.create_new("test client", user.id)
+
+    Session.commit()
+    domain = random_domain()
+    uri = f"https://{domain}/callback"
+    RedirectUri.create(
+        client_id=client.id,
+        uri=uri,
+        commit=True,
+    )
+
+    # user allows client on the authorization page
+    r = flask_client.post(
+        url_for(
+            "oauth.authorize",
+            client_id=client.oauth_client_id,
+            state="teststate",
+            redirect_uri=uri,
+            response_type="id_token token",  # id_token,token flow
+        ),
+        data={
+            "button": "allow",
+            "suggested-email": "x@sl.lan",
+            "signed-suggested-email": sign_suggested_email("x@sl.lan"),
+            "suggested-name": "AB CD",
+        },
+        # user will be redirected to client page, do not allow redirection here
+        # to assert the redirect url
+        # follow_redirects=True,
+    )
+
+    assert r.status_code == 302  # user gets redirected back to client page
+
+    # r.location will have this form http://localhost?state=teststate&code=knuyjepwvg
+    o = urlparse(r.location)
+    assert o.netloc == domain
+    assert o.fragment
+    assert not o.query
+
+    # parse the fragment, should return something like
+    # {'state': ['teststate'], 'id_token': ['knuyjepwvg']}
+    queries = parse_qs(o.fragment)
+    assert len(queries) == 3
+
+    assert queries["state"] == ["teststate"]
+
+    # access_token must be returned
+    assert len(queries["id_token"]) == 1
+    assert len(queries["access_token"]) == 1
+
+    # id_token must be a valid, correctly signed JWT
+    id_token = queries["id_token"][0]
+    assert verify_id_token(id_token)
+
+    # make sure jwt has all the necessary fields
+    jwt = decode_id_token(id_token)
+
+    # payload should have this format
+    # {
+    #   'at_hash': 'jLDmoGpuOIHwxeyFEe9SKw',
+    #   'aud': 'testclient-sywcpwsyua',
+    #   'auth_time': 1565450736,
+    #   'avatar_url': None,
+    #   'client': 'test client',
+    #   'email': 'x@y.z',
+    #   'email_verified': True,
+    #   'exp': 1565454336,
+    #   'iat': 1565450736,
+    #   'id': 1,
+    #   'iss': 'http://localhost',
+    #   'name': 'AB CD',
+    #   'sub': '1'
+    # }
+    payload = json.loads(jwt.claims)
+
+    # at_hash MUST be present when the flow is id_token,token
+    assert "at_hash" in payload
+
+    assert "aud" in payload
+    assert "auth_time" in payload
+    assert "avatar_url" in payload
+    assert "client" in payload
+    assert "email" in payload
+    assert "email_verified" in payload
+    assert "exp" in payload
+    assert "iat" in payload
+    assert "id" in payload
+    assert "iss" in payload
+    assert "name" in payload
+    assert "sub" in payload
+
+
+def test_authorize_code_id_token_flow(flask_client):
+    """make sure the authorize redirects user to correct page for the *ID-Token Code Flow*
+    , ie when response_type=id_token,code
+    The /authorize endpoint should return an id_token, code and id_token must contain *c_hash*
+
+    The /token endpoint must return a access_token and an id_token
+
+    """
+
+    user = login(flask_client)
+    client = Client.create_new("test client", user.id)
+
+    Session.commit()
+    domain = random_domain()
+    uri = f"https://{domain}/callback"
+    RedirectUri.create(
+        client_id=client.id,
+        uri=uri,
+        commit=True,
+    )
+
+    # user allows client on the authorization page
+    r = flask_client.post(
+        url_for(
+            "oauth.authorize",
+            client_id=client.oauth_client_id,
+            state="teststate",
+            redirect_uri=uri,
+            response_type="id_token code",  # id_token,code flow
+        ),
+        data={
+            "button": "allow",
+            "suggested-email": "x@sl.lan",
+            "signed-suggested-email": sign_suggested_email("x@sl.lan"),
+            "suggested-name": "AB CD",
+        },
+        # user will be redirected to client page, do not allow redirection here
+        # to assert the redirect url
+        # follow_redirects=True,
+    )
+
+    assert r.status_code == 302  # user gets redirected back to client page
+
+    # r.location will have this form http://localhost?state=teststate&code=knuyjepwvg
+    o = urlparse(r.location)
+    assert o.netloc == domain
+    assert not o.fragment
+    assert o.query
+
+    # parse the query, should return something like
+    # {'state': ['teststate'], 'id_token': ['knuyjepwvg'], 'code': ['longstring']}
+    queries = parse_qs(o.query)
+    assert len(queries) == 3
+
+    assert queries["state"] == ["teststate"]
+
+    assert len(queries["id_token"]) == 1
+    assert len(queries["code"]) == 1
+
+    # id_token must be a valid, correctly signed JWT
+    id_token = queries["id_token"][0]
+    assert verify_id_token(id_token)
+
+    # make sure jwt has all the necessary fields
+    jwt = decode_id_token(id_token)
+
+    # payload should have this format
+    # {
+    #   'at_hash': 'jLDmoGpuOIHwxeyFEe9SKw',
+    #   'aud': 'testclient-sywcpwsyua',
+    #   'auth_time': 1565450736,
+    #   'avatar_url': None,
+    #   'client': 'test client',
+    #   'email': 'x@y.z',
+    #   'email_verified': True,
+    #   'exp': 1565454336,
+    #   'iat': 1565450736,
+    #   'id': 1,
+    #   'iss': 'http://localhost',
+    #   'name': 'AB CD',
+    #   'sub': '1'
+    # }
+    payload = json.loads(jwt.claims)
+
+    # at_hash MUST be present when the flow is id_token,token
+    assert "c_hash" in payload
+
+    assert "aud" in payload
+    assert "auth_time" in payload
+    assert "avatar_url" in payload
+    assert "client" in payload
+    assert "email" in payload
+    assert "email_verified" in payload
+    assert "exp" in payload
+    assert "iat" in payload
+    assert "id" in payload
+    assert "iss" in payload
+    assert "name" in payload
+    assert "sub" in payload
+
+    # <<< Exchange the code to get access_token >>>
+    basic_auth_headers = base64.b64encode(
+        f"{client.oauth_client_id}:{client.oauth_client_secret}".encode()
+    ).decode("utf-8")
+
+    r = flask_client.post(
+        url_for("oauth.token"),
+        headers={"Authorization": "Basic " + basic_auth_headers},
+        data={"grant_type": "authorization_code", "code": queries["code"][0]},
+    )
+
+    # r.json should have this format
+    # {
+    #   'access_token': 'avmhluhonsouhcwwailydwvhankspptgidoggcbu',
+    #   'id_token': 'ab.cd.xy',
+    #   'expires_in': 3600,
+    #   'scope': '',
+    #   'token_type': 'bearer',
+    #   'user': {
+    #     'avatar_url': None,
+    #     'client': 'test client',
+    #     'email': 'x@y.z',
+    #     'email_verified': True,
+    #     'id': 1,
+    #     'name': 'AB CD'
+    #   }
+    # }
+    assert r.status_code == 200
+    assert r.json["access_token"]
+    assert r.json["expires_in"] == 3600
+    assert not r.json["scope"]
+    assert r.json["token_type"] == "Bearer"
+
+    client_user = ClientUser.get_by(client_id=client.id)
+
+    assert r.json["user"] == {
+        "avatar_url": None,
+        "client": "test client",
+        "email": "x@sl.lan",
+        "email_verified": True,
+        "id": client_user.id,
+        "name": "AB CD",
+        "sub": str(client_user.id),
+    }
+
+    # id_token must be returned
+    assert r.json["id_token"]
+
+    # id_token must be a valid, correctly signed JWT
+    assert verify_id_token(r.json["id_token"])
+
+
+def test_authorize_deny_escapes_state_param(flask_client):
+    """state must be URL-encoded on the deny path to prevent parameter injection"""
+    user = login(flask_client)
+    client = Client.create_new("test client", user.id)
+    Session.commit()
+
+    uri = generate_random_uri()
+    RedirectUri.create(
+        client_id=client.id,
+        uri=uri,
+        commit=True,
+    )
+
+    r = flask_client.post(
+        url_for(
+            "oauth.authorize",
+            client_id=client.oauth_client_id,
+            state="malicious&injected=param#fragment",
+            redirect_uri=uri,
+            response_type="code",
+        ),
+        data={"button": "deny"},
+    )
+
+    assert r.status_code == 302
+    o = urlparse(r.location)
+    queries = parse_qs(o.query)
+    assert queries["error"] == ["deny"]
+    # state must round-trip exactly; no extra params or fragment may be injected
+    assert queries["state"] == ["malicious&injected=param#fragment"]
+    assert "injected" not in queries
+    assert o.fragment == ""
+
+
+def test_authorize_page_invalid_client_id(flask_client):
+    """make sure to redirect user to redirect_url?error=invalid_client_id"""
+    user = login(flask_client)
+    Client.create_new("test client", user.id)
+
+    Session.commit()
+
+    r = flask_client.get(
+        url_for(
+            "oauth.authorize",
+            client_id="invalid_client_id",
+            state="teststate",
+            redirect_uri="http://localhost",
+            response_type="code",
+        )
+    )
+
+    assert r.status_code == 302
+    assert r.location == url_for("auth.login")
+
+
+def test_authorize_page_http_not_allowed(flask_client):
+    """make sure to redirect user to redirect_url?error=http_not_allowed"""
+    user = login(flask_client)
+    client = Client.create_new("test client", user.id)
+    client.approved = True
+
+    Session.commit()
+
+    r = flask_client.get(
+        url_for(
+            "oauth.authorize",
+            client_id=client.oauth_client_id,
+            state="teststate",
+            redirect_uri="http://mywebsite.com",
+            response_type="code",
+        )
+    )
+
+    assert r.status_code == 302
+    assert r.location == url_for("dashboard.index")
+
+
+def test_authorize_page_unknown_redirect_uri(flask_client):
+    """make sure to redirect user to redirect_url?error=unknown_redirect_uri"""
+    user = login(flask_client)
+    client = Client.create_new("test client", user.id)
+    client.approved = True
+
+    Session.commit()
+
+    r = flask_client.get(
+        url_for(
+            "oauth.authorize",
+            client_id=client.oauth_client_id,
+            state="teststate",
+            redirect_uri="https://unknown.com",
+            response_type="code",
+        )
+    )
+
+    assert r.status_code == 302
+    assert r.location == url_for("dashboard.index")
+
+
+def test_oauth_cannot_create_alias_on_another_users_custom_domain(flask_client):
+    # Setup: Create user_1 user with verified custom domain
+    user_1 = login(flask_client)
+    user_1_domain = random_domain()
+    _user_1_custom_domain = CustomDomain.create(
+        user_id=user_1.id,
+        domain=user_1_domain,
+        verified=True,
+        commit=True,
+    )
+
+    # Create a mailbox for user_1 (required for verified domain)
+    _user_1_mailbox = Mailbox.create(
+        user_id=user_1.id,
+        email=f"mailbox@{user_1_domain}",
+        verified=True,
+        commit=True,
+    )
+
+    # Setup: Create user_2 user
+    user_2 = create_new_user()
+
+    # Login as user_2
+    r = flask_client.post(
+        url_for("auth.login"),
+        data={"email": user_2.email, "password": "password"},
+        follow_redirects=True,
+    )
+    assert r.status_code == 200
+
+    # User_2 creates OAuth client
+    client = Client.create_new("malicious client", user_2.id)
+    Session.commit()
+
+    uri = generate_random_uri()
+    RedirectUri.create(
+        client_id=client.id,
+        uri=uri,
+        commit=True,
+    )
+
+    # User_2 attempts to create alias on user_1's domain via OAuth
+    # This simulates the tampered suggested-email parameter
+    user_1_alias_email = f"test_alias@{user_1_domain}"
+
+    r = flask_client.post(
+        url_for(
+            "oauth.authorize",
+            client_id=client.oauth_client_id,
+            state="teststate",
+            redirect_uri=uri,
+            response_type="code",
+            scope="email",
+        ),
+        data={
+            "suggested-email": user_1_alias_email,
+            "suggested-name": "PoC",
+            "button": "allow",
+        },
+        follow_redirects=True,
+    )
+
+    # Should fail with error message, not create the alias
+    assert r.status_code == 200
+    html = r.get_data(as_text=True)
+    assert "You cannot create aliases on this domain" in html
+
+    # Verify the alias was NOT created
+    created_alias = Alias.get_by(email=user_1_alias_email)
+    assert created_alias is None, "Alias should not be created on another user's domain"
+
+
+def test_oauth_cannot_impersonate_another_users_existing_alias(flask_client):
+    # user_1 creates an alias on an SL domain
+    user_1 = create_new_user()
+    user_1_alias = Alias.create(
+        user_id=user_1.id,
+        email="user_1-owned@sl.lan",
+        mailbox_id=user_1.default_mailbox_id,
+        flush=True,
+    )
+    Session.flush()
+
+    # user_2 logs in and creates an OAuth client
+    user_2 = login(flask_client)
+    client = Client.create_new("user2 client", user_2.id)
+    Session.commit()
+    uri = generate_random_uri()
+    RedirectUri.create(client_id=client.id, uri=uri, commit=True)
+
+    # user_2 submits the user_1's alias as suggested-email
+    r = flask_client.post(
+        url_for(
+            "oauth.authorize",
+            client_id=client.oauth_client_id,
+            state="teststate",
+            redirect_uri=uri,
+            response_type="code",
+            scope="email",
+        ),
+        data={
+            "suggested-email": "user_1-owned@sl.lan",
+            "suggested-name": "PoC",
+            "button": "allow",
+        },
+        follow_redirects=True,
+    )
+
+    assert r.status_code == 200
+    html = r.get_data(as_text=True)
+    assert "You cannot use this alias" in html
+
+    # no client_user should have been created linking user_2 to user_1's alias
+    client_user = ClientUser.get_by(client_id=client.id, user_id=user_2.id)
+    assert client_user is None or client_user.alias_id != user_1_alias.id
+
+
+def _setup_oauth_client(flask_client):
+    user = login(flask_client)
+    client = Client.create_new(random_string(), user.id)
+    Session.commit()
+    uri = generate_random_uri()
+    RedirectUri.create(client_id=client.id, uri=uri, commit=True)
+    return user, client, uri
+
+
+def _post_allow(flask_client, client, uri, data, follow_redirects=True):
+    return flask_client.post(
+        url_for(
+            "oauth.authorize",
+            client_id=client.oauth_client_id,
+            state="teststate",
+            redirect_uri=uri,
+            response_type="code",
+        ),
+        data={"button": "allow", "suggested-name": "x", **data},
+        follow_redirects=follow_redirects,
+    )
+
+
+def _fill_alias_quota(user):
+    while user.can_create_new_alias():
+        Alias.create_new_random(user)
+    Session.commit()
+
+
+def test_authorize_page_signs_suggested_email(flask_client):
+    user, client, uri = _setup_oauth_client(flask_client)
+
+    r = flask_client.get(
+        url_for(
+            "oauth.authorize",
+            client_id=client.oauth_client_id,
+            state="teststate",
+            redirect_uri=uri,
+            response_type="code",
+        )
+    )
+
+    assert r.status_code == 200
+    html = r.get_data(as_text=True)
+    assert 'name="signed-suggested-email"' in html
+
+
+def test_oauth_suggested_email_signed_creates_alias(flask_client):
+    user, client, uri = _setup_oauth_client(flask_client)
+    email = f"{random_string(10).lower()}@sl.lan"
+
+    r = _post_allow(
+        flask_client,
+        client,
+        uri,
+        {
+            "suggested-email": email,
+            "signed-suggested-email": sign_suggested_email(email),
+        },
+        follow_redirects=False,
+    )
+
+    assert r.status_code == 302
+    alias = Alias.get_by(email=email)
+    assert alias is not None
+    assert alias.user_id == user.id
+    assert ClientUser.get_by(client_id=client.id, user_id=user.id).alias_id == alias.id
+
+
+def test_oauth_suggested_email_unsigned_cannot_create_alias(flask_client):
+    user, client, uri = _setup_oauth_client(flask_client)
+    email = f"admin{random_string(6).lower()}@sl.lan"
+
+    r = _post_allow(flask_client, client, uri, {"suggested-email": email})
+
+    assert r.status_code == 200
+    assert "Alias creation time is expired" in r.get_data(as_text=True)
+    assert Alias.get_by(email=email) is None
+    assert ClientUser.get_by(client_id=client.id, user_id=user.id) is None
+
+
+def test_oauth_suggested_email_signature_for_other_email_rejected(flask_client):
+    user, client, uri = _setup_oauth_client(flask_client)
+    email = f"admin{random_string(6).lower()}@sl.lan"
+
+    r = _post_allow(
+        flask_client,
+        client,
+        uri,
+        {
+            "suggested-email": email,
+            "signed-suggested-email": sign_suggested_email(
+                f"other{random_string(6).lower()}@sl.lan"
+            ),
+        },
+    )
+
+    assert r.status_code == 200
+    assert "Alias creation time is expired" in r.get_data(as_text=True)
+    assert Alias.get_by(email=email) is None
+
+
+def test_oauth_suggested_email_tampered_signature_rejected(flask_client):
+    user, client, uri = _setup_oauth_client(flask_client)
+    email = f"admin{random_string(6).lower()}@sl.lan"
+    signed = sign_suggested_email(email)
+
+    r = _post_allow(
+        flask_client,
+        client,
+        uri,
+        {"suggested-email": email, "signed-suggested-email": signed + "x"},
+    )
+
+    assert r.status_code == 200
+    assert Alias.get_by(email=email) is None
+
+
+def test_oauth_suggested_email_respects_free_alias_limit(flask_client):
+    user, client, uri = _setup_oauth_client(flask_client)
+    _fill_alias_quota(user)
+    nb_aliases = Alias.filter_by(user_id=user.id).count()
+    email = f"{random_string(10).lower()}@sl.lan"
+
+    r = _post_allow(
+        flask_client,
+        client,
+        uri,
+        {
+            "suggested-email": email,
+            "signed-suggested-email": sign_suggested_email(email),
+        },
+    )
+
+    assert r.status_code == 200
+    assert "You have reached the alias limit of your plan" in r.get_data(as_text=True)
+    assert Alias.get_by(email=email) is None
+    assert Alias.filter_by(user_id=user.id).count() == nb_aliases
+    assert ClientUser.get_by(client_id=client.id, user_id=user.id) is None
+
+
+def test_oauth_existing_own_alias_allowed_at_limit(flask_client):
+    user, client, uri = _setup_oauth_client(flask_client)
+    _fill_alias_quota(user)
+    alias = Alias.filter_by(user_id=user.id).first()
+
+    r = _post_allow(
+        flask_client,
+        client,
+        uri,
+        {"suggested-email": alias.email},
+        follow_redirects=False,
+    )
+
+    assert r.status_code == 302
+    assert ClientUser.get_by(client_id=client.id, user_id=user.id).alias_id == alias.id
+
+
+def test_oauth_custom_prefix_at_limit_does_not_error(flask_client):
+    user, client, uri = _setup_oauth_client(flask_client)
+    _fill_alias_quota(user)
+
+    r = _post_allow(
+        flask_client, client, uri, {"prefix": "myprefix", "suffix": "whatever"}
+    )
+
+    assert r.status_code == 200
+    assert "You have reached the alias limit of your plan" in r.get_data(as_text=True)
+    assert ClientUser.get_by(client_id=client.id, user_id=user.id) is None

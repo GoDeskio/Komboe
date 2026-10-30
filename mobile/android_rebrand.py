@@ -34,8 +34,13 @@ try:
         c.save(os.path.join(d, os.path.basename(xml)[:-4] + ".png")); os.remove(xml); print("rebrand icon", os.path.relpath(xml, S))
     for x in glob.glob(f"{S}/app/src/*/res/drawable/ic_launcher_foreground.xml"): put(x, 432, .55)
     for x in glob.glob(f"{S}/app/src/*/res/drawable/ic_launcher_monochrome.xml"): put(x, 432, .55, mono=True)
-    for n in ["logo_bitwarden", "logo_shield_icon", "logo_bitwarden_icon"]:
-        for x in glob.glob(f"{S}/ui/src/main/res/drawable/{n}.xml"): put(x, 512, 1.0)
+    # Phase E: in-app logos must stay VectorDrawables (screens load them with rememberVectorPainter): wordmark / mark as vector paths.
+    import sys; sys.path.insert(0, f"{ROOT}/branding/wordmark"); from wordmark_lib import android_vector
+    for n, wm, hdp, pad in [("logo_bitwarden", True, 34, 0), ("logo_shield_icon", False, 288, 1.0), ("logo_bitwarden_icon", False, 48, 0)]:
+        xml = f"{S}/ui/src/main/res/drawable/{n}.xml"; png_ = f"{S}/ui/src/main/res/drawable-nodpi/{n}.png"
+        if os.path.exists(png_): os.remove(png_)
+        new = android_vector(hdp, "#6D4AFF", wordmark=wm, pad=pad)
+        if not os.path.exists(xml) or open(xml).read() != new: open(xml, "w").write(new); print("rebrand vector", os.path.relpath(xml, S))
     for p in glob.glob(f"{S}/app/src/*/res/values/ic_launcher_background.xml"):
         rw(p, lambda t: re.sub(r"(<color name=\"ic_launcher_background\">)[^<]*<", r"\1#FFFFFF<", t))
 except ImportError: pass

@@ -73,13 +73,38 @@ for pat, src in targets.items():
         if open(p, "rb").read() != new:
             open(p, "wb").write(new); changed.append(os.path.relpath(p, ROOT))
 
-def logo_svg(viewbox, wordmark=True, cls="tw-fill-fg-nav"):
+_SORA = {}
+def sora_path(text, h, x0, avail):
+    """'Komboe' in Sora SemiBold (OFL, branding/fonts/sora) as outlined SVG path: cap height 56% of h, vertically centred."""
+    from fontTools.ttLib import TTFont
+    from fontTools.varLib import instancer
+    from fontTools.pens.svgPathPen import SVGPathPen
+    from fontTools.pens.transformPen import TransformPen
+    from fontTools.pens.boundsPen import BoundsPen
+    if not _SORA:
+        f = instancer.instantiateVariableFont(TTFont(os.path.join(B, "../fonts/sora/Sora-Variable.ttf")), {"wght": 600})
+        _SORA["gs"], _SORA["cmap"], _SORA["upm"] = f.getGlyphSet(), f.getBestCmap(), f["head"].unitsPerEm
+    gs, cmap, upm = _SORA["gs"], _SORA["cmap"], _SORA["upm"]
+    bp = BoundsPen(gs); gs[cmap[ord("K")]].draw(bp); cap = bp.bounds[3]
+    adv = sum(gs[cmap[ord(c)]].width - 0.012 * upm for c in text)
+    sc = min(0.56 * h / cap, avail / adv); x, base, out = x0, h / 2 + cap * sc / 2, []
+    for c in text:
+        g = gs[cmap[ord(c)]]; pen = SVGPathPen(gs, ntos=lambda v: f"{v:.1f}")
+        g.draw(TransformPen(pen, (sc, 0, 0, -sc, x, base))); out.append(pen.getCommands()); x += (g.width - 0.012 * upm) * sc
+    return " ".join(out)
+
+def mark_g(h, attr):
+    """Padlock-K vector (branding/logo/master/komboe-logo.svg), uniformly scaled to height h; shape untouched, color only."""
+    d = re.search(r'd="([^"]+)"', open(f"{B}/master/komboe-logo.svg").read()).group(1)
+    return f'<g transform="scale({h / 1928:.6f}) translate(-468,-196)"><path{attr} d="{d}" transform="translate(1121,196)"/></g>'
+
+def logo_svg(viewbox, wordmark=True, cls="tw-fill-fg-nav", mark="#6D4AFF", ink="#16122B"):
     _, _, w, h = (float(x) for x in viewbox.split())
-    data = base64.b64encode(png(ICON, (96, 96))).decode()
-    text = (f'<text x="{h*1.15:.1f}" y="{h*0.72:.1f}" font-family="Inter,Arial,sans-serif" font-weight="700" '
-            f'font-size="{h*0.62:.1f}" class="{cls}">Komboe</text>') if wordmark else ""
-    return (f'<svg viewBox="{viewbox}" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">'
-            f'<title>Komboe</title><image x="0" y="0" width="{h:.1f}" height="{h:.1f}" href="data:image/png;base64,{data}"/>{text}</svg>')
+    attr = f' class="{cls}"' if cls else f' fill="{ink}"'
+    text = f'<path{attr} d="{sora_path("Komboe", h, h * 1.0, w - h * 1.05)}"/>' if wordmark else ""
+    m = mark_g(h, attr if cls else f' fill="{mark}"')
+    return (f'<svg viewBox="{viewbox}" xmlns="http://www.w3.org/2000/svg">'
+            f'<title>Komboe</title>{m}{text}</svg>')
 
 def svg_ts(t):
     def rep(m):
@@ -92,9 +117,9 @@ for n in ["bitwarden-logo.icon.ts", "bitwarden-logo-beta.icon.ts", "password-man
           "side-nav-logo-beta.ts", "shield.ts"]:
     p = f"{C}/libs/assets/src/svg/svgs/{n}"
     if os.path.exists(p): rw(p, svg_ts)
-for p in [f"{C}/apps/web/src/images/logo.svg", f"{C}/apps/web/src/images/logo-white.svg"]:
+for p, mk, ink in [(f"{C}/apps/web/src/images/logo.svg", "#6D4AFF", "#16122B"), (f"{C}/apps/web/src/images/logo-white.svg", "#FFFFFF", "#FFFFFF")]:
     if os.path.exists(p):
-        rw(p, lambda t: logo_svg(re.search(r'viewBox="([^"]+)"', t).group(1), cls="") + "\n"
+        rw(p, lambda t, mk=mk, ink=ink: logo_svg(re.search(r'viewBox="([^"]+)"', t).group(1), cls="", mark=mk, ink=ink) + "\n"
            if re.search(r'viewBox="([^"]+)"', t) else t)
 
 # 4. server user-visible templates (admin UI, emails, 404)
@@ -149,11 +174,14 @@ for p in glob.glob(f"{C}/apps/browser/src/autofill/**/*", recursive=True):
 def ebuilder(t):
     d = json.loads(t); d["appId"] = "io.komboe.desktop"
     d.setdefault("linux", {}).setdefault("desktop", {}).setdefault("entry", {})["Name"] = "Komboe"
+    d["linux"]["desktop"]["entry"]["StartupWMClass"] = "komboe"   # must match the runtime WM_CLASS (case-sensitive)
     d["linux"]["executableName"] = "komboe"
+    d.setdefault("extraMetadata", {})["name"] = "komboe"   # Electron app name -> Linux WM_CLASS / userData dir
     d.setdefault("deb", {})["packageName"] = "komboe"
     d["linux"]["synopsis"] = "Komboe: open-source, zero-knowledge password manager."
     return json.dumps(d, indent=2) + "\n"
 rw(f"{C}/apps/desktop/electron-builder.json", ebuilder)
+rw(f"{C}/apps/desktop/src/package.json", lambda t: t.replace('"desktopName": "bitwarden.desktop"', '"desktopName": "komboe.desktop"'))
 rw(f"{C}/apps/desktop/src/index.html", lambda t: t.replace("<title>Bitwarden</title>", "<title>Komboe</title>"))
 
 # 8. Phase D: padlock-K everywhere icons remain upstream: extension inline-menu/notification logo, desktop ico/icns/iconsets
@@ -185,5 +213,18 @@ for p in glob.glob(f"{R}/icon.iconset/*.png") + glob.glob(f"{R}/dmg.iconset/*.pn
         if open(p, "rb").read() != new: open(p, "wb").write(new); changed.append(os.path.relpath(p, ROOT))
 for p in glob.glob(f"{R}/windows_plugin_authenticator_logo_*.svg"): rw(p, lambda t: pk_svg(48))
 
-print(f"rebrand: {len(changed)} files changed")
 if "-v" in sys.argv: print("\n".join(changed))
+
+# 9. Phase E: self-hosted Sora (SIL OFL 1.1) brand font for display headings; the wordmark itself is outlined paths (step 3)
+WF = f"{C}/libs/components/src/webfonts"
+if os.path.isdir(WF):
+    src = os.path.join(B, "../fonts/sora/Sora-Variable.woff2")
+    for n, fn in (("sora.woff2", src), ("SORA-OFL.txt", os.path.join(B, "../fonts/sora/OFL.txt"))):
+        dst = os.path.join(WF, n)
+        if not os.path.exists(dst) or open(dst, "rb").read() != open(fn, "rb").read(): shutil.copyfile(fn, dst); changed.append(dst)
+FACE = ('@font-face {\n  font-family: Sora;\n  src: url("~@bitwarden/components/src/webfonts/sora.woff2") format("woff2") tech(variations),\n'
+        '    url("~@bitwarden/components/src/webfonts/sora.woff2") format("woff2-variations");\n  font-display: swap;\n  font-weight: 100 800;\n}\n'
+        ':root { --font-brand: Sora, Inter, ui-sans-serif, system-ui, sans-serif; }\nh1, .komboe-brand { font-family: var(--font-brand); letter-spacing: -0.01em; }\n')
+rw(f"{C}/libs/components/src/theme.css", lambda t: t if "font-family: Sora" in t else t.replace("@font-face {\n  font-family: Inter;", FACE + "\n@font-face {\n  font-family: Inter;", 1))
+
+print(f"rebrand: {len(changed)} files changed")

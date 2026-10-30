@@ -1,3 +1,5 @@
+<p align="center"><img alt="Komboe" src="../branding/wordmark/komboe-wordmark-light.svg" width="300"></p>
+
 # Upstream sources (verified 2026-10-29 via GitHub API + git ls-remote)
 
 | Upstream | Repo | Pinned tag | Commit SHA | Released (MST) | License | Prefix |

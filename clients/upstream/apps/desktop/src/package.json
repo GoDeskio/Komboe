@@ -1,7 +1,7 @@
 {
   "name": "@bitwarden/desktop",
   "productName": "Komboe",
-  "desktopName": "bitwarden.desktop",
+  "desktopName": "komboe.desktop",
   "description": "A secure and free password manager for all of your devices.",
   "version": "2026.10.2",
   "author": "Bitwarden Inc. <hello@bitwarden.com> (https://bitwarden.com)",

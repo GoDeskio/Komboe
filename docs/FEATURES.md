@@ -1,3 +1,5 @@
+<p align="center"><img alt="Komboe" src="../branding/wordmark/komboe-wordmark-light.svg" width="300"></p>
+
 # Komboe feature list (106)
 
 Source: GoDesk password manager research, 2026-10-29. Abbreviations: PP=Proton Pass, BW=Bitwarden, VW=Vaultwarden, KP=KeePassXC, PB=Passbolt, PD=Padloc, PS=Psono, SL=SimpleLogin.

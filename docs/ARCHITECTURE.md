@@ -1,3 +1,5 @@
+<p align="center"><img alt="Komboe" src="../branding/wordmark/komboe-wordmark-light.svg" width="300"></p>
+
 # Komboe Architecture
 
 ## Components

@@ -167,8 +167,10 @@ def _():
     return ("partial", f"desktop Linux build {os.path.basename(p)}; Windows/macOS not built (unsigned cross-builds need wine/macOS)")
 @t(83)
 def _():
-    if art("komboe-android-debug.apk"): return ("partial", "Android debug APK built; iOS needs macOS")
-    return ("blocked", "mobile: no JDK/Android SDK on the box (package mirror broken), iOS needs macOS")
+    import zipfile; p = art("komboe-android-debug.apk")
+    if not p: return ("blocked", "mobile: Android debug APK not built (see mobile/android-build.sh); iOS needs macOS")
+    man = zipfile.ZipFile(p).read("AndroidManifest.xml"); assert "io.komboe.android".encode("utf-16-le") in man, "package id"
+    return ("partial", "Android debug APK io.komboe.android built from pinned bitwarden/android (fdroid flavor); not run on a device/emulator here; iOS needs macOS")
 
 # ---- Playwright UI coverage
 def pw(name):

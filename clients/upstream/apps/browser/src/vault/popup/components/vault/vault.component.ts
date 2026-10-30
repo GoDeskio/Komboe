@@ -77,6 +77,7 @@ import {
   VaultOrganizationUserNotificationsComponent,
   VAULT_RENDERED_MARK,
   KomboeTagsComponent,
+  KomboePasswordExpirySettingsComponent,
 } from "@bitwarden/vault";
 
 import { CurrentAccountComponent } from "../../../../auth/popup/account-switching/current-account.component";
@@ -132,6 +133,7 @@ const NEW_EXPERIENCE_DARK_IMG = "../../../../images/new-experience/new-experienc
     PopupPageComponent,
     PopupHeaderComponent,
     KomboeTagsComponent,
+    KomboePasswordExpirySettingsComponent,
     PopOutComponent,
     CurrentAccountComponent,
     StatusLockupComponent,

@@ -31,6 +31,7 @@ import { isKomboeBookmark, isKomboeGpg, isKomboeWifi } from "@bitwarden/common/v
 import { SecurityTaskType, TaskService } from "@bitwarden/common/vault/tasks";
 import { CalloutModule, SearchModule, TypographyModule } from "@bitwarden/components";
 
+import { KomboePasswordExpiryComponent } from "../komboe-password-expiry/komboe-password-expiry.component";
 import { CIPHER_VIEW_BANNER, CipherViewBanner } from "../tokens/cipher-view-banner.token";
 
 import { AdditionalOptionsComponent } from "./additional-options/additional-options.component";
@@ -76,6 +77,7 @@ import { WifiViewComponent } from "./wifi-sections/wifi-view.component";
     WifiViewComponent,
     BookmarkViewComponent,
     GpgViewComponent,
+    KomboePasswordExpiryComponent,
     TypographyModule,
   ],
 })

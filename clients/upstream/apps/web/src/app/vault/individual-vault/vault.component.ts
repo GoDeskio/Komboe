@@ -125,6 +125,7 @@ import {
   Vfo1TerminologyService,
   VAULT_RENDERED_MARK,
   KomboeTagsComponent,
+  KomboePasswordExpirySettingsComponent,
 } from "@bitwarden/vault";
 import { OrganizationWarningsService } from "@bitwarden/web-vault/app/billing/organizations/warnings/services";
 
@@ -173,6 +174,7 @@ type EmptyStateMap = Record<EmptyStateType, EmptyStateItem>;
     VaultBannersComponent,
     VaultFilterModule,
     KomboeTagsComponent,
+    KomboePasswordExpirySettingsComponent,
     VaultItemsModule,
     SharedModule,
     VaultBatchActionComponent,

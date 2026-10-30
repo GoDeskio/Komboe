@@ -35,7 +35,7 @@ if (results["desktop-launch"] === "passed") await step("desktop-login", async ()
   await w.getByLabel("Server URL").fill(WEB); await w.getByRole("button", { name: "Save" }).click(); await w.waitForTimeout(1500);
   await w.fill("#email", fx.ext.email); await w.getByRole("button", { name: "Continue" }).click();
   await w.fill("#masterPassword", fx.ext.pw); await w.getByRole("button", { name: "Log in", exact: true }).click();
-  await w.getByText("Autofill test").first().waitFor({ timeout: 60000 }); await w.waitForTimeout(1500);
+  await w.getByText("Autofill test").filter({ visible: true }).first().waitFor({ timeout: 60000 }); await w.waitForTimeout(1500);
   await w.screenshot({ path: path.join(SHOTS, "desktop-vault.png") });
 });
 if (results["desktop-login"] === "passed") await step("tags-desktop", async () => {

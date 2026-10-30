@@ -2,6 +2,7 @@
 // Usage: node e2e.mjs   (env: KOMBOE_WEB=https://localhost:8443, PLAYWRIGHT_DIR, CHROME, KOMBOE_EXT_DIR)
 import fs from "fs"; import path from "path"; import crypto from "crypto"; import { fileURLToPath } from "url";
 const here = path.dirname(fileURLToPath(import.meta.url));
+import { tagFlow, NAMES } from "./tags-flow.mjs"; try { fs.unlinkSync(NAMES); } catch {}
 const { chromium } = await import(path.join(process.env.PLAYWRIGHT_DIR || "/workspace/up/bw-oss/node_modules/playwright", "index.mjs"));
 const WEB = process.env.KOMBOE_WEB || "https://localhost:8443";
 const CHROME = process.env.CHROME || "/usr/bin/google-chrome";
@@ -47,6 +48,12 @@ await step("item-crud", async () => {
   const yes = p.getByRole("button", { name: /^yes$/i }); if (await yes.count()) await yes.click();
   await p.waitForTimeout(2000); await p.keyboard.press("Escape").catch(() => {});
   if (await p.getByText(name + " (edited)", { exact: true }).count()) throw new Error("item still listed after delete");
+});
+
+let webTag = null;
+await step("tags-web", async () => {
+  await p.goto(WEB + "/#/vault"); await p.waitForSelector("#newItemDropdown", { timeout: 30000 }); await p.waitForTimeout(1500);
+  webTag = await tagFlow(p, "web", "Autofill test"); await shot(p, "tags-web"); fs.writeFileSync("/tmp/komboe-web-tag.txt", webTag);
 });
 
 await step("generator", async () => {
@@ -199,6 +206,10 @@ if (ext && fs.existsSync(path.join(ext, "manifest.json"))) {
     await pp.fill("#email", fx.ext.email); await pp.getByRole("button", { name: "Continue" }).click();
     await pp.fill("#masterPassword", fx.ext.pw); await pp.getByRole("button", { name: "Log in", exact: true }).click();
     await pp.getByText("Autofill test").first().waitFor({ timeout: 60000 }); await pp.screenshot({ path: path.join(SHOTS, "extension-vault.png") });
+  }));
+  if (results["extension-login"] === "passed") await step("tags-extension", withTimeout(150000, async () => {
+    await tagFlow(pp, "ext", "Autofill test", fs.existsSync("/tmp/komboe-web-tag.txt") ? fs.readFileSync("/tmp/komboe-web-tag.txt", "utf8") : null);
+    await pp.screenshot({ path: path.join(SHOTS, "tags-extension.png"), fullPage: true });
   }));
   if (results["extension-login"] === "passed") await step("extension-autofill", withTimeout(90000, async () => {
     await ec.route("https://autofill.komboe.test/**", (r) => r.fulfill({ contentType: "text/html", body:

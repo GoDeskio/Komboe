@@ -1,7 +1,7 @@
 {
   "$schema": "https://raw.githubusercontent.com/electron-userland/electron-builder/master/packages/app-builder-lib/scheme.json",
   "extraMetadata": {
-    "name": "bitwarden"
+    "name": "komboe"
   },
   "productName": "Komboe",
   "appId": "io.komboe.desktop",
@@ -162,7 +162,8 @@
       "entry": {
         "Name": "Komboe",
         "Type": "Application",
-        "GenericName": "Password Manager"
+        "GenericName": "Password Manager",
+        "StartupWMClass": "komboe"
       }
     },
     "executableName": "komboe"

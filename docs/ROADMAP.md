@@ -1,3 +1,5 @@
+<p align="center"><img alt="Komboe" src="../branding/wordmark/komboe-wordmark-light.svg" width="300"></p>
+
 # Komboe Roadmap
 
 Every one of the 106 features in [FEATURES.md](FEATURES.md) is mapped to a milestone and a code base below.

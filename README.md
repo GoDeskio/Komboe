@@ -1,14 +1,12 @@
 <p align="center">
   <a href="https://komboe.com">
     <picture>
-      <source media="(prefers-color-scheme: dark)" srcset="branding/logo/variants/komboe-dark-transparent.png">
-      <source media="(prefers-color-scheme: light)" srcset="branding/logo/variants/komboe-light-transparent.png">
-      <img alt="Komboe padlock-K logo" src="branding/logo/variants/komboe-light-transparent.png" width="220">
+      <source media="(prefers-color-scheme: dark)" srcset="branding/wordmark/komboe-wordmark-dark.svg">
+      <source media="(prefers-color-scheme: light)" srcset="branding/wordmark/komboe-wordmark-light.svg">
+      <img alt="Komboe" src="branding/wordmark/komboe-wordmark-light.svg" width="420">
     </picture>
   </a>
 </p>
-
-<h1 align="center">Komboe</h1>
 
 <p align="center"><b>The open-source, zero-knowledge password manager: all the best features under one roof.</b><br>
 Passwords, passkeys, 2FA codes, secure sharing and email aliases for you, your family and your company. End-to-end encrypted, with no backdoors.</p>
@@ -158,3 +156,6 @@ Komboe brings together the best ideas from these open-source projects. Each "Whe
 ## License
 
 [GNU AGPL-3.0](LICENSE). Third-party notices: [NOTICE](NOTICE).
+
+## Brand
+Wordmark: padlock-K mark + "Komboe" set in [Sora](https://github.com/sora-xor/sora-font) SemiBold (SIL Open Font License 1.1; credited, no endorsement implied), outlined in `branding/wordmark/`. Fonts are self-hosted from `branding/fonts/sora/` (no font CDN).

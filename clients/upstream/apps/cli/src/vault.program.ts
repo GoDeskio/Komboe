@@ -61,6 +61,7 @@ export class VaultProgram extends BaseProgram {
       "org-collections",
       "org-members",
       "organizations",
+      "tags",
     ];
 
     const command = new Command("list")
@@ -120,6 +121,7 @@ export class VaultProgram extends BaseProgram {
           this.serviceContainer.keyService,
           this.serviceContainer.cliRestrictedItemTypesService,
           this.serviceContainer.cipherArchiveService,
+          this.serviceContainer.encryptService,
         );
         const response = await command.run(object, cmd);
 

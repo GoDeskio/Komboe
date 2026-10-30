@@ -86,6 +86,7 @@ export class OssServeConfigurator {
       this.serviceContainer.keyService,
       this.serviceContainer.cliRestrictedItemTypesService,
       this.serviceContainer.cipherArchiveService,
+      this.serviceContainer.encryptService,
     );
     this.createCommand = new CreateCommand(
       this.serviceContainer.cipherService,

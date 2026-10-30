@@ -81,6 +81,7 @@ export class Cipher extends Domain {
   /** @deprecated Encryption-format internal, not public API. `undefined` for blob-encrypted ciphers. See {@link Cipher}. */
   passwordHistory?: Password[];
   collectionIds: string[] = [];
+  tagIds: string[] = [];
   creationDate: Date;
   deletedDate?: Date;
   archivedDate?: Date;
@@ -101,6 +102,7 @@ export class Cipher extends Domain {
     this.id = obj.id;
     this.organizationId = obj.organizationId;
     this.folderId = obj.folderId;
+    this.tagIds = obj.tagIds || [];
     this.name = conditionalEncString(obj.name);
     this.notes = conditionalEncString(obj.notes);
     this.type = obj.type;

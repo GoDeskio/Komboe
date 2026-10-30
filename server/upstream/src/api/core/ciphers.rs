@@ -146,6 +146,7 @@ async fn sync(data: SyncData, headers: Headers, client_version: Option<ClientVer
             c.to_json(&headers.host, &headers.user.uuid, Some(&cipher_sync_data), CipherSyncType::User, &conn).await?,
         );
     }
+    let tags_json = super::komboe::merge_tags_into_sync(&headers.user.uuid, &mut ciphers_json, &conn).await;
 
     let collections = Collection::find_by_user_uuid(headers.user.uuid.clone(), &conn).await;
     let mut collections_json = Vec::with_capacity(collections.len());
@@ -198,6 +199,7 @@ async fn sync(data: SyncData, headers: Headers, client_version: Option<ClientVer
     Ok(Json(json!({
         "profile": user_json,
         "folders": folders_json,
+        "tags": tags_json["data"],
         "collections": collections_json,
         "policies": policies_json,
         "policiesNew": policies_new_json,

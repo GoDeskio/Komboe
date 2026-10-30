@@ -21,8 +21,14 @@ use crate::{
     crypto,
     db::{
         DbConn,
-        models::{Cipher, Membership, MembershipStatus, MembershipType, Organization, OrganizationId, TwoFactor, User, UserId},
-        schema::{komboe_alias_keys, komboe_aliases, komboe_org_plans, komboe_split_requests},
+        models::{
+            Cipher, CipherId, Membership, MembershipStatus, MembershipType, Organization, OrganizationId, TwoFactor,
+            User, UserId,
+        },
+        schema::{
+            komboe_alias_keys, komboe_aliases, komboe_cipher_tags, komboe_org_plans, komboe_split_requests,
+            komboe_tags,
+        },
     },
     error::MapResult,
     util::get_uuid,
@@ -32,7 +38,8 @@ pub fn routes() -> Vec<Route> {
     routes![
         get_plan, put_plan, get_members, get_quote, create_split, list_splits, approve_split, deny_split,
         complete_split, new_alias_key, sl_user_info, sl_random_alias, sl_custom_alias, sl_list_aliases,
-        sl_delete_alias, sl_toggle_alias, family_console, family_console_js, family_console_css
+        sl_delete_alias, sl_toggle_alias, family_console, family_console_js, family_console_css,
+        get_tags, post_tag, put_tag, delete_tag, put_cipher_tags
     ]
 }
 
@@ -539,6 +546,181 @@ async fn sl_toggle_alias(id: &str, u: AliasUser, conn: DbConn) -> JsonResult {
         .await
         .map(|_| ()).map_res("Error updating alias")?;
     Ok(Json(json!({ "enabled": enabled })))
+}
+
+// ---------------------------------------------------------------- tags (ciphertext names, like folders)
+
+#[derive(Queryable, Insertable, AsChangeset, Clone)]
+#[diesel(table_name = komboe_tags)]
+struct Tag {
+    uuid: String,
+    user_uuid: String,
+    name: String,
+    created_at: NaiveDateTime,
+    updated_at: NaiveDateTime,
+}
+
+fn require_ciphertext(name: &str) -> EmptyResult {
+    let ok = name.len() >= 8
+        && name.contains('|')
+        && name.chars().next().is_some_and(|c| c.is_ascii_digit())
+        && name.as_bytes().get(1) == Some(&b'.');
+    if ok {
+        Ok(())
+    } else {
+        err!("Tag name must be ciphertext")
+    }
+}
+
+fn tag_json(tag: &Tag, cipher_ids: &[String]) -> Value {
+    json!({
+        "id": tag.uuid,
+        "name": tag.name,
+        "revisionDate": tag.updated_at.and_utc().to_rfc3339(),
+        "cipherIds": cipher_ids,
+        "object": "tag",
+    })
+}
+
+#[derive(Queryable, Insertable, Clone)]
+#[diesel(table_name = komboe_cipher_tags)]
+struct CipherTag {
+    cipher_uuid: String,
+    tag_uuid: String,
+}
+
+async fn links_for_user(tag_ids: Vec<String>, conn: &DbConn) -> Vec<CipherTag> {
+    conn.run(move |c| {
+        komboe_cipher_tags::table
+            .filter(komboe_cipher_tags::tag_uuid.eq_any(tag_ids))
+            .load::<CipherTag>(c)
+            .unwrap_or_default()
+    })
+    .await
+}
+
+/// Attach `tagIds` onto each synced cipher and return the caller's tags. Names stay ciphertext.
+pub async fn merge_tags_into_sync(user: &UserId, ciphers: &mut [Value], conn: &DbConn) -> Value {
+    let uid = user.as_ref().to_string();
+    let tags = {
+        let uid = uid.clone();
+        conn.run(move |c| {
+            komboe_tags::table.filter(komboe_tags::user_uuid.eq(uid)).load::<Tag>(c).unwrap_or_default()
+        })
+        .await
+    };
+    let links = links_for_user(tags.iter().map(|t| t.uuid.clone()).collect(), conn).await;
+    for cipher in ciphers.iter_mut() {
+        let Some(id) = cipher.get("id").and_then(|v| v.as_str()).map(str::to_string) else { continue };
+        let ids: Vec<&str> = links.iter().filter(|l| l.cipher_uuid == id).map(|l| l.tag_uuid.as_str()).collect();
+        if let Some(obj) = cipher.as_object_mut() {
+            obj.insert("tagIds".into(), json!(ids));
+        }
+    }
+    let data: Vec<Value> = tags.iter().map(|tag| {
+        let ids: Vec<String> = links.iter().filter(|l| l.tag_uuid == tag.uuid).map(|l| l.cipher_uuid.clone()).collect();
+        tag_json(tag, &ids)
+    }).collect();
+    json!({ "data": data, "object": "list" })
+}
+
+#[get("/tags")]
+async fn get_tags(headers: Headers, conn: DbConn) -> Json<Value> {
+    let mut dummy = Vec::new();
+    let list = merge_tags_into_sync(&headers.user.uuid, &mut dummy, &conn).await;
+    Json(list)
+}
+
+#[derive(Deserialize)]
+struct TagBody { name: String }
+
+#[post("/tags", data = "<body>")]
+async fn post_tag(body: Json<TagBody>, headers: Headers, conn: DbConn) -> JsonResult {
+    require_ciphertext(&body.name)?;
+    let tag = Tag {
+        uuid: get_uuid(),
+        user_uuid: headers.user.uuid.to_string(),
+        name: body.name.clone(),
+        created_at: now(),
+        updated_at: now(),
+    };
+    let saved = tag.clone();
+    if let Err(e) = conn.run(move |c| diesel::insert_into(komboe_tags::table).values(&tag).execute(c)).await {
+        err!(format!("Error saving tag: {e}"));
+    }
+    Ok(Json(tag_json(&saved, &[])))
+}
+
+#[put("/tags/<id>", data = "<body>")]
+async fn put_tag(id: &str, body: Json<TagBody>, headers: Headers, conn: DbConn) -> JsonResult {
+    require_ciphertext(&body.name)?;
+    let uid = headers.user.uuid.to_string();
+    let id = id.to_string();
+    let found = conn.run({
+        let uid = uid.clone();
+        let id = id.clone();
+        move |c| komboe_tags::table.filter(komboe_tags::uuid.eq(id)).filter(komboe_tags::user_uuid.eq(uid)).first::<Tag>(c).ok()
+    }).await;
+    let Some(mut tag) = found else { err_code!("Tag not found", 404) };
+    tag.name = body.name.clone();
+    tag.updated_at = now();
+    let saved = tag.clone();
+    if let Err(e) = conn.run(move |c| diesel::update(komboe_tags::table.filter(komboe_tags::uuid.eq(&tag.uuid))).set(&tag).execute(c)).await {
+        err!(format!("Error saving tag: {e}"));
+    }
+    Ok(Json(tag_json(&saved, &[])))
+}
+
+#[delete("/tags/<id>")]
+async fn delete_tag(id: &str, headers: Headers, conn: DbConn) -> EmptyResult {
+    let uid = headers.user.uuid.to_string();
+    let id = id.to_string();
+    let exists = conn.run({
+        let uid = uid.clone();
+        let id = id.clone();
+        move |c| komboe_tags::table.filter(komboe_tags::uuid.eq(id)).filter(komboe_tags::user_uuid.eq(uid)).first::<Tag>(c).ok()
+    }).await;
+    if exists.is_none() { err!("Tag not found") }
+    if let Err(e) = conn.run(move |c| {
+        diesel::delete(komboe_tags::table.filter(komboe_tags::uuid.eq(id)).filter(komboe_tags::user_uuid.eq(uid))).execute(c)
+    }).await {
+        err!(format!("Error deleting tag: {e}"));
+    }
+    Ok(())
+}
+
+#[derive(Deserialize)]
+#[serde(rename_all = "camelCase")]
+struct CipherTagsBody { tag_ids: Vec<String> }
+
+#[put("/ciphers/<id>/tags", data = "<body>")]
+async fn put_cipher_tags(id: &str, body: Json<CipherTagsBody>, headers: Headers, conn: DbConn) -> JsonResult {
+    let cipher_id = id.to_string();
+    let Some(cipher) = Cipher::find_by_uuid(&CipherId::from(cipher_id.clone()), &conn).await else {
+        err_code!("Cipher not found", 404)
+    };
+    if cipher.user_uuid.as_ref() != Some(&headers.user.uuid) {
+        err_code!("Cipher not found", 404)
+    }
+    let uid = headers.user.uuid.to_string();
+    let owned: Vec<String> = conn.run({
+        let uid = uid.clone();
+        move |c| komboe_tags::table.filter(komboe_tags::user_uuid.eq(uid)).select(komboe_tags::uuid).load::<String>(c).unwrap_or_default()
+    }).await;
+    if body.tag_ids.iter().any(|id| !owned.contains(id)) {
+        err!("Unknown tag")
+    }
+    let cipher_id2 = cipher_id.clone();
+    if let Err(e) = conn.run(move |c| diesel::delete(komboe_cipher_tags::table.filter(komboe_cipher_tags::cipher_uuid.eq(cipher_id2))).execute(c)).await {
+        err!(format!("Error updating tags: {e}"));
+    }
+    for tag_id in &body.tag_ids {
+        let row = CipherTag { cipher_uuid: cipher_id.clone(), tag_uuid: tag_id.clone() };
+        if let Err(e) = conn.run(move |c| diesel::insert_into(komboe_cipher_tags::table).values(&row).execute(c)).await {
+            err!(format!("Error linking tag: {e}"));
+        }
+    }
+    Ok(Json(json!({ "id": cipher_id, "tagIds": body.tag_ids, "object": "cipherTags" })))
 }
 
 // ---------------------------------------------------------------- family console (static, client-side crypto)

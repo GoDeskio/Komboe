@@ -47,6 +47,8 @@ export class CipherResponse extends BaseResponse {
   attachments: AttachmentResponse[];
   passwordHistory: PasswordHistoryResponse[];
   collectionIds: string[];
+  /** Komboe tag ids. Metadata, not part of the encrypted item. */
+  tagIds: string[];
   creationDate: string;
   deletedDate: string;
   archivedDate: string;
@@ -78,6 +80,7 @@ export class CipherResponse extends BaseResponse {
     this.organizationUseTotp = this.getResponseProperty("OrganizationUseTotp");
     this.revisionDate = this.getResponseProperty("RevisionDate");
     this.collectionIds = this.getResponseProperty("CollectionIds");
+    this.tagIds = this.getResponseProperty("TagIds") || [];
     this.creationDate = this.getResponseProperty("CreationDate");
     this.deletedDate = this.getResponseProperty("DeletedDate");
     this.archivedDate = this.getResponseProperty("ArchivedDate");

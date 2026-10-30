@@ -1857,6 +1857,18 @@ export class ApiService implements ApiServiceAbstraction {
     return await firstValueFrom(this.accountService.activeAccount$.pipe(map((a) => a?.id)));
   }
 
+  async getKomboeTags(): Promise<{ data: { id: string; name: string; cipherIds: string[] }[] }> {
+    return this.send("GET", "/tags", null, true, true);
+  }
+
+  async postKomboeTag(name: string): Promise<{ id: string; name: string }> {
+    return this.send("POST", "/tags", { name }, true, true);
+  }
+
+  async putCipherTags(cipherId: string, tagIds: string[]): Promise<void> {
+    await this.send("PUT", `/ciphers/${cipherId}/tags`, { tagIds }, true, true);
+  }
+
   private async getCredentials(env: Environment): Promise<RequestCredentials> {
     if (this.platformUtilsService.getClientType() !== ClientType.Web || env.hasBaseUrl()) {
       return "include";

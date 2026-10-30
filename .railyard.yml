@@ -1,0 +1,8 @@
+# GitHub Actions is blocked by billing; CI runs on RailYard.
+steps:
+  - name: shellcheck
+    image: koalaman/shellcheck-alpine:stable
+    commands: [shellcheck scripts/*.sh]
+  - name: license-check
+    image: alpine/git
+    commands: [apk add --no-cache bash grep >/dev/null, bash scripts/check-licenses.sh]

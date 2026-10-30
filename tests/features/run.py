@@ -353,6 +353,8 @@ X(104, "free tier: Phase B billing")
 X(105, "Proton-style UI: under review")
 X(106, "secrets manager: upstream code excluded (bitwarden_license); reimplement later")
 
+exec(compile(open(os.path.join(os.path.dirname(__file__), "phase_b.py")).read(), "phase_b.py", "exec"))
+
 def main():
     feats = {}
     for line in open(os.path.join(ROOT, "docs/FEATURES.md")):

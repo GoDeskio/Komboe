@@ -1020,6 +1020,9 @@ async fn send_invite(
             && data.permissions.get("deleteAnyCollection") == Some(&json!(true))
             && data.permissions.get("createNewCollections") == Some(&json!(true)));
 
+    // Komboe: enforce family/company seat limits
+    super::komboe::check_seats(&org_id, data.emails.len(), &conn).await?;
+
     let mut user_created: bool;
     for email in &data.emails {
         let mut member_status = MembershipStatus::Invited as i32;

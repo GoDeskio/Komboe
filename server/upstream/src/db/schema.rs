@@ -410,3 +410,51 @@ allow_tables_to_appear_in_same_query!(
     event,
     auth_requests,
 );
+
+// Komboe: family/company plans, split-off requests and SimpleLogin-compatible aliases
+table! {
+    komboe_org_plans (org_uuid) {
+        org_uuid -> Text,
+        kind -> Text,
+        seats -> Integer,
+        price_cents -> Integer,
+        parent_org_uuid -> Nullable<Text>,
+        updated_at -> Timestamp,
+    }
+}
+
+table! {
+    komboe_split_requests (uuid) {
+        uuid -> Text,
+        org_uuid -> Text,
+        user_uuid -> Text,
+        status -> Text,
+        note -> Nullable<Text>,
+        new_org_uuid -> Nullable<Text>,
+        decided_by -> Nullable<Text>,
+        created_at -> Timestamp,
+        decided_at -> Nullable<Timestamp>,
+    }
+}
+
+table! {
+    komboe_alias_keys (user_uuid) {
+        user_uuid -> Text,
+        key_hash -> Text,
+        created_at -> Timestamp,
+    }
+}
+
+table! {
+    komboe_aliases (uuid) {
+        uuid -> Text,
+        user_uuid -> Text,
+        email -> Text,
+        note -> Nullable<Text>,
+        hostname -> Nullable<Text>,
+        enabled -> Bool,
+        created_at -> Timestamp,
+    }
+}
+
+allow_tables_to_appear_in_same_query!(komboe_org_plans, komboe_split_requests, komboe_alias_keys, komboe_aliases);

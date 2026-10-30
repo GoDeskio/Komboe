@@ -279,12 +279,9 @@ export class ProductSwitcherService {
         const bento: ProductSwitcherItem[] = [products.pm];
         const other: ProductSwitcherItem[] = [];
 
-        if (smOrg) {
-          bento.push(products.sm);
-        } else if (!shouldDisableSMAds) {
-          // Only show SM in "other" section if ads are not disabled
-          other.push(products.sm);
-        }
+        // Komboe: Secrets Manager is not part of Komboe; never offered in the switcher.
+        void smOrg;
+        void shouldDisableSMAds;
 
         if (acOrg) {
           bento.push(products.ac);

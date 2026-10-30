@@ -101,5 +101,28 @@ for p in [f"{C}/apps/web/src/images/logo.svg", f"{C}/apps/web/src/images/logo-wh
 for p in glob.glob(f"{S}/src/static/templates/**/*.hbs", recursive=True):
     rw(p, sub_text)
 
+# 5. Phase C: violet theme, CLI name/data dir, product switcher, footer product line
+VIOLET = {"050": "#f4f1ff", "100": "#ebe5ff", "200": "#d9ceff", "300": "#c4b7ff", "400": "#a48dff",
+          "500": "#7c5cff", "600": "#6d4aff", "700": "#5a36f0", "800": "#4a28c9", "900": "#3e24b4", "950": "#24166b"}
+RGB = lambda h: ", ".join(str(int(h[i:i+2], 16)) for i in (1, 3, 5))
+def theme(t):
+    for k, v in VIOLET.items():
+        t = re.sub(rf"(--color-brand-{k}:\s*)#[0-9a-fA-F]{{6}}", rf"\g<1>{v}", t)
+        t = re.sub(rf"(--color-brand-{k}-rgb:\s*)[0-9, ]+;", rf"\g<1>{RGB(v)};", t)
+    return t
+rw(f"{C}/libs/components/src/tw-theme.css", theme)
+rw(f"{C}/apps/cli/src/service-container/service-container.ts", lambda t: t.replace('"Bitwarden CLI"', '"Komboe CLI"')
+   .replace('Support/Bitwarden CLI"', 'Support/Komboe CLI"').replace('".config/Bitwarden CLI"', '".config/Komboe CLI"'))
+def clipkg(t):
+    t = t.replace('"bw": "build/bw.js"', '"komboe": "build/bw.js"')
+    return re.sub(r'(--output \./dist/[^"]*/)bw(\.exe)?"', r'\1komboe\2"', t)
+rw(f"{C}/apps/cli/package.json", clipkg)
+rw(f"{C}/apps/web/src/app/layouts/product-switcher/shared/product-switcher.service.ts", lambda t: t.replace(
+   "        if (smOrg) {\n          bento.push(products.sm);\n        } else if (!shouldDisableSMAds) {\n          // Only show SM in \"other\" section if ads are not disabled\n          other.push(products.sm);\n        }\n",
+   "        // Komboe: Secrets Manager is not part of Komboe; never offered in the switcher.\n        void smOrg;\n        void shouldDisableSMAds;\n"))
+FOOT = '<div bitTypography="body2">&copy; {{ year }} Bitwarden Inc.</div>'
+for p in [f"{C}/apps/web/src/app/layouts/frontend-layout.component.html", f"{C}/libs/components/src/anon-layout/anon-layout.component.html"]:
+    rw(p, lambda t: t.replace(FOOT, '<div bitTypography="body2">Komboe</div>\n' + FOOT) if '>Komboe</div>' not in t else t)
+
 print(f"rebrand: {len(changed)} files changed")
 if "-v" in sys.argv: print("\n".join(changed))

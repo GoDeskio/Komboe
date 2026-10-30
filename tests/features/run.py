@@ -355,7 +355,7 @@ X(104, "free tier: Phase B billing")
 X(105, "Proton-style UI: under review")
 X(106, "secrets manager: upstream code excluded (bitwarden_license); reimplement later")
 
-for _f in ("phase_b.py", "phase_e.py", "phase_ui.py", "phase_original.py", "phase_enterprise.py", "phase_rest.py"):
+for _f in ("phase_b.py", "phase_e.py", "phase_ui.py", "phase_original.py", "phase_enterprise.py", "phase_emergency.py", "phase_autotype.py", "phase_secretservice.py", "phase_ha.py"):
     _p = os.path.join(os.path.dirname(__file__), _f)
     if os.path.exists(_p):
         exec(compile(open(_p).read(), _f, "exec"))

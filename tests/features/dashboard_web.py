@@ -40,9 +40,16 @@ def main():
             page.wait_for_timeout(300)
         font = page.evaluate("() => getComputedStyle(document.body).fontFamily")
         assert "Sora" in font, font
+        loaded = page.evaluate("async () => { await document.fonts.ready; await document.fonts.load('16px Sora'); return document.fonts.check('16px Sora') && [...document.fonts].some(f => f.family.replace(/\"/g, '') === 'Sora' && f.status === 'loaded'); }")
+        assert loaded, "Sora font face did not load"
         assert page.evaluate("() => document.documentElement.classList.contains('theme_light')")
         page.get_by_test_id("komboe-theme").click()
         assert page.evaluate("() => document.documentElement.classList.contains('theme_dark')")
+        page.wait_for_timeout(1000)
+        page.reload(wait_until="domcontentloaded")
+        page.get_by_test_id("komboe-theme").wait_for(timeout=40000)
+        page.wait_for_timeout(1500)
+        assert page.evaluate("() => document.documentElement.classList.contains('theme_dark')"), "dark theme did not persist across reload"
         page.get_by_test_id("komboe-theme").click()
         assert page.evaluate("() => document.documentElement.classList.contains('theme_light')")
         browser.close()

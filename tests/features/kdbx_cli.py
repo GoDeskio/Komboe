@@ -11,7 +11,7 @@ CLIENTS = os.path.join(HERE, "../../clients/upstream")
 spec = importlib.util.spec_from_file_location("ft", os.path.join(HERE, "run.py")); ft = importlib.util.module_from_spec(spec); spec.loader.exec_module(ft)
 CLI = sys.argv[1:] or ["node", os.path.join(CLIENTS, "apps/cli/build/bw.js")]
 KPPY = os.environ.get("KOMBOE_KPVENV_PY", "/workspace/run/kpvenv/bin/python")
-SERVER = os.environ.get("KOMBOE_URL", "https://localhost:8443")
+SERVER = os.environ.get("KOMBOE_CLI_URL", "https://localhost:8443")  # CLI production builds refuse http
 d = tempfile.mkdtemp()
 
 # 1. Build a source KeePass DB with kdbxweb (independent of the SDK reader).

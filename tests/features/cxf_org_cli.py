@@ -10,7 +10,7 @@ from cryptography.hazmat.primitives.serialization import load_der_public_key
 HERE = os.path.dirname(os.path.abspath(__file__))
 spec = importlib.util.spec_from_file_location("ft", os.path.join(HERE, "run.py")); ft = importlib.util.module_from_spec(spec); spec.loader.exec_module(ft)
 CLI = sys.argv[1:] or ["node", os.path.join(HERE, "../../clients/upstream/apps/cli/build/bw.js")]
-SERVER = os.environ.get("KOMBOE_URL", "https://localhost:8443")
+SERVER = os.environ.get("KOMBOE_CLI_URL", "https://localhost:8443")  # CLI production builds refuse http
 
 def cli_for(u):
     import subprocess

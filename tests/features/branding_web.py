@@ -14,6 +14,8 @@ NOTICE = ("Komboe © 2026 GODESK IO LLC. Komboe is based on Vaultwarden (© Vaul
 ALLOWED_BYTES = [b"Bitwarden Inc., GPL-3.0", b"endorsed by Bitwarden Inc. or the Vaultwarden"]
 
 def strip_notice(data):
+    # THIRD-PARTY-NOTICES.md is bundled (inside app.asar too) and must credit upstream copyright holders.
+    data = re.sub(rb"# Third-party notices.*?used here only to describe origin\.", b"", data, flags=re.S)
     for a in ALLOWED_BYTES:
         data = data.replace(a, b"")
     return data

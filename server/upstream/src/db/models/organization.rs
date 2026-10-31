@@ -221,7 +221,7 @@ impl Organization {
             "usePam": false, // Not supported
             "usePhishingBlocker": false,
             "hasPublicAndPrivateKeys": self.private_key.is_some() && self.public_key.is_some(),
-            "useResetPassword": CONFIG.mail_enabled(),
+            "useResetPassword": false, // Komboe: no account recovery / admin reset
             "allowAdminAccessToAllCollectionItems": true,
             "limitCollectionCreation": true,
             "limitCollectionDeletion": true,
@@ -480,7 +480,7 @@ impl Membership {
             "selfHost": true,
             "hasPublicAndPrivateKeys": org.private_key.is_some() && org.public_key.is_some(),
             "resetPasswordEnrolled": self.reset_password_key.is_some(),
-            "useResetPassword": CONFIG.mail_enabled(),
+            "useResetPassword": false, // Komboe: no account recovery / admin reset
             "ssoBound": false, // Not supported
             "useSso": false, // Not supported
             "useKeyConnector": false,

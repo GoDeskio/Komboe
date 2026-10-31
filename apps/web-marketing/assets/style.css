@@ -35,3 +35,4 @@ code{background:var(--bg);border:1px solid var(--line);padding:2px 6px;border-ra
 .srcs{display:block;color:var(--mu);font-size:12.5px;margin-top:4px}.src{display:inline-block;background:rgba(124,92,255,.16);color:var(--ac);border-radius:6px;padding:1px 7px;margin:2px 2px 0 0;font-weight:600;text-decoration:none;font-size:12px}.src:hover{background:rgba(124,92,255,.32)}.src.orig{color:#9be7c4;background:rgba(80,200,150,.14)}
 .lic{font-size:11px;color:#ffcf7a;border:1px solid rgba(255,190,80,.4);border-radius:6px;padding:0 5px;margin-right:4px}.st{font-size:11px;color:#ffcf7a;margin-left:6px}.disc{font-size:13px;color:var(--mu);margin-top:32px;border-top:1px solid var(--line);padding-top:16px}
 .steps{color:var(--mu);font-size:14px;padding-left:20px}
+.legal{max-width:760px}.legal h2{font-size:20px;margin-top:28px}.legal p,.legal li{color:var(--mu)}

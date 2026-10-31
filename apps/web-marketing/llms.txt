@@ -1,0 +1,18 @@
+# Komboe
+
+> Komboe is an open-source, zero-knowledge password manager (pre-release). Vaults are encrypted on-device with Encryptoglyph (Apache-2.0); servers store only ciphertext. The master password never leaves the device, there is no backdoor and no admin password reset. One Komboe account (email + master password, optional passkey and 2FA) covers the web vault, browser extensions, Android, desktop, CLI and an MCP agent integration. iOS is planned. Paid prices and release builds are not yet published.
+
+## Pages
+- [Zero-knowledge password manager](https://komboe.com/): Komboe is an open-source, zero-knowledge password manager. Encryptoglyph encryption, no backdoor, no admin password reset. One account.
+- [Features](https://komboe.com/features.html): Every Komboe feature (vault, passkeys, sharing, browser extensions, desktop, Android, CLI, AI agent MCP integration) and the projects that inspired them.
+- [Security & zero-knowledge](https://komboe.com/security.html): How Komboe keeps your vault zero-knowledge: on-device Encryptoglyph encryption, ciphertext-only servers, no backdoor and no admin password reset.
+- [Pricing](https://komboe.com/pricing.html): Komboe plans for individuals, families and businesses. Free tier available; paid prices to be announced.
+- [Downloads](https://komboe.com/downloads.html): Download Komboe for Android, Windows, macOS, Linux, Chrome, Edge, Firefox, Brave, Safari, the web, CLI, self-host server and MCP.
+- [Developers](https://komboe.com/developers.html): Komboe developer resources: source code, self-hosting, CLI, MCP server, Encryptoglyph (Apache-2.0), contributing and security disclosure.
+- [Log in](https://komboe.com/login.html): Log in to Komboe: one account for the web vault, extensions, Android, desktop, CLI and MCP.
+- [Sign up](https://komboe.com/signup.html): Create your Komboe account with your email and master password, plus optional passkey and 2FA.
+- [Privacy Policy (draft)](https://komboe.com/privacy.html): Draft Komboe privacy policy: zero-knowledge, ciphertext-only storage, what we can and cannot see. Pending legal review.
+- [Terms of Service (draft)](https://komboe.com/terms.html): Draft Komboe terms of service for the hosted password manager. Pending legal review.
+
+## Source
+- [GitHub](https://github.com/GoDeskio/Komboe)

@@ -1,0 +1,6 @@
+# Contact address is a placeholder (TBD): confirm security@komboe.com is monitored before launch.
+Contact: mailto:security@komboe.com
+Expires: 2027-10-31T00:00:00Z
+Preferred-Languages: en
+Canonical: https://komboe.com/.well-known/security.txt
+Policy: https://komboe.com/developers.html#security

@@ -154,3 +154,6 @@ Built on the box into `/workspace/artifacts` (not committed). Browser zips: `npm
 ## Secret references (`scripts/komboe-run.mjs`)
 Set env values to `komboe://<item>/<field>` (field: `username`, `password`, `notes`, `uri`, or a custom field name), unlock the vault (`BW_SESSION`), then run
 `node scripts/komboe-run.mjs [--env-file .env] -- <command>`. The Komboe CLI decrypts each item on your machine. Values go only to the child process environment; nothing is printed or sent to the server. Tests: `node --test tests/run/komboe-run.test.mjs`.
+
+## Vault health report (`scripts/komboe-health.mjs`)
+`komboe list items | node scripts/komboe-health.mjs` (requires an unlocked session). The report lists reused passwords, weak passwords, logins without TOTP, and `http://` URIs, plus an overall score. All analysis happens locally, and the output contains only item ids and names.

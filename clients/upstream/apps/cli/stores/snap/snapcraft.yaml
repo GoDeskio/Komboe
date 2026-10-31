@@ -1,4 +1,4 @@
-name: bw
+name: komboe
 version: __version__
 summary: Komboe CLI - open-source, zero-knowledge password manager
 license: GPL-3.0
@@ -17,16 +17,16 @@ description: |
 confinement: strict
 base: core22
 apps:
-  bw:
-    command: bw
+  komboe:
+    command: komboe
     environment:
       XDG_CONFIG_HOME: $SNAP_USER_DATA
     plugs: [network, network-bind, desktop, home, removable-media]
 
 parts:
-  bw:
+  komboe:
     plugin: dump
-    source: ./bw-linux-$SNAPCRAFT_PROJECT_VERSION.zip
+    source: ./komboe-linux-$SNAPCRAFT_PROJECT_VERSION.zip
     override-build: |
-      chmod +x bw
+      chmod +x komboe
       snapcraftctl build

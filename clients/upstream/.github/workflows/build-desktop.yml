@@ -783,7 +783,7 @@ jobs:
           $checksum = (Get-FileHash -Algorithm SHA256 ./dist/chocolatey/Bitwarden-Installer-$env:_PACKAGE_VERSION.exe).Hash.ToLower()
           $chocoInstall = "./dist/chocolatey/tools/chocolateyinstall.ps1"
           (Get-Content $chocoInstall).replace('__version__', "$env:_PACKAGE_VERSION").replace('__checksum__', $checksum) | Set-Content $chocoInstall
-          choco pack ./dist/chocolatey/bitwarden.nuspec --version "$env:_PACKAGE_VERSION" --out ./dist/chocolatey
+          choco pack ./dist/chocolatey/komboe.nuspec --version "$env:_PACKAGE_VERSION" --out ./dist/chocolatey
 
       - name: Fix NSIS artifact names for auto-updater
         if: ${{ needs.setup.outputs.has_secrets == 'true' }}

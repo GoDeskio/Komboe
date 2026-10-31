@@ -1,12 +1,12 @@
-﻿$ErrorActionPreference = 'Stop';
+$ErrorActionPreference = 'Stop';
 
-$url = 'https://github.com/bitwarden/clients/releases/download/desktop-v__version__/Bitwarden-Installer-__version__.exe'
+$url = 'https://github.com/GoDeskio/Komboe/releases/download/desktop-v__version__/Komboe-Installer-__version__.exe'
 $checksum = '__checksum__'
 
 $packageArgs = @{
-  packageName   = 'bitwarden'
+  packageName   = 'komboe'
   fileType      = 'EXE'
-  softwareName  = 'Bitwarden'
+  softwareName  = 'Komboe'
   url           = $url
   checksum      = $checksum
   checksumType  = 'sha256'

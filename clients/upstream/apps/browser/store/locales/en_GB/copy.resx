@@ -134,7 +134,7 @@ Store passwords, passkeys, 2FA codes, secure notes and cards in an end-to-end en
 - Email aliases
 - Self-hostable server
 
-Komboe is based on Vaultwarden and Komboe clients and is not affiliated with or endorsed by Bitwarden Inc. or the Vaultwarden project. Source code: https://github.com/GoDeskio/Komboe</value>
+Komboe is based on Vaultwarden and Bitwarden clients and is not affiliated with or endorsed by Bitwarden Inc. or the Vaultwarden project. Source code: https://github.com/GoDeskio/Komboe</value>
   </data>
   <data name="AssetTitle" xml:space="preserve">
     <value>Komboe is an open-source, zero-knowledge password manager for families and teams.</value>

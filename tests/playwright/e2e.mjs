@@ -2,6 +2,7 @@
 // Usage: node e2e.mjs   (env: KOMBOE_WEB=https://localhost:8443, PLAYWRIGHT_DIR, CHROME, KOMBOE_EXT_DIR)
 import fs from "fs"; import path from "path"; import crypto from "crypto"; import { fileURLToPath } from "url";
 const here = path.dirname(fileURLToPath(import.meta.url));
+import { tagFlow, NAMES } from "./tags-flow.mjs"; try { fs.unlinkSync(NAMES); } catch {}
 const { chromium } = await import(path.join(process.env.PLAYWRIGHT_DIR || "/workspace/up/bw-oss/node_modules/playwright", "index.mjs"));
 const WEB = process.env.KOMBOE_WEB || "https://localhost:8443";
 const CHROME = process.env.CHROME || "/usr/bin/google-chrome";
@@ -28,25 +29,35 @@ const p = await ctx.newPage(); p.setDefaultTimeout(15000);
 await step("login", async () => { await vaultLogin(p, fx.owner); await p.waitForTimeout(1500); await shot(p, "vault-home"); });
 
 await step("item-crud", async () => {
-  const name = "Komboe demo login";
+  const name = `Komboe demo login ${Math.random().toString(36).slice(2, 7)}`;
   await p.click("#newItemDropdown"); await p.getByRole("menuitem", { name: /^login$/i }).click();
   await p.fill("input[formcontrolname=name]", name); await p.fill("input[formcontrolname=username]", "demo@example.com");
   await p.fill("input[formcontrolname=password]", "Correct-Horse-Battery-9"); await p.fill("input[formcontrolname=uri]", "https://example.com");
   await shot(p, "item-new"); await p.getByRole("button", { name: "Save", exact: true }).click();
   await p.waitForTimeout(2000); await p.keyboard.press("Escape"); await p.waitForTimeout(800);
-  await p.getByText(name, { exact: true }).first().waitFor({ timeout: 15000 }); await shot(p, "vault-items");
+  const search = async q => { const s = p.getByPlaceholder("Search vault").filter({ visible: true }).first(); await s.fill(q); await p.waitForTimeout(1500); };
+  await search(name);
+  await p.getByText(name, { exact: true }).filter({ visible: true }).first().waitFor({ timeout: 15000 }); await shot(p, "vault-items");
   // edit
-  await p.getByText(name, { exact: true }).first().click(); await p.waitForTimeout(1200);
+  await p.getByText(name, { exact: true }).filter({ visible: true }).first().click(); await p.waitForTimeout(1200);
   const edit = p.getByRole("button", { name: /^edit$/i }); if (await edit.count()) await edit.first().click();
   await p.fill("input[formcontrolname=name]", name + " (edited)"); await p.getByRole("button", { name: "Save", exact: true }).click();
   await p.waitForTimeout(2000); await p.keyboard.press("Escape"); await p.waitForTimeout(800);
-  await p.getByText(name + " (edited)", { exact: true }).first().waitFor({ timeout: 15000 });
+  await search(name + " (edited)");
+  await p.getByText(name + " (edited)", { exact: true }).filter({ visible: true }).first().waitFor({ timeout: 15000 });
   // delete (to trash)
-  await p.getByText(name + " (edited)", { exact: true }).first().click(); await p.waitForTimeout(1200);
+  await p.getByText(name + " (edited)", { exact: true }).filter({ visible: true }).first().click(); await p.waitForTimeout(1200);
   await p.getByRole("button", { name: /delete/i }).last().click(); await p.waitForTimeout(800);
   const yes = p.getByRole("button", { name: /^yes$/i }); if (await yes.count()) await yes.click();
   await p.waitForTimeout(2000); await p.keyboard.press("Escape").catch(() => {});
-  if (await p.getByText(name + " (edited)", { exact: true }).count()) throw new Error("item still listed after delete");
+  if (await p.getByText(name + " (edited)", { exact: true }).filter({ visible: true }).count()) throw new Error("item still listed after delete");
+  await search("");
+});
+
+let webTag = null;
+await step("tags-web", async () => {
+  await p.goto(WEB + "/#/vault"); await p.waitForSelector("#newItemDropdown", { timeout: 30000 }); await p.waitForTimeout(1500);
+  webTag = await tagFlow(p, "web", "Autofill test"); await shot(p, "tags-web"); fs.writeFileSync("/tmp/komboe-web-tag.txt", webTag);
 });
 
 await step("generator", async () => {
@@ -87,7 +98,7 @@ await step("send", async () => {
   await p.fill("textarea[formcontrolname=text], textarea", "guest-network: Komboe-Guest-2026");
   await shot(p, "send-new"); await p.getByRole("button", { name: /^save$/i }).click(); await p.waitForTimeout(2500);
   await p.keyboard.press("Escape").catch(() => {}); await p.waitForTimeout(800);
-  await p.getByText("Wi-Fi password for guests").first().waitFor({ timeout: 15000 }); await shot(p, "send-list");
+  await p.getByText("Wi-Fi password for guests").filter({ visible: true }).first().waitFor({ timeout: 15000 }); await shot(p, "send-list");
 });
 
 await step("admin-console", async () => {
@@ -118,7 +129,7 @@ await step("split-off", async () => {
   if (!(await cp.locator(".org", { hasText: "Jordan's family" }).innerText()).includes("Owner")) throw new Error("not owner of new family");
   await shot(cp, "family-split-done");
   // personal vault still there
-  const vp = await c2.newPage(); await vaultLogin(vp, fx.kid); await vp.getByText("Game account").first().waitFor({ timeout: 15000 });
+  const vp = await c2.newPage(); await vaultLogin(vp, fx.kid); await vp.getByText("Game account").filter({ visible: true }).first().waitFor({ timeout: 15000 });
   await shot(vp, "family-split-member-vault"); await c2.close();
 });
 
@@ -190,7 +201,7 @@ if (ext && fs.existsSync(path.join(ext, "manifest.json"))) {
     for (let i = 0; i < 5 && !(await pp.getByText("Accessing").count()); i++) {
       await pp.waitForTimeout(2000); const li = pp.locator("a, button").filter({ hasText: /^\s*Log in\s*$/ });
       if (await li.count()) await li.last().click().catch(() => {}); await pp.waitForTimeout(3000); }
-    try { await pp.getByText("Accessing").first().waitFor({ timeout: 20000 }); }
+    try { await pp.getByText("Accessing").filter({ visible: true }).first().waitFor({ timeout: 20000 }); }
     catch (e) { await pp.screenshot({ path: "/tmp/fail-ext-login.png" }); throw new Error("no server picker: " + (await pp.evaluate(() => document.body.innerText)).replace(/\s+/g, " ").slice(0, 200)); }
     await pp.locator("button", { hasText: "Choose your Komboe server" }).first().click(); await pp.waitForTimeout(800);
     if (/bitwarden\.(com|eu)/.test(await pp.evaluate(() => document.body.innerText))) throw new Error("server picker still offers Bitwarden cloud regions");
@@ -198,7 +209,26 @@ if (ext && fs.existsSync(path.join(ext, "manifest.json"))) {
     await pp.getByLabel("Server URL").fill(WEB); await pp.getByRole("button", { name: "Save" }).click(); await pp.waitForTimeout(1500);
     await pp.fill("#email", fx.ext.email); await pp.getByRole("button", { name: "Continue" }).click();
     await pp.fill("#masterPassword", fx.ext.pw); await pp.getByRole("button", { name: "Log in", exact: true }).click();
-    await pp.getByText("Autofill test").first().waitFor({ timeout: 60000 }); await pp.screenshot({ path: path.join(SHOTS, "extension-vault.png") });
+    await pp.getByText("Autofill test").filter({ visible: true }).first().waitFor({ timeout: 60000 }); await pp.screenshot({ path: path.join(SHOTS, "extension-vault.png") });
+  }));
+  if (results["extension-login"] === "passed") await step("tags-extension", withTimeout(150000, async () => {
+    await tagFlow(pp, "ext", "Autofill test", fs.existsSync("/tmp/komboe-web-tag.txt") ? fs.readFileSync("/tmp/komboe-web-tag.txt", "utf8") : null);
+    await pp.screenshot({ path: path.join(SHOTS, "tags-extension.png"), fullPage: true });
+  }));
+  if (results["extension-login"] === "passed") await step("templates-extension", withTimeout(150000, async () => {
+    await pp.goto(pp.url().replace(/#.*$/, "#/tabs/vault")); await pp.waitForTimeout(3000);
+    const { templateFlow } = await import("./templates-flow.mjs");
+    await templateFlow(pp, "ext", async () => { await pp.goto(pp.url().replace(/#.*$/, "#/tabs/vault")); await pp.waitForTimeout(2500); const bs = pp.getByRole("button", { name: /add/i }).filter({ visible: true });
+      for (let i = 0; i < await bs.count(); i++) { const b = await bs.nth(i).boundingBox(); if (b && b.y < 80) { await bs.nth(i).click(); return; } }
+      throw new Error("no header Add button"); });
+    await pp.screenshot({ path: path.join(SHOTS, "templates-extension.png"), fullPage: true });
+  }));
+  if (results["extension-login"] === "passed") await step("gpg-extension", withTimeout(150000, async () => {
+    const { gpgFlow } = await import("./templates-flow.mjs");
+    await gpgFlow(pp, "ext", async () => { await pp.goto(pp.url().replace(/#.*$/, "#/tabs/vault")); await pp.waitForTimeout(2500); const bs = pp.getByRole("button", { name: /add/i }).filter({ visible: true });
+      for (let i = 0; i < await bs.count(); i++) { const b = await bs.nth(i).boundingBox(); if (b && b.y < 80) { await bs.nth(i).click(); return; } }
+      throw new Error("no header Add button"); });
+    await pp.screenshot({ path: path.join(SHOTS, "gpg-extension.png"), fullPage: true });
   }));
   if (results["extension-login"] === "passed") await step("extension-autofill", withTimeout(90000, async () => {
     await ec.route("https://autofill.komboe.test/**", (r) => r.fulfill({ contentType: "text/html", body:

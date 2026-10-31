@@ -230,11 +230,14 @@ staticPasswords:
         assert profile["email"] == EMAIL, profile
 
         db = sqlite3.connect(os.path.join(folder, "db.sqlite3"))
-        row = db.execute("select password_hash, private_key, email from users where email = ?", (EMAIL,)).fetchone()
+        row = db.execute("select password_hash, private_key, email, akey, salt from users where email = ?", (EMAIL,)).fetchone()
         assert row and row[2] == EMAIL, row
         assert not row[0], "SSO must not store a master-password hash"
-        assert row[1] is None, "SSO identity login must not escrow a user key"
-        blob = open(os.path.join(folder, "db.sqlite3"), "rb").read()
+        assert row[1] is None, "SSO identity login must not escrow a private key"
+        assert not row[3], "SSO identity login must not store a vault (user) key"
+        db.close()
+        blob = b"".join(open(os.path.join(folder, n), "rb").read() for n in ("db.sqlite3", "db.sqlite3-wal")
+                        if os.path.exists(os.path.join(folder, n)))
         assert PASSWORD.encode() not in blob
         assert CLIENT_SECRET.encode() not in blob
         print("SSO DEX PASS")

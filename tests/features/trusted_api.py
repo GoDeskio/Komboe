@@ -164,6 +164,15 @@ staticPasswords:
         db = sqlite3.connect(os.path.join(folder, "db.sqlite3"))
         row = db.execute("select password_hash, akey from users where email = ?", (EMAIL,)).fetchone()
         assert row and row[0] in (None, b"") and not row[1]
+        # No recovery backdoor: no org password-reset enrollment, no admin-approval request.
+        resets = db.execute(
+            "select count(*) from users_organizations uo join users u on u.uuid = uo.user_uuid "
+            "where u.email = ? and uo.reset_password_key is not null and uo.reset_password_key != ''",
+            (EMAIL,),
+        ).fetchone()[0]
+        assert resets == 0, resets
+        assert trusted.get("HasManageResetPasswordPermission") is False
+        assert "KeyConnectorOption" not in second["UserDecryptionOptions"]
         blob = open(os.path.join(folder, "db.sqlite3"), "rb").read()
         wal = os.path.join(folder, "db.sqlite3-wal")
         if os.path.isfile(wal):

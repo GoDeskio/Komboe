@@ -384,6 +384,20 @@ joinable!(event -> users_organizations (uuid));
 joinable!(auth_requests -> users (user_uuid));
 joinable!(sso_users -> users (user_uuid));
 
+table! {
+    komboe_login_passkeys (uuid) {
+        uuid -> Text,
+        user_uuid -> Text,
+        name -> Text,
+        cred_id -> Text,
+        credential -> Text,
+        supports_prf -> Bool,
+        encrypted_user_key -> Nullable<Text>,
+        encrypted_public_key -> Nullable<Text>,
+        encrypted_private_key -> Nullable<Text>,
+    }
+}
+
 allow_tables_to_appear_in_same_query!(
     archives,
     attachments,
@@ -526,5 +540,6 @@ allow_tables_to_appear_in_same_query!(
     komboe_password_expiry,
     komboe_scim_tokens,
     komboe_ldap_configs,
-    komboe_device_trust
+    komboe_device_trust,
+    komboe_login_passkeys
 );

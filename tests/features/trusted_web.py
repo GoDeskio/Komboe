@@ -26,7 +26,12 @@ def dex_login(page):
 
 
 def sso(page):
-    page.goto(WEB + "/#/login", wait_until="domcontentloaded")
+    try:
+        page.goto(WEB + "/#/login", wait_until="domcontentloaded")
+    except Exception as e:  # SPA may redirect to /#/login itself mid-goto
+        if "interrupted by another navigation" not in str(e):
+            raise
+    page.locator("#email").wait_for(timeout=20000)
     page.fill("#email", EMAIL)
     page.get_by_test_id("login-sso-button").click()
     page.wait_for_function(

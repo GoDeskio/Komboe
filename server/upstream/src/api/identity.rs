@@ -55,7 +55,8 @@ pub fn routes() -> Vec<Route> {
         saml_acs,
         saml_signin,
         saml_slo,
-        saml_logout
+        saml_logout,
+        webauthn_assertion_options
     ]
 }
 
@@ -102,6 +103,18 @@ async fn login(data: Form<ConnectData>, client_header: ClientHeaders, conn: DbCo
             sso_login(data, &mut user_id, &conn, &client_header.ip).await
         }
         "authorization_code" => err!("SSO sign-in is not available"),
+        "webauthn" if CONFIG.sso_enabled() && CONFIG.sso_only() => err!("SSO sign-in is required"),
+        "webauthn" => {
+            crate::ratelimit::check_limit_login(&client_header.ip.ip)?;
+            check_is_some(data.client_id.as_ref(), "client_id cannot be blank")?;
+            check_is_some(data.token.as_ref(), "token cannot be blank")?;
+            check_is_some(data.device_response.as_ref(), "deviceResponse cannot be blank")?;
+            check_is_some(data.device_identifier.as_ref(), "device_identifier cannot be blank")?;
+            check_is_some(data.device_name.as_ref(), "device_name cannot be blank")?;
+            check_is_some(data.device_type.as_ref(), "device_type cannot be blank")?;
+
+            passkey_login(data, &mut user_id, &conn, &client_header.ip).await
+        }
         "send_access" => {
             crate::ratelimit::check_limit_unauthenticated(&client_header.ip.ip)?;
             check_is_some(data.client_id.as_ref(), "client_id cannot be blank")?;
@@ -502,6 +515,53 @@ async fn password_login(data: ConnectData, user_id: &mut Option<UserId>, conn: &
     let auth_tokens = auth::AuthTokens::new(&device, &user, AuthMethod::Password, data.client_id);
 
     authenticated_response(&user, &mut device, auth_tokens, twofactor_token, conn, ip).await
+}
+
+#[get("/accounts/webauthn/assertion-options")]
+fn webauthn_assertion_options() -> JsonResult {
+    crate::api::core::passkeys::login_options()
+}
+
+/// Komboe #50: passkey sign-in. A user-verified discoverable passkey stands in for
+/// password + two-step login, like Bitwarden. Unlock still needs the master password
+/// unless the passkey carries a client-wrapped PRF key set.
+async fn passkey_login(data: ConnectData, user_id: &mut Option<UserId>, conn: &DbConn, ip: &ClientIp) -> JsonResult {
+    AuthMethod::Password.check_scope(data.scope.as_ref())?;
+    let (user, row) = match crate::api::core::passkeys::verify_login(
+        data.token.as_deref().unwrap_or_default(),
+        data.device_response.as_deref().unwrap_or_default(),
+        conn,
+    )
+    .await
+    {
+        Ok(v) => v,
+        Err(e) => err!(
+            "Passkey sign-in failed",
+            format!("IP: {}. {e}", ip.ip),
+            ErrorEvent {
+                event: EventType::UserFailedLogIn
+            }
+        ),
+    };
+    *user_id = Some(user.uuid.clone());
+    if !user.enabled {
+        err!(
+            "This user has been disabled",
+            format!("IP: {}. Username: {}.", ip.ip, user.email),
+            ErrorEvent {
+                event: EventType::UserFailedLogIn
+            }
+        )
+    }
+    let mut device = get_device(&data, conn, &user).await?;
+    let auth_tokens = auth::AuthTokens::new(&device, &user, AuthMethod::Password, data.client_id);
+    let mut resp = authenticated_response(&user, &mut device, auth_tokens, None, conn, ip).await?;
+    if let Some(prf) = row.prf_option()
+        && let Some(opts) = resp.0.get_mut("UserDecryptionOptions")
+    {
+        opts["WebAuthnPrfOption"] = prf;
+    }
+    Ok(resp)
 }
 
 async fn user_decryption_options(
@@ -1173,6 +1233,12 @@ struct ConnectData {
     two_factor_remember: Option<i32>,
     #[field(name = uncased("authrequest"))]
     auth_request: Option<AuthRequestId>,
+    // Komboe #50: grant_type=webauthn
+    #[field(name = uncased("token"))]
+    token: Option<String>,
+    #[field(name = uncased("deviceresponse"))]
+    #[field(name = uncased("device_response"))]
+    device_response: Option<String>,
 
     // Needed for authorization code
     #[field(name = uncased("code"))]

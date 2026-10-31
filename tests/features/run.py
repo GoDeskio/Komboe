@@ -306,7 +306,6 @@ def _():
     return DONE("TOTP 2FA enrol, enforced, login with code")
 P(48, "WebAuthn 2FA vendored; needs a virtual authenticator (Playwright, Phase B)")
 X(49, "Duo/YubiKey need external accounts; email 2FA needs server SMTP, and enabling it changes signup to mailed tokens (needs a dedicated test instance)")
-P(50, "passkey login (WebAuthn PRF) UI vendored; server has no passkey-login endpoints and cannot be rebuilt on this box (disk)")
 P(51, "login-with-device (auth-requests) vendored; needs a second client")
 P(52, "biometric/PIN unlock are desktop/mobile client features (Phase B)")
 X(53, "YubiKey challenge-response unlock: Komboe-original")
@@ -381,7 +380,7 @@ X(104, "free tier: Phase B billing")
 X(105, "Proton-style UI: under review")
 X(106, "secrets manager: upstream code excluded (bitwarden_license); reimplement later")
 
-for _f in ("phase_b.py", "phase_e.py", "phase_tags.py", "phase_templates.py", "phase_bookmarks.py", "phase_gpg.py", "phase_env.py", "phase_expiry.py", "phase_dashboard.py", "phase_ha.py", "phase_sso.py", "phase_scim.py", "phase_ldap.py", "phase_trusted.py", "phase_s3.py"):
+for _f in ("phase_b.py", "phase_e.py", "phase_tags.py", "phase_templates.py", "phase_bookmarks.py", "phase_gpg.py", "phase_env.py", "phase_passkey.py", "phase_expiry.py", "phase_dashboard.py", "phase_ha.py", "phase_sso.py", "phase_scim.py", "phase_ldap.py", "phase_trusted.py", "phase_s3.py"):
     exec(compile(open(os.path.join(os.path.dirname(__file__), _f)).read(), _f, "exec"))
 
 def main():

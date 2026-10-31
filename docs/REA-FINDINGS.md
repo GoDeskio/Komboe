@@ -28,3 +28,9 @@ No logins, no paid-account bypass, no DRM circumvention. Code under GPL, AGPL, B
 6. **SSH agent** (Proton, KeePassXC). Desktop Phase B.
 7. **Expiring secure links** (Proton). Close to Send; add view-count UX.
 8. **YubiKey challenge-response unlock** (KeePassXC). STATUS #53.
+
+### Desktop clients (official Linux .deb → `app.asar`, parsed inertly on the lab PC, never executed)
+- **Proton Pass desktop**: IPC channels `sshAgent:start/clear/destroy/getStatus/setSshKeyItems/setSettingEnabled` → a built-in SSH agent that serves vault SSH-key items, toggled per device. Confirms feature #6 (SSH agent) as a desktop-side IPC service; also biometric unlock hooks.
+- **1Password desktop**: passkey modules and quick-access snippets; graph capacity-limited (2.8k modules) so mostly UI chunks.
+- **Bitwarden desktop** (our upstream): scanned for baseline only; REA hit its result-capacity limit at 13,241/16,432 sources.
+Summaries: `GoDeskio/rea-scans` → `komboe/reports/*.asar.summary.json`.

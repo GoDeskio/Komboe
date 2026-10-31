@@ -16,6 +16,7 @@ with tempfile.TemporaryDirectory() as d:
     for f in ("main.js", "index.html"):
         t = open(os.path.join(d, f), errors="ignore").read()
         assert "commercial-sdk-internal" not in t and "bitwarden_license" not in t, f
-cfg = json.load(open(os.path.join(os.path.dirname(__file__), "../../clients/upstream/apps/desktop/electron-builder.json")))
-assert any("commercial-sdk-internal" in p and p.startswith("!") for p in cfg["files"])
+root = json.load(open(os.path.join(os.path.dirname(__file__), "../../clients/upstream/package.json")))
+deps = {**root.get("dependencies", {}), **root.get("devDependencies", {})}
+assert "@bitwarden/commercial-sdk-internal" not in deps, "commercial SDK must not be a clients dependency"
 print("DESKTOP OSS SDK PASS")

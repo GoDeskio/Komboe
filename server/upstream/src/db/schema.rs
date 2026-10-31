@@ -511,6 +511,8 @@ table! {
         group_base -> Text,
         group_filter -> Text,
         member_attr -> Text,
+        start_tls -> Bool,
+        tls_ca -> Nullable<Text>,
     }
 }
 

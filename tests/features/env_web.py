@@ -89,7 +89,7 @@ def main():
     env = dict(os.environ, BITWARDENCLI_APPDATA_DIR=home, KPW=user.pw,
                NODE_EXTRA_CA_CERTS=os.environ.get("NODE_EXTRA_CA_CERTS", "/workspace/run/tls/cert.pem"))
     run = lambda *a: subprocess.run(["node", os.path.join(CLIENTS, "apps/cli/build/bw.js"), *a], capture_output=True, text=True, timeout=180, env=env)
-    run("config", "server", os.environ.get("KOMBOE_URL", "https://localhost:8443"))
+    run("config", "server", os.environ.get("KOMBOE_CLI_URL", "https://localhost:8443"))  # CLI production builds refuse http
     sess = run("login", user.email, "--passwordenv", "KPW", "--raw").stdout.strip().splitlines()[-1]
     out = run("get", "dotenv", NAME, "--session", sess)
     assert out.returncode == 0 and out.stdout.strip() == CANON, (out.stdout, out.stderr)

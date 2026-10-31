@@ -4,9 +4,12 @@
 <link rel="preload" href="assets/fonts/Sora-Variable.woff2" as="font" type="font/woff2" crossorigin><link rel="stylesheet" href="assets/style.css"></head><body>
 <header><div class="wrap nav"><a class="brand" href="index.html"><img src="assets/img/logo.png" alt="">Komboe</a><button id="menu" aria-label="Menu">☰</button>
 <nav class="links"><a href="index.html">Home</a><a href="features.html">Features</a><a href="security.html">Security</a><a href="pricing.html">Pricing</a><a href="downloads.html">Downloads</a><a href="login.html">Log in</a><a class="btn p" href="signup.html">Get started</a></nav></div></header>
-<main><div class="auth"><img src="assets/img/logo.png" alt="" width="52"><h1>Log in to Komboe</h1><p>Use your GoDesk account — the same one you use across all GoDesk tools.</p>
-<form data-oidc="login"><label for="em">Email</label><input id="em" type="email" autocomplete="email" required placeholder="you@example.com">
-<button class="btn p full" type="submit">Continue with GoDesk account</button></form><p class="sso">🔒 You'll be redirected to the secure GoDesk sign-in (single sign-on). Komboe never sees your account password.</p>
+<main><div class="auth"><img src="assets/img/logo.png" alt="" width="52"><h1>Log in to Komboe</h1><p>One GoDesk account for Komboe and every other GoDesk tool.</p>
+<form data-oidc="login" data-method="password"><label for="em">Email</label><input id="em" type="email" autocomplete="email" required placeholder="you@example.com">
+<label for="pw">GoDesk account password</label><div class="pw"><input id="pw" type="password" autocomplete="current-password"><button type="button" class="eye" aria-label="Show password">👁</button></div>
+<button class="btn p full" type="submit">Log in with email</button></form>
+<button class="btn full" data-oidc-btn="google" data-mode="login">Continue with Google</button><button class="btn full" data-oidc-btn="passkey" data-mode="login">🔑 Use a passkey</button>
+<p class="sso">🔒 You'll finish on the secure GoDesk sign-in page. Your vault master password is separate and never leaves your device.</p>
 <p class="sso">New here? <a href="signup.html">Create an account</a></p></div></main>
 <footer><div class="wrap"><div><b>Komboe</b> by GoDesk · Zero-knowledge password manager</div><div><a href="security.html">Security</a> · <a href="pricing.html">Pricing</a> · <a href="downloads.html">Downloads</a> · <a href="https://github.com/GoDeskio/Komboe">Source</a></div><div>© 2026 GoDesk</div></div></footer>
 <script src="assets/config.js"></script><script src="assets/app.js"></script></body></html>

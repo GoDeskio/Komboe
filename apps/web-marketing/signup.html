@@ -5,8 +5,11 @@
 <header><div class="wrap nav"><a class="brand" href="index.html"><img src="assets/img/logo.png" alt="">Komboe</a><button id="menu" aria-label="Menu">☰</button>
 <nav class="links"><a href="index.html">Home</a><a href="features.html">Features</a><a href="security.html">Security</a><a href="pricing.html">Pricing</a><a href="downloads.html">Downloads</a><a href="login.html">Log in</a><a class="btn p" href="signup.html">Get started</a></nav></div></header>
 <main><div class="auth"><img src="assets/img/logo.png" alt="" width="52"><h1>Create your GoDesk account</h1><p>One GoDesk account for Komboe and every other GoDesk tool.</p>
-<form data-oidc="signup"><label for="em">Email</label><input id="em" type="email" autocomplete="email" required placeholder="you@example.com"><label for="pw">Choose a vault master password</label><div class="pw"><input id="pw" type="password" autocomplete="new-password" placeholder="Set after sign-in, inside the app"><button type="button" class="eye" aria-label="Show password">👁</button></div><p style="font-size:12px">Your master password is created and kept on your device after sign-in — it is never sent to GoDesk.</p>
-<button class="btn p full" type="submit">Continue with GoDesk account</button></form><p class="sso">🔒 You'll be redirected to the secure GoDesk sign-in (single sign-on). Komboe never sees your account password.</p>
+<form data-oidc="signup" data-method="password"><label for="em">Email</label><input id="em" type="email" autocomplete="email" required placeholder="you@example.com">
+<label for="pw">Create a GoDesk account password</label><div class="pw"><input id="pw" type="password" autocomplete="new-password"><button type="button" class="eye" aria-label="Show password">👁</button></div>
+<button class="btn p full" type="submit">Sign up with email</button></form>
+<button class="btn full" data-oidc-btn="google" data-mode="signup">Continue with Google</button><button class="btn full" data-oidc-btn="passkey" data-mode="signup">🔑 Use a passkey</button>
+<p class="sso">🔒 You'll finish on the secure GoDesk sign-in page. Your vault master password is separate and never leaves your device.</p>
 <p class="sso">Already have an account? <a href="login.html">Log in</a></p></div></main>
 <footer><div class="wrap"><div><b>Komboe</b> by GoDesk · Zero-knowledge password manager</div><div><a href="security.html">Security</a> · <a href="pricing.html">Pricing</a> · <a href="downloads.html">Downloads</a> · <a href="https://github.com/GoDeskio/Komboe">Source</a></div><div>© 2026 GoDesk</div></div></footer>
 <script src="assets/config.js"></script><script src="assets/app.js"></script></body></html>

@@ -26,7 +26,7 @@ footer{border-top:1px solid var(--line);padding:40px 0;color:var(--mu);font-size
 .auth h1{font-size:28px;margin:0 0 6px}.auth p{color:var(--mu);font-size:15px}
 label{display:block;font-size:14px;margin:16px 0 6px;color:var(--mu)}input{width:100%;padding:13px 14px;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--tx);font:inherit}
 .pw{position:relative}.pw input{padding-right:48px}.eye{position:absolute;right:6px;top:50%;transform:translateY(-50%);background:none;border:0;color:var(--mu);cursor:pointer;padding:8px;font-size:18px}
-.full{width:100%;margin-top:20px}.sso{text-align:center;font-size:13px;color:var(--mu);margin-top:18px}
+.full{width:100%;margin-top:14px}.sso{text-align:center;font-size:13px;color:var(--mu);margin-top:18px}
 .dl{display:flex;flex-direction:column;gap:10px}.dl.mine{border-color:var(--ac2);box-shadow:0 0 0 2px var(--ac2)}.dl .tag{font-size:12px;color:var(--ac);font-weight:600;display:none}.dl.mine .tag{display:block}
 .meta{font-size:12px;color:var(--mu);font-family:ui-monospace,monospace;word-break:break-all}.meta b{color:var(--tx);font-family:Sora}
 code{background:var(--bg);border:1px solid var(--line);padding:2px 6px;border-radius:6px;font-size:13px}pre{background:var(--bg);border:1px solid var(--line);padding:12px;border-radius:10px;overflow:auto;font-size:13px;margin:0}

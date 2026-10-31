@@ -30,19 +30,23 @@
     @if (value(privateName)) {
       <bit-form-field>
         <bit-label>{{ "gpgPrivateKey" | i18n }}</bit-label>
-        <input
-          readonly
+        <textarea
           bitInput
-          type="password"
-          [value]="value(privateName)"
+          readonly
+          rows="4"
           class="tw-font-mono"
+          [style.-webkit-text-security]="showPrivateKey() ? 'none' : 'disc'"
+          [value]="value(privateName)"
           data-testid="gpg-private-key"
-        />
+          [attr.data-revealed]="showPrivateKey()"
+        ></textarea>
         <button
           type="button"
-          bitIconButton
+          [bitIconButton]="showPrivateKey() ? 'bwi-eye-slash' : 'bwi-eye'"
           bitSuffix
-          bitPasswordInputToggle
+          [label]="'toggleVisibility' | i18n"
+          [attr.aria-pressed]="showPrivateKey()"
+          (click)="showPrivateKey.set(!showPrivateKey())"
           data-testid="toggle-gpg-private-key"
         ></button>
       </bit-form-field>

@@ -1869,10 +1869,10 @@ export class ApiService implements ApiServiceAbstraction {
     await this.send("PUT", `/ciphers/${cipherId}/tags`, { tagIds }, true, true);
   }
 
-<<<<<<< ours
   async deleteKomboeTag(id: string): Promise<void> {
     await this.send("DELETE", `/tags/${id}`, null, true, false);
-=======
+  }
+
   getPasswordExpiry(): Promise<{
     days: number | null;
     userDays: number | null;
@@ -1887,7 +1887,6 @@ export class ApiService implements ApiServiceAbstraction {
     organizationDays: number | null;
   }> {
     return this.send("PUT", "/password-expiry", { days }, true, true);
->>>>>>> theirs
   }
 
   private async getCredentials(env: Environment): Promise<RequestCredentials> {

@@ -499,6 +499,26 @@ async fn password_login(data: ConnectData, user_id: &mut Option<UserId>, conn: &
     authenticated_response(&user, &mut device, auth_tokens, twofactor_token, conn, ip).await
 }
 
+async fn user_decryption_options(
+    user: &User,
+    device: &Device,
+    has_master_password: bool,
+    master_password_unlock: Value,
+    conn: &DbConn,
+) -> Value {
+    let mut options = json!({
+        "HasMasterPassword": has_master_password,
+        "MasterPasswordUnlock": master_password_unlock,
+        "Object": "userDecryptionOptions"
+    });
+    if let Some(trusted) =
+        crate::api::core::trusted::decryption_option(&device.uuid, &user.uuid, has_master_password, conn).await
+    {
+        options["TrustedDeviceOption"] = trusted;
+    }
+    options
+}
+
 async fn authenticated_response(
     user: &User,
     device: &mut Device,
@@ -579,11 +599,7 @@ async fn authenticated_response(
         "MasterPasswordPolicy": master_password_policy,
         "scope": auth_tokens.scope(),
         "AccountKeys": account_keys,
-        "UserDecryptionOptions": {
-            "HasMasterPassword": has_master_password,
-            "MasterPasswordUnlock": master_password_unlock,
-            "Object": "userDecryptionOptions"
-        },
+        "UserDecryptionOptions": user_decryption_options(user, device, has_master_password, master_password_unlock, conn).await,
     });
 
     if !user.akey.is_empty() {
@@ -738,11 +754,7 @@ async fn user_api_key_login(
         "ForcePasswordReset": false,
         "scope": AuthMethod::UserApiKey.scope(),
         "AccountKeys": account_keys,
-        "UserDecryptionOptions": {
-            "HasMasterPassword": has_master_password,
-            "MasterPasswordUnlock": master_password_unlock,
-            "Object": "userDecryptionOptions"
-        },
+        "UserDecryptionOptions": user_decryption_options(&user, &device, has_master_password, master_password_unlock, conn).await,
     });
 
     Ok(Json(result))

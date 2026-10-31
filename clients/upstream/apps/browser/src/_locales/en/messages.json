@@ -3701,6 +3701,18 @@
     "message": "All Sends",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
+  "sendViews": {
+    "message": "Views"
+  },
+  "sendViewsRemaining": {
+    "message": "$COUNT$ views left",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "3"
+      }
+    }
+  },
   "maxAccessCountReached": {
     "message": "Max access count reached",
     "description": "This text will be displayed after a Send has been accessed the maximum amount of times."

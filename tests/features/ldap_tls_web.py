@@ -125,7 +125,10 @@ mail: ada-ldaptlsweb@komboe.test
             page.get_by_test_id("ldap-result").wait_for()
             assert "users 1" in page.get_by_test_id("ldap-result").inner_text()
             assert page.get_by_test_id("ldap-tls-ca").input_value() == "", "CA field clears after save"
-            page.reload(wait_until="domcontentloaded")
+            # A full reload locks the vault; re-enter the route in-app so the component reloads from the server.
+            page.goto(WEB + "/#/vault", wait_until="domcontentloaded")
+            page.wait_for_timeout(1500)
+            page.goto(url, wait_until="domcontentloaded")
             page.get_by_test_id("ldap-ca-stored").wait_for()
             assert page.get_by_test_id("ldap-start-tls").is_checked(), "StartTLS must persist"
             page.get_by_test_id("ldap-sync").click()

@@ -8,6 +8,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
 const webpack = require("webpack");
+const komboeSourceRef = require(path.resolve(__dirname, "../../scripts/komboe-source-ref.js"));
 
 const config = require(path.resolve(__dirname, "config.js"));
 const pjson = require(path.resolve(__dirname, "package.json"));
@@ -165,6 +166,10 @@ module.exports.buildConfig = function buildConfig(params) {
     }),
     new CopyWebpackPlugin({
       patterns: [
+        // Komboe: ship license texts and third-party notices with every package.
+        { from: path.resolve(__dirname, "../../../../LICENSE"), to: "LICENSE.txt" },
+        { from: path.resolve(__dirname, "../../LICENSE_GPL.txt"), to: "LICENSE_GPL.txt" },
+        { from: path.resolve(__dirname, "../../../../THIRD-PARTY-NOTICES.md"), to: "THIRD-PARTY-NOTICES.md" },
         { from: path.resolve(__dirname, "src/.nojekyll") },
         { from: path.resolve(__dirname, "src/manifest.json") },
         { from: path.resolve(__dirname, "src/favicon.ico") },
@@ -204,6 +209,7 @@ module.exports.buildConfig = function buildConfig(params) {
       ENV: ENV,
       NODE_ENV: NODE_ENV === "production" ? "production" : "development",
       APPLICATION_VERSION: pjson.version,
+      KOMBOE_SOURCE_REF: komboeSourceRef(),
       CACHE_TAG: Math.random().toString(36).substring(7),
       URLS: envConfig["urls"] ?? {},
       STRIPE_KEY: envConfig["stripeKey"] ?? "",

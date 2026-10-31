@@ -6,7 +6,7 @@
   "productName": "Komboe",
   "appId": "io.komboe.desktop",
   "buildDependenciesFromSource": true,
-  "copyright": "Copyright © 2026 GoDesk.",
+  "copyright": "Copyright \u00a9 2026 GoDesk.",
   "directories": {
     "buildResources": "resources",
     "output": "dist",
@@ -351,6 +351,20 @@
       "schemes": [
         "komboe"
       ]
+    }
+  ],
+  "extraResources": [
+    {
+      "from": "../../../../LICENSE",
+      "to": "LICENSE.txt"
+    },
+    {
+      "from": "../../LICENSE_GPL.txt",
+      "to": "LICENSE_GPL.txt"
+    },
+    {
+      "from": "../../../../THIRD-PARTY-NOTICES.md",
+      "to": "THIRD-PARTY-NOTICES.md"
     }
   ]
 }

@@ -1,6 +1,11 @@
-import { BrowserWindow, clipboard, dialog, MenuItemConstructorOptions } from "electron";
+import { BrowserWindow, clipboard, dialog, MenuItemConstructorOptions, shell } from "electron";
 
 import { I18nService } from "@bitwarden/common/platform/abstractions/i18n.service";
+import {
+  KOMBOE_LEGAL_NOTICE,
+  komboeLicenseUrl,
+  komboeSourceUrl,
+} from "@bitwarden/common/platform/misc/komboe-legal";
 
 import { flagEnabled } from "../../platform/flags";
 import { VersionMain } from "../../platform/main/version.main";
@@ -70,7 +75,9 @@ export class AboutMenu implements IMenubarMenu {
           "\nNode " +
           process.versions.node +
           "\nArchitecture " +
-          process.arch;
+          process.arch +
+          "\n\n" +
+          KOMBOE_LEGAL_NOTICE;
         const productName = this.localize(
           flagEnabled("prereleaseBuild") ? "bitwardenBeta" : "bitwarden",
         );
@@ -80,10 +87,14 @@ export class AboutMenu implements IMenubarMenu {
           detail: aboutInformation,
           type: "info",
           noLink: true,
-          buttons: [this.localize("ok"), this.localize("copy")],
+          buttons: [this.localize("ok"), this.localize("copy"), "View license", "Source code"],
         });
         if (result.response === 1) {
           clipboard.writeText(aboutInformation);
+        } else if (result.response === 2) {
+          await shell.openExternal(komboeLicenseUrl());
+        } else if (result.response === 3) {
+          await shell.openExternal(komboeSourceUrl());
         }
       },
     };

@@ -1,6 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 const webpack = require("webpack");
+const komboeSourceRef = require(path.resolve(__dirname, "../../scripts/komboe-source-ref.js"));
 const { merge } = require("webpack-merge");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
@@ -177,12 +178,17 @@ module.exports.buildConfig = function buildConfig(params) {
               ]
             : []),
           { from: path.resolve(__dirname, "src/locales"), to: "locales" },
+          // Komboe: ship license texts and third-party notices with every package.
+          { from: path.resolve(__dirname, "../../../../LICENSE"), to: "LICENSE.txt" },
+          { from: path.resolve(__dirname, "../../LICENSE_GPL.txt"), to: "LICENSE_GPL.txt" },
+          { from: path.resolve(__dirname, "../../../../THIRD-PARTY-NOTICES.md"), to: "THIRD-PARTY-NOTICES.md" },
         ],
       }),
       new DefinePlugin({
         BIT_ENVIRONMENT: JSON.stringify(NODE_ENV),
       }),
       new EnvironmentPlugin({
+        KOMBOE_SOURCE_REF: komboeSourceRef(),
         FLAGS: envConfig.flags,
         DEV_FLAGS: NODE_ENV === "development" ? envConfig.devFlags : {},
       }),
@@ -393,6 +399,7 @@ module.exports.buildConfig = function buildConfig(params) {
         BIT_ENVIRONMENT: JSON.stringify(NODE_ENV),
       }),
       new webpack.EnvironmentPlugin({
+        KOMBOE_SOURCE_REF: komboeSourceRef(),
         ENV: ENV,
         FLAGS: envConfig.flags,
         DEV_FLAGS: NODE_ENV === "development" ? envConfig.devFlags : {},

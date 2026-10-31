@@ -12,6 +12,7 @@ import {
   DialogRef,
   ButtonModule,
   DialogModule,
+  KomboeLegalNoticeComponent,
   ToastService,
   TypographyModule,
 } from "@bitwarden/components";
@@ -20,7 +21,14 @@ import {
 // eslint-disable-next-line @angular-eslint/prefer-on-push-component-change-detection
 @Component({
   templateUrl: "about-dialog.component.html",
-  imports: [CommonModule, JslibModule, DialogModule, ButtonModule, TypographyModule],
+  imports: [
+    CommonModule,
+    JslibModule,
+    DialogModule,
+    ButtonModule,
+    TypographyModule,
+    KomboeLegalNoticeComponent,
+  ],
 })
 export class AboutDialogComponent {
   // FIXME(https://bitwarden.atlassian.net/browse/CL-903): Migrate to Signals

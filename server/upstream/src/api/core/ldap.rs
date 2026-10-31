@@ -4,10 +4,15 @@
 //! mail and group membership, and invites or revokes organization members.
 //! It never reads `userPassword` and never stores a vault key.
 
-use std::collections::{HashMap, HashSet};
+use std::{
+    collections::{HashMap, HashSet},
+    sync::Arc,
+    time::Duration,
+};
 
 use diesel::prelude::*;
-use ldap3::{LdapConnAsync, Scope, SearchEntry};
+use ldap3::{LdapConnAsync, LdapConnSettings, Scope, SearchEntry};
+use rustls_pki_types::{CertificateDer, pem::PemObject};
 use rocket::{Route, serde::json::Json};
 use serde::Deserialize;
 
@@ -90,6 +95,8 @@ struct LdapConfig {
     group_base: String,
     group_filter: String,
     member_attr: String,
+    start_tls: bool,
+    tls_ca: Option<String>,
 }
 
 #[derive(Deserialize)]
@@ -104,6 +111,9 @@ struct LdapBody {
     group_base: Option<String>,
     group_filter: Option<String>,
     member_attr: Option<String>,
+    start_tls: Option<bool>,
+    /// PEM CA certificate(s) trusted for ldaps:// / StartTLS in addition to the system roots.
+    tls_ca: Option<String>,
 }
 
 struct DirectoryUser {
@@ -124,6 +134,36 @@ fn require_admin(member: &Membership) -> crate::api::EmptyResult {
         err!("Only an owner or admin can manage directory sync")
     }
     Ok(())
+}
+
+fn parse_ca(pem: &str) -> Result<Vec<CertificateDer<'static>>, String> {
+    let certs: Vec<_> = CertificateDer::pem_slice_iter(pem.as_bytes())
+        .collect::<Result<_, _>>()
+        .map_err(|e| format!("CA certificate is not valid PEM: {e}"))?;
+    if certs.is_empty() {
+        return Err("CA certificate must contain at least one PEM CERTIFICATE block".into());
+    }
+    Ok(certs)
+}
+
+/// TLS for ldaps:// and StartTLS: system roots plus the org's CA, full hostname and chain
+/// verification (no "skip verify" switch exists).
+fn tls_config(cfg: &LdapConfig) -> Result<Arc<rustls::ClientConfig>, String> {
+    let mut roots = rustls::RootCertStore::empty();
+    for cert in rustls_native_certs::load_native_certs().certs {
+        roots.add(cert).ok();
+    }
+    if let Some(pem) = cfg.tls_ca.as_deref().filter(|p| !p.trim().is_empty()) {
+        for cert in parse_ca(pem)? {
+            roots.add(cert).map_err(|e| format!("CA certificate rejected: {e}"))?;
+        }
+    }
+    let config = rustls::ClientConfig::builder_with_provider(Arc::new(rustls::crypto::ring::default_provider()))
+        .with_safe_default_protocol_versions()
+        .map_err(|e| format!("TLS setup failed: {e}"))?
+        .with_root_certificates(roots)
+        .with_no_client_auth();
+    Ok(Arc::new(config))
 }
 
 fn check_url(url: &str) -> crate::api::EmptyResult {
@@ -155,6 +195,8 @@ fn public_json(cfg: &LdapConfig) -> serde_json::Value {
         "groupBase": cfg.group_base,
         "groupFilter": cfg.group_filter,
         "memberAttr": cfg.member_attr,
+        "startTls": cfg.start_tls,
+        "hasCaCert": cfg.tls_ca.as_deref().is_some_and(|p| !p.trim().is_empty()),
         "object": "ldap"
     })
 }
@@ -180,6 +222,25 @@ async fn put_ldap(org_id: OrganizationId, body: Json<LdapBody>, headers: Headers
     let body = body.into_inner();
     check_url(&body.url)?;
     let existing = load(&org_id, &conn).await;
+    // Clients that predate these fields omit them; keep the stored TLS settings in that case.
+    let is_ldaps = body.url.trim().to_ascii_lowercase().starts_with("ldaps://");
+    let start_tls = match body.start_tls {
+        Some(v) => v,
+        None => !is_ldaps && existing.as_ref().is_some_and(|c| c.start_tls),
+    };
+    if start_tls && is_ldaps {
+        err!("StartTLS is for ldap:// URLs; ldaps:// is already TLS")
+    }
+    let tls_ca = match body.tls_ca {
+        Some(pem) if pem.trim().is_empty() => None,
+        Some(pem) => {
+            if let Err(e) = parse_ca(&pem) {
+                err!(e)
+            }
+            Some(pem)
+        }
+        None => existing.as_ref().and_then(|c| c.tls_ca.clone()),
+    };
     let password = match body.bind_password.filter(|p| !p.is_empty()) {
         Some(password) => match seal(&password) {
             Ok(sealed) => sealed,
@@ -201,6 +262,8 @@ async fn put_ldap(org_id: OrganizationId, body: Json<LdapBody>, headers: Headers
         group_base: body.group_base.unwrap_or_default(),
         group_filter: body.group_filter.unwrap_or_else(|| "(objectClass=groupOfNames)".to_string()),
         member_attr: body.member_attr.unwrap_or_else(|| "member".to_string()),
+        start_tls,
+        tls_ca,
     };
     let saved = row.clone();
     if let Err(e) = conn
@@ -217,11 +280,14 @@ async fn put_ldap(org_id: OrganizationId, body: Json<LdapBody>, headers: Headers
 }
 
 async fn directory(cfg: &LdapConfig) -> Result<(Vec<DirectoryUser>, Vec<DirectoryGroup>), String> {
-    if cfg.url.to_ascii_lowercase().starts_with("ldaps://") {
-        return Err("ldaps:// needs a TLS build of the directory client; use ldap:// on a trusted network".into());
+    let tls = cfg.start_tls || cfg.url.to_ascii_lowercase().starts_with("ldaps://");
+    let mut settings = LdapConnSettings::new().set_conn_timeout(Duration::from_secs(15)).set_starttls(cfg.start_tls);
+    if tls {
+        settings = settings.set_config(tls_config(cfg)?);
     }
-    let (conn, mut ldap) =
-        LdapConnAsync::new(&cfg.url).await.map_err(|e| format!("Directory connection failed: {e}"))?;
+    let (conn, mut ldap) = LdapConnAsync::with_settings(settings, &cfg.url)
+        .await
+        .map_err(|e| format!("Directory connection failed: {e}"))?;
     ldap3::drive!(conn);
     let bind_password = unseal(&cfg.bind_password)?;
     ldap.simple_bind(&cfg.bind_dn, &bind_password)

@@ -3,7 +3,6 @@ import log from "electron-log";
 import { autoUpdater, UpdateDownloadedEvent, VerifyUpdateSupport } from "electron-updater";
 
 import { I18nService } from "@bitwarden/common/platform/abstractions/i18n.service";
-import { UrlType } from "@bitwarden/common/platform/misc/safe-urls";
 import { LogService } from "@bitwarden/logging";
 
 import { SafeShell } from "../platform/main/safe-shell.main";
@@ -41,6 +40,20 @@ export class UpdaterMain {
     private shell: SafeShell,
   ) {
     autoUpdater.logger = log;
+
+    // Opt-in feed. KOMBOE_UPDATE_URL replaces the build-time downloads.komboe.com
+    // URL with a generic feed the operator hosts. Setting the URL does not
+    // contact it; checks stay off until KOMBOE_UPDATE_FEED=1.
+    const updateUrl = process.env.KOMBOE_UPDATE_URL;
+    if (updateUrl != null && updateUrl.startsWith("https://")) {
+      autoUpdater.setFeedURL({
+        provider: "generic",
+        url: updateUrl,
+      });
+    }
+    // The shell stays on the constructor so startup wiring is unchanged.
+    // Update checks do not open a browser.
+    void this.shell;
 
     this.originalRolloutFunction = autoUpdater.isUserWithinRollout;
 
@@ -140,11 +153,15 @@ export class UpdaterMain {
     }
 
     if (!this.canUpdate) {
-      if (withFeedback) {
-        void this.shell.openExternal(
-          "https://github.com/bitwarden/clients/releases",
-          UrlType.WebUrl,
-        );
+      if (withFeedback && this.windowMain.win != null) {
+        await dialog.showMessageBox(this.windowMain.win, {
+          type: "info",
+          message:
+            "Update checks are off. Set KOMBOE_UPDATE_FEED=1 to check the configured feed, or KOMBOE_UPDATE_URL to an https feed you host.",
+          buttons: [this.i18nService.t("ok")],
+          defaultId: 0,
+          noLink: true,
+        });
       }
 
       return;
@@ -267,6 +284,11 @@ export class UpdaterMain {
   }
 
   private userDisabledUpdates(): boolean {
+    // A self-hosted desktop build does not check downloads.komboe.com, or any
+    // other feed, unless the operator opts in. Linux already cannot auto-update.
+    if (process.env.KOMBOE_UPDATE_FEED !== "1") {
+      return true;
+    }
     for (const arg of process.argv) {
       if (arg != null && arg.toUpperCase().indexOf("--ELECTRON_NO_UPDATER=1") > -1) {
         return true;

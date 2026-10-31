@@ -29,6 +29,23 @@ server/upstream/target/release/vaultwarden
 For the test suites, also relax rate limits (`LOGIN_RATELIMIT_SECONDS=1 LOGIN_RATELIMIT_MAX_BURST=10000`,
 same for `ADMIN_` and `UNAUTHENTICATED_`).
 
+## What a self-hosted server contacts
+
+A server started with the defaults does not call komboe.com, Bitwarden, GitHub, Cloudflare, Have I Been Pwned, or the websites stored in the vault. These are the switches, all off until you set them:
+
+| Switch | Default | What it calls |
+|---|---|---|
+| `PUSH_ENABLED` | false, and `PUSH_RELAY_URI` / `PUSH_IDENTITY_URI` are empty | The https relay you set. There is no built-in relay. |
+| `DISABLE_ICON_DOWNLOAD` | true | With the default `ICON_SERVICE=internal`, favicons are not fetched. Set this to false to download them from the sites in the vault, on your server. `ICON_SERVICE=bitwarden`, `duckduckgo`, or `google` redirects clients to those hosts. |
+| `ADMIN_EXTERNAL_CHECKS` | false | GitHub (version and DNS) and Cloudflare (clock) from `/admin/diagnostics`. |
+| `HIBP_API_KEY` | unset | `haveibeenpwned.com` for the breach report. |
+| `YUBICO_CLIENT_ID` and `YUBICO_SECRET_KEY` | unset | YubiKey OTP verification. Set `YUBICO_SERVER` to a validation server you run. |
+| `DUO_IKEY` / `DUO_SKEY` | unset | Duo, only for accounts that turn Duo on. |
+| `SSO_ENABLED` | false | Your OIDC issuer (`SSO_AUTHORITY`) or SAML IdP. |
+| `SMTP_HOST` | unset | Your mail server. No mail is sent until this is set. |
+
+Desktop update checks stay off unless `KOMBOE_UPDATE_FEED=1`. `KOMBOE_UPDATE_URL` points that check at an https feed you host; otherwise the build-time feed is `https://downloads.komboe.com/desktop`. The CLI `update` command contacts a host only when `KOMBOE_CLI_RELEASES_URL` is a GitHub-compatible releases API you host. The master-password breach checkbox is unchecked, so a password change does not call `api.pwnedpasswords.com` until the person checks it. The exposed-passwords report and the per-login check button still call that k-anonymity API when someone runs them. The web vault served by this server uses its own origin. An extension, desktop app, CLI, or Android app that has not saved a server URL still has the upstream Bitwarden cloud hosts compiled in as the unset-server default; the server picker does not offer those regions.
+
 ## Tests
 ```sh
 python3 tests/e2e/roundtrip.py                       # register/login/create/sync + DB holds only ciphertext

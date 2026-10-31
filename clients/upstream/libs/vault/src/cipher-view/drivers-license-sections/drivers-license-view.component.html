@@ -57,12 +57,14 @@
           [value]="driversLicense().licenseNumber"
           aria-readonly="true"
           type="password"
+          data-testid="license-number"
         />
         <button
           bitSuffix
           type="button"
           bitIconButton
           bitPasswordInputToggle
+          data-testid="toggle-license-number"
           [toggled]="revealLicenseNumber()"
           (toggledChange)="toggleLicenseNumberVisible($event)"
         ></button>

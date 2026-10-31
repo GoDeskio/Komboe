@@ -22,7 +22,6 @@ import { OrganizationId } from "@bitwarden/common/types/guid";
 import { CipherService } from "@bitwarden/common/vault/abstractions/cipher.service";
 import { FolderApiServiceAbstraction } from "@bitwarden/common/vault/abstractions/folder/folder-api.service.abstraction";
 import { FolderService } from "@bitwarden/common/vault/abstractions/folder/folder.service.abstraction";
-import { CipherType } from "@bitwarden/common/vault/enums";
 import { Folder } from "@bitwarden/common/vault/models/domain/folder";
 import { KeyService } from "@bitwarden/key-management";
 // eslint-disable-next-line no-restricted-imports
@@ -107,19 +106,6 @@ export class CreateCommand {
       );
 
       const cipherView = CipherExport.toView(req, undefined, allowDerivedSshKeys);
-
-      if (
-        cipherView.type === CipherType.BankAccount ||
-        cipherView.type === CipherType.DriversLicense ||
-        cipherView.type === CipherType.Passport
-      ) {
-        const newItemTypesEnabled = await firstValueFrom(
-          this.configService.getFeatureFlag$(FeatureFlag.PM32009NewItemTypes),
-        );
-        if (!newItemTypesEnabled) {
-          return Response.error(`Item type ${cipherView.type} is not available.`);
-        }
-      }
 
       const isCipherTypeRestricted =
         await this.cliRestrictedItemTypesService.isCipherRestricted(cipherView);

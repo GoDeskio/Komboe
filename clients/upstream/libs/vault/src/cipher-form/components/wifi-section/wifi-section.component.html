@@ -1,0 +1,43 @@
+<section [formGroup]="wifiForm" class="tw-mb-5 bit-compact:tw-mb-4">
+  <bit-section-header>
+    <h2 bitTypography="h6">{{ "wifiDetails" | i18n }}</h2>
+  </bit-section-header>
+  <bit-card>
+    <bit-form-field>
+      <bit-label>{{ "ssid" | i18n }}</bit-label>
+      <input bitInput formControlName="ssid" data-testid="wifi-ssid" />
+    </bit-form-field>
+
+    <bit-form-field>
+      <bit-label>{{ "password" | i18n }}</bit-label>
+      <input
+        bitInput
+        formControlName="password"
+        type="password"
+        class="tw-font-mono"
+        data-testid="wifi-password"
+      />
+      <button
+        type="button"
+        bitIconButton
+        bitSuffix
+        bitPasswordInputToggle
+        data-testid="toggle-wifi-password"
+      ></button>
+    </bit-form-field>
+
+    <bit-form-field>
+      <bit-label>{{ "wifiSecurity" | i18n }}</bit-label>
+      <bit-select formControlName="security" data-testid="wifi-security">
+        @for (option of securityOptions; track option) {
+          <bit-option [value]="option" [label]="option"></bit-option>
+        }
+      </bit-select>
+    </bit-form-field>
+
+    <bit-form-control disableMargin>
+      <input bitCheckbox type="checkbox" formControlName="hidden" data-testid="wifi-hidden" />
+      <bit-label>{{ "hiddenNetwork" | i18n }}</bit-label>
+    </bit-form-control>
+  </bit-card>
+</section>

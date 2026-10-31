@@ -88,13 +88,17 @@
     <app-passport-view [passport]="cipher()!.passport" [cipher]="cipher()!"></app-passport-view>
   }
 
+  @if (hasWifi()) {
+    <app-wifi-view [cipher]="cipher()!"></app-wifi-view>
+  }
+
   <!-- ADDITIONAL OPTIONS -->
   @if (cipher()?.notes) {
     <app-additional-options [notes]="cipher()!.notes"> </app-additional-options>
   }
 
   <!-- CUSTOM FIELDS -->
-  @if (cipher()?.hasFields) {
+  @if (cipher()?.hasFields && !hasWifi()) {
     <app-custom-fields-v2 [cipher]="cipher()"> </app-custom-fields-v2>
   }
 

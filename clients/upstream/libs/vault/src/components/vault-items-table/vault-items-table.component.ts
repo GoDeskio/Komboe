@@ -29,6 +29,7 @@ import { CipherType } from "@bitwarden/common/vault/enums";
 import { TreeNode } from "@bitwarden/common/vault/models/domain/tree-node";
 import { FolderView } from "@bitwarden/common/vault/models/view/folder.view";
 import { DIALOG_CIPHER_MENU_ITEMS } from "@bitwarden/common/vault/types/cipher-menu-items";
+import { KOMBOE_WIFI_TYPE } from "@bitwarden/common/vault/utils/komboe-wifi";
 import {
   CipherViewLike,
   CipherViewLikeUtils,
@@ -143,7 +144,11 @@ const SEARCH_FILTER_KEY = "search";
  * new item dialog lists them. Derived from {@link DIALOG_CIPHER_MENU_ITEMS} so the two stay in
  * step as types are added.
  */
-const ALL_CIPHER_TYPES: CipherType[] = DIALOG_CIPHER_MENU_ITEMS.map((item) => item.type);
+const CIPHER_TYPE_MENU_ITEMS = DIALOG_CIPHER_MENU_ITEMS.filter(
+  (item) => item.type !== KOMBOE_WIFI_TYPE,
+);
+
+const ALL_CIPHER_TYPES: CipherType[] = CIPHER_TYPE_MENU_ITEMS.map((item) => item.type);
 
 /**
  * i18n key per cipher type, for the Type chip's options — taken from the same menu items
@@ -153,7 +158,7 @@ const ALL_CIPHER_TYPES: CipherType[] = DIALOG_CIPHER_MENU_ITEMS.map((item) => it
  * VaultItemsTableComponent.cipherTypeLabel} always resolves.
  */
 const CIPHER_TYPE_LABELS = new Map<CipherType, string>(
-  DIALOG_CIPHER_MENU_ITEMS.map((item) => [item.type, item.labelKey]),
+  CIPHER_TYPE_MENU_ITEMS.map((item) => [item.type, item.labelKey]),
 );
 
 /** Stable empty list for a row with no memberships — see `chipsById` for why identity matters. */

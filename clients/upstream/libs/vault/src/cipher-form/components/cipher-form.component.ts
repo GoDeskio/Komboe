@@ -23,6 +23,7 @@ import { getUserId } from "@bitwarden/common/auth/services/account.service";
 import { I18nService } from "@bitwarden/common/platform/abstractions/i18n.service";
 import { CipherArchiveService } from "@bitwarden/common/vault/abstractions/cipher-archive.service";
 import { CipherType, SecureNoteType } from "@bitwarden/common/vault/enums";
+import { isKomboeWifi, KOMBOE_WIFI_TYPE } from "@bitwarden/common/vault/utils/komboe-wifi";
 import { CipherView } from "@bitwarden/common/vault/models/view/cipher.view";
 import {
   AsyncActionsModule,
@@ -50,6 +51,7 @@ import { LoginDetailsSectionComponent } from "./login-details-section/login-deta
 import { NewItemNudgeComponent } from "./new-item-nudge/new-item-nudge.component";
 import { PassportSectionComponent } from "./passport-section/passport-section.component";
 import { SshKeySectionComponent } from "./sshkey-section/sshkey-section.component";
+import { WifiSectionComponent } from "./wifi-section/wifi-section.component";
 
 // FIXME(https://bitwarden.atlassian.net/browse/CL-764): Migrate to OnPush
 // eslint-disable-next-line @angular-eslint/prefer-on-push-component-change-detection
@@ -79,6 +81,7 @@ import { SshKeySectionComponent } from "./sshkey-section/sshkey-section.componen
     BankAccountSectionComponent,
     DriversLicenseSectionComponent,
     PassportSectionComponent,
+    WifiSectionComponent,
     AdditionalOptionsSectionComponent,
     LoginDetailsSectionComponent,
     NewItemNudgeComponent,
@@ -168,6 +171,8 @@ export class CipherFormComponent implements AfterViewInit, OnInit, OnChanges, Ci
   protected loading: boolean = true;
 
   CipherType = CipherType;
+  /** Wi-Fi is edited with its own fields and stored as a secure note. */
+  komboeWifi = false;
 
   ngAfterViewInit(): void {
     if (this.submitBtn) {
@@ -263,6 +268,7 @@ export class CipherFormComponent implements AfterViewInit, OnInit, OnChanges, Ci
 
     this.updatedCipherView = new CipherView();
     this.originalCipherView = null;
+    this.komboeWifi = false;
     this.cipherForm = this.formBuilder.group<CipherForm>({});
 
     if (this.config == null) {
@@ -283,6 +289,9 @@ export class CipherFormComponent implements AfterViewInit, OnInit, OnChanges, Ci
         this.config.originalCipher,
       );
 
+      this.komboeWifi =
+        this.config.cipherType === KOMBOE_WIFI_TYPE || isKomboeWifi(this.updatedCipherView);
+
       if (this.config.mode === "clone") {
         this.updatedCipherView.id = null;
         // Ensure the cloned cipher generates a new cipher key
@@ -295,9 +304,10 @@ export class CipherFormComponent implements AfterViewInit, OnInit, OnChanges, Ci
         }
       }
     } else {
-      this.updatedCipherView.type = this.config.cipherType;
+      this.komboeWifi = this.config.cipherType === KOMBOE_WIFI_TYPE;
+      this.updatedCipherView.type = this.komboeWifi ? CipherType.SecureNote : this.config.cipherType;
 
-      if (this.config.cipherType === CipherType.SecureNote) {
+      if (this.komboeWifi || this.config.cipherType === CipherType.SecureNote) {
         this.updatedCipherView.secureNote.type = SecureNoteType.Generic;
       }
     }

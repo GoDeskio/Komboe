@@ -14,7 +14,6 @@ import { AccountService } from "@bitwarden/common/auth/abstractions/account.serv
 import { getUserId } from "@bitwarden/common/auth/services/account.service";
 import { BillingAccountProfileStateService } from "@bitwarden/common/billing/abstractions/account/billing-account-profile-state.service";
 import { EventCollectionService, EventType } from "@bitwarden/common/dirt/event-logs";
-import { FeatureFlag } from "@bitwarden/common/enums/feature-flag.enum";
 import { BankAccountExport } from "@bitwarden/common/models/export/bank-account.export";
 import { CardExport } from "@bitwarden/common/models/export/card.export";
 import { CipherExport } from "@bitwarden/common/models/export/cipher.export";
@@ -36,7 +35,7 @@ import { CipherService } from "@bitwarden/common/vault/abstractions/cipher.servi
 import { FolderService } from "@bitwarden/common/vault/abstractions/folder/folder.service.abstraction";
 import { SearchService } from "@bitwarden/common/vault/abstractions/search.service";
 import { TotpService } from "@bitwarden/common/vault/abstractions/totp.service";
-import { CipherType } from "@bitwarden/common/vault/enums";
+import { CipherType, FieldType } from "@bitwarden/common/vault/enums";
 import { CipherView } from "@bitwarden/common/vault/models/view/cipher.view";
 import { FolderView } from "@bitwarden/common/vault/models/view/folder.view";
 import { KeyService } from "@bitwarden/key-management";
@@ -566,6 +565,8 @@ export class GetCommand extends DownloadCommand {
   }
 
   private async getTemplate(id: string) {
+    // Bank, license, passport, and Wi-Fi templates are always available.
+    void this.configService;
     let template: any = null;
     switch (id.toLowerCase()) {
       case "item":
@@ -589,34 +590,36 @@ export class GetCommand extends DownloadCommand {
       case "item.securenote":
         template = SecureNoteExport.template();
         break;
-      case "item.bankaccount": {
-        const newItemTypesEnabled = await firstValueFrom(
-          this.configService.getFeatureFlag$(FeatureFlag.PM32009NewItemTypes),
-        );
-        if (!newItemTypesEnabled) {
-          return Response.badRequest("Bank account item type is not available.");
-        }
+      case "item.bankaccount":
         template = BankAccountExport.template();
         break;
-      }
-      case "item.driverslicense": {
-        const newItemTypesEnabled = await firstValueFrom(
-          this.configService.getFeatureFlag$(FeatureFlag.PM32009NewItemTypes),
-        );
-        if (!newItemTypesEnabled) {
-          return Response.badRequest("Driver's license item type is not available.");
-        }
+      case "item.driverslicense":
         template = DriversLicenseExport.template();
         break;
-      }
-      case "item.passport": {
-        const newItemTypesEnabled = await firstValueFrom(
-          this.configService.getFeatureFlag$(FeatureFlag.PM32009NewItemTypes),
-        );
-        if (!newItemTypesEnabled) {
-          return Response.badRequest("Passport item type is not available.");
-        }
+      case "item.passport":
         template = PassportExport.template();
+        break;
+      case "item.wifi": {
+        const wifi = CipherExport.template();
+        wifi.type = CipherType.SecureNote;
+        wifi.name = "Wi-Fi";
+        wifi.notes = "";
+        wifi.secureNote = SecureNoteExport.template();
+        const field = (name: string, value: string, type: FieldType) => {
+          const exported = FieldExport.template();
+          exported.name = name;
+          exported.value = value;
+          exported.type = type;
+          return exported;
+        };
+        wifi.fields = [
+          field("__komboe", "wifi", FieldType.Text),
+          field("SSID", "", FieldType.Text),
+          field("Password", "", FieldType.Hidden),
+          field("Security", "WPA2", FieldType.Text),
+          field("Hidden network", "false", FieldType.Boolean),
+        ];
+        template = wifi;
         break;
       }
       case "folder":

@@ -282,14 +282,16 @@ describe("LoginDetailsSectionComponent", () => {
     const getTogglePasswordVisibilityBtn = () =>
       fixture.nativeElement.querySelector("button[data-testid='toggle-password-visibility']");
 
-    it("should show the password visibility toggle button based on viewHiddenFields", () => {
+    it("should show the password visibility toggle button", () => {
       jest.spyOn(component, "viewHiddenFields", "get").mockReturnValue(true);
       fixture.detectChanges();
       expect(getTogglePasswordVisibilityBtn()).not.toBeNull();
+      expect(getTogglePasswordVisibilityBtn().disabled).toBe(false);
 
       jest.spyOn(component, "viewHiddenFields", "get").mockReturnValue(false);
       fixture.detectChanges();
-      expect(getTogglePasswordVisibilityBtn()).toBeNull();
+      expect(getTogglePasswordVisibilityBtn()).not.toBeNull();
+      expect(getTogglePasswordVisibilityBtn().disabled).toBe(true);
     });
 
     it("logs password viewed event when toggledChange is true", async () => {
@@ -437,14 +439,16 @@ describe("LoginDetailsSectionComponent", () => {
     const getCaptureTotpBtn = () =>
       fixture.nativeElement.querySelector("button[data-testid='capture-totp-button']");
 
-    it("should show the totp visibility toggle button based on viewHiddenFields", () => {
+    it("should show the totp visibility toggle button", () => {
       jest.spyOn(component, "viewHiddenFields", "get").mockReturnValue(true);
       fixture.detectChanges();
       expect(getToggleTotpVisibilityBtn()).not.toBeNull();
+      expect(getToggleTotpVisibilityBtn().disabled).toBe(false);
 
       jest.spyOn(component, "viewHiddenFields", "get").mockReturnValue(false);
       fixture.detectChanges();
-      expect(getToggleTotpVisibilityBtn()).toBeNull();
+      expect(getToggleTotpVisibilityBtn()).not.toBeNull();
+      expect(getToggleTotpVisibilityBtn().disabled).toBe(true);
     });
 
     it("should show the totp capture button based on canCaptureTotp", () => {

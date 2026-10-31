@@ -63,6 +63,24 @@
   "typeBankAccount": {
     "message": "Bank account"
   },
+  "typeWifi": {
+    "message": "Wi-Fi"
+  },
+  "typeWifiSubtitle": {
+    "message": "Wireless network"
+  },
+  "wifiDetails": {
+    "message": "Wi-Fi details"
+  },
+  "ssid": {
+    "message": "SSID"
+  },
+  "wifiSecurity": {
+    "message": "Security"
+  },
+  "hiddenNetwork": {
+    "message": "Hidden network"
+  },
   "typeLoginSubtitle": {
     "message": "Website or app"
   },
@@ -358,6 +376,18 @@
   "addItemHeaderPassport": {
     "message": "Add passport",
     "description": "Header for new passport item type"
+  },
+  "addItemHeaderWifi": {
+    "message": "Add Wi-Fi",
+    "description": "Header for new Wi-Fi item"
+  },
+  "editItemHeaderWifi": {
+    "message": "Edit Wi-Fi",
+    "description": "Header for edit Wi-Fi item"
+  },
+  "viewItemHeaderWifi": {
+    "message": "View Wi-Fi",
+    "description": "Header for view Wi-Fi item"
   },
   "editItemHeaderSecureNote": {
     "message": "Edit secure note",

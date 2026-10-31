@@ -546,6 +546,32 @@ pub async fn send_recover_twofactor(address: &str, ip: &str, dt: &NaiveDateTime)
     send_email(address, &subject, body_html, body_text).await
 }
 
+/// Notice after a rejected master-password sign-in. At most one message per address every 10 minutes.
+pub async fn send_failed_login(address: &str, ip: &str, dt: &NaiveDateTime) -> EmptyResult {
+    {
+        use std::{collections::HashMap, sync::Mutex};
+        static LAST: Mutex<Option<HashMap<String, i64>>> = Mutex::new(None);
+        let now = chrono::Utc::now().timestamp();
+        let mut guard = LAST.lock().unwrap_or_else(|e| e.into_inner());
+        let map = guard.get_or_insert_with(HashMap::new);
+        if map.get(address).is_some_and(|prev| now - prev < 600) {
+            return Ok(());
+        }
+        map.insert(address.to_string(), now);
+    }
+    let fmt = "%A, %B %_d, %Y at %r %Z";
+    let (subject, body_html, body_text) = get_text(
+        "email/failed_login",
+        json!({
+            "url": CONFIG.domain(),
+            "img_src": CONFIG._smtp_img_src(),
+            "ip": ip,
+            "datetime": crate::util::format_naive_datetime_local(dt, fmt),
+        }),
+    )?;
+    send_email(address, &subject, body_html, body_text).await
+}
+
 pub async fn send_incomplete_2fa_login(
     address: &str,
     ip: &str,
@@ -738,14 +764,19 @@ async fn send_email(address: &str, subject: &str, body_html: String, body_text: 
     let smtp_from = Address::from_str(&CONFIG.smtp_from())?;
 
     let body = if CONFIG.smtp_embed_images() {
-        let logo_gray_body = Body::new(crate::api::static_files("logo-gray.png").unwrap().1.to_vec());
+        let logo_gray_body = Body::new(crate::api::static_files("logo-komboe.png").unwrap().1.to_vec());
         let mail_github_body = Body::new(crate::api::static_files("mail-github.png").unwrap().1.to_vec());
+        let sora_body = Body::new(crate::api::static_files("sora.woff2").unwrap().1.to_vec());
         MultiPart::alternative().singlepart(SinglePart::plain(body_text)).multipart(
             MultiPart::related()
                 .singlepart(SinglePart::html(body_html))
                 .singlepart(
-                    Attachment::new_inline(String::from("logo-gray.png"))
+                    Attachment::new_inline(String::from("logo-komboe.png"))
                         .body(logo_gray_body, "image/png".parse().unwrap()),
+                )
+                .singlepart(
+                    Attachment::new_inline(String::from("sora.woff2"))
+                        .body(sora_body, "font/woff2".parse().unwrap()),
                 )
                 .singlepart(
                     Attachment::new_inline(String::from("mail-github.png"))

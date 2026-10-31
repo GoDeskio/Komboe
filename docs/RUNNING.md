@@ -4,7 +4,7 @@
 
 Tested on Linux x86_64. Development/testing only - not a production deployment guide.
 
-Accounts: local email and master password by default, or any OIDC provider. See [Accounts & sign-in](#accounts--sign-in).
+Accounts: one Komboe account on every client. Local email and master password by default, or optional enterprise OIDC. See [Accounts & sign-in](#accounts--sign-in). Mail: [docs/EMAIL.md](EMAIL.md).
 
 ## Server (Vaultwarden 1.37.4 based)
 ```sh

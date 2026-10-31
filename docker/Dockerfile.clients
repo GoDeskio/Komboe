@@ -1,0 +1,12 @@
+# Builds the self-hosted web vault and the Chrome MV3 extension (also used by Edge and Brave).
+FROM node:24-bookworm
+WORKDIR /src
+RUN apt-get update && apt-get install -y --no-install-recommends python3 \
+    && rm -rf /var/lib/apt/lists/*
+COPY . .
+RUN npm ci --ignore-scripts
+ENV NODE_OPTIONS=--max-old-space-size=6144
+RUN npm run dist:oss:selfhost --workspace @bitwarden/web-vault \
+    && npm run build:prod:chrome --workspace @bitwarden/browser \
+    && python3 -c "import shutil; shutil.make_archive('/opt/komboe-chrome-mv3','zip','apps/browser/build')"
+CMD ["sh", "-c", "cp -a /src/apps/web/build/. /web-vault/ && cp /opt/komboe-chrome-mv3.zip /extension/komboe-chrome-mv3.zip && ls -la /web-vault/index.html /extension/komboe-chrome-mv3.zip"]

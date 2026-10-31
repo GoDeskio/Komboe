@@ -1,0 +1,26 @@
+# Komboe server image. SQLite only. The web vault is mounted at /web-vault at run time.
+FROM rust:1.99.0-bookworm AS build
+RUN apt-get update && apt-get install -y --no-install-recommends \
+        pkg-config libssl-dev build-essential \
+    && rm -rf /var/lib/apt/lists/*
+WORKDIR /app
+COPY . .
+ENV CARGO_BUILD_JOBS=2
+RUN cargo build --release --locked --features sqlite \
+    && strip target/release/vaultwarden
+
+FROM debian:bookworm-slim
+RUN apt-get update && apt-get install -y --no-install-recommends \
+        ca-certificates curl libssl3 \
+    && rm -rf /var/lib/apt/lists/* \
+    && mkdir -p /data /web-vault
+COPY --from=build /app/docker/healthcheck.sh /app/docker/start.sh /
+COPY --from=build /app/target/release/vaultwarden /vaultwarden
+RUN chmod +x /healthcheck.sh /start.sh /vaultwarden
+ENV ROCKET_PROFILE=release \
+    ROCKET_ADDRESS=0.0.0.0 \
+    ROCKET_PORT=80
+VOLUME /data
+EXPOSE 80
+HEALTHCHECK --interval=30s --timeout=5s CMD ["/healthcheck.sh"]
+CMD ["/start.sh"]

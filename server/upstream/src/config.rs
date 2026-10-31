@@ -914,7 +914,7 @@ make_config! {
         /// Port
         smtp_port:                     u16,    true,   auto,    |c| if c.smtp_security == *"force_tls" {465} else if c.smtp_security == *"starttls" {587} else {25};
         /// From Address
-        smtp_from:                     String, true,   def,     String::new();
+        smtp_from:                     String, true,   def,     "no-reply@komboe.com".to_owned();
         /// From Name
         smtp_from_name:                String, true,   def,     "Komboe".to_owned();
         /// Username
@@ -1767,6 +1767,7 @@ where
     reg!("email/emergency_access_recovery_reminder", ".html");
     reg!("email/emergency_access_recovery_timed_out", ".html");
     reg!("email/incomplete_2fa_login", ".html");
+    reg!("email/failed_login", ".html");
     reg!("email/invite_accepted", ".html");
     reg!("email/invite_confirmed", ".html");
     reg!("email/komboe_notice", ".html");

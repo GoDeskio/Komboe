@@ -1,0 +1,10 @@
+.git
+**/node_modules
+**/coverage
+**/.angular
+apps/desktop/dist
+apps/desktop/desktop_native/target
+apps/cli/build
+apps/web/build
+apps/browser/build
+*.log

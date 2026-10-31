@@ -83,8 +83,8 @@ export class SSOLocalhostCallbackService {
         if (code != null && receivedState != null && this.checkState(receivedState, state)) {
           res.writeHead(200);
           res.end(
-            "<html><head><title>Success | Bitwarden Desktop</title></head><body>" +
-              "<h1>Successfully authenticated with the Bitwarden desktop app</h1>" +
+            "<html><head><title>Success | Komboe Desktop</title></head><body>" +
+              "<h1>Successfully authenticated with the Komboe desktop app</h1>" +
               "<p>You may now close this tab and return to the app.</p>" +
               "</body></html>",
           );
@@ -98,8 +98,8 @@ export class SSOLocalhostCallbackService {
         } else {
           res.writeHead(400);
           res.end(
-            "<html><head><title>Failed | Bitwarden Desktop</title></head><body>" +
-              "<h1>Something went wrong logging into the Bitwarden desktop app</h1>" +
+            "<html><head><title>Failed | Komboe Desktop</title></head><body>" +
+              "<h1>Something went wrong logging into the Komboe desktop app</h1>" +
               "<p>You may now close this tab and return to the app.</p>" +
               "</body></html>",
           );

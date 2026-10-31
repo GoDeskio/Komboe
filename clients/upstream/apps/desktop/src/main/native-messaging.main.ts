@@ -165,7 +165,7 @@ export class NativeMessagingMain {
   private async generateChromeJson(binaryPath: string) {
     return {
       name: "com.8bit.bitwarden",
-      description: "Bitwarden desktop <-> browser bridge",
+      description: "Komboe desktop <-> browser bridge",
       path: binaryPath,
       type: "stdio",
       allowed_origins: await this.loadChromeIds(),
@@ -175,7 +175,7 @@ export class NativeMessagingMain {
   private async generateFirefoxJson(binaryPath: string) {
     return {
       name: "com.8bit.bitwarden",
-      description: "Bitwarden desktop <-> browser bridge",
+      description: "Komboe desktop <-> browser bridge",
       path: binaryPath,
       type: "stdio",
       allowed_extensions: ["{446900e4-71c2-419f-a6a7-df9c091e268b}"],
@@ -360,7 +360,7 @@ export class NativeMessagingMain {
   async generateDdgManifests() {
     const manifest = {
       name: "com.8bit.bitwarden",
-      description: "Bitwarden desktop <-> DuckDuckGo bridge",
+      description: "Komboe desktop <-> DuckDuckGo bridge",
       path: this.binaryPath(),
       type: "stdio",
     };

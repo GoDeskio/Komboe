@@ -52,7 +52,13 @@ module.exports.buildConfig = function buildConfig(params) {
 
   const plugins = [
     new CopyWebpackPlugin({
-      patterns: [{ from: params.localesPath, to: "locales" }],
+      patterns: [
+        { from: params.localesPath, to: "locales" },
+        // Komboe: ship license texts with every CLI package (npm and pkg binaries embed ./build/**).
+        { from: path.resolve(__dirname, "../../../../LICENSE"), to: "LICENSE.txt" },
+        { from: path.resolve(__dirname, "../../LICENSE_GPL.txt"), to: "LICENSE_GPL.txt" },
+        { from: path.resolve(__dirname, "../../../../THIRD-PARTY-NOTICES.md"), to: "THIRD-PARTY-NOTICES.md" },
+      ],
     }),
     new webpack.DefinePlugin({
       "process.env.BWCLI_ENV": JSON.stringify(ENV),

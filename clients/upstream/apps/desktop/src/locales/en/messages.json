@@ -93,6 +93,14 @@
   "bookmarkUrl": {
     "message": "URL"
   },
+  "typeGpgKey": { "message": "GPG key" },
+  "typeGpgKeySubtitle": { "message": "OpenPGP key pair" },
+  "gpgKeyDetails": { "message": "GPG key" },
+  "gpgKeyId": { "message": "Key ID" },
+  "gpgFingerprint": { "message": "Fingerprint" },
+  "gpgPublicKey": { "message": "Public key" },
+  "gpgPrivateKey": { "message": "Private key" },
+  "gpgPassphrase": { "message": "Passphrase" },
   "typeLoginSubtitle": {
     "message": "Website or app"
   },
@@ -413,6 +421,9 @@
     "message": "View bookmark",
     "description": "Header for view bookmark item"
   },
+  "addItemHeaderGpg": { "message": "Add GPG key", "description": "Header for new GPG key item" },
+  "editItemHeaderGpg": { "message": "Edit GPG key", "description": "Header for edit GPG key item" },
+  "viewItemHeaderGpg": { "message": "View GPG key", "description": "Header for view GPG key item" },
   "editItemHeaderSecureNote": {
     "message": "Edit secure note",
     "description": "Header for edit secure note item type"

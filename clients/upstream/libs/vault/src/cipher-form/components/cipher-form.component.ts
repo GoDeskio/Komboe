@@ -25,8 +25,10 @@ import { CipherArchiveService } from "@bitwarden/common/vault/abstractions/ciphe
 import { CipherType, SecureNoteType } from "@bitwarden/common/vault/enums";
 import {
   isKomboeBookmark,
+  isKomboeGpg,
   isKomboeWifi,
   KOMBOE_BOOKMARK_TYPE,
+  KOMBOE_GPG_TYPE,
   KOMBOE_WIFI_TYPE,
 } from "@bitwarden/common/vault/utils/komboe-wifi";
 import { CipherView } from "@bitwarden/common/vault/models/view/cipher.view";
@@ -57,6 +59,7 @@ import { NewItemNudgeComponent } from "./new-item-nudge/new-item-nudge.component
 import { PassportSectionComponent } from "./passport-section/passport-section.component";
 import { SshKeySectionComponent } from "./sshkey-section/sshkey-section.component";
 import { BookmarkSectionComponent } from "./bookmark-section/bookmark-section.component";
+import { GpgSectionComponent } from "./gpg-section/gpg-section.component";
 import { WifiSectionComponent } from "./wifi-section/wifi-section.component";
 
 // FIXME(https://bitwarden.atlassian.net/browse/CL-764): Migrate to OnPush
@@ -89,6 +92,7 @@ import { WifiSectionComponent } from "./wifi-section/wifi-section.component";
     PassportSectionComponent,
     WifiSectionComponent,
     BookmarkSectionComponent,
+    GpgSectionComponent,
     AdditionalOptionsSectionComponent,
     LoginDetailsSectionComponent,
     NewItemNudgeComponent,
@@ -181,6 +185,7 @@ export class CipherFormComponent implements AfterViewInit, OnInit, OnChanges, Ci
   /** Wi-Fi and bookmarks are edited with their own fields and stored as secure notes. */
   komboeWifi = false;
   komboeBookmark = false;
+  komboeGpg = false;
 
   ngAfterViewInit(): void {
     if (this.submitBtn) {
@@ -278,6 +283,7 @@ export class CipherFormComponent implements AfterViewInit, OnInit, OnChanges, Ci
     this.originalCipherView = null;
     this.komboeWifi = false;
     this.komboeBookmark = false;
+    this.komboeGpg = false;
     this.cipherForm = this.formBuilder.group<CipherForm>({});
 
     if (this.config == null) {
@@ -302,6 +308,7 @@ export class CipherFormComponent implements AfterViewInit, OnInit, OnChanges, Ci
         this.config.cipherType === KOMBOE_WIFI_TYPE || isKomboeWifi(this.updatedCipherView);
       this.komboeBookmark =
         this.config.cipherType === KOMBOE_BOOKMARK_TYPE || isKomboeBookmark(this.updatedCipherView);
+      this.komboeGpg = this.config.cipherType === KOMBOE_GPG_TYPE || isKomboeGpg(this.updatedCipherView);
 
       if (this.config.mode === "clone") {
         this.updatedCipherView.id = null;
@@ -317,14 +324,11 @@ export class CipherFormComponent implements AfterViewInit, OnInit, OnChanges, Ci
     } else {
       this.komboeWifi = this.config.cipherType === KOMBOE_WIFI_TYPE;
       this.komboeBookmark = this.config.cipherType === KOMBOE_BOOKMARK_TYPE;
-      this.updatedCipherView.type =
-        this.komboeWifi || this.komboeBookmark ? CipherType.SecureNote : this.config.cipherType;
+      this.komboeGpg = this.config.cipherType === KOMBOE_GPG_TYPE;
+      const template = this.komboeWifi || this.komboeBookmark || this.komboeGpg;
+      this.updatedCipherView.type = template ? CipherType.SecureNote : this.config.cipherType;
 
-      if (
-        this.komboeWifi ||
-        this.komboeBookmark ||
-        this.config.cipherType === CipherType.SecureNote
-      ) {
+      if (template || this.config.cipherType === CipherType.SecureNote) {
         this.updatedCipherView.secureNote.type = SecureNoteType.Generic;
       }
     }

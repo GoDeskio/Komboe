@@ -23,5 +23,16 @@ export async function templateFlow(p, client, openMenu) {
   if (await field.getAttribute("type") !== "password") throw new Error(`${client}: eye toggle did not re-hide the password`);
   await p.getByRole("button", { name: "Save", exact: true }).filter({ visible: true }).first().click(); await p.waitForTimeout(2500);
   await p.getByText(name).filter({ visible: true }).first().waitFor({ timeout: 20000 });
+  // Bookmark: create from the same menu, save, reopen and read the URL back.
+  await openMenu(); await p.waitForTimeout(800);
+  await p.locator("[role=menuitem]").filter({ visible: true }).filter({ hasText: "Bookmark" }).first().click();
+  const bname = `${client}-bm-${rnd}`, burl = `https://bm-${rnd}.example.test/`; fs.appendFileSync(SECRETS, burl + "\n");
+  await p.getByLabel("Item name").filter({ visible: true }).first().fill(bname);
+  await p.locator("[data-testid=bookmark-url]").filter({ visible: true }).first().fill(burl);
+  await p.getByRole("button", { name: "Save", exact: true }).filter({ visible: true }).first().click(); await p.waitForTimeout(2500);
+  const row = p.getByText(bname).filter({ visible: true }).first(); await row.waitFor({ timeout: 20000 });
+  if (!(await p.locator("[data-testid=bookmark-url]").filter({ visible: true }).count())) { await row.click(); await p.waitForTimeout(1500); }
+  const got = await p.locator("[data-testid=bookmark-url]").filter({ visible: true }).first().inputValue();
+  if (got !== burl) throw new Error(`${client}: bookmark URL reopened as ${got}`);
   return name;
 }

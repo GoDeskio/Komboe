@@ -29,25 +29,29 @@ const p = await ctx.newPage(); p.setDefaultTimeout(15000);
 await step("login", async () => { await vaultLogin(p, fx.owner); await p.waitForTimeout(1500); await shot(p, "vault-home"); });
 
 await step("item-crud", async () => {
-  const name = "Komboe demo login";
+  const name = `Komboe demo login ${Math.random().toString(36).slice(2, 7)}`;
   await p.click("#newItemDropdown"); await p.getByRole("menuitem", { name: /^login$/i }).click();
   await p.fill("input[formcontrolname=name]", name); await p.fill("input[formcontrolname=username]", "demo@example.com");
   await p.fill("input[formcontrolname=password]", "Correct-Horse-Battery-9"); await p.fill("input[formcontrolname=uri]", "https://example.com");
   await shot(p, "item-new"); await p.getByRole("button", { name: "Save", exact: true }).click();
   await p.waitForTimeout(2000); await p.keyboard.press("Escape"); await p.waitForTimeout(800);
-  await p.getByText(name, { exact: true }).first().waitFor({ timeout: 15000 }); await shot(p, "vault-items");
+  const search = async q => { const s = p.getByPlaceholder("Search vault").filter({ visible: true }).first(); await s.fill(q); await p.waitForTimeout(1500); };
+  await search(name);
+  await p.getByText(name, { exact: true }).filter({ visible: true }).first().waitFor({ timeout: 15000 }); await shot(p, "vault-items");
   // edit
-  await p.getByText(name, { exact: true }).first().click(); await p.waitForTimeout(1200);
+  await p.getByText(name, { exact: true }).filter({ visible: true }).first().click(); await p.waitForTimeout(1200);
   const edit = p.getByRole("button", { name: /^edit$/i }); if (await edit.count()) await edit.first().click();
   await p.fill("input[formcontrolname=name]", name + " (edited)"); await p.getByRole("button", { name: "Save", exact: true }).click();
   await p.waitForTimeout(2000); await p.keyboard.press("Escape"); await p.waitForTimeout(800);
-  await p.getByText(name + " (edited)", { exact: true }).first().waitFor({ timeout: 15000 });
+  await search(name + " (edited)");
+  await p.getByText(name + " (edited)", { exact: true }).filter({ visible: true }).first().waitFor({ timeout: 15000 });
   // delete (to trash)
-  await p.getByText(name + " (edited)", { exact: true }).first().click(); await p.waitForTimeout(1200);
+  await p.getByText(name + " (edited)", { exact: true }).filter({ visible: true }).first().click(); await p.waitForTimeout(1200);
   await p.getByRole("button", { name: /delete/i }).last().click(); await p.waitForTimeout(800);
   const yes = p.getByRole("button", { name: /^yes$/i }); if (await yes.count()) await yes.click();
   await p.waitForTimeout(2000); await p.keyboard.press("Escape").catch(() => {});
-  if (await p.getByText(name + " (edited)", { exact: true }).count()) throw new Error("item still listed after delete");
+  if (await p.getByText(name + " (edited)", { exact: true }).filter({ visible: true }).count()) throw new Error("item still listed after delete");
+  await search("");
 });
 
 let webTag = null;
@@ -214,7 +218,7 @@ if (ext && fs.existsSync(path.join(ext, "manifest.json"))) {
   if (results["extension-login"] === "passed") await step("templates-extension", withTimeout(150000, async () => {
     await pp.goto(pp.url().replace(/#.*$/, "#/tabs/vault")); await pp.waitForTimeout(3000);
     const { templateFlow } = await import("./templates-flow.mjs");
-    await templateFlow(pp, "ext", async () => { const bs = pp.getByRole("button", { name: /add/i }).filter({ visible: true });
+    await templateFlow(pp, "ext", async () => { await pp.goto(pp.url().replace(/#.*$/, "#/tabs/vault")); await pp.waitForTimeout(2500); const bs = pp.getByRole("button", { name: /add/i }).filter({ visible: true });
       for (let i = 0; i < await bs.count(); i++) { const b = await bs.nth(i).boundingBox(); if (b && b.y < 80) { await bs.nth(i).click(); return; } }
       throw new Error("no header Add button"); });
     await pp.screenshot({ path: path.join(SHOTS, "templates-extension.png"), fullPage: true });

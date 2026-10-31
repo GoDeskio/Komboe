@@ -119,4 +119,18 @@ Give the IdP the SP metadata at `{DOMAIN}/identity/saml/metadata` (ACS: `{DOMAIN
 The IdP must sign the Assertion; send the email as a `mail`/`email` attribute or an emailAddress NameID.
 Set `SSO_SAML_EMAIL_VERIFIED=true` only if the IdP vouches for emails. SSO proves identity only; the
 vault is still unlocked with the master password (or a trusted device), the server never gets the key.
-Tests: `tests/features/sso_saml.py` and `sso_saml_web.py` (need pysaml2 + xmlsec1).
+Hardening (optional): `SSO_SAML_SP_KEY` + `SSO_SAML_SP_CERT` (PEM text or paths) sign AuthnRequests and
+logout messages (RSA-SHA256, HTTP-Redirect) and let the IdP encrypt assertions to the SP cert (RSA-OAEP + AES;
+RSA 1.5 refused). `SSO_SAML_REQUIRE_ENCRYPTED_ASSERTIONS=true` rejects plaintext assertions.
+`SSO_SAML_IDP_SLO_URL` enables single logout: the IdP POSTs signed LogoutRequests to
+`{DOMAIN}/identity/connect/saml-slo` (ends every session: devices/refresh tokens removed, security stamp
+rotated), and clients call `POST /identity/connect/saml-logout` (bearer) to log out here and get the signed IdP
+logout URL. No keys or IdP sessions are stored.
+Tests: `tests/features/sso_saml.py`, `sso_saml_web.py`, `sso_saml_hardening.py` (need pysaml2 + xmlsec1).
+
+## S3 attachments
+
+Build with `cargo build --release --features sqlite,s3` and set
+`ATTACHMENTS_FOLDER=s3://BUCKET/attachments?endpoint=https://s3.example&region=us-east-1` (AWS credentials from
+the usual env/profile chain; add `&enable_virtual_host_style=false` for MinIO-style path addressing). Only client
+ciphertext is stored. Test against a local moto S3 (no cloud account): `tests/features/s3_attachments.py`.

@@ -858,6 +858,14 @@ make_config! {
         sso_saml_idp_cert:              String, true,   def,    String::new();
         /// Treat SAML emails as verified |> Enable only if the IdP verifies email addresses
         sso_saml_email_verified:        bool,   true,   def,    false;
+        /// SAML IdP single logout URL |> HTTP-Redirect binding endpoint for LogoutRequest/LogoutResponse. Enables SLO.
+        sso_saml_idp_slo_url:           String, true,   def,    String::new();
+        /// SAML SP certificate |> PEM text or path. Published in metadata for request signing and assertion encryption.
+        sso_saml_sp_cert:               String, true,   def,    String::new();
+        /// SAML SP private key |> PEM text or path. Signs AuthnRequests and logout messages, decrypts encrypted assertions.
+        sso_saml_sp_key:                String, true,   def,    String::new();
+        /// Require encrypted SAML assertions |> Plaintext assertions are rejected. Needs SSO_SAML_SP_KEY/SSO_SAML_SP_CERT.
+        sso_saml_require_encrypted_assertions: bool, true, def, false;
     },
 
     /// Yubikey settings
@@ -1122,6 +1130,17 @@ fn validate_config(cfg: &ConfigItems, on_update: bool) -> Result<(), Error> {
         }
         if let Err(e) = Url::parse(&cfg.sso_saml_idp_sso_url) {
             err!(format!("Invalid SSO_SAML_IDP_SSO_URL: {e}"))
+        }
+        if !cfg.sso_saml_idp_slo_url.is_empty()
+            && let Err(e) = Url::parse(&cfg.sso_saml_idp_slo_url)
+        {
+            err!(format!("Invalid SSO_SAML_IDP_SLO_URL: {e}"))
+        }
+        if cfg.sso_saml_sp_key.trim().is_empty() != cfg.sso_saml_sp_cert.trim().is_empty() {
+            err!("`SSO_SAML_SP_KEY` and `SSO_SAML_SP_CERT` must be set together")
+        }
+        if cfg.sso_saml_require_encrypted_assertions && cfg.sso_saml_sp_key.trim().is_empty() {
+            err!("`SSO_SAML_REQUIRE_ENCRYPTED_ASSERTIONS` needs `SSO_SAML_SP_KEY` and `SSO_SAML_SP_CERT`")
         }
         validate_sso_master_password_policy(cfg.sso_master_password_policy.as_ref())?;
     } else if cfg.sso_enabled {

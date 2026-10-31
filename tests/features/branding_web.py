@@ -34,6 +34,7 @@ def main():
     ssl._create_default_https_context = ssl._create_unverified_context
     cfg = json.load(urllib.request.urlopen(WEB + "/api/config"))
     assert cfg["server"]["name"] == "Komboe", cfg["server"]
+    assert cfg["server"]["url"] == "https://github.com/GoDeskio/Komboe", cfg["server"]
     hits = bundles()
     assert not hits, "\n".join(hits[:20])
     from playwright.sync_api import sync_playwright

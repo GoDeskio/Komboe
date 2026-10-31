@@ -6,6 +6,7 @@ export const Vendor = Object.freeze({
   duckduckgo: "duckduckgo" as VendorId,
   fastmail: "fastmail" as VendorId,
   forwardemail: "forwardemail" as VendorId,
+  komboe: "komboe" as VendorId,
   mozilla: "mozilla" as VendorId,
   simplelogin: "simplelogin" as VendorId,
 } as const);

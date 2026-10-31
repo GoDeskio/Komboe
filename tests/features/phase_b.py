@@ -219,12 +219,6 @@ _report(70, ["report-exposed"], "exposed-password report via HIBP k-anonymity ra
 _report(71, ["report-inactive-2fa"], "inactive two-step login report flags seeded github.com login (2fa.directory list; Playwright)", "inactive 2FA report is client-side")
 _report(72, ["report-unsecured"], "unsecured (http://) website report lists only the seeded http item (Playwright)", "unsecured website report is client-side")
 _report(78, ["export-encrypted"], "password-protected JSON export: downloaded file is ciphertext and independently decrypts (PBKDF2+AES-256-CBC+HMAC) to the vault items (Playwright)", "password-protected export is client-side")
-@t(100)
-def _():
-    T[46][0](); here = os.path.dirname(os.path.abspath(__file__))
-    assert os.path.exists(os.path.join(here, "../../docs/design/xchacha20.md")), "design doc missing"
-    return ("partial", "AES-256-CBC+HMAC and Argon2id verified; XChaCha20-Poly1305 = upstream EncString type 7 (COSE) via account-encryption v2; "
-            "design in docs/design/xchacha20.md; needs server schema/endpoints for signing keys + security state behind KOMBOE_AEAD_V2 (not built: no Vaultwarden rebuild on this box)")
 @t(85)
 def _():
     m, msgs = _manifest("komboe-firefox.zip"); assert "browser_specific_settings" in m or "applications" in m

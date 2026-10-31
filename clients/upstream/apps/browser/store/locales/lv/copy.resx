@@ -118,58 +118,26 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Name" xml:space="preserve">
-    <value>Bitwarden paroļu pārvaldnieks</value>
+    <value>Komboe Password Manager</value>
   </data>
   <data name="Summary" xml:space="preserve">
-    <value>Bitwarden viegli aizsargā visas paroles, paroļu atslēgas un jutīgu informāciju mājās, darbā vai ceļā.</value>
+    <value>Komboe is an open-source, zero-knowledge password manager for families and teams.</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>PCMag, WIRED, The Verge, CNET, G2 un vēl ir atzinuši Bitwarden kā labāko paroļu pārvaldnieku.
+    <value>Komboe is an open-source, zero-knowledge password manager for families and teams.
 
-AIZSARGĀ SAVU DIGITĀLO DZĪVI
-Aizsargā savu digitālo dzīvi un nodrošinies pret datu noplūdēm ar vienreizēju, spēcīgu paruļu izveidošanu un saglabāšanu katram kontam! Glabā visu pilnīgi šifrētā paroļu glabātavā, kurai vari piekļūt vienīgi Tu!
+Store passwords, passkeys, 2FA codes, secure notes and cards in an end-to-end encrypted vault. Your vault is encrypted on your device before it is synced; the server never receives your master password or vault keys.
 
-PIEKĻŪSTI SAVIEM DATIEM JEBKUR, JEBKAD UN JEBKURĀ IERĪCĒ
-Viegla paroļu pārvaldīšana, glabāšana, nodrošināšana un kopīgošana bez ierobežojumiem dažādās ierīcēs.
+- Password generator and autofill
+- Passkeys and TOTP codes
+- Secure sharing with family members and teams, with groups and roles
+- Email aliases
+- Self-hostable server
 
-IKVIENAM VAJADZĒTU IZMANTOT RĪKUS, LAI TIEŠSAISTĒ BŪTU DROŠI
-Bitwarden ir izmantojams bez maksas, reklāmām un datu pārdošanas. Bitwarden tic, ka ikvienam vajadzētu būt iespējai būt drošam tiešsaistē. Premium plāni sniedz piekļuvi papildu iespējām.
-
-SPĒCINI SAVAS KOMANDAS AR BITWARDEN
-Komandu un uzņēmumu plāni satur profesionālas uzņēmējdarbības iespējas. Piemēram, SSO iekļaušana, pašmitināšana, direktorijas iekļaušana un SCIM apgāde, visaptveroši nosacījumi, API piekļuve, notikumu žurnāli un vēl.
-
-Izmanto bitwarden, lai drošinātu savu darbaspēku un kopīgotu jutīgu informāciju ar darbabiedriem!
-
-
-Vairāk iemelsu, lai izvēlētos Bitwarden:
-
-Pasaules klases šifrēšana
-Paroles ir aizsargātas ar sarežģītu pilnīgu šifrēšanu (AES-256 bitu, sālīts jaucējkods un PBKDF2 SHA-256), līdz ar to Tavi dati ir droši un privāti.
-
-Trešo pušu pārbaudes
-Bitwarden pastāvīgi veic aptverošas trešo pušu drošības pārbaudes ar atzīstamiem drošības uzņēmumiem. Šīs ikgadējās pārbaudes iekļauj pirmkoda izvērtēšanu un ielaušanās pārbaudes dažādās Bitwarden IP adresēs, serveros un tīmekļa lietotnēs.
-
-Papildu 2FA
-Aizsargā savu pieteikšanos ar trešo pušu autentificētāju, e-pastā nosūtītiem kodiem vai tādiem FIDO2 WebAuthn pieteikšanās datiem kā aparatūras drošības atslēgu vai piekļuves atslēgu!
-
-Bitwarden Send
-Datu pārsūtīšana citiem, saglabājot pilnīgu šifrēšanas drošību un ierobežojot atklāšanu.
-
-Iebūvēts veidotājs
-Izveido garas, sarežģītas un atšķirīgas paroles un vienreizējus lietotājvārdus katrai apmeklētajai vietnei! Papildu privātumam var apvienot ar e-pasta aizstājvārdu nodrošinātājiem.
-
-Vispasaules tulkojumi
-Bitwarden ir tulkots vairāk nekā 60 valodās ar vispasaules kopienas palīdzību tulkošanas rīkā Crowdin.
-
-Starpplatformu lietotnes
-Aizsargā un kopīgo jutīgus datus savā Bitwarden glabātavā jebkurā pārlūkā, mobilajā ierīcē vai darbvirsmas operētājsistēmā un vēl!
-
-Bitwarden aizsargā vairāk nekā tikai paroles
-Pilnīgas šifrēšanas pieteikšanās datu pārvaldības risinājumi no Bitwarden sniedz iespēju apvienībām aizsargāt visu, tajā skaitā izstrādātāju noslēpumus un piekļuves atslēgu pieredzes. Bitwarden.com ir ampeklējams, lai uzzinātu vairāk par Bitwarden noslēpumu pārvaldnieku un Bitwarden Passwordless.dev.
-</value>
+Komboe is based on Vaultwarden and Komboe clients and is not affiliated with or endorsed by Bitwarden Inc. or the Vaultwarden project. Source code: https://github.com/GoDeskio/Komboe</value>
   </data>
   <data name="AssetTitle" xml:space="preserve">
-    <value>Bitwarden viegli aizsargā visas paroles, paroļu atslēgas un jutīgu informāciju mājās, darbā vai ceļā.</value>
+    <value>Komboe is an open-source, zero-knowledge password manager for families and teams.</value>
   </data>
   <data name="ScreenshotSync" xml:space="preserve">
     <value>Sinhronizē un piekļūsti savai glabātavai no vairākām ierīcēm</value>

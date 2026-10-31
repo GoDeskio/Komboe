@@ -118,57 +118,26 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Name" xml:space="preserve">
-    <value>Bitwarden パスワードマネージャー</value>
+    <value>Komboe Password Manager</value>
   </data>
   <data name="Summary" xml:space="preserve">
-    <value>自宅、職場、または外出先でも、Bitwarden はすべてのパスワード、パスキー、機密情報を簡単に保護します。</value>
+    <value>Komboe is an open-source, zero-knowledge password manager for families and teams.</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>PCMag、WIRED、The Verge、CNET、G2 などから最高のパスワードマネージャーとして認められています！
+    <value>Komboe is an open-source, zero-knowledge password manager for families and teams.
 
-デジタルライフを守る
-データ漏洩を防ぐために、各アカウントに対してユニークで強力なパスワードを生成し保存することで、デジタルライフを守りましょう。エンドツーエンドで暗号化されたパスワード保管庫にすべてを保存し、あなただけがアクセスできます。
+Store passwords, passkeys, 2FA codes, secure notes and cards in an end-to-end encrypted vault. Your vault is encrypted on your device before it is synced; the server never receives your master password or vault keys.
 
-どこでも、いつでも、どのデバイスでもデータにアクセス
-デバイスやパスワード数の制限は一切なく、簡単に管理、保存、保護、共有できます。
+- Password generator and autofill
+- Passkeys and TOTP codes
+- Secure sharing with family members and teams, with groups and roles
+- Email aliases
+- Self-hostable server
 
-誰もがオンラインで安全を保つためのツールを持つべき
-Bitwarden は広告やデータ販売なしに無料で利用できます。Bitwarden は、誰もがオンラインで安全を保つ能力を持つべきだと信じています。プレミアムプランでは高度な機能にアクセスできます。
-
-チームを Bitwarden で強化
-チームおよびエンタープライズ向けのプランには、SSO 統合、セルフホスティング、ディレクトリ統合と SCIM プロビジョニング、グローバルポリシー、API アクセス、イベントログなどのプロフェッショナルなビジネス機能が含まれます。
-
-Bitwardenを使用して、従業員を保護し、同僚と機密情報を共有しましょう。
-
-Bitwardenを選ぶ理由
-
-世界クラスの暗号化
-パスワードは、先進的なエンドツーエンド暗号化（AES-256ビット、ソルト付きハッシュ、PBKDF2 SHA-256）で保護され、データは安全かつプライベートに保たれます。
-
-第三者監査
-Bitwarden は、著名なセキュリティ企業による包括的な第三者セキュリティ監査を定期的に実施しています。これらの年次監査には、ソースコードの評価や Bitwarden の IP、サーバー、ウェブアプリケーション全体にわたるペネトレーションテストが含まれます。
-
-高度な2要素認証
-サードパーティーの認証アプリ、メールコード、またはハードウェアセキュリティキーやパスキーなどの FIDO2 WebAuthn 資格情報でログインを保護します。
-
-Bitwarden Send
-エンドツーエンドで暗号化されたセキュリティを維持しながら、他者にデータを直接送信し、データ漏洩を制限します。
-
-内蔵ジェネレーター
-訪問するすべてのサイトに対して、長く複雑でユニークなパスワードとユーザー名を作成できます。追加のプライバシーのためにメールエイリアスプロバイダーと統合することもできます。
-
-グローバル翻訳
-Bitwarden の翻訳は、Crowdin を通じてグローバルコミュニティによって翻訳され、60以上の言語に対応しています。
-
-クロスプラットフォームアプリケーション
-任意のブラウザ、モバイルデバイス、デスクトップ OS などから、Bitwarden 保管庫内の機密データを保護し、共有できます。
-
-Bitwarden はパスワードだけを保護するわけではありません
-Bitwarden のエンドツーエンド暗号化された資格情報管理ソリューションは、組織が開発者のシークレットやパスキー体験を含むすべてを保護することを支援します。Bitwarden シークレットマネージャーや Bitwarden Passwordless.dev について詳しくは、Bitwarden.com をご覧ください。
-</value>
+Komboe is based on Vaultwarden and Komboe clients and is not affiliated with or endorsed by Bitwarden Inc. or the Vaultwarden project. Source code: https://github.com/GoDeskio/Komboe</value>
   </data>
   <data name="AssetTitle" xml:space="preserve">
-    <value>自宅、職場、または外出先でも、Bitwarden はすべてのパスワード、パスキー、機密情報を簡単に保護します。</value>
+    <value>Komboe is an open-source, zero-knowledge password manager for families and teams.</value>
   </data>
   <data name="ScreenshotSync" xml:space="preserve">
     <value>複数の端末で保管庫に同期＆アクセス</value>

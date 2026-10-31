@@ -118,58 +118,26 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Name" xml:space="preserve">
-    <value>Bitwarden စကားဝှက် မန်နေဂျာ</value>
+    <value>Komboe Password Manager</value>
   </data>
   <data name="Summary" xml:space="preserve">
-    <value>အိမ်တွင်ဖြစ်စေ၊ အလုပ်တွင်ဖြစ်စေ၊ ခရီးသွားနေစဉ်ဖြစ်စေ Bitwarden သည် သင့်စကားဝှက်များ၊ ပါ့စ်ကီးများနှင့် အရေးကြီးသောအချက်အလက်များအားလုံးကို အလွယ်တကူ လုံခြုံစေပါသည်။</value>
+    <value>Komboe is an open-source, zero-knowledge password manager for families and teams.</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>PCMag, WIRED, The Verge, CNET, G2 စသည့် ဆိုက်များက အကောင်းဆုံး စကားဝှက် မန်နေဂျာအဖြစ် အသိအမှတ်ပြုခဲ့သည်!
+    <value>Komboe is an open-source, zero-knowledge password manager for families and teams.
 
-သင့်ဒစ်ဂျစ်တယ်ဘဝကို လုံခြုံစေပါ
-အကောင့်တိုင်းအတွက် ထူးခြားပြီး ခိုင်မာသော စကားဝှက်များကို ဖန်တီး၍ သိမ်းဆည်းခြင်းဖြင့် သင့်ဒစ်ဂျစ်တယ်ဘဝကို လုံခြုံစေပြီး ဒေတာချိုးဖောက်မှုများမှ ကာကွယ်ပါ။ သင်သာ ဝင်ရောက်နိုင်သော end-to-end encryption ဖြင့် ကာကွယ်ထားသည့် စကားဝှက် vault တွင် အားလုံးကို ထိန်းသိမ်းပါ။
+Store passwords, passkeys, 2FA codes, secure notes and cards in an end-to-end encrypted vault. Your vault is encrypted on your device before it is synced; the server never receives your master password or vault keys.
 
-ဒေတာကို နေရာမရွေး၊ အချိန်မရွေး၊ စက်ပစ္စည်းမရွေး ဝင်ရောက်သုံးစွဲပါ
-ကန့်သတ်ချက်မရှိဘဲ စက်ပစ္စည်းများစွာတွင် အကန့်အသတ်မရှိသော စကားဝှက်များကို စီမံခန့်ခွဲခြင်း၊ သိမ်းဆည်းခြင်း၊ လုံခြုံစေခြင်းနှင့် မျှဝေခြင်းတို့ကို လွယ်ကူစွာ ပြုလုပ်နိုင်ပါသည်။
+- Password generator and autofill
+- Passkeys and TOTP codes
+- Secure sharing with family members and teams, with groups and roles
+- Email aliases
+- Self-hostable server
 
-အွန်လိုင်းတွင် လုံခြုံရေးအတွက် ကိရိယာများ လူတိုင်း ရရှိသင့်သည်
-Bitwarden ကို ကြော်ငြာမပါဘဲ၊ ဒေတာမရောင်းဘဲ အခမဲ့ အသုံးပြုနိုင်ပါသည်။ လူတိုင်း အွန်လိုင်းတွင် လုံခြုံစွာ နေထိုင်နိုင်သင့်ကြောင်း Bitwarden က ယုံကြည်သည်။ Premium အစီအစဉ်များက အဆင့်မြင့် အင်္ဂါရပ်များကို ရရှိစေပါသည်။
-
-Bitwarden ဖြင့် သင့်အဖွဲ့များကို စွမ်းဆောင်ရည်မြှင့်ပါ
-Teams နှင့် Enterprise အစီအစဉ်များတွင် ပရောဖက်ရှင်နယ် လုပ်ငန်းသုံး အင်္ဂါရပ်များ ပါဝင်သည်။ ဥပမာများအနေဖြင့် SSO ပေါင်းစပ်မှု၊ self-hosting၊ directory ပေါင်းစပ်မှုနှင့် SCIM provisioning၊ ကမ္ဘာတစ်ဝန်း မူဝါဒများ၊ API ဝင်ရောက်ခွင့်၊ event logs စသည်တို့ ပါဝင်သည်။
-
-သင့်ဝန်ထမ်းများကို လုံခြုံစေရန်နှင့် လုပ်ဖော်ကိုင်ဖက်များနှင့် လျှို့ဝှက်အချက်အလက်များ မျှဝေရန် Bitwarden ကို အသုံးပြုပါ။
-
-
-Bitwarden ကို ရွေးချယ်ရန် အကြောင်းပြချက်များစွာ:
-
-ကမ္ဘာ့အဆင့် Encryption
-စကားဝှက်များကို ခေတ်မီ end-to-end encryption (AES-256 bit၊ salted hashing နှင့် PBKDF2 SHA-256) ဖြင့် ကာကွယ်ထားသဖြင့် သင့်ဒေတာသည် လုံခြုံပြီး ကိုယ်ပိုင်ဖြစ်နေပါသည်။
-
-တတိယပါတီ စစ်ဆေးမှုများ
-Bitwarden သည် နာမည်ကျော် လုံခြုံရေးကုမ္ပဏီများနှင့် အပြည့်အစုံ တတိယပါတီ လုံခြုံရေးစစ်ဆေးမှုများကို ပုံမှန် ပြုလုပ်သည်။ ဤနှစ်စဉ် စစ်ဆေးမှုများတွင် source code သုံးသပ်မှုများနှင့် Bitwarden IP များ၊ ဆာဗာများ၊ web application များပေါ်တွင် penetration testing တို့ ပါဝင်သည်။
-
-အဆင့်မြင့် 2FA
-third-party authenticator၊ အီးမေးလ်ပို့ code များ သို့မဟုတ် hardware security key သို့မဟုတ် passkey ကဲ့သို့သော FIDO2 WebAuthn အထောက်အထားများဖြင့် သင့်အကောင့်ဝင်ခြင်းကို လုံခြုံစေပါ။
-
-Bitwarden Send
-end-to-end encryption လုံခြုံရေးကို ထိန်းသိမ်းထားပြီး ထိတွေ့မှုကို လျှော့ချကာ ဒေတာများကို တိုက်ရိုက် အခြားသူများထံ ပို့ဆောင်ပါ။
-
-ပါဝင်ပြီးသား Generator
-သင်သွားရောက်လေ့ရှိသော ဝက်ဘ်ဆိုက်တိုင်းအတွက် ရှည်လျားပြီး ရှုပ်ထွေးကာ ကွဲပြားသော စကားဝှက်များနှင့် ထူးခြားသော အသုံးပြုသူအမည်များ ဖန်တီးပါ။ ပိုမိုကိုယ်ပိုင်ရေးအတွက် email alias ပေးသည့် providers များနှင့် ပေါင်းစပ်ပါ။
-
-ကမ္ဘာ့ဘာသာပြန်ဆိုမှုများ
-Bitwarden ဘာသာပြန်ဆိုမှုများသည် ဘာသာစကား 60 ကျော်ဖြင့် ရရှိနိုင်ပြီး Crowdin မှတဆင့် ကမ္ဘာ့အသိုက်အဝန်းက ဘာသာပြန်ဆိုထားသည်။
-
-Platform မျိုးစုံ Application များ
-ဘရောက်ဇာ၊ မိုဘိုင်းစက်၊ desktop OS စသည်ဖြင့် မည်သည့်စက်မဆိုမှ သင့် Bitwarden Vault အတွင်းရှိ လျှို့ဝှက်ဒေတာများကို လုံခြုံစွာ သိမ်းဆည်းပြီး မျှဝေနိုင်သည်။
-
-Bitwarden သည် စကားဝှက်များထက် ပိုမိုလုံခြုံစေသည်
-Bitwarden မှ end-to-end encryption ဖြင့် အထောက်အထား စီမံခန့်ခွဲမှု ဖြေရှင်းနည်းများသည် developer secrets နှင့် passkey အတွေ့အကြုံများအပါအဝင် အားလုံးကို လုံခြုံစေရန် အဖွဲ့အစည်းများကို စွမ်းဆောင်ရည် ပေးသည်။ Bitwarden Secrets Manager နှင့် Bitwarden Passwordless.dev အကြောင်း ပိုမိုသိရှိရန် Bitwarden.com ကို သွားရောက်ကြည့်ရှုပါ!
-</value>
+Komboe is based on Vaultwarden and Komboe clients and is not affiliated with or endorsed by Bitwarden Inc. or the Vaultwarden project. Source code: https://github.com/GoDeskio/Komboe</value>
   </data>
   <data name="AssetTitle" xml:space="preserve">
-    <value>အိမ်တွင်ဖြစ်စေ၊ အလုပ်တွင်ဖြစ်စေ၊ ခရီးသွားနေစဉ်ဖြစ်စေ Bitwarden သည် သင့်စကားဝှက်များ၊ ပါ့စ်ကီးများနှင့် အရေးကြီးသောအချက်အလက်များအားလုံးကို အလွယ်တကူ လုံခြုံစေပါသည်။</value>
+    <value>Komboe is an open-source, zero-knowledge password manager for families and teams.</value>
   </data>
   <data name="ScreenshotSync" xml:space="preserve">
     <value>စက်ပစ္စည်းများစွာမှ သင့်သေတ္တာကို စင့်ခ်လုပ်ပြီး အသုံးပြုပါ</value>

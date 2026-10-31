@@ -118,58 +118,26 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Name" xml:space="preserve">
-    <value>Bitwarden Wachtwoordbeheerder</value>
+    <value>Komboe Password Manager</value>
   </data>
   <data name="Summary" xml:space="preserve">
-    <value>Thuis, op het werk of onderweg, Bitwarden beveiligt eenvoudig al je wachtwoorden, sleutels en gevoelige informatie.</value>
+    <value>Komboe is an open-source, zero-knowledge password manager for families and teams.</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Erkend als de beste wachtwoordmanager door PCMag, WIRED, The Verge, CNET, G2 en meer!
+    <value>Komboe is an open-source, zero-knowledge password manager for families and teams.
 
-BEVEILIG JE DIGITALE LEVEN
-Beveilig je digitale leven en bescherm je tegen datalekken door unieke, sterke wachtwoorden te genereren en op te slaan voor elke account. Bewaar alles in een end-to-end versleutelde wachtwoordkluis waar alleen jij toegang toe hebt.
+Store passwords, passkeys, 2FA codes, secure notes and cards in an end-to-end encrypted vault. Your vault is encrypted on your device before it is synced; the server never receives your master password or vault keys.
 
-OVERAL EN ALTIJD TOEGANG TOT JE GEGEVENS, OP ELK APPARAAT
-Beheer, bewaar, beveilig en deel een onbeperkt aantal wachtwoorden op een onbeperkt aantal apparaten zonder beperkingen.
+- Password generator and autofill
+- Passkeys and TOTP codes
+- Secure sharing with family members and teams, with groups and roles
+- Email aliases
+- Self-hostable server
 
-IEDEREEN ZOU DE MIDDELEN MOETEN HEBBEN OM VEILIG ONLINE TE BLIJVEN
-Gebruik Bitwarden gratis, zonder advertenties of verkoop van gegevens. Bitwarden vindt dat iedereen de mogelijkheid moet hebben om veilig online te zijn. Premium abonnementen bieden toegang tot geavanceerde functies.
-
-VERSTERK JE TEAMS MET BITWARDEN
-Abonnementen voor Teams en Enterprise worden geleverd met professionele zakelijke functies. Enkele voorbeelden zijn SSO-integratie, zelf hosten, directory-integratie en SCIM provisioning, globaal beleid, API-toegang, gebeurtenislogboeken en meer.
-
-Gebruik Bitwarden om je medewerkers te beveiligen en gevoelige informatie te delen met collega's.
-
-
-Meer redenen om voor Bitwarden te kiezen:
-
-Encryptie van wereldklasse
-Wachtwoorden worden beschermd met geavanceerde end-to-end versleuteling (AES-256 bit, salted hashing en PBKDF2 SHA-256) zodat je gegevens veilig en privé blijven.
-
-Audits door derde partijen
-Bitwarden voert regelmatig uitgebreide beveiligingsaudits uit bij gerenommeerde beveiligingsbedrijven. Deze jaarlijkse audits omvatten broncodebeoordelingen en penetratietests voor Bitwarden IP's, servers en webapplicaties.
-
-Geavanceerde 2FA
-Beveilig je login met een authenticator van derden, codes per e-mail of FIDO2 WebAuthn referenties zoals een hardware beveiligingssleutel of passkey.
-
-Bitwarden Send
-Verstuur gegevens rechtstreeks naar anderen met behoud van end-to-end versleutelde beveiliging en beperking van blootstelling.
-
-Ingebouwde generator
-Maak lange, complexe en duidelijke wachtwoorden en unieke gebruikersnamen voor elke site die je bezoekt. Integreer met e-mail alias providers voor extra privacy.
-
-Wereldwijde vertalingen
-Bitwarden vertalingen bestaan voor meer dan 60 talen, vertaald door de wereldwijde gemeenschap via Crowdin.
-
-Platformoverkoepelende applicaties
-Beveilig en deel gevoelige gegevens in je Bitwarden Vault vanuit elke browser, mobiel apparaat of desktop OS, en meer.
-
-Bitwarden beveiligt meer dan alleen wachtwoorden
-Met de end-to-end versleutelde oplossingen voor referentiebeheer van Bitwarden kunnen organisaties alles beveiligen, inclusief ontwikkelaarsgeheimen en ervaringen met wachtwoorden. Bezoek Bitwarden.com voor meer informatie over Bitwarden Secrets Manager en Bitwarden Passwordless.dev!
-</value>
+Komboe is based on Vaultwarden and Komboe clients and is not affiliated with or endorsed by Bitwarden Inc. or the Vaultwarden project. Source code: https://github.com/GoDeskio/Komboe</value>
   </data>
   <data name="AssetTitle" xml:space="preserve">
-    <value>Thuis, op het werk of onderweg, Bitwarden beveiligt eenvoudig al je wachtwoorden, sleutels en gevoelige informatie.</value>
+    <value>Komboe is an open-source, zero-knowledge password manager for families and teams.</value>
   </data>
   <data name="ScreenshotSync" xml:space="preserve">
     <value>Synchroniseer en gebruik je kluis op meerdere apparaten</value>

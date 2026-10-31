@@ -118,58 +118,26 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Name" xml:space="preserve">
-    <value>מנהל הסיסמאות Bitwarden</value>
+    <value>Komboe Password Manager</value>
   </data>
   <data name="Summary" xml:space="preserve">
-    <value>בבית, בעבודה, או בדרך, Bitwarden מאבטח בקלות את כל הסיסמאות, מפתחות הגישה, והמידע הרגיש שלך.</value>
+    <value>Komboe is an open-source, zero-knowledge password manager for families and teams.</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>מוכר בתור מנהל הסיסמאות הטוב ביותר על ידי G2, CNET, The Verge, WIRED, PCMag, ועוד!
+    <value>Komboe is an open-source, zero-knowledge password manager for families and teams.
 
-אבטח את החיים הדיגיטליים שלך
-אבטח את החיים הדיגיטלים שלך והגן מפני פרצות נתונים על ידי יצירת ושמירת סיסמה ייחודית וחזקה עבור כל חשבון. שמור הכל בכספת סיסמאות מוצפנת מקצה־לקצה שרק אתה יכול לגשת אליה.
+Store passwords, passkeys, 2FA codes, secure notes and cards in an end-to-end encrypted vault. Your vault is encrypted on your device before it is synced; the server never receives your master password or vault keys.
 
-לגשת לנתונים שלך בכל מקום, זמן, ומכשיר
-נהל, אחסן, אבטח, ושתף בקלות מספר בלתי מוגבל של סיסמאות בין מספר בלתי מוגבל של מכשירים ללא הגבלות.
+- Password generator and autofill
+- Passkeys and TOTP codes
+- Secure sharing with family members and teams, with groups and roles
+- Email aliases
+- Self-hostable server
 
-כל אחד צריך את הכלים כדי להישאר בטוח באינטרנט
-השתמש ב־Bitwarden בחינם ללא פרסומות או מכירת נתונים. ב־Bitwarden מאמינים שכל אחד צריך את היכולת להישאר בטוח באינטרנט. תוכניות פרימיום מציעות גישה לתכונות מתקדמות.
-
-העצימו את הצוותים שלכם עם Bitwarden
-תוכניות עבור צוותים וארגונים באות עם תכונות עסקים מקצועיות. חלק מהדוגמאות כוללות שילוב SSO, אירוח עצמי, שילוב מדריך כתובות והקצאת SCIM, פוליסות גלובליות, גישת API, יומני אירועים, ועוד.
-
-השתמש ב־Bitwarden כדי לאבטח את כוח העבודה שלך ולשתף מידע רגיש עם עמיתים.
-
-
-עוד סיבות לבחור ב־Bitwarden:
-
-הצפנה ברמה עולמית
-סיסמאות מוגנת עם הצפנה מקצה־לקצה מתקדמת (AES-256 סיביות, גיבוב מלוח, ו־PBKDF2 SHA-256) כך שהנתונים שלך נשארים מאובטחים ופרטיים.
-
-ביקורות צד שלישי
-Bitwarden באופן קבוע מבצעת ביקורות אבטחה מקיפות של צד שלישי עם חברות אבטחה בולטות. הביקורות השנתיות הללו כוללות הערכות קוד מקור ובדיקות חדירה על פני פרוטוקולי אינטרנט, שרתים, ויישומי רשת של Bitwarden.
-
-2FA מתקדם
-אבטח את הכניסות שלך עם מאמת צד שלישי, קודים בדוא"ל, או אישורי FIDO2 WebAuthn כמו מפתח אבטחת חומרה או מפתח גישה.
-
-Bitwarden סֵנְד
-שדר נתונים ישירות אל אחרים תוך שמירה על אבטחת הצפנה מקצה־לקצה והגבלת חשיפה.
-
-מחולל מובנה
-צור סיסמאות ארוכות, מורכבות, ושונות ושמות משתמש ייחודיים עבור כל אתר שאתה מבקר. שלב עם ספקי כינויי דוא"ל עבור פרטיות נוספת.
-
-תרגומים גלובליים
-תרגומים של Bitwarden קיימים ביותר מ־60 שפות, תורגמו על ידי הקהילה הגלובלית דרך Crowdin.
-
-יישומים חוצי פלטפורמות
-אבטח ושתף מידע רגיש בתוך כספת ה־Bitwarden שלך מכל דפדפן, מכשיר נייד, או מערכת הפעלה של שולחן עבודה, ועוד.
-
-Bitwarden מאבטח יותר מרק סיסמאות
-פתרונות ניהול אישורים מוצפנים מקצה־לקצה מאת Bitwarden מעצימות ארגונים לאבטח הכל, כולל סודות פיתוח וחוויות מפתח גישה. בקר ב־Bitwarden.com כדי ללמוד עוד על מנהל הסודות של Bitwarden ו־Bitwarden Passwordless.dev!
-</value>
+Komboe is based on Vaultwarden and Komboe clients and is not affiliated with or endorsed by Bitwarden Inc. or the Vaultwarden project. Source code: https://github.com/GoDeskio/Komboe</value>
   </data>
   <data name="AssetTitle" xml:space="preserve">
-    <value>בבית, בעבודה, או בדרך, Bitwarden מאבטח בקלות את כל הסיסמאות, מפתחות הגישה, והמידע הרגיש שלך.</value>
+    <value>Komboe is an open-source, zero-knowledge password manager for families and teams.</value>
   </data>
   <data name="ScreenshotSync" xml:space="preserve">
     <value>סנכרון וגישה לכספת שלך ממגוון מכשירים</value>

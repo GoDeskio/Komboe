@@ -118,58 +118,26 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Name" xml:space="preserve">
-    <value>Bitwarden Adgangskodehåndtering</value>
+    <value>Komboe Password Manager</value>
   </data>
   <data name="Summary" xml:space="preserve">
-    <value>Hjemme, på arbejde eller på farten sikrer Bitwarden nemt alle adgangskoder, adgangskort og sensitive oplysninger.</value>
+    <value>Komboe is an open-source, zero-knowledge password manager for families and teams.</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Anerkendt som den bedste adgangskodehåndtering af PCMag, WIRED, The Verge, CNET, G2 og flere!
+    <value>Komboe is an open-source, zero-knowledge password manager for families and teams.
 
-SIKR DIT DIGITALE LIV
-Sikr dit digitale liv og vær beskyttet mod dataindbrud ved at generere og gemme unikke, stærke adgangskoder til hver konto. Vedligehold alt i en ende-til-ende krypteret adgangskodeboks, som kun du har adgang til.
+Store passwords, passkeys, 2FA codes, secure notes and cards in an end-to-end encrypted vault. Your vault is encrypted on your device before it is synced; the server never receives your master password or vault keys.
 
-FÅ ADGANG TIL DATAENE, hvor som helst, når som helst, PÅ ENHVER ENHED
-Håndtér, gem, beskyt og del nemt et ubegrænset antal adgangskoder på tværs af et ubegrænset antal enheder uden restriktioner.
+- Password generator and autofill
+- Passkeys and TOTP codes
+- Secure sharing with family members and teams, with groups and roles
+- Email aliases
+- Self-hostable server
 
-ALLE BØR HAVE VÆRKTØJERNE TIL AT KUNNE VÆRE SIKKER ONLINE
-Brug Bitwarden gratis uden annoncer eller salgsdata. Bitwarden mener, at alle bør have muligheden for at forblive sikre online. Premium-abonnementer giver adgang til avancerede funktioner.
-
-STYRK DINE HOLD MED BITWARDEN
-Abonnementer til Teams og Enterprise kommer med professionelle forretningsfunktioner, f.eks. SSO-integration, selvhosting, katalogintegration og SCIM-klargøring, globale politikker, API-adgang, hændelseslogfiler og mere.
-
-Brug Bitwarden til at sikre arbejdsstyrken og dele sensitive oplysninger med kolleger.
-
-
-Flere grunde til at vælge Bitwarden:
-
-Kryptering i verdensklasse
-Adgangskoder er beskyttet med avanceret ende-til-ende-kryptering (AES-256 bit, saltet hashing og PBKDF2 SHA-256), så dataene forbliver sikre og private.
-
-Tredjepartsrevisioner
-Bitwarden udfører regelmæssigt omfattende tredjeparts sikkerhedsrevisioner med velrenommerede sikkerhedsfirmaer. Disse årlige revisioner inkluderer kildekodevurderinger og penetrationstest på tværs af Bitwarden IP'er, servere og webapplikationer.
-
-Avanceret 2FA
-Sikre dit login med en tredjepartsgodkendelse, e-mailede koder eller FIDO2 WebAuthn-legitimationsoplysninger, såsom en hardwaresikkerhedsnøgle eller adgangsnøgle.
-
-Bitwarden Send
-Overfør data direkte til andre, mens ende-til-ende krypteret sikkerhed opretholdes og begrænser eksponeringen.
-
-Indbygget generator
-Opret lange, komplekse og distinkte adgangskoder og unikke brugernavne til hvert websted, som besøges. Integrér med udbydere af e-mailalias for yderligere fortrolighed.
-
-Globale oversættelser
-Bitwarden-lokaliseringer findes til flere end 60 sprog, oversat af det globale fællesskab via Crowdin.
-
-Applikationer på tværs af platforme
-Sikr og del følsomme data i Bitwarden Vault fra enhver webbrowser, mobilenhed eller computer-OS og mere.
-
-Bitwarden sikrer mere end blot adgangskoder
-Ende-til-ende krypterede legitimationshåndteringsløsninger fra Bitwarden giver organisationer mulighed for at sikre alt, herunder udviklerhemmeligheder og adgangsnøgleoplevelser. Besøg Bitwarden.com for at læse mere om Bitwarden Secrets Manager og Bitwarden Passwordless.dev!
-</value>
+Komboe is based on Vaultwarden and Komboe clients and is not affiliated with or endorsed by Bitwarden Inc. or the Vaultwarden project. Source code: https://github.com/GoDeskio/Komboe</value>
   </data>
   <data name="AssetTitle" xml:space="preserve">
-    <value>Hjemme, på arbejde eller på farten sikrer Bitwarden nemt alle adgangskoder, adgangskort og sensitive oplysninger.</value>
+    <value>Komboe is an open-source, zero-knowledge password manager for families and teams.</value>
   </data>
   <data name="ScreenshotSync" xml:space="preserve">
     <value>Synkroniser og få adgang til din boks fra flere enheder</value>

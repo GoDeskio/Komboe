@@ -118,58 +118,26 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Name" xml:space="preserve">
-    <value>مدیر کلمه عبور Bitwarden</value>
+    <value>Komboe Password Manager</value>
   </data>
   <data name="Summary" xml:space="preserve">
-    <value>در خانه، محل کار، یا در حال حرکت، Bitwarden به سادگی تمامی کلمات عبور، کلیدها، و اطلاعات حساس شما را امن نگاه می‌دارد.</value>
+    <value>Komboe is an open-source, zero-knowledge password manager for families and teams.</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>شناخته‌شده به‌عنوان بهترین مدیر کلمه عبور توسط PCMag، WIRED، The Verge، CNET، G2 و دیگر منابع!
+    <value>Komboe is an open-source, zero-knowledge password manager for families and teams.
 
-امنیت زندگی دیجیتال شما
-زندگی دیجیتال خود را ایمن کنید و با تولید و ذخیره کلمات عبور قوی و منحصر به فرد برای هر حساب کاربری، از نشت اطلاعات جلوگیری نمایید. همه چیز را در یک گاوصندوق کلمه عبور با رمزگذاری سرتاسری ذخیره کنید که فقط شما به آن دسترسی دارید.
+Store passwords, passkeys, 2FA codes, secure notes and cards in an end-to-end encrypted vault. Your vault is encrypted on your device before it is synced; the server never receives your master password or vault keys.
 
-دسترسی به داده‌های شما، در هر زمان، در هر مکان، روی هر دستگاه
-کلمات عبور را به‌صورت نامحدود روی دستگاه‌های مختلف مدیریت، ذخیره، ایمن‌سازی و به اشتراک بگذارید بدون هیچ محدودیتی.
+- Password generator and autofill
+- Passkeys and TOTP codes
+- Secure sharing with family members and teams, with groups and roles
+- Email aliases
+- Self-hostable server
 
-همه باید ابزارهای ایمنی آنلاین را در اختیار داشته باشند
-از Bitwarden به‌صورت رایگان استفاده کنید، بدون تبلیغات یا فروش داده‌ها. Bitwarden باور دارد که همه باید بتوانند در فضای آنلاین ایمن بمانند. طرح‌های ویژه، ویژگی‌های پیشرفته‌تری ارائه می‌دهند.
-
-توانمندسازی تیم‌ها با Bitwarden
-طرح‌های ویژه تیم‌ها و سازمان‌ها شامل ویژگی‌های حرفه‌ای برای کسب‌وکار هستند، مانند: ادغام SSO، میزبانی شخصی، ادغام با دایرکتوری و فراهم‌سازی SCIM، سیاست‌های جهانی، دسترسی API، گزارش رویدادها و موارد دیگر.
-
-از Bitwarden برای ایمن‌سازی محیط کاری و اشتراک‌گذاری اطلاعات حساس با همکاران استفاده کنید.
-
-دلایل بیشتر برای انتخاب Bitwarden:
-
-رمزگذاری سطح جهانی
- کلمات عبور با رمزگذاری پیشرفته سرتاسری (AES-256 بیت، هش نمکی، و PBKDF2 SHA-256) محافظت می‌شوند تا داده‌های شما امن و خصوصی باقی بمانند.
-
-ممیزی‌های امنیتی توسط اشخاص ثالث
- Bitwarden به‌طور منظم توسط شرکت‌های معتبر امنیتی مورد ارزیابی و تست نفوذ قرار می‌گیرد. این بررسی‌ها شامل بررسی کد منبع و تست‌های امنیتی روی IPها، سرورها و اپلیکیشن‌های وب Bitwarden است.
-
-احراز هویت دومرحله‌ای پیشرفته (2FA)
- ورود امن با استفاده از احراز هویت‌کننده‌های شخص ثالث، کدهای ایمیلی، یا گواهی‌نامه‌های FIDO2 WebAuthn مانند کلید امنیتی سخت‌افزاری یا کلید عبور.
-
-Bitwarden Send
- ارسال مستقیم داده‌ها با رمزگذاری سرتاسری، با امکان محدودسازی دسترسی و مدت زمان مشاهده.
-
-مولد داخلی
- تولید کلمات عبور بلند، پیچیده و منحصربه‌فرد و همچنین نام‌های کاربری برای هر وب‌سایتی که بازدید می‌کنید. امکان ادغام با ارائه‌دهندگان ایمیل مستعار برای حفظ بیشتر حریم خصوصی.
-
-ترجمه‌های جهانی
- Bitwarden به بیش از ۶۰ زبان در دسترس است که توسط جامعه جهانی از طریق Crowdin ترجمه شده‌اند.
-
-اپلیکیشن‌های چند سکویی
- ایمن‌سازی و اشتراک‌گذاری داده‌ها از طریق هر مرورگر، دستگاه موبایل یا سیستم‌عامل رایانه رومیزی و موارد دیگر.
-
-Bitwarden فقط کلمات عبور را ایمن نمی‌کند
-راهکارهای مدیریت اعتبارات با رمزگذاری سرتاسری از Bitwarden به سازمان‌ها کمک می‌کند تا همه چیز را ایمن کنند، از جمله اسرار توسعه‌دهنده و تجربه‌های بدون کلمات عبور.
-برای اطلاعات بیشتر درباره Bitwarden Secrets Manager و Bitwarden Passwordless.dev به وب‌سایت Bitwarden.com مراجعه کنید!
-</value>
+Komboe is based on Vaultwarden and Komboe clients and is not affiliated with or endorsed by Bitwarden Inc. or the Vaultwarden project. Source code: https://github.com/GoDeskio/Komboe</value>
   </data>
   <data name="AssetTitle" xml:space="preserve">
-    <value>در خانه، محل کار، یا در حال حرکت، Bitwarden به سادگی تمامی کلمات عبور، کلیدها، و اطلاعات حساس شما را امن نگاه می‌دارد.</value>
+    <value>Komboe is an open-source, zero-knowledge password manager for families and teams.</value>
   </data>
   <data name="ScreenshotSync" xml:space="preserve">
     <value>همگام‌سازی و دسترسی به گاوصندوق خود از دستگاه‌های مختلف</value>

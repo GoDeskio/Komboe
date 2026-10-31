@@ -118,57 +118,26 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Name" xml:space="preserve">
-    <value>Bitwarden Password Manager</value>
+    <value>Komboe Password Manager</value>
   </data>
   <data name="Summary" xml:space="preserve">
-    <value>ไม่ว่าจะที่บ้าน ที่ทำงาน หรือระหว่างเดินทาง Bitwarden ช่วยปกป้องรหัสผ่าน พาสคีย์ และข้อมูลสำคัญของคุณได้อย่างง่ายดาย</value>
+    <value>Komboe is an open-source, zero-knowledge password manager for families and teams.</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>ได้รับการยอมรับว่าเป็นตัวจัดการรหัสผ่านที่ดีที่สุดโดย PCMag, WIRED, The Verge, CNET, G2 และอีกมากมาย!
+    <value>Komboe is an open-source, zero-knowledge password manager for families and teams.
 
-ปกป้องชีวิตดิจิทัลของคุณ
-ปกป้องชีวิตดิจิทัลและป้องกันข้อมูลรั่วไหลโดยการสร้างและบันทึกรหัสผ่านที่รัดกุมและไม่ซ้ำกันสำหรับทุกบัญชี ดูแลจัดการทุกอย่างในตู้นิรภัยรหัสผ่านที่เข้ารหัสแบบต้นทางถึงปลายทาง ซึ่งมีเพียงคุณเท่านั้นที่เข้าถึงได้
+Store passwords, passkeys, 2FA codes, secure notes and cards in an end-to-end encrypted vault. Your vault is encrypted on your device before it is synced; the server never receives your master password or vault keys.
 
-เข้าถึงข้อมูลของคุณได้ทุกที่ ทุกเวลา บนทุกอุปกรณ์
-จัดการ จัดเก็บ ปกป้อง และแชร์รหัสผ่านได้ไม่จำกัดบนอุปกรณ์ไม่จำกัดจำนวนได้อย่างง่ายดายโดยไม่มีข้อจำกัด
+- Password generator and autofill
+- Passkeys and TOTP codes
+- Secure sharing with family members and teams, with groups and roles
+- Email aliases
+- Self-hostable server
 
-ทุกคนควรมีเครื่องมือเพื่อความปลอดภัยบนโลกออนไลน์
-ใช้งาน Bitwarden ได้ฟรีโดยไม่มีโฆษณาหรือการขายข้อมูล Bitwarden เชื่อว่าทุกคนควรมีความสามารถในการอยู่อย่างปลอดภัยบนโลกออนไลน์ แผนพรีเมียมจะมอบการเข้าถึงฟีเจอร์ขั้นสูง
-
-เสริมศักยภาพทีมของคุณด้วย BITWARDEN
-แผนสำหรับ Teams และ Enterprise มาพร้อมกับฟีเจอร์ทางธุรกิจระดับมืออาชีพ ตัวอย่างเช่น การรวม SSO, การโฮสต์เอง (Self-hosting), การรวมไดเรกทอรีและการจัดเตรียม SCIM, นโยบายระดับองค์กร, การเข้าถึง API, บันทึกเหตุการณ์ และอื่น ๆ
-
-ใช้ Bitwarden เพื่อปกป้องบุคลากรของคุณและแชร์ข้อมูลสำคัญกับเพื่อนร่วมงาน
-
-เหตุผลเพิ่มเติมที่ควรเลือก Bitwarden:
-
-การเข้ารหัสระดับโลก
-รหัสผ่านได้รับการปกป้องด้วยการเข้ารหัสแบบต้นทางถึงปลายทาง ขั้นสูง (AES-256 bit, salted hashing และ PBKDF2 SHA-256) ข้อมูลของคุณจึงปลอดภัยและเป็นส่วนตัว
-
-การตรวจสอบโดยบุคคลที่สาม
-Bitwarden ดำเนินการตรวจสอบความปลอดภัยโดยบุคคลที่สามอย่างครอบคลุมกับบริษัทความปลอดภัยที่มีชื่อเสียงอย่างสม่ำเสมอ การตรวจสอบประจำปีเหล่านี้รวมถึงการประเมินซอร์สโค้ดและการทดสอบเจาะระบบครอบคลุมทั้ง IP, เซิร์ฟเวอร์ และเว็บแอปพลิเคชันของ Bitwarden
-
-2FA ขั้นสูง
-ปกป้องการเข้าสู่ระบบของคุณด้วยแอปยืนยันตัวตนของบุคคลที่สาม, รหัสทางอีเมล หรือข้อมูลประจำตัว FIDO2 WebAuthn เช่น คีย์ความปลอดภัยฮาร์ดแวร์หรือพาสคีย์
-
-Bitwarden Send
-ส่งข้อมูลโดยตรงถึงผู้อื่นในขณะที่ยังคงรักษาความปลอดภัยด้วยการเข้ารหัสแบบต้นทางถึงปลายทาง และจำกัดการเปิดเผยข้อมูล
-
-ตัวสร้างในตัว
-สร้างรหัสผ่านที่ยาว ซับซ้อน และแตกต่างกัน รวมถึงชื่อผู้ใช้ที่ไม่ซ้ำกันสำหรับทุกเว็บไซต์ที่คุณเยี่ยมชม ผสานรวมกับผู้ให้บริการนามแฝงอีเมลเพื่อความเป็นส่วนตัวเพิ่มเติม
-
-การแปลภาษาทั่วโลก
-Bitwarden มีการแปลภาษามากกว่า 60 ภาษา โดยชุมชนทั่วโลกผ่าน Crowdin
-
-แอปพลิเคชันข้ามแพลตฟอร์ม
-ปกป้องและแชร์ข้อมูลสำคัญภายในตู้นิรภัย Bitwarden ของคุณจากเบราว์เซอร์ อุปกรณ์มือถือ หรือระบบปฏิบัติการเดสก์ท็อปใดก็ได้ และอื่น ๆ
-
-Bitwarden ปกป้องมากกว่าแค่รหัสผ่าน
-โซลูชันการจัดการข้อมูลประจำตัวที่เข้ารหัสแบบ End-to-end จาก Bitwarden ช่วยให้องค์กรปกป้องทุกสิ่ง รวมถึงความลับของนักพัฒนาและประสบการณ์พาสคีย์ เยี่ยมชม Bitwarden.com เพื่อเรียนรู้เพิ่มเติมเกี่ยวกับ Bitwarden Secrets Manager และ Bitwarden Passwordless.dev!
-</value>
+Komboe is based on Vaultwarden and Komboe clients and is not affiliated with or endorsed by Bitwarden Inc. or the Vaultwarden project. Source code: https://github.com/GoDeskio/Komboe</value>
   </data>
   <data name="AssetTitle" xml:space="preserve">
-    <value>ไม่ว่าจะที่บ้าน ที่ทำงาน หรือระหว่างเดินทาง Bitwarden ช่วยปกป้องรหัสผ่าน พาสคีย์ และข้อมูลสำคัญของคุณได้อย่างง่ายดาย</value>
+    <value>Komboe is an open-source, zero-knowledge password manager for families and teams.</value>
   </data>
   <data name="ScreenshotSync" xml:space="preserve">
     <value>ซิงค์และเข้าถึงตู้นิรภัยของคุณจากหลายอุปกรณ์</value>

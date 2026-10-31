@@ -118,58 +118,26 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Name" xml:space="preserve">
-    <value>Bitwarden Passwort-Manager</value>
+    <value>Komboe Password Manager</value>
   </data>
   <data name="Summary" xml:space="preserve">
-    <value>Zu Hause, am Arbeitsplatz oder unterwegs schützt Bitwarden einfach alle deine Passwörter, Passkeys und vertraulichen Informationen.</value>
+    <value>Komboe is an open-source, zero-knowledge password manager for families and teams.</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Ausgezeichnet als bester Passwortmanager von PCMag, WIRED, The Verge, CNET, G2 und vielen anderen!
+    <value>Komboe is an open-source, zero-knowledge password manager for families and teams.
 
-SCHÜTZE DEIN DIGITALES LEBEN
-Sicher dein digitales Leben und schütze dich vor Passwortdiebstählen, indem du individuelle, sichere Passwörter für jedes Konto erstellest und speicherst. Verwalte alles in einem Ende-zu-Ende verschlüsselten Passwort-Tresor, auf den nur du Zugriff hast.
+Store passwords, passkeys, 2FA codes, secure notes and cards in an end-to-end encrypted vault. Your vault is encrypted on your device before it is synced; the server never receives your master password or vault keys.
 
-ZUGRIFF AUF DEINE DATEN, ÜBERALL, JEDERZEIT UND AUF JEDEM GERÄT
-Verwalte, speichere, sichere und teile einfach eine unbegrenzte Anzahl von Passwörtern auf einer unbegrenzten Anzahl von Geräten ohne Einschränkungen.
+- Password generator and autofill
+- Passkeys and TOTP codes
+- Secure sharing with family members and teams, with groups and roles
+- Email aliases
+- Self-hostable server
 
-JEDER SOLLTE DIE MÖGLICHKEIT HABEN, ONLINE GESCHÜTZT ZU BLEIBEN
-Verwende Bitwarden kostenlos, ohne Werbung oder Datenverkauf. Bitwarden glaubt, dass jeder die Möglichkeit haben sollte, online geschützt zu bleiben. Premium-Abos bieten Zugang zu erweiterten Funktionen.
-
-STÄRKE DEINE TEAMS MIT BITWARDEN
-Tarife für Teams und Enterprise enthalten professionelle Business-Funktionen. Einige Beispiele sind SSO-Integration, Selbst-Hosting, Directory-Integration und SCIM-Bereitstellung, globale Richtlinien, API-Zugang, Ereignisprotokolle und mehr.
-
-Nutze Bitwarden, um deine Mitarbeiter abzusichern und sensible Informationen mit Kollegen zu teilen.
-
-
-Weitere Gründe, Bitwarden zu wählen:
-
-Weltklasse-Verschlüsselung
-Passwörter werden mit fortschrittlicher Ende-zu-Ende-Verschlüsselung (AES-256 bit, salted hashing und PBKDF2 SHA-256) geschützt, damit deine Daten sicher und geheim bleiben.
-
-3rd-Party-Prüfungen
-Bitwarden führt regelmäßig umfassende Sicherheitsprüfungen durch Dritte von namhaften Sicherheitsfirmen durch. Diese jährlichen Prüfungen umfassen Quellcode-Bewertungen und Penetration-Tests für Bitwarden-IPs, Server und Webanwendungen.
-
-Erweiterte 2FA
-Schütze deine Zugangsdaten mit einem Authentifikator eines Drittanbieters, per E-Mail verschickten Codes oder FIDO2 WebAuthn-Zugangsadaten wie einem Hardware-Sicherheitsschlüssel oder Passkey.
-
-Bitwarden Send
-Übertrage Daten direkt an andere, während die Ende-zu-Ende-Verschlüsselung beibehalten wird und die Verbreitung begrenzt werden kann.
-
-Eingebauter Generator
-Erstelle lange, komplexe und eindeutige Passwörter und eindeutige Benutzernamen für jede Website, die du besuchst. Integriere E-Mail-Alias-Anbieter für zusätzlichen Datenschutz.
-
-Globale Übersetzungen
-Es gibt Bitwarden-Übersetzungen für mehr als 60 Sprachen, die von der weltweiten Community über Crowdin übersetzt werden.
-
-Plattformübergreifende Anwendungen
-Schütze und teile sensible Daten in deinem Bitwarden Tresor von jedem Browser, mobilen Gerät oder Desktop-Betriebssystem und mehr.
-
-Bitwarden schützt mehr als nur Passwörter
-Ende-zu-Ende verschlüsselte Zugangsverwaltungs-Lösungen von Bitwarden ermöglicht es Organisationen, alles zu sichern, einschließlich Entwicklergeheimnissen und Passkeys. Besuche Bitwarden.com, um mehr über den Bitwarden Secrets Manager und Bitwarden Passwordless.dev zu erfahren!
-</value>
+Komboe is based on Vaultwarden and Komboe clients and is not affiliated with or endorsed by Bitwarden Inc. or the Vaultwarden project. Source code: https://github.com/GoDeskio/Komboe</value>
   </data>
   <data name="AssetTitle" xml:space="preserve">
-    <value>Zu Hause, am Arbeitsplatz oder unterwegs schützt Bitwarden einfach alle deine Passwörter, Passkeys und vertraulichen Informationen.</value>
+    <value>Komboe is an open-source, zero-knowledge password manager for families and teams.</value>
   </data>
   <data name="ScreenshotSync" xml:space="preserve">
     <value>Synchronisiere und greife auf deinen Tresor von unterschiedlichen Geräten aus zu</value>

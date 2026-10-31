@@ -1,4 +1,8 @@
 # Proton-style dashboard (#105) inside the real web vault.
+if "t" not in globals():  # standalone run: execute the check this phase wraps
+    import os, runpy, sys
+    runpy.run_path(os.path.join(os.path.dirname(os.path.abspath(__file__)), "dashboard_web.py"), run_name="__main__")
+    sys.exit(0)
 @t(105)
 def _():
     import subprocess

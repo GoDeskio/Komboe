@@ -118,58 +118,26 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Name" xml:space="preserve">
-    <value>Bitwarden Salasanahallinta</value>
+    <value>Komboe Password Manager</value>
   </data>
   <data name="Summary" xml:space="preserve">
-    <value>Kotona, töissä tai reissussa, Bitwarden suojaa salasanasi, pääsyavaimesi ja arkaluonteiset tietosi helposti.</value>
+    <value>Komboe is an open-source, zero-knowledge password manager for families and teams.</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Muun muassa PCMag, WIRED, The Verge, CNET sekä G2 ovat nimenneet Bitwardenin parhaaksi salasanahallinnaksi!
+    <value>Komboe is an open-source, zero-knowledge password manager for families and teams.
 
-SUOJAA DIGITAALINEN ELÄMÄSI
-Varjele digielämääsi varautumalla tietovuotoihin luomalla kaikille tileillesi yksilölliset, vahvat salasanat ja säilyttämällä ne turvallisesti. Hallitse kaikkea päästä päähän salatussa salasanaholvissa, johon vain sinulla on käyttöoikeus.
+Store passwords, passkeys, 2FA codes, secure notes and cards in an end-to-end encrypted vault. Your vault is encrypted on your device before it is synced; the server never receives your master password or vault keys.
 
-TAVOITA TIETOSI MISTÄ, MILLOIN JA MILLÄ LAITTEELLA TAHANSA
-Hallitse, säilytä, suojaa ja jaa salasanoja niin paljon kuin haluat, niin monella laitteella kuin haluat.
+- Password generator and autofill
+- Passkeys and TOTP codes
+- Secure sharing with family members and teams, with groups and roles
+- Email aliases
+- Self-hostable server
 
-KAIKILLA TULISI OLLA TYÖKALUT VERKOSSA SUOJAUTUMISEEN
-Hyödynnä Bitwardenia ilmaiseksi ilman mainoksia tai käyttäjätietojen myyntiä. Bitwardenin mielestä kaikkien tulee voida suojautua verkossa. Premium-tilaukset tarjoavat lisäominaisuuksia.
-
-TEHOSTA TIIMIESI TYÖSKENTELYÄ BITWARDENILLA
-Teams- ja Enterprise-tilaukset tarjoavat esimerkiksi SSO- ja hakemistointegraatioiden, SCIM-hallinnan, oman palvelinympäristön, laajan käytäntöhallinnan, rajapinnan sekä käyttölokien kaltaisia ammattitason yritysominaisuuksia.
-
-Suojaa henkilökuntasi Bitwardenilla ja jaa arkaluonteisia tietoja kollegoidesi kanssa.
-
-
-Lisää syitä valita Bitwarden:
-
-Maailmanluoka salaus:
-Salasanat on suojattu edistyneellä päästä päähän salauksella (AES-256 bit, suolattu hajautus sekä PBKDF2 SHA-256), joten tietosi pysyvät turvassa ja yksityisinä.
-
-Riippumattomat auditoinnit
-Bitwarden teetättää säännöllisesti kattavia riippumattomia tietoturva-arviointeja tunnettuilla tietoturvayrityksillä. Näissä vuotuisissa auditoinneissa arvioidaan lähdekoodia ja suoritetaan murtotestausta Bitwardenin IP-osoitteille, palvelimille ja verkkosovelluksille.
-
-Edistynyt kaksivaiheinen tunnistautuminen
-Suojaa kirjautumistietosi riippumattomalla todennussovelluksella, sähköpostikoodeilla, tai FIDO2 WEBAuthn -standardin mukaisilla tunnistustavoilla kuten fyysisillä suojausavaimilla tai pääsyavaimilla.
-
-Bitwarden Send
-Välitä tietoja muille suoraan, päästä päähän salausta menettämättä ja rajoitaen niiden näkyvyyttä.
-
-Sisäänrakennettu generaattori
-Luo pitkät, monimutkaiset ja yksilölliset salasanat sekä ainutlaatuiset käyttäjätunnukset kaikille käyttämillesi verkkosivustoille. Sähköpostialiaksia toimittavien palveluiden liitäntämahdollisuus tehostaa yksityisyyttä.
-
-Maailmanlaajuinen kielituki
-Bitwarden on maailmanlaajuisen Crowdin-yhteisön toimesta yli 60 kielelle.
-
-Sovellukset eri alustoille
-Suojaa ja jaa Bitwarden-holvisi arkaluonteisia tietoja mm. mistä tahansa selaimesta, mobiililaitteesta tai pöytätietokoneesta.
-
-Bitwarden suojaa muutakin kuin salasanoja
-Bitwardenin päästä päähän salatut käyttäjätietojen hallintaratkaisut tarjoavat organisaatiolle mahdollisuuden suojata paljon muutakin, kuten kehityssalaisuuksia ja suojausavaintoteutuksia. Vieraile osoitteessa Bitwaren.com ja tutustu Bitwarden Salaisuushallinta ja Bitwarden Passwordless.dev -palveluihin!
-</value>
+Komboe is based on Vaultwarden and Komboe clients and is not affiliated with or endorsed by Bitwarden Inc. or the Vaultwarden project. Source code: https://github.com/GoDeskio/Komboe</value>
   </data>
   <data name="AssetTitle" xml:space="preserve">
-    <value>Kotona, töissä tai reissussa, Bitwarden suojaa salasanasi, pääsyavaimesi ja arkaluonteiset tietosi helposti.</value>
+    <value>Komboe is an open-source, zero-knowledge password manager for families and teams.</value>
   </data>
   <data name="ScreenshotSync" xml:space="preserve">
     <value>Synkronoi ja hallitse holviasi useilla laitteilla</value>

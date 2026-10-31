@@ -16,8 +16,8 @@ const polkitPolicy = `<?xml version="1.0" encoding="UTF-8"?>
 
 <policyconfig>
     <action id="com.bitwarden.Bitwarden.unlock">
-      <description>Unlock Bitwarden</description>
-      <message>Authenticate to unlock Bitwarden</message>
+      <description>Unlock Komboe</description>
+      <message>Authenticate to unlock Komboe</message>
       <defaults>
         <allow_any>no</allow_any>
         <allow_inactive>no</allow_inactive>

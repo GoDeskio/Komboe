@@ -6,7 +6,7 @@
   "productName": "Komboe",
   "appId": "io.komboe.desktop",
   "buildDependenciesFromSource": true,
-  "copyright": "Copyright © 2026 GoDesk. Komboe is based on Bitwarden clients (GPL-3.0).",
+  "copyright": "Copyright © 2026 GoDesk.",
   "directories": {
     "buildResources": "resources",
     "output": "dist",

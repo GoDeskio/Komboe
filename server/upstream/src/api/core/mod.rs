@@ -239,7 +239,7 @@ fn config() -> Json<Value> {
         "version": "2026.6.0",
         "gitHash": option_env!("GIT_REV"),
         "server": {
-          "name": "Vaultwarden",
+          "name": "Komboe",
           "url": "https://github.com/dani-garcia/vaultwarden"
         },
         "settings": {

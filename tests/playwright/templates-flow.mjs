@@ -21,7 +21,7 @@ export async function templateFlow(p, client, openMenu) {
   if (await field.inputValue() !== secret) throw new Error(`${client}: revealed value mismatch`);
   await eye.click(); await p.waitForTimeout(300);
   if (await field.getAttribute("type") !== "password") throw new Error(`${client}: eye toggle did not re-hide the password`);
-  await p.getByRole("button", { name: "Save", exact: true }).filter({ visible: true }).first().click(); await p.waitForTimeout(2500);
+  await p.getByRole("button", { name: "Save", exact: true }).filter({ visible: true }).last().click(); await p.waitForTimeout(2500);
   await p.getByText(name).filter({ visible: true }).first().waitFor({ timeout: 20000 });
   // Bookmark: create from the same menu, save, reopen and read the URL back.
   await openMenu(); await p.waitForTimeout(800);
@@ -29,7 +29,7 @@ export async function templateFlow(p, client, openMenu) {
   const bname = `${client}-bm-${rnd}`, burl = `https://bm-${rnd}.example.test/`; fs.appendFileSync(SECRETS, burl + "\n");
   await p.getByLabel("Item name").filter({ visible: true }).first().fill(bname);
   await p.locator("[data-testid=bookmark-url]").filter({ visible: true }).first().fill(burl);
-  await p.getByRole("button", { name: "Save", exact: true }).filter({ visible: true }).first().click(); await p.waitForTimeout(2500);
+  await p.getByRole("button", { name: "Save", exact: true }).filter({ visible: true }).last().click(); await p.waitForTimeout(2500);
   const row = p.getByText(bname).filter({ visible: true }).first(); await row.waitFor({ timeout: 20000 });
   if (!(await p.locator("[data-testid=bookmark-url]").filter({ visible: true }).count())) { await row.click(); await p.waitForTimeout(1500); }
   const got = await p.locator("[data-testid=bookmark-url]").filter({ visible: true }).first().inputValue();
@@ -61,7 +61,7 @@ export async function gpgFlow(p, client, openMenu) {
     await f(eye).click(); await p.waitForTimeout(300);
     if (!(await hidden(f(id)))) throw new Error(`${client}: ${eye} did not re-hide`);
   }
-  await p.getByRole("button", { name: "Save", exact: true }).filter({ visible: true }).first().click(); await p.waitForTimeout(2500);
+  await p.getByRole("button", { name: "Save", exact: true }).filter({ visible: true }).last().click(); await p.waitForTimeout(2500);
   const row = p.getByText(name).filter({ visible: true }).first(); await row.waitFor({ timeout: 20000 });
   if (!(await p.locator("[data-testid=gpg-private-key]").filter({ visible: true }).count())) { await row.click(); await p.waitForTimeout(1500); }
   const got = await f("gpg-private-key").inputValue();

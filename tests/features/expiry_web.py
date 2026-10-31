@@ -58,7 +58,7 @@ def main():
             skip_tour.click()
             page.wait_for_timeout(300)
         def banner(name):
-            page.get_by_text(name, exact=True).first.click()
+            page.get_by_text(name, exact=True).locator("visible=true").first.click()
             page.get_by_role("dialog").first.wait_for()
             page.wait_for_timeout(1500)
             shown = page.get_by_test_id("password-expired").count() > 0
@@ -76,9 +76,9 @@ def main():
         page.get_by_role("menuitem", name="Login", exact=True).click()
         page.fill("input[formcontrolname=name]", "Old login")
         page.fill("input[formcontrolname=password]", "still-secret-value")
-        page.get_by_role("button", name="Save", exact=True).click()
+        page.get_by_role("button", name="Save", exact=True).locator("visible=true").last.click()
         page.keyboard.press("Escape")
-        page.get_by_text("Old login", exact=True).first.click()
+        page.get_by_text("Old login", exact=True).locator("visible=true").first.click()
         page.get_by_test_id("password-expired").wait_for()
         page.keyboard.press("Escape")
         browser.close()

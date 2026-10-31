@@ -10,6 +10,7 @@ import { GetCommand } from "./commands/get.command";
 import { ListCommand } from "./commands/list.command";
 import { RestoreCommand } from "./commands/restore.command";
 import { Response } from "./models/response";
+import { CxfCommand } from "./tools/cxf.command";
 import { ExportCommand } from "./tools/export.command";
 import { ImportCommand } from "./tools/import.command";
 import { CliUtils } from "./utils";
@@ -510,11 +511,24 @@ export class VaultProgram extends BaseProgram {
         writeLn("    bw import bitwardencsv ./from/source.csv");
         writeLn("    bw import keepass2xml keepass_backup.xml");
         writeLn(
+          "    bw import cxf passkeys.cxf.json   (FIDO Credential Exchange Format, incl. passkeys)",
+        );
+        writeLn(
           "    bw import --organizationid cf14adc3-aca5-4573-890a-f6fa231436d9 keepass2xml keepass_backup.xml",
         );
       })
       .action(async (format, filepath, options) => {
         await this.exitIfLocked();
+        if (format === "cxf" && !options.formats) {
+          const cxf = new CxfCommand(
+            this.serviceContainer.sdkService,
+            this.serviceContainer.cipherService,
+            this.serviceContainer.accountService,
+            this.serviceContainer.syncService,
+          );
+          this.processResponse(await cxf.import(filepath, options.organizationid));
+          return;
+        }
         const command = new ImportCommand(
           this.serviceContainer.importService,
           this.serviceContainer.organizationService,
@@ -568,6 +582,16 @@ export class VaultProgram extends BaseProgram {
       })
       .action(async (options) => {
         await this.exitIfLocked();
+        if (options.format === "cxf") {
+          const cxf = new CxfCommand(
+            this.serviceContainer.sdkService,
+            this.serviceContainer.cipherService,
+            this.serviceContainer.accountService,
+            this.serviceContainer.syncService,
+          );
+          this.processResponse(await cxf.export(options.output, options.organizationid));
+          return;
+        }
         const command = new ExportCommand(
           this.serviceContainer.exportService,
           this.serviceContainer.policyService,

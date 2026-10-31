@@ -1,0 +1,26 @@
+Failed sign-in attempt on your Komboe account
+<!---------------->
+{{> email/email_header }}
+<table width="100%" cellpadding="0" cellspacing="0">
+   <tr>
+      <td class="content-block" style="font-family: Sora, Helvetica, Arial, sans-serif; font-size: 16px; color: #333; line-height: 25px; padding: 0 0 10px;" valign="top">
+         Someone tried to sign in to your Komboe account and the master password was not accepted.
+      </td>
+   </tr>
+   <tr>
+      <td class="content-block" style="font-family: Sora, Helvetica, Arial, sans-serif; font-size: 16px; color: #333; line-height: 25px; padding: 0 0 10px;" valign="top">
+         <b>Date:</b> {{datetime}}
+      </td>
+   </tr>
+   <tr>
+      <td class="content-block" style="font-family: Sora, Helvetica, Arial, sans-serif; font-size: 16px; color: #333; line-height: 25px; padding: 0 0 10px;" valign="top">
+         <b>IP Address:</b> {{ip}}
+      </td>
+   </tr>
+   <tr>
+      <td class="content-block last" style="font-family: Sora, Helvetica, Arial, sans-serif; font-size: 16px; color: #333; line-height: 25px; padding: 0;" valign="top">
+         If this was you, you can ignore this message. If it was not, open the <a href="{{url}}/">web vault</a> and review Settings &gt; Security &gt; Devices, then Deauthorize sessions under Settings &gt; My account.
+      </td>
+   </tr>
+</table>
+{{> email/email_footer }}

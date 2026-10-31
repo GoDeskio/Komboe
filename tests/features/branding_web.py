@@ -7,7 +7,7 @@ spec.loader.exec_module(ft)
 WEB = os.environ.get("KOMBOE_WEB") or os.environ.get("KOMBOE_URL") or "https://127.0.0.1:8443"
 BAD = re.compile(r"Bitwarden|Vaultwarden", re.I)
 # The legal attribution notice (docs/LICENSE-AUDIT.md) must name upstream projects; it is the only allowed mention.
-NOTICE = ("Komboe © 2026 GODESK IO LLC. Komboe is based on Vaultwarden (© Vaultwarden contributors, AGPL-3.0) "
+NOTICE = ("Komboe © 2026. Komboe is based on Vaultwarden (© Vaultwarden contributors, AGPL-3.0) "
           "and Bitwarden clients (© Bitwarden Inc., GPL-3.0). Komboe is not affiliated with or endorsed by "
           "Bitwarden Inc. or the Vaultwarden project. This program comes with ABSOLUTELY NO WARRANTY. It is free "
           "software: you may redistribute and modify it under the GNU GPL v3 / AGPL v3.")

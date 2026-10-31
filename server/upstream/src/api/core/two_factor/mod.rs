@@ -148,6 +148,13 @@ async fn disable_twofactor(data: Json<DisableTwoFactorData>, headers: Headers, c
         Device::clear_twofactor_remember_by_user(&user.uuid, &conn).await?;
         log_user_event(EventType::UserDisabled2fa as i32, &user.uuid, headers.device.atype, &headers.ip.ip, &conn)
             .await;
+        crate::api::core::komboe::notify_user(
+            &user.uuid.to_string(),
+            "Two-step login was changed on your Komboe account",
+            "A two-step login method was turned off. If this was not you, sign in and review Settings > Security > Two-step login, then deauthorize sessions.",
+            &conn,
+        )
+        .await;
     }
 
     if TwoFactor::find_by_user(&user.uuid, &conn).await.is_empty() {

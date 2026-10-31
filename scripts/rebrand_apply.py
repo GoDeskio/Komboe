@@ -234,12 +234,12 @@ rw(f"{C}/libs/components/src/theme.css", lambda t: t if "font-family: Sora" in t
 D = f"{C}/apps/desktop"
 def ebuilder2(t):
     d = json.loads(t)
-    d["copyright"] = "Copyright \u00a9 2026 GoDesk. Komboe is based on Bitwarden clients (GPL-3.0)."
-    d.setdefault("win", {}).setdefault("signtoolOptions", {})["publisherName"] = "GoDesk"
+    d["copyright"] = "Copyright \u00a9 2026 Komboe. Komboe is based on Bitwarden clients (GPL-3.0)."
+    d.setdefault("win", {}).setdefault("signtoolOptions", {})["publisherName"] = "Komboe"
     a = d.setdefault("appx", {})
-    a.update(applicationId="komboedesktop", identityName="GoDesk.Komboe", publisher="CN=GoDesk",
-             publisherDisplayName="GoDesk", displayName="Komboe")
-    if "mas" in d: d["mas"]["identity"] = "GoDesk"
+    a.update(applicationId="komboedesktop", identityName="Komboe.Komboe", publisher="CN=Komboe",
+             publisherDisplayName="Komboe", displayName="Komboe")
+    if "mas" in d: d["mas"]["identity"] = "Komboe"
     if "snap" in d:
         d["snap"]["summary"] = "Komboe is a secure, self-hosted password manager for all of your devices."
         d["snap"]["description"] = "Password Manager\n**Installation**\nKomboe requires access to the `password-manager-service`. Run `sudo snap connect komboe:password-manager-service` after installation."
@@ -252,7 +252,7 @@ for p in [f"{D}/electron-builder.json", f"{D}/electron-builder.beta.json"]:
     if os.path.exists(p): rw(p, ebuilder2)
 def pkg(t):
     d = json.loads(t)
-    d["author"] = "GoDesk <hello@komboe.com> (https://komboe.com)"; d["homepage"] = "https://komboe.com"
+    d["author"] = "Komboe <hello@komboe.com> (https://komboe.com)"; d["homepage"] = "https://komboe.com"
     d["description"] = "Komboe: a secure, self-hosted password manager for all of your devices."
     return json.dumps(d, indent=2, ensure_ascii=False) + "\n"
 rw(f"{D}/src/package.json", pkg)

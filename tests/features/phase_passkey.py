@@ -11,6 +11,15 @@ def _():
     )
     if web.returncode != 0:
         raise RuntimeError((web.stdout + web.stderr)[-500:])
+    ha = subprocess.run(
+        [sys.executable, os.path.join(os.path.dirname(__file__), "passkey_ha.py")],
+        capture_output=True,
+        text=True,
+        timeout=60,
+        env=os.environ.copy(),
+    )
+    if ha.returncode != 0:
+        raise RuntimeError((ha.stdout + ha.stderr)[-500:])
     return DONE(
-        "Passkey login: registered in web settings (discoverable, user-verified, PRF), signed out, signed back in with only the passkey to an unlocked vault; server stores client-wrapped keys only, passkey is not 2FA, forged/replayed assertions refused"
+        "Passkey login: registered in web settings (discoverable, user-verified, PRF), signed out, signed back in with only the passkey to an unlocked vault; server stores client-wrapped keys only, passkey is not 2FA, forged/replayed assertions refused; challenges live in the shared DB so two nodes work without sticky sessions"
     )

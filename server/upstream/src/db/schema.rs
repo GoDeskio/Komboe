@@ -398,6 +398,14 @@ table! {
     }
 }
 
+table! {
+    komboe_passkey_challenges (token) {
+        token -> Text,
+        state -> Text,
+        created_at -> BigInt,
+    }
+}
+
 allow_tables_to_appear_in_same_query!(
     archives,
     attachments,
@@ -541,5 +549,6 @@ allow_tables_to_appear_in_same_query!(
     komboe_scim_tokens,
     komboe_ldap_configs,
     komboe_device_trust,
-    komboe_login_passkeys
+    komboe_login_passkeys,
+    komboe_passkey_challenges
 );

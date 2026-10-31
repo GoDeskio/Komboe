@@ -2,6 +2,7 @@
 // Usage: KOMBOE_DESKTOP=<linux-unpacked dir> node desktop.mjs   (needs a DISPLAY; uses fixtures.local.json "ext" user)
 import fs from "fs"; import path from "path"; import os from "os"; import { fileURLToPath } from "url";
 const here = path.dirname(fileURLToPath(import.meta.url));
+import { tagFlow } from "./tags-flow.mjs";
 const { chromium } = await import(path.join(process.env.PLAYWRIGHT_DIR || "/workspace/up/bw-oss/node_modules/playwright", "index.mjs"));
 const DIR = process.env.KOMBOE_DESKTOP || "/workspace/up/bw-oss/apps/desktop/dist/linux-unpacked";
 const WEB = process.env.KOMBOE_WEB || "https://localhost:8443"; const SHOTS = path.join(here, "../../docs/screenshots");
@@ -34,8 +35,13 @@ if (results["desktop-launch"] === "passed") await step("desktop-login", async ()
   await w.getByLabel("Server URL").fill(WEB); await w.getByRole("button", { name: "Save" }).click(); await w.waitForTimeout(1500);
   await w.fill("#email", fx.ext.email); await w.getByRole("button", { name: "Continue" }).click();
   await w.fill("#masterPassword", fx.ext.pw); await w.getByRole("button", { name: "Log in", exact: true }).click();
-  await w.getByText("Autofill test").first().waitFor({ timeout: 60000 }); await w.waitForTimeout(1500);
+  await w.getByText("Autofill test").filter({ visible: true }).first().waitFor({ timeout: 60000 }); await w.waitForTimeout(1500);
   await w.screenshot({ path: path.join(SHOTS, "desktop-vault.png") });
+});
+if (results["desktop-login"] === "passed") await step("tags-desktop", async () => {
+  const w = await app.firstWindow(); w.setDefaultTimeout(30000);
+  await tagFlow(w, "desk", "Autofill test", fs.existsSync("/tmp/komboe-web-tag.txt") ? fs.readFileSync("/tmp/komboe-web-tag.txt", "utf8") : null);
+  await w.screenshot({ path: path.join(SHOTS, "tags-desktop.png") });
 });
 if (app) await app.close().catch(() => {}); if (proc) proc.kill();
 await new Promise(r => setTimeout(r, 1500)); try { fs.rmSync(home, { recursive: true, force: true }); } catch {}

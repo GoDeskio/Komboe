@@ -85,6 +85,11 @@ export class WifiSectionComponent implements OnInit {
       });
     }
 
+    // Komboe: write the template fields now so an item saved without edits keeps its type marker.
+    if (!this.disabled()) {
+      this.wifiForm.updateValueAndValidity({ emitEvent: true });
+    }
+
     if (this.disabled()) {
       this.wifiForm.disable();
     }

@@ -43,7 +43,7 @@ index objectClass eq
     log = open(folder + "-slapd.log", "w")
     proc = subprocess.Popen(
         [*ldap_api.slapd_cmd(), "-f", os.path.join(folder, "slapd.conf"), "-h", f"ldap://127.0.0.1:{ldap_api.LDAP_PORT}", "-d", "0"],
-        stdout=log, stderr=subprocess.STDOUT,
+        stdout=log, stderr=subprocess.STDOUT, env=ldap_api.slapd_env(),
     )
     try:
         ldap_api.wait_port(ldap_api.LDAP_PORT)

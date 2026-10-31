@@ -134,3 +134,19 @@ Build with `cargo build --release --features sqlite,s3` and set
 `ATTACHMENTS_FOLDER=s3://BUCKET/attachments?endpoint=https://s3.example&region=us-east-1` (AWS credentials from
 the usual env/profile chain; add `&enable_virtual_host_style=false` for MinIO-style path addressing). Only client
 ciphertext is stored. Test against a local moto S3 (no cloud account): `tests/features/s3_attachments.py`.
+
+## Build artifacts (from main 9279636, 2026-10-31)
+Built on the box into `/workspace/artifacts` (not committed). Browser zips: `npm run build:prod:{chrome,firefox}` in
+`apps/browser`, then zip `build/` (the box has no `zip`, so Python's `shutil.make_archive`). Desktop: `bash desktop/desktop-build.sh`
+(now defaults to this repo's `clients/upstream` and builds into its `desktop_native/target`).
+
+| Artifact | sha256 | Note |
+|---|---|---|
+| komboe-linux-x64 (CLI 2026.10.1) | `09693851256214bb3e274a16e4356d7cf6e748f37f55a78b7653a45bb27a84ae` | `komboe --help` says `Usage: komboe` |
+| komboe-chrome-mv3.zip | `586732ce726ca69a61069d8144762e32064ddf939991cad0ebdc0e86bdeb008c` | MV3, "Komboe Password Manager" |
+| komboe-firefox.zip | `8b3c606fa02f59f48b8ada4eea3bd405c5f37ec426a1226c0e64ea6e2aec5d92` | MV2 |
+| komboe-desktop-amd64.deb (2026.10.2) | `9b3f876b03ebeceab864bfa41b7b20c32e8f2b9f06408d56aded264a83419fc7` | package `komboe`, maintainer GoDesk |
+| komboe-desktop-x86_64.AppImage (2026.10.2) | `a7a0f0874c966dceee59ae8ac285c1c61ba4ac4f59e1220a044576b780f9b0ee` | unpacked app launches, window "Komboe" |
+| komboe-desktop-win-x64-setup.exe | `6ad82a1977b75b468fe40079516d053113fa3cf088d36f1e5283802dc1bba47b` | stale: 2026-10-30 build (rebuild on the Windows machine pending) |
+| komboe-desktop-win-x64.zip | `b969178198095af5dbb45d5b406cf5b1f318aba32821ed71683ac3937957a919` | stale: 2026-10-30 build |
+| komboe-android-debug.apk | `ea466caa4317a91d2d349ae26acefa20a75fe9b2cf00bcc84a26a62140d75dbc` | stale: 2026-10-30 debug build (needs GITHUB_TOKEN read:packages) |

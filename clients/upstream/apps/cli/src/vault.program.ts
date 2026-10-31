@@ -530,19 +530,22 @@ export class VaultProgram extends BaseProgram {
 
   private exportCommand(): Command {
     return new Command("export")
-      .description("Export vault data to a CSV, JSON or ZIP file.")
+      .description("Export vault data to a CSV, JSON, ZIP or KeePass (kdbx) file.")
       .option("--output <output>", "Output directory or filename.")
       .option("--format <format>", "Export file format.")
       .option(
         "--password [password]",
-        "Use password to encrypt instead of your Bitwarden account encryption key. Only applies to the encrypted_json format.",
+        "Use password to encrypt instead of your Bitwarden account encryption key. Applies to the encrypted_json and kdbx formats.",
       )
       .option("--organizationid <organizationid>", "Organization id for an organization.")
       .on("--help", () => {
         writeLn("\n  Notes:");
         writeLn("");
         writeLn(
-          "    Valid formats are `csv`, `json`, `encrypted_json` and zip. Default format is `csv`.",
+          "    Valid formats are `csv`, `json`, `encrypted_json`, `kdbx` and zip. Default format is `csv`.",
+        );
+        writeLn(
+          "    The `kdbx` format writes a KeePass 2 (KDBX 4) database protected by --password.",
         );
         writeLn("");
         writeLn(

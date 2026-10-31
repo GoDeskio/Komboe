@@ -8,6 +8,8 @@ import { SdkImportSummary } from "../sdk-import-summary";
 import { resolveSdkImportTargets } from "../sdk-import-target";
 import { SdkImportContext, SdkVaultImporter } from "../sdk-vault-importer";
 
+import { normalizeKdbx } from "./kdbx-normalize";
+
 /** KeePass KDBX (`.kdbx`) import, parsed/encrypted/submitted by the SDK. Credentials/file-type
  *  metadata for this strategy live on `importOptionsById.keepasskdbx.sdk`, not here. */
 export class KdbxSdkImporter implements SdkVaultImporter {
@@ -35,9 +37,23 @@ export class KdbxSdkImporter implements SdkVaultImporter {
       restricted_types: context.restrictedTypes.map(toSdkCipherType),
     };
 
-    return await client
-      .importers()
-      .import_kdbx(file, credentials.password, credentials.keyFile ?? undefined, options);
+    const run = (bytes: Uint8Array) =>
+      client
+        .importers()
+        .import_kdbx(bytes, credentials.password, credentials.keyFile ?? undefined, options);
+    try {
+      return await run(file);
+    } catch (error) {
+      if (isImportError(error) && error.variant === "KdbxWrongCredentials") {
+        throw error;
+      }
+      // Komboe: retry once with a canonically ordered copy (see kdbx-normalize.ts).
+      const normalized = await normalizeKdbx(file, credentials.password, credentials.keyFile);
+      if (normalized == null) {
+        throw error;
+      }
+      return await run(normalized);
+    }
   }
 
   errorMessageKey(error: unknown): string | undefined {

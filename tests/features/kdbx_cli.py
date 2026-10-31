@@ -83,4 +83,37 @@ b = ft.User(); run_b, sess_b = cli_for(b)
 r = run_b("import", "keepasskdbx", out, "--passwordenv", "EXPPW", "--session", sess_b)
 assert r.returncode == 0 and "Imported 1 item" in r.stdout, (r.stdout, r.stderr)
 print("  round trip: exported kdbx re-imports")
+
+# 5. A KDBX 4 file written by pykeepass (KeePass reference format, Argon2) imports.
+pk = os.path.join(d, "pykeepass.kdbx")
+mk = subprocess.run([KPPY, "-c", """
+import sys
+from pykeepass import create_database
+k = create_database(sys.argv[1], password='pk-pass-77')
+g = k.add_group(k.root_group, 'Work')
+e = k.add_entry(g, 'pk-entry', 'pk-user', 'pk-secret-77', url='https://pk.example.test', notes='pk-notes')
+e.set_custom_property('PK_TOKEN', 'pk-tok-77', protect=True)
+k.add_entry(k.root_group, 'pk-root', 'root-user', 'root-pass-77')
+k.save()
+print(list(k.version), k.kdf_algorithm)
+""", pk], capture_output=True, text=True)
+assert mk.returncode == 0 and mk.stdout.startswith("[4, "), (mk.stdout, mk.stderr)
+os.environ["PKPW"] = "pk-pass-77"
+c = ft.User(); run_c, sess_c = cli_for(c)
+r = run_c("import", "keepasskdbx", pk, "--passwordenv", "PKPW", "--session", sess_c)
+assert r.returncode == 0 and "Imported 2 item(s)" in r.stdout, (r.stdout, r.stderr)
+sync = c.api("GET", "/api/sync"); raw = json.dumps(sync)
+for plain in ("pk-secret-77", "pk-tok-77", "pk-user", "root-pass-77", "pk-entry"):
+    assert plain not in raw, f"plaintext {plain} reached the server"
+byname = {}
+for x in sync["ciphers"]:
+    kx = ft.dec(x["key"], c.uk) if x.get("key") else None
+    byname[c.d(x["name"], kx)] = (x, kx)
+assert set(byname) == {"pk-entry", "pk-root"}, set(byname)
+e, ke = byname["pk-entry"]
+assert c.d(e["login"]["password"], ke) == "pk-secret-77" and c.d(e["login"]["username"], ke) == "pk-user"
+assert c.d(e["notes"], ke) == "pk-notes"
+f = {c.d(x["name"], ke): (c.d(x["value"], ke), x["type"]) for x in e["fields"]}
+assert f.get("PK_TOKEN") == ("pk-tok-77", 1), f
+print("  pykeepass KDBX 4 (%s) import: 2 items, protected field hidden, encrypted at rest" % mk.stdout.split()[-1])
 print("KDBX CLI PASS")

@@ -34,6 +34,10 @@
     <ng-content select="[slot=button]"></ng-content>
   </app-item-details-v2>
 
+  @if (hasLogin()) {
+    <komboe-password-expiry [cipher]="cipher()!"></komboe-password-expiry>
+  }
+
   <!-- LOGIN CREDENTIALS -->
   @if (hasLogin()) {
     <app-login-credentials-view

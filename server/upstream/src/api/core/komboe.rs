@@ -26,8 +26,8 @@ use crate::{
             User, UserId,
         },
         schema::{
-            komboe_alias_keys, komboe_aliases, komboe_cipher_tags, komboe_org_plans, komboe_split_requests,
-            komboe_tags,
+            komboe_alias_keys, komboe_aliases,             komboe_cipher_tags, komboe_org_plans, komboe_password_expiry, komboe_split_requests,
+            komboe_tags, org_policies, users_organizations,
         },
     },
     error::MapResult,
@@ -39,7 +39,8 @@ pub fn routes() -> Vec<Route> {
         get_plan, put_plan, get_members, get_quote, create_split, list_splits, approve_split, deny_split,
         complete_split, new_alias_key, sl_user_info, sl_random_alias, sl_custom_alias, sl_list_aliases,
         sl_delete_alias, sl_toggle_alias, family_console, family_console_js, family_console_css,
-        get_tags, post_tag, put_tag, delete_tag, put_cipher_tags
+        get_tags, post_tag, put_tag, delete_tag, put_cipher_tags,
+        get_password_expiry, put_password_expiry
     ]
 }
 
@@ -721,6 +722,131 @@ async fn put_cipher_tags(id: &str, body: Json<CipherTagsBody>, headers: Headers,
         }
     }
     Ok(Json(json!({ "id": cipher_id, "tagIds": body.tag_ids, "object": "cipherTags" })))
+}
+
+// ---------------------------------------------------------------- password expiry (days only; passwords stay ciphertext)
+
+#[derive(Queryable, Insertable, AsChangeset, Clone)]
+#[diesel(table_name = komboe_password_expiry)]
+struct PasswordExpiryRow {
+    user_uuid: String,
+    days: i32,
+}
+
+fn parse_policy_days(data: &str) -> Option<i32> {
+    let value: Value = serde_json::from_str(data).ok()?;
+    let days = value.get("days").and_then(|d| d.as_i64())?;
+    if (0..=3650).contains(&days) { Some(days as i32) } else { None }
+}
+
+async fn organization_expiry_days(user: &str, conn: &DbConn) -> Option<i32> {
+    let user = user.to_string();
+    let orgs: Vec<String> = conn
+        .run({
+            let user = user.clone();
+            move |c| {
+                users_organizations::table
+                    .filter(users_organizations::user_uuid.eq(user))
+                    .filter(users_organizations::status.eq(MembershipStatus::Confirmed as i32))
+                    .select(users_organizations::org_uuid)
+                    .load::<String>(c)
+                    .unwrap_or_default()
+            }
+        })
+        .await;
+    if orgs.is_empty() {
+        return None;
+    }
+    let rows: Vec<(bool, String)> = conn
+        .run(move |c| {
+            org_policies::table
+                .filter(org_policies::org_uuid.eq_any(orgs))
+                .filter(org_policies::atype.eq(21))
+                .select((org_policies::enabled, org_policies::data))
+                .load(c)
+                .unwrap_or_default()
+        })
+        .await;
+    rows.into_iter().filter(|(enabled, _)| *enabled).filter_map(|(_, data)| parse_policy_days(&data)).min()
+}
+
+#[get("/password-expiry")]
+async fn get_password_expiry(headers: Headers, conn: DbConn) -> Json<Value> {
+    let uid = headers.user.uuid.to_string();
+    let user_days: Option<i32> = conn
+        .run({
+            let uid = uid.clone();
+            move |c| {
+                komboe_password_expiry::table
+                    .filter(komboe_password_expiry::user_uuid.eq(uid))
+                    .select(komboe_password_expiry::days)
+                    .first(c)
+                    .ok()
+            }
+        })
+        .await;
+    let organization_days = organization_expiry_days(&uid, &conn).await;
+    let days = match (user_days, organization_days) {
+        (Some(user), Some(org)) => Some(user.min(org)),
+        (Some(user), None) => Some(user),
+        (None, Some(org)) => Some(org),
+        (None, None) => None,
+    };
+    Json(json!({ "days": days, "userDays": user_days, "organizationDays": organization_days }))
+}
+
+#[derive(Deserialize)]
+struct ExpiryBody {
+    days: Option<i32>,
+}
+
+#[put("/password-expiry", data = "<body>")]
+async fn put_password_expiry(body: Json<ExpiryBody>, headers: Headers, conn: DbConn) -> JsonResult {
+    let uid = headers.user.uuid.to_string();
+    if let Some(days) = body.days {
+        if !(0..=3650).contains(&days) {
+            err!("Password expiry days must be between 0 and 3650");
+        }
+        let row = PasswordExpiryRow { user_uuid: uid.clone(), days };
+        if let Err(e) = conn
+            .run(move |c| {
+                diesel::delete(komboe_password_expiry::table.filter(komboe_password_expiry::user_uuid.eq(&row.user_uuid)))
+                    .execute(c)?;
+                diesel::insert_into(komboe_password_expiry::table).values(&row).execute(c)
+            })
+            .await
+        {
+            err!(format!("Error saving password expiry: {e}"));
+        }
+    } else if let Err(e) = conn
+        .run({
+            let uid = uid.clone();
+            move |c| diesel::delete(komboe_password_expiry::table.filter(komboe_password_expiry::user_uuid.eq(uid))).execute(c)
+        })
+        .await
+    {
+        err!(format!("Error clearing password expiry: {e}"));
+    }
+    let user_days: Option<i32> = conn
+        .run({
+            let uid = uid.clone();
+            move |c| {
+                komboe_password_expiry::table
+                    .filter(komboe_password_expiry::user_uuid.eq(uid))
+                    .select(komboe_password_expiry::days)
+                    .first(c)
+                    .ok()
+            }
+        })
+        .await;
+    let organization_days = organization_expiry_days(&uid, &conn).await;
+    let days = match (user_days, organization_days) {
+        (Some(user), Some(org)) => Some(user.min(org)),
+        (Some(user), None) => Some(user),
+        (None, Some(org)) => Some(org),
+        (None, None) => None,
+    };
+    Ok(Json(json!({ "days": days, "userDays": user_days, "organizationDays": organization_days })))
 }
 
 // ---------------------------------------------------------------- family console (static, client-side crypto)

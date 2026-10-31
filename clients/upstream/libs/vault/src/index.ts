@@ -1,4 +1,8 @@
 export { KomboeTagsComponent } from "./komboe-tags/komboe-tags.component";
+export {
+  KomboePasswordExpiryComponent,
+  KomboePasswordExpirySettingsComponent,
+} from "./komboe-password-expiry/komboe-password-expiry.component";
 export { VaultFabComponent } from "./components/fab/fab.component";
 export {
   AtRiskPasswordCalloutService,

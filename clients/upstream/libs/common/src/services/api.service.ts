@@ -1873,6 +1873,22 @@ export class ApiService implements ApiServiceAbstraction {
     await this.send("DELETE", `/tags/${id}`, null, true, false);
   }
 
+  getPasswordExpiry(): Promise<{
+    days: number | null;
+    userDays: number | null;
+    organizationDays: number | null;
+  }> {
+    return this.send("GET", "/password-expiry", null, true, true);
+  }
+
+  putPasswordExpiry(days: number | null): Promise<{
+    days: number | null;
+    userDays: number | null;
+    organizationDays: number | null;
+  }> {
+    return this.send("PUT", "/password-expiry", { days }, true, true);
+  }
+
   private async getCredentials(env: Environment): Promise<RequestCredentials> {
     if (this.platformUtilsService.getClientType() !== ClientType.Web || env.hasBaseUrl()) {
       return "include";

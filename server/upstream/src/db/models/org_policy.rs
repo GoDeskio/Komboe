@@ -50,6 +50,8 @@ pub enum OrgPolicyType {
     // AutoConfirm = 18, // Not supported (not implemented yet)
     // BlockClaimedDomainAccountCreation = 19, // Not supported (Not AGPLv3 Licensed)
     OrganizationUserNotification = 20,
+    /// Komboe: logins older than `data.days` are expired. Not a secret.
+    PasswordExpiry = 21,
 }
 
 // https://github.com/bitwarden/server/blob/9ebe16587175b1c0e9208f84397bb75d0d595510/src/Core/AdminConsole/Models/Data/Organizations/Policies/SendOptionsPolicyData.cs#L5

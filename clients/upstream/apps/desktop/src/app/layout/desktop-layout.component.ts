@@ -11,7 +11,12 @@ import { PlatformUtilsService } from "@bitwarden/common/platform/abstractions/pl
 import { DialogService, LayoutComponent, NavigationModule } from "@bitwarden/components";
 import { SendPolicyService } from "@bitwarden/send-ui";
 import { I18nPipe } from "@bitwarden/ui-common";
-import { KomboeTagsComponent, VaultManageNavComponent, VaultNavSectionComponent } from "@bitwarden/vault";
+import {
+  KomboePasswordExpirySettingsComponent,
+  KomboeTagsComponent,
+  VaultManageNavComponent,
+  VaultNavSectionComponent,
+} from "@bitwarden/vault";
 
 import { VaultFilterComponent } from "../../vault/app/vault-v3/vault-filter/vault-filter.component";
 import { ExportDesktopComponent } from "../tools/export/export-desktop.component";
@@ -33,6 +38,7 @@ import { DesktopSideNavComponent } from "./desktop-side-nav.component";
     DesktopSideNavComponent,
     VaultFilterComponent,
     KomboeTagsComponent,
+    KomboePasswordExpirySettingsComponent,
     SendFiltersNavComponent,
     VaultNavSectionComponent,
     VaultManageNavComponent,

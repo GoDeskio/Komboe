@@ -474,11 +474,19 @@ table! {
     }
 }
 
+table! {
+    komboe_password_expiry (user_uuid) {
+        user_uuid -> Text,
+        days -> Integer,
+    }
+}
+
 allow_tables_to_appear_in_same_query!(
     komboe_org_plans,
     komboe_split_requests,
     komboe_alias_keys,
     komboe_aliases,
     komboe_tags,
-    komboe_cipher_tags
+    komboe_cipher_tags,
+    komboe_password_expiry
 );

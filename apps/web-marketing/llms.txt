@@ -14,5 +14,8 @@
 - [Privacy Policy (draft)](https://komboe.com/privacy.html): Draft Komboe privacy policy from GODESK IO LLC: what data we collect, why, your rights, and how your vault stays encrypted. Pending legal review.
 - [Terms of Service (draft)](https://komboe.com/terms.html): Draft Komboe terms of service for the hosted password manager. Pending legal review.
 
+## Self-hosting
+A self-hosted Komboe server does not contact Komboe. It also does not contact Bitwarden, GitHub, Cloudflare, Have I Been Pwned, or the websites in the vault unless you turn that on. Desktop and CLI update checks stay off until you point them at a feed you host. Opening the exposed-passwords report sends a k-anonymity prefix to Have I Been Pwned. The web vault uses the server it was loaded from. Switches: https://github.com/GoDeskio/Komboe/blob/main/docs/RUNNING.md
+
 ## Source
 - [GitHub](https://github.com/GoDeskio/Komboe)

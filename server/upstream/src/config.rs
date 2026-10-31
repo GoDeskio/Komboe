@@ -657,6 +657,9 @@ make_config! {
 
         /// Events days retain |> Number of days to retain events stored in the database. If unset, events are kept indefinitely.
         events_days_retain:     i64,    false,   option;
+
+        /// SIEM JSONL export path |> Komboe: append every audit event as hash-chained JSON Lines to this file for SIEM ingestion (event metadata only, never vault data). Verify with scripts/verify-siem-chain.py.
+        events_siem_jsonl_path: String, false,  option;
     },
 
     client {

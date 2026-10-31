@@ -160,6 +160,10 @@ impl PasskeyRow {
     }
 }
 
+pub(crate) async fn has_prf_unlock(user: &UserId, conn: &DbConn) -> bool {
+    for_user(user, conn).await.iter().any(|p| p.encrypted_user_key.is_some())
+}
+
 async fn for_user(user: &UserId, conn: &DbConn) -> Vec<PasskeyRow> {
     let user = user.to_string();
     conn.run(move |c| {

@@ -406,6 +406,17 @@ table! {
     }
 }
 
+table! {
+    komboe_account_keys_v2 (user_uuid) {
+        user_uuid -> Text,
+        wrapped_signing_key -> Text,
+        verifying_key -> Text,
+        signed_public_key -> Nullable<Text>,
+        security_state -> Text,
+        security_version -> BigInt,
+    }
+}
+
 allow_tables_to_appear_in_same_query!(
     archives,
     attachments,
@@ -550,5 +561,6 @@ allow_tables_to_appear_in_same_query!(
     komboe_ldap_configs,
     komboe_device_trust,
     komboe_login_passkeys,
-    komboe_passkey_challenges
+    komboe_passkey_challenges,
+    komboe_account_keys_v2
 );

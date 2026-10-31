@@ -374,7 +374,15 @@ def _():
 def _(): S.get("shared") or T[20][0](); return DONE("org key wrapped per member with RSA-OAEP public keys (see #20)")
 X(99, "OpenPGP vault encryption: Komboe-original")
 @t(100)
-def _(): T[46][0](); return ("partial", "AES-256-CBC+HMAC and Argon2id verified; XChaCha20 not implemented")
+def _():
+    T[46][0]()
+    import subprocess
+    r = subprocess.run([sys.executable, os.path.join(os.path.dirname(__file__), "aead_v2.py")], capture_output=True, text=True, timeout=900)
+    if r.returncode != 0 or "AEAD V2 PASS" not in r.stdout:
+        raise RuntimeError((r.stdout + r.stderr)[-800:])
+    return ("partial", "AES-256-CBC+HMAC and Argon2id verified; account encryption v2 (EncString type 7, COSE Encrypt0, extended-nonce AEAD) "
+            "behind KOMBOE_AEAD_V2: v2 registration, v2 items, v1->v2 upgrade on web unlock, downgrade guard, zero-knowledge (tests/features/aead_v2.py). "
+            "The upstream SDK generates XAES-256-GCM v2 keys, not XChaCha20-Poly1305; XChaCha20 needs an SDK fork")
 X(101, "local-only file DB mode: Komboe-original")
 X(102, "third-party audit: requires funding/engagement")
 X(103, "SaaS billing: Phase B (Stripe test mode only)")

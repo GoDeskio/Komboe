@@ -218,6 +218,14 @@ fn config() -> Json<Value> {
         &FeatureFlagFilter::ValidOnly,
     );
     feature_states.insert("pm-19148-innovation-archive".to_owned(), true);
+    // Komboe: account encryption v2 (XChaCha20-Poly1305 / EncString type 7). Off unless KOMBOE_AEAD_V2=true.
+    if crate::db::models::aead_v2_enabled() {
+        feature_states.insert("pm-27278-v2-password-registration".to_owned(), true);
+        feature_states.insert("force-upgrade-v2-encryption".to_owned(), true);
+    } else {
+        feature_states.remove("pm-27278-v2-password-registration");
+        feature_states.remove("force-upgrade-v2-encryption");
+    }
 
     Json(json!({
         // Note: The clients use this version to handle backwards compatibility concerns

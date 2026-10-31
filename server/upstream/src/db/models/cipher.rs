@@ -403,6 +403,15 @@ impl Cipher {
             _ => err!(format!("Cipher {} has an invalid type {}", self.uuid, self.atype)),
         };
 
+        // Komboe: v2 ciphers are an opaque client-encrypted blob; hand it back untouched.
+        if let Some(blob) =
+            serde_json::from_str::<Value>(&self.data).ok().and_then(|v| v.get("komboeBlob").and_then(Value::as_str).map(str::to_owned))
+        {
+            json_object["data"] = Value::String(blob);
+            json_object["name"] = Value::Null;
+            return Ok(json_object);
+        }
+
         json_object[key] = type_data_json;
         Ok(json_object)
     }

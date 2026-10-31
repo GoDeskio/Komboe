@@ -257,6 +257,10 @@ async fn get_cipher_details(cipher_id: CipherId, headers: Headers, conn: DbConn)
     get_cipher(cipher_id, headers, conn).await
 }
 
+fn deser_null_as_empty<'de, D: serde::Deserializer<'de>>(d: D) -> Result<String, D::Error> {
+    Ok(<Option<String> as serde::Deserialize>::deserialize(d)?.unwrap_or_default())
+}
+
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct CipherData {
@@ -286,9 +290,14 @@ pub struct CipherData {
     Passport = 8
     */
     pub r#type: i32,
+    // Komboe: v2 (XChaCha20-Poly1305) clients send `name: null` and put the whole
+    // encrypted cipher in the opaque `data` blob instead.
+    #[serde(default, deserialize_with = "deser_null_as_empty")]
     pub name: String,
     pub notes: Option<String>,
     fields: Option<Value>,
+    // Komboe: opaque, client-encrypted v2 cipher blob (never decrypted server-side)
+    data: Option<String>,
 
     // Only one of these should exist, depending on type
     login: Option<Value>,
@@ -430,7 +439,7 @@ async fn enforce_personal_ownership_policy(data: Option<&CipherData>, headers: &
 
 pub async fn update_cipher_from_data(
     cipher: &mut Cipher,
-    data: CipherData,
+    mut data: CipherData,
     headers: &Headers,
     shared_to_collections: Option<Vec<CollectionId>>,
     conn: &DbConn,
@@ -541,7 +550,14 @@ pub async fn update_cipher_from_data(
         }
     }
 
-    let type_data_opt = match data.r#type {
+    // Only honoured when v2 is enabled; v1 clients/servers keep the legacy per-field path.
+    let komboe_blob = data.data.take().filter(|b| !b.is_empty() && crate::db::models::aead_v2_enabled());
+    let type_data_opt = if let Some(blob) = komboe_blob {
+        if blob.len() > 1_048_576 || !blob.bytes().all(|c| (0x20..0x7f).contains(&c)) {
+            err!("Invalid v2 cipher data")
+        }
+        Some(serde_json::json!({ "komboeBlob": blob }))
+    } else { match data.r#type {
         1 => data.login,
         2 => data.secure_note,
         3 => data.card,
@@ -551,7 +567,7 @@ pub async fn update_cipher_from_data(
         7 => data.drivers_license,
         8 => data.passport,
         _ => err!("Invalid type"),
-    };
+    } };
 
     let type_data = if let Some(mut data) = type_data_opt {
         // Remove the 'Response' key from the base object.

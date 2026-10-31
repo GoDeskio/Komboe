@@ -1464,6 +1464,9 @@ pub const SUPPORTED_FEATURE_FLAGS: &[&str] = &[
     "ssh-agent-v2",
     // Key Management Team
     "windows-native-credential-sync",
+    // Komboe: account encryption v2 (XChaCha20-Poly1305), only via KOMBOE_AEAD_V2. Never the TDE / Key Connector variants.
+    "pm-27278-v2-password-registration",
+    "force-upgrade-v2-encryption",
     // Mobile Team
     "pm-34171-card-scanner",
     // Platform Team

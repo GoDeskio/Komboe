@@ -16,9 +16,11 @@ mod sso_auth;
 mod two_factor;
 mod two_factor_duo_context;
 mod two_factor_incomplete;
+mod komboe_keys_v2;
 mod user;
 
 pub use self::archive::Archive;
+pub use self::komboe_keys_v2::{AccountKeysData, AccountKeysV2, aead_v2_enabled, account_keys_json as account_keys_v2_json};
 pub use self::attachment::{Attachment, AttachmentId};
 pub use self::auth_request::{AuthRequest, AuthRequestId};
 pub use self::cipher::{Cipher, CipherId, RepromptType};

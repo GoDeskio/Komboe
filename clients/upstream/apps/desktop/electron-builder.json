@@ -17,6 +17,8 @@
   "beforePack": "scripts/before-pack.js",
   "appxManifestCreated": "scripts/appx-manifest-created.js",
   "files": [
+    "!node_modules/@bitwarden/commercial-sdk-internal{,/**}",
+    "!**/bitwarden_license{,/**}",
     "!node_modules/@bitwarden/desktop-napi/scripts",
     "!node_modules/@bitwarden/desktop-napi/src",
     "!node_modules/@bitwarden/desktop-napi/Cargo.toml",

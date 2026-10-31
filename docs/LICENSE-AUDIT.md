@@ -1,6 +1,6 @@
 # License audit: Bitwarden-licensed code and SDK in Komboe builds
 
-Date: 2026-10-30. Scope: `clients/upstream` (web vault, browser extension, desktop, CLI) and the builds we
+Date: 2026-10-30 (updated after the desktop OSS-SDK change). Scope: `clients/upstream` (web vault, browser extension, desktop, CLI) and the builds we
 actually ship/run (`/workspace/run/web-vault`, `/workspace/run/ext`, desktop `app.asar`). Nothing has been removed
 by this audit; it reports what is there and whether it can be replaced with GPL code. Pending legal review.
 
@@ -10,7 +10,7 @@ by this audit; it reports what is there and whether it can be replaced with GPL 
 |---|---|---|---|---|
 | `bitwarden_license/` directory (bit-web, bit-browser, bit-desktop, bit-common, bit-cli) | **No** (directory absent) | No | Bitwarden License Agreement | None needed; clean leftover config references (below) |
 | `@bitwarden/sdk-internal` 0.2.0-main.1126 | Yes (npm dep) | Yes: web vault, extension, desktop (WASM) | GPL-3.0 | Keep; it is the GPL SDK. Corresponding source: bitwarden/sdk-internal at that version |
-| `@bitwarden/commercial-sdk-internal` 0.2.0-main.1126 | Yes (npm dep in root `package.json`) | **Desktop only**: `app.asar` and `app.asar.unpacked` contain `node_modules/@bitwarden/commercial-sdk-internal` (both `.wasm` files) | "BITWARDEN SOFTWARE DEVELOPMENT KIT LICENSE AGREEMENT Version 2, 7 October 2025" (proprietary) | **Gap.** Not referenced by any app JS; can be dropped with an electron-builder `files` exclusion (`!node_modules/@bitwarden/commercial-sdk-internal`) and by removing the dependency. Not stripped yet, per instructions |
+| `@bitwarden/commercial-sdk-internal` 0.2.0-main.1126 | Yes (npm dep in root `package.json`, used only by upstream `build:bit*` targets) | **No.** Desktop builds use the OSS (`build:oss*`) webpack configs, which import only `@bitwarden/sdk-internal`; `electron-builder.json` now excludes `node_modules/@bitwarden/commercial-sdk-internal` and `**/bitwarden_license/**`, and the installed desktop `app.asar`/`app.asar.unpacked` were repacked without it | "BITWARDEN SOFTWARE DEVELOPMENT KIT LICENSE AGREEMENT Version 2, 7 October 2025" (proprietary) | Done for shipped builds; verified by `tests/features/desktop_oss_sdk.py`. Remaining: the root `package.json` dependency and `scripts/sdk-internal-versions.ts` (dev install only) |
 | Web vault / extension WASM | — | Byte-identical to the OSS `sdk-internal` WASM | GPL-3.0 | OK |
 
 ## Leftover `bitwarden_license` references (config only, no code)
@@ -24,8 +24,11 @@ These point at paths that do not exist; they compile nothing in, but should be r
 - `apps/desktop/project.json`: "commercial" build configurations.
 - `apps/cli/package.json`: `build:bit`.
 - Comment in `apps/web/src/app/app.module.ts`.
-- Shipped web vault chunk (`405.js`) contains only the string `bitwarden_license.json` (file name in the
-  self-host license upload UI). No Bitwarden-licensed code.
+- The shipped web vault string `bitwarden_license.json` (license upload hint) is now `komboe_license.json`.
+- Also still present (build tooling only, never shipped): `tsconfig.base.json` path alias `@bitwarden/bit-common`,
+  root `jest.config.js` projects, `angular.json` `bit-web` project, `apps/browser/project.json` commercial
+  configurations, `build:bit*` scripts. Removing them is a tooling clean-up, not a licensing requirement.
+- Package metadata `repository` in desktop and CLI `package.json` now points at GoDeskio/Komboe.
 
 ## Bitwarden-licensed features
 
@@ -36,16 +39,15 @@ AGPL-3.0 (server).
 
 ## Can it be swapped for GPL code?
 
-- `commercial-sdk-internal`: yes. The OSS `sdk-internal` is already what every client loads; the commercial
-  package is only an unused copy in the desktop package. Fix = exclude + remove dependency + rebuild, then re-run
-  `tests/features/legal_web.py` and a `grep -c commercial app.asar` = 0 check.
+- `commercial-sdk-internal`: done for shipped builds (see table). The dependency itself can be removed from the
+  root `package.json` together with the upstream `bit` build targets.
 - Config references: yes, delete.
 
 ## Licenses bundled per package
 
 `LICENSE.txt` (AGPL-3.0, repo root), `LICENSE_GPL.txt` (GPL-3.0, clients) and `THIRD-PARTY-NOTICES.md` are copied
 into the web vault root, the extension root, and the desktop `app.asar` by each client's webpack config, and into
-the desktop installer `resources/` via `electron-builder.json` `extraResources`. The CLI is not packaged yet.
+the desktop installer `resources/` via `electron-builder.json` `extraResources`. The CLI copies the same three files into `apps/cli/build`, which `pkg` embeds and npm publishes.
 Upstream copyright and license headers in source files are untouched.
 
 ## In-app notice
@@ -55,3 +57,12 @@ Exact approved text, with **View license** (`/blob/<tag>/LICENSE`) and **Source 
 web login footer (anon layout) and public pages footer, web `#/about` (linked from Settings → About Komboe),
 extension Settings → About dialog, desktop Help/App menu → About dialog (buttons open both links).
 Verified by `tests/features/legal_web.py`.
+
+## Still open
+
+- macOS `extendInfo.BitwardenAppGroupIdentifier` / `com.bitwarden.desktop` app-group ID in `electron-builder.json`
+  (needs a Komboe Apple team ID before any macOS build).
+- Windows Store AppxManifest identity is a placeholder until Partner Center reserves the Komboe name.
+- Upstream workflow files under `clients/upstream/.github` still reference `bw` binaries and Bitwarden secrets; they
+  are not run by this repository.
+- The GPL attribution notice wording awaits legal review.

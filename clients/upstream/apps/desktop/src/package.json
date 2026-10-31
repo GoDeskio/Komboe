@@ -10,7 +10,7 @@
   "main": "main.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/bitwarden/clients.git"
+    "url": "git+https://github.com/GoDeskio/Komboe.git"
   },
   "dependencies": {
     "@bitwarden/desktop-napi": "file:../desktop_native/napi"

@@ -17,6 +17,7 @@ import { ItemDetailsSectionComponent } from "./components/item-details/item-deta
 import { LoginDetailsSectionComponent } from "./components/login-details-section/login-details-section.component";
 import { PassportSectionComponent } from "./components/passport-section/passport-section.component";
 import { SshKeySectionComponent } from "./components/sshkey-section/sshkey-section.component";
+import { BookmarkSectionComponent } from "./components/bookmark-section/bookmark-section.component";
 import { WifiSectionComponent } from "./components/wifi-section/wifi-section.component";
 
 /**
@@ -34,6 +35,7 @@ export type CipherForm = {
   driversLicenseDetails?: DriversLicenseSectionComponent["driversLicenseForm"];
   passportDetails?: PassportSectionComponent["passportForm"];
   wifiDetails?: WifiSectionComponent["wifiForm"];
+  bookmarkDetails?: BookmarkSectionComponent["bookmarkForm"];
   customFields?: CustomFieldsComponent["customFieldsForm"];
 };
 

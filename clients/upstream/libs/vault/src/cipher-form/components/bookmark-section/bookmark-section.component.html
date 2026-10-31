@@ -1,0 +1,11 @@
+<section [formGroup]="bookmarkForm" class="tw-mb-5 bit-compact:tw-mb-4">
+  <bit-section-header>
+    <h2 bitTypography="h6">{{ "bookmarkDetails" | i18n }}</h2>
+  </bit-section-header>
+  <bit-card>
+    <bit-form-field disableMargin>
+      <bit-label>{{ "bookmarkUrl" | i18n }}</bit-label>
+      <input bitInput formControlName="url" data-testid="bookmark-url" />
+    </bit-form-field>
+  </bit-card>
+</section>

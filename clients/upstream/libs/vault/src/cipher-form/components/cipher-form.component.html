@@ -59,9 +59,16 @@
       ></vault-wifi-section>
     }
 
+    @if (komboeBookmark) {
+      <vault-bookmark-section
+        [disabled]="config.mode === 'partial-edit'"
+        [originalCipherView]="originalCipherView"
+      ></vault-bookmark-section>
+    }
+
     <vault-additional-options-section
       [disableSectionMargin]="config.mode !== 'edit'"
-      [hideCustomFields]="komboeWifi"
+      [hideCustomFields]="komboeWifi || komboeBookmark"
     ></vault-additional-options-section>
 
     <!-- Attachments are only available for existing ciphers -->

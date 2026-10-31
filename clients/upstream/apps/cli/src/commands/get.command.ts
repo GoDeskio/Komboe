@@ -622,6 +622,24 @@ export class GetCommand extends DownloadCommand {
         template = wifi;
         break;
       }
+      case "item.bookmark": {
+        const bookmark = CipherExport.template();
+        bookmark.type = CipherType.SecureNote;
+        bookmark.name = "Bookmark";
+        bookmark.notes = "";
+        bookmark.secureNote = SecureNoteExport.template();
+        const url = FieldExport.template();
+        url.name = "URL";
+        url.value = "https://example.com";
+        url.type = FieldType.Text;
+        const marker = FieldExport.template();
+        marker.name = "__komboe";
+        marker.value = "bookmark";
+        marker.type = FieldType.Text;
+        bookmark.fields = [marker, url];
+        template = bookmark;
+        break;
+      }
       case "folder":
         template = FolderExport.template();
         break;

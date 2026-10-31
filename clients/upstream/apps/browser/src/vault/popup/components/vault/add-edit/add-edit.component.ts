@@ -22,7 +22,7 @@ import { CipherArchiveService } from "@bitwarden/common/vault/abstractions/ciphe
 import { CipherService } from "@bitwarden/common/vault/abstractions/cipher.service";
 import { PremiumUpgradePromptService } from "@bitwarden/common/vault/abstractions/premium-upgrade-prompt.service";
 import { CipherType, toCipherType } from "@bitwarden/common/vault/enums";
-import { KOMBOE_WIFI_TYPE } from "@bitwarden/common/vault/utils/komboe-wifi";
+import { KOMBOE_BOOKMARK_TYPE, KOMBOE_WIFI_TYPE } from "@bitwarden/common/vault/utils/komboe-wifi";
 import { CipherView } from "@bitwarden/common/vault/models/view/cipher.view";
 import { CipherAuthorizationService } from "@bitwarden/common/vault/services/cipher-authorization.service";
 import { AddEditCipherInfo } from "@bitwarden/common/vault/types/add-edit-cipher-info";
@@ -85,9 +85,13 @@ export type ROUTES_AFTER_EDIT_DELETION =
 class QueryParams {
   constructor(params: Params) {
     this.cipherId = params.cipherId;
-    this.type =
-      toCipherType(params.type) ??
-      (String(params.type) === String(KOMBOE_WIFI_TYPE) ? KOMBOE_WIFI_TYPE : undefined);
+    const templateType =
+      String(params.type) === String(KOMBOE_WIFI_TYPE)
+        ? KOMBOE_WIFI_TYPE
+        : String(params.type) === String(KOMBOE_BOOKMARK_TYPE)
+          ? KOMBOE_BOOKMARK_TYPE
+          : undefined;
+    this.type = toCipherType(params.type) ?? templateType;
     this.clone = params.clone === "true";
     this.folderId = params.folderId;
     this.organizationId = params.organizationId;
@@ -542,6 +546,7 @@ export class AddEditComponent implements OnInit, OnDestroy {
         : "addItemHeaderDriversLicense",
       [CipherType.Passport]: isEditMode ? "editItemHeaderPassport" : "addItemHeaderPassport",
       [KOMBOE_WIFI_TYPE]: isEditMode ? "editItemHeaderWifi" : "addItemHeaderWifi",
+      [KOMBOE_BOOKMARK_TYPE]: isEditMode ? "editItemHeaderBookmark" : "addItemHeaderBookmark",
     };
     return this.i18nService.t(translation[type] ?? (isEditMode ? "editItem" : "addItem"));
   }

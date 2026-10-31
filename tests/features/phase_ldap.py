@@ -9,4 +9,7 @@ def _():
     web = subprocess.run([sys.executable, os.path.join(os.path.dirname(__file__), "ldap_web.py")], capture_output=True, text=True, timeout=180, env=env)
     if web.returncode != 0:
         raise RuntimeError((web.stdout + web.stderr)[-800:])
+    tlsweb = subprocess.run([sys.executable, os.path.join(os.path.dirname(__file__), "ldap_tls_web.py")], capture_output=True, text=True, timeout=240, env=env)
+    if tlsweb.returncode != 0:
+        raise RuntimeError((tlsweb.stdout + tlsweb.stderr)[-800:])
     return DONE("LDAP sync against slapd: a directory user is invited into a group, disappears from the directory and is revoked, and the directory password is not stored. The web vault runs the sync")

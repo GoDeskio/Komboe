@@ -6,6 +6,7 @@ import { ActivatedRoute } from "@angular/router";
 import { ApiService } from "@bitwarden/common/abstractions/api.service";
 import {
   ButtonModule,
+  CheckboxModule,
   FormFieldModule,
   IconButtonModule,
   InputModule,
@@ -22,6 +23,7 @@ import {
     IconButtonModule,
     InputModule,
     ButtonModule,
+    CheckboxModule,
     TypographyModule,
   ],
 })
@@ -36,7 +38,11 @@ export class DirectoryComponent implements OnInit {
     userBase: ["", Validators.required],
     userFilter: ["(objectClass=inetOrgPerson)"],
     groupBase: [""],
+    startTls: [false],
+    tlsCa: [""],
+    removeCa: [false],
   });
+  hasCaCert = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -54,7 +60,9 @@ export class DirectoryComponent implements OnInit {
         userBase: current.userBase,
         userFilter: current.userFilter,
         groupBase: current.groupBase,
+        startTls: !!current.startTls,
       });
+      this.hasCaCert = !!current.hasCaCert;
     }
   }
 
@@ -73,6 +81,9 @@ export class DirectoryComponent implements OnInit {
           userBase: value.userBase,
           userFilter: value.userFilter,
           groupBase: value.groupBase,
+          startTls: !!value.startTls,
+          // Omit tlsCa to keep the stored certificate; "" removes it.
+          ...(value.tlsCa?.trim() ? { tlsCa: value.tlsCa } : value.removeCa ? { tlsCa: "" } : {}),
         },
         true,
         true,
@@ -84,6 +95,8 @@ export class DirectoryComponent implements OnInit {
         true,
         true,
       );
+      this.hasCaCert = value.tlsCa?.trim() ? true : value.removeCa ? false : this.hasCaCert;
+      this.formGroup.patchValue({ tlsCa: "", removeCa: false });
       this.result = `users ${synced.users}, groups ${synced.groups}, revoked ${synced.revoked}`;
     } catch (e) {
       this.error = e instanceof Error ? e.message : "Directory sync failed";

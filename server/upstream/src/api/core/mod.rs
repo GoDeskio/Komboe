@@ -8,6 +8,7 @@ mod folders;
 pub mod komboe;
 mod organizations;
 mod public;
+pub mod scim;
 mod sends;
 
 pub use accounts::purge_auth_requests;
@@ -49,6 +50,7 @@ pub fn routes() -> Vec<Route> {
     routes.append(&mut sends::routes());
     routes.append(&mut public::routes());
     routes.append(&mut komboe::routes());
+    routes.append(&mut scim::admin_routes());
     routes.append(&mut eq_domains_routes);
     routes.append(&mut hibp_routes);
     routes.append(&mut meta_routes);

@@ -17,6 +17,7 @@ pub use crate::api::{
     core::purge_sends,
     core::purge_trashed_ciphers,
     core::routes as core_routes,
+    core::scim::provider_routes as scim_routes,
     core::two_factor::send_incomplete_2fa_notifications,
     core::{emergency_notification_reminder_job, emergency_request_timeout_job},
     core::{event_cleanup_job, events_routes as core_events_routes},

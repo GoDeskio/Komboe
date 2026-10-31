@@ -118,58 +118,26 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Name" xml:space="preserve">
-    <value>Bitwarden - Gestor de contrasenyes</value>
+    <value>Komboe Password Manager</value>
   </data>
   <data name="Summary" xml:space="preserve">
-    <value>A casa, a la feina o en moviment, Bitwarden protegeix totes les contrasenyes, claus de pas i informació sensible.</value>
+    <value>Komboe is an open-source, zero-knowledge password manager for families and teams.</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Reconegut com el millor gestor de contrasenyes per PCMag, WIRED, The Verge, CNET, G2 i més!
+    <value>Komboe is an open-source, zero-knowledge password manager for families and teams.
 
-ASSEGURA LA TEUA VIDA DIGITAL
-Assegureu-vos la vostra vida digital i protegiu-vos de les violacions de dades generant i desant contrasenyes úniques i fortes per a cada compte. Mantingueu-ho tot en una caixa de contrasenyes xifrada d'extrem a extrem a la qual només podeu accedir.
+Store passwords, passkeys, 2FA codes, secure notes and cards in an end-to-end encrypted vault. Your vault is encrypted on your device before it is synced; the server never receives your master password or vault keys.
 
-ACCEDEIX A LES SEUES DADES, ON, EN QUALSEVOL MOMENT, EN QUALSEVOL DISPOSITIU
-Gestiona, emmagatzema, protegeix i comparteix fàcilment contrasenyes il·limitades en dispositius il·limitats sense restriccions.
+- Password generator and autofill
+- Passkeys and TOTP codes
+- Secure sharing with family members and teams, with groups and roles
+- Email aliases
+- Self-hostable server
 
-TOTHOM HA DE TENIR LES EINES PER ESTAR SEGURETAT EN LÍNIA
-Utilitzeu Bitwarden de forma gratuïta sense anuncis ni dades de venda. Bitwarden creu que tothom hauria de tenir la capacitat de mantenir-se segur en línia. Els plans Prèmium ofereixen accés a funcions avançades.
-
-EMPODERA ELS TEUS EQUIPS AMB BITWARDEN
-Els plans per a equips i empreses inclouen funcions empresarials professionals. Alguns exemples inclouen integració SSO, autoallotjament, integració de directoris i subministrament SCIM, polítiques globals, accés a API, registres d'esdeveniments i molt més.
-
-Utilitzeu Bitwarden per protegir la vostra força de treball i compartir informació crítica amb els companys.
-
-
-Més raons per a triar Bitwarden:
-
-Xifratge de classe mundial
-Les contrasenyes estan protegides amb un xifratge avançat d'extrem a extrem (AES-256 bits, hashing salat i PBKDF2 SHA-256) perquè les vostres dades es mantinguen segures i privades.
-
-Auditories de tercers
-Bitwarden realitza regularment auditories de seguretat exhaustives de tercers amb empreses de seguretat notables. Aquestes auditories anuals inclouen avaluacions del codi font i proves de penetració a les IP, servidors i aplicacions web de Bitwarden.
-
-2FA avançat
-Assegureu el vostre inici de sessió amb un autenticador de tercers, codis enviats per correu electrònic o credencials FIDO2 WebAuthn, com ara una clau de seguretat de maquinari o una clau de pas.
-
-Bitwarden Enviar
-Transmet dades directament a altres, mantenint la seguretat xifrada d'extrem a extrem i limitant l'exposició.
-
-Generador incorporat
-Creeu contrasenyes llargues, complexes i diferents i noms d'usuari únics per a cada lloc que visiteu. Integració amb proveïdors d'àlies de correu electrònic per obtenir més privadesa.
-
-Traduccions globals
-Les traduccions de Bitwarden existeixen per a més de 60 idiomes, traduïdes per la comunitat global mitjançant Crowdin.
-
-Aplicacions multiplataforma
-Assegureu-vos i compartiu dades confidencials a la vostra caixa forta Bitwarden des de qualsevol navegador, dispositiu mòbil o sistema operatiu d'escriptori i molt més.
-
-Bitwarden assegura més que només contrasenyes
-Les solucions de gestió de credencials xifrades d'extrem a extrem de Bitwarden permeten a les organitzacions protegir-ho tot, inclosos els secrets dels desenvolupadors i les experiències de clau de pas. Visiteu Bitwarden.com per obtenir més informació sobre Bitwarden gestor de secrets i Bitwarden Passwordless.dev!
-</value>
+Komboe is based on Vaultwarden and Komboe clients and is not affiliated with or endorsed by Bitwarden Inc. or the Vaultwarden project. Source code: https://github.com/GoDeskio/Komboe</value>
   </data>
   <data name="AssetTitle" xml:space="preserve">
-    <value>A casa, a la feina o en moviment, Bitwarden protegeix totes les contrasenyes, claus de pas i informació sensible.</value>
+    <value>Komboe is an open-source, zero-knowledge password manager for families and teams.</value>
   </data>
   <data name="ScreenshotSync" xml:space="preserve">
     <value>Sincronitzeu i accediu a la vostra caixa forta des de diversos dispositius</value>

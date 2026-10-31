@@ -118,58 +118,26 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Name" xml:space="preserve">
-    <value>Bitwardeni Paroolihaldur</value>
+    <value>Komboe Password Manager</value>
   </data>
   <data name="Summary" xml:space="preserve">
-    <value>Kodus, tööl ja teel - Bitwarden hoiustab imelihtsalt kõik su paroolid, pääsuvõtmed ja tundliku info.</value>
+    <value>Komboe is an open-source, zero-knowledge password manager for families and teams.</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Tunnustatud firmade PCMag, WIRED, The Verge, CNET, G2 ja teiste poolt kui parim paroolihaldur!
+    <value>Komboe is an open-source, zero-knowledge password manager for families and teams.
 
-KAITSE ENDA DIGITAALSET MAAILMA
-Lukusta oma digitaalne maailm ja kaitse seda andmelekete vastu luues ja salvestades unikaalsed ja tugevad paroolid iga konto jaoks. Halda kõike täielikult krüpteeritud hoidlas, kuhu pääsed ainult sina ligi.
+Store passwords, passkeys, 2FA codes, secure notes and cards in an end-to-end encrypted vault. Your vault is encrypted on your device before it is synced; the server never receives your master password or vault keys.
 
-PÄÄSE OMA ANDMETELE LIGI IGALT POOLT, IGAL AJAL, IGAST SEADMEST
-Halda, hoiusta, kaitse ja jaga lõpmatult palju paroole mööda lõpmatult paljusid seadmeid ilma piiranguteta.
+- Password generator and autofill
+- Passkeys and TOTP codes
+- Secure sharing with family members and teams, with groups and roles
+- Email aliases
+- Self-hostable server
 
-KÕIGIL PEAKSID OLEMA TÖÖRIISTAD OHUTULT INTERNETIS SEIKLEMISEKS
-Kasuta Bitwardenit tasuta ilma reklaamide või andmete müümisega. Bitwarden usub, et kõigil peaks olema võimalus surfata ohutult internetis. Preemium plaanid pakuvad juurdepääsu veel rohkematele funktsioonidele.
-
-VÕIMENDA OMA TIIME BITWARDENIGA
-Tiimide ja ettevõtete plaanid tulevad koos professionaalsete ärifunktsioonidega. Mõned näited on SSO liides, ise majutamine, arvutikataloogide ühendamine ja SCIM kasutamine, globaalsed seaded, API, sündmuste logid ja veel rohkemgi.
-
-Kasuta Bitwardenit oma töötajate turvamiseks ja tundliku informatsiooni jagamiseks kolleegidega.
-
-
-Veel Põhjusi Miks Valida Bitwarden:
-
-Maailmatasemel Krüpteering
-Paroolid on kaitstud tipptehnoloogilise täieliku krüpteerimisega (AES-256 bit, salted hashing ja PBKDF2 SHA-256), nii et sinu andmed püsivad privaatsete ja turvalistena.
-
-Põhjalikud turvatestid kolmandate firmade poolt
-Bitwarden korraldab regulaarselt põhjalike turvateste tuntud kolmandate firmade poolt. Need igaaastased kontrolltestid sisaldavad kogu koodibaasi ülevaatust ja test-küberrünnakuid Bitwardeni IP-de, serverite ja veebirakenduste vastu.
-
-Kõrgetasemeline 2-astmeline autentiteerimine (2FA)
-Kaitse oma andmeid kolmanda poole autentitaatoriga, emailile saadetud koodide või FIDO2 WebAuthn süsteemidega, nagu näiteks füüsiline turvavõti või pääsuvõti.
-
-Bitwarden Send
-Jaga andmeid otse teistega kasutades täieliku krüpteerimist ja vähenda lekke tõenäosust.
-
-Sisse ehitatud Generaator
-Loo igale oma saidile pikkasid, keerulisi ning täiesti kordumatuid paroole ja ainulaadseid kasutajanimesid. Veel paremaks privaatsuseks saad end ühendada ka variemaili (email alias) pakkujatega.
-
-Paljudes Keeltes
-Bitwardenit on tõlgitud juba 60 erinevasse keelde ja see arv kasvab, tänu meie globaalsele kogukonnale Crowdin platvormil.
-
-Kõigis Sinu Seadmetes
-Kaitse ja jaga oma tundliku informatsiooni Bitwardeni Hoidlas nii veebilehitsejast, telefonist, arvutist kui ka mujaltki.
-
-Bitwarden hoiustab peale paroolide veel muudki
-Täielikult krüpteeritud andmehalduse lahendused Bitwardenilt võimendavad organisatsioone ja hoiustavad kõike, kaasa arvatud arendajate saladusi ja pääsuvõtmeid. Külasta veebilehte bitwarden.com, et uurida lähemalt Bitwarden Secrets Manageri kohta ja vaata lähemalt passwordless.dev!
-</value>
+Komboe is based on Vaultwarden and Komboe clients and is not affiliated with or endorsed by Bitwarden Inc. or the Vaultwarden project. Source code: https://github.com/GoDeskio/Komboe</value>
   </data>
   <data name="AssetTitle" xml:space="preserve">
-    <value>Kodus, tööl ja teel - Bitwarden hoiustab imelihtsalt kõik su paroolid, pääsuvõtmed ja tundliku info.</value>
+    <value>Komboe is an open-source, zero-knowledge password manager for families and teams.</value>
   </data>
   <data name="ScreenshotSync" xml:space="preserve">
     <value>Sünkroniseeri ja halda oma kontot erinevates seadmetes</value>

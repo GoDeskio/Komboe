@@ -118,57 +118,26 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Name" xml:space="preserve">
-    <value>Bitwarden Password Manager</value>
+    <value>Komboe Password Manager</value>
   </data>
   <data name="Summary" xml:space="preserve">
-    <value>Etxean, lanean edo bidaian, Bitwarden-ek erraz babesten ditu zure pasahitz, pasagako eta informazio sentikor guztiak.</value>
+    <value>Komboe is an open-source, zero-knowledge password manager for families and teams.</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>PCMag, WIRED, The Verge, CNET, G2 eta beste batzuek pasahitz-kudeatzailerik onena bezala aitortua!
+    <value>Komboe is an open-source, zero-knowledge password manager for families and teams.
 
-BABESTU ZURE BIZITZA DIGITALA
-Babestu zure bizitza digitala eta saihestu datu-urraketak kontu bakoitzerako pasahitz bakar eta sendoak sortuz eta gordez. Mantendu dena muturretik muturrera zifratutako pasahitz-kutxa batean, zuk soilik atzitu ahal duzuna.
+Store passwords, passkeys, 2FA codes, secure notes and cards in an end-to-end encrypted vault. Your vault is encrypted on your device before it is synced; the server never receives your master password or vault keys.
 
-ATZITU ZURE DATUAK, EDONON, EDOZEIN UNETAN, EDOZEIN GAILUTAN
-Erraz kudeatu, gorde, babestu eta partekatu mugarik gabeko pasahitzak mugarik gabeko gailuetan murrizketarik gabe.
+- Password generator and autofill
+- Passkeys and TOTP codes
+- Secure sharing with family members and teams, with groups and roles
+- Email aliases
+- Self-hostable server
 
-DENOK ZAUDEN SEGURU SAREAN TRESNAK IZAN BEHAR DITU
-Erabili Bitwarden doan iragarkirik gabe edo daturik saldu gabe. Bitwarden-ek uste du denek sarean seguru egoteko gaitasuna izan behar dutela. Premium planek funtzio aurreratuak atzitzeko aukera ematen dute.
-
-INDARTU ZURE TALDEAK BITWARDEN-EKIN
-Taldeentzako eta Enpresentzako planek negozio-funtzio profesionalak dakartzate. Adibide batzuk: SSO integrazioa, norbere ostalaritza, direktorio-integrazioa eta SCIM hornikuntza, politika globalak, API sarbidea, gertaera-erregistroak eta gehiago.
-
-Erabili Bitwarden zure lan-indarra babesteko eta informazio sentikorra lankideekin partekatzeko.
-
-
-Bitwarden aukeratzeko arrazoi gehiago:
-
-Mundu-mailako zifratzea
-Pasahitzak muturretik muturrera zifratze aurreratuarekin babesten dira (AES-256 bit, gatzatutako hashinga eta PBKDF2 SHA-256), zure datuak seguru eta pribatu egon daitezen.
-
-Hirugarrenen auditoretzak
-Bitwarden-ek aldian-aldian hirugarrenen segurtasun-auditoretzak egiten ditu segurtasun-enpresa ospetsuekin. Urteko auditoretza hauek iturburu-kodearen ebaluazioak eta penetrazio-probak barne hartzen dituzte Bitwarden IP, zerbitzari eta web aplikazioetan.
-
-2FA aurreratua
-Babestu zure saio-hasiera hirugarrenen autentifikatzaile batekin, helbide elektronikoz bidalitako kodeekin edo FIDO2 WebAuthn kredentzialekin, hala nola hardware segurtasun-gakoa edo pasagakoa.
-
-Bitwarden Send
-Bidali datuak zuzenean beste batzuei muturretik muturrera zifratutako segurtasuna mantenduz eta esposizioa mugatuz.
-
-Sortzaile integratua
-Sortu pasahitz luze, konplexu eta desberdinak eta erabiltzaile-izen bakarrak bisitatzen duzun gune bakoitzerako. Integratu helbide elektroniko alias hornitzaileekin pribatutasun gehiagorako.
-
-Itzulpen globalak
-Bitwarden-en itzulpenak 60 hizkuntza baino gehiagotarako daude, komunitate globalak Crowdin bidez itzulita.
-
-Plataforma anitzeko aplikazioak
-Babestu eta partekatu datu sentikorrak zure Bitwarden Kutxan edozein nabigatzaile, mugikor edo mahaigaineko sistematik, eta gehiago.
-
-Bitwarden-ek pasahitzak baino gehiago babesten ditu
-Bitwarden-en muturretik muturrera zifratutako kredentzial-kudeaketaren soluzioek erakundeei dena babesteko aukera ematen diete, garatzaileen sekretuak eta pasagako esperientziak barne. Bisitatu Bitwarden.com Bitwarden Secrets Manager eta Bitwarden Passwordless.dev-ri buruz gehiago jakiteko!</value>
+Komboe is based on Vaultwarden and Komboe clients and is not affiliated with or endorsed by Bitwarden Inc. or the Vaultwarden project. Source code: https://github.com/GoDeskio/Komboe</value>
   </data>
   <data name="AssetTitle" xml:space="preserve">
-    <value>Etxean, lanean edo bidaian, Bitwarden-ek erraz babesten ditu zure pasahitz, pasagako eta informazio sentikor guztiak.</value>
+    <value>Komboe is an open-source, zero-knowledge password manager for families and teams.</value>
   </data>
   <data name="ScreenshotSync" xml:space="preserve">
     <value>Sinkronizatu eta sartu zure kutxa gotorrean hainbat gailutatik</value>

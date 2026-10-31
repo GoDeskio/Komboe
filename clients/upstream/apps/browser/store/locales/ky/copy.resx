@@ -118,57 +118,26 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Name" xml:space="preserve">
-    <value>Bitwarden Купуясөз башкаруучусу</value>
+    <value>Komboe Password Manager</value>
   </data>
   <data name="Summary" xml:space="preserve">
-    <value>Үйдө, иште же жолдо, Bitwarden бардык сырсөздөрүңүздү, passkeyлериңизди жана купуя маалыматтарыңызды оңой коргойт.</value>
+    <value>Komboe is an open-source, zero-knowledge password manager for families and teams.</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>PCMag, WIRED, The Verge, CNET, G2 жана башкалар тарабынан эң мыкты сырсөз менеджери деп табылган!
+    <value>Komboe is an open-source, zero-knowledge password manager for families and teams.
 
-САНАРИПТИК ЖАШООҢУЗДУ КОРГОҢУЗ
-Ар бир аккаунт үчүн уникалдуу, күчтүү сырсөздөрдү түзүп жана сактоо менен санариптик жашооңузду коргоңуз жана маалымат бузууларынан коргоңуз. Бардыгын сиз гана жетүү мүмкүн болгон учтан-учка шифрленген сырсөз сактоосунда сактаңыз.
+Store passwords, passkeys, 2FA codes, secure notes and cards in an end-to-end encrypted vault. Your vault is encrypted on your device before it is synced; the server never receives your master password or vault keys.
 
-МААЛЫМАТТАРЫҢЫЗГА КААЛАГАН ЖЕРДЕ, КААЛАГАН УБАКТА, КААЛАГАН ТҮЗМӨКТӨ ЖЕТИҢИЗ
-Чексиз түзмөктөрдө чексиз сырсөздөрдү чектөөсүз оңой башкарыңыз, сактаңыз, коргоңуз жана бөлүшүңүз.
+- Password generator and autofill
+- Passkeys and TOTP codes
+- Secure sharing with family members and teams, with groups and roles
+- Email aliases
+- Self-hostable server
 
-АР БИР АДАМ ОНЛАЙН КООПСУЗ БОЛУУ ҮЧҮН КУРАЛДАРГА ЭЭ БОЛУШУ КЕРЕК
-Bitwardenди жарнамасыз же маалымат сатпастан акысыз колдонуңуз. Bitwarden ар бир адам онлайн коопсуз болуу мүмкүнчүлүгүнө ээ болушу керек деп эсептейт. Premium пландар кеңейтилген функцияларга жетүүнү сунуштайт.
-
-КОМАНДАЛАРЫҢЫЗДЫ BITWARDEN МЕНЕН КҮЧӨТҮҢҮЗ
-Teams жана Enterprise үчүн пландар профессионалдык бизнес функциялары менен келет. Айрым мисалдарга SSO интеграциясы, өзүн-өзү хосттоо, каталог интеграциясы жана SCIM камсыздоо, глобалдык саясаттар, API жетүү, окуя журналдары жана башкалар кирет.
-
-Жумушчу күчүңүздү коопсуз кылуу жана кесиптештер менен купуя маалыматтарды бөлүшүү үчүн Bitwardenди колдонуңуз.
-
-
-Bitwardenди тандоонун дагы себептери:
-
-Дүйнөлүк деңгээлдеги шифрлөө
-Сырсөздөр өркүндөтүлгөн учтан-учка шифрлөө (AES-256 бит, туздалган хештөө жана PBKDF2 SHA-256) менен корголот, ошондуктан маалыматтарыңыз коопсуз жана купуя бойдон калат.
-
-Үчүнчү тараптын аудиттери
-Bitwarden белгилүү коопсуздук фирмалары менен үзгүлтүксүз комплекстүү үчүнчү тараптын коопсуздук аудиттерин жүргүзөт. Бул жылдык аудиттер Bitwarden IPлери, серверлери жана веб колдонмолору боюнча баштапкы кодду баалоону жана кирип-тесттерди камтыйт.
-
-Өркүндөтүлгөн 2FA
-Кирүүңүздү үчүнчү тараптын аутентификатору, электрондук почта аркылуу коддор же FIDO2 WebAuthn маалыматтары (мисалы, аппараттык коопсуздук ачкычы же passkey) менен коргоңуз.
-
-Bitwarden Send
-Маалыматты башкаларга түз жөнөтүңүз, ошол эле учурда учтан-учка шифрленген коопсуздукту сактап, ачыкка чыгууну чектеңиз.
-
-Курулган генератор
-Ар бир кирген сайтыңыз үчүн узун, татаал жана өзгөчө сырсөздөрдү жана уникалдуу колдонуучу аттарын түзүңүз. Кошумча купуялык үчүн электрондук почта псевдоним провайдерлери менен интеграциялаңыз.
-
-Глобалдык котормолор
-Bitwarden котормолору 60тан ашык тилде бар, аларды глобалдык коомчулук Crowdin аркылуу которгон.
-
-Кросс-платформалык колдонмолор
-Каалаган браузер, мобилдик түзмөк же иш такта ОС жана башкалардан Bitwarden Сактооңуздагы купуя маалыматтарды коргоңуз жана бөлүшүңүз.
-
-Bitwarden сырсөздөрдөн көбүрөөк нерсени коргойт
-Bitwardenдин учтан-учка шифрленген маалыматтарды башкаруу чечимдери уюмдарга иштеп чыгуучунун сырлары жана passkey тажрыйбалары сыяктуу бардык нерсени коргоого мүмкүндүк берет. Bitwarden Secrets Manager жана Bitwarden Passwordless.dev тууралуу кененирээк билүү үчүн Bitwarden.com сайтына кириңиз!</value>
+Komboe is based on Vaultwarden and Komboe clients and is not affiliated with or endorsed by Bitwarden Inc. or the Vaultwarden project. Source code: https://github.com/GoDeskio/Komboe</value>
   </data>
   <data name="AssetTitle" xml:space="preserve">
-    <value>Үйдө, иште же жолдо, Bitwarden бардык сырсөздөрүңүздү, passkeyлериңизди жана купуя маалыматтарыңызды оңой коргойт.</value>
+    <value>Komboe is an open-source, zero-knowledge password manager for families and teams.</value>
   </data>
   <data name="ScreenshotSync" xml:space="preserve">
     <value>Бир нече түзмөктөн сактооңузду шайкештириңиз жана жетүү</value>

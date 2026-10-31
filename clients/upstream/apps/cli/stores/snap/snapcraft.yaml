@@ -1,33 +1,19 @@
 name: bw
 version: __version__
-summary: Bitwarden CLI - A secure and free password manager for all of your devices.
-license: Proprietary
+summary: Komboe CLI - open-source, zero-knowledge password manager
+license: GPL-3.0
 description: |
-  Bitwarden, Inc. is the parent company of 8bit Solutions LLC.
+  Komboe is an open-source, zero-knowledge password manager for families and teams.
 
-  NAMED BEST PASSWORD MANAGER BY THE VERGE, U.S. NEWS &amp; WORLD REPORT, CNET, AND MORE.
+  Store passwords, passkeys, 2FA codes, secure notes and cards in an end-to-end encrypted vault. Your vault is encrypted on your device before it is synced; the server never receives your master password or vault keys.
 
-  Manage, store, secure, and share unlimited passwords across unlimited devices from anywhere. Bitwarden delivers open source password management solutions to everyone, whether at  home, at work, or on the go.
+  - Password generator and autofill
+  - Passkeys and TOTP codes
+  - Secure sharing with family members and teams, with groups and roles
+  - Email aliases
+  - Self-hostable server
 
-  Generate strong, unique, and random passwords based on security requirements for every website you frequent.
-
-  Bitwarden Send quickly transmits encrypted information --- files and plaintext -- directly to anyone.
-
-  Bitwarden offers Teams and Enterprise plans for companies so you can securely share passwords with colleagues.
-
-  Why Choose Bitwarden:
-
-  World-Class Encryption
-  Passwords are protected with advanced end-to-end encryption (AES-256 bit, salted hashing, and PBKDF2 SHA-256) so your data stays secure and private.
-
-  Built-in Password Generator
-  Generate strong, unique, and random passwords based on security requirements for every website you frequent.
-
-  Global Translations
-  Bitwarden translations exist in 40 languages and are growing, thanks to our global community.
-
-  Cross-Platform Applications
-  Secure and share sensitive data within your Bitwarden Vault from any browser, mobile device, or desktop OS, and more.
+  Komboe is based on Vaultwarden and Bitwarden clients and is not affiliated with or endorsed by Bitwarden Inc. or the Vaultwarden project. Source code: https://github.com/GoDeskio/Komboe
 confinement: strict
 base: core22
 apps:

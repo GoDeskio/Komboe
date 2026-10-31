@@ -118,58 +118,26 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Name" xml:space="preserve">
-    <value>Bitwarden Менаџер Лозинке</value>
+    <value>Komboe Password Manager</value>
   </data>
   <data name="Summary" xml:space="preserve">
-    <value>Било где, Bitwarden лако обезбеђује све ваше лозинке, приступне кључеве и осетљиве информације.</value>
+    <value>Komboe is an open-source, zero-knowledge password manager for families and teams.</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Препознат као најбољи руковалац лозинкама од стране PCMag, WIRED, The Verge, CNET, G2, и других!
+    <value>Komboe is an open-source, zero-knowledge password manager for families and teams.
 
-ОСИГУРАЈТЕ ВАШ ДИГИТАЛНИ ЖИВОТ
-Осигурајте ваш дигитални живот и заштитите се против цурења података генерисањем и чувањем јединствених, јаких лозинки за сваки ваш налог. Држите све унутар потпуно екнриптованог трезора којем само ви имате приступ.
+Store passwords, passkeys, 2FA codes, secure notes and cards in an end-to-end encrypted vault. Your vault is encrypted on your device before it is synced; the server never receives your master password or vault keys.
 
-ПРИСТУПИТЕ ВАШИМ ПОДАЦИМА, БИЛО ГДЕ, НА БИЛО КОМ УРЕЂАЈУ
-Са лакоћом управљајте, складиштите, штитите и делите неограничен број лозинки на неограниченом броју уређаја без органичења
+- Password generator and autofill
+- Passkeys and TOTP codes
+- Secure sharing with family members and teams, with groups and roles
+- Email aliases
+- Self-hostable server
 
-СВАКО БИ ТРЕБАО ДА ИМА АЛАТЕ ДА БИ ОСТАО БЕЗБЕДАН НА МРЕЖИ
-Користите Bitwarden бесплатно без реклама или продаје података. Bitwarden верује да свако треба да има способност да остане безбедан на мрежи. Премијум планови нуде приступ напредним могућностима.
-
-ОСНАЖИТЕ ВАШЕ ТИМОВЕ СА BITWARDEN-ОМ
-Планови за тимове и пословно окружење долазе са професионалним пословним могућностима. Неки од примера укључују SSO интеграцију, самостално хостовање, интеграцију са директоријумом и SCIM провизионисање, глобалне полисе, API приступ, записе догађаја и још више.
-
-Користите Bitwarden да би сте обезбедили вашу радну снагу и делили осетљиве информације са колегама.
-
-
-Додатни разлози да изаберете Bitwarden:
-
-Енкрипција светске класе
-Лозинке су заштићене са напредном потпуном енкрипцијом (AES-256 bit, salted hashing, and PBKDF2 SHA-256) тако да ваши подаци остају сигурни и приватни.
-
-Ревизије треће стране
-Bitwarden редовно спроводи опсежне безбедносне ревизије трећих страна заједно са препознатим безбедносним фирмама. Ове годишње ревизије укључују процене изворног кода и тестирање пробојности Bitwarden-ових ИП адреса, сервера и веб апликација.
-
-Напредна двофакторска аутентификација
-Обезбедите ваше пријаве са аутентификатором треће стране, кодовима послатим на е-пошту, или FIDO2 WebAuthn акредитивима као што су хардверски кључ или фраза.
-
-Bitwarden Send
-Одашиљите податке директно другима док одржавате потпуну енкриптовану безбедност и ограничавате изалагање.
-
-Уграђени генератор
-Правите дугачке, комплексне и посебне лозинке и јединствена корисничка имена за сваки сајт који посећујете. Интегришите са провајдерима алијаса е-пошти за додатну приватност.
-
-Глобална превођења
-Bitwarden преводи постоје за више од 60 језика, преведени од стране глобалне заједнице уз помоћ Crowdin-а.
-
-Апликације за разне платформе
-Обезбедите и делите осетљиве податке у оквиру Bitwarden трезора из било којег прегледача, мобилног уређаја или оперативног система и више.
-
-Bitwarden обезбеђује више од обичних лозинки
-Потпуно енкриптовано решење за управљање акредитивима од Bitwarden-а оснажава организације да обезбеде све, укључујући тајне девелопера и фразе. Посетите Bitwarden.com да би сте сазнали више о Bitwarden руководиоцу тајнама и Bitwarden Passwordless.dev!
-</value>
+Komboe is based on Vaultwarden and Komboe clients and is not affiliated with or endorsed by Bitwarden Inc. or the Vaultwarden project. Source code: https://github.com/GoDeskio/Komboe</value>
   </data>
   <data name="AssetTitle" xml:space="preserve">
-    <value>Било где, Bitwarden лако обезбеђује све ваше лозинке, приступне кључеве и осетљиве информације.</value>
+    <value>Komboe is an open-source, zero-knowledge password manager for families and teams.</value>
   </data>
   <data name="ScreenshotSync" xml:space="preserve">
     <value>Синхронизујте и приступите сефу са више уређаја</value>

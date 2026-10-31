@@ -118,57 +118,26 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Name" xml:space="preserve">
-    <value>Bitwarden ପାସୱାର୍ଡ ପରିଚାଳକ</value>
+    <value>Komboe Password Manager</value>
   </data>
   <data name="Summary" xml:space="preserve">
-    <value>ଘରେ, କାର୍ଯ୍ୟରେ କିମ୍ବା ଯାତ୍ରାରେ, Bitwarden ସହଜରେ ଆପଣଙ୍କର ସମସ୍ତ ପାସୱାର୍ଡ, ପାସ୍କି ଏବଂ ସମ୍ବେଦନଶୀଳ ସୂଚନାକୁ ସୁରକ୍ଷିତ ରଖେ।</value>
+    <value>Komboe is an open-source, zero-knowledge password manager for families and teams.</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>PCMag, WIRED, The Verge, CNET, G2, ଏବଂ ଅଧିକ ଦ୍ୱାରା ସର୍ବୋତ୍ତମ ପାସୱାର୍ଡ ପରିଚାଳକ ଭାବରେ ସ୍ୱୀକୃତ!
+    <value>Komboe is an open-source, zero-knowledge password manager for families and teams.
 
-ଆପଣଙ୍କର ଡିଜିଟାଲ୍ ଜୀବନ ସୁରକ୍ଷିତ କରନ୍ତୁ
-ପ୍ରତ୍ୟେକ ଖାତା ପାଇଁ ଅନନ୍ୟ, ଶକ୍ତିଶାଳୀ ପାସୱାର୍ଡ ସୃଷ୍ଟି ଏବଂ ସଞ୍ଚୟ କରି ଆପଣଙ୍କର ଡିଜିଟାଲ୍ ଜୀବନ ସୁରକ୍ଷିତ କରନ୍ତୁ ଏବଂ ଡାଟା ଉଲ୍ଲଂଘନରୁ ରକ୍ଷା କରନ୍ତୁ। ସମସ୍ତ ଜିନିଷକୁ ଏକ ଏଣ୍ଡ-ଟୁ-ଏଣ୍ଡ ଏନକ୍ରିପ୍ଟ ପାସୱାର୍ଡ ଭଣ୍ଡାରରେ ରଖନ୍ତୁ ଯାହାକୁ କେବଳ ଆପଣ ପ୍ରବେଶ କରିପାରିବେ।
+Store passwords, passkeys, 2FA codes, secure notes and cards in an end-to-end encrypted vault. Your vault is encrypted on your device before it is synced; the server never receives your master password or vault keys.
 
-ଯେକୌଣସି ସ୍ଥାନରେ, ଯେକୌଣସି ସମୟରେ, ଯେକୌଣସି ଉପକରଣରେ ଆପଣଙ୍କର ଡାଟା ପ୍ରବେଶ କରନ୍ତୁ
-ପ୍ରତିବନ୍ଧକ ବିନା ଅସୀମିତ ଉପକରଣରେ ଅସୀମିତ ପାସୱାର୍ଡ ସହଜରେ ପରିଚାଳନା, ସଞ୍ଚୟ, ସୁରକ୍ଷିତ ଏବଂ ସେୟାର କରନ୍ତୁ।
+- Password generator and autofill
+- Passkeys and TOTP codes
+- Secure sharing with family members and teams, with groups and roles
+- Email aliases
+- Self-hostable server
 
-ସମସ୍ତଙ୍କ ପାଇଁ ଅନଲାଇନ୍ ସୁରକ୍ଷିତ ରହିବାର ସାଧନ ରହିବା ଉଚିତ
-ବିଜ୍ଞାପନ କିମ୍ବା ଡାଟା ବିକ୍ରୟ ବିନା Bitwarden ମାଗଣାରେ ବ୍ୟବହାର କରନ୍ତୁ। Bitwarden ବିଶ୍ୱାସ କରେ ଯେ ସମସ୍ତଙ୍କର ଅନଲାଇନ୍ ସୁରକ୍ଷିତ ରହିବାର କ୍ଷମତା ରହିବା ଉଚିତ। ପ୍ରିମିୟମ୍ ପ୍ଲାନ୍ ଉନ୍ନତ ବୈଶିଷ୍ଟ୍ୟଗୁଡ଼ିକରେ ପ୍ରବେଶ ପ୍ରଦାନ କରେ।
-
-Bitwarden ସହିତ ଆପଣଙ୍କର ଦଳକୁ ସଶକ୍ତ କରନ୍ତୁ
-ଟିମ୍ ଏବଂ ଏଣ୍ଟରପ୍ରାଇଜ୍ ପାଇଁ ପ୍ଲାନଗୁଡ଼ିକ ବୃତ୍ତିଗତ ବ୍ୟବସାୟ ବୈଶିଷ୍ଟ୍ୟ ସହିତ ଆସେ। କିଛି ଉଦାହରଣରେ SSO ଏକୀକରଣ, ସ୍ୱ-ହୋଷ୍ଟିଂ, ଡିରେକ୍ଟୋରୀ ଏକୀକରଣ ଏବଂ SCIM ପ୍ରୋଭିଜନିଂ, ଗ୍ଲୋବାଲ୍ ନୀତି, API ପ୍ରବେଶ, ଇଭେଣ୍ଟ ଲଗ୍, ଏବଂ ଅଧିକ ଅନ୍ତର୍ଭୁକ୍ତ।
-
-ଆପଣଙ୍କର କର୍ମଚାରୀବୃନ୍ଦକୁ ସୁରକ୍ଷିତ କରିବାକୁ ଏବଂ ସହକର୍ମୀମାନଙ୍କ ସହିତ ସମ୍ବେଦନଶୀଳ ସୂଚନା ସେୟାର କରିବାକୁ Bitwarden ବ୍ୟବହାର କରନ୍ତୁ।
-
-
-Bitwarden ଚୟନ କରିବାର ଅଧିକ କାରଣ:
-
-ବିଶ୍ୱ-ସ୍ତରୀୟ ଏନକ୍ରିପ୍ସନ୍
-ପାସୱାର୍ଡଗୁଡ଼ିକ ଉନ୍ନତ ଏଣ୍ଡ-ଟୁ-ଏଣ୍ଡ ଏନକ୍ରିପ୍ସନ୍ (AES-256 bit, ସଲ୍ଟେଡ୍ ହ୍ୟାସିଂ, ଏବଂ PBKDF2 SHA-256) ସହିତ ସୁରକ୍ଷିତ ଯାହା ଦ୍ୱାରା ଆପଣଙ୍କର ଡାଟା ସୁରକ୍ଷିତ ଏବଂ ବ୍ୟକ୍ତିଗତ ରହେ।
-
-ତୃତୀୟ-ପକ୍ଷ ଅଡିଟ୍
-Bitwarden ନିୟମିତ ଭାବରେ ପ୍ରମୁଖ ସୁରକ୍ଷା ଫାର୍ମଗୁଡ଼ିକ ସହିତ ବ୍ୟାପକ ତୃତୀୟ-ପକ୍ଷ ସୁରକ୍ଷା ଅଡିଟ୍ କରେ। ଏହି ବାର୍ଷିକ ଅଡିଟଗୁଡ଼ିକରେ Bitwarden IP, ସର୍ଭର, ଏବଂ ୱେବ୍ ଆପ୍ଲିକେସନଗୁଡ଼ିକରେ ସୋର୍ସ କୋଡ୍ ମୂଲ୍ୟାଙ୍କନ ଏବଂ ପେନିଟ୍ରେସନ୍ ଟେଷ୍ଟିଂ ଅନ୍ତର୍ଭୁକ୍ତ।
-
-ଉନ୍ନତ 2FA
-ଏକ ତୃତୀୟ-ପକ୍ଷ ପ୍ରମାଣିକରଣକାରୀ, ଇମେଲ୍ କରାଯାଇଥିବା କୋଡ୍, କିମ୍ବା FIDO2 WebAuthn ପ୍ରମାଣପତ୍ର ଯେପରି ଏକ ହାର୍ଡୱେର୍ ସୁରକ୍ଷା କୀ କିମ୍ବା ପାସ୍କି ସହିତ ଆପଣଙ୍କର ଲଗଇନ୍ ସୁରକ୍ଷିତ କରନ୍ତୁ।
-
-Bitwarden Send
-ଏଣ୍ଡ-ଟୁ-ଏଣ୍ଡ ଏନକ୍ରିପ୍ଟ ସୁରକ୍ଷା ବଜାୟ ରଖି ଏବଂ ଏକ୍ସପୋଜର ସୀମିତ ରଖି ସିଧାସଳଖ ଅନ୍ୟମାନଙ୍କୁ ଡାଟା ପଠାନ୍ତୁ।
-
-ଅନ୍ତର୍ନିହିତ ଜେନେରେଟର
-ଆପଣ ପରିଦର୍ଶନ କରୁଥିବା ପ୍ରତ୍ୟେକ ସାଇଟ୍ ପାଇଁ ଲମ୍ବା, ଜଟିଳ, ଏବଂ ଭିନ୍ନ ପାସୱାର୍ଡ ଏବଂ ଅନନ୍ୟ ଉପଭୋକ୍ତା ନାମ ସୃଷ୍ଟି କରନ୍ତୁ। ଅତିରିକ୍ତ ଗୋପନୀୟତା ପାଇଁ ଇମେଲ୍ ଉପନାମ ପ୍ରଦାନକାରୀଙ୍କ ସହିତ ଏକୀକୃତ କରନ୍ତୁ।
-
-ଗ୍ଲୋବାଲ୍ ଅନୁବାଦ
-Bitwarden ଅନୁବାଦ 60 ରୁ ଅଧିକ ଭାଷା ପାଇଁ ଅଛି, ଯାହା Crowdin ମାଧ୍ୟମରେ ବିଶ୍ୱ ସମ୍ପ୍ରଦାୟ ଦ୍ୱାରା ଅନୁବାଦିତ।
-
-କ୍ରସ୍-ପ୍ଲାଟଫର୍ମ ଆପ୍ଲିକେସନ
-ଯେକୌଣସି ବ୍ରାଉଜର, ମୋବାଇଲ୍ ଉପକରଣ, କିମ୍ବା ଡେସ୍କଟପ୍ OS ରୁ ଆପଣଙ୍କର Bitwarden ଭଣ୍ଡାର ମଧ୍ୟରେ ସମ୍ବେଦନଶୀଳ ଡାଟା ସୁରକ୍ଷିତ ଏବଂ ସେୟାର କରନ୍ତୁ, ଏବଂ ଅଧିକ।
-
-Bitwarden କେବଳ ପାସୱାର୍ଡଠାରୁ ଅଧିକ ସୁରକ୍ଷିତ କରେ
-Bitwarden ରୁ ଏଣ୍ଡ-ଟୁ-ଏଣ୍ଡ ଏନକ୍ରିପ୍ଟ ପ୍ରମାଣପତ୍ର ପରିଚାଳନା ସମାଧାନଗୁଡ଼ିକ ସଂଗଠନଗୁଡ଼ିକୁ ସବୁକିଛି ସୁରକ୍ଷିତ କରିବାକୁ ସଶକ୍ତ କରେ, ଯେଉଁଥିରେ ଡେଭଲପର ସିକ୍ରେଟ୍ ଏବଂ ପାସ୍କି ଅନୁଭୂତି ଅନ୍ତର୍ଭୁକ୍ତ। Bitwarden Secrets Manager ଏବଂ Bitwarden Passwordless.dev ବିଷୟରେ ଅଧିକ ଜାଣିବାକୁ Bitwarden.com ପରିଦର୍ଶନ କରନ୍ତୁ!</value>
+Komboe is based on Vaultwarden and Komboe clients and is not affiliated with or endorsed by Bitwarden Inc. or the Vaultwarden project. Source code: https://github.com/GoDeskio/Komboe</value>
   </data>
   <data name="AssetTitle" xml:space="preserve">
-    <value>ଘରେ, କାର୍ଯ୍ୟରେ କିମ୍ବା ଯାତ୍ରାରେ, Bitwarden ସହଜରେ ଆପଣଙ୍କର ସମସ୍ତ ପାସୱାର୍ଡ, ପାସ୍କି ଏବଂ ସମ୍ବେଦନଶୀଳ ସୂଚନାକୁ ସୁରକ୍ଷିତ ରଖେ।</value>
+    <value>Komboe is an open-source, zero-knowledge password manager for families and teams.</value>
   </data>
   <data name="ScreenshotSync" xml:space="preserve">
     <value>ଏକାଧିକ ଉପକରଣରୁ ଆପଣଙ୍କର ଭଣ୍ଡାର ସିଙ୍କ୍ ଏବଂ ପ୍ରବେଶ କରନ୍ତୁ</value>

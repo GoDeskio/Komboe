@@ -118,57 +118,26 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Name" xml:space="preserve">
-    <value>Pengelola Sandi Bitwarden</value>
+    <value>Komboe Password Manager</value>
   </data>
   <data name="Summary" xml:space="preserve">
-    <value>Di rumah, di kantor, atau di perjalanan, Bitwarden mengamankan semua kata sandi, kunci sandi, dan informasi sensitif Anda dengan mudah.</value>
+    <value>Komboe is an open-source, zero-knowledge password manager for families and teams.</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Dikenal sebagai manajer kata sandi terbaik oleh PCMag, WIRED, The Verge, CNET, G2, dan lainnya!
+    <value>Komboe is an open-source, zero-knowledge password manager for families and teams.
 
-AMANKAN KEHIDUPAN DIGITAL ANDA
-Amankan kehidupan digital Anda dan lindungi dari pelanggaran data dengan menghasilkan dan menyimpan kata sandi yang unik dan kuat untuk setiap akun. Kelola semuanya dalam vault kata sandi terenkripsi end-to-end yang hanya dapat Anda akses.
+Store passwords, passkeys, 2FA codes, secure notes and cards in an end-to-end encrypted vault. Your vault is encrypted on your device before it is synced; the server never receives your master password or vault keys.
 
-AKSES DATA ANDA, DI MANA SAJA, KAPAN SAJA, DI PERANGKAT APA PUN
-Kelola, simpan, amankan, dan bagikan kata sandi tanpa batas di perangkat tanpa batas tanpa batasan.
+- Password generator and autofill
+- Passkeys and TOTP codes
+- Secure sharing with family members and teams, with groups and roles
+- Email aliases
+- Self-hostable server
 
-SEMUA ORANG HARUS MEMILIKI ALAT UNTUK TETAP AMAN ONLINE
-Gunakan Bitwarden secara gratis tanpa iklan atau menjual data. Bitwarden percaya semua orang harus memiliki kemampuan untuk tetap aman online. Paket Premium menawarkan akses ke fitur lanjutan.
-
-BERDAYAKAN TIM ANDA DENGAN BITWARDEN
-Paket untuk Tim dan Perusahaan dilengkapi dengan fitur bisnis profesional. Beberapa contoh termasuk integrasi SSO, hosting sendiri, integrasi direktori dan provisi SCIM, kebijakan global, akses API, log peristiwa, dan lainnya.
-
-Gunakan Bitwarden untuk mengamankan tenaga kerja Anda dan bagikan informasi sensitif dengan kolega.
-
-
-Alasan lain untuk memilih Bitwarden:
-
-Enkripsi Kelas Dunia
-Kata sandi dilindungi dengan enkripsi end-to-end canggih (AES-256 bit, salted hashing, dan PBKDF2 SHA-256) sehingga data Anda tetap aman dan pribadi.
-
-Audit Pihak Ketiga
-Bitwarden secara teratur melakukan audit keamanan pihak ketiga yang komprehensif dengan firma keamanan terkemuka. Audit tahunan ini mencakup penilaian kode sumber dan pengujian penetrasi di seluruh IP, server, dan aplikasi web Bitwarden.
-
-2FA Lanjutan
-Amankan login Anda dengan autentikator pihak ketiga, kode email, atau kredensial FIDO2 WebAuthn seperti kunci keamanan perangkat keras atau passkey.
-
-Bitwarden Send
-Kirim data langsung ke orang lain sambil mempertahankan keamanan terenkripsi end-to-end dan membatasi paparan.
-
-Generator Bawaan
-Buat kata sandi yang panjang, kompleks, dan berbeda serta nama pengguna unik untuk setiap situs yang Anda kunjungi. Integrasikan dengan penyedia alias email untuk privasi tambahan.
-
-Terjemahan Global
-Terjemahan Bitwarden tersedia untuk lebih dari 60 bahasa, diterjemahkan oleh komunitas global melalui Crowdin.
-
-Aplikasi Lintas Platform
-Amankan dan bagikan data sensitif dalam Vault Bitwarden Anda dari browser, perangkat seluler, atau OS desktop apa pun, dan lainnya.
-
-Bitwarden mengamankan lebih dari sekadar kata sandi
-Solusi manajemen kredensial terenkripsi end-to-end dari Bitwarden memberdayakan organisasi untuk mengamankan semuanya, termasuk rahasia pengembang dan pengalaman passkey. Kunjungi Bitwarden.com untuk mempelajari lebih lanjut tentang Bitwarden Secrets Manager dan Bitwarden Passwordless.dev!</value>
+Komboe is based on Vaultwarden and Komboe clients and is not affiliated with or endorsed by Bitwarden Inc. or the Vaultwarden project. Source code: https://github.com/GoDeskio/Komboe</value>
   </data>
   <data name="AssetTitle" xml:space="preserve">
-    <value>Di rumah, di kantor, atau di perjalanan, Bitwarden mengamankan semua kata sandi, kunci sandi, dan informasi sensitif Anda dengan mudah.</value>
+    <value>Komboe is an open-source, zero-knowledge password manager for families and teams.</value>
   </data>
   <data name="ScreenshotSync" xml:space="preserve">
     <value>Sinkronkan dan akses brankas Anda dari beberapa perangkat</value>

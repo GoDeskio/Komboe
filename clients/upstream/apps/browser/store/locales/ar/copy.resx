@@ -118,56 +118,26 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Name" xml:space="preserve">
-    <value>Bitwarden Password Manager</value>
+    <value>Komboe Password Manager</value>
   </data>
   <data name="Summary" xml:space="preserve">
-    <value>في المنزل، في العمل، أو في أثناء التنقل، يقوم Bitwarden بتأمين جميع كلمات المرور، مفاتيح المرور والمعلومات الحساسة بسهولة.</value>
+    <value>Komboe is an open-source, zero-knowledge password manager for families and teams.</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>حاز على لقب أفضل مدير كلمات مرور من قبل PCMag, WIRED, The Verge, CNET, G2 و غيرها!
+    <value>Komboe is an open-source, zero-knowledge password manager for families and teams.
 
-أمن حياتك الرقمية
-أمن حياتك الرقمية واحم نفسك من اختراق البيانات عن طريق توليد وحفظ كلمات مرور فريدة وقوية لكل حساب. احتفظ بكل شيء في خزنة كلمات مرور مشفرة من طرف إلى طرف لا يمكن لأحد الوصول إليها سواك.
+Store passwords, passkeys, 2FA codes, secure notes and cards in an end-to-end encrypted vault. Your vault is encrypted on your device before it is synced; the server never receives your master password or vault keys.
 
-الوصول إلى بياناتك، في أي مكان، وزمان، وعلى أي جهاز يمكنك بسهولة إدارة، تخزين، تأمين، ومشاركة كلمات مرور غير محدودة عبر أجهزة غير محدودة دون أي قيود.
- 
-الجميع يستحق أدوات الأمان على الإنترنت استخدم Bitwarden مجانا دون إعلانات أو بيع للبيانات.
- يؤمِن Bitwarden بأن الجميع يستحق البقاء آمنا على الإنترنت. و تتيح الخطط المدفوعة الوصول إلى ميزات متقدمة.
+- Password generator and autofill
+- Passkeys and TOTP codes
+- Secure sharing with family members and teams, with groups and roles
+- Email aliases
+- Self-hostable server
 
-عزز قدرات فِرقك مع Bitwarden
-تأتي باقات الفِرق و المؤسسات ميزات احترافية مخصصة للأعمال. منها مثلا تكامل تسجيل الدخول الأحادي SSO، الاستضافة الذاتية، تكامل الدلائل وتوفير الخدمات عبر SCIM، السياسات العامة، الوصول إلى واجهة برمجة التطبيقات API، سجلات الأحداث، و غير ذلك الكثير.
-
-استخدم Bitwarden لتأمين موظفيك ومشاركة المعلومات الحساسة مع زملائك.
-
-أسباب إضافية لاختيار Bitwarden:
-
-تشفير عالمي المستوى
-كلمات المرور محمية بتشفير متقدم من طرف إلى طرف (AES-256 بت، تقنية salted hashing، و PBKDF2 SHA-256) لتبقى بياناتك آمنة وخاصة.
-
-عمليات التدقيق من قبل جهات خارجية 3rd-party
-تجري Bitwarden بانتظام عمليات تدقيق أمنية شاملة من قبل جهات خارجية بالتعاون مع شركات أمنية مرموقة. وتشمل هذه العمليات السنوية تقييمات لشفرات المصدر واختبارات الاختراق التي تشمل عناوين IP وخوادم وتطبيقات الويب الخاصة بـ Bitwarden.
-
-تحقق بخطوتين 2FA متقدم
-أمن تسجيل دخولك باستخدام تطبيق مصادقة خارجي، أو رموز عبر البريد الإلكتروني، أو بيانات FIDO2 WebAuthn كمفتاح أمان مادي أو مفتاح مرور.
-
-Bitwarden Send
-أرسل البيانات مباشرة إلى الآخرين مع الحفاظ على التشفير من طرف إلى طرف وتقليل التعرض للخطر.
-
-مولد مدمج
-أنشئ كلمات مرور طويلة ومعقدة وفريدة وأسماء مستخدمين فريدة لكل موقع تزوره. تكامل مع مزودي الأسماء المستعارة للبريد الإلكتروني لحماية أكبر.
-
-ترجمات عالمية
-يتوفر Bitwarden بأكثر من 60 لغة، بفضل مجتمع المترجمين العالمي عبر Crowdin.
-
-تطبيقات متعددة المنصات
-أمن وشارك البيانات الحساسة من خزنة Bitwarden عبر أي متصفح, جهاز محمول, أو نظام تشغيل سطح مكتب, وأكثر.
-
-Bitwarden يحمي أكثر من مجرد كلمات المرور
-تمكن حلول إدارة بيانات الاعتماد المشفرة من طرف إلى طرف من Bitwarden المؤسسات من تأمين كل شيء، بما في ذلك أسرار المطورين وتجارب مفاتيح المرور. قم بزيارة Bitwarden.com لمعرفة المزيد عن Bitwarden Secrets Manager و Bitwarden Passwordless.dev!
-</value>
+Komboe is based on Vaultwarden and Komboe clients and is not affiliated with or endorsed by Bitwarden Inc. or the Vaultwarden project. Source code: https://github.com/GoDeskio/Komboe</value>
   </data>
   <data name="AssetTitle" xml:space="preserve">
-    <value>في المنزل، في العمل، أو في أثناء التنقل، يقوم Bitwarden بتأمين جميع كلمات المرور، مفاتيح المرور والمعلومات الحساسة بسهولة.</value>
+    <value>Komboe is an open-source, zero-knowledge password manager for families and teams.</value>
   </data>
   <data name="ScreenshotSync" xml:space="preserve">
     <value>مزامنة خزنتك والوصول إليها من عدة أجهزة</value>

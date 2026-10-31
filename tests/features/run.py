@@ -325,7 +325,13 @@ def _():
     cid = u.api("POST", "/api/ciphers", u.cipher({"login": {"username": u.e("u"), "password": None, "uris": [], "fido2Credentials": fc}}))["id"]
     x = next(x for x in u.api("GET", "/api/sync")["ciphers"] if x["id"] == cid); assert u.d(x["login"]["fido2Credentials"][0]["rpId"]) == "example.com"
     return DONE("encrypted passkey storage; autofill is extension (Phase B)")
-P(58, "CXP import/export code vendored in clients; untested")
+@t(58)
+def _():
+    import subprocess
+    r = subprocess.run([sys.executable, os.path.join(os.path.dirname(__file__), "cxf_cli.py")], capture_output=True, text=True, timeout=600)
+    if r.returncode != 0:
+        raise RuntimeError((r.stdout + r.stderr)[-800:])
+    return DONE("CLI `export --format cxf` / `import cxf` (SDK CXF): login + passkey + note round-trip between accounts, passkey private key intact, server holds ciphertext only (tests/features/cxf_cli.py)")
 for n in range(59, 67):
     if n == 60: P(60, "alias-generator integrations are in the vendored client generator; untested")
     else: X(n, "aliases: SimpleLogin v4.83.2 vendored in aliases/upstream but not built/run (Phase B)")

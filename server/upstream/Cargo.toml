@@ -164,6 +164,8 @@ url = "2.5.8"
 # SAML SSO (pure Rust XML-DSig, BSD-2-Clause)
 bergshamra-dsig = { version = "0.11.1", default-features = false, features = ["rustcrypto"] }
 bergshamra-keys = { version = "0.11.1", default-features = false, features = ["rustcrypto"] }
+bergshamra-enc = { version = "0.11.1", default-features = false, features = ["rustcrypto"] }
+bergshamra-crypto = { version = "0.11.1", default-features = false, features = ["rustcrypto"] }
 uppsala = "0.12.0"
 flate2 = "1.1.10"
 

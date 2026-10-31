@@ -12,7 +12,7 @@ use serde_json::Value;
 use crate::{
     CONFIG,
     api::{
-        ApiResult, EmptyResult, JsonResult,
+        ApiResult, EmptyResult, JsonResult, Notify,
         core::{
             accounts::{PreloginData, RegisterData, kdf_upgrade, prelogin, register},
             log_user_event,
@@ -53,7 +53,9 @@ pub fn routes() -> Vec<Route> {
         oidcsignin_error,
         saml_metadata,
         saml_acs,
-        saml_signin
+        saml_signin,
+        saml_slo,
+        saml_logout
     ]
 }
 
@@ -1285,7 +1287,7 @@ fn saml_metadata() -> ApiResult<(rocket::http::ContentType, String)> {
     if !(CONFIG.sso_enabled() && CONFIG.sso_saml_enabled()) {
         err!("SAML SSO is not enabled")
     }
-    Ok((rocket::http::ContentType::XML, crate::saml::sp_metadata()))
+    Ok((rocket::http::ContentType::XML, crate::saml::sp_metadata()?))
 }
 
 #[derive(FromForm)]
@@ -1345,6 +1347,68 @@ async fn saml_signin(state: String, cookies: &CookieJar<'_>, mut conn: DbConn) -
     }
     let code: OIDCCode = data_encoding::BASE64URL_NOPAD.encode(&crypto::get_random_bytes::<32>()).into();
     oidcsignin_redirect(state, code, None, cookies, &mut conn).await
+}
+
+#[derive(FromForm)]
+struct SamlSloData {
+    #[field(name = "SAMLRequest")]
+    saml_request: Option<String>,
+    #[field(name = "SAMLResponse")]
+    saml_response: Option<String>,
+    #[field(name = "RelayState")]
+    relay_state: Option<String>,
+}
+
+/// End every session of a user: all devices (and their refresh tokens) are removed and the security stamp
+/// rotated so outstanding access tokens stop working. Vault data stays encrypted; no key material is involved.
+async fn saml_end_sessions(user: &mut User, nt: &Notify<'_>, conn: &DbConn) -> EmptyResult {
+    nt.send_logout(user, None, conn).await;
+    Device::delete_all_by_user(&user.uuid, conn).await?;
+    user.reset_security_stamp(conn).await?;
+    user.save(conn).await
+}
+
+// Single logout endpoint (HTTP-POST binding): IdP-initiated LogoutRequest or the LogoutResponse to ours.
+#[post("/connect/saml-slo", data = "<data>")]
+async fn saml_slo(data: Form<SamlSloData>, nt: Notify<'_>, conn: DbConn) -> ApiResult<Redirect> {
+    if !(CONFIG.sso_enabled() && CONFIG.sso_saml_enabled()) || CONFIG.sso_saml_idp_slo_url().is_empty() {
+        err!("SAML single logout is not enabled")
+    }
+    let data = data.into_inner();
+    if let Some(req) = data.saml_request {
+        let info = crate::saml::verify_logout_request(&req)?;
+        let identifier = crate::saml::identifier_for(&info.name_id);
+        if let Some((mut user, _)) = SsoUser::find_by_identifier(&identifier, &conn).await {
+            saml_end_sessions(&mut user, &nt, &conn).await?;
+            info!("SAML single logout ended all sessions of {}", user.uuid);
+        }
+        let url = crate::saml::logout_response_url(&info.id, data.relay_state.as_deref())?;
+        return Ok(Redirect::to(String::from(url)));
+    }
+    if let Some(resp) = data.saml_response {
+        crate::saml::verify_logout_response(&resp)?;
+        return Ok(Redirect::to(format!("{}/#/login", CONFIG.domain())));
+    }
+    err!("No SAML logout message")
+}
+
+// SP-initiated single logout: ends this user's sessions here, then returns the signed IdP logout URL.
+#[post("/connect/saml-logout")]
+async fn saml_logout(headers: auth::Headers, nt: Notify<'_>, conn: DbConn) -> JsonResult {
+    if !(CONFIG.sso_enabled() && CONFIG.sso_saml_enabled()) || CONFIG.sso_saml_idp_slo_url().is_empty() {
+        err!("SAML single logout is not enabled")
+    }
+    let mut user = headers.user;
+    let name_id = match SsoUser::find_by_mail(&user.email, &conn).await {
+        Some((_, Some(su))) => crate::saml::name_id_from_identifier(&su.identifier),
+        _ => None,
+    };
+    let Some(name_id) = name_id else {
+        err!("This account is not linked to the SAML identity provider")
+    };
+    saml_end_sessions(&mut user, &nt, &conn).await?;
+    let url = crate::saml::logout_request_url(&name_id, &format!("{}/#/login", CONFIG.domain()))?;
+    Ok(Json(serde_json::json!({ "url": String::from(url) })))
 }
 
 #[derive(Debug, Clone, Default, FromForm)]

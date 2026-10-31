@@ -886,6 +886,23 @@ dependencies = [
 ]
 
 [[package]]
+name = "bergshamra-enc"
+version = "0.11.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "58c193f0ffcb63ef0e011b6ee6a8c448053f0259b43e857499ce37a684192344"
+dependencies = [
+ "base64 0.22.1",
+ "bergshamra-c14n",
+ "bergshamra-core",
+ "bergshamra-crypto",
+ "bergshamra-keys",
+ "bergshamra-transforms",
+ "bergshamra-xml",
+ "kryptering",
+ "uppsala",
+]
+
+[[package]]
 name = "bergshamra-keys"
 version = "0.11.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -7111,7 +7128,9 @@ dependencies = [
  "aws-config",
  "aws-credential-types",
  "aws-smithy-runtime-api",
+ "bergshamra-crypto",
  "bergshamra-dsig",
+ "bergshamra-enc",
  "bergshamra-keys",
  "bigdecimal",
  "bytes",

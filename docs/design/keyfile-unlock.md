@@ -7,7 +7,7 @@ Optionally require a local key file, as well as the master password, to derive t
 
 ## Zero-knowledge constraints (non-negotiable)
 - The key file never leaves the device. The server stores only a flag (`kdfKeyFile: true`) and a public, non-secret salt.
-- There is no server-side reset or escrow, and no backdoor. Losing the key file means the same thing as losing the master password: recovery only through the user's existing emergency access or org recovery that the user enrolled in beforehand.
+- There is no server-side reset, no admin password reset, no Key Connector, and no org-held recovery key. Losing the key file means the same thing as losing the master password: the vault cannot be opened. A printable backup is a copy of the key file the user keeps; the server never stores it.
 
 ## Derivation
 `stretched = Argon2id(password, email-salt)` (the existing KDF), then `fileKey = HKDF-SHA256(SHA-256(keyFileBytes), info="komboe-keyfile-v1")`, then `masterKey = HKDF-SHA256(ikm = stretched || fileKey, info="komboe-master-v2")`.
@@ -23,4 +23,4 @@ Optionally require a local key file, as well as the master password, to derive t
 Known-answer vectors; a wrong file fails exactly like a wrong password; the server sees no new secret material.
 
 ## Risks
-Users losing the file. Mitigations: a mandatory backup prompt and a printable recovery sheet.
+Users losing the file. Mitigations: a mandatory backup prompt and a printable copy of the key file that the user keeps. That sheet is not an account-recovery backdoor and is never uploaded.

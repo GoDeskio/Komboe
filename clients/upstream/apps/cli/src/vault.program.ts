@@ -100,7 +100,9 @@ export class VaultProgram extends BaseProgram {
         writeLn("    komboe list items --trash");
         writeLn("    komboe list items --archived");
         writeLn("    komboe list folders --search email");
-        writeLn("    komboe list org-members --organizationid 60556c31-e649-4b5d-8daf-fc1c391a1bf2");
+        writeLn(
+          "    komboe list org-members --organizationid 60556c31-e649-4b5d-8daf-fc1c391a1bf2",
+        );
         writeLn("", true);
       })
       .action(async (object, cmd) => {
@@ -528,7 +530,13 @@ export class VaultProgram extends BaseProgram {
             this.serviceContainer.accountService,
             this.serviceContainer.syncService,
           );
-          this.processResponse(await cxf.import(filepath, options.organizationid));
+          let password: string | undefined;
+          if (options.passwordenv) {
+            password = process.env[options.passwordenv];
+          } else if (options.passwordfile) {
+            password = (await CliUtils.readFile(options.passwordfile)).split(/\r?\n/)[0];
+          }
+          this.processResponse(await cxf.import(filepath, options.organizationid, password));
           return;
         }
         const command = new ImportCommand(
@@ -563,6 +571,10 @@ export class VaultProgram extends BaseProgram {
         writeLn(
           "    The `kdbx` format writes a KeePass 2 (KDBX 4) database protected by --password.",
         );
+        writeLn(
+          "    The `cxf` format writes FIDO CXF (incl. passkeys); with --password it is sealed",
+        );
+        writeLn("    with Argon2id + AES-256-GCM (import with --passwordenv/--passwordfile).");
         writeLn("");
         writeLn(
           "    If --raw option is specified and no output filename or directory is given, the",
@@ -591,7 +603,9 @@ export class VaultProgram extends BaseProgram {
             this.serviceContainer.accountService,
             this.serviceContainer.syncService,
           );
-          this.processResponse(await cxf.export(options.output, options.organizationid));
+          this.processResponse(
+            await cxf.export(options.output, options.organizationid, options.password),
+          );
           return;
         }
         const command = new ExportCommand(

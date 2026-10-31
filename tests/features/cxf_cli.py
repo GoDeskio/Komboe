@@ -15,7 +15,7 @@ SERVER = os.environ.get("KOMBOE_URL", "https://localhost:8443")
 
 def cli_for(u):
     home = tempfile.mkdtemp()
-    env = dict(os.environ, XDG_CONFIG_HOME=home, BITWARDENCLI_APPDATA_DIR=home, NODE_EXTRA_CA_CERTS=os.environ.get("NODE_EXTRA_CA_CERTS", "/workspace/run/tls/cert.pem"), KPW=u.pw)
+    env = dict(os.environ, XDG_CONFIG_HOME=home, BITWARDENCLI_APPDATA_DIR=home, NODE_EXTRA_CA_CERTS=os.environ.get("NODE_EXTRA_CA_CERTS", "/workspace/run/tls/cert.pem"), KPW=u.pw, CXFPW="cxf-file-pass-58", BADPW="wrong-pass")
     run = lambda *a: subprocess.run([*CLI, *a], capture_output=True, text=True, timeout=180, env=env)
     run("config", "server", SERVER)
     sess = run("login", u.email, "--passwordenv", "KPW", "--raw").stdout.strip().splitlines()[-1]
@@ -60,4 +60,23 @@ assert serialization.load_der_private_key(got, None).private_numbers() == key.pr
 note = next(c for c in sync["ciphers"] if c["type"] == 2)
 assert b.d(note["notes"], ck(note)) == "cxf-note-body"
 print("  cxf import: 2 items, passkey private key intact, server holds ciphertext only")
+
+# Password-protected CXF: sealed on export, opened only with the right password.
+enc = out + ".enc.json"
+r = run("export", "--format", "cxf", "--password", "cxf-file-pass-58", "--output", enc, "--session", sess)
+assert r.returncode == 0 and os.path.exists(enc), (r.stdout, r.stderr)
+etext = open(enc).read(); env = json.loads(etext)
+assert env["format"] == "komboe-cxf-encrypted" and env["kdf"]["algorithm"] == "argon2id" and env["cipher"] == "aes-256-gcm", env.keys()
+for plain in ("cxf-secret-58", "cxf.example.test", "cxf-note-body", "cxf-user"):
+    assert plain not in etext, f"plaintext {plain} in encrypted CXF"
+c = ft.User(); run_c, sess_c = cli_for(c)
+r = run_c("import", "cxf", enc, "--session", sess_c)
+assert r.returncode != 0 and "password protected" in (r.stdout + r.stderr), (r.stdout, r.stderr)
+r = run_c("import", "cxf", enc, "--passwordenv", "BADPW", "--session", sess_c)
+assert r.returncode != 0 and "Invalid file password" in (r.stdout + r.stderr), (r.stdout, r.stderr)
+r = run_c("import", "cxf", enc, "--passwordenv", "CXFPW", "--session", sess_c)
+assert r.returncode == 0 and "Imported 2 item" in r.stdout, (r.stdout, r.stderr)
+csync = c.api("GET", "/api/sync")
+assert all(x["name"].startswith("2.") for x in csync["ciphers"]) and "cxf-secret-58" not in json.dumps(csync)
+print("  encrypted cxf: Argon2id+AES-GCM file, no plaintext, wrong/missing password refused, right password imports 2 items")
 print("CXF CLI PASS")

@@ -329,7 +329,10 @@ def _():
     r = subprocess.run([sys.executable, os.path.join(os.path.dirname(__file__), "cxf_cli.py")], capture_output=True, text=True, timeout=600)
     if r.returncode != 0:
         raise RuntimeError((r.stdout + r.stderr)[-800:])
-    return DONE("CLI `export --format cxf` / `import cxf` (SDK CXF): login + passkey + note round-trip between accounts, passkey private key intact, server holds ciphertext only (tests/features/cxf_cli.py)")
+    r = subprocess.run([sys.executable, os.path.join(os.path.dirname(__file__), "cxf_org_cli.py")], capture_output=True, text=True, timeout=600)
+    if r.returncode != 0:
+        raise RuntimeError((r.stdout + r.stderr)[-800:])
+    return DONE("CLI `export --format cxf` / `import cxf` (SDK CXF): login + passkey + note round-trip between accounts, passkey private key intact; org-vault export (owner/admin only, org items only, optional password envelope); server holds ciphertext only (tests/features/cxf_cli.py, cxf_org_cli.py)")
 for n in range(59, 67):
     if n == 60: P(60, "alias-generator integrations are in the vendored client generator; untested")
     else: X(n, "aliases: SimpleLogin v4.83.2 vendored in aliases/upstream but not built/run (Phase B)")

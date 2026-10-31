@@ -127,3 +127,10 @@ RSA 1.5 refused). `SSO_SAML_REQUIRE_ENCRYPTED_ASSERTIONS=true` rejects plaintext
 rotated), and clients call `POST /identity/connect/saml-logout` (bearer) to log out here and get the signed IdP
 logout URL. No keys or IdP sessions are stored.
 Tests: `tests/features/sso_saml.py`, `sso_saml_web.py`, `sso_saml_hardening.py` (need pysaml2 + xmlsec1).
+
+## S3 attachments
+
+Build with `cargo build --release --features sqlite,s3` and set
+`ATTACHMENTS_FOLDER=s3://BUCKET/attachments?endpoint=https://s3.example&region=us-east-1` (AWS credentials from
+the usual env/profile chain; add `&enable_virtual_host_style=false` for MinIO-style path addressing). Only client
+ciphertext is stored. Test against a local moto S3 (no cloud account): `tests/features/s3_attachments.py`.

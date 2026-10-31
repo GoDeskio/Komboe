@@ -360,7 +360,6 @@ X(93, "Docker image: docker unavailable on build box; native binary used")
 def _():
     assert DB and os.path.exists(DB), "KOMBOE_DB not set"; return DONE("single native binary + SQLite file")
 X(95, "HA/clustering: Phase B (Postgres backend)")
-P(96, "S3 attachment backend exists upstream (s3 cargo feature); needs a server rebuild (disk) + local MinIO")
 @t(97)
 def _():
     import subprocess; r = subprocess.run([sys.executable, os.path.join(ROOT, "tests/e2e/roundtrip.py")], capture_output=True, text=True, env=os.environ)
@@ -377,7 +376,7 @@ X(104, "free tier: Phase B billing")
 X(105, "Proton-style UI: under review")
 X(106, "secrets manager: upstream code excluded (bitwarden_license); reimplement later")
 
-for _f in ("phase_b.py", "phase_e.py", "phase_tags.py", "phase_templates.py", "phase_bookmarks.py", "phase_gpg.py", "phase_expiry.py", "phase_dashboard.py", "phase_ha.py", "phase_sso.py", "phase_scim.py", "phase_ldap.py", "phase_trusted.py"):
+for _f in ("phase_b.py", "phase_e.py", "phase_tags.py", "phase_templates.py", "phase_bookmarks.py", "phase_gpg.py", "phase_expiry.py", "phase_dashboard.py", "phase_ha.py", "phase_sso.py", "phase_scim.py", "phase_ldap.py", "phase_trusted.py", "phase_s3.py"):
     exec(compile(open(os.path.join(os.path.dirname(__file__), _f)).read(), _f, "exec"))
 
 def main():

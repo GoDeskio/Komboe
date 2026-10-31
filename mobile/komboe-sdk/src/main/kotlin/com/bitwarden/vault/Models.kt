@@ -470,6 +470,18 @@ data class EncryptionContext(
 )
 open class Fido2CredentialNewView
 data class Fido2CredentialView(
+    val credentialId: String = "",
+    val keyType: String = "public-key",
+    val keyAlgorithm: String = "ECDSA",
+    val keyCurve: String = "P-256",
+    val keyValue: String = "",
+    val rpId: String = "",
+    val userHandle: String? = null,
+    val userName: String? = null,
+    val counter: String = "0",
+    val rpName: String? = null,
+    val userDisplayName: String? = null,
+    val discoverable: String = "true",
     val creationDate: java.time.Instant = java.time.Instant.EPOCH,
 )
 data class TotpResponse(val code: String, val period: UInt)

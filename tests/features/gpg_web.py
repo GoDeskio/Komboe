@@ -8,18 +8,20 @@ spec.loader.exec_module(ft)
 
 WEB = os.environ.get("KOMBOE_WEB") or os.environ.get("KOMBOE_URL") or "https://127.0.0.1:8443"
 NAME = "Ada GPG"
-PRIVATE = "komboe-gpg-private-secret-block"
+PRIVATE = "-----BEGIN PGP PRIVATE KEY BLOCK-----\n\nkomboe-gpg-private-secret-block\nline-two-of-key\n=ab12\n-----END PGP PRIVATE KEY BLOCK-----"
 PASSPHRASE = "gpg-passphrase-secret"
 
 
 def reveal(page, field_id, toggle_id, secret):
     field = page.get_by_test_id(field_id)
     field.wait_for()
-    assert field.get_attribute("type") == "password", field_id
+    textarea = field.evaluate("e => e.tagName") == "TEXTAREA"
+    masked = lambda: field.evaluate("e => getComputedStyle(e).webkitTextSecurity") if textarea else field.get_attribute("type")
+    assert masked() in ("password", "disc"), (field_id, masked())
     page.get_by_test_id(toggle_id).click()
     page.wait_for_timeout(200)
-    assert field.input_value() == secret
-    assert field.get_attribute("type") == "text"
+    assert field.input_value() == secret, (field_id, field.input_value())
+    assert masked() in ("text", "none"), (field_id, masked())
 
 
 def main():
@@ -71,7 +73,7 @@ def main():
         page.keyboard.press("Escape")
         browser.close()
     raw = open(os.environ["KOMBOE_DB"], "rb").read()
-    for secret in (PRIVATE, PASSPHRASE, "komboe-gpg-private-secret", "A1B2C3D4"):
+    for secret in (PRIVATE, PASSPHRASE, "komboe-gpg-private-secret", "line-two-of-key", "A1B2C3D4"):
         if secret.encode() in raw:
             raise SystemExit(f"plaintext {secret!r} stored in the server database")
     print("GPG WEB PASS")

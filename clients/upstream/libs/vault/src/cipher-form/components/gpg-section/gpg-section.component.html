@@ -21,18 +21,22 @@
     </bit-form-field>
     <bit-form-field>
       <bit-label>{{ "gpgPrivateKey" | i18n }}</bit-label>
-      <input
+      <textarea
         bitInput
-        type="password"
-        formControlName="privateKey"
+        rows="4"
         class="tw-font-mono"
+        [style.-webkit-text-security]="showPrivateKey() ? 'none' : 'disc'"
+        formControlName="privateKey"
         data-testid="gpg-private-key"
-      />
+        [attr.data-revealed]="showPrivateKey()"
+      ></textarea>
       <button
         type="button"
-        bitIconButton
+        [bitIconButton]="showPrivateKey() ? 'bwi-eye-slash' : 'bwi-eye'"
         bitSuffix
-        bitPasswordInputToggle
+        [label]="'toggleVisibility' | i18n"
+        [attr.aria-pressed]="showPrivateKey()"
+        (click)="showPrivateKey.set(!showPrivateKey())"
         data-testid="toggle-gpg-private-key"
       ></button>
     </bit-form-field>

@@ -36,3 +36,4 @@ code{background:var(--bg);border:1px solid var(--line);padding:2px 6px;border-ra
 .lic{font-size:11px;color:#ffcf7a;border:1px solid rgba(255,190,80,.4);border-radius:6px;padding:0 5px;margin-right:4px}.st{font-size:11px;color:#ffcf7a;margin-left:6px}.disc{font-size:13px;color:var(--mu);margin-top:32px;border-top:1px solid var(--line);padding-top:16px}
 .steps{color:var(--mu);font-size:14px;padding-left:20px}
 .legal{max-width:760px}.legal h2{font-size:20px;margin-top:28px}.legal p,.legal li{color:var(--mu)}
+.tbd{background:#5a3a00;color:#ffd27a;padding:1px 6px;border-radius:4px}.legal table{border-collapse:collapse;width:100%}.legal td,.legal th{border:1px solid #333;padding:6px 10px;text-align:left;color:var(--mu)}

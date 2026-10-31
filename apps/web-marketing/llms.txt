@@ -11,7 +11,7 @@
 - [Developers](https://komboe.com/developers.html): Komboe developer resources: source code, self-hosting, CLI, MCP server, Encryptoglyph (Apache-2.0), contributing and security disclosure.
 - [Log in](https://komboe.com/login.html): Log in to Komboe: one account for the web vault, extensions, Android, desktop, CLI and MCP.
 - [Sign up](https://komboe.com/signup.html): Create your Komboe account with your email and master password, plus optional passkey and 2FA.
-- [Privacy Policy (draft)](https://komboe.com/privacy.html): Draft Komboe privacy policy: zero-knowledge, ciphertext-only storage, what we can and cannot see. Pending legal review.
+- [Privacy Policy (draft)](https://komboe.com/privacy.html): Draft Komboe privacy policy from GODESK IO LLC: what data we collect, why, your rights, and how your vault stays encrypted. Pending legal review.
 - [Terms of Service (draft)](https://komboe.com/terms.html): Draft Komboe terms of service for the hosted password manager. Pending legal review.
 
 ## Source

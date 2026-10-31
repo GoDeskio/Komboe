@@ -18,6 +18,7 @@ Bitwarden-derived clients). All upstream copyright and license headers in source
 | Server (`server/upstream`) | https://github.com/dani-garcia/vaultwarden | © Vaultwarden contributors | AGPL-3.0-only |
 | Web vault, browser extension, desktop, CLI (`clients/upstream`) | https://github.com/bitwarden/clients | © Bitwarden Inc. | GPL-3.0 (code outside `bitwarden_license/`) |
 | `@bitwarden/sdk-internal` (WASM SDK used by the clients) | https://github.com/bitwarden/sdk-internal | © Bitwarden Inc. | GPL-3.0 |
+| Android app (`mobile/`, pin `mobile/ANDROID_UPSTREAM_PIN`: v2026.10.1-bwpm) | https://github.com/bitwarden/android | © Bitwarden Inc. | GPL-3.0 |
 | Email aliases (`aliases/upstream`) | https://github.com/simple-login/app | © SimpleLogin | AGPL-3.0 |
 
 Code under Bitwarden's `bitwarden_license/` directory (Bitwarden License Agreement) is not included in this

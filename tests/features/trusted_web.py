@@ -90,7 +90,7 @@ staticPasswords:
         "DOMAIN": WEB,
         "SIGNUPS_ALLOWED": "true",
         "WEB_VAULT_ENABLED": "true",
-        "WEB_VAULT_FOLDER": "/workspace/clients/upstream/apps/web/build",
+        "WEB_VAULT_FOLDER": os.environ.get("KOMBOE_WEB_VAULT", "/workspace/clients/upstream/apps/web/build"),
         "SSO_ENABLED": "true",
         "SSO_AUTHORITY": DEX_ISSUER,
         "SSO_CLIENT_ID": "komboe",
@@ -98,7 +98,7 @@ staticPasswords:
         "SSO_SIGNUPS_ALLOWED": "true",
         "SSO_ALLOW_UNKNOWN_EMAIL_VERIFICATION": "true",
         "LOGIN_RATELIMIT_MAX_BURST": "1000",
-        "ROCKET_TLS": '{certs="/tmp/komboe-tls/cert.pem",key="/tmp/komboe-tls/key.pem"}',
+        "ROCKET_TLS": '{certs="%s/cert.pem",key="%s/key.pem"}' % ((os.environ.get("KOMBOE_TLS_DIR", "/tmp/komboe-tls"),) * 2),
     })
     procs = []
     try:

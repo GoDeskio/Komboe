@@ -68,3 +68,29 @@ export async function gpgFlow(p, client, openMenu) {
   if (got !== priv) throw new Error(`${client}: GPG private key reopened changed (${JSON.stringify(got.slice(0, 60))})`);
   return name;
 }
+
+// Environment variables item (#16): .env text in, canonical variables out after reopen; masked by default.
+export async function envFlow(p, client, openMenu) {
+  const rnd = Math.random().toString(36).slice(2, 8);
+  const typed = `# ${client}\nexport API_KEY=${client}-envkey-${rnd}\nDB_URL='postgres://u:${client}pw${rnd}@db/app'\n`;
+  const canon = `API_KEY=${client}-envkey-${rnd}\nDB_URL=postgres://u:${client}pw${rnd}@db/app`;
+  fs.appendFileSync(SECRETS, `${client}-envkey-${rnd}\n${client}pw${rnd}\n`);
+  await openMenu(); await p.waitForTimeout(800);
+  await p.locator("[role=menuitem]").filter({ visible: true }).filter({ hasText: "Environment variables" }).first().click();
+  const name = `${client}-env-${rnd}`;
+  await p.getByLabel("Item name").filter({ visible: true }).first().fill(name);
+  const f = id => p.locator(`[data-testid=${id}]`).filter({ visible: true }).first();
+  await f("env-name").fill("staging");
+  await f("env-variables").fill(typed);
+  if (!(await hidden(f("env-variables")))) throw new Error(`${client}: env variables not masked by default`);
+  await p.getByRole("button", { name: "Save", exact: true }).filter({ visible: true }).last().click(); await p.waitForTimeout(2500);
+  const row = p.getByText(name).filter({ visible: true }).first(); await row.waitFor({ timeout: 20000 });
+  if (!(await p.locator("[data-testid=env-variables]").filter({ visible: true }).count())) { await row.click(); await p.waitForTimeout(1500); }
+  if ((await f("env-name").inputValue()) !== "staging") throw new Error(`${client}: env name reopened wrong`);
+  if (!(await hidden(f("env-variables")))) throw new Error(`${client}: reopened env variables not masked`);
+  await f("toggle-env-variables").click(); await p.waitForTimeout(300);
+  const got = await f("env-variables").inputValue();
+  if (got !== canon) throw new Error(`${client}: env reopened as ${JSON.stringify(got.slice(0, 80))}`);
+  if (!(await p.getByText("2 variables").filter({ visible: true }).count())) throw new Error(`${client}: no "2 variables" count`);
+  return name;
+}

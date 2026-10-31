@@ -92,6 +92,7 @@ export abstract class ApiService {
   abstract getKomboeTags(): Promise<{ data: { id: string; name: string; cipherIds: string[] }[] }>;
   abstract postKomboeTag(name: string): Promise<{ id: string; name: string }>;
   abstract putCipherTags(cipherId: string, tagIds: string[]): Promise<void>;
+  abstract deleteKomboeTag(id: string): Promise<void>;
 
   /** @deprecated Use the overload accepting the user you want the request authenticated for. */
   abstract send(

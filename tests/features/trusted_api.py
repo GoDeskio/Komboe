@@ -6,6 +6,8 @@ A later SSO login returns that ciphertext. The server database never holds the k
 """
 import base64
 import hashlib
+import html
+import re
 import http.cookiejar
 import importlib.util
 import json
@@ -116,6 +118,11 @@ staticPasswords:
             "SSO_SIGNUPS_ALLOWED": "true",
             "SSO_ALLOW_UNKNOWN_EMAIL_VERIFICATION": "true",
             "LOGIN_RATELIMIT_MAX_BURST": "1000",
+            # Mail on (Mailpit), so reset paths can't be refused merely for "email disabled".
+            "SMTP_HOST": "127.0.0.1",
+            "SMTP_PORT": os.environ.get("KOMBOE_MAILPIT_SMTP_PORT", "1025"),
+            "SMTP_SECURITY": "off",
+            "SMTP_FROM": "vault@komboe.test",
         })
         procs.append(subprocess.Popen([BIN], env=env, stdout=open(folder + "-vw.log", "w"), stderr=subprocess.STDOUT))
         sso_dex.wait_port(18093)
@@ -161,10 +168,59 @@ staticPasswords:
         third = sso_login(None, device_id)
         assert "EncryptedUserKey" not in third["UserDecryptionOptions"]["TrustedDeviceOption"]
 
+        # Real org membership: an owner's org with Ada as a confirmed member. Every reset path must stay shut.
+        oid, ok, oaep = ft.org()
+        owner = ft.S["a"]
+        owner.api("POST", f"/api/organizations/{oid}/users/invite", {"emails": [EMAIL], "type": 2, "collections": [],
+                  "accessAll": False, "permissions": {}, "groups": []})
+        ada_tok = sso_login(None, device_id)["access_token"]
+        mem = next(m for m in owner.api("GET", f"/api/organizations/{oid}/users")["data"] if m["email"] == EMAIL)
+        if mem["status"] == 0:  # Ada accepts with the token from the real invite mail (Mailpit)
+            m = ft.mailpit(EMAIL, "Join")
+            tok = re.search(r"token=([^&\"'\s<]+)", m["Text"] + m["HTML"]).group(1)
+            ft.http("POST", f"/api/organizations/{oid}/users/{mem['id']}/accept",
+                    {"token": html.unescape(urllib.parse.unquote(tok)), "resetPasswordKey": None}, token=ada_tok, base=VW)
+        owner.api("POST", f"/api/organizations/{oid}/users/{mem['id']}/confirm", {"key": "4." + base64.b64encode(os.urandom(256)).decode()})
+        mem = next(m for m in owner.api("GET", f"/api/organizations/{oid}/users")["data"] if m["email"] == EMAIL)
+        assert mem["status"] == 2, mem  # confirmed
+        assert mem.get("resetPasswordEnrolled") in (False, None), mem
+        ada_sync = ft.http("GET", "/api/sync", token=ada_tok, base=VW)
+        ada_org = next(o for o in ada_sync["profile"]["organizations"] if o["id"] == oid)
+        assert ada_org["resetPasswordEnrolled"] is False and ada_org.get("useResetPassword") in (False, None), ada_org
+        refused = {}
+        def must_fail(name, fn):
+            try:
+                fn()
+            except ft.HTTPErr as e:
+                refused[name] = e.code
+                return
+            raise AssertionError(f"reset path open: {name}")
+        reset_key = "4." + base64.b64encode(os.urandom(256)).decode()
+        must_fail("enable account-recovery policy", lambda: owner.api("PUT", f"/api/organizations/{oid}/policies/8",
+                  {"type": 8, "enabled": True, "data": {"autoEnrollEnabled": True}}))
+        must_fail("member enrolls reset key", lambda: ft.http("PUT", f"/api/organizations/{oid}/users/{ada_sync['profile']['id']}/reset-password-enrollment",
+                  {"resetPasswordKey": reset_key, "masterPasswordHash": None}, token=ada_tok, base=VW))
+        must_fail("owner reads reset details", lambda: owner.api("GET", f"/api/organizations/{oid}/users/{mem['id']}/reset-password-details"))
+        must_fail("owner resets password", lambda: owner.api("PUT", f"/api/organizations/{oid}/users/{mem['id']}/reset-password",
+                  {"newMasterPasswordHash": "x" * 44, "key": "2.aa|bb|cc"}))
+        must_fail("admin-approval auth request", lambda: ft.http("POST", "/api/auth-requests/admin-request", {"email": EMAIL,
+                  "publicKey": base64.b64encode(os.urandom(32)).decode(), "deviceIdentifier": device_id, "accessCode": "x" * 25,
+                  "type": 2}, token=ada_tok, base=VW))
+        member_login = sso_login(None, device_id)["UserDecryptionOptions"]
+        tdo = member_login["TrustedDeviceOption"]
+        assert tdo["HasAdminApproval"] is False and tdo["HasManageResetPasswordPermission"] is False, tdo
+        assert "KeyConnectorOption" not in member_login
+        pols = owner.api("GET", f"/api/organizations/{oid}/policies")["data"]
+        assert not any(p["type"] == 8 and p["enabled"] for p in pols), pols
+        print("RESET PATHS REFUSED", json.dumps(refused))
+
         db = sqlite3.connect(os.path.join(folder, "db.sqlite3"))
         row = db.execute("select password_hash, akey from users where email = ?", (EMAIL,)).fetchone()
         assert row and row[0] in (None, b"") and not row[1]
         # No recovery backdoor: no org password-reset enrollment, no admin-approval request.
+        status = db.execute("select uo.status from users_organizations uo join users u on u.uuid = uo.user_uuid where u.email = ?",
+                            (EMAIL,)).fetchone()
+        assert status and status[0] == 2, status  # a real confirmed membership exists
         resets = db.execute(
             "select count(*) from users_organizations uo join users u on u.uuid = uo.user_uuid "
             "where u.email = ? and uo.reset_password_key is not null and uo.reset_password_key != ''",

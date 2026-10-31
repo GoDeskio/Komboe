@@ -5,9 +5,10 @@
   xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3"
   IgnorableNamespaces="uap3">
 
+  <!-- Placeholder identity: replace Name/Publisher with the values Partner Center reserves for Komboe before any Store submission. -->
   <Identity
-    Name="8bitSolutionsLLC.bitwarden-FreePasswordManager"
-    Publisher="CN=14D52771-DE3C-4886-B8BF-825BA7690418"
+    Name="GODESKIOLLC.Komboe"
+    Publisher="CN=GODESK IO LLC"
     Version="0.0.0.0"/>
 
   <Properties>

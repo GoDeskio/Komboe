@@ -75,6 +75,10 @@
     }
   </ng-container>
 
+  <button type="button" data-testid="komboe-theme" aria-label="Toggle light or dark theme" class="tw-rounded-full tw-border tw-px-3 tw-py-1" (click)="toggleTheme()">
+    Theme
+  </button>
+
   @if (filter.type !== "trash") {
     <div class="tw-shrink-0">
       <vault-new-cipher-menu

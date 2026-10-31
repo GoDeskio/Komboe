@@ -1,3 +1,5 @@
+import { ThemeTypes } from "@bitwarden/common/platform/enums";
+import { ThemeStateService } from "@bitwarden/common/platform/theming/theme-state.service";
 import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
@@ -67,6 +69,17 @@ import { PipesModule } from "../pipes/pipes.module";
 })
 export class VaultHeaderComponent {
   private readonly vfo1TerminologyService = inject(Vfo1TerminologyService);
+
+  private readonly themeStateService = inject(ThemeStateService);
+
+  /** Flip between light and dark through the app's theme state so the choice persists across reloads. */
+  async toggleTheme(): Promise<void> {
+    const html = document.documentElement;
+    const dark = html.classList.contains("theme_dark");
+    html.classList.toggle("theme_dark", !dark);
+    html.classList.toggle("theme_light", dark);
+    await this.themeStateService.setSelectedTheme(dark ? ThemeTypes.Light : ThemeTypes.Dark);
+  }
 
   protected readonly Unassigned = Unassigned;
   protected readonly All = All;

@@ -1,0 +1,35 @@
+<h1>Directory</h1>
+<p bitTypography="body1">
+  Sync members from LDAP or Active Directory. Komboe reads mail and group membership.
+  It does not read directory passwords and it does not receive vault keys.
+</p>
+<form [formGroup]="formGroup" (ngSubmit)="sync()">
+  <bit-form-field>
+    <bit-label>Directory URL</bit-label>
+    <input bitInput type="text" formControlName="url" data-testid="ldap-url" />
+  </bit-form-field>
+  <bit-form-field>
+    <bit-label>Bind DN</bit-label>
+    <input bitInput type="text" formControlName="bindDn" data-testid="ldap-bind-dn" />
+  </bit-form-field>
+  <bit-form-field>
+    <bit-label>Bind password</bit-label>
+    <input bitInput type="password" formControlName="bindPassword" data-testid="ldap-bind-password" />
+    <button type="button" bitIconButton bitSuffix bitPasswordInputToggle label="Toggle bind password visibility"></button>
+  </bit-form-field>
+  <bit-form-field>
+    <bit-label>User base</bit-label>
+    <input bitInput type="text" formControlName="userBase" data-testid="ldap-user-base" />
+  </bit-form-field>
+  <bit-form-field>
+    <bit-label>User filter</bit-label>
+    <input bitInput type="text" formControlName="userFilter" data-testid="ldap-user-filter" />
+  </bit-form-field>
+  <bit-form-field>
+    <bit-label>Group base</bit-label>
+    <input bitInput type="text" formControlName="groupBase" data-testid="ldap-group-base" />
+  </bit-form-field>
+  <button type="submit" bitButton buttonType="primary" data-testid="ldap-sync">Sync</button>
+</form>
+<p *ngIf="result" data-testid="ldap-result">{{ result }}</p>
+<p *ngIf="error" data-testid="ldap-error">{{ error }}</p>

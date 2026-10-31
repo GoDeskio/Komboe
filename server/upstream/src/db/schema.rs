@@ -489,6 +489,21 @@ table! {
     }
 }
 
+table! {
+    komboe_ldap_configs (org_uuid) {
+        org_uuid -> Text,
+        url -> Text,
+        bind_dn -> Text,
+        bind_password -> Text,
+        user_base -> Text,
+        user_filter -> Text,
+        email_attr -> Text,
+        group_base -> Text,
+        group_filter -> Text,
+        member_attr -> Text,
+    }
+}
+
 allow_tables_to_appear_in_same_query!(
     komboe_org_plans,
     komboe_split_requests,
@@ -497,5 +512,6 @@ allow_tables_to_appear_in_same_query!(
     komboe_tags,
     komboe_cipher_tags,
     komboe_password_expiry,
-    komboe_scim_tokens
+    komboe_scim_tokens,
+    komboe_ldap_configs
 );

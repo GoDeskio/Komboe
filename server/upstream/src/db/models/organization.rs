@@ -202,7 +202,7 @@ impl Organization {
             "maxStorageGb": i16::MAX, // The value doesn't matter, we don't check server-side
             "use2fa": true,
             "useCustomPermissions": true,
-            "useDirectory": false, // Is supported, but this value isn't checked anywhere (yet)
+            "useDirectory": true, // Clean-room LDAP sync. Directory identity only; vault keys stay client-side.
             "useEvents": CONFIG.org_events_enabled(),
             "useGroups": CONFIG.org_groups_enabled(),
             "useTotp": true,
@@ -470,7 +470,7 @@ impl Membership {
             "maxCollections": null,
             "usersGetPremium": true,
             "use2fa": true,
-            "useDirectory": false, // Is supported, but this value isn't checked anywhere (yet)
+            "useDirectory": true, // Clean-room LDAP sync. Directory identity only; vault keys stay client-side.
             "useEvents": CONFIG.org_events_enabled(),
             "useGroups": CONFIG.org_groups_enabled(),
             "useTotp": true,

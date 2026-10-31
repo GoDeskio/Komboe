@@ -135,6 +135,11 @@
         route="settings/scim"
         *ngIf="organization.canManageScim"
       ></bit-nav-item>
+      <bit-nav-item
+        text="Directory"
+        route="settings/directory"
+        *ngIf="organization.useDirectory && organization.isAdmin"
+      ></bit-nav-item>
     </bit-nav-group>
   </app-side-nav>
 

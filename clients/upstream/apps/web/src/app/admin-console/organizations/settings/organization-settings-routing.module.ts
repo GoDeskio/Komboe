@@ -42,6 +42,14 @@ const routes: Routes = [
         },
       },
       {
+        path: "directory",
+        loadComponent: () => import("./directory.component").then((mod) => mod.DirectoryComponent),
+        canActivate: [organizationPermissionsGuard((org) => org.isAdmin && org.useDirectory)],
+        data: {
+          titleId: "directory",
+        },
+      },
+      {
         path: "scim",
         loadComponent: () => import("./scim.component").then((mod) => mod.ScimComponent),
         canActivate: [organizationPermissionsGuard((org) => org.canManageScim)],

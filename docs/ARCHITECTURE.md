@@ -38,7 +38,7 @@ Clients speak the Bitwarden-compatible API to the Komboe server; the alias servi
 Only minimal billing metadata is stored: account id, plan, seat count, status, renewal date, and the payment processor's customer/subscription ids. No card data, no vault data, no usage telemetry beyond what billing needs.
 
 ## Platforms
-Web vault, desktop (Windows/macOS/Linux), mobile (iOS/Android), browser extensions (Chrome, Firefox, Edge, Safari, Brave, Opera, Vivaldi), CLI.
+Web vault, desktop (Windows/macOS/Linux), Android, browser extensions (Chrome, Edge, Firefox, Brave, Safari), CLI, self-host server, and the MCP agent integration. iOS is coming soon.
 
 ## UX
 Dashboard styled after Proton Pass's clean look (left nav, item list, detail pane, light/dark). Komboe branding only.

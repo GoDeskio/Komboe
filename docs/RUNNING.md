@@ -4,6 +4,8 @@
 
 Tested on Linux x86_64. Development/testing only - not a production deployment guide.
 
+Accounts: local email and master password by default, or any OIDC provider. See [Accounts & sign-in](#accounts--sign-in).
+
 ## Server (Vaultwarden 1.37.4 based)
 ```sh
 cd server/upstream
@@ -110,6 +112,63 @@ PYTHONPATH=/workspace/tools/py KOMBOE_DB=/workspace/run/data/db.sqlite3 FWD_RELA
 ```
 The feature suite starts both by itself (`tests/features/phase_e.py`). **Coverage is local-test only**: there is no MX record, no DNS TXT check for custom
 domains (`FWD_TRUST_DOMAINS=1`, refused unless bound to loopback) and no SPF/DKIM/DMARC. Production needs those plus outbound DKIM signing.
+
+## Accounts & sign-in
+
+Hosted users never touch Authentik. Sign-up on komboe.com is by email and password, Google or a passkey. One GoDesk account works across all GoDesk tools. The master password never leaves the device, and there is no admin reset.
+
+A self-hosted server supports both of the following. Local accounts are the default when no OIDC is configured. Any OIDC provider can be added beside them. Keycloak, Okta and Authentik are examples. Authentik is never required, and Komboe does not ship an Authentik container or an Authentik-only code path.
+
+### Local accounts (default)
+
+Leave `SSO_ENABLED` unset (it defaults to false). With `SIGNUPS_ALLOWED=true`, a person registers with an email and a master password. Key derivation (PBKDF2 or Argon2id) runs in the client. The server stores vault ciphertext and an authentication verifier. It never stores the master password, and it has no admin password reset and no Key Connector.
+
+```sh
+SIGNUPS_ALLOWED=true
+# do not set SSO_ENABLED, SSO_AUTHORITY, SSO_CLIENT_ID or SSO_CLIENT_SECRET
+```
+
+### Bring your own OIDC
+
+Set the issuer to whatever you already run. The same variables cover Keycloak, Okta, Authentik and any other OIDC provider. `openid` is added automatically. `SSO_ONLY` stays false unless you set it, so existing local accounts still sign in with email and master password.
+
+```sh
+SSO_ENABLED=true
+SSO_CLIENT_ID=komboe
+SSO_CLIENT_SECRET=replace-with-the-provider-secret
+SSO_AUTHORITY=https://idp.example.com/realms/komboe
+SSO_SCOPES="email profile"
+SSO_PKCE=true
+SSO_SIGNUPS_ALLOWED=true
+# SSO_ONLY=false is the default: local accounts and OIDC both work
+```
+
+Copy `SSO_AUTHORITY` from the provider's issuer, with no `/.well-known/openid-configuration` suffix:
+
+```sh
+# Keycloak
+SSO_AUTHORITY=https://keycloak.example.com/realms/your-realm
+
+# Okta (org authorization server)
+SSO_AUTHORITY=https://your-org.okta.com/oauth2/default
+
+# Authentik (one application among others; not required)
+SSO_AUTHORITY=https://authentik.example.com/application/o/komboe/
+```
+
+On the provider, create a confidential client and register the redirect URI `{DOMAIN}/identity/connect/oidc-signin`, for example `https://vault.example.com/identity/connect/oidc-signin`. Send `email` (and `email_verified` when the provider knows it) on the ID token or userinfo. Komboe binds the account to the issuer and subject.
+
+The flow:
+
+1. The person chooses single sign-on in the Komboe client. The browser goes to your issuer with the client id, redirect URI, scopes, state, nonce and PKCE challenge.
+2. The person signs in at the provider with that provider's own login. That password is the provider's, and it is not the Komboe master password.
+3. The provider redirects back to `{DOMAIN}/identity/connect/oidc-signin`. Komboe exchanges the code and reads the email and subject.
+4. On the device, the person enters the master password (or unlocks a trusted device). The KDF and the vault keys stay in the client. The provider never receives them. The server never gets a key it can use to open the vault.
+5. There is no admin reset. A lost master password means a lost vault.
+
+`SSO_ALLOW_UNKNOWN_EMAIL_VERIFICATION` stays false unless you trust the provider to have checked the email. Setting it together with `SSO_SIGNUPS_MATCH_EMAIL=true` can attach an OIDC login to an existing local account by email.
+
+SAML is a separate optional path, below. It is not required for OIDC.
 
 ## SAML SSO
 

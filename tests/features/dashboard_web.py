@@ -16,8 +16,10 @@ def main():
         page = browser.new_page(ignore_https_errors=True, viewport={"width": 1400, "height": 900})
         page.set_default_timeout(25000)
         page.goto(WEB + "/#/login", wait_until="domcontentloaded")
-        page.wait_for_selector("img.new-logo-themed")
-        logo = page.evaluate("""() => getComputedStyle(document.querySelector('img.new-logo-themed')).content""")
+        # The themed logo lives on the pre-boot screen, which Angular removes; probe the same CSS rule deterministically.
+        page.wait_for_selector("#email")
+        logo = page.evaluate("""() => { const i = document.createElement('img'); i.className = 'new-logo-themed';
+            document.body.appendChild(i); const c = getComputedStyle(i).content; i.remove(); return c; }""")
         assert "logo" in logo, logo
         page.fill("#email", user.email)
         cont = page.get_by_role("button", name="Continue")
@@ -47,8 +49,14 @@ def main():
         assert page.evaluate("() => document.documentElement.classList.contains('theme_dark')")
         page.wait_for_timeout(1000)
         page.reload(wait_until="domcontentloaded")
-        page.get_by_test_id("komboe-theme").wait_for(timeout=40000)
+        # A reload locks the web vault; the theme is global state, so it must already apply on the lock screen.
+        page.wait_for_function("() => location.hash.includes('lock') || document.querySelector('[data-testid=komboe-theme]')", timeout=40000)
         page.wait_for_timeout(1500)
+        assert page.evaluate("() => document.documentElement.classList.contains('theme_dark')"), "dark theme did not persist across reload"
+        if "lock" in page.url:
+            page.get_by_label("Master password").fill(user.pw)
+            page.get_by_role("button", name="Unlock", exact=True).click()
+        page.get_by_test_id("komboe-theme").wait_for(timeout=40000)
         assert page.evaluate("() => document.documentElement.classList.contains('theme_dark')"), "dark theme did not persist across reload"
         page.get_by_test_id("komboe-theme").click()
         assert page.evaluate("() => document.documentElement.classList.contains('theme_light')")

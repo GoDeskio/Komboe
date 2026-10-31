@@ -829,12 +829,6 @@ function buildNoRestrictedImports(
   return [
     "error",
     {
-      paths: [
-        {
-          name: "@bitwarden/commercial-sdk-internal",
-          message: "Use @bitwarden/sdk-internal instead.",
-        },
-      ],
       // Object form rather than plain strings so the legacy-crypto group can carry its own message.
       // ESLint requires every entry in `patterns` to be the same shape.
       patterns: [

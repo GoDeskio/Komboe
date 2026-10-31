@@ -457,6 +457,7 @@ module.exports.buildConfig = function buildConfig(params) {
         path.resolve(process.cwd(), "node_modules"),
       ],
       fallback: {
+        crypto: false, // kdbxweb (KDBX normalize) uses WebCrypto in browsers
         buffer: false,
         util: require.resolve("util/"),
         assert: false,

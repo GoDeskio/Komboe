@@ -529,6 +529,7 @@ export class VaultProgram extends BaseProgram {
             this.serviceContainer.cipherService,
             this.serviceContainer.accountService,
             this.serviceContainer.syncService,
+            this.serviceContainer.organizationService,
           );
           let password: string | undefined;
           if (options.passwordenv) {
@@ -602,6 +603,7 @@ export class VaultProgram extends BaseProgram {
             this.serviceContainer.cipherService,
             this.serviceContainer.accountService,
             this.serviceContainer.syncService,
+            this.serviceContainer.organizationService,
           );
           this.processResponse(
             await cxf.export(options.output, options.organizationid, options.password),

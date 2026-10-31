@@ -3,10 +3,12 @@
 import * as crypto from "crypto";
 
 import { argon2id } from "hash-wasm";
-import { firstValueFrom, switchMap } from "rxjs";
+import { firstValueFrom, of, switchMap } from "rxjs";
 
+import { OrganizationService } from "@bitwarden/common/admin-console/abstractions/organization/organization.service.abstraction";
 import { AccountService } from "@bitwarden/common/auth/abstractions/account.service";
 import { getUserId } from "@bitwarden/common/auth/services/account.service";
+import { Utils } from "@bitwarden/common/platform/misc/utils";
 import { SdkService } from "@bitwarden/common/platform/abstractions/sdk/sdk.service";
 import { UserId } from "@bitwarden/common/types/guid";
 import { CipherService } from "@bitwarden/common/vault/abstractions/cipher.service";
@@ -93,6 +95,7 @@ export class CxfCommand {
     private cipherService: CipherService,
     private accountService: AccountService,
     private syncService: SyncService,
+    private organizationService?: OrganizationService,
   ) {}
 
   private withSdk<T>(userId: UserId, fn: (sdk: BitwardenClient) => T | Promise<T>): Promise<T> {
@@ -152,14 +155,33 @@ export class CxfCommand {
     organizationId?: string,
     password?: string,
   ): Promise<Response> {
-    if (organizationId != null) {
-      return Response.badRequest("CXF export of an organization vault is not supported yet.");
+    if (organizationId != null && !Utils.isGuid(organizationId)) {
+      return Response.badRequest("`" + organizationId + "` is not a GUID.");
     }
     try {
       const account = await firstValueFrom(this.accountService.activeAccount$);
       const userId = account.id;
+      if (organizationId != null) {
+        // Organization export: same rule as `komboe export --organizationid`
+        // (owner, admin or custom import/export permission). The org key is
+        // already on this client; ciphers are decrypted here, never on the server.
+        const org = (
+          await firstValueFrom(this.organizationService?.organizations$(userId) ?? of([]))
+        ).find((o) => o.id === organizationId);
+        if (org == null) {
+          return Response.badRequest("You are not a member of that organization.");
+        }
+        if (!org.canAccessExport) {
+          return Response.badRequest("You do not have permission to export this organization's vault.");
+        }
+        await this.syncService.fullSync(false);
+      }
       const ciphers = (await this.cipherService.getAll(userId))
-        .filter((c) => c.deletedDate == null && c.organizationId == null)
+        .filter(
+          (c) =>
+            c.deletedDate == null &&
+            (organizationId == null ? c.organizationId == null : c.organizationId === organizationId),
+        )
         .map((c) => c.toSdkCipher());
       const cxf = await this.withSdk(userId, (sdk) =>
         sdk
@@ -170,10 +192,10 @@ export class CxfCommand {
         return await CliUtils.saveResultToFile(
           await sealCxf(cxf, password),
           output,
-          "komboe_export.cxf.encrypted.json",
+          organizationId ? "komboe_org_export.cxf.encrypted.json" : "komboe_export.cxf.encrypted.json",
         );
       }
-      return await CliUtils.saveResultToFile(cxf, output, "komboe_export.cxf.json");
+      return await CliUtils.saveResultToFile(cxf, output, organizationId ? "komboe_org_export.cxf.json" : "komboe_export.cxf.json");
     } catch (e) {
       return Response.error(`CXF export failed: ${e?.message ?? e}`);
     }

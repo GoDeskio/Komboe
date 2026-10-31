@@ -401,6 +401,7 @@ module.exports.buildConfig = function buildConfig(params) {
       symlinks: false,
       modules: [path.resolve(__dirname, "../../node_modules")],
       fallback: {
+        crypto: false, // kdbxweb (KDBX normalize) uses WebCrypto in browsers
         assert: false,
         buffer: require.resolve("buffer/"),
         util: require.resolve("util/"),
@@ -541,6 +542,7 @@ module.exports.buildConfig = function buildConfig(params) {
         modules: [path.resolve(__dirname, "../../node_modules")],
         plugins: [new TsconfigPathsPlugin()],
         fallback: {
+          crypto: false, // kdbxweb (KDBX normalize) uses WebCrypto in browsers
           fs: false,
           path: require.resolve("path-browserify"),
         },

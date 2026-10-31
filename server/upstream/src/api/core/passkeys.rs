@@ -3,18 +3,14 @@
 //! so adding one never turns on two-step login. The PRF key set is ciphertext the
 //! client wrapped itself; the server never sees PRF output or the user key.
 
-use std::{
-    collections::HashMap,
-    sync::{LazyLock, Mutex},
-    time::{Duration, Instant},
-};
+use std::{sync::LazyLock, time::Duration};
 
 use diesel::prelude::*;
 use rocket::{
     Route,
     serde::json::{Json, Value, json},
 };
-use serde::Deserialize;
+use serde::{Deserialize, Serialize};
 use url::Url;
 use webauthn_rs::{
     Webauthn, WebauthnBuilder,
@@ -33,7 +29,7 @@ use crate::{
     db::{
         DbConn,
         models::{User, UserId},
-        schema::komboe_login_passkeys,
+        schema::{komboe_login_passkeys, komboe_passkey_challenges},
     },
     util::get_uuid,
 };
@@ -57,25 +53,70 @@ static WEBAUTHN: LazyLock<Webauthn> = LazyLock::new(|| {
         .expect("Building Webauthn failed")
 });
 
+#[derive(Serialize, Deserialize)]
 enum Pending {
     Register(UserId, PasskeyRegistration),
     Assert(UserId, PasskeyAuthentication),
     Login(DiscoverableAuthentication),
 }
 
-static PENDING: LazyLock<Mutex<HashMap<String, (Instant, Pending)>>> = LazyLock::new(|| Mutex::new(HashMap::new()));
-
-fn stash(p: Pending) -> String {
-    let token = crypto::encode_random_bytes::<32>(&data_encoding::BASE64URL_NOPAD);
-    let mut map = PENDING.lock().unwrap();
-    map.retain(|_, (t, _)| t.elapsed() < STATE_TTL);
-    map.insert(token.clone(), (Instant::now(), p));
-    token
+// Challenge state lives in the database (not process memory) so any server node
+// behind a load balancer can finish a ceremony another node started. Rows hold
+// only WebAuthn ceremony state (challenge + allowed credential ids), never keys
+// or vault data. Each token is single-use: the DELETE that claims it must hit
+// exactly one row, so two nodes racing on the same token cannot both succeed.
+#[derive(Insertable, Queryable)]
+#[diesel(table_name = komboe_passkey_challenges)]
+struct ChallengeRow {
+    token: String,
+    state: String,
+    created_at: i64,
 }
 
-fn take(token: &str) -> Option<Pending> {
-    let mut map = PENDING.lock().unwrap();
-    map.remove(token).and_then(|(t, p)| (t.elapsed() < STATE_TTL).then_some(p))
+fn now_secs() -> i64 {
+    chrono::Utc::now().timestamp()
+}
+
+async fn stash(p: Pending, conn: &DbConn) -> crate::api::ApiResult<String> {
+    let token = crypto::encode_random_bytes::<32>(&data_encoding::BASE64URL_NOPAD);
+    let row = ChallengeRow {
+        token: token.clone(),
+        state: serde_json::to_string(&p)?,
+        created_at: now_secs(),
+    };
+    let cutoff = now_secs() - STATE_TTL.as_secs() as i64;
+    if let Err(e) = conn
+        .run(move |c| {
+            diesel::delete(komboe_passkey_challenges::table.filter(komboe_passkey_challenges::created_at.lt(cutoff)))
+                .execute(c)?;
+            diesel::insert_into(komboe_passkey_challenges::table).values(&row).execute(c)
+        })
+        .await
+    {
+        err!(format!("Error saving passkey challenge: {e}"));
+    }
+    Ok(token)
+}
+
+async fn take(token: &str, conn: &DbConn) -> Option<Pending> {
+    let token = token.to_string();
+    let cutoff = now_secs() - STATE_TTL.as_secs() as i64;
+    let row: ChallengeRow = conn
+        .run(move |c| {
+            let row = komboe_passkey_challenges::table
+                .filter(komboe_passkey_challenges::token.eq(&token))
+                .first::<ChallengeRow>(c)
+                .ok()?;
+            let n = diesel::delete(komboe_passkey_challenges::table.filter(komboe_passkey_challenges::token.eq(&token)))
+                .execute(c)
+                .ok()?;
+            (n == 1).then_some(row)
+        })
+        .await?;
+    if row.created_at < cutoff {
+        return None;
+    }
+    serde_json::from_str(&row.state).ok()
 }
 
 #[derive(Queryable, Insertable, Clone)]
@@ -230,7 +271,7 @@ async fn attestation_options(data: Json<PasswordOrOtpData>, headers: Headers, co
         sel.require_resident_key = true;
         sel.user_verification = UserVerificationPolicy::Required;
     }
-    let token = stash(Pending::Register(user.uuid.clone(), state));
+    let token = stash(Pending::Register(user.uuid.clone(), state), &conn).await?;
     Ok(Json(json!({
         "options": options_json(serde_json::to_value(challenge)?),
         "token": token,
@@ -247,7 +288,7 @@ async fn assertion_options(data: Json<PasswordOrOtpData>, headers: Headers, conn
         err!("No passkeys registered")
     }
     let (challenge, state) = WEBAUTHN.start_passkey_authentication(&keys)?;
-    let token = stash(Pending::Assert(user.uuid.clone(), state));
+    let token = stash(Pending::Assert(user.uuid.clone(), state), &conn).await?;
     Ok(Json(json!({
         "options": options_json(serde_json::to_value(challenge)?),
         "token": token,
@@ -271,7 +312,7 @@ struct CreateData {
 #[post("/webauthn", data = "<data>")]
 async fn create(data: Json<CreateData>, headers: Headers, conn: DbConn) -> EmptyResult {
     let data = data.into_inner();
-    let Some(Pending::Register(uid, state)) = take(&data.token) else {
+    let Some(Pending::Register(uid, state)) = take(&data.token, &conn).await else {
         err!("Passkey challenge expired, try again")
     };
     if uid != headers.user.uuid {
@@ -322,7 +363,7 @@ struct UpdateData {
 #[put("/webauthn", data = "<data>")]
 async fn update_keys(data: Json<UpdateData>, headers: Headers, conn: DbConn) -> EmptyResult {
     let data = data.into_inner();
-    let Some(Pending::Assert(uid, state)) = take(&data.token) else {
+    let Some(Pending::Assert(uid, state)) = take(&data.token, &conn).await else {
         err!("Passkey challenge expired, try again")
     };
     if uid != headers.user.uuid {
@@ -372,9 +413,9 @@ async fn delete(id: &str, data: Json<PasswordOrOtpData>, headers: Headers, conn:
 }
 
 /// `GET /identity/accounts/webauthn/assertion-options` (unauthenticated).
-pub fn login_options() -> JsonResult {
+pub async fn login_options(conn: &DbConn) -> JsonResult {
     let (challenge, state) = WEBAUTHN.start_discoverable_authentication()?;
-    let token = stash(Pending::Login(state));
+    let token = stash(Pending::Login(state), conn).await?;
     Ok(Json(json!({
         "options": options_json(serde_json::to_value(challenge)?),
         "token": token,
@@ -384,7 +425,7 @@ pub fn login_options() -> JsonResult {
 
 /// Verify a `grant_type=webauthn` assertion. Returns the user and the passkey used.
 pub async fn verify_login(token: &str, device_response: &str, conn: &DbConn) -> ApiResultUser {
-    let Some(Pending::Login(state)) = take(token) else {
+    let Some(Pending::Login(state)) = take(token, conn).await else {
         err!("Passkey challenge expired, try again")
     };
     let cred: PublicKeyCredential = serde_json::from_value(normalize(serde_json::from_str(device_response)?))?;

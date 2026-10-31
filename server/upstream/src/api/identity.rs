@@ -518,8 +518,8 @@ async fn password_login(data: ConnectData, user_id: &mut Option<UserId>, conn: &
 }
 
 #[get("/accounts/webauthn/assertion-options")]
-fn webauthn_assertion_options() -> JsonResult {
-    crate::api::core::passkeys::login_options()
+async fn webauthn_assertion_options(conn: DbConn) -> JsonResult {
+    crate::api::core::passkeys::login_options(&conn).await
 }
 
 /// Komboe #50: passkey sign-in. A user-verified discoverable passkey stands in for

@@ -20,7 +20,7 @@ type TagRow = { id: string; name: string; cipherIds: string[] };
         <button data-testid="tag-create" type="button" class="tw-border tw-rounded tw-px-2" (click)="create()">Add</button>
       </div>
       @for (tag of tags; track tag.id) {
-        <button type="button" class="tw-block tw-text-left tw-w-full tw-rounded tw-px-2 tw-py-1" [attr.data-testid]="'tag'" [attr.data-tag-id]="tag.id" (click)="selected = tag.id">{{ tag.name }}</button>
+        <button type="button" class="tw-block tw-text-left tw-w-full tw-rounded tw-px-2 tw-py-1" [attr.data-testid]="'tag'" [attr.data-tag-id]="tag.id" [attr.aria-pressed]="selected === tag.id" [class.tw-font-semibold]="selected === tag.id" (click)="selected = tag.id">{{ tag.name }}</button>
       }
       <label class="tw-block tw-mt-2">Item
         <select data-testid="tag-item" class="tw-border tw-rounded tw-w-full" (change)="cipherId = $any($event.target).value">
@@ -31,6 +31,8 @@ type TagRow = { id: string; name: string; cipherIds: string[] };
         </select>
       </label>
       <button data-testid="tag-assign" type="button" class="tw-mt-2 tw-border tw-rounded tw-px-2 tw-py-1" (click)="assign()">Apply tag</button>
+      <button data-testid="tag-unassign" type="button" class="tw-mt-2 tw-ml-1 tw-border tw-rounded tw-px-2 tw-py-1" (click)="unassign()">Remove tag</button>
+      <button data-testid="tag-delete" type="button" class="tw-mt-2 tw-ml-1 tw-border tw-rounded tw-px-2 tw-py-1" (click)="remove()">Delete tag</button>
       @if (selected) {
         <ul class="tw-mt-2 tw-pl-4">
           @for (name of taggedNames(); track name) {
@@ -89,10 +91,37 @@ export class KomboeTagsComponent implements OnInit {
     this.error = "";
     if (!this.selected || !this.cipherId) return;
     try {
-      await this.api.putCipherTags(this.cipherId, [this.selected]);
+      const current = this.tags.filter((t) => t.cipherIds.includes(this.cipherId)).map((t) => t.id);
+      await this.api.putCipherTags(this.cipherId, Array.from(new Set([...current, this.selected])));
       await this.reload();
     } catch (e) {
       this.error = e instanceof Error ? e.message : "Could not apply the tag";
+    }
+  }
+
+  async unassign() {
+    this.error = "";
+    if (!this.selected || !this.cipherId) return;
+    try {
+      const keep = this.tags
+        .filter((t) => t.id !== this.selected && t.cipherIds.includes(this.cipherId))
+        .map((t) => t.id);
+      await this.api.putCipherTags(this.cipherId, keep);
+      await this.reload();
+    } catch (e) {
+      this.error = e instanceof Error ? e.message : "Could not remove the tag";
+    }
+  }
+
+  async remove() {
+    this.error = "";
+    if (!this.selected) return;
+    try {
+      await this.api.deleteKomboeTag(this.selected);
+      this.selected = "";
+      await this.reload();
+    } catch (e) {
+      this.error = e instanceof Error ? e.message : "Could not delete the tag";
     }
   }
 

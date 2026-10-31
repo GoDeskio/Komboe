@@ -207,6 +207,14 @@ impl Event {
     /// #############
     /// Basic Queries
     pub async fn save(&self, conn: &DbConn) -> EmptyResult {
+        let res = self.save_db(conn).await;
+        if res.is_ok() {
+            siem::export(std::slice::from_ref(self));
+        }
+        res
+    }
+
+    async fn save_db(&self, conn: &DbConn) -> EmptyResult {
         db_run! { conn:
             mysql {
                 diesel::insert_into(event::table)
@@ -230,6 +238,7 @@ impl Event {
     }
 
     pub async fn save_user_event(events: Vec<Event>, conn: &DbConn) -> EmptyResult {
+        siem::export(&events);
         // Special save function which is able to handle multiple events.
         // SQLite doesn't support the DEFAULT argument, and does not support inserting multiple values at the same time.
         // MySQL and PostgreSQL do.
@@ -363,3 +372,52 @@ impl Event {
 
 #[derive(Clone, Debug, DieselNewType, FromForm, Hash, PartialEq, Eq, Serialize, Deserialize)]
 pub struct EventId(String);
+
+/// Komboe: append-only, hash-chained JSON Lines export of audit events for SIEM ingestion
+/// (Splunk, Elastic, Wazuh, Loki...). Enabled by EVENTS_SIEM_JSONL_PATH. Each line carries
+/// `prevHash` and `hash` = sha256(prevHash || canonical line without hash) so truncation or
+/// edits are detectable with `scripts/verify-siem-chain.py`. Event metadata only; no vault data.
+pub mod siem {
+    use super::Event;
+    use crate::{CONFIG, crypto::sha256_hex};
+    use std::{io::Write, sync::Mutex};
+
+    static LAST_HASH: Mutex<Option<String>> = Mutex::new(None);
+
+    fn last_hash_from_file(path: &str) -> String {
+        std::fs::read_to_string(path)
+            .ok()
+            .and_then(|s| s.lines().rev().find(|l| !l.trim().is_empty()).map(str::to_owned))
+            .and_then(|l| serde_json::from_str::<serde_json::Value>(&l).ok())
+            .and_then(|v| v.get("hash").and_then(|h| h.as_str()).map(str::to_owned))
+            .unwrap_or_else(|| "0".repeat(64))
+    }
+
+    pub fn export(events: &[Event]) {
+        let Some(path) = CONFIG.events_siem_jsonl_path() else {
+            return;
+        };
+        let mut guard = LAST_HASH.lock().unwrap_or_else(|e| e.into_inner());
+        let mut prev = guard.take().unwrap_or_else(|| last_hash_from_file(&path));
+        let Ok(mut f) = std::fs::OpenOptions::new().create(true).append(true).open(&path) else {
+            error!("SIEM export: cannot open {path}");
+            *guard = Some(prev);
+            return;
+        };
+        for e in events {
+            let mut v = e.to_json();
+            v["orgId"] = serde_json::json!(e.org_uuid);
+            v["userId"] = serde_json::json!(e.user_uuid);
+            v["prevHash"] = serde_json::json!(prev);
+            let body = v.to_string();
+            let hash = sha256_hex(format!("{prev}{body}").as_bytes());
+            v["hash"] = serde_json::json!(hash);
+            if writeln!(f, "{v}").is_err() {
+                error!("SIEM export: write failed for {path}");
+                break;
+            }
+            prev = hash;
+        }
+        *guard = Some(prev);
+    }
+}

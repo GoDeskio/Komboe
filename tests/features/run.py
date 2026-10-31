@@ -21,6 +21,9 @@ ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 URL = os.environ.get("KOMBOE_URL", "http://127.0.0.1:8000").rstrip("/")
 DB = os.environ.get("KOMBOE_DB")
 ADMIN = os.environ.get("KOMBOE_ADMIN_TOKEN")
+if URL.startswith("https://"):
+    import ssl
+    ssl._create_default_https_context = ssl._create_unverified_context
 
 class HTTPErr(Exception):
     def __init__(s, code, body): super().__init__(f"{code}: {body[:300]}"); s.code = code; s.body = body
@@ -374,7 +377,7 @@ X(104, "free tier: Phase B billing")
 X(105, "Proton-style UI: under review")
 X(106, "secrets manager: upstream code excluded (bitwarden_license); reimplement later")
 
-for _f in ("phase_b.py", "phase_e.py", "phase_tags.py", "phase_templates.py", "phase_bookmarks.py", "phase_gpg.py", "phase_expiry.py", "phase_dashboard.py", "phase_ha.py"):
+for _f in ("phase_b.py", "phase_e.py", "phase_tags.py", "phase_templates.py", "phase_bookmarks.py", "phase_gpg.py", "phase_expiry.py", "phase_dashboard.py", "phase_ha.py", "phase_sso.py"):
     exec(compile(open(os.path.join(os.path.dirname(__file__), _f)).read(), _f, "exec"))
 
 def main():

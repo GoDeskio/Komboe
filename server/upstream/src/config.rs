@@ -848,6 +848,16 @@ make_config! {
         sso_client_cache_expiration:    u64,    true,   def,    0;
         /// Log all tokens |> `LOG_LEVEL=debug` or `LOG_LEVEL=info,vaultwarden::sso=debug` is required
         sso_debug_tokens:               bool,   true,   def,    false;
+        /// Use SAML 2.0 instead of OpenID Connect |> The OIDC client settings above are then ignored
+        sso_saml_enabled:               bool,   true,   def,    false;
+        /// SAML IdP entity ID |> Must match the Issuer of the assertions
+        sso_saml_idp_entity_id:         String, true,   def,    String::new();
+        /// SAML IdP single sign-on URL |> HTTP-Redirect binding endpoint
+        sso_saml_idp_sso_url:           String, true,   def,    String::new();
+        /// SAML IdP signing certificate |> PEM text or a path to a PEM file. Only this key is trusted.
+        sso_saml_idp_cert:              String, true,   def,    String::new();
+        /// Treat SAML emails as verified |> Enable only if the IdP verifies email addresses
+        sso_saml_email_verified:        bool,   true,   def,    false;
     },
 
     /// Yubikey settings
@@ -1103,7 +1113,18 @@ fn validate_config(cfg: &ConfigItems, on_update: bool) -> Result<(), Error> {
         err!("All Duo options need to be set for global Duo support")
     }
 
-    if cfg.sso_enabled {
+    if cfg.sso_enabled && cfg.sso_saml_enabled {
+        if cfg.sso_saml_idp_entity_id.is_empty()
+            || cfg.sso_saml_idp_sso_url.is_empty()
+            || cfg.sso_saml_idp_cert.is_empty()
+        {
+            err!("`SSO_SAML_IDP_ENTITY_ID`, `SSO_SAML_IDP_SSO_URL` and `SSO_SAML_IDP_CERT` must be set for SAML SSO")
+        }
+        if let Err(e) = Url::parse(&cfg.sso_saml_idp_sso_url) {
+            err!(format!("Invalid SSO_SAML_IDP_SSO_URL: {e}"))
+        }
+        validate_sso_master_password_policy(cfg.sso_master_password_policy.as_ref())?;
+    } else if cfg.sso_enabled {
         if cfg.sso_client_id.is_empty() || cfg.sso_client_secret.is_empty() || cfg.sso_authority.is_empty() {
             err!("`SSO_CLIENT_ID`, `SSO_CLIENT_SECRET` and `SSO_AUTHORITY` must be set for SSO support")
         }

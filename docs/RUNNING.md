@@ -110,3 +110,13 @@ PYTHONPATH=/workspace/tools/py KOMBOE_DB=/workspace/run/data/db.sqlite3 FWD_RELA
 ```
 The feature suite starts both by itself (`tests/features/phase_e.py`). **Coverage is local-test only**: there is no MX record, no DNS TXT check for custom
 domains (`FWD_TRUST_DOMAINS=1`, refused unless bound to loopback) and no SPF/DKIM/DMARC. Production needs those plus outbound DKIM signing.
+
+## SAML SSO
+
+Set `SSO_ENABLED=true`, `SSO_SAML_ENABLED=true`, `SSO_SAML_IDP_ENTITY_ID`, `SSO_SAML_IDP_SSO_URL`
+(HTTP-Redirect SSO endpoint) and `SSO_SAML_IDP_CERT` (PEM text or path to the IdP signing cert).
+Give the IdP the SP metadata at `{DOMAIN}/identity/saml/metadata` (ACS: `{DOMAIN}/identity/connect/saml-acs`).
+The IdP must sign the Assertion; send the email as a `mail`/`email` attribute or an emailAddress NameID.
+Set `SSO_SAML_EMAIL_VERIFIED=true` only if the IdP vouches for emails. SSO proves identity only; the
+vault is still unlocked with the master password (or a trusted device), the server never gets the key.
+Tests: `tests/features/sso_saml.py` and `sso_saml_web.py` (need pysaml2 + xmlsec1).

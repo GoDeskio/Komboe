@@ -209,7 +209,14 @@ pub async fn authorize_url(
         _ => err!(format!("Unsupported client {}", client_id.escape_debug())),
     };
 
-    let (auth_url, sso_auth) = Client::authorize_url(state, client_challenge, redirect_uri, binding_hash).await?;
+    let (auth_url, sso_auth) = if CONFIG.sso_saml_enabled() {
+        let request_id = crate::saml::new_request_id();
+        let relay_state = data_encoding::BASE64.encode(state.to_string().as_bytes());
+        let url = crate::saml::authn_request_url(&request_id, &relay_state)?;
+        (url, SsoAuth::new(state, client_challenge, request_id, redirect_uri, binding_hash))
+    } else {
+        Client::authorize_url(state, client_challenge, redirect_uri, binding_hash).await?
+    };
     sso_auth.save(&conn).await?;
     Ok(auth_url)
 }
@@ -235,7 +242,7 @@ pub async fn authorize_url(
 pub struct OIDCIdentifier(String);
 
 impl OIDCIdentifier {
-    fn new(issuer: &str, subject: &str) -> Self {
+    pub fn new(issuer: &str, subject: &str) -> Self {
         OIDCIdentifier(format!("{issuer}/{subject}"))
     }
 }
@@ -277,6 +284,12 @@ pub async fn exchange_code(
             err!("Missing authorization provider return");
         }
     };
+
+    if CONFIG.sso_saml_enabled() {
+        // SAML results are stored by the ACS before a code is ever issued
+        sso_auth.delete(conn).await?;
+        err!("Missing SAML authentication result");
+    }
 
     let client = Client::cached().await?;
     let (token_response, id_claims) = client.exchange_code(code, client_verifier, &sso_auth).await?;
@@ -337,7 +350,8 @@ pub async fn redeem(
         user_sso.save(conn).await?;
     }
 
-    if CONFIG.sso_auth_only_not_session() {
+    // SAML has no IdP session to follow: use the normal Komboe session lifecycle
+    if CONFIG.sso_auth_only_not_session() || CONFIG.sso_saml_enabled() {
         Ok(AuthTokens::new(device, user, AuthMethod::Sso, client_id))
     } else {
         let now = Utc::now();

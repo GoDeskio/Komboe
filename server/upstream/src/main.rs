@@ -58,6 +58,7 @@ mod db;
 mod http_client;
 mod mail;
 mod ratelimit;
+mod saml;
 mod sso;
 mod sso_client;
 mod storage;

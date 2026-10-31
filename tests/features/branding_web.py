@@ -6,6 +6,19 @@ ft = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(ft)
 WEB = os.environ.get("KOMBOE_WEB") or os.environ.get("KOMBOE_URL") or "https://127.0.0.1:8443"
 BAD = re.compile(r"Bitwarden|Vaultwarden", re.I)
+# The legal attribution notice (docs/LICENSE-AUDIT.md) must name upstream projects; it is the only allowed mention.
+NOTICE = ("Komboe © 2026 GODESK IO LLC. Komboe is based on Vaultwarden (© Vaultwarden contributors, AGPL-3.0) "
+          "and Bitwarden clients (© Bitwarden Inc., GPL-3.0). Komboe is not affiliated with or endorsed by "
+          "Bitwarden Inc. or the Vaultwarden project. This program comes with ABSOLUTELY NO WARRANTY. It is free "
+          "software: you may redistribute and modify it under the GNU GPL v3 / AGPL v3.")
+ALLOWED_BYTES = [b"Bitwarden Inc., GPL-3.0", b"endorsed by Bitwarden Inc. or the Vaultwarden"]
+
+def strip_notice(data):
+    # THIRD-PARTY-NOTICES.md is bundled (inside app.asar too) and must credit upstream copyright holders.
+    data = re.sub(rb"# Third-party notices.*?used here only to describe origin\.", b"", data, flags=re.S)
+    for a in ALLOWED_BYTES:
+        data = data.replace(a, b"")
+    return data
 ROUTES = ["vault", "sends", "tools/generator", "tools/import", "tools/export", "reports", "settings/account",
           "settings/security/two-factor", "settings/preferences", "settings/emergency-access", "settings/subscription"]
 
@@ -21,12 +34,12 @@ def bundles():
     for r in roots:
         for f in glob.glob(r + "/**/*", recursive=True):
             if os.path.isfile(f) and f.endswith((".js", ".html", ".json")) and os.path.getsize(f) < 60_000_000:
-                for m in pat.finditer(open(f, "rb").read()):
+                for m in pat.finditer(strip_notice(open(f, "rb").read())):
                     hits.append(f"{f}: {m.group(0).decode()}")
     desk = os.environ.get("KOMBOE_DESKTOP", "/workspace/run/desk/squashfs-root")
     asar = os.path.join(desk, "resources", "app.asar")
     assert os.path.isfile(asar), asar
-    for m in pat.finditer(open(asar, "rb").read()):
+    for m in pat.finditer(strip_notice(open(asar, "rb").read())):
         hits.append(f"{asar}: {m.group(0).decode()}")
     return hits
 
@@ -47,7 +60,9 @@ def main():
         page.wait_for_selector("#email")
         page.wait_for_timeout(800)
         text = visible(page)
-        assert "GoDesk" in text and "Komboe" in text, text[-300:]
+        assert NOTICE in text, text[-600:]
+        text = text.replace(NOTICE, "")
+        assert "Komboe" in text, text[-300:]
         assert not BAD.search(text), BAD.findall(text)
         page.fill("#email", user.email)
         cont = page.get_by_role("button", name="Continue")

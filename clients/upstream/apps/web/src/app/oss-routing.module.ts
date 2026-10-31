@@ -90,6 +90,7 @@ import { RouteDataProperties } from "./core";
 import { ReportsModule } from "./dirt/reports";
 import { DataRecoveryComponent } from "./key-management/data-recovery/data-recovery.component";
 import { ConfirmKeyConnectorDomainComponent } from "./key-management/key-connector/confirm-key-connector-domain.component";
+import { AboutComponent } from "./layouts/about.component";
 import { FrontendLayoutComponent } from "./layouts/frontend-layout.component";
 import { UserLayoutComponent } from "./layouts/user-layout.component";
 import { RequestSMAccessComponent } from "./secrets-manager/secrets-manager-landing/request-sm-access.component";
@@ -133,6 +134,7 @@ const routes: Routes = [
         canActivate: [redirectGuard()], // Redirects either to vault, login, or lock page.
       },
       { path: "verify-email", component: VerifyEmailTokenComponent },
+      { path: "about", component: AboutComponent },
       {
         path: AuthWebRoute.AcceptOrgDirectInvite,
         canActivate: [deepLinkGuard()],

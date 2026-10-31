@@ -24,6 +24,7 @@ import {
   HeroTextAlignmentType,
   LandingContentMaxWidthType,
 } from "../landing-layout";
+import { KomboeLegalNoticeComponent } from "../komboe-legal-notice";
 import { LandingLayoutModule } from "../landing-layout/landing-layout.module";
 import { SvgModule } from "../svg";
 import { TypographyModule } from "../typography";
@@ -37,7 +38,15 @@ export type SecondaryContentLocationType = "main" | "footer";
 @Component({
   selector: "auth-anon-layout",
   templateUrl: "./anon-layout.component.html",
-  imports: [CommonModule, I18nPipe, SvgModule, TypographyModule, RouterModule, LandingLayoutModule],
+  imports: [
+    CommonModule,
+    I18nPipe,
+    SvgModule,
+    TypographyModule,
+    RouterModule,
+    LandingLayoutModule,
+    KomboeLegalNoticeComponent,
+  ],
 })
 export class AnonLayoutComponent implements OnInit, OnChanges {
   @HostBinding("class")

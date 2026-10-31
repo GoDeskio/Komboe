@@ -1,5 +1,6 @@
 const path = require("path");
 const webpack = require("webpack");
+const komboeSourceRef = require(path.resolve(__dirname, "../../scripts/komboe-source-ref.js"));
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
@@ -144,6 +145,7 @@ module.exports.buildConfig = function buildConfig(params) {
       },
     }),
     new webpack.EnvironmentPlugin({
+      KOMBOE_SOURCE_REF: komboeSourceRef(),
       FLAGS: envConfig.flags,
       DEV_FLAGS: ENV === "development" ? envConfig.devFlags : {},
     }),
@@ -197,6 +199,10 @@ module.exports.buildConfig = function buildConfig(params) {
     }),
     new CopyWebpackPlugin({
       patterns: [
+        // Komboe: ship license texts and third-party notices with every package.
+        { from: path.resolve(__dirname, "../../../../LICENSE"), to: "LICENSE.txt" },
+        { from: path.resolve(__dirname, "../../LICENSE_GPL.txt"), to: "LICENSE_GPL.txt" },
+        { from: path.resolve(__dirname, "../../../../THIRD-PARTY-NOTICES.md"), to: "THIRD-PARTY-NOTICES.md" },
         {
           from:
             manifestVersion == 3

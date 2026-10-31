@@ -64,3 +64,4 @@ export * from "./toggle-group";
 export * from "./tooltip";
 export * from "./typography";
 export * from "./utils";
+export * from "./komboe-legal-notice";

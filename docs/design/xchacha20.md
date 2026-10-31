@@ -1,6 +1,39 @@
 # XChaCha20-Poly1305 vault encryption (feature #100): design
 
-Status: **design only, not implemented** (#100 stays `partial`). This doc covers why, and what the work is.
+Status: **implemented on the server behind `KOMBOE_AEAD_V2` (off by default); #100 stays `partial`** because the upstream
+SDK generates XAES-256-GCM, not XChaCha20-Poly1305, for v2 user keys (see "Algorithm" below). The sections after
+"Implementation" are the original design and are kept for context.
+
+## Implementation (server)
+- **Schema:** a separate table `komboe_account_keys_v2` (user_uuid PK -> users, wrapped_signing_key, verifying_key,
+  signed_public_key, security_state, security_version), with migrations for sqlite, mysql and postgres. It is a separate table
+  instead of new `users` columns so the `User` struct and every v1 path stay unchanged.
+- **Accepted on:** `/identity/accounts/register` (+ `/register/finish`), `/accounts/set-password`,
+  `/accounts/key-management/rotate-user-account-keys` and the SDK's newer `/accounts/key-management/rotate-user-keys`
+  (master-password accounts only; the password hash does not change, only the wrapped user key).
+- **Returned in:** `accountKeys` on `/sync`, `/accounts/profile`, `/accounts/keys` and the identity token response.
+- **Validation:** shape and size only (printable ASCII, max 16 KB, type-7 wrapped keys, `securityVersion >= 2`). The server never
+  decrypts or verifies signatures; the client does.
+- **Downgrade guard:** a v1 rotation on a v2 account and a lower `securityVersion` are both refused before anything is written.
+- **v2 ciphers:** the SDK sends a v2 item as `name: null` plus an opaque `data` blob (COSE Encrypt0 envelope + wrapped content
+  key). With the flag on the server stores it verbatim and returns it as `data`; with the flag off `data` is ignored (v1 path).
+- **`GET /accounts/key-management/key-rotation-data`** returns empty lists only. It refuses accounts with emergency access, account
+  recovery, trusted devices or passkey unlock, so those accounts stay on v1 instead of being rotated with incomplete unlock data.
+- **Flags:** `pm-27278-v2-password-registration` and `force-upgrade-v2-encryption` are advertised only when `KOMBOE_AEAD_V2=true`.
+  TDE and Key Connector variants are never enabled.
+
+## Algorithm
+EncString type 7 is a COSE Encrypt0 whose algorithm comes from the key. The SDK supports decrypting both
+XChaCha20-Poly1305 (COSE alg -70000) and XAES-256-GCM (-70010), but `sdk-internal` (as used by web-v2026.10.1, and current main)
+hard-codes **XAES-256-GCM** when it generates a v2 user key (registration and `rotation_context.rs`). Both are 192-bit-nonce AEADs.
+The server is algorithm-agnostic, so if the SDK (or a Komboe SDK fork) switches to XChaCha20-Poly1305, nothing server-side changes.
+Item contents are in a COSE Encrypt0 data envelope whose content key is wrapped under a per-item key, which is wrapped under the v2 user key.
+
+## Verification
+`tests/features/aead_v2.py` (needs a flag-on server, `KOMBOE_AEAD_URL`) covers: flags advertised only with the flag on;
+real web-vault registration produces a v2 account; a CLI-created item is a v2 blob and decrypts; a v1 account is upgraded on
+web unlock and its old item still decrypts in the CLI; the downgrade guard; the flag-off server refuses v2 keys; no plaintext in the DB.
+
 
 ## Goal
 Move vault data from AES-256-CBC + HMAC-SHA256 (EncString type 2) to AEAD XChaCha20-Poly1305. That gives a 192-bit random nonce,
@@ -22,7 +55,7 @@ Account encryption v2 is more than a cipher swap:
   and the RSA public key is signed by the signing key.
 - The account carries a signed **security state** (a version counter that guards against server-side downgrades).
 
-## Server acceptance (Vaultwarden 1.37.4 base): missing today
+## Server acceptance (Vaultwarden 1.37.4 base): original gap analysis
 - `User` has only `akey`, `private_key` and `public_key`. `account_keys_json()` returns `signatureKeyPair: null` and `securityState: null`.
 - Registration (`/identity/accounts/register`, `/accounts/set-password`) and rotation (`/accounts/key-management/rotate-user-account-keys`)
   take the v1 shapes only. v2 sends `accountKeys.signatureKeyPair {wrappedSigningKey, verifyingKey}`,
@@ -65,7 +98,7 @@ Server changes:
 - Playwright: log in as a v1 user with the force-upgrade flag on, check that items still decrypt after rotation and that
   the server's cipher rows changed to type 7, then log in with the CLI and extension to show interop.
 
-## Why it isn't implemented in Phase D
+## Why it wasn't implemented in Phase D (historical)
 Every piece of the work is in the **server** (schema, endpoints, flag gating). Rebuilding Vaultwarden needs its Cargo
 dependency tree, which was deleted to free disk (about 3 GB), plus a DB migration, and both are bigger than this box allows right now.
 No client fork is needed. Next step: a server PR doing items 1-5 behind `KOMBOE_AEAD_V2`, off by default, with the tests above.

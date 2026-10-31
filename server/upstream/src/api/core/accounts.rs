@@ -23,9 +23,10 @@ use crate::{
             AuthRequest, AuthRequestId, Cipher, CipherId, Device, DeviceId, DeviceType, DeviceWithAuthRequest,
             EmergencyAccess, EmergencyAccessId, EventType, Folder, FolderId, Invitation, KeyId, Membership,
             MembershipId, OrgPolicy, OrgPolicyType, Organization, OrganizationId, Send, SendId, User, UserId,
-            UserKdfType,
+            UserKdfType, AccountKeysData, AccountKeysV2, account_keys_v2_json,
         },
     },
+    error::Error,
     mail,
     util::{NumberOrString, deser_opt_nonempty_str, format_date},
 };
@@ -49,6 +50,8 @@ pub fn routes() -> Vec<rocket::Route> {
         post_kdf,
         post_rotatekey,
         post_user_key,
+        get_key_rotation_data,
+        post_rotate_user_keys,
         post_sstamp,
         post_email_token,
         post_email,
@@ -103,6 +106,9 @@ pub struct RegisterData {
 
     #[serde(alias = "userAsymmetricKeys")]
     keys: Option<KeysData>,
+
+    // Komboe: account encryption v2 (XChaCha20-Poly1305) keys, opaque to the server
+    account_keys: Option<AccountKeysData>,
 
     master_password_hint: Option<String>,
 
@@ -223,9 +229,24 @@ pub struct SetPasswordData {
 
     key: String,
     keys: Option<KeysData>,
+    account_keys: Option<AccountKeysData>,
     master_password_hash: String,
     master_password_hint: Option<String>,
     org_identifier: Option<String>,
+}
+
+/// Komboe: take the key pair (and, for v2, the signing keys + security state) from an
+/// `accountKeys` request object. Shape/size checks only; the server never decrypts.
+fn apply_account_keys(user: &mut User, keys: Option<&AccountKeysData>) -> Result<Option<AccountKeysV2>, Error> {
+    let Some(keys) = keys else {
+        return Ok(None);
+    };
+    let v2 = keys.to_v2(&user.uuid.to_string()).map_err(Error::new_msg)?;
+    if let (Some(pk), Some(pubk)) = (keys.private_key(), keys.public_key()) {
+        user.private_key = Some(pk.clone());
+        user.public_key = Some(pubk.clone());
+    }
+    Ok(v2)
 }
 
 /// Trims whitespace from password hints, and converts blank password hints to `None`.
@@ -398,6 +419,7 @@ pub async fn register(data: Json<RegisterData>, conn: DbConn) -> JsonResult {
         user.private_key = Some(keys.encrypted_private_key);
         user.public_key = Some(keys.public_key);
     }
+    let keys_v2 = apply_account_keys(&mut user, data.account_keys.as_ref())?;
 
     if email_verified {
         user.verified_at = Some(Utc::now().naive_utc());
@@ -419,6 +441,9 @@ pub async fn register(data: Json<RegisterData>, conn: DbConn) -> JsonResult {
     }
 
     user.save(&conn).await?;
+    if let Some(k) = keys_v2 {
+        k.save(&conn).await?;
+    }
 
     // accept any open emergency access invitations
     if !CONFIG.mail_enabled() && CONFIG.emergency_access_allowed() {
@@ -462,6 +487,7 @@ async fn post_set_password(data: Json<SetPasswordData>, headers: Headers, conn: 
         user.private_key = Some(keys.encrypted_private_key);
         user.public_key = Some(keys.public_key);
     }
+    let keys_v2 = apply_account_keys(&mut user, data.account_keys.as_ref())?;
 
     if let Some(identifier) = data.org_identifier
         && identifier != crate::sso::FAKE_SSO_IDENTIFIER
@@ -488,6 +514,9 @@ async fn post_set_password(data: Json<SetPasswordData>, headers: Headers, conn: 
         .await;
 
     user.save(&conn).await?;
+    if let Some(k) = keys_v2 {
+        k.save(&conn).await?;
+    }
 
     Ok(Json(json!({
       "object": "set-password",
@@ -570,7 +599,7 @@ async fn get_public_keys(user_id: UserId, _headers: Headers, conn: DbConn) -> Js
 }
 
 #[get("/accounts/keys")]
-fn get_keys(headers: Headers) -> JsonResult {
+async fn get_keys(headers: Headers, conn: DbConn) -> JsonResult {
     let user = headers.user;
 
     // The SDK reads a 404 as the user having no key pair yet
@@ -582,7 +611,7 @@ fn get_keys(headers: Headers) -> JsonResult {
         "key": (!user.akey.is_empty()).then_some(&user.akey),
         "publicKey": user.public_key,
         "privateKey": user.private_key,
-        "accountKeys": user.account_keys_json(),
+        "accountKeys": account_keys_v2_json(&user, &conn).await,
         "object": "keys",
     })))
 }
@@ -810,7 +839,7 @@ struct UpdateResetPasswordData {
 #[serde(rename_all = "camelCase")]
 struct KeyData {
     account_unlock_data: RotateAccountUnlockData,
-    account_keys: RotateAccountKeys,
+    account_keys: AccountKeysData,
     account_data: RotateAccountData,
     old_master_key_authentication_hash: String,
 }
@@ -833,13 +862,6 @@ struct MasterPasswordUnlockData {
     email: String,
     master_key_authentication_hash: String,
     master_key_encrypted_user_key: String,
-}
-
-#[derive(Deserialize)]
-#[serde(rename_all = "camelCase")]
-struct RotateAccountKeys {
-    user_key_encrypted_account_private_key: String,
-    account_public_key: String,
 }
 
 #[derive(Deserialize)]
@@ -867,7 +889,7 @@ fn validate_keydata(
     {
         err!("Changing the kdf variant or email is not supported during key rotation");
     }
-    if user.public_key.as_ref() != Some(&data.account_keys.account_public_key) {
+    if data.account_keys.private_key().is_none() || user.public_key.as_ref() != data.account_keys.public_key() {
         err!("Changing the asymmetric keypair is not possible during key rotation")
     }
 
@@ -937,6 +959,13 @@ async fn post_rotatekey(data: Json<KeyData>, headers: Headers, conn: DbConn, nt:
         err!("Invalid password")
     }
 
+    rotate_account_keys(data, false, headers, conn, nt).await
+}
+
+// Shared by both rotation endpoints. With `keep_password` (the SDK's
+// /rotate-user-keys, used for the v1 -> v2 upgrade) only the master-key-wrapped
+// user key is replaced; the master password hash is left untouched.
+async fn rotate_account_keys(data: KeyData, keep_password: bool, headers: Headers, conn: DbConn, nt: Notify<'_>) -> EmptyResult {
     // Validate the import before continuing
     // Bitwarden does not process the import if there is one item invalid.
     // Since we check for the size of the encrypted note length, we need to do that here to pre-validate it.
@@ -944,6 +973,17 @@ async fn post_rotatekey(data: Json<KeyData>, headers: Headers, conn: DbConn, nt:
     Cipher::validate_cipher_data(&data.account_data.ciphers)?;
 
     let user_id = &headers.user.uuid;
+
+    // Komboe: v2 key material is validated (and the downgrade guard applied) before anything is written.
+    let keys_v2 = data.account_keys.to_v2(&user_id.to_string()).map_err(Error::new_msg)?;
+    let existing_v2 = AccountKeysV2::find_by_user(&user_id.to_string(), &conn).await;
+    match (&existing_v2, &keys_v2) {
+        (Some(_), None) => err!("This account uses encryption v2; a v1 key rotation would be a downgrade"),
+        (Some(old), Some(new)) if new.security_version < old.security_version => {
+            err!("Refusing to downgrade the account security version")
+        }
+        _ => {}
+    }
 
     // TODO: Ideally we'd do everything after this point in a single transaction.
 
@@ -1033,17 +1073,35 @@ async fn post_rotatekey(data: Json<KeyData>, headers: Headers, conn: DbConn, nt:
     // Update user data
     let mut user = headers.user;
 
-    user.private_key = Some(data.account_keys.user_key_encrypted_account_private_key);
-    user.set_password(
-        &data.account_unlock_data.master_password_unlock_data.master_key_authentication_hash,
-        Some(data.account_unlock_data.master_password_unlock_data.master_key_encrypted_user_key),
-        true,
-        None,
-        &conn,
-    )
-    .await?;
+    user.private_key = data.account_keys.private_key().cloned();
+    if keep_password {
+        user.akey = data.account_unlock_data.master_password_unlock_data.master_key_encrypted_user_key;
+        // Sign out every other device (they hold the old user key) but keep the rotating
+        // session alive: the SDK continues straight into the vault after this call.
+        for mut device in Device::find_by_user(&user.uuid, &conn).await {
+            if device.uuid != headers.device.uuid {
+                device.refresh_token = Device::generate_refresh_token();
+                device.twofactor_remember = None;
+                device.save(false, &conn).await?;
+            }
+        }
+    } else {
+        user.set_password(
+            &data.account_unlock_data.master_password_unlock_data.master_key_authentication_hash,
+            Some(data.account_unlock_data.master_password_unlock_data.master_key_encrypted_user_key),
+            true,
+            None,
+            &conn,
+        )
+        .await?;
+    }
 
-    let save_result = user.save(&conn).await;
+    let mut save_result = user.save(&conn).await;
+    if save_result.is_ok()
+        && let Some(k) = keys_v2
+    {
+        save_result = k.save(&conn).await;
+    }
 
     // Prevent logging out the client where the user requested this endpoint from.
     // If you do logout the user it will causes issues at the client side.
@@ -1053,10 +1111,121 @@ async fn post_rotatekey(data: Json<KeyData>, headers: Headers, conn: DbConn, nt:
     save_result
 }
 
+// Komboe: SDK request for POST /accounts/key-management/rotate-user-keys
+#[derive(Deserialize)]
+#[serde(rename_all = "camelCase")]
+struct RotateUserKeysData {
+    wrapped_account_cryptographic_state: AccountKeysData,
+    unlock_data: RotateCommonUnlockData,
+    account_data: RotateAccountData,
+    unlock_method_data: RotateUnlockMethodData,
+}
+
+#[derive(Deserialize)]
+#[serde(rename_all = "camelCase")]
+struct RotateCommonUnlockData {
+    #[serde(default)]
+    emergency_access_unlock_data: Option<Vec<UpdateEmergencyAccessData>>,
+    #[serde(default)]
+    organization_account_recovery_unlock_data: Option<Vec<UpdateResetPasswordData>>,
+    #[serde(default)]
+    passkey_unlock_data: Option<Vec<Value>>,
+    #[serde(default)]
+    device_key_unlock_data: Option<Vec<Value>>,
+}
+
+#[derive(Deserialize)]
+#[serde(rename_all = "camelCase")]
+struct RotateUnlockMethodData {
+    master_password_unlock_data: Option<RotateMasterPasswordUnlockData>,
+}
+
+#[derive(Deserialize)]
+#[serde(rename_all = "camelCase")]
+struct RotateMasterPasswordUnlockData {
+    kdf: RotateKdf,
+    master_key_wrapped_user_key: String,
+    salt: String,
+}
+
+#[derive(Deserialize)]
+#[serde(rename_all = "camelCase")]
+struct RotateKdf {
+    kdf_type: i32,
+    iterations: i32,
+    memory: Option<i32>,
+    parallelism: Option<i32>,
+}
+
+// Komboe: the SDK's user-key rotation endpoint (used for the v1 -> v2 upgrade on unlock).
+// Only v2 (signed, security-state-carrying) key material is accepted here, only for
+// master-password accounts, and with the same completeness/downgrade checks as the
+// classic endpoint. The master password itself does not change.
+#[post("/accounts/key-management/rotate-user-keys", data = "<data>")]
+async fn post_rotate_user_keys(data: Json<RotateUserKeysData>, headers: Headers, conn: DbConn, nt: Notify<'_>) -> EmptyResult {
+    let data = data.into_inner();
+    if data.unlock_data.passkey_unlock_data.as_ref().is_some_and(|v| !v.is_empty())
+        || data.unlock_data.device_key_unlock_data.as_ref().is_some_and(|v| !v.is_empty())
+    {
+        err!("Rotating passkey or trusted-device unlock data is not supported")
+    }
+    let Some(mp) = data.unlock_method_data.master_password_unlock_data else {
+        err!("Only master password accounts can rotate keys here")
+    };
+    if !data.wrapped_account_cryptographic_state.is_v2() {
+        err!("This endpoint only accepts v2 account keys")
+    }
+    let key_data = KeyData {
+        account_unlock_data: RotateAccountUnlockData {
+            emergency_access_unlock_data: data.unlock_data.emergency_access_unlock_data.unwrap_or_default(),
+            master_password_unlock_data: MasterPasswordUnlockData {
+                kdf_type: mp.kdf.kdf_type,
+                kdf_iterations: mp.kdf.iterations,
+                kdf_parallelism: mp.kdf.parallelism,
+                kdf_memory: mp.kdf.memory,
+                email: mp.salt,
+                master_key_authentication_hash: String::new(),
+                master_key_encrypted_user_key: mp.master_key_wrapped_user_key,
+            },
+            organization_account_recovery_unlock_data: data
+                .unlock_data
+                .organization_account_recovery_unlock_data
+                .unwrap_or_default(),
+        },
+        account_keys: data.wrapped_account_cryptographic_state,
+        account_data: data.account_data,
+        old_master_key_authentication_hash: String::new(),
+    };
+    rotate_account_keys(key_data, true, headers, conn, nt).await
+}
+
 #[derive(Deserialize)]
 #[serde(rename_all = "camelCase")]
 struct KeyIdData {
     user_key_id: KeyId,
+}
+
+// Komboe: the SDK fetches this before a user-key rotation (incl. the v1 -> v2 upgrade).
+// We only serve the trivial case. If the account has anything whose unlock data would have
+// to be re-wrapped here (emergency access, account recovery, trusted devices, passkey unlock),
+// refuse, so the client leaves the account on v1 instead of rotating it with incomplete data.
+#[get("/accounts/key-management/key-rotation-data")]
+async fn get_key_rotation_data(headers: Headers, conn: DbConn) -> JsonResult {
+    let user_id = &headers.user.uuid;
+    let has_ea = !EmergencyAccess::find_all_confirmed_by_grantor_uuid(user_id, &conn).await.is_empty();
+    let has_recovery = Membership::find_by_user(user_id, &conn).await.iter().any(|m| m.reset_password_key.is_some());
+    let has_tde = super::trusted::any_trusted(user_id, &conn).await;
+    let has_prf = super::passkeys::has_prf_unlock(user_id, &conn).await;
+    if has_ea || has_recovery || has_tde || has_prf {
+        err!("Key rotation data is not available for accounts with emergency access, account recovery, trusted devices or passkey unlock")
+    }
+    Ok(Json(json!({
+        "object": "keyRotationData",
+        "organizationPasswordResetKeyData": [],
+        "emergencyAccessKeyData": [],
+        "trustedDeviceKeyData": [],
+        "passkeyKeyData": [],
+    })))
 }
 
 #[post("/accounts/key-management/user-key-id", data = "<data>")]

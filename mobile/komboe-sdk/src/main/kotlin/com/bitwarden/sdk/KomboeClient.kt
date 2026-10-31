@@ -88,6 +88,7 @@ import com.bitwarden.vault.PasswordHistory
 import com.bitwarden.vault.PasswordHistoryView
 import com.bitwarden.vault.TotpException
 import com.bitwarden.vault.TotpResponse
+import io.komboe.vaultcrypto.AccountV2
 import io.komboe.vaultcrypto.HashPurpose as KPurpose
 import io.komboe.vaultcrypto.KdfConfig
 import io.komboe.vaultcrypto.SymmetricKey
@@ -322,13 +323,21 @@ class CryptoApi(private val client: Client) {
             }
             else -> throw BitwardenException.EncryptionSettings(EncryptionSettingsException.CryptoInitialization)
         }
-        val wrappedPrivate = when (val state = req.accountCryptographicState) {
-            is WrappedAccountCryptographicState.V1 -> state.privateKey
-            is WrappedAccountCryptographicState.V2 -> state.privateKey
-            else -> null
-        }
-        if (wrappedPrivate != null && session.userKey != null) {
-            session.privateKey = runCatching { VaultCrypto.decryptBytes(wrappedPrivate, session.userKey!!) }.getOrNull()
+        when (val state = req.accountCryptographicState) {
+            is WrappedAccountCryptographicState.V1 -> {
+                val userKey = session.userKey
+                if (userKey != null) {
+                    session.privateKey = runCatching { VaultCrypto.decryptBytes(state.privateKey, userKey) }.getOrNull()
+                }
+            }
+            is WrappedAccountCryptographicState.V2 -> {
+                val userKey = session.userKey ?: throw BitwardenException.EncryptionSettings(EncryptionSettingsException.Crypto)
+                val signing = AccountV2.unwrapSigningKey(state.signingKey, userKey)
+                AccountV2.verifySecurityState(state.securityState, signing)
+                AccountV2.verifySignedPublicKey(state.signedPublicKey, signing)
+                session.privateKey = VaultCrypto.decryptBytes(state.privateKey, userKey)
+            }
+            else -> Unit
         }
     }
 
@@ -497,8 +506,28 @@ class AuthClient(private val client: Client) {
 }
 
 class RegistrationApi(private val client: Client) {
-    fun postKeysForUserPasswordRegistration(@Suppress("unused") request: com.bitwarden.auth.UserMasterPasswordRegistrationRequest): com.bitwarden.auth.UserMasterPasswordRegistrationResponse =
-        throw UnsupportedOperationException("Registration posts go through the app network stack")
+    fun postKeysForUserPasswordRegistration(request: com.bitwarden.auth.UserMasterPasswordRegistrationRequest): com.bitwarden.auth.UserMasterPasswordRegistrationResponse {
+        val email = request.email as? String ?: error("registration email is missing")
+        val password = request.masterPassword as? String ?: error("registration password is missing")
+        val salt = request.salt as? String ?: email
+        val account = AccountV2.make(password, salt, KdfConfig.Pbkdf2(600_000))
+        val identity = client.settings?.identityUrl?.trimEnd('/')
+            ?: error("identity URL is not configured")
+        val hint = (request.masterPasswordHint as? String).orEmpty()
+        val token = (request.emailVerificationToken as? String).orEmpty()
+        val body = buildString {
+            append("""{"email":${jsonString(email)},"masterPasswordHint":${jsonString(hint)},""")
+            append(""""emailVerificationToken":${jsonString(token)},""")
+            append(""""userSymmetricKey":${jsonString(account.encryptedUserKey)},"masterPasswordHash":${jsonString(account.masterPasswordHash)},""")
+            append(""""kdf":0,"kdfIterations":600000,""")
+            append(""""userAsymmetricKeys":{"publicKey":${jsonString(account.publicKey)},"encryptedPrivateKey":${jsonString(account.encryptedPrivateKey)}},""")
+            append(""""accountKeys":{"publicKeyEncryptionKeyPair":{"wrappedPrivateKey":${jsonString(account.encryptedPrivateKey)},"publicKey":${jsonString(account.publicKey)},"signedPublicKey":${jsonString(account.signedPublicKey)}},""")
+            append(""""signatureKeyPair":{"wrappedSigningKey":${jsonString(account.wrappedSigningKey)},"verifyingKey":${jsonString(account.verifyingKey)}},""")
+            append(""""securityState":{"securityState":${jsonString(account.securityState)},"securityVersion":${account.securityVersion}}}}""")
+        }
+        postJson("$identity/accounts/register/finish", body)
+        return com.bitwarden.auth.UserMasterPasswordRegistrationResponse()
+    }
     fun postKeysForJitPasswordRegistration(@Suppress("unused") request: com.bitwarden.auth.JitMasterPasswordRegistrationRequest): com.bitwarden.auth.JitMasterPasswordRegistrationResponse =
         throw UnsupportedOperationException("JIT registration is not in this build")
     fun postKeysForKeyConnectorRegistration(@Suppress("unused") keyConnectorUrl: String, @Suppress("unused") ssoOrgIdentifier: String): com.bitwarden.auth.KeyConnectorRegistrationResult =
@@ -1018,6 +1047,25 @@ private fun decodeKey(value: String?): ByteArray =
 private fun fingerprint(material: String, privateKey: ByteArray?): String {
     if (privateKey == null || privateKey.isEmpty()) return ""
     return VaultCrypto.fingerprintPhrase(material, privateKey)
+}
+
+private fun jsonString(value: String): String =
+    "\"" + value.replace("\\", "\\\\").replace("\"", "\\\"") + "\""
+
+private fun postJson(url: String, body: String) {
+    val connection = (URI(url).toURL().openConnection() as HttpURLConnection).apply {
+        requestMethod = "POST"
+        doOutput = true
+        setRequestProperty("Content-Type", "application/json")
+        connectTimeout = 20000
+        readTimeout = 20000
+    }
+    connection.outputStream.use { it.write(body.toByteArray()) }
+    val code = connection.responseCode
+    if (code !in 200..299) {
+        val error = connection.errorStream?.bufferedReader()?.readText().orEmpty()
+        error("registration failed ($code) $error")
+    }
 }
 
 private fun fetchPrelogin(settings: ClientSettings?, email: String): PasswordPreloginResponse {

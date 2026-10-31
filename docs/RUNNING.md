@@ -115,9 +115,11 @@ domains (`FWD_TRUST_DOMAINS=1`, refused unless bound to loopback) and no SPF/DKI
 
 ## Accounts & sign-in
 
-Hosted users never touch Authentik. Sign-up on komboe.com is by email and password, Google or a passkey. One GoDesk account works across all GoDesk tools. The master password never leaves the device, and there is no admin reset.
+One Komboe account is an email plus a master password, with an optional passkey and two-step login. The web vault, browser extensions, Android, desktop, CLI, and MCP agent all sign in to that account and sync the same vault. Each device gets its own session.
 
-A self-hosted server supports both of the following. Local accounts are the default when no OIDC is configured. Any OIDC provider can be added beside them. Keycloak, Okta and Authentik are examples. Authentik is never required, and Komboe does not ship an Authentik container or an Authentik-only code path.
+Hosted sign-in is Komboe's own login on komboe.com. It is not an outside identity product. The master password never leaves the device, and there is no admin reset.
+
+Device approval and revocation are in the web vault at Settings → Security → Devices. Deauthorize sessions is under Settings → My account. Those actions apply to every client, because they all use the same account record on the server.
 
 ### Local accounts (default)
 
@@ -128,9 +130,9 @@ SIGNUPS_ALLOWED=true
 # do not set SSO_ENABLED, SSO_AUTHORITY, SSO_CLIENT_ID or SSO_CLIENT_SECRET
 ```
 
-### Bring your own OIDC
+### Optional enterprise OIDC
 
-Set the issuer to whatever you already run. The same variables cover Keycloak, Okta, Authentik and any other OIDC provider. `openid` is added automatically. `SSO_ONLY` stays false unless you set it, so existing local accounts still sign in with email and master password.
+For a company that already runs Keycloak or Okta. `openid` is added automatically. `SSO_ONLY` stays false unless you set it, so local Komboe accounts still sign in with email and master password.
 
 ```sh
 SSO_ENABLED=true
@@ -151,9 +153,6 @@ SSO_AUTHORITY=https://keycloak.example.com/realms/your-realm
 
 # Okta (org authorization server)
 SSO_AUTHORITY=https://your-org.okta.com/oauth2/default
-
-# Authentik (one application among others; not required)
-SSO_AUTHORITY=https://authentik.example.com/application/o/komboe/
 ```
 
 On the provider, create a confidential client and register the redirect URI `{DOMAIN}/identity/connect/oidc-signin`, for example `https://vault.example.com/identity/connect/oidc-signin`. Send `email` (and `email_verified` when the provider knows it) on the ID token or userinfo. Komboe binds the account to the issuer and subject.
@@ -161,7 +160,7 @@ On the provider, create a confidential client and register the redirect URI `{DO
 The flow:
 
 1. The person chooses single sign-on in the Komboe client. The browser goes to your issuer with the client id, redirect URI, scopes, state, nonce and PKCE challenge.
-2. The person signs in at the provider with that provider's own login. That password is the provider's, and it is not the Komboe master password.
+2. The person signs in at the provider. That password is the provider's, and it is not the Komboe master password.
 3. The provider redirects back to `{DOMAIN}/identity/connect/oidc-signin`. Komboe exchanges the code and reads the email and subject.
 4. On the device, the person enters the master password (or unlocks a trusted device). The KDF and the vault keys stay in the client. The provider never receives them. The server never gets a key it can use to open the vault.
 5. There is no admin reset. A lost master password means a lost vault.
@@ -204,7 +203,7 @@ Built on the box into `/workspace/artifacts` (not committed). Browser zips: `npm
 | komboe-linux-x64 (CLI 2026.10.1) | `09693851256214bb3e274a16e4356d7cf6e748f37f55a78b7653a45bb27a84ae` | `komboe --help` says `Usage: komboe` |
 | komboe-chrome-mv3.zip | `586732ce726ca69a61069d8144762e32064ddf939991cad0ebdc0e86bdeb008c` | MV3, "Komboe Password Manager" |
 | komboe-firefox.zip | `8b3c606fa02f59f48b8ada4eea3bd405c5f37ec426a1226c0e64ea6e2aec5d92` | MV2 |
-| komboe-desktop-amd64.deb (2026.10.2) | `9b3f876b03ebeceab864bfa41b7b20c32e8f2b9f06408d56aded264a83419fc7` | package `komboe`, maintainer GoDesk |
+| komboe-desktop-amd64.deb (2026.10.2) | `9b3f876b03ebeceab864bfa41b7b20c32e8f2b9f06408d56aded264a83419fc7` | package `komboe`, maintainer Komboe |
 | komboe-desktop-x86_64.AppImage (2026.10.2) | `a7a0f0874c966dceee59ae8ac285c1c61ba4ac4f59e1220a044576b780f9b0ee` | unpacked app launches, window "Komboe" |
 | komboe-desktop-win-x64-setup.exe | `6ad82a1977b75b468fe40079516d053113fa3cf088d36f1e5283802dc1bba47b` | stale: 2026-10-30 build (rebuild on the Windows machine pending) |
 | komboe-desktop-win-x64.zip | `b969178198095af5dbb45d5b406cf5b1f318aba32821ed71683ac3937957a919` | stale: 2026-10-30 build |

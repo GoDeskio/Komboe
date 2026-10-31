@@ -53,19 +53,21 @@ Chrome, Edge and Brave use the Chrome extension build. Firefox has its own build
 
 ## Accounts & sign-in
 
-Hosted users never touch Authentik. Sign-up is by email and password, Google or a passkey. One GoDesk account works across all GoDesk tools. The master password never leaves the device, and there is no admin reset.
+One Komboe account is an email plus a master password. A passkey and two-step login are optional. That same account signs in and syncs on every Komboe client: the web vault, the browser extensions, Android, the desktop apps, the CLI, and the MCP agent. Every device shares one vault. Each sign-in is its own session.
 
-Self-host has two options. Local accounts are the default when no OIDC is configured. Or bring your own OIDC provider. Keycloak, Okta and Authentik are all fine. Authentik is never required. Full examples are in [Running Komboe locally](docs/RUNNING.md#accounts--sign-in).
+Hosted sign-in is Komboe's own login on komboe.com. The master password never leaves the device, and there is no admin reset.
 
-Local accounts (the default). Do not set `SSO_ENABLED`:
+In the web vault, device approval and revocation are under Settings → Security → Devices. Ending sessions is under Settings → My account → Deauthorize sessions. The other clients use those same server records.
+
+Self-host defaults to local accounts. Enterprise OIDC is optional and stays off until you configure it. Examples are in [Running Komboe locally](docs/RUNNING.md#accounts--sign-in).
+
+Local accounts (the default):
 
 ```sh
 SIGNUPS_ALLOWED=true
 ```
 
-People register with an email and a master password. The password is stretched on the device. The server stores ciphertext and a verifier, and it cannot reset the password.
-
-Bring your own OIDC. Leave `SSO_ONLY` unset so local accounts keep working beside the provider:
+Optional enterprise SSO (Keycloak or Okta). Leave `SSO_ONLY` unset so local accounts keep working:
 
 ```sh
 SSO_ENABLED=true
@@ -77,17 +79,12 @@ SSO_PKCE=true
 SSO_SIGNUPS_ALLOWED=true
 ```
 
-`SSO_AUTHORITY` is the issuer URL, without `/.well-known/openid-configuration`. Copy it from the provider:
-
 | Provider | Issuer to put in `SSO_AUTHORITY` |
 |---|---|
 | Keycloak | `https://keycloak.example.com/realms/your-realm` |
 | Okta | `https://your-org.okta.com/oauth2/default` |
-| Authentik | `https://authentik.example.com/application/o/komboe/` |
 
-Register this redirect URI on the provider: `https://vault.example.com/identity/connect/oidc-signin` (your `DOMAIN`, plus that path). The provider proves who the person is. Komboe still asks for the master password on the device and derives the vault keys there. The provider never receives the master password. There is no admin reset and no Key Connector.
-
-Set `SSO_ONLY=true` only when this server should refuse email-and-password sign-in. The default is both.
+Register the redirect URI `{DOMAIN}/identity/connect/oidc-signin`. The provider only proves identity. The master password and the vault keys stay on the device. There is no admin reset and no Key Connector.
 
 ## Your vault, beautifully organized
 

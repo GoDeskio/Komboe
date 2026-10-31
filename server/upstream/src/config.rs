@@ -815,7 +815,7 @@ make_config! {
         dns_prefer_ipv6: bool, true, def, false;
     },
 
-    /// Optional OpenID Connect. Leave disabled for local accounts. SSO_AUTHORITY accepts any OIDC issuer (Keycloak, Okta, Authentik, or another). Authentik is never required.
+    /// Optional enterprise OpenID Connect. Leave disabled for local Komboe accounts. SSO_AUTHORITY accepts any OIDC issuer, for example Keycloak or Okta.
     sso {
         /// Enabled
         sso_enabled:                    bool,   true,   def,    false;

@@ -58,6 +58,19 @@ web login footer (anon layout) and public pages footer, web `#/about` (linked fr
 extension Settings → About dialog, desktop Help/App menu → About dialog (buttons open both links).
 Verified by `tests/features/legal_web.py`.
 
+## Android (GPL-3.0)
+
+The Android app is Bitwarden Android tag `v2026.10.1-bwpm` (commit `1470154cf3d3d0511cdbe5bfc6493971b6478edf`), GPL-3.0-only, plus the Komboe rebrand in `mobile/`. It is not vendored in this tree; `mobile/android-build.sh` clones that tag.
+
+GPL-3.0 obligations for a binary:
+
+- License text: `mobile/android_rebrand.py` copies the upstream `LICENSE.txt` (GNU GPL v3) into `app/src/main/assets/LICENSE.txt`, so it is inside the APK.
+- Corresponding source: `app/src/main/assets/komboe-source.txt` (from `mobile/ANDROID-SOURCE.txt`) names the upstream tag, the commit, and the Komboe files that modify it (`mobile/android_rebrand.py`, `mobile/android-build.sh`, `mobile/ANDROID_UPSTREAM_PIN`). Both repositories are public.
+- Copyright headers in the upstream Kotlin/Java sources are not rewritten. The rebrand script skips lines that mention copyright or license.
+- `THIRD-PARTY-NOTICES.md` is copied into the same assets directory.
+
+The fdroid build also links `com.bitwarden:sdk-android` `4.0.0-9318-3b2c8fc3` from `bitwarden/sdk`. That library is under the Bitwarden Software Development Kit License Agreement, not the GPL, and is used unmodified. It is listed separately in `THIRD-PARTY-NOTICES.md`. Distributing an APK that combines the GPL app with that SDK needs a review against both licenses before a store or public binary release.
+
 ## Still open
 
 - macOS `extendInfo.BitwardenAppGroupIdentifier` / `com.bitwarden.desktop` app-group ID in `electron-builder.json`

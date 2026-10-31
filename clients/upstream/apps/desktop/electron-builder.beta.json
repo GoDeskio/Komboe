@@ -7,7 +7,7 @@
   "productName": "Bitwarden Beta",
   "appId": "com.bitwarden.beta.desktop",
   "buildDependenciesFromSource": true,
-  "copyright": "Copyright © 2026 GoDesk. Komboe is based on Bitwarden clients (GPL-3.0).",
+  "copyright": "Copyright © 2026 Komboe. Komboe is based on Bitwarden clients (GPL-3.0).",
   "directories": {
     "buildResources": "resources",
     "output": "dist",
@@ -135,7 +135,7 @@
     ],
     "signtoolOptions": {
       "sign": "./sign.js",
-      "publisherName": "GoDesk"
+      "publisherName": "Komboe"
     },
     "extraFiles": [
       {
@@ -187,7 +187,7 @@
     "applicationId": "komboedesktop",
     "identityName": "GoDesk.Komboe",
     "publisher": "CN=GoDesk",
-    "publisherDisplayName": "GoDesk",
+    "publisherDisplayName": "Komboe",
     "languages": [
       "en-US",
       "af",

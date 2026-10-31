@@ -1,9 +1,16 @@
 Komboe
-Copyright (C) 2026 GoDesk and Komboe contributors. Licensed under AGPL-3.0.
+Copyright (C) 2026 Komboe contributors. Licensed under AGPL-3.0.
 
-This product will include software derived from:
+This product includes software derived from:
 - Bitwarden clients (https://github.com/bitwarden/clients), Copyright Bitwarden Inc., GPL-3.0.
   Code under bitwarden_license/ (Bitwarden License) is NOT included.
+- Bitwarden Android (https://github.com/bitwarden/android) tag v2026.10.1-bwpm,
+  commit 1470154cf3d3d0511cdbe5bfc6493971b6478edf, Copyright Bitwarden Inc., GPL-3.0-only.
+  Komboe changes are mobile/android_rebrand.py. The APK assets include LICENSE.txt (GPL-3.0)
+  and komboe-source.txt (where to get the corresponding source).
+- com.bitwarden:sdk-android 4.0.0-9318-3b2c8fc3, from https://github.com/bitwarden/sdk,
+  Bitwarden Software Development Kit License Agreement (not GPL). Used unmodified.
 - Vaultwarden (https://github.com/dani-garcia/vaultwarden), Copyright Vaultwarden contributors, AGPL-3.0.
 - SimpleLogin (https://github.com/simple-login/app), Copyright SimpleLogin, AGPL-3.0.
+- Sora (https://github.com/sora-xor/sora-font), Copyright 2019 The Sora Project Authors, SIL OFL 1.1.
 Trademarks belong to their owners; no endorsement is implied.

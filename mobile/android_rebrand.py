@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """Komboe Android rebrand (idempotent): applicationId io.komboe.android, app name Komboe, padlock-K launcher.
-Kotlin namespace/package names stay upstream (internal identifiers); copyright/license text untouched."""
-import glob, os, re, sys
+Kotlin namespace/package names stay upstream (internal identifiers); copyright/license text untouched.
+GPL-3.0: the upstream LICENSE.txt and a corresponding-source notice are copied into the APK assets."""
+import glob, os, re, shutil, sys
 S = sys.argv[1]; ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 def rw(p, fn):
     t = open(p, encoding="utf-8").read(); n = fn(t)
@@ -44,3 +45,17 @@ try:
     for p in glob.glob(f"{S}/app/src/*/res/values/ic_launcher_background.xml"):
         rw(p, lambda t: re.sub(r"(<color name=\"ic_launcher_background\">)[^<]*<", r"\1#FFFFFF<", t))
 except ImportError: pass
+
+# GPL-3.0 §4–§6: the binary must carry the license text and say where the source is.
+assets = os.path.join(S, "app", "src", "main", "assets")
+os.makedirs(assets, exist_ok=True)
+upstream_license = os.path.join(S, "LICENSE.txt")
+if not os.path.isfile(upstream_license):
+    sys.exit("Bitwarden Android LICENSE.txt is missing; refusing to build without the GPL text")
+license_head = open(upstream_license, encoding="utf-8").read(80)
+if "GNU GENERAL PUBLIC LICENSE" not in license_head:
+    sys.exit("Upstream LICENSE.txt is not the GNU GPL text")
+shutil.copyfile(upstream_license, os.path.join(assets, "LICENSE.txt"))
+shutil.copyfile(os.path.join(ROOT, "mobile", "ANDROID-SOURCE.txt"), os.path.join(assets, "komboe-source.txt"))
+shutil.copyfile(os.path.join(ROOT, "THIRD-PARTY-NOTICES.md"), os.path.join(assets, "THIRD-PARTY-NOTICES.md"))
+print("rebrand gpl assets", "LICENSE.txt", "komboe-source.txt", "THIRD-PARTY-NOTICES.md")

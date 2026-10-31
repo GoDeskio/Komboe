@@ -1,0 +1,32 @@
+Komboe for Android
+License: GNU General Public License v3.0 only.
+The full license text is the file LICENSE.txt next to this notice inside the app package.
+
+This program is free software: you can redistribute it and/or modify it under the
+terms of the GNU General Public License as published by the Free Software Foundation,
+either version 3 of the License, or (at your option) any later version.
+
+Corresponding source
+- Bitwarden Android, tag v2026.10.1-bwpm
+  commit 1470154cf3d3d0511cdbe5bfc6493971b6478edf
+  https://github.com/bitwarden/android/tree/v2026.10.1-bwpm
+  License: GPL-3.0-only. Copyright Bitwarden Inc. and contributors.
+  Upstream copyright and license headers are kept. Komboe does not relicense that code.
+
+- Komboe changes on top of that tag (application id io.komboe.android, the name
+  Komboe, and the padlock-K artwork):
+  https://github.com/GoDeskio/Komboe
+  files: mobile/ANDROID_UPSTREAM_PIN, mobile/android-build.sh, mobile/android_rebrand.py
+  The commit that produced a given binary is the Komboe revision named with that build.
+
+Rebuild
+  git clone --depth 1 --branch v2026.10.1-bwpm https://github.com/bitwarden/android.git
+  # then, in a Komboe checkout at the matching revision:
+  SRC=/path/to/android mobile/android-build.sh
+
+The fdroid debug build also links com.bitwarden:sdk-android 4.0.0-9318-3b2c8fc3
+from GitHub Packages (maven.pkg.github.com/bitwarden/sdk). That library is
+Bitwarden's SDK, under the Bitwarden Software Development Kit License Agreement,
+not the GPL. It is used unmodified. Its license is not the GPL text in LICENSE.txt.
+
+There is no admin password reset and no key escrow in this app.

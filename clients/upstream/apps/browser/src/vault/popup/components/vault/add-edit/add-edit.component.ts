@@ -25,6 +25,7 @@ import { CipherType, toCipherType } from "@bitwarden/common/vault/enums";
 import {
   KOMBOE_BOOKMARK_TYPE,
   KOMBOE_GPG_TYPE,
+  KOMBOE_ENV_TYPE,
   KOMBOE_WIFI_TYPE,
 } from "@bitwarden/common/vault/utils/komboe-wifi";
 import { CipherView } from "@bitwarden/common/vault/models/view/cipher.view";
@@ -96,7 +97,9 @@ class QueryParams {
           ? KOMBOE_BOOKMARK_TYPE
           : String(params.type) === String(KOMBOE_GPG_TYPE)
             ? KOMBOE_GPG_TYPE
-            : undefined;
+            : String(params.type) === String(KOMBOE_ENV_TYPE)
+              ? KOMBOE_ENV_TYPE
+              : undefined;
     this.type = toCipherType(params.type) ?? templateType;
     this.clone = params.clone === "true";
     this.folderId = params.folderId;
@@ -554,6 +557,7 @@ export class AddEditComponent implements OnInit, OnDestroy {
       [KOMBOE_WIFI_TYPE]: isEditMode ? "editItemHeaderWifi" : "addItemHeaderWifi",
       [KOMBOE_BOOKMARK_TYPE]: isEditMode ? "editItemHeaderBookmark" : "addItemHeaderBookmark",
       [KOMBOE_GPG_TYPE]: isEditMode ? "editItemHeaderGpg" : "addItemHeaderGpg",
+      [KOMBOE_ENV_TYPE]: isEditMode ? "editItemHeaderEnv" : "addItemHeaderEnv",
     };
     return this.i18nService.t(translation[type] ?? (isEditMode ? "editItem" : "addItem"));
   }

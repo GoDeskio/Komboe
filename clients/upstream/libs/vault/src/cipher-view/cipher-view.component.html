@@ -110,7 +110,11 @@
   }
 
   <!-- CUSTOM FIELDS -->
-  @if (cipher()?.hasFields && !hasWifi() && !hasBookmark() && !hasGpg()) {
+  @if (hasEnv()) {
+    <app-env-view [cipher]="cipher()!"></app-env-view>
+  }
+
+  @if (cipher()?.hasFields && !hasWifi() && !hasBookmark() && !hasGpg() && !hasEnv()) {
     <app-custom-fields-v2 [cipher]="cipher()"> </app-custom-fields-v2>
   }
 

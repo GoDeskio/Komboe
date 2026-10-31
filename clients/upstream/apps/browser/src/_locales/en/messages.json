@@ -8545,5 +8545,16 @@
   },
   "komboeChooseServer": {
     "message": "Choose your Komboe server"
-  }
+  },
+  "typeEnvVars": {"message": "Environment variables"},
+  "typeEnvVarsSubtitle": {"message": "API keys and secrets as KEY=VALUE"},
+  "envDetails": {"message": "Environment variables"},
+  "envName": {"message": "Environment"},
+  "envVariables": {"message": "Variables (.env)"},
+  "envVariablesHint": {"message": "One KEY=VALUE per line. Each variable is encrypted as its own hidden field."},
+  "envCopyDotenv": {"message": "Copy as .env"},
+  "envVariableCount": {"message": "$COUNT$ variables", "placeholders": {"count": {"content": "$1", "example": "3"}}},
+  "addItemHeaderEnv": {"message": "Add environment variables", "description": "Header for new environment variables item"},
+  "editItemHeaderEnv": {"message": "Edit environment variables", "description": "Header for edit environment variables item"},
+  "viewItemHeaderEnv": {"message": "View environment variables", "description": "Header for view environment variables item"}
 }

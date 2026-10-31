@@ -21,7 +21,7 @@ import { CalloutModule } from "@bitwarden/components";
           (input)="days = $any($event.target).value"
         />
         <button data-testid="password-expiry-save" type="button" class="tw-border tw-rounded tw-px-2" (click)="save()">
-          Save
+          Save expiry
         </button>
       </div>
       @if (message) {

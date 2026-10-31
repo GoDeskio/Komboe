@@ -129,7 +129,7 @@ for fn,(t,b) in pages.items():
 open("404.html","w").write(page("404.html","Page not found",'<section class="hero"><div class="wrap"><h1>Page not found</h1><p>That page does not exist.</p><div class="cta"><a class="btn p" href="/index.html">Home</a><a class="btn" href="/features.html">Features</a><a class="btn" href="/downloads.html">Downloads</a></div></div></section>',"/","Page not found."))
 def u(f): return BASE+("/" if f=="index.html" else "/"+f)
 open("sitemap.xml","w").write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n'+"".join(f'<url><loc>{u(f)}</loc><xhtml:link rel="alternate" hreflang="en" href="{u(f)}"/><xhtml:link rel="alternate" hreflang="x-default" href="{u(f)}"/></url>\n' for f in pages)+'</urlset>\n')
-open("robots.txt","w").write("User-agent: *\nDisallow: /\n" if STAGING else f"User-agent: *\nAllow: /\nDisallow: /auth/\nSitemap: {BASE}/sitemap.xml\n")
+open("robots.txt","w").write("User-agent: *\nDisallow: /\n" if STAGING else f"User-agent: *\nAllow: /\nSitemap: {BASE}/sitemap.xml\n")
 
 os.makedirs("downloads",exist_ok=True)
 open("downloads/placeholder.html","w").write(page("downloads/placeholder.html","Download placeholder",'<section class="hero"><div class="wrap"><h1>Build not yet published</h1><p>This is a placeholder. Real installers, versions and SHA-256 checksums will appear here once builds are released.</p><a class="btn" href="../downloads.html">Back to downloads</a></div></section>',"../"))

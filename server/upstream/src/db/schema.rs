@@ -490,6 +490,16 @@ table! {
 }
 
 table! {
+    komboe_device_trust (device_uuid, user_uuid) {
+        device_uuid -> Text,
+        user_uuid -> Text,
+        encrypted_user_key -> Text,
+        encrypted_public_key -> Text,
+        encrypted_private_key -> Text,
+    }
+}
+
+table! {
     komboe_ldap_configs (org_uuid) {
         org_uuid -> Text,
         url -> Text,
@@ -513,5 +523,6 @@ allow_tables_to_appear_in_same_query!(
     komboe_cipher_tags,
     komboe_password_expiry,
     komboe_scim_tokens,
-    komboe_ldap_configs
+    komboe_ldap_configs,
+    komboe_device_trust
 );

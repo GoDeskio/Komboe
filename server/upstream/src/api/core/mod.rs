@@ -6,6 +6,7 @@ mod emergency_access;
 mod events;
 mod folders;
 mod ldap;
+pub mod trusted;
 pub mod komboe;
 mod organizations;
 mod public;
@@ -53,6 +54,7 @@ pub fn routes() -> Vec<Route> {
     routes.append(&mut komboe::routes());
     routes.append(&mut scim::admin_routes());
     routes.append(&mut ldap::routes());
+    routes.append(&mut trusted::routes());
     routes.append(&mut eq_domains_routes);
     routes.append(&mut hibp_routes);
     routes.append(&mut meta_routes);

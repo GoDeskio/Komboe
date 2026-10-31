@@ -30,7 +30,6 @@ import { ApiService } from "@bitwarden/common/abstractions/api.service";
 import { OrganizationApiServiceAbstraction } from "@bitwarden/common/admin-console/abstractions/organization/organization-api.service.abstraction";
 import { AccountService } from "@bitwarden/common/auth/abstractions/account.service";
 import { AuthService } from "@bitwarden/common/auth/abstractions/auth.service";
-import { PasswordResetEnrollmentServiceAbstraction } from "@bitwarden/common/auth/abstractions/password-reset-enrollment.service.abstraction";
 import { SsoLoginServiceAbstraction } from "@bitwarden/common/auth/abstractions/sso-login.service.abstraction";
 import { AuthenticationStatus } from "@bitwarden/common/auth/enums/authentication-status";
 import { ClientType } from "@bitwarden/common/enums";
@@ -143,7 +142,6 @@ export class LoginDecryptionOptionsComponent implements OnInit {
     private loginDecryptionOptionsService: LoginDecryptionOptionsService,
     private messagingService: MessagingService,
     private organizationApiService: OrganizationApiServiceAbstraction,
-    private passwordResetEnrollmentService: PasswordResetEnrollmentServiceAbstraction,
     private platformUtilsService: PlatformUtilsService,
     private router: Router,
     private ssoLoginService: SsoLoginServiceAbstraction,
@@ -280,7 +278,8 @@ export class LoginDecryptionOptionsComponent implements OnInit {
 
     const autoEnrollStatus = await firstValueFrom(autoEnrollStatus$);
 
-    this.newUserOrgId = autoEnrollStatus.id;
+    // Instance SSO has no organization to enroll. Komboe does not wrap the user key to an org key.
+    this.newUserOrgId = autoEnrollStatus?.id;
   }
 
   private loadExistingUserUntrustedDeviceData(userDecryptionOptions: UserDecryptionOptions) {
@@ -428,7 +427,6 @@ export class LoginDecryptionOptionsComponent implements OnInit {
         const { publicKey, privateKey } = await this.initAccount(this.activeAccountId);
         const keysRequest = new KeysRequest(publicKey, privateKey.encryptedString);
         await this.apiService.postAccountKeys(keysRequest);
-        await this.passwordResetEnrollmentService.enroll(this.newUserOrgId);
         if (this.formGroup.value.rememberDevice) {
           await this.deviceTrustService.trustDevice(this.activeAccountId);
         }

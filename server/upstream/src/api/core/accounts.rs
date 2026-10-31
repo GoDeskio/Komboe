@@ -1544,8 +1544,13 @@ impl<'r> FromRequest<'r> for KnownDevice {
 
 #[get("/devices")]
 async fn get_all_devices(headers: Headers, conn: DbConn) -> JsonResult {
-    let devices = Device::find_with_auth_request_by_user(&headers.user.uuid, &conn).await;
-    let devices = devices.iter().map(DeviceWithAuthRequest::to_json).collect::<Vec<Value>>();
+    let devices: Vec<DeviceWithAuthRequest> = Device::find_with_auth_request_by_user(&headers.user.uuid, &conn).await;
+    let mut devices_json = Vec::new();
+    for device in &devices {
+        devices_json
+            .push(super::trusted::apply_trust(device.to_json(), &device.device.uuid, &headers.user.uuid, &conn).await);
+    }
+    let devices = devices_json;
 
     Ok(Json(json!({
         "data": devices,
@@ -1559,7 +1564,7 @@ async fn get_device(device_id: DeviceId, headers: Headers, conn: DbConn) -> Json
     let Some(device) = Device::find_by_uuid_and_user(&device_id, &headers.user.uuid, &conn).await else {
         err!("No device found");
     };
-    Ok(Json(device.to_json()))
+    Ok(Json(super::trusted::apply_trust(device.to_json(), &device.uuid, &headers.user.uuid, &conn).await))
 }
 
 #[derive(Deserialize)]

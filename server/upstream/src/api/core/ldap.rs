@@ -26,6 +26,53 @@ use crate::{
     mail,
 };
 
+/// The bind password is a service credential the server must replay, so it cannot be hashed.
+/// It is sealed with AES-256-GCM under a key derived from the server's JWT signing key, so a
+/// database dump alone does not reveal it. Rows written before sealing stay readable.
+const SEALED_PREFIX: &str = "kv1:";
+
+fn seal_key() -> Result<ring::aead::LessSafeKey, String> {
+    let pem = std::fs::read(CONFIG.private_rsa_key()).map_err(|e| format!("Server key unavailable: {e}"))?;
+    let mut ctx = ring::digest::Context::new(&ring::digest::SHA256);
+    ctx.update(b"komboe-ldap-bind-password-v1");
+    ctx.update(&pem);
+    let unbound = ring::aead::UnboundKey::new(&ring::aead::AES_256_GCM, ctx.finish().as_ref())
+        .map_err(|_| "Could not derive the sealing key".to_string())?;
+    Ok(ring::aead::LessSafeKey::new(unbound))
+}
+
+fn seal(plain: &str) -> Result<String, String> {
+    let key = seal_key()?;
+    let nonce_bytes = crate::crypto::get_random_bytes::<12>();
+    let mut buf = plain.as_bytes().to_vec();
+    key.seal_in_place_append_tag(
+        ring::aead::Nonce::assume_unique_for_key(nonce_bytes),
+        ring::aead::Aad::empty(),
+        &mut buf,
+    )
+    .map_err(|_| "Could not seal the bind password".to_string())?;
+    let mut out = nonce_bytes.to_vec();
+    out.extend_from_slice(&buf);
+    Ok(format!("{SEALED_PREFIX}{}", data_encoding::BASE64.encode(&out)))
+}
+
+fn unseal(stored: &str) -> Result<String, String> {
+    let Some(b64) = stored.strip_prefix(SEALED_PREFIX) else {
+        return Ok(stored.to_string());
+    };
+    let raw = data_encoding::BASE64.decode(b64.as_bytes()).map_err(|_| "Sealed bind password is corrupt".to_string())?;
+    if raw.len() < 12 + 16 {
+        return Err("Sealed bind password is corrupt".into());
+    }
+    let (nonce, ct) = raw.split_at(12);
+    let mut ct = ct.to_vec();
+    let nonce = ring::aead::Nonce::try_assume_unique_for_key(nonce).map_err(|_| "Bad nonce".to_string())?;
+    let plain = seal_key()?
+        .open_in_place(nonce, ring::aead::Aad::empty(), &mut ct)
+        .map_err(|_| "Bind password could not be unsealed (server key changed?)".to_string())?;
+    String::from_utf8(plain.to_vec()).map_err(|_| "Bind password is not UTF-8".to_string())
+}
+
 pub fn routes() -> Vec<Route> {
     routes![get_ldap, put_ldap, sync_ldap]
 }
@@ -134,7 +181,10 @@ async fn put_ldap(org_id: OrganizationId, body: Json<LdapBody>, headers: Headers
     check_url(&body.url)?;
     let existing = load(&org_id, &conn).await;
     let password = match body.bind_password.filter(|p| !p.is_empty()) {
-        Some(password) => password,
+        Some(password) => match seal(&password) {
+            Ok(sealed) => sealed,
+            Err(e) => err!(e),
+        },
         None => existing.as_ref().map(|c| c.bind_password.clone()).unwrap_or_default(),
     };
     if password.is_empty() || body.bind_dn.trim().is_empty() || body.user_base.trim().is_empty() {
@@ -173,7 +223,8 @@ async fn directory(cfg: &LdapConfig) -> Result<(Vec<DirectoryUser>, Vec<Director
     let (conn, mut ldap) =
         LdapConnAsync::new(&cfg.url).await.map_err(|e| format!("Directory connection failed: {e}"))?;
     ldap3::drive!(conn);
-    ldap.simple_bind(&cfg.bind_dn, &cfg.bind_password)
+    let bind_password = unseal(&cfg.bind_password)?;
+    ldap.simple_bind(&cfg.bind_dn, &bind_password)
         .await
         .map_err(|e| format!("Directory bind failed: {e}"))?
         .success()

@@ -29,6 +29,18 @@ def main():
     assert ft.dec(got["name"], u.uk).decode() == label
     row = next(c for c in sync["ciphers"] if c["id"] == item["id"])
     assert tag["id"] in row["tagIds"], row.get("tagIds")
+    tag2 = u.api("POST", "/api/tags", {"name": ft.enc(b"second", u.uk)})
+    u.api("PUT", f"/api/ciphers/{item['id']}/tags", {"tagIds": [tag["id"], tag2["id"]]})
+    row = next(c for c in u.api("GET", "/api/sync")["ciphers"] if c["id"] == item["id"])
+    assert set(row["tagIds"]) == {tag["id"], tag2["id"]}, row["tagIds"]
+    try:
+        other.api("DELETE", f"/api/tags/{tag2['id']}")
+        raise SystemExit("another user deleted a tag")
+    except ft.HTTPErr as e:
+        assert e.code == 404, e
+    u.api("DELETE", f"/api/tags/{tag2['id']}")
+    row = next(c for c in u.api("GET", "/api/sync")["ciphers"] if c["id"] == item["id"])
+    assert row["tagIds"] == [tag["id"]], row["tagIds"]
     raw = open(os.environ["KOMBOE_DB"], "rb").read()
     assert label.encode() not in raw
     print("TAGS API PASS")

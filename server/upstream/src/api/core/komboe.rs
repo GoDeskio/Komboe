@@ -681,7 +681,7 @@ async fn delete_tag(id: &str, headers: Headers, conn: DbConn) -> EmptyResult {
         let id = id.clone();
         move |c| komboe_tags::table.filter(komboe_tags::uuid.eq(id)).filter(komboe_tags::user_uuid.eq(uid)).first::<Tag>(c).ok()
     }).await;
-    if exists.is_none() { err!("Tag not found") }
+    if exists.is_none() { err_code!("Tag not found", 404) }
     if let Err(e) = conn.run(move |c| {
         diesel::delete(komboe_tags::table.filter(komboe_tags::uuid.eq(id)).filter(komboe_tags::user_uuid.eq(uid))).execute(c)
     }).await {

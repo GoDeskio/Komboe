@@ -1,0 +1,16 @@
+<h1>SCIM</h1>
+<p bitTypography="body1">
+  Directory provisioning for this organization. A SCIM client can invite and revoke members.
+  Revoking a member does not reveal vault items, and the token cannot read them.
+</p>
+<p data-testid="scim-url">{{ scimUrl }}</p>
+<p data-testid="scim-enabled">{{ enabled ? "enabled" : "disabled" }}</p>
+<button type="button" bitButton buttonType="primary" (click)="generate()" data-testid="scim-generate">
+  Generate token
+</button>
+<p *ngIf="error" data-testid="scim-error">{{ error }}</p>
+<bit-form-field *ngIf="token">
+  <bit-label>SCIM token</bit-label>
+  <input bitInput type="password" [value]="token" readonly data-testid="scim-token" />
+  <button type="button" bitIconButton bitSuffix bitPasswordInputToggle label="Toggle token visibility"></button>
+</bit-form-field>

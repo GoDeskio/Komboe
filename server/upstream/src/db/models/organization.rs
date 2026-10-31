@@ -207,7 +207,7 @@ impl Organization {
             "useGroups": CONFIG.org_groups_enabled(),
             "useTotp": true,
             "usePolicies": true,
-            "useScim": false, // Not supported (Not AGPLv3 Licensed)
+            "useScim": true, // Clean-room SCIM. Directory identity only; vault keys stay client-side.
             "useSso": false, // Not supported
             "useKeyConnector": false, // Not supported
             "usePasswordManager": true,
@@ -474,7 +474,7 @@ impl Membership {
             "useEvents": CONFIG.org_events_enabled(),
             "useGroups": CONFIG.org_groups_enabled(),
             "useTotp": true,
-            "useScim": false, // Not supported (Not AGPLv3 Licensed)
+            "useScim": true, // Clean-room SCIM. Directory identity only; vault keys stay client-side.
             "usePolicies": true,
             "useApi": true,
             "selfHost": true,

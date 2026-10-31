@@ -42,6 +42,14 @@ const routes: Routes = [
         },
       },
       {
+        path: "scim",
+        loadComponent: () => import("./scim.component").then((mod) => mod.ScimComponent),
+        canActivate: [organizationPermissionsGuard((org) => org.canManageScim)],
+        data: {
+          titleId: "scim",
+        },
+      },
+      {
         path: "policies",
         component: PoliciesComponent,
         canActivate: [organizationPermissionsGuard((org) => org.canManagePolicies)],

@@ -481,6 +481,14 @@ table! {
     }
 }
 
+table! {
+    komboe_scim_tokens (org_uuid) {
+        org_uuid -> Text,
+        token_hash -> Text,
+        created_at -> Timestamp,
+    }
+}
+
 allow_tables_to_appear_in_same_query!(
     komboe_org_plans,
     komboe_split_requests,
@@ -488,5 +496,6 @@ allow_tables_to_appear_in_same_query!(
     komboe_aliases,
     komboe_tags,
     komboe_cipher_tags,
-    komboe_password_expiry
+    komboe_password_expiry,
+    komboe_scim_tokens
 );

@@ -230,6 +230,17 @@ export class AppComponent implements OnDestroy, OnInit {
     // will prevent any toasts from being displayed long enough to be read
 
     await this.eventUploadService.uploadEvents();
+    // Komboe SAML SLO: the server's logout push may already have logged this session out
+    // before the account menu stored the IdP URL; finish the SLO redirect in that case.
+    const activeAccount = await firstValueFrom(this.accountService.activeAccount$);
+    if (activeAccount == null) {
+      const pendingSloUrl = globalThis.sessionStorage?.getItem("komboe.samlSloUrl");
+      globalThis.sessionStorage?.removeItem("komboe.samlSloUrl");
+      if (pendingSloUrl) {
+        globalThis.location.assign(pendingSloUrl);
+      }
+      return;
+    }
     const userId = await firstValueFrom(getUserId(this.accountService.activeAccount$));
 
     const logoutPromise = firstValueFrom(
@@ -263,6 +274,16 @@ export class AppComponent implements OnDestroy, OnInit {
 
       if (redirect) {
         await this.router.navigate(["/"]);
+      }
+
+      // Komboe SAML SLO: read late, because the server's logout push can start this
+      // flow before the account menu has stored the IdP URL. Keys are already wiped;
+      // a full navigation to the IdP also clears memory.
+      const sloUrl = globalThis.sessionStorage?.getItem("komboe.samlSloUrl");
+      globalThis.sessionStorage?.removeItem("komboe.samlSloUrl");
+      if (sloUrl) {
+        globalThis.location.assign(sloUrl);
+        return;
       }
 
       // Wipe the current process to clear active secrets in memory.

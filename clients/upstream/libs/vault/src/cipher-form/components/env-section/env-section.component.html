@@ -1,0 +1,33 @@
+<section [formGroup]="envForm" class="tw-mb-5 bit-compact:tw-mb-4">
+  <bit-section-header>
+    <h2 bitTypography="h6">{{ "envDetails" | i18n }}</h2>
+  </bit-section-header>
+  <bit-card>
+    <bit-form-field>
+      <bit-label>{{ "envName" | i18n }}</bit-label>
+      <input bitInput formControlName="environment" data-testid="env-name" />
+    </bit-form-field>
+    <bit-form-field disableMargin>
+      <bit-label>{{ "envVariables" | i18n }}</bit-label>
+      <textarea
+        bitInput
+        rows="6"
+        class="tw-font-mono"
+        [style.-webkit-text-security]="showValues() ? 'none' : 'disc'"
+        formControlName="variables"
+        data-testid="env-variables"
+        [attr.data-revealed]="showValues()"
+      ></textarea>
+      <button
+        type="button"
+        [bitIconButton]="showValues() ? 'bwi-eye-slash' : 'bwi-eye'"
+        bitSuffix
+        [label]="'toggleVisibility' | i18n"
+        [attr.aria-pressed]="showValues()"
+        (click)="showValues.set(!showValues())"
+        data-testid="toggle-env-variables"
+      ></button>
+      <bit-hint>{{ "envVariablesHint" | i18n }}</bit-hint>
+    </bit-form-field>
+  </bit-card>
+</section>

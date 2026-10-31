@@ -142,6 +142,7 @@ export class VaultProgram extends BaseProgram {
       "uri",
       "totp",
       "notes",
+      "dotenv",
       "exposed",
       "attachment",
       "folder",
@@ -169,6 +170,7 @@ export class VaultProgram extends BaseProgram {
         writeLn("    bw get password https://google.com");
         writeLn("    bw get totp google.com");
         writeLn("    bw get notes google.com");
+        writeLn("    bw get dotenv my-app-prod > .env");
         writeLn("    bw get exposed yahoo.com");
         writeLn(
           "    bw get attachment b857igwl1dzrs2 --itemid 99ee88d2-6046-4ea7-92c2-acac464b1412 " +

@@ -73,9 +73,16 @@
       ></vault-gpg-section>
     }
 
+    @if (komboeEnv) {
+      <vault-env-section
+        [disabled]="config.mode === 'partial-edit'"
+        [originalCipherView]="originalCipherView"
+      ></vault-env-section>
+    }
+
     <vault-additional-options-section
       [disableSectionMargin]="config.mode !== 'edit'"
-      [hideCustomFields]="komboeWifi || komboeBookmark || komboeGpg"
+      [hideCustomFields]="komboeWifi || komboeBookmark || komboeGpg || komboeEnv"
     ></vault-additional-options-section>
 
     <!-- Attachments are only available for existing ciphers -->

@@ -1,3 +1,4 @@
+import { isKomboeEnv, komboeEnvVars, toDotenv } from "@bitwarden/common/vault/utils/komboe-wifi";
 // FIXME: Update this file to be type safe and remove this and next line
 // @ts-strict-ignore
 import * as path from "path";
@@ -98,6 +99,8 @@ export class GetCommand extends DownloadCommand {
         return await this.getTotp(id);
       case "notes":
         return await this.getNotes(id);
+      case "dotenv":
+        return await this.getDotenv(id);
       case "exposed":
         return await this.getExposed(id);
       case "attachment":
@@ -326,6 +329,19 @@ export class GetCommand extends DownloadCommand {
 
     const res = new StringResponse(cipher.notes);
     return Response.success(res);
+  }
+
+  // Komboe: print an environment-variables item as dotenv text (decrypted locally).
+  private async getDotenv(id: string) {
+    const cipherResponse = await this.getCipher(id, (c) => isKomboeEnv(c));
+    if (!cipherResponse.success) {
+      return cipherResponse;
+    }
+    const cipher = cipherResponse.data as CipherResponse;
+    if (!isKomboeEnv(cipher as any)) {
+      return Response.error("This item is not an environment variables item.");
+    }
+    return Response.success(new StringResponse(toDotenv(komboeEnvVars(cipher.fields as any))));
   }
 
   private async getExposed(id: string) {
@@ -663,6 +679,27 @@ export class GetCommand extends DownloadCommand {
           field("Passphrase", "", FieldType.Hidden),
         ];
         template = gpg;
+        break;
+      }
+      case "item.env": {
+        const env = CipherExport.template();
+        env.type = CipherType.SecureNote;
+        env.name = "Environment variables";
+        env.notes = "";
+        env.secureNote = SecureNoteExport.template();
+        const envField = (name: string, value: string, type: FieldType) => {
+          const exported = FieldExport.template();
+          exported.name = name;
+          exported.value = value;
+          exported.type = type;
+          return exported;
+        };
+        env.fields = [
+          envField("__komboe", "env", FieldType.Text),
+          envField("Environment name", "production", FieldType.Text),
+          envField("API_KEY", "", FieldType.Hidden),
+        ];
+        template = env;
         break;
       }
       case "folder":

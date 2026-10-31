@@ -1,0 +1,44 @@
+<section class="tw-mb-5 bit-compact:tw-mb-4">
+  <bit-section-header>
+    <h2 bitTypography="h6">{{ "envDetails" | i18n }}</h2>
+  </bit-section-header>
+  <bit-card>
+    @if (environment()) {
+      <bit-form-field>
+        <bit-label>{{ "envName" | i18n }}</bit-label>
+        <input readonly bitInput [value]="environment()" data-testid="env-name" />
+      </bit-form-field>
+    }
+    <bit-form-field disableMargin>
+      <bit-label>{{ "envVariableCount" | i18n: variables().length }}</bit-label>
+      <textarea
+        bitInput
+        readonly
+        rows="6"
+        class="tw-font-mono"
+        [style.-webkit-text-security]="showValues() ? 'none' : 'disc'"
+        [value]="dotenv()"
+        data-testid="env-variables"
+        [attr.data-revealed]="showValues()"
+      ></textarea>
+      <button
+        type="button"
+        [bitIconButton]="showValues() ? 'bwi-eye-slash' : 'bwi-eye'"
+        bitSuffix
+        [label]="'toggleVisibility' | i18n"
+        [attr.aria-pressed]="showValues()"
+        (click)="showValues.set(!showValues())"
+        data-testid="toggle-env-variables"
+      ></button>
+      <button
+        type="button"
+        bitIconButton="bwi-clone"
+        bitSuffix
+        [label]="'envCopyDotenv' | i18n"
+        [appCopyClick]="dotenv()"
+        showToast
+        data-testid="copy-env-dotenv"
+      ></button>
+    </bit-form-field>
+  </bit-card>
+</section>

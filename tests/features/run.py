@@ -194,7 +194,6 @@ def _(): u = a(); u.api("POST", "/api/ciphers", u.cipher({"identity": {"firstNam
 @t(14)
 def _(): u = a(); u.api("POST", "/api/ciphers", u.cipher({"sshKey": {"privateKey": u.e("k"), "publicKey": u.e("p"), "keyFingerprint": u.e("f")}}, typ=5)); return DONE("SSH key item (agent is desktop: Phase B)")
 X(15, "extra templates (Wi-Fi/passport/bank) need new item types: Komboe-original")
-P(16, "storable as secure note + custom fields today; dedicated type is Komboe-original")
 X(17, "GPG key item type: Komboe-original")
 X(18, "Bookmark item type: Komboe-original")
 X(19, "alias-linked login needs the SimpleLogin service running (Phase B)")
@@ -382,7 +381,7 @@ X(104, "free tier: Phase B billing")
 X(105, "Proton-style UI: under review")
 X(106, "secrets manager: upstream code excluded (bitwarden_license); reimplement later")
 
-for _f in ("phase_b.py", "phase_e.py", "phase_tags.py", "phase_templates.py", "phase_bookmarks.py", "phase_gpg.py", "phase_expiry.py", "phase_dashboard.py", "phase_ha.py", "phase_sso.py", "phase_scim.py", "phase_ldap.py", "phase_trusted.py", "phase_s3.py"):
+for _f in ("phase_b.py", "phase_e.py", "phase_tags.py", "phase_templates.py", "phase_bookmarks.py", "phase_gpg.py", "phase_env.py", "phase_expiry.py", "phase_dashboard.py", "phase_ha.py", "phase_sso.py", "phase_scim.py", "phase_ldap.py", "phase_trusted.py", "phase_s3.py"):
     exec(compile(open(os.path.join(os.path.dirname(__file__), _f)).read(), _f, "exec"))
 
 def main():

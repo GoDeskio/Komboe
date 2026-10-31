@@ -754,16 +754,23 @@ async fn diagnostics(_token: AdminToken, ip_header: IpHeader, conn: DbConn) -> A
 
     // Execute some environment checks
     let running_within_container = is_running_in_container();
-    let has_http_access = has_http_access().await;
+    // GitHub version checks, the github.com DNS probe, and the Cloudflare clock
+    // check run only when ADMIN_EXTERNAL_CHECKS=true. The default is off.
+    let external_checks = CONFIG.admin_external_checks();
+    let has_http_access = if external_checks { has_http_access().await } else { false };
     let uses_proxy = env::var_os("HTTP_PROXY").is_some()
         || env::var_os("http_proxy").is_some()
         || env::var_os("HTTPS_PROXY").is_some()
         || env::var_os("https_proxy").is_some();
 
     // Check if we are able to resolve DNS entries
-    let dns_resolved = match ("github.com", 0).to_socket_addrs().map(|mut i| i.next()) {
-        Ok(Some(a)) => a.ip().to_string(),
-        _ => "Unable to resolve domain name.".to_owned(),
+    let dns_resolved = if external_checks {
+        match ("github.com", 0).to_socket_addrs().map(|mut i| i.next()) {
+            Ok(Some(a)) => a.ip().to_string(),
+            _ => "Unable to resolve domain name.".to_owned(),
+        }
+    } else {
+        "External checks are off (ADMIN_EXTERNAL_CHECKS).".to_owned()
     };
 
     let (latest_vw_release, latest_vw_commit, latest_web_release) = get_release_info(has_http_access).await;

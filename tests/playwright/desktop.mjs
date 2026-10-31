@@ -51,6 +51,14 @@ if (results["desktop-login"] === "passed") await step("templates-desktop", async
     throw new Error("no header Add button"); });
   await w.screenshot({ path: path.join(SHOTS, "templates-desktop.png") });
 });
+if (results["desktop-login"] === "passed") await step("gpg-desktop", async () => {
+  const w = await app.firstWindow(); w.setDefaultTimeout(30000);
+  const { gpgFlow } = await import("./templates-flow.mjs"); await gpgFlow(w, "desk", async () => {
+    const bs = w.getByRole("button", { name: "Add", exact: true }).filter({ visible: true });
+    for (let i = 0; i < await bs.count(); i++) { const b = await bs.nth(i).boundingBox(); if (b && b.x > 300) { await bs.nth(i).click(); return; } }
+    throw new Error("no header Add button"); });
+  await w.screenshot({ path: path.join(SHOTS, "gpg-desktop.png") });
+});
 if (app) await app.close().catch(() => {}); if (proc) proc.kill();
 await new Promise(r => setTimeout(r, 1500)); try { fs.rmSync(home, { recursive: true, force: true }); } catch {}
 fs.writeFileSync(rpath, JSON.stringify(results, null, 1) + "\n");

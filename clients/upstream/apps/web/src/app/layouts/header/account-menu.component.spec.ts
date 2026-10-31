@@ -6,10 +6,12 @@ import { of } from "rxjs";
 
 import { LogoutService } from "@bitwarden/auth/common";
 import { AccountService } from "@bitwarden/common/auth/abstractions/account.service";
+import { TokenService } from "@bitwarden/common/auth/abstractions/token.service";
 import {
   VaultTimeoutAction,
   VaultTimeoutSettingsService,
 } from "@bitwarden/common/key-management/vault-timeout";
+import { EnvironmentService } from "@bitwarden/common/platform/abstractions/environment.service";
 import { I18nService } from "@bitwarden/common/platform/abstractions/i18n.service";
 import { PlatformUtilsService } from "@bitwarden/common/platform/abstractions/platform-utils.service";
 import { FakeAccountService, mockAccountServiceWith } from "@bitwarden/common/spec";
@@ -42,7 +44,13 @@ describe("AccountMenuComponent", () => {
   let vaultTimeoutSettingsService: MockProxy<VaultTimeoutSettingsService>;
   let platformUtilsService: MockProxy<PlatformUtilsService>;
 
+  let tokenService: MockProxy<TokenService>;
+
   beforeEach(async () => {
+    tokenService = mock<TokenService>();
+    tokenService.getAccessToken.mockResolvedValue("tok");
+    globalThis.fetch = jest.fn().mockResolvedValue({ ok: false }) as any;
+    sessionStorage.clear();
     logoutService = mock<LogoutService>();
     lockService = mock<LockService>();
     accountService = mockAccountServiceWith(userId);
@@ -61,6 +69,11 @@ describe("AccountMenuComponent", () => {
         { provide: AccountService, useValue: accountService },
         { provide: VaultTimeoutSettingsService, useValue: vaultTimeoutSettingsService },
         { provide: PlatformUtilsService, useValue: platformUtilsService },
+        { provide: TokenService, useValue: tokenService },
+        {
+          provide: EnvironmentService,
+          useValue: { environment$: of({ getIdentityUrl: () => "https://k.test/identity" }) },
+        },
         { provide: I18nService, useValue: { t: (key: string) => key } },
       ],
     })
@@ -80,6 +93,33 @@ describe("AccountMenuComponent", () => {
       await component["logout"]();
 
       expect(logoutService.logout).toHaveBeenCalledWith(userId, "userInitiated");
+    });
+
+    it("stores the IdP single-logout URL for SAML accounts before logging out", async () => {
+      (globalThis.fetch as jest.Mock).mockResolvedValue({
+        ok: true,
+        json: async () => ({ url: "https://idp.test/slo?SAMLRequest=x" }),
+      });
+
+      await component["logout"]();
+
+      expect(globalThis.fetch).toHaveBeenCalledWith(
+        "https://k.test/identity/connect/saml-logout",
+        expect.objectContaining({ method: "POST", headers: { Authorization: "Bearer tok" } }),
+      );
+      expect(sessionStorage.getItem("komboe.samlSloUrl")).toBe(
+        "https://idp.test/slo?SAMLRequest=x",
+      );
+      expect(logoutService.logout).toHaveBeenCalledWith(userId, "userInitiated");
+    });
+
+    it("ignores non-http SLO URLs", async () => {
+      (globalThis.fetch as jest.Mock).mockResolvedValue({
+        ok: true,
+        json: async () => ({ url: "javascript:alert(1)" }),
+      });
+      await component["logout"]();
+      expect(sessionStorage.getItem("komboe.samlSloUrl")).toBeNull();
     });
 
     it("does not call logout when there is no active account", async () => {

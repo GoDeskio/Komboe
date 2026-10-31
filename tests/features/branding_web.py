@@ -14,7 +14,8 @@ def visible(page):
 
 def bundles():
     """Built bundles must not carry the upstream copyright line / product name in UI strings."""
-    roots = [os.environ.get("KOMBOE_WEB_VAULT", "/workspace/run/web-vault"), "/workspace/run/ext", "/workspace/run/desk"]
+    # Scan what is installed: web vault, unpacked extension, and the desktop app.asar actually shipped.
+    roots = [os.environ.get("KOMBOE_WEB_VAULT", "/workspace/run/web-vault"), os.environ.get("KOMBOE_EXT_DIR", "/workspace/run/ext")]
     pat = re.compile(rb"Bitwarden Inc\.|Bitwarden phishing blocker|Bitwarden inline menu|<title>Bitwarden|Unlock Bitwarden|Bitwarden desktop app|issuer=Bitwarden")
     hits = []
     for r in roots:
@@ -22,6 +23,11 @@ def bundles():
             if os.path.isfile(f) and f.endswith((".js", ".html", ".json")) and os.path.getsize(f) < 60_000_000:
                 for m in pat.finditer(open(f, "rb").read()):
                     hits.append(f"{f}: {m.group(0).decode()}")
+    desk = os.environ.get("KOMBOE_DESKTOP", "/workspace/run/desk/squashfs-root")
+    asar = os.path.join(desk, "resources", "app.asar")
+    assert os.path.isfile(asar), asar
+    for m in pat.finditer(open(asar, "rb").read()):
+        hits.append(f"{asar}: {m.group(0).decode()}")
     return hits
 
 def main():

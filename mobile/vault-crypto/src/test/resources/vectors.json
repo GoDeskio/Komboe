@@ -1,0 +1,54 @@
+{
+  "pbkdf2": {
+    "email": "ada@komboe.test",
+    "password": "correct horse battery staple",
+    "iterations": 1000,
+    "masterKey": "jTwOwJQLpFmkO4b7Cw/laPYqRnGcRlHQWk95AtDEK0Y=",
+    "encKey": "N04f7eniwenC7J7D2kylQOdkkO2VkTz7rA6BN3GDsLw=",
+    "macKey": "Uk8qg5Bc8svmm9NAw9qfOXhuY77m0vPubqykv4x7fwQ=",
+    "serverPasswordHash": "vCOosuGOK5zuqE8uBMh15Omvq6UcnwTfs2WOmTm9ZoM=",
+    "localPasswordHash": "KXfnILDBmOiNcYvLrnDA0hc6nk5lZNBbl3JiwaAQmN0="
+  },
+  "encString": {
+    "iv": "AAECAwQFBgcICQoLDA0ODw==",
+    "plaintext": "komboe vault item",
+    "ciphertext": "2.AAECAwQFBgcICQoLDA0ODw==|2qdS49mttRuD5ATN0D/Yg0pvUSGr8GZnhEBjXRsbxvU=|oIxZPIoUmBAYd7l+sEVA+2Q1wqiXMRv0eRz6meF7Qp4="
+  },
+  "item": {
+    "key": "Y7K5Aq0R0E0R4cNcsmlTwrB+5tkaAlSC1U6Jxyw0o1xbCQqpv5KzawK6COjv/F7u3W+jSoB27Y15N+zfPLkhhw==",
+    "iv": "EBESExQVFhcYGRobHB0eHw==",
+    "plaintext": "p@ssw0rd-vector",
+    "ciphertext": "2.EBESExQVFhcYGRobHB0eHw==|qh3jHW1AF/yOiMPGH0af8g==|6NgbEB/LSoSgDI4p7a35fEWyP6gavTcVDIg29+dKDwE="
+  },
+  "argon2id": {
+    "email": "ada@komboe.test",
+    "password": "correct horse battery staple",
+    "iterations": 1,
+    "memoryMiB": 8,
+    "parallelism": 1,
+    "masterKey": "F9C6+2o1/s6zu/uIO9OTHxQDVIZsn5cQVfngdhy6ZrE="
+  },
+  "rsa": {
+    "pkcs8Pem": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDAQIBx/jhG/PS6\nR2rIlqw5MzOK0snC8lTDKKB9bHsn/gn8fLSQHtJ8GINTgFB44YY+vzI54FoutwrZ\nyuNlCEYw4Jp3gej9bB5bb3DbRaROgDdjaiBzX46oefUhuUV2h9sZxvTVCkMvMdtf\ngkYOWgldNcwhdkQ4bluqMiAjsfn0HbmeJQDlwyq+Rl+6i2fvYuCVvZd/YMZzJQWW\nMNmGy7bed3QSzxRlqzhYBZvlLkTfsNC9Vv1hGfFCW8/dE9UlG9OkMgZK/TQJ45Yu\nUtLNawxNXuckQ5MMAn3CeE7udQYHM2Mb2JjdHUnLYI74XhgGEdBBYo1o0Hb7brYK\n0AxVRuPHAgMBAAECggEADbp/ti1VtVNzq0OxBjOAPjJJK74nz8/uF8ArTlBrU0gh\ncNtXKc/IgV46d6869HNwEXqToWP6M4DLZ1p72vCdGx20kPSTJFmqF0tK4Z7EbbQS\nW+jSQx9x0/vw8mBXWXBK2kuX5FHUpRQxSF/tOcQjMJ5sxzYVB3txZiLfx2FV/I7I\nbT7ilFSf67lIi/NjtsEE8/yURYSo2hl0BfqGyZP5JX7MFiv0JjdnKPhpv7kRmJvm\n9Q4I4uOqSWHb8rfUeNPqTvGOrNp+rEfJXLxnmBpohvSxXT9biaiWIgxOnKLigXl7\nSRO5ymH5GEIlIEKbk5gLot0R6CFzejpdrLStsaBFlQKBgQD1gv8KikH8jo+y1QXu\n6TK0v0YcD0wLPkk/Zj0/4N0L5kzpy2fvzt65QJGodGYlGSFcm2+MN3BsTyzIl33O\n0eh9qT2y0ebM27iaHzcmoYPl1AXkMO2CxN1qgVIHKyqMwmo8soi24gpgNefEhD4X\nPfQoMxtBpp67Rd6mMZ0Tlw8hWwKBgQDIdwmy7gINOaV599yVgRIQ8JjECInRzLuW\nVLpYHx4Q+WFoxp0GrG4zjzXhP6tqZwciJw/lrHZ8GO5+XGmlt5OUdxRy8W0Dj7MH\nGIaPpeY3lmLcH5flqBbGOSaWi1DNs1yrkVViMxHw1bazLugiW4W8vu0j/L6cjPyP\naqqwGSFHBQKBgQDqkbZLw704KJ1zJ8T7dyNTPk0mEhd9xo0FXhG3LokEDY3+8rDj\nlquGJAMHB+9wEoqliH0TYwSu9xa6sMMrD7MqHMEuUQ5LPMMrvhdbeYYj2GeolnbX\nMnC6icRtxPhqdHY8d/fXhDCVq+s8/3yziCX3Ip0wJJoUI7WO5GhHh1SVcQKBgBSv\nzA1t6EJLH5tti5LWBfI/kdQw+V/wG6+QwMYVN/oScg3o6Q1mP90MO0gqVNsfFKpe\nk5Jk8LkvrXTWvoQ+ZHlerHqMFW7XpmbmDgTG3vH/j+YdUIR/ixIblbLVX5pKlxaR\nYdlHYeOTek4VWhkpjqyCm2AqVdU761g1brXLchatAoGBAJqfLhif+BIZbjSa8KeY\nRSzT+XbwUYD/+N7RTpLTRnj5omnPM9f6cNYNCZvXkXKRbZMC3Ti76ZKUmuFpgtXB\nHQLBm1e9csA8R88H5iiaQoRp9vJYFZoWWHYMYIutfp8Jf5L3bQ2/rOl4kX69W+kJ\ni40CfLfeYny4AbzYaOY1l+Ny\n-----END PRIVATE KEY-----\n",
+    "orgKey": "l0rBwalMLwMylYxUn7lEZXipGUSzRu/5a0/HYi/qL6FPiw9zlcdioiK5LMGQCgMwsDbFkVUeQNx7ntJCuuCflQ==",
+    "type4": "4.Qz1VtmQVo83eKm2oXmdItsVxvsuDqVNLQHQq3kbTtaPRJWRGjT7lI/0GWsBj+cFJJgaleQEG4j46pbLxfr8QDRCUqHacM7ZqJkYFg13W3tLdTvYcpACTdHUDVapmS+wYoRDn1NPLZyq3RUyPNE8F2yA7mMOdHCVJPVJGuRFtaLv5+1sdgU5p9JrXnBLicSPVb/iPwDT3hWRGIKn1qMwoZvvmALNMQkvVjfBq0+j19dXf0AVYHVK4PTXjjfhRDpb5nCV76xm3sHOz6N0Bn+acmAtrVlaEtlQ4Te2FM9QrBCYuGQhZRmFoacq+xffpLRJ6DyBooEBzSmNGJmPhkCOnLQ==",
+    "type3": "3.qNdsvaGpYFCnCXXjP2wJd23ejmoZiC9kBXPkC9kZuhw2VAkvaTcUYZAkNc38Qy8NEpyVqD1Ig33eRPZar9qsUkYx/8Ttmw+iYokjL1UhAysjhEqg91Qw8uQ566wwRvpK+4f5PmbSgMoXYMDQDUisWnre8v1IDu+gLZnPesurerqclOojJCxToMHnFAGiEa48tWkuxTXdSsHxNgg9WTQPLtNAn8hU8iVfpRzFVSntI83sysAA+I/ap8gxJlyzOUHP+nlRDw7vHOlbXty0O8ijT2Ih1n/L0xZM3B/AX7CSpQjx/hicOQdVO7YfTzUdLmshtDX9/dRnlqrKJLcowZHa1A=="
+  },
+  "send": {
+    "material": "AAECAwQFBgcICQoLDA0ODw==",
+    "derivedKey": "BjqVWhwBtOGqy3zTWckZssthBBwMBclMDrdvuanhRLP77KB03hQ3oaIzCtKDMTir874lYaOjCuHzPhXhovfKBA==",
+    "iv": "BwcHBwcHBwcHBwcHBwcHBw==",
+    "name": "Quarterly report",
+    "nameEnc": "2.BwcHBwcHBwcHBwcHBwcHBw==|Vr1Eu0S/UKbPxj7hnAxlLho7kPb23adImP2rXAolCIE=|L1IAejcr7Bb8w4Q0m3mpSwEofKerdDK+5je1ycJ1IrQ=",
+    "password": "send-secret",
+    "passwordHash": "uejUaGE7rMac9kdLDlDW98pPeLSU6VeS1NWYdyDZDpg="
+  },
+  "totp": {
+    "secretAscii": "12345678901234567890",
+    "time": 59,
+    "period": 30,
+    "digits": 8,
+    "algorithm": "SHA1",
+    "code": "94287082"
+  }
+}

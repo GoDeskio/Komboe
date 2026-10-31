@@ -3427,6 +3427,18 @@
   "removePasswordConfirmation": {
     "message": "Are you sure you want to remove the password?"
   },
+  "sendViews": {
+    "message": "Views"
+  },
+  "sendViewsRemaining": {
+    "message": "$COUNT$ views left",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "3"
+      }
+    }
+  },
   "maxAccessCountReached": {
     "message": "Max access count reached"
   },

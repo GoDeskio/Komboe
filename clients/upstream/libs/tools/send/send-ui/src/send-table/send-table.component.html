@@ -6,6 +6,9 @@
         <th bitCell bitSortable="deletionDate" class="@lg/send-table:tw-table-cell tw-hidden">
           {{ "deletionDate" | i18n }}
         </th>
+        <th bitCell bitSortable="accessCount" class="@lg/send-table:tw-table-cell tw-hidden">
+          {{ "sendViews" | i18n }}
+        </th>
         <th bitCell>{{ "options" | i18n }}</th>
       </tr>
     </ng-container>
@@ -84,6 +87,22 @@
           <small bitTypography="body2" appStopProp>
             {{ s.deletionDate | date: "medium" }}
           </small>
+        </td>
+        <td
+          bitCell
+          class="tw-text-muted @lg/send-table:tw-table-cell tw-hidden"
+          [attr.title]="
+            sendViews(s.accessCount, s.maxAccessCount).remaining == null
+              ? null
+              : ('sendViewsRemaining' | i18n: sendViews(s.accessCount, s.maxAccessCount).remaining)
+          "
+        >
+          <small bitTypography="body2">{{ sendViews(s.accessCount, s.maxAccessCount).label }}</small>
+          @if (s.expirationDate) {
+            <small bitTypography="body2" class="tw-block">
+              {{ "expires" | i18n }} {{ s.expirationDate | date: "short" }}
+            </small>
+          }
         </td>
         <td bitCell class="tw-w-0 tw-text-right">
           <button

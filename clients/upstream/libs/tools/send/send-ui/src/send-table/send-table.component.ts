@@ -18,6 +18,8 @@ import {
   TypographyModule,
 } from "@bitwarden/components";
 
+import { sendViews } from "./send-views";
+
 /**
  * A table component for displaying Send items with sorting, status indicators, and action menus. Handles the presentation of sends in a tabular format with options
  * for editing, copying links, removing passwords, and deleting.
@@ -44,6 +46,7 @@ import {
 export class SendTableComponent {
   protected readonly sendType = SendType;
   protected readonly authType = AuthType;
+  protected readonly sendViews = sendViews;
 
   /**
    * The data source containing the Send items to display in the table.

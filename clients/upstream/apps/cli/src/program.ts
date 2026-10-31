@@ -27,6 +27,7 @@ const writeLn = CliUtils.writeLn;
 export class Program extends BaseProgram {
   async register() {
     program
+      .name("komboe")
       .option("--pretty", "Format output. JSON is tabbed with two spaces.")
       .option("--raw", "Return raw output instead of a descriptive message.")
       .option("--response", "Return a JSON formatted version of response output.")
@@ -81,27 +82,27 @@ export class Program extends BaseProgram {
       );
       writeLn("\n  Examples:");
       writeLn("");
-      writeLn("    bw login");
-      writeLn("    bw lock");
-      writeLn("    bw unlock myPassword321");
-      writeLn("    bw list --help");
-      writeLn("    bw list items --search google");
-      writeLn("    bw get item 99ee88d2-6046-4ea7-92c2-acac464b1412");
-      writeLn("    bw get password google.com");
-      writeLn('    echo \'{"name":"My Folder"}\' | bw encode');
-      writeLn("    bw create folder eyJuYW1lIjoiTXkgRm9sZGVyIn0K");
+      writeLn("    komboe login");
+      writeLn("    komboe lock");
+      writeLn("    komboe unlock myPassword321");
+      writeLn("    komboe list --help");
+      writeLn("    komboe list items --search google");
+      writeLn("    komboe get item 99ee88d2-6046-4ea7-92c2-acac464b1412");
+      writeLn("    komboe get password google.com");
+      writeLn('    echo \'{"name":"My Folder"}\' | komboe encode');
+      writeLn("    komboe create folder eyJuYW1lIjoiTXkgRm9sZGVyIn0K");
       writeLn(
-        "    bw edit folder c7c7b60b-9c61-40f2-8ccd-36c49595ed72 eyJuYW1lIjoiTXkgRm9sZGVyMiJ9Cg==",
+        "    komboe edit folder c7c7b60b-9c61-40f2-8ccd-36c49595ed72 eyJuYW1lIjoiTXkgRm9sZGVyMiJ9Cg==",
       );
-      writeLn("    bw delete item 99ee88d2-6046-4ea7-92c2-acac464b1412");
-      writeLn("    bw archive item 99ee88d2-6046-4ea7-92c2-acac464b1412");
-      writeLn("    bw generate -lusn --length 18");
-      writeLn("    bw config server https://bitwarden.example.com");
-      writeLn("    bw send -f ./file.ext");
-      writeLn('    bw send "text to send"');
-      writeLn('    echo "text to send" | bw send');
+      writeLn("    komboe delete item 99ee88d2-6046-4ea7-92c2-acac464b1412");
+      writeLn("    komboe archive item 99ee88d2-6046-4ea7-92c2-acac464b1412");
+      writeLn("    komboe generate -lusn --length 18");
+      writeLn("    komboe config server https://bitwarden.example.com");
+      writeLn("    komboe send -f ./file.ext");
+      writeLn('    komboe send "text to send"');
+      writeLn('    echo "text to send" | komboe send');
       writeLn(
-        "    bw receive https://vault.bitwarden.com/#/send/rg3iuoS_Akm2gqy6ADRHmg/Ht7dYjsqjmgqUM3rjzZDSQ",
+        "    komboe receive https://vault.bitwarden.com/#/send/rg3iuoS_Akm2gqy6ADRHmg/Ht7dYjsqjmgqUM3rjzZDSQ",
       );
       writeLn("", true);
     });
@@ -156,10 +157,10 @@ export class Program extends BaseProgram {
         writeLn("");
         writeLn("  Examples:");
         writeLn("");
-        writeLn("    bw login");
-        writeLn("    bw login john@example.com myPassword321 --raw");
-        writeLn("    bw login john@example.com myPassword321 --method 1 --code 249213");
-        writeLn("    bw login --sso");
+        writeLn("    komboe login");
+        writeLn("    komboe login john@example.com myPassword321 --raw");
+        writeLn("    komboe login john@example.com myPassword321 --method 1 --code 249213");
+        writeLn("    komboe login --sso");
         writeLn("", true);
       })
       .action(async (email: string, password: string, options: OptionValues) => {
@@ -195,7 +196,7 @@ export class Program extends BaseProgram {
       .on("--help", () => {
         writeLn("\n  Examples:");
         writeLn("");
-        writeLn("    bw logout");
+        writeLn("    komboe logout");
         writeLn("", true);
       })
       .action(async (cmd) => {
@@ -215,7 +216,7 @@ export class Program extends BaseProgram {
       .on("--help", () => {
         writeLn("\n  Examples:");
         writeLn("");
-        writeLn("    bw lock");
+        writeLn("    komboe lock");
         writeLn("", true);
       })
       .action(async (cmd) => {
@@ -258,9 +259,9 @@ export class Program extends BaseProgram {
         writeLn("");
         writeLn("  Examples:");
         writeLn("");
-        writeLn("    bw unlock");
-        writeLn("    bw unlock myPassword321");
-        writeLn("    bw unlock myPassword321 --raw");
+        writeLn("    komboe unlock");
+        writeLn("    komboe unlock myPassword321");
+        writeLn("    komboe unlock myPassword321 --raw");
         writeLn("", true);
       })
       .option("--check", "Check lock status.", async () => {
@@ -318,9 +319,9 @@ export class Program extends BaseProgram {
       .on("--help", () => {
         writeLn("\n  Examples:");
         writeLn("");
-        writeLn("    bw sync");
-        writeLn("    bw sync -f");
-        writeLn("    bw sync --last");
+        writeLn("    komboe sync");
+        writeLn("    komboe sync -f");
+        writeLn("    komboe sync --last");
         writeLn("", true);
       })
       .action(async (cmd) => {
@@ -357,13 +358,13 @@ export class Program extends BaseProgram {
         writeLn("");
         writeLn("  Examples:");
         writeLn("");
-        writeLn("    bw generate");
-        writeLn("    bw generate -u -l --length 18");
-        writeLn("    bw generate -ulns --length 25");
-        writeLn("    bw generate -ul");
-        writeLn("    bw generate -p --separator _");
-        writeLn("    bw generate -p --words 5 --separator space");
-        writeLn("    bw generate -p --words 5 --separator empty");
+        writeLn("    komboe generate");
+        writeLn("    komboe generate -u -l --length 18");
+        writeLn("    komboe generate -ulns --length 25");
+        writeLn("    komboe generate -ul");
+        writeLn("    komboe generate -p --separator _");
+        writeLn("    komboe generate -p --words 5 --separator space");
+        writeLn("    komboe generate -p --words 5 --separator empty");
         writeLn("", true);
       })
       .action(async (options) => {
@@ -386,7 +387,7 @@ export class Program extends BaseProgram {
         writeLn("");
         writeLn("  Examples:");
         writeLn("");
-        writeLn('    echo \'{"name":"My Folder"}\' | bw encode');
+        writeLn('    echo \'{"name":"My Folder"}\' | komboe encode');
         writeLn("", true);
       })
       .action(async () => {
@@ -421,11 +422,11 @@ export class Program extends BaseProgram {
         writeLn("");
         writeLn("  Examples:");
         writeLn("");
-        writeLn("    bw config server");
-        writeLn("    bw config server https://bw.company.com");
-        writeLn("    bw config server bitwarden.com");
+        writeLn("    komboe config server");
+        writeLn("    komboe config server https://bw.company.com");
+        writeLn("    komboe config server bitwarden.com");
         writeLn(
-          "    bw config server --api http://localhost:4000 --identity http://localhost:33656",
+          "    komboe config server --api http://localhost:4000 --identity http://localhost:33656",
         );
         writeLn("", true);
       })
@@ -450,8 +451,8 @@ export class Program extends BaseProgram {
         writeLn("");
         writeLn("  Examples:");
         writeLn("");
-        writeLn("    bw update");
-        writeLn("    bw update --raw");
+        writeLn("    komboe update");
+        writeLn("    komboe update --raw");
         writeLn("", true);
       })
       .action(async () => {
@@ -474,7 +475,7 @@ export class Program extends BaseProgram {
         writeLn("");
         writeLn("  Examples:");
         writeLn("");
-        writeLn("    bw completion --shell zsh");
+        writeLn("    komboe completion --shell zsh");
         writeLn("", true);
       })
       .action(async (options: OptionValues, cmd: Command) => {

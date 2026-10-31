@@ -35,9 +35,9 @@ export class ServeProgram extends BaseProgram {
         writeLn("");
         writeLn("  Examples:");
         writeLn("");
-        writeLn("    bw serve");
-        writeLn("    bw serve --port 8080");
-        writeLn("    bw serve --hostname bwapi.mydomain.com --port 80");
+        writeLn("    komboe serve");
+        writeLn("    komboe serve --port 8080");
+        writeLn("    komboe serve --hostname bwapi.mydomain.com --port 80");
         writeLn("", true);
       })
       .action(async (cmd) => {

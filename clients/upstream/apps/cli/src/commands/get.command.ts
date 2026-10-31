@@ -717,7 +717,7 @@ export class GetCommand extends DownloadCommand {
       case "send.file":
       case "send.text":
         template = Response.badRequest(
-          `Invalid template object. Use \`bw send template ${id}\` instead.`,
+          `Invalid template object. Use \`komboe send template ${id}\` instead.`,
         );
         break;
       default:

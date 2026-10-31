@@ -263,7 +263,7 @@ export class EditCommand {
       return Response.badRequest("`" + id + "` is not a GUID.");
     }
     // The organization id can come from either the `organizationid` option (e.g. a CLI flag, or a
-    // query string parameter when using `bw serve`) or the request body's `organizationId` property.
+    // query string parameter when using `komboe serve`) or the request body's `organizationId` property.
     // If both are provided, they must agree; otherwise whichever one was provided is used.
     const organizationId = Utils.isNullOrWhitespace(options.organizationId)
       ? req?.organizationId
@@ -271,7 +271,7 @@ export class EditCommand {
     if (Utils.isNullOrWhitespace(organizationId)) {
       return Response.badRequest(
         "An organization id is required, either via the `--organizationid` option " +
-          "(or `organizationId` query parameter when using `bw serve`), " +
+          "(or `organizationId` query parameter when using `komboe serve`), " +
           "or the request's `organizationId` property.",
       );
     }

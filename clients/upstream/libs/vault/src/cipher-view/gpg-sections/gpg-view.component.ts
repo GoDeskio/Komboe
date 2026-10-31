@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, input } from "@angular/core";
+import { ChangeDetectionStrategy, Component, signal, input } from "@angular/core";
 
 import { CipherView } from "@bitwarden/common/vault/models/view/cipher.view";
 import {
@@ -33,6 +33,7 @@ import { I18nPipe } from "@bitwarden/ui-common";
   ],
 })
 export class GpgViewComponent {
+  readonly showPrivateKey = signal(false);
   readonly cipher = input.required<CipherView>();
 
   value(name: string): string {

@@ -47,8 +47,11 @@ def main():
         token.wait_for()
         value = token.input_value()
         assert value.startswith("komboe-scim-"), value
+        assert token.get_attribute("type") == "password", "token must be masked by default"
         page.locator("[bitpasswordinputtoggle]").click()
         assert token.get_attribute("type") == "text"
+        page.locator("[bitpasswordinputtoggle]").click()
+        assert token.get_attribute("type") == "password", "eye toggle must re-hide the token"
         assert "/scim/v2" in page.get_by_test_id("scim-url").inner_text()
         browser.close()
     print("SCIM WEB PASS")

@@ -25,12 +25,12 @@ def main():
     os.makedirs(os.path.join(folder, "data"))
     with open(os.path.join(folder, "slapd.conf"), "w") as f:
         f.write(f"""
-include /etc/ldap/schema/core.schema
-include /etc/ldap/schema/cosine.schema
-include /etc/ldap/schema/inetorgperson.schema
+include {ldap_api.SCHEMA_DIR}/core.schema
+include {ldap_api.SCHEMA_DIR}/cosine.schema
+include {ldap_api.SCHEMA_DIR}/inetorgperson.schema
 pidfile {folder}/slapd.pid
 argsfile {folder}/slapd.args
-modulepath /usr/lib/ldap
+modulepath {ldap_api.MODULE_DIR}
 moduleload back_mdb
 database mdb
 maxsize 1073741824
@@ -42,7 +42,7 @@ index objectClass eq
 """)
     log = open(folder + "-slapd.log", "w")
     proc = subprocess.Popen(
-        ["slapd", "-f", os.path.join(folder, "slapd.conf"), "-h", f"ldap://127.0.0.1:{ldap_api.LDAP_PORT}", "-d", "0"],
+        [*ldap_api.slapd_cmd(), "-f", os.path.join(folder, "slapd.conf"), "-h", f"ldap://127.0.0.1:{ldap_api.LDAP_PORT}", "-d", "0"],
         stdout=log, stderr=subprocess.STDOUT,
     )
     try:
@@ -101,8 +101,12 @@ member: uid=ada,ou=people,dc=komboe,dc=test
             page.get_by_test_id("ldap-url").fill(f"ldap://127.0.0.1:{ldap_api.LDAP_PORT}")
             page.get_by_test_id("ldap-bind-dn").fill("cn=admin,dc=komboe,dc=test")
             page.get_by_test_id("ldap-bind-password").fill(ldap_api.BIND_PW)
+            bind = page.get_by_test_id("ldap-bind-password")
+            assert bind.get_attribute("type") == "password", "bind password must be masked by default"
             page.locator("[bitpasswordinputtoggle]").click()
-            assert page.get_by_test_id("ldap-bind-password").get_attribute("type") == "text"
+            assert bind.get_attribute("type") == "text"
+            page.locator("[bitpasswordinputtoggle]").click()
+            assert bind.get_attribute("type") == "password", "eye toggle must re-hide the bind password"
             page.get_by_test_id("ldap-user-base").fill("ou=people,dc=komboe,dc=test")
             page.get_by_test_id("ldap-group-base").fill("ou=groups,dc=komboe,dc=test")
             page.get_by_test_id("ldap-sync").click()

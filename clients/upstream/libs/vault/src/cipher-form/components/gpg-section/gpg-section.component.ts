@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, DestroyRef, inject, input, OnInit } from "@angular/core";
+import { ChangeDetectionStrategy, Component, signal, DestroyRef, inject, input, OnInit } from "@angular/core";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import { FormBuilder, ReactiveFormsModule } from "@angular/forms";
 
@@ -39,6 +39,7 @@ import { CipherFormContainer } from "../../cipher-form-container";
   ],
 })
 export class GpgSectionComponent implements OnInit {
+  readonly showPrivateKey = signal(false);
   readonly originalCipherView = input<CipherView | null>(null);
   readonly disabled = input(false);
 
@@ -85,6 +86,10 @@ export class GpgSectionComponent implements OnInit {
         privateKey: komboeFieldValue(fields, KOMBOE_GPG_PRIVATE),
         passphrase: komboeFieldValue(fields, KOMBOE_GPG_PASSPHRASE),
       });
+    }
+    // Komboe: write the template fields now so an item saved without edits keeps its type marker.
+    if (!this.disabled()) {
+      this.gpgForm.updateValueAndValidity({ emitEvent: true });
     }
     if (this.disabled()) {
       this.gpgForm.disable();

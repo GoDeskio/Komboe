@@ -21,7 +21,7 @@ import { CalloutModule } from "@bitwarden/components";
           (input)="days = $any($event.target).value"
         />
         <button data-testid="password-expiry-save" type="button" class="tw-border tw-rounded tw-px-2" (click)="save()">
-          Save
+          Save expiry
         </button>
       </div>
       @if (message) {
@@ -44,8 +44,16 @@ export class KomboePasswordExpirySettingsComponent implements OnInit {
 
   async save() {
     const parsed = this.days === "" ? null : Number(this.days);
-    const saved = await this.api.putPasswordExpiry(parsed);
-    this.message = saved.userDays == null ? "Expiry cleared" : `Expires after ${saved.userDays} days`;
+    if (parsed != null && (!Number.isInteger(parsed) || parsed < 0 || parsed > 3650)) {
+      this.message = "Enter a whole number of days from 0 to 3650";
+      return;
+    }
+    try {
+      const saved = await this.api.putPasswordExpiry(parsed);
+      this.message = saved.userDays == null ? "Expiry cleared" : `Expires after ${saved.userDays} days`;
+    } catch {
+      this.message = "Could not save password expiry";
+    }
   }
 }
 
@@ -79,9 +87,10 @@ export class KomboePasswordExpiryComponent implements OnInit {
       return;
     }
     const when =
+      // Password age: last password change, else when the item was created. Other edits must not reset it.
       this.cipher().login?.passwordRevisionDate ??
-      this.cipher().revisionDate ??
-      this.cipher().creationDate;
+      this.cipher().creationDate ??
+      this.cipher().revisionDate;
     if (!when) {
       return;
     }

@@ -118,58 +118,26 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Name" xml:space="preserve">
-    <value>Bitwarden Password Manager</value>
+    <value>Komboe Password Manager</value>
   </data>
   <data name="Summary" xml:space="preserve">
-    <value>Acasă, la birou sau în deplasare, Bitwarden vă securizează cu ușurință toate parolele, cheile de acces și informațiile sensibile.</value>
+    <value>Komboe is an open-source, zero-knowledge password manager for families and teams.</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Recunoscut ca cel mai bun manager de parole de către PCMag, WIRED, The Verge, CNET, G2 și alții!
+    <value>Komboe is an open-source, zero-knowledge password manager for families and teams.
 
-SECURIZAȚI-VĂ VIAȚA DIGITALĂ
-Securizați-vă viața digitală și protejați-vă împotriva breșelor de date generând și salvând parole unice și puternice pentru fiecare cont. Mențineți totul într-un seif de parole criptat end-to-end la care doar dvs. aveți acces.
+Store passwords, passkeys, 2FA codes, secure notes and cards in an end-to-end encrypted vault. Your vault is encrypted on your device before it is synced; the server never receives your master password or vault keys.
 
-ACCESAȚI-VĂ DATELE, ORIUNDE, ORICÂND, PE ORICE DISPOZITIV
-Gestionați, stocați, securizați și partajați cu ușurință un număr nelimitat de parole pe un număr nelimitat de dispozitive fără restricții.
+- Password generator and autofill
+- Passkeys and TOTP codes
+- Secure sharing with family members and teams, with groups and roles
+- Email aliases
+- Self-hostable server
 
-TOATĂ LUMEA AR TREBUI SĂ Aibă INSTRUMENTELE PENTRU A FI ÎN SIGURANȚĂ ONLINE
-Utilizați Bitwarden gratuit, fără reclame sau vânzarea datelor. Bitwarden crede că toată lumea ar trebui să aibă capacitatea de a fi în siguranță online. Planurile Premium oferă acces la funcții avansate.
-
-ÎMPUTERNICIȚI-VĂ ECHIPELE CU BITWARDEN
-Planurile pentru Teams și Enterprise vin cu funcții profesionale de business. Câteva exemple includ integrare SSO, auto-găzduire, integrare director și provizionare SCIM, politici globale, acces API, jurnale de evenimente și multe altele.
-
-Utilizați Bitwarden pentru a vă securiza forța de muncă și a partaja informații sensibile cu colegii.
-
-
-Mai multe motive pentru a alege Bitwarden:
-
-Criptare de clasă mondială
-Parolele sunt protejate cu criptare avansată end-to-end (AES-256 biți, hashing cu sare și PBKDF2 SHA-256) astfel încât datele dvs. rămân sigure și private.
-
-Audituri terțe
-Bitwarden efectuează în mod regulat audituri de securitate complete de terță parte cu firme de securitate notabile. Aceste audituri anuale includ evaluări ale codului sursă și teste de penetrare pe IP-urile, serverele și aplicațiile web Bitwarden.
-
-2FA avansat
-Securizați-vă autentificarea cu un autentificator terț, coduri trimise prin e-mail sau acreditări FIDO2 WebAuthn, cum ar fi o cheie de securitate hardware sau o cheie de acces.
-
-Bitwarden Send
-Transmiteți date direct altora menținând securitatea criptată end-to-end și limitând expunerea.
-
-Generator integrat
-Creați parole lungi, complexe și distincte și nume de utilizator unice pentru fiecare site pe care îl vizitați. Integrați-vă cu furnizori de aliasuri de e-mail pentru confidențialitate suplimentară.
-
-Traduceri globale
-Traducerile Bitwarden există pentru mai mult de 60 de limbi, traduse de comunitatea globală prin Crowdin.
-
-Aplicații multiplatformă
-Securizați și partajați date sensibile în seiful dvs. Bitwarden de pe orice browser, dispozitiv mobil sau OS desktop și multe altele.
-
-Bitwarden securizează mai mult decât parole
-Soluțiile de gestionare a acreditărilor criptate end-to-end de la Bitwarden împuternicesc organizațiile să securizeze totul, inclusiv secretele dezvoltatorilor și experiențele cu chei de acces. Vizitați Bitwarden.com pentru a afla mai multe despre Bitwarden Secrets Manager și Bitwarden Passwordless.dev!
-</value>
+Komboe is based on Vaultwarden and Komboe clients and is not affiliated with or endorsed by Bitwarden Inc. or the Vaultwarden project. Source code: https://github.com/GoDeskio/Komboe</value>
   </data>
   <data name="AssetTitle" xml:space="preserve">
-    <value>Acasă, la birou sau în deplasare, Bitwarden vă securizează cu ușurință toate parolele, cheile de acces și informațiile sensibile.</value>
+    <value>Komboe is an open-source, zero-knowledge password manager for families and teams.</value>
   </data>
   <data name="ScreenshotSync" xml:space="preserve">
     <value>Sincronizează și accesează seiful dvs. de pe multiple dispozitive</value>

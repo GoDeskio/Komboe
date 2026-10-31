@@ -118,57 +118,26 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Name" xml:space="preserve">
-    <value>Bitwarden Password Manager</value>
+    <value>Komboe Password Manager</value>
   </data>
   <data name="Summary" xml:space="preserve">
-    <value>Sa bahay, sa trabaho, o kahit saan, madaling pinoprotektahan ng Bitwarden ang lahat ng iyong mga password, passkey, at sensitibong impormasyon.</value>
+    <value>Komboe is an open-source, zero-knowledge password manager for families and teams.</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Kinikilala bilang pinakamahusay na password manager ng PCMag, WIRED, The Verge, CNET, G2, at iba pa!
+    <value>Komboe is an open-source, zero-knowledge password manager for families and teams.
 
-SEGURUHIN ANG IYONG DIGITAL NA BUHAY
-Seguruhin ang iyong digital na buhay at protektahan laban sa mga data breach sa pamamagitan ng pagbuo at pag-save ng natatangi at matibay na password para sa bawat account. Panatilihin ang lahat sa isang end-to-end encrypted password vault na ikaw lamang ang makaka-access.
+Store passwords, passkeys, 2FA codes, secure notes and cards in an end-to-end encrypted vault. Your vault is encrypted on your device before it is synced; the server never receives your master password or vault keys.
 
-I-ACCESS ANG IYONG DATA, SAANMAN, ANUMANG ORAS, SA ANUMANG DEVICE
-Madaling pamahalaan, iimbak, siguruhin, at ibahagi ang walang limitasyong password sa walang limitasyong device nang walang mga paghihigpit.
+- Password generator and autofill
+- Passkeys and TOTP codes
+- Secure sharing with family members and teams, with groups and roles
+- Email aliases
+- Self-hostable server
 
-LAHAT AY DAPAT MAGKAROON NG MGA TOOL UPANG MANATILING LIGTAS ONLINE
-Gamitin ang Bitwarden nang libre nang walang mga ad o pagbebenta ng data. Naniniwala ang Bitwarden na ang lahat ay dapat magkaroon ng kakayahang manatiling ligtas online. Ang mga Premium plan ay nag-aalok ng access sa mga advanced na feature.
-
-PAGYAMANIN ANG IYONG MGA TEAM SA BITWARDEN
-Ang mga Plan para sa Teams at Enterprise ay may kasamang mga propesyonal na feature sa negosyo. Ang ilang mga halimbawa ay kinabibilangan ng SSO integration, self-hosting, directory integration at SCIM provisioning, global policies, API access, event logs, at higit pa.
-
-Gamitin ang Bitwarden upang siguruhin ang iyong workforce at ibahagi ang sensitibong impormasyon sa mga kasamahan.
-
-
-Higit pang mga dahilan upang piliin ang Bitwarden:
-
-World-Class Encryption
-Ang mga password ay protektado ng advanced end-to-end encryption (AES-256 bit, salted hashing, at PBKDF2 SHA-256) upang ang iyong data ay manatiling secure at pribado.
-
-3rd-party Audits
-Ang Bitwarden ay regular na nagsasagawa ng komprehensibong third-party security audit sa mga kilalang security firm. Ang mga taunang audit na ito ay kinabibilangan ng source code assessment at penetration testing sa mga Bitwarden IP, server, at web application.
-
-Advanced 2FA
-Siguruhin ang iyong login gamit ang third-party authenticator, emailed code, o FIDO2 WebAuthn credentials tulad ng hardware security key o passkey.
-
-Bitwarden Send
-Magpadala ng data nang direkta sa iba habang pinapanatili ang end-to-end encrypted security at nililimitahan ang exposure.
-
-Built-in Generator
-Gumawa ng mahaba, kumplikado, at natatanging password at unique username para sa bawat site na binibisita mo. Isama sa mga email alias provider para sa karagdagang privacy.
-
-Global Translations
-Ang mga pagsasalin ng Bitwarden ay umiiral para sa higit sa 60 mga wika, isinalin ng global community sa pamamagitan ng Crowdin.
-
-Cross-Platform Applications
-Siguruhin at ibahagi ang sensitibong data sa loob ng iyong Bitwarden Vault mula sa anumang browser, mobile device, o desktop OS, at higit pa.
-
-Ang Bitwarden ay hindi lamang mga password ang sinisiguro
-Ang end-to-end encrypted credential management solutions mula sa Bitwarden ay nagbibigay-kapangyarihan sa mga organisasyon na siguruhin ang lahat, kabilang ang mga developer secret at passkey experience. Bisitahin ang Bitwarden.com upang matuto nang higit pa tungkol sa Bitwarden Secrets Manager at Bitwarden Passwordless.dev!</value>
+Komboe is based on Vaultwarden and Komboe clients and is not affiliated with or endorsed by Bitwarden Inc. or the Vaultwarden project. Source code: https://github.com/GoDeskio/Komboe</value>
   </data>
   <data name="AssetTitle" xml:space="preserve">
-    <value>Sa bahay, sa trabaho, o kahit saan, madaling pinoprotektahan ng Bitwarden ang lahat ng iyong mga password, passkey, at sensitibong impormasyon.</value>
+    <value>Komboe is an open-source, zero-knowledge password manager for families and teams.</value>
   </data>
   <data name="ScreenshotSync" xml:space="preserve">
     <value>I-sync at i-access ang iyong kahadeyero mula sa maraming mga aparato</value>

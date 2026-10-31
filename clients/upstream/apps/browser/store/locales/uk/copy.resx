@@ -118,58 +118,26 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Name" xml:space="preserve">
-    <value>Bitwarden – менеджер паролів</value>
+    <value>Komboe Password Manager</value>
   </data>
   <data name="Summary" xml:space="preserve">
-    <value>Вдома, на роботі чи в дорозі, Bitwarden захищає ваші паролі, ключі доступу та конфіденційну інформацію.</value>
+    <value>Komboe is an open-source, zero-knowledge password manager for families and teams.</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Визнаний найкращим менеджером паролів виданнями PCMag, WIRED, The Verge, CNET, G2 та іншими!
+    <value>Komboe is an open-source, zero-knowledge password manager for families and teams.
 
-ЗАХИСТІТЬ СВОЄ ЦИФРОВЕ ЖИТТЯ
-Убезпечте своє цифрове життя та захистіться від витоків даних, генеруючи та зберігаючи унікальні надійні паролі для кожного облікового запису. Зберігайте все в наскрізно зашифрованому сховищі паролів, доступ до якого маєте тільки ви.
+Store passwords, passkeys, 2FA codes, secure notes and cards in an end-to-end encrypted vault. Your vault is encrypted on your device before it is synced; the server never receives your master password or vault keys.
 
-ДОСТУП ДО ДАНИХ БУДЬ-ДЕ, БУДЬ-КОЛИ, НА БУДЬ-ЯКОМУ ПРИСТРОЇ
-Легко зберігайте необмежену кількість паролів у безпеці на необмеженій кількості пристроїв, а також керуйте й діліться ними.
+- Password generator and autofill
+- Passkeys and TOTP codes
+- Secure sharing with family members and teams, with groups and roles
+- Email aliases
+- Self-hostable server
 
-КОЖЕН ПОВИНЕН МАТИ ІНСТРУМЕНТИ ДЛЯ БЕЗПЕКИ В ІНТЕРНЕТІ
-Використовуйте Bitwarden безплатно без реклами або продажу даних. Bitwarden вважає, що кожен повинен мати можливість залишатися в безпеці в Інтернеті. Завдяки тарифним планам Преміум можна отримати доступ до розширених можливостей.
-
-РОЗШИРТЕ МОЖЛИВОСТІ СВОЇХ КОМАНД ЗА ДОПОМОГОЮ BITWARDEN
-Плани для команд і компаній мають професійні бізнес-функції. Вони передбачають інтеграцію єдиного входу (SSO), власне розміщення, інтеграцію каталогів та забезпечення SCIM, глобальні політики, доступ до API, журнали подій тощо.
-
-Використовуйте Bitwarden для захисту персоналу та обміну конфіденційною інформацією з колегами.
-
-
-Інші причини для вибору Bitwarden:
-
-Шифрування світового класу
-Паролі захищаються за допомогою досконалого наскрізного шифрування (AES-256, хешуванням із сіллю і PBKDF2 SHA-256), тому ваші дані завжди зберігаються приватно і в безпеці.
-
-Сторонні аудити
-Bitwarden регулярно проводить комплексні аудити безпеки із залученням третіх сторін – відомих компаній у сфері безпеки. Під час цих щорічних аудитів проводиться оцінка програмного коду і тестування на проникнення через IP-адреси Bitwarden, сервери та вебпрограми.
-
-Розширена 2FA
-Захистіть свої дані входу за допомогою стороннього автентифікатора, кодів, що надсилаються електронною поштою, або облікових даних FIDO2 WebAuthn, як-от апаратний ключ безпеки або ключ доступу.
-
-Відправлення Bitwarden
-Передавайте дані безпосередньо іншим користувачам, зберігаючи наскрізне шифрування та обмежуючи їх викриття.
-
-Вбудований генератор
-Створюйте довгі, складні та особливі паролі, а також унікальні імена користувачів для кожного сайту, який ви відвідуєте. Користуйтеся інтеграцією з провайдерами псевдонімів електронної пошти для забезпечення додаткової приватності.
-
-Переклад різними мовами
-Bitwarden перекладено понад 60 мовами завдяки зусиллям нашої світової спільноти на Crowdin.
-
-Програми для різних платформ
-Захищайте конфіденційні дані та діліться ними в межах свого сховища Bitwarden з будь-якого браузера, мобільного пристрою або комп'ютерної ОС, а також користуйтеся іншими можливостями.
-
-Bitwarden захищає не лише паролі
-Комплексні рішення для керування наскрізно зашифрованими обліковими даними від Bitwarden дають змогу організаціям захищати все, включно з секретами розробників та ключами доступу. Відвідайте Bitwarden.com, щоб дізнатися більше про Менеджер секретів Bitwarden і Bitwarden Passwordless.dev!
-</value>
+Komboe is based on Vaultwarden and Komboe clients and is not affiliated with or endorsed by Bitwarden Inc. or the Vaultwarden project. Source code: https://github.com/GoDeskio/Komboe</value>
   </data>
   <data name="AssetTitle" xml:space="preserve">
-    <value>Вдома, на роботі чи в дорозі, Bitwarden захищає ваші паролі, ключі доступу та конфіденційну інформацію.</value>
+    <value>Komboe is an open-source, zero-knowledge password manager for families and teams.</value>
   </data>
   <data name="ScreenshotSync" xml:space="preserve">
     <value>Синхронізуйте й отримуйте доступ до свого сховища на різних пристроях</value>

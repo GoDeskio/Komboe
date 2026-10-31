@@ -118,55 +118,26 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Name" xml:space="preserve">
-    <value>Bitwarden Password Manager</value>
+    <value>Komboe Password Manager</value>
   </data>
   <data name="Summary" xml:space="preserve">
-    <value>无论是在家中、工作中还是在旅途中，Bitwarden 都可以轻松地保护您的所有密码、通行密钥和敏感信息。</value>
+    <value>Komboe is an open-source, zero-knowledge password manager for families and teams.</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>被 PCMag、WIRED、The Verge、CNET、G2 等评选为最佳的密码管理器！
+    <value>Komboe is an open-source, zero-knowledge password manager for families and teams.
 
-守护您的数字生活
-为每个账户生成并保存独特且强大的密码，守护您的数字生活，防止数据泄露。所有信息均存储在只有您才能访问的端到端加密密码库中。
+Store passwords, passkeys, 2FA codes, secure notes and cards in an end-to-end encrypted vault. Your vault is encrypted on your device before it is synced; the server never receives your master password or vault keys.
 
-随时随地在任何设备上访问您的数据
-轻松管理、存储、保护和共享无限数量的密码，不受任何限制，支持无限设备。
+- Password generator and autofill
+- Passkeys and TOTP codes
+- Secure sharing with family members and teams, with groups and roles
+- Email aliases
+- Self-hostable server
 
-人人皆应享有的网络安全工具
-Bitwarden 提供无广告、不出售数据的免费服务。Bitwarden 认为每个人都应享有网络安全防护的权利。高级版计划提供更多高级功能。
-
-使用 Bitwarden 为您的团队赋能
-团队版与企业版计划配备专业的商业功能。包括 SSO 集成、自托管、目录集成和 SCIM 配置、全局策略、API 访问、事件日志等等。
-
-
-选择 Bitwarden 的更多理由：
-
-世界一流的加密技术
-密码受到高级端到端加密（AES-256 位加密、盐化哈希、以及 PBKDF2 SHA-256 算法）的保护，确保您的数据绝对安全私密。
-
-第三方审计
-Bitwarden 定期与知名安全公司合作进行全面的第三方安全审计。这些年度审计包括对 Bitwarden IP、服务器和网页应用程序的源代码评估和渗透测试。
-
-高级 2FA
-使用第三方身份验证器、电子邮件代码或 FIDO2 WebAuthn 凭证（如硬件安全密钥/通行密钥）保护您的登录信息。
-
-Bitwarden Send
-在保持端到端加密安全的同时，将数据直接传输给他人并限制暴露范围。
-
-内置生成器
-为您访问的每个网站创建长、复杂且独特的密码和唯一的用户名。与电子邮件别名提供商集成，进一步增强隐私保护。
-
-全球化翻译
-Bitwarden 提供超过 60 种语言的翻译，由全球社区通过 Crowdin 平台协作翻译。
-
-跨平台应用程序
-通过任何浏览器、移动设备、桌面操作系统等，保护和共享 Bitwarden 密码库中的敏感数据。
-
-Bitwarden 保护的不仅仅是密码
-Bitwarden 提供的端到端加密凭证管理解决方案使组织能够保护一切，包括开发人员机密和通行密钥体验。访问 Bitwarden.com，了解有关 Bitwarden Secrets Manager 和 Bitwarden Passwordless.dev 的更多信息！</value>
+Komboe is based on Vaultwarden and Komboe clients and is not affiliated with or endorsed by Bitwarden Inc. or the Vaultwarden project. Source code: https://github.com/GoDeskio/Komboe</value>
   </data>
   <data name="AssetTitle" xml:space="preserve">
-    <value>无论是在家中、工作中还是在旅途中，Bitwarden 都可以轻松地保护您的所有密码、通行密钥和敏感信息。</value>
+    <value>Komboe is an open-source, zero-knowledge password manager for families and teams.</value>
   </data>
   <data name="ScreenshotSync" xml:space="preserve">
     <value>在多个设备间同步和访问您的密码库</value>

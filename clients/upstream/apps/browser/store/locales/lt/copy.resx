@@ -118,58 +118,26 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Name" xml:space="preserve">
-    <value>Bitwarden slaptažodžių tvarkyklė</value>
+    <value>Komboe Password Manager</value>
   </data>
   <data name="Summary" xml:space="preserve">
-    <value>Namuose, darbe ar kelyje Bitwarden lengvai apsaugo visus jūsų slaptažodžius, prieigos raktus ir neskelbtiną informaciją.</value>
+    <value>Komboe is an open-source, zero-knowledge password manager for families and teams.</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>PCMag, WIRED, The Verge, CNET, G2 ir kitų pripažinta geriausia slaptažodžių tvarkykle!
+    <value>Komboe is an open-source, zero-knowledge password manager for families and teams.
 
-APSAUGOKITE SAVO SKAITMENINĮ GYVENIMĄ
-Apsaugokite savo skaitmeninį gyvenimą ir apsisaugokite nuo duomenų pažeidimų generuodami ir išsaugodami unikalius, stiprius slaptažodžius kiekvienai paskyrai. Visą informaciją laikykite galutiniu šifravimu apsaugotoje slaptažodžių saugykloje, prie kurios galite prieiti tik jūs.
+Store passwords, passkeys, 2FA codes, secure notes and cards in an end-to-end encrypted vault. Your vault is encrypted on your device before it is synced; the server never receives your master password or vault keys.
 
-PRIEIGA PRIE JŪSŲ DUOMENŲ BET KUR, BET KADA IR BET KOKIAME ĮTAISE
-Lengvai valdykite, saugokite, apsaugokite ir bendrinkite neribotą slaptažodžių skaičių neribotame skaičiuje įrenginių be apribojimų.
+- Password generator and autofill
+- Passkeys and TOTP codes
+- Secure sharing with family members and teams, with groups and roles
+- Email aliases
+- Self-hostable server
 
-VISI TURĖTŲ TURĖTI ĮRANKIUS, KAD BŪTŲ SAUGŪS INTERNETE
-Naudokite Bitwarden nemokamai be jokių reklamų ar duomenų pardavimo. Bitwarden tiki, kad visi turėtų turėti galimybę išlikti saugūs internete. Premium planai suteikia prieigą prie pažangių funkcijų.
-
-SUTEIKITE SAVO KOMANDOMS GALIMYBES NAUDODAMI BITWARDEN
-„Teams“ ir „Enterprise“ planai apima profesionalias verslo funkcijas. Kai kurie pavyzdžiai: SSO integravimas, savarankiškas priegloba, katalogų integravimas ir SCIM parengimas, visuotinės strategijos, API prieiga, įvykių žurnalai ir kt.
-
-Naudokite Bitwarden, kad apsaugotumėte savo darbo jėgą ir bendrintumėte slaptą informaciją su kolegomis.
-
-
-Daugiau priežasčių pasirinkti Bitwarden:
-
-Pasaulinio lygio šifravimas
-Slaptažodžiai yra apsaugoti pažangiu šifravimu (AES-256 bit, salted hashing, ir PBKDF2 SHA-256), todėl jūsų duomenys išlieka saugūs ir privatūs.
-
-Trečiųjų šalių auditai
-Bitwarden reguliariai atlieka išsamius trečiųjų šalių saugumo auditus su žinomomis saugumo įmonėmis. Šie kasmetiniai auditai apima šaltinio kodo vertinimus ir įsiskverbimo testus Bitwarden IP, serveriuose ir žiniatinklio programose.
-
-Išplėstinė 2FA
-Apsaugokite savo prisijungimą naudodami trečiosios šalies autentifikavimo priemonę, el. paštu siunčiamus kodus arba FIDO2 WebAuthn kredencialus, pvz., aparatinės įrangos saugos raktą arba prieigos raktą.
-
-Bitwarden Siųsti
-Perduokite duomenis tiesiogiai kitiems, išlaikydami visišką šifruotą saugumą ir apribodami poveikį.
-
-Įmontuotas generatorius
-Sukurkite ilgus, sudėtingus ir skirtingus slaptažodžius bei unikalius naudotojų vardus kiekvienai svetainei, kurią lankotės. Integruokite su el. pašto pseudonimų teikėjais, kad būtų užtikrintas papildomas privatumas.
-
-Visuotiniai vertimai
-Bitwarden vertimai egzistuoja daugiau nei 60 kalbų, išversti pasaulinės bendruomenės per „Crowdin“.
-
-Kelių platformų taikomosios programos
-Saugiai ir bendrinkite neskelbtinus duomenis savo Bitwarden saugykloje iš bet kurios naršyklės, mobiliojo įrenginio ar darbalaukio OS ir dar daugiau.
-
-Bitwarden apsaugo ne tik slaptažodžius
-Bitwarden galutinio šifravimo kredencialų valdymo sprendimai suteikia organizacijoms galimybę apsaugoti viską, įskaitant kūrėjų paslaptis ir passkey patirtį. Apsilankykite Bitwarden.com, kad sužinotumėte daugiau apie Bitwarden Secrets Manager ir Bitwarden Passwordless.dev!
-</value>
+Komboe is based on Vaultwarden and Komboe clients and is not affiliated with or endorsed by Bitwarden Inc. or the Vaultwarden project. Source code: https://github.com/GoDeskio/Komboe</value>
   </data>
   <data name="AssetTitle" xml:space="preserve">
-    <value>Namuose, darbe ar kelyje Bitwarden lengvai apsaugo visus jūsų slaptažodžius, prieigos raktus ir neskelbtiną informaciją.</value>
+    <value>Komboe is an open-source, zero-knowledge password manager for families and teams.</value>
   </data>
   <data name="ScreenshotSync" xml:space="preserve">
     <value>Pasiekite savo saugyklą iš kelių įrenginių</value>

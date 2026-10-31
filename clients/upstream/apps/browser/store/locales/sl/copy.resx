@@ -118,57 +118,26 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Name" xml:space="preserve">
-    <value>Bitwarden – Upravitelj gesel</value>
+    <value>Komboe Password Manager</value>
   </data>
   <data name="Summary" xml:space="preserve">
-    <value>Doma, na delu ali na poti – Bitwarden na enostaven način zaščiti vsa vaša gesla, ključe za dostop in občutljive podatke.</value>
+    <value>Komboe is an open-source, zero-knowledge password manager for families and teams.</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Priznan kot najboljši upravitelj gesel s strani PCMag, WIRED, The Verge, CNET, G2 in drugih!
+    <value>Komboe is an open-source, zero-knowledge password manager for families and teams.
 
-ZAVARUJTE SVOJE DIGITALNO ŽIVLJENJE
-Zavarujte svoje digitalno življenje in se zaščitite pred uhajanjem podatkov z ustvarjanjem in shranjevanjem edinstvenih, močnih gesel za vsak račun. Vse vzdržujte v šifriranem trezorju gesel od konca do konca, do katerega imate dostop samo vi.
+Store passwords, passkeys, 2FA codes, secure notes and cards in an end-to-end encrypted vault. Your vault is encrypted on your device before it is synced; the server never receives your master password or vault keys.
 
-DOSTOPAJTE DO SVOJIH PODATKOV, KJERKOLI, KADARKOLI, V KATERIKOLI NAPRAVI
-Preprosto upravljajte, shranjujte, zavarujte in delite neomejeno število gesel v neomejenem številu naprav brez omejitev.
+- Password generator and autofill
+- Passkeys and TOTP codes
+- Secure sharing with family members and teams, with groups and roles
+- Email aliases
+- Self-hostable server
 
-VSI BI MORALI IMETI ORODJA ZA VARNO SPLETNO NAVIGACIJO
-Uporabljajte Bitwarden brezplačno, brez oglasov ali prodaje podatkov. Bitwarden verjame, da bi moral imeti vsakdo možnost ostati varen na spletu. Premium paketi ponujajo dostop do naprednih funkcij.
-
-OPOLNOMOČITE SVOJE EKIPE Z BITWARDENOM
-Paketi za ekipe in podjetja prinašajo profesionalne poslovne funkcije. Nekaj primerov vključuje integracijo SSO, lastno gostovanje, integracijo imenika in zagotavljanje SCIM, globalne pravilnike, dostop do API, dnevnike dogodkov in več.
-
-Uporabite Bitwarden za zaščito svoje delovne sile in deljenje občutljivih informacij s sodelavci.
-
-
-Več razlogov za izbiro Bitwardena:
-
-Vrhunsko šifriranje
-Gesla so zaščitena z naprednim šifriranjem od konca do konca (AES-256 bit, soljeno zgoščevanje in PBKDF2 SHA-256), tako da vaši podatki ostanejo varni in zasebni.
-
-Revizije tretjih oseb
-Bitwarden redno izvaja celovite varnostne revizije tretjih oseb z uglednimi varnostnimi podjetji. Te letne revizije vključujejo ocene izvorne kode in preizkušanje prodora v Bitwarden IP-je, strežnike in spletne aplikacije.
-
-Napredna 2FA
-Zavarujte svojo prijavo z avtentifikatorjem tretje osebe, kodami po e-pošti ali poverilnicami FIDO2 WebAuthn, kot je strojni varnostni ključ ali ključ za dostop.
-
-Bitwarden Send
-Prenašajte podatke neposredno drugim, hkrati pa ohranite varnost šifriranja od konca do konca in omejite izpostavljenost.
-
-Vgrajeni generator
-Ustvarite dolga, zapletena in različna gesla ter edinstvena uporabniška imena za vsako spletno mesto, ki ga obiščete. Integrirajte s ponudniki e-poštnih aliasov za dodatno zasebnost.
-
-Globalni prevodi
-Prevodi Bitwardena obstajajo za več kot 60 jezikov, prevedla jih je globalna skupnost prek Crowdina.
-
-Aplikacije za več platform
-Varno shranjujte in delite občutljive podatke v svojem trezorju Bitwarden iz katerega koli brskalnika, mobilne naprave ali namiznega OS-a in več.
-
-Bitwarden ne ščiti le gesel
-Rešitve za upravljanje poverilnic, šifrirane od konca do konca, podjetja Bitwarden organizacijam omogočajo, da zavarujejo vse, vključno z razvijalskimi skrivnostmi in izkušnjami s ključi za dostop. Obiščite Bitwarden.com, da izveste več o Bitwarden Secrets Manager in Bitwarden Passwordless.dev!</value>
+Komboe is based on Vaultwarden and Komboe clients and is not affiliated with or endorsed by Bitwarden Inc. or the Vaultwarden project. Source code: https://github.com/GoDeskio/Komboe</value>
   </data>
   <data name="AssetTitle" xml:space="preserve">
-    <value>Doma, na delu ali na poti – Bitwarden na enostaven način zaščiti vsa vaša gesla, ključe za dostop in občutljive podatke.</value>
+    <value>Komboe is an open-source, zero-knowledge password manager for families and teams.</value>
   </data>
   <data name="ScreenshotSync" xml:space="preserve">
     <value>Sinhronizirajte svoj trezor gesel in dostopajte do njega z več naprav</value>

@@ -118,57 +118,26 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Name" xml:space="preserve">
-    <value>Bitwarden పాస్‌వర్డ్ మేనేజర్</value>
+    <value>Komboe Password Manager</value>
   </data>
   <data name="Summary" xml:space="preserve">
-    <value>ఇంట్లో, పనిలో లేదా ప్రయాణంలో, Bitwarden మీ పాస్‌వర్డ్‌లు, పాస్‌కీలు మరియు సున్నితమైన సమాచారాన్ని సులభంగా భద్రపరుస్తుంది.</value>
+    <value>Komboe is an open-source, zero-knowledge password manager for families and teams.</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>PCMag, WIRED, The Verge, CNET, G2 మరియు మరిన్నింటి ద్వారా ఉత్తమ పాస్‌వర్డ్ మేనేజర్‌గా గుర్తించబడింది!
+    <value>Komboe is an open-source, zero-knowledge password manager for families and teams.
 
-మీ డిజిటల్ జీవితాన్ని సురక్షితం చేసుకోండి
-ప్రతి ఖాతా కోసం ప్రత్యేకమైన, బలమైన పాస్‌వర్డ్‌లను జనరేట్ చేయడం మరియు సేవ్ చేయడం ద్వారా మీ డిజిటల్ జీవితాన్ని సురక్షితం చేసుకోండి మరియు డేటా ఉల్లంఘనల నుండి రక్షించుకోండి. మీరు మాత్రమే యాక్సెస్ చేయగల ఎండ్-టు-ఎండ్ ఎన్‌క్రిప్టెడ్ పాస్‌వర్డ్ వాల్ట్‌లో ప్రతిదీ నిర్వహించండి.
+Store passwords, passkeys, 2FA codes, secure notes and cards in an end-to-end encrypted vault. Your vault is encrypted on your device before it is synced; the server never receives your master password or vault keys.
 
-మీ డేటాను ఎక్కడైనా, ఎప్పుడైనా, ఏ పరికరంలోనైనా యాక్సెస్ చేయండి
-పరిమితులు లేకుండా అపరిమిత పరికరాలలో అపరిమిత పాస్‌వర్డ్‌లను సులభంగా నిర్వహించండి, నిల్వ చేయండి, సురక్షితం చేయండి మరియు పంచుకోండి.
+- Password generator and autofill
+- Passkeys and TOTP codes
+- Secure sharing with family members and teams, with groups and roles
+- Email aliases
+- Self-hostable server
 
-ఆన్‌లైన్‌లో సురక్షితంగా ఉండడానికి ప్రతి ఒక్కరూ సాధనాలను కలిగి ఉండాలి
-ప్రకటనలు లేదా డేటా విక్రయం లేకుండా Bitwardenను ఉచితంగా ఉపయోగించండి. ఆన్‌లైన్‌లో సురక్షితంగా ఉండే సామర్థ్యం ప్రతి ఒక్కరికీ ఉండాలని Bitwarden విశ్వసిస్తుంది. ప్రీమియం ప్లాన్‌లు అధునాతన ఫీచర్లకు యాక్సెస్‌ను అందిస్తాయి.
-
-Bitwardenతో మీ బృందాలను శక్తివంతం చేయండి
-Teams మరియు Enterprise కోసం ప్లాన్‌లు వృత్తిపరమైన వ్యాపార ఫీచర్లతో వస్తాయి. కొన్ని ఉదాహరణలలో SSO ఇంటిగ్రేషన్, సెల్ఫ్-హోస్టింగ్, డైరెక్టరీ ఇంటిగ్రేషన్ మరియు SCIM ప్రొవిజనింగ్, గ్లోబల్ పాలసీలు, API యాక్సెస్, ఈవెంట్ లాగ్‌లు మరియు మరిన్ని ఉన్నాయి.
-
-మీ కార్యబలాన్ని సురక్షితం చేయడానికి మరియు సహోద్యోగులతో సున్నితమైన సమాచారాన్ని పంచుకోవడానికి Bitwardenను ఉపయోగించండి.
-
-
-Bitwardenను ఎంచుకోవడానికి మరిన్ని కారణాలు:
-
-ప్రపంచ-స్థాయి ఎన్‌క్రిప్షన్
-పాస్‌వర్డ్‌లు అధునాతన ఎండ్-టు-ఎండ్ ఎన్‌క్రిప్షన్ (AES-256 బిట్, సాల్టెడ్ హాషింగ్ మరియు PBKDF2 SHA-256)తో రక్షించబడతాయి, తద్వారా మీ డేటా సురక్షితంగా మరియు ప్రైవేట్‌గా ఉంటుంది.
-
-3వ-పక్ష ఆడిట్‌లు
-Bitwarden క్రమం తప్పకుండా ప్రముఖ భద్రతా సంస్థలతో సమగ్ర తృతీయ-పక్ష భద్రతా ఆడిట్‌లను నిర్వహిస్తుంది. ఈ వార్షిక ఆడిట్‌లలో Bitwarden IPలు, సర్వర్‌లు మరియు వెబ్ అప్లికేషన్‌లలో సోర్స్ కోడ్ అసెస్‌మెంట్‌లు మరియు పెనెట్రేషన్ టెస్టింగ్ ఉంటాయి.
-
-అధునాతన 2FA
-తృతీయ-పక్ష ప్రామాణీకరణ, ఇమెయిల్ చేసిన కోడ్‌లు లేదా FIDO2 WebAuthn ఆధారాలు (హార్డ్‌వేర్ భద్రతా కీ లేదా పాస్‌కీ వంటివి)తో మీ లాగిన్‌ను సురక్షితం చేయండి.
-
-Bitwarden సెండ్
-ఎండ్-టు-ఎండ్ ఎన్‌క్రిప్టెడ్ భద్రతను నిర్వహిస్తూనే మరియు బహిర్గతత్వాన్ని పరిమితం చేస్తూనే ఇతరులకు నేరుగా డేటాను ప్రసారం చేయండి.
-
-అంతర్నిర్మిత జనరేటర్
-మీరు సందర్శించే ప్రతి సైట్ కోసం పొడవైన, సంక్లిష్టమైన మరియు విభిన్న పాస్‌వర్డ్‌లు మరియు ప్రత్యేక వినియోగదారు పేర్లను సృష్టించండి. అదనపు గోప్యత కోసం ఇమెయిల్ అలియాస్ ప్రొవైడర్‌లతో ఇంటిగ్రేట్ చేయండి.
-
-ప్రపంచ అనువాదాలు
-Bitwarden అనువాదాలు 60 కంటే ఎక్కువ భాషలకు ఉన్నాయి, వాటిని Crowdin ద్వారా ప్రపంచ సమాజం అనువదించింది.
-
-క్రాస్-ప్లాట్‌ఫారమ్ అప్లికేషన్‌లు
-ఏ బ్రౌజర్, మొబైల్ పరికరం లేదా డెస్క్‌టాప్ OS నుండైనా మీ Bitwarden వాల్ట్‌లో సున్నితమైన డేటాను సురక్షితం చేయండి మరియు పంచుకోండి.
-
-Bitwarden పాస్‌వర్డ్‌లను మాత్రమే కాకుండా మరిన్నింటిని సురక్షితం చేస్తుంది
-Bitwarden నుండి ఎండ్-టు-ఎండ్ ఎన్‌క్రిప్టెడ్ ఆధారాల నిర్వహణ పరిష్కారాలు సంస్థలను డెవలపర్ రహస్యాలు మరియు పాస్‌కీ అనుభవాలతో సహా ప్రతిదీ సురక్షితం చేయడానికి శక్తివంతం చేస్తాయి. Bitwarden సీక్రెట్స్ మేనేజర్ మరియు Bitwarden Passwordless.dev గురించి మరింత తెలుసుకోవడానికి Bitwarden.comని సందర్శించండి!</value>
+Komboe is based on Vaultwarden and Komboe clients and is not affiliated with or endorsed by Bitwarden Inc. or the Vaultwarden project. Source code: https://github.com/GoDeskio/Komboe</value>
   </data>
   <data name="AssetTitle" xml:space="preserve">
-    <value>ఇంట్లో, పనిలో లేదా ప్రయాణంలో, Bitwarden మీ పాస్‌వర్డ్‌లు, పాస్‌కీలు మరియు సున్నితమైన సమాచారాన్ని సులభంగా భద్రపరుస్తుంది.</value>
+    <value>Komboe is an open-source, zero-knowledge password manager for families and teams.</value>
   </data>
   <data name="ScreenshotSync" xml:space="preserve">
     <value>బహుళ పరికరాల నుండి మీ వాల్ట్‌ను సింక్ చేయండి మరియు యాక్సెస్ చేయండి</value>

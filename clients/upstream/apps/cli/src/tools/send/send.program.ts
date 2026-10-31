@@ -180,12 +180,12 @@ export class SendProgram extends BaseProgram {
         writeLn("");
         writeLn("  Examples:");
         writeLn("");
-        writeLn("    bw send get searchText");
-        writeLn("    bw send get id");
-        writeLn("    bw send get searchText --text");
-        writeLn("    bw send get searchText --file");
-        writeLn("    bw send get searchText --file --output ../Photos/photo.jpg");
-        writeLn("    bw send get searchText --file --raw");
+        writeLn("    komboe send get searchText");
+        writeLn("    komboe send get id");
+        writeLn("    komboe send get searchText --text");
+        writeLn("    komboe send get searchText --file");
+        writeLn("    komboe send get searchText --file --output ../Photos/photo.jpg");
+        writeLn("    komboe send get searchText --file --raw");
         writeLn("", true);
       })
       .action(async (id: string, options: OptionValues) => {

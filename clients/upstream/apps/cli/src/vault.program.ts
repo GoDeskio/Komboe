@@ -86,21 +86,21 @@ export class VaultProgram extends BaseProgram {
         writeLn("");
         writeLn("  Examples:");
         writeLn("");
-        writeLn("    bw list items");
-        writeLn("    bw list items --folderid 60556c31-e649-4b5d-8daf-fc1c391a1bf2");
+        writeLn("    komboe list items");
+        writeLn("    komboe list items --folderid 60556c31-e649-4b5d-8daf-fc1c391a1bf2");
         writeLn(
-          "    bw list items --search google --folderid 60556c31-e649-4b5d-8daf-fc1c391a1bf2",
+          "    komboe list items --search google --folderid 60556c31-e649-4b5d-8daf-fc1c391a1bf2",
         );
-        writeLn("    bw list items --url https://google.com");
-        writeLn("    bw list items --folderid null");
-        writeLn("    bw list items --organizationid notnull");
+        writeLn("    komboe list items --url https://google.com");
+        writeLn("    komboe list items --folderid null");
+        writeLn("    komboe list items --organizationid notnull");
         writeLn(
-          "    bw list items --folderid 60556c31-e649-4b5d-8daf-fc1c391a1bf2 --organizationid notnull",
+          "    komboe list items --folderid 60556c31-e649-4b5d-8daf-fc1c391a1bf2 --organizationid notnull",
         );
-        writeLn("    bw list items --trash");
-        writeLn("    bw list items --archived");
-        writeLn("    bw list folders --search email");
-        writeLn("    bw list org-members --organizationid 60556c31-e649-4b5d-8daf-fc1c391a1bf2");
+        writeLn("    komboe list items --trash");
+        writeLn("    komboe list items --archived");
+        writeLn("    komboe list folders --search email");
+        writeLn("    komboe list org-members --organizationid 60556c31-e649-4b5d-8daf-fc1c391a1bf2");
         writeLn("", true);
       })
       .action(async (object, cmd) => {
@@ -166,21 +166,21 @@ export class VaultProgram extends BaseProgram {
         writeLn("");
         writeLn("  Examples:");
         writeLn("");
-        writeLn("    bw get item 99ee88d2-6046-4ea7-92c2-acac464b1412");
-        writeLn("    bw get password https://google.com");
-        writeLn("    bw get totp google.com");
-        writeLn("    bw get notes google.com");
-        writeLn("    bw get dotenv my-app-prod > .env");
-        writeLn("    bw get exposed yahoo.com");
+        writeLn("    komboe get item 99ee88d2-6046-4ea7-92c2-acac464b1412");
+        writeLn("    komboe get password https://google.com");
+        writeLn("    komboe get totp google.com");
+        writeLn("    komboe get notes google.com");
+        writeLn("    komboe get dotenv my-app-prod > .env");
+        writeLn("    komboe get exposed yahoo.com");
         writeLn(
-          "    bw get attachment b857igwl1dzrs2 --itemid 99ee88d2-6046-4ea7-92c2-acac464b1412 " +
+          "    komboe get attachment b857igwl1dzrs2 --itemid 99ee88d2-6046-4ea7-92c2-acac464b1412 " +
             "--output ./photo.jpg",
         );
         writeLn(
-          "    bw get attachment photo.jpg --itemid 99ee88d2-6046-4ea7-92c2-acac464b1412 --raw",
+          "    komboe get attachment photo.jpg --itemid 99ee88d2-6046-4ea7-92c2-acac464b1412 --raw",
         );
-        writeLn("    bw get folder email");
-        writeLn("    bw get template folder");
+        writeLn("    komboe get folder email");
+        writeLn("    komboe get template folder");
         writeLn("", true);
       })
       .action(async (object, id, cmd) => {
@@ -227,10 +227,10 @@ export class VaultProgram extends BaseProgram {
       .on("--help", () => {
         writeLn("\n  Examples:");
         writeLn("");
-        writeLn("    bw create folder eyJuYW1lIjoiTXkgRm9sZGVyIn0K");
-        writeLn("    echo 'eyJuYW1lIjoiTXkgRm9sZGVyIn0K' | bw create folder");
+        writeLn("    komboe create folder eyJuYW1lIjoiTXkgRm9sZGVyIn0K");
+        writeLn("    echo 'eyJuYW1lIjoiTXkgRm9sZGVyIn0K' | komboe create folder");
         writeLn(
-          "    bw create attachment --file ./myfile.csv " +
+          "    komboe create attachment --file ./myfile.csv " +
             "--itemid 16b15b89-65b3-4639-ad2a-95052a6d8f66",
         );
         writeLn("", true);
@@ -274,14 +274,14 @@ export class VaultProgram extends BaseProgram {
         writeLn("\n  Examples:");
         writeLn("");
         writeLn(
-          "    bw edit folder 5cdfbd80-d99f-409b-915b-f4c5d0241b02 eyJuYW1lIjoiTXkgRm9sZGVyMiJ9Cg==",
+          "    komboe edit folder 5cdfbd80-d99f-409b-915b-f4c5d0241b02 eyJuYW1lIjoiTXkgRm9sZGVyMiJ9Cg==",
         );
         writeLn(
           "    echo 'eyJuYW1lIjoiTXkgRm9sZGVyMiJ9Cg==' | " +
-            "bw edit folder 5cdfbd80-d99f-409b-915b-f4c5d0241b02",
+            "komboe edit folder 5cdfbd80-d99f-409b-915b-f4c5d0241b02",
         );
         writeLn(
-          "    bw edit item-collections 78307355-fd25-416b-88b8-b33fd0e88c82 " +
+          "    komboe edit item-collections 78307355-fd25-416b-88b8-b33fd0e88c82 " +
             "WyI5NzQwNTNkMC0zYjMzLTRiOTgtODg2ZS1mZWNmNWM4ZGJhOTYiXQ==",
         );
         writeLn("", true);
@@ -325,11 +325,11 @@ export class VaultProgram extends BaseProgram {
       .on("--help", () => {
         writeLn("\n  Examples:");
         writeLn("");
-        writeLn("    bw delete item 7063feab-4b10-472e-b64c-785e2b870b92");
-        writeLn("    bw delete item 89c21cd2-fab0-4f69-8c6e-ab8a0168f69a --permanent");
-        writeLn("    bw delete folder 5cdfbd80-d99f-409b-915b-f4c5d0241b02");
+        writeLn("    komboe delete item 7063feab-4b10-472e-b64c-785e2b870b92");
+        writeLn("    komboe delete item 89c21cd2-fab0-4f69-8c6e-ab8a0168f69a --permanent");
+        writeLn("    komboe delete folder 5cdfbd80-d99f-409b-915b-f4c5d0241b02");
         writeLn(
-          "    bw delete attachment b857igwl1dzrs2 --itemid 310d5ffd-e9a2-4451-af87-ea054dce0f78",
+          "    komboe delete attachment b857igwl1dzrs2 --itemid 310d5ffd-e9a2-4451-af87-ea054dce0f78",
         );
         writeLn("", true);
       })
@@ -363,7 +363,7 @@ export class VaultProgram extends BaseProgram {
       .on("--help", () => {
         writeLn("\n  Examples:");
         writeLn("");
-        writeLn("    bw archive item 7063feab-4b10-472e-b64c-785e2b870b92");
+        writeLn("    komboe archive item 7063feab-4b10-472e-b64c-785e2b870b92");
         writeLn("", true);
       })
       .action(async (object, id) => {
@@ -392,7 +392,7 @@ export class VaultProgram extends BaseProgram {
       .on("--help", () => {
         writeLn("\n  Examples:");
         writeLn("");
-        writeLn("    bw restore item 7063feab-4b10-472e-b64c-785e2b870b92");
+        writeLn("    komboe restore item 7063feab-4b10-472e-b64c-785e2b870b92");
         writeLn("", true);
       })
       .action(async (object, id, cmd) => {
@@ -425,20 +425,20 @@ export class VaultProgram extends BaseProgram {
         writeLn("\n  Examples:");
         writeLn("");
         writeLn(
-          "    bw " +
+          "    komboe " +
             commandName +
             " 4af958ce-96a7-45d9-beed-1e70fabaa27a " +
             "6d82949b-b44d-468a-adae-3f3bacb0ea32 WyI5NzQwNTNkMC0zYjMzLTRiOTgtODg2ZS1mZWNmNWM4ZGJhOTYiXQ==",
         );
         writeLn(
-          "    echo '[\"974053d0-3b33-4b98-886e-fecf5c8dba96\"]' | bw encode | " +
-            "bw " +
+          "    echo '[\"974053d0-3b33-4b98-886e-fecf5c8dba96\"]' | komboe encode | " +
+            "komboe " +
             commandName +
             " 4af958ce-96a7-45d9-beed-1e70fabaa27a 6d82949b-b44d-468a-adae-3f3bacb0ea32",
         );
         if (deprecated) {
           writeLn("");
-          writeLn('--DEPRECATED See "bw move" for the current implementation--');
+          writeLn('--DEPRECATED See "komboe move" for the current implementation--');
         }
         writeLn("", true);
       })
@@ -466,7 +466,7 @@ export class VaultProgram extends BaseProgram {
         writeLn("\n  Examples:");
         writeLn("");
         writeLn(
-          "    bw confirm org-member 7063feab-4b10-472e-b64c-785e2b870b92 " +
+          "    komboe confirm org-member 7063feab-4b10-472e-b64c-785e2b870b92 " +
             "--organizationid 310d5ffd-e9a2-4451-af87-ea054dce0f78",
         );
         writeLn("", true);
@@ -509,14 +509,14 @@ export class VaultProgram extends BaseProgram {
       .on("--help", () => {
         writeLn("\n Examples:");
         writeLn("");
-        writeLn("    bw import --formats");
-        writeLn("    bw import bitwardencsv ./from/source.csv");
-        writeLn("    bw import keepass2xml keepass_backup.xml");
+        writeLn("    komboe import --formats");
+        writeLn("    komboe import bitwardencsv ./from/source.csv");
+        writeLn("    komboe import keepass2xml keepass_backup.xml");
         writeLn(
-          "    bw import cxf passkeys.cxf.json   (FIDO Credential Exchange Format, incl. passkeys)",
+          "    komboe import cxf passkeys.cxf.json   (FIDO Credential Exchange Format, incl. passkeys)",
         );
         writeLn(
-          "    bw import --organizationid cf14adc3-aca5-4573-890a-f6fa231436d9 keepass2xml keepass_backup.xml",
+          "    komboe import --organizationid cf14adc3-aca5-4573-890a-f6fa231436d9 keepass2xml keepass_backup.xml",
         );
       })
       .action(async (format, filepath, options) => {
@@ -571,14 +571,14 @@ export class VaultProgram extends BaseProgram {
         writeLn("");
         writeLn("  Examples:");
         writeLn("");
-        writeLn("    bw export");
-        writeLn("    bw --raw export");
-        writeLn("    bw export myPassword321");
-        writeLn("    bw export myPassword321 --format json");
-        writeLn("    bw export --output ./exp/bw.csv");
-        writeLn("    bw export myPassword321 --output bw.json --format json");
+        writeLn("    komboe export");
+        writeLn("    komboe --raw export");
+        writeLn("    komboe export myPassword321");
+        writeLn("    komboe export myPassword321 --format json");
+        writeLn("    komboe export --output ./exp/bw.csv");
+        writeLn("    komboe export myPassword321 --output bw.json --format json");
         writeLn(
-          "    bw export myPassword321 --organizationid 7063feab-4b10-472e-b64c-785e2b870b92",
+          "    komboe export myPassword321 --organizationid 7063feab-4b10-472e-b64c-785e2b870b92",
         );
         writeLn("", true);
       })

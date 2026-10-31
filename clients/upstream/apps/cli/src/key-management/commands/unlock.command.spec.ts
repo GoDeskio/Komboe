@@ -61,7 +61,7 @@ describe("UnlockCommand", () => {
       b64sessionKey +
       '"\n\n' +
       "You can also pass the session key to any command with the `--session` option. ex:\n" +
-      "$ bw list items --session " +
+      "$ komboe list items --session " +
       b64sessionKey,
   );
   expectedSuccessMessage.raw = b64sessionKey;

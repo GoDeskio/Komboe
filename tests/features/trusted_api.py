@@ -37,7 +37,7 @@ DEX_ISSUER = "http://127.0.0.1:5557/dex"
 EMAIL = "ada@komboe.test"
 
 
-def sso_login(opener_factory, device_id):
+def sso_login(opener_factory, device_id, device_type="10"):
     verifier = base64.urlsafe_b64encode(os.urandom(32)).rstrip(b"=").decode()
     challenge = base64.urlsafe_b64encode(hashlib.sha256(verifier.encode()).digest()).rstrip(b"=").decode()
     state = uuid.uuid4().hex
@@ -60,7 +60,7 @@ def sso_login(opener_factory, device_id):
         "code": q["code"][0],
         "code_verifier": verifier,
         "scope": "api offline_access",
-        "deviceType": "10",
+        "deviceType": device_type,
         "deviceIdentifier": device_id,
         "deviceName": "trusted-browser",
     }, base=VW)
@@ -163,6 +163,21 @@ staticPasswords:
             padding.OAEP(mgf=padding.MGF1(algorithm=hashes.SHA1()), algorithm=hashes.SHA1(), label=None),
         )
         assert got == user_key
+        # Only this web browser is trusted: no *other* device can approve a login.
+        assert trusted["HasLoginApprovingDevice"] is False, trusted
+        assert first["UserDecryptionOptions"]["TrustedDeviceOption"]["HasLoginApprovingDevice"] is False
+
+        # A trusted Linux desktop app is a real approver for a new browser.
+        desk = str(uuid.uuid4())
+        dl = sso_login(None, desk, "8")
+        ft.http("PUT", f"/api/devices/{desk}/keys", {"encryptedUserKey": enc_user, "encryptedPublicKey": enc_pub,
+                "encryptedPrivateKey": enc_priv}, token=dl["access_token"], base=VW)
+        newb = str(uuid.uuid4())
+        assert sso_login(None, newb)["UserDecryptionOptions"]["TrustedDeviceOption"]["HasLoginApprovingDevice"] is True
+        # The desktop does not count as its own approver when only it and a web browser are trusted.
+        assert sso_login(None, desk, "8")["UserDecryptionOptions"]["TrustedDeviceOption"]["HasLoginApprovingDevice"] is False
+        ft.http("POST", "/api/devices/untrust", {"devices": [desk]}, token=dl["access_token"], base=VW)
+        assert sso_login(None, newb)["UserDecryptionOptions"]["TrustedDeviceOption"]["HasLoginApprovingDevice"] is False
 
         ft.http("POST", "/api/devices/untrust", {"devices": [device_id]}, token=second["access_token"], base=VW)
         third = sso_login(None, device_id)

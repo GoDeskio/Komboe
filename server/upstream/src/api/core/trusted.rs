@@ -17,7 +17,7 @@ use crate::{
     db::{
         DbConn,
         models::{Device, DeviceId, UserId},
-        schema::komboe_device_trust,
+        schema::{devices, komboe_device_trust},
     },
 };
 
@@ -103,6 +103,34 @@ pub async fn any_trusted(user: &UserId, conn: &DbConn) -> bool {
     .await
 }
 
+/// Device types that can approve a login request (Bitwarden's LoginApprovingDeviceTypes:
+/// mobile and desktop apps).
+const APPROVING_TYPES: [i32; 7] = [0, 1, 15, 6, 7, 8, 16];
+
+/// True only when the user has *another* trusted device of an approving type that still
+/// exists for this user, so "approve from your other device" is an option that can work.
+pub async fn has_login_approving_device(current: &DeviceId, user: &UserId, conn: &DbConn) -> bool {
+    let (current, user) = (current.to_string(), user.to_string());
+    conn.run(move |c| {
+        let trusted: Vec<String> = komboe_device_trust::table
+            .filter(komboe_device_trust::user_uuid.eq(&user))
+            .filter(komboe_device_trust::device_uuid.ne(&current))
+            .select(komboe_device_trust::device_uuid)
+            .load(c)
+            .unwrap_or_default();
+        !trusted.is_empty()
+            && devices::table
+                .filter(devices::user_uuid.eq(&user))
+                .filter(devices::uuid.eq_any(trusted))
+                .filter(devices::atype.eq_any(APPROVING_TYPES))
+                .count()
+                .get_result::<i64>(c)
+                .unwrap_or(0)
+                > 0
+    })
+    .await
+}
+
 /// Login payload for this device.
 ///
 /// Accounts with no master password always receive the option, so the web vault
@@ -120,7 +148,7 @@ pub async fn decryption_option(
     }
     let mut option = json!({
         "HasAdminApproval": false,
-        "HasLoginApprovingDevice": true,
+        "HasLoginApprovingDevice": has_login_approving_device(device, user, conn).await,
         "HasManageResetPasswordPermission": false,
         "IsTdeOffboarding": false,
     });

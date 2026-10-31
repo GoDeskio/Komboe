@@ -21,6 +21,8 @@ import {
 import { Response } from "../models/response";
 import { CliUtils } from "../utils";
 
+import { buildKdbx } from "./kdbx-export";
+
 export class ExportCommand {
   constructor(
     private exportService: VaultExportServiceAbstraction,
@@ -50,6 +52,10 @@ export class ExportCommand {
     // Any other case => returns the options.format
     const format =
       password && options.format == "json" ? "encrypted_json" : (options.format ?? "csv");
+
+    if (format === "kdbx") {
+      return await this.exportKdbx(options);
+    }
 
     if (!this.isSupportedExportFormat(format)) {
       return Response.badRequest(
@@ -91,6 +97,35 @@ export class ExportCommand {
       return Response.error(e);
     }
     return await this.saveFile(exportContent, options);
+  }
+
+  private async exportKdbx(options: OptionValues): Promise<Response> {
+    try {
+      const password = await this.promptPassword(options.password ?? true);
+      if (!password) {
+        return Response.badRequest("A password is required for a KeePass (kdbx) export.");
+      }
+      const userId = await firstValueFrom(this.accountService.activeAccount$.pipe(getUserId));
+      const json =
+        options.organizationid == null
+          ? await this.exportService.getExport(userId, "json", null)
+          : await this.exportService.getOrganizationExport(
+              userId,
+              options.organizationid,
+              "json",
+              null,
+            );
+      const kdbx = await buildKdbx(json.data as string, password);
+      const eventType = options.organizationid
+        ? EventType.Organization_ClientExportedVault
+        : EventType.User_ClientExportedVault;
+      // eslint-disable-next-line @typescript-eslint/no-floating-promises
+      this.eventCollectionService.collect(eventType, null, true, options.organizationid);
+      const fileName = (json.fileName ?? "komboe_export.json").replace(/\.json$/, ".kdbx");
+      return await CliUtils.saveResultToFile(Buffer.from(kdbx), options.output, fileName);
+    } catch (e) {
+      return Response.error(e);
+    }
   }
 
   private async saveFile(exportContent: ExportedVault, options: OptionValues): Promise<Response> {

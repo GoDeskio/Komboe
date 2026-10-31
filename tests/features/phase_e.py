@@ -190,4 +190,7 @@ def _():
     ck = lambda c: dec(c["key"], u.uk) if c.get("key") else None  # per-item cipher key
     c = [c for c in u.api("GET", "/api/sync")["ciphers"] if u.d(c["name"], ck(c)) == "kp-entry"]
     assert c and u.d(c[0]["login"]["password"], ck(c[0])) == "kp-secret-77"
-    return ("partial", "KeePass 2 XML import via CLI verified (stored encrypted); native binary .kdbx import/export not implemented (export from KeePass as XML)")
+    k = subprocess.run([sys.executable, os.path.join(os.path.dirname(__file__), "kdbx_cli.py"), *os.environ.get("KOMBOE_CLI_SRC", "").split()], capture_output=True, text=True, timeout=600)
+    if k.returncode != 0:
+        raise RuntimeError((k.stdout + k.stderr)[-800:])
+    return ("done", "KeePass 2 XML + native .kdbx import via CLI (SDK), stored encrypted; `bw export --format kdbx` writes a password-protected KDBX 4 read back by pykeepass and re-imported (tests/features/kdbx_cli.py)")

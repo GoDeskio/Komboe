@@ -7,7 +7,10 @@ export type SendViews = {
   remaining: number | null;
 };
 
-export function sendViews(accessCount: number | null | undefined, maxAccessCount: number | null | undefined): SendViews {
+export function sendViews(
+  accessCount: number | null | undefined,
+  maxAccessCount: number | null | undefined,
+): SendViews {
   const used = Math.max(0, Number(accessCount) || 0);
   if (maxAccessCount == null || !Number.isFinite(Number(maxAccessCount))) {
     return { label: String(used), remaining: null };

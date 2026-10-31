@@ -305,7 +305,7 @@ def _():
     v.dev = None; v.login({"twoFactorProvider": "0", "twoFactorToken": totp(k, time.time() + 30), "twoFactorRemember": "0"})
     return DONE("TOTP 2FA enrol, enforced, login with code")
 P(48, "WebAuthn 2FA vendored; needs a virtual authenticator (Playwright, Phase B)")
-X(49, "Duo/YubiKey need external accounts; email 2FA needs server SMTP, and enabling it changes signup to mailed tokens (needs a dedicated test instance)")
+P(49, "email 2FA verified on the SMTP test instance (setup + login codes via Mailpit, tests/features/emails.py); Duo/YubiKey need external accounts")
 P(51, "login-with-device (auth-requests) vendored; needs a second client")
 P(52, "biometric/PIN unlock are desktop/mobile client features (Phase B)")
 X(53, "YubiKey challenge-response unlock: Komboe-original")

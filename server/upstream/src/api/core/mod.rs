@@ -240,7 +240,7 @@ fn config() -> Json<Value> {
         "gitHash": option_env!("GIT_REV"),
         "server": {
           "name": "Komboe",
-          "url": "https://github.com/dani-garcia/vaultwarden"
+          "url": "https://github.com/GoDeskio/Komboe"
         },
         "settings": {
             "disableUserRegistration": CONFIG.is_signup_disabled(),

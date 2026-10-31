@@ -97,7 +97,9 @@
               : ('sendViewsRemaining' | i18n: sendViews(s.accessCount, s.maxAccessCount).remaining)
           "
         >
-          <small bitTypography="body2">{{ sendViews(s.accessCount, s.maxAccessCount).label }}</small>
+          <small bitTypography="body2">{{
+            sendViews(s.accessCount, s.maxAccessCount).label
+          }}</small>
           @if (s.expirationDate) {
             <small bitTypography="body2" class="tw-block">
               {{ "expires" | i18n }} {{ s.expirationDate | date: "short" }}

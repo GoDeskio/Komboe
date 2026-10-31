@@ -230,6 +230,14 @@ if (ext && fs.existsSync(path.join(ext, "manifest.json"))) {
       throw new Error("no header Add button"); });
     await pp.screenshot({ path: path.join(SHOTS, "gpg-extension.png"), fullPage: true });
   }));
+  if (results["extension-login"] === "passed") await step("env-extension", withTimeout(150000, async () => {
+    await pp.goto(pp.url().replace(/#.*$/, "#/tabs/vault")); await pp.waitForTimeout(2500);
+    const { envFlow } = await import("./templates-flow.mjs");
+    await envFlow(pp, "ext", async () => { await pp.goto(pp.url().replace(/#.*$/, "#/tabs/vault")); await pp.waitForTimeout(2500); const bs = pp.getByRole("button", { name: /add/i }).filter({ visible: true });
+      for (let i = 0; i < await bs.count(); i++) { const b = await bs.nth(i).boundingBox(); if (b && b.y < 80) { await bs.nth(i).click(); return; } }
+      throw new Error("no header Add button"); });
+    await pp.screenshot({ path: path.join(SHOTS, "env-extension.png"), fullPage: true });
+  }));
   if (results["extension-login"] === "passed") await step("extension-autofill", withTimeout(90000, async () => {
     await ec.route("https://autofill.komboe.test/**", (r) => r.fulfill({ contentType: "text/html", body:
       '<!doctype html><title>Login</title><form><label>Email <input id="u" type="email" autocomplete="username"></label>' +

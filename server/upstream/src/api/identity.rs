@@ -50,7 +50,10 @@ pub fn routes() -> Vec<Route> {
         prevalidate,
         authorize,
         oidcsignin,
-        oidcsignin_error
+        oidcsignin_error,
+        saml_metadata,
+        saml_acs,
+        saml_signin
     ]
 }
 
@@ -1275,6 +1278,73 @@ async fn oidcsignin_redirect(
     debug!("Redirection to {url}");
 
     Ok(Redirect::temporary(String::from(url)))
+}
+
+#[get("/saml/metadata")]
+fn saml_metadata() -> ApiResult<(rocket::http::ContentType, String)> {
+    if !(CONFIG.sso_enabled() && CONFIG.sso_saml_enabled()) {
+        err!("SAML SSO is not enabled")
+    }
+    Ok((rocket::http::ContentType::XML, crate::saml::sp_metadata()))
+}
+
+#[derive(FromForm)]
+struct SamlAcsData {
+    #[field(name = "SAMLResponse")]
+    saml_response: String,
+    #[field(name = "RelayState")]
+    relay_state: String,
+}
+
+// The IdP POSTs here cross-site, so the Lax binding cookie is not available yet.
+// The verified result is stored on the SsoAuth row; the browser is then sent (top-level GET, cookie present)
+// to /connect/saml-signin, which checks the binding cookie before any code is issued.
+#[post("/connect/saml-acs", data = "<data>")]
+async fn saml_acs(data: Form<SamlAcsData>, conn: DbConn) -> ApiResult<Redirect> {
+    if !(CONFIG.sso_enabled() && CONFIG.sso_saml_enabled()) {
+        err!("SAML SSO is not enabled")
+    }
+    let data = data.into_inner();
+    let state = sso::decode_state(&data.relay_state)?;
+    let Some(mut sso_auth) = SsoAuth::find(&state, &conn).await else {
+        err!(format!("Cannot retrieve sso_auth for {}", state.escape_debug()))
+    };
+    if sso_auth.auth_response.is_some() || sso_auth.code_response.is_some() {
+        err!("SAML response already consumed for this sign-in")
+    }
+    let user = match crate::saml::verify_response(&data.saml_response, &sso_auth.nonce) {
+        Ok(u) => u,
+        Err(e) => {
+            sso_auth.delete(&conn).await?;
+            return Err(e);
+        }
+    };
+    sso_auth.auth_response = Some(user);
+    sso_auth.updated_at = Utc::now().naive_utc();
+    sso_auth.save(&conn).await?;
+
+    let mut url = match url::Url::parse(&format!("{}/identity/connect/saml-signin", CONFIG.domain())) {
+        Ok(u) => u,
+        Err(e) => err!(format!("Invalid domain: {e}")),
+    };
+    url.query_pairs_mut().append_pair("state", &data.relay_state);
+    Ok(Redirect::to(String::from(url)))
+}
+
+#[get("/connect/saml-signin?<state>")]
+async fn saml_signin(state: String, cookies: &CookieJar<'_>, mut conn: DbConn) -> ApiResult<Redirect> {
+    if !(CONFIG.sso_enabled() && CONFIG.sso_saml_enabled()) {
+        err!("SAML SSO is not enabled")
+    }
+    let decoded = sso::decode_state(&state)?;
+    let Some(sso_auth) = SsoAuth::find(&decoded, &conn).await else {
+        err!(format!("Cannot retrieve sso_auth for {}", decoded.escape_debug()))
+    };
+    if sso_auth.auth_response.is_none() || sso_auth.code_response.is_some() {
+        err!("No pending SAML result for this sign-in")
+    }
+    let code: OIDCCode = data_encoding::BASE64URL_NOPAD.encode(&crypto::get_random_bytes::<32>()).into();
+    oidcsignin_redirect(state, code, None, cookies, &mut conn).await
 }
 
 #[derive(Debug, Clone, Default, FromForm)]

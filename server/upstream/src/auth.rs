@@ -1363,7 +1363,9 @@ pub async fn refresh_tokens(
     };
 
     let auth_tokens = match refresh_claims.sub {
-        AuthMethod::Sso if CONFIG.sso_enabled() && CONFIG.sso_auth_only_not_session() => {
+        AuthMethod::Sso
+            if CONFIG.sso_enabled() && (CONFIG.sso_auth_only_not_session() || CONFIG.sso_saml_enabled()) =>
+        {
             AuthTokens::new(&device, &user, refresh_claims.sub, client_id)
         }
         AuthMethod::Sso if CONFIG.sso_enabled() => {

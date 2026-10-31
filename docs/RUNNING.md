@@ -150,3 +150,7 @@ Built on the box into `/workspace/artifacts` (not committed). Browser zips: `npm
 | komboe-desktop-win-x64-setup.exe | `6ad82a1977b75b468fe40079516d053113fa3cf088d36f1e5283802dc1bba47b` | stale: 2026-10-30 build (rebuild on the Windows machine pending) |
 | komboe-desktop-win-x64.zip | `b969178198095af5dbb45d5b406cf5b1f318aba32821ed71683ac3937957a919` | stale: 2026-10-30 build |
 | komboe-android-debug.apk | `ea466caa4317a91d2d349ae26acefa20a75fe9b2cf00bcc84a26a62140d75dbc` | 2026-10-31 fdroid debug build from main 0c7edc5, package io.komboe.android |
+
+## Secret references (`scripts/komboe-run.mjs`)
+Set env values to `komboe://<item>/<field>` (field: `username`, `password`, `notes`, `uri`, or a custom field name), unlock the vault (`BW_SESSION`), then run
+`node scripts/komboe-run.mjs [--env-file .env] -- <command>`. The Komboe CLI decrypts each item on your machine. Values go only to the child process environment; nothing is printed or sent to the server. Tests: `node --test tests/run/komboe-run.test.mjs`.

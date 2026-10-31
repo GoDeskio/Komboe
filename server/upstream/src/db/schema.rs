@@ -457,4 +457,28 @@ table! {
     }
 }
 
-allow_tables_to_appear_in_same_query!(komboe_org_plans, komboe_split_requests, komboe_alias_keys, komboe_aliases);
+table! {
+    komboe_tags (uuid) {
+        uuid -> Text,
+        user_uuid -> Text,
+        name -> Text,
+        created_at -> Timestamp,
+        updated_at -> Timestamp,
+    }
+}
+
+table! {
+    komboe_cipher_tags (cipher_uuid, tag_uuid) {
+        cipher_uuid -> Text,
+        tag_uuid -> Text,
+    }
+}
+
+allow_tables_to_appear_in_same_query!(
+    komboe_org_plans,
+    komboe_split_requests,
+    komboe_alias_keys,
+    komboe_aliases,
+    komboe_tags,
+    komboe_cipher_tags
+);

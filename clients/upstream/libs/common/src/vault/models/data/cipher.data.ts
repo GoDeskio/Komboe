@@ -21,6 +21,7 @@ export class CipherData {
   id: string = "";
   organizationId?: string;
   folderId?: string;
+  tagIds: string[] = [];
   edit: boolean = false;
   viewPassword: boolean = true;
   permissions?: CipherPermissionsApi;
@@ -60,6 +61,7 @@ export class CipherData {
     this.id = response.id;
     this.organizationId = response.organizationId;
     this.folderId = response.folderId;
+    this.tagIds = response.tagIds || [];
     this.edit = response.edit;
     this.viewPassword = response.viewPassword;
     this.permissions = response.permissions;

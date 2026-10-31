@@ -20,6 +20,7 @@ import { FolderService } from "@bitwarden/common/vault/abstractions/folder/folde
 import { SearchService } from "@bitwarden/common/vault/abstractions/search.service";
 import { CipherView } from "@bitwarden/common/vault/models/view/cipher.view";
 import { KeyService } from "@bitwarden/key-management";
+import { EncString, EncryptService } from "@bitwarden/legacy-crypto";
 
 import { CollectionResponse } from "../admin-console/models/response/collection.response";
 import { OrganizationUserResponse } from "../admin-console/models/response/organization-user.response";
@@ -45,6 +46,7 @@ export class ListCommand {
     private keyService: KeyService,
     private cliRestrictedItemTypesService: CliRestrictedItemTypesService,
     private cipherArchiveService: CipherArchiveService,
+    private encryptService: EncryptService,
   ) {}
 
   async run(object: string, cmdOptions: Record<string, any>): Promise<Response> {
@@ -52,6 +54,8 @@ export class ListCommand {
     switch (object.toLowerCase()) {
       case "items":
         return await this.listCiphers(normalizedOptions);
+      case "tags":
+        return await this.listTags();
       case "folders":
         return await this.listFolders(normalizedOptions);
       case "collections":
@@ -65,6 +69,18 @@ export class ListCommand {
       default:
         return Response.badRequest("Unknown object.");
     }
+  }
+
+  private async listTags() {
+    const activeUserId = await firstValueFrom(this.accountService.activeAccount$.pipe(getUserId));
+    const key = await firstValueFrom(this.keyService.userKey$(activeUserId));
+    const raw = await this.apiService.getKomboeTags();
+    const tags = [];
+    for (const row of raw?.data ?? []) {
+      const name = key ? await this.encryptService.decryptString(new EncString(row.name), key) : row.name;
+      tags.push({ id: row.id, name, cipherIds: row.cipherIds ?? [] });
+    }
+    return Response.success(new ListResponse(tags as any));
   }
 
   private async listCiphers(options: Options) {

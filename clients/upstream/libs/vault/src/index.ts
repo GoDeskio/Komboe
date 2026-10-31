@@ -1,3 +1,4 @@
+export { KomboeTagsComponent } from "./komboe-tags/komboe-tags.component";
 export { VaultFabComponent } from "./components/fab/fab.component";
 export {
   AtRiskPasswordCalloutService,

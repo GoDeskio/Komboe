@@ -196,6 +196,54 @@ class VaultCryptoTest {
     }
 
     @Test
+    fun fido2RegisterAndAuthenticateRoundTrip() {
+        val rpId = "komboe.test"
+        val challenge = "c2hhbGxlbmdl"
+        val origin = "https://komboe.test"
+        val clientData = Fido2Protocol.clientDataJson("webauthn.create", challenge, origin)
+        val hash = Fido2Protocol.sha256(clientData)
+        val created = Fido2Protocol.makeCredential(
+            rpId = rpId,
+            userHandle = "user-1".toByteArray(),
+            userVerified = true,
+            clientDataHash = hash,
+            credentialId = ByteArray(16) { it.toByte() },
+        )
+        assertEquals(77, Fido2Protocol.coseEs256(
+            java.security.KeyFactory.getInstance("EC").generatePublic(
+                java.security.spec.X509EncodedKeySpec(created.publicKeySpki),
+            ) as java.security.interfaces.ECPublicKey,
+        ).size)
+        assertTrue(created.attestationObject.isNotEmpty())
+        assertEquals("00010203-0405-0607-0809-0a0b0c0d0e0f", created.credentialId)
+
+        val assertionData = Fido2Protocol.clientDataJson("webauthn.get", challenge, origin)
+        val assertionHash = Fido2Protocol.sha256(assertionData)
+        val rawId = ByteArray(16) { it.toByte() }
+        val asserted = Fido2Protocol.getAssertion(
+            rpId = rpId,
+            credentialId = rawId,
+            privateKeyPkcs8 = created.privateKeyPkcs8,
+            userHandle = "user-1".toByteArray(),
+            userVerified = true,
+            clientDataHash = assertionHash,
+        )
+        assertTrue(
+            Fido2Protocol.verifyAssertion(
+                created.publicKeySpki,
+                asserted.authenticatorData,
+                assertionHash,
+                asserted.signature,
+            ),
+        )
+        // A credential stored the way the web vault stores it (base64url PKCS8, UUID id)
+        // still asserts.
+        val storedKey = Fido2Protocol.base64UrlDecode(Fido2Protocol.base64Url(created.privateKeyPkcs8))
+        val again = Fido2Protocol.getAssertion(rpId, rawId, storedKey, "user-1".toByteArray(), true, assertionHash)
+        assertTrue(Fido2Protocol.verifyAssertion(created.publicKeySpki, again.authenticatorData, assertionHash, again.signature))
+    }
+
+    @Test
     fun fingerprintUsesEffWordlist() {
         val phrase = VaultCrypto.fingerprintPhrase("ada@komboe.test", "komboe-public-key".toByteArray())
         assertEquals(5, phrase.split("-").size)

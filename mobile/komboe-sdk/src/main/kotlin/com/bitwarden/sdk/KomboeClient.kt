@@ -1,5 +1,5 @@
 // GPL-3.0-only stand-in for com.bitwarden:sdk-android.
-// Vault crypto goes through io.komboe.vaultcrypto. FIDO2 is not reimplemented.
+// Vault crypto and FIDO2 go through io.komboe.vaultcrypto.
 package com.bitwarden.sdk
 
 import com.bitwarden.auth.PasswordPreloginResponse
@@ -33,8 +33,12 @@ import com.bitwarden.crypto.SymmetricCryptoKey
 import com.bitwarden.crypto.TrustDeviceResponse
 import com.bitwarden.exporters.Account
 import com.bitwarden.exporters.ExportFormat
+import com.bitwarden.fido.AuthenticatorAssertionInner
+import com.bitwarden.fido.AuthenticatorAttestationInner
 import com.bitwarden.fido.CheckUserOptions
 import com.bitwarden.fido.ClientData
+import com.bitwarden.fido.ClientExtensionResults
+import com.bitwarden.fido.CredProps
 import com.bitwarden.fido.Fido2CredentialAutofillView
 import com.bitwarden.fido.Origin
 import com.bitwarden.fido.PublicKeyCredentialAuthenticatorAssertionResponse
@@ -77,6 +81,9 @@ import com.bitwarden.vault.CipherType
 import com.bitwarden.vault.CipherView
 import com.bitwarden.vault.DecryptCipherListResult
 import com.bitwarden.vault.EncryptionContext
+import com.bitwarden.vault.Fido2Credential
+import com.bitwarden.vault.Fido2CredentialNewView
+import com.bitwarden.vault.Fido2CredentialView
 import com.bitwarden.vault.Folder
 import com.bitwarden.vault.FolderView
 import com.bitwarden.vault.Login
@@ -89,6 +96,7 @@ import com.bitwarden.vault.PasswordHistoryView
 import com.bitwarden.vault.TotpException
 import com.bitwarden.vault.TotpResponse
 import io.komboe.vaultcrypto.AccountV2
+import io.komboe.vaultcrypto.Fido2Protocol
 import io.komboe.vaultcrypto.HashPurpose as KPurpose
 import io.komboe.vaultcrypto.KdfConfig
 import io.komboe.vaultcrypto.SymmetricKey
@@ -96,6 +104,8 @@ import io.komboe.vaultcrypto.VaultCrypto
 import java.io.Closeable
 import java.net.HttpURLConnection
 import java.net.URI
+import org.json.JSONArray
+import org.json.JSONObject
 import java.security.MessageDigest
 import java.security.SecureRandom
 import java.time.Instant
@@ -225,49 +235,151 @@ class PlatformApi(private val client: Client) {
         val publicKey = decodeKey(req.publicKey as? String)
         return VaultCrypto.fingerprintPhrase(material, publicKey)
     }
-    fun fido2() = Fido2Api()
+    fun fido2() = Fido2Api(client)
 }
 
 class PlatformState {
     fun registerClientManagedRepositories(@Suppress("unused") repositories: Repositories) {}
 }
 
-class Fido2Api {
-    fun client(
-        @Suppress("unused") userInterface: Fido2UserInterface,
-        @Suppress("unused") credentialStore: Fido2CredentialStore,
-    ) = Fido2Client()
+class Fido2Api(private val client: Client) {
+    fun client(userInterface: Fido2UserInterface, credentialStore: Fido2CredentialStore) =
+        Fido2Client(client, userInterface, credentialStore)
 
-    fun authenticator(
-        @Suppress("unused") userInterface: Fido2UserInterface,
-        @Suppress("unused") credentialStore: Fido2CredentialStore,
-    ) = Fido2Authenticator()
+    fun authenticator(userInterface: Fido2UserInterface, credentialStore: Fido2CredentialStore) =
+        Fido2Authenticator(userInterface, credentialStore)
 
-    fun getFido2AutofillCredentials(@Suppress("unused") cipherView: CipherView): List<Fido2CredentialAutofillView> =
-        emptyList()
+    fun getFido2AutofillCredentials(cipherView: CipherView): List<Fido2CredentialAutofillView> =
+        (cipherView.login?.fido2Credentials).orEmpty().map { credential ->
+            Fido2CredentialAutofillView(
+                credentialId = credentialIdBytes(credential.credentialId),
+                userNameForUi = credential.userName,
+                cipherId = cipherView.id ?: "",
+            )
+        }
 }
 
-class Fido2Client {
-    fun register(
-        @Suppress("unused") origin: Origin,
-        @Suppress("unused") request: String,
-        @Suppress("unused") clientData: ClientData,
-    ): PublicKeyCredentialAuthenticatorAttestationResponse =
-        throw UnsupportedOperationException("FIDO2 registration is not in the GPL vault-crypto build")
+class Fido2Client(
+    private val client: Client,
+    private val userInterface: Fido2UserInterface,
+    private val credentialStore: Fido2CredentialStore,
+) {
+    suspend fun register(
+        origin: Origin,
+        request: String,
+        clientData: ClientData,
+    ): PublicKeyCredentialAuthenticatorAttestationResponse {
+        val options = JSONObject(request).let { if (it.has("publicKey")) it.getJSONObject("publicKey") else it }
+        val rp = options.getJSONObject("rp")
+        val user = options.getJSONObject("user")
+        val algs = options.optJSONArray("pubKeyCredParams") ?: JSONArray()
+        val supportsEs256 = (0 until algs.length()).any { algs.getJSONObject(it).optInt("alg") == -7 }
+        if (!supportsEs256 && algs.length() > 0) error("relying party did not ask for ES256")
+        val picked = userInterface.checkUserAndPickCredentialForCreation(CheckUserOptions(), Fido2CredentialNewView())
+        val verified = picked.checkUserResult.userVerified
+        val rpId = rp.getString("id")
+        val userHandle = Fido2Protocol.base64UrlDecode(user.getString("id"))
+        val hash = clientDataHash(origin, clientData, "webauthn.create", options.getString("challenge"))
+        val created = Fido2Protocol.makeCredential(rpId, userHandle, verified, hash.first)
+        val resident = options.optJSONObject("authenticatorSelection")?.optString("residentKey")
+        val credential = Fido2CredentialView(
+            credentialId = created.credentialId,
+            keyValue = Fido2Protocol.base64Url(created.privateKeyPkcs8),
+            rpId = rpId,
+            rpName = rp.optString("name"),
+            userHandle = user.getString("id"),
+            userName = user.optString("name"),
+            userDisplayName = user.optString("displayName"),
+            counter = "0",
+            discoverable = if (resident == "required" || resident == "preferred") "true" else "false",
+            creationDate = Instant.now(),
+        )
+        val cipher = picked.cipher.cipher
+        val login = (cipher.login as? LoginView) ?: LoginView()
+        val updated = cipher.copy(
+            login = login.copy(
+                username = login.username?.takeIf { it.isNotBlank() } ?: credential.userName,
+                fido2Credentials = listOf(credential),
+            ),
+        )
+        credentialStore.saveCredential(client.vault().ciphers().encrypt(updated))
+        val rawId = credentialIdBytes(created.credentialId)
+        return PublicKeyCredentialAuthenticatorAttestationResponse(
+            id = Fido2Protocol.base64Url(rawId),
+            rawId = rawId,
+            ty = "public-key",
+            authenticatorAttachment = "platform",
+            response = AuthenticatorAttestationInner(
+                clientDataJson = hash.second,
+                attestationObject = created.attestationObject,
+                transports = listOf("internal", "hybrid"),
+                publicKeyAlgorithm = -7,
+                publicKey = created.publicKeySpki,
+                authenticatorData = created.authenticatorData,
+            ),
+            clientExtensionResults = ClientExtensionResults(credProps = CredProps(rk = credential.discoverable == "true")),
+        )
+    }
 
-    fun authenticate(
-        @Suppress("unused") origin: Origin,
-        @Suppress("unused") request: String,
-        @Suppress("unused") clientData: ClientData,
-    ): PublicKeyCredentialAuthenticatorAssertionResponse =
-        throw UnsupportedOperationException("FIDO2 authentication is not in the GPL vault-crypto build")
+    suspend fun authenticate(
+        origin: Origin,
+        request: String,
+        clientData: ClientData,
+    ): PublicKeyCredentialAuthenticatorAssertionResponse {
+        val options = JSONObject(request).let { if (it.has("publicKey")) it.getJSONObject("publicKey") else it }
+        val rpId = options.optString("rpId").ifBlank { error("assertion is missing rpId") }
+        val allow = options.optJSONArray("allowCredentials")
+        val ids = allow?.let { array ->
+            (0 until array.length()).map { Fido2Protocol.base64UrlDecode(array.getJSONObject(it).getString("id")) }
+        }
+        val matches = credentialStore.findCredentials(ids, rpId, null)
+        val selected = if (matches.size == 1) matches.first() else userInterface.pickCredentialForAuthentication(matches).cipher
+        val credential = selected.login?.fido2Credentials?.firstOrNull()
+            ?: error("selected cipher has no passkey")
+        val hash = clientDataHash(origin, clientData, "webauthn.get", options.getString("challenge"))
+        val rawId = credentialIdBytes(credential.credentialId)
+        val asserted = Fido2Protocol.getAssertion(
+            rpId = credential.rpId.ifBlank { rpId },
+            credentialId = rawId,
+            privateKeyPkcs8 = Fido2Protocol.base64UrlDecode(credential.keyValue),
+            userHandle = credential.userHandle?.let { Fido2Protocol.base64UrlDecode(it) } ?: ByteArray(0),
+            userVerified = userInterface.checkUser(CheckUserOptions(), UiHint()).userVerified,
+            clientDataHash = hash.first,
+            counter = credential.counter.toIntOrNull() ?: 0,
+        )
+        return PublicKeyCredentialAuthenticatorAssertionResponse(
+            id = Fido2Protocol.base64Url(rawId),
+            rawId = rawId,
+            ty = "public-key",
+            authenticatorAttachment = "platform",
+            response = AuthenticatorAssertionInner(
+                clientDataJson = hash.second,
+                authenticatorData = asserted.authenticatorData,
+                signature = asserted.signature,
+                userHandle = asserted.userHandle,
+            ),
+            clientExtensionResults = ClientExtensionResults(credProps = CredProps(rk = true)),
+        )
+    }
 }
 
-class Fido2Authenticator {
-    fun silentlyDiscoverCredentials(
-        @Suppress("unused") relyingPartyId: String,
-        @Suppress("unused") userHandle: ByteArray?,
-    ): List<Fido2CredentialAutofillView> = emptyList()
+class Fido2Authenticator(
+    @Suppress("unused") private val userInterface: Fido2UserInterface,
+    private val credentialStore: Fido2CredentialStore,
+) {
+    suspend fun silentlyDiscoverCredentials(
+        relyingPartyId: String,
+        userHandle: ByteArray?,
+    ): List<Fido2CredentialAutofillView> =
+        credentialStore.findCredentials(null, relyingPartyId, userHandle).flatMap { cipher ->
+            (cipher.login?.fido2Credentials).orEmpty().map { credential ->
+                Fido2CredentialAutofillView(
+                    credentialId = credentialIdBytes(credential.credentialId),
+                    userNameForUi = credential.userName,
+                    cipherId = cipher.id ?: "",
+                )
+            }
+        }
 }
 
 class LoginClient(private val client: Client) {
@@ -837,7 +949,7 @@ private fun Cipher.toView(key: SymmetricKey): CipherView {
                 },
                 totp = dec(it.totp, key),
                 autofillOnPageLoad = it.autofillOnPageLoad ?: false,
-                fido2Credentials = null,
+                fido2Credentials = it.fido2Credentials?.map { row -> row.viewed(key) },
             )
         },
         card = card?.viewed(key),
@@ -868,8 +980,8 @@ private fun Cipher.toListView(key: SymmetricKey): CipherListView {
         type = when (view.type) {
             CipherType.LOGIN -> CipherListViewType.Login(
                 LoginListView(
-                    fido2Credentials = null,
-                    hasFido2 = false,
+                    fido2Credentials = loginView?.fido2Credentials?.map { it.listed() },
+                    hasFido2 = loginView?.fido2Credentials?.isNotEmpty() == true,
                     username = loginView?.username,
                     totp = loginView?.totp,
                     uris = loginView?.uris,
@@ -924,7 +1036,7 @@ private fun CipherView.toCipher(wrappedKey: String, key: SymmetricKey): Cipher {
                 },
                 totp = enc(it.totp, key),
                 autofillOnPageLoad = it.autofillOnPageLoad,
-                fido2Credentials = null,
+                fido2Credentials = it.fido2Credentials?.map { row -> row.sealed(key) },
             )
         },
         identity = identity?.sealed(key),
@@ -1047,6 +1159,81 @@ private fun decodeKey(value: String?): ByteArray =
 private fun fingerprint(material: String, privateKey: ByteArray?): String {
     if (privateKey == null || privateKey.isEmpty()) return ""
     return VaultCrypto.fingerprintPhrase(material, privateKey)
+}
+
+private fun Fido2Credential.viewed(key: SymmetricKey) = Fido2CredentialView(
+    credentialId = dec(credentialId, key).orEmpty(),
+    keyType = dec(keyType, key) ?: "public-key",
+    keyAlgorithm = dec(keyAlgorithm, key) ?: "ECDSA",
+    keyCurve = dec(keyCurve, key) ?: "P-256",
+    keyValue = dec(keyValue, key).orEmpty(),
+    rpId = dec(rpId, key).orEmpty(),
+    rpName = dec(rpName, key),
+    userHandle = dec(userHandle, key),
+    userName = dec(userName, key),
+    userDisplayName = dec(userDisplayName, key),
+    counter = dec(counter, key) ?: "0",
+    discoverable = dec(discoverable, key) ?: "true",
+    creationDate = creationDate,
+)
+
+private fun Fido2CredentialView.sealed(key: SymmetricKey) = Fido2Credential(
+    credentialId = enc(credentialId, key).orEmpty(),
+    keyType = enc(keyType, key).orEmpty(),
+    keyAlgorithm = enc(keyAlgorithm, key).orEmpty(),
+    keyCurve = enc(keyCurve, key).orEmpty(),
+    keyValue = enc(keyValue, key).orEmpty(),
+    rpId = enc(rpId, key).orEmpty(),
+    rpName = enc(rpName, key),
+    userHandle = enc(userHandle, key),
+    userName = enc(userName, key),
+    userDisplayName = enc(userDisplayName, key),
+    counter = enc(counter, key).orEmpty(),
+    discoverable = enc(discoverable, key).orEmpty(),
+    creationDate = creationDate,
+)
+
+private fun Fido2CredentialView.listed() = Fido2Credential(
+    credentialId = credentialId,
+    rpId = rpId,
+    userName = userName,
+    userHandle = userHandle,
+    discoverable = discoverable,
+    creationDate = creationDate,
+)
+
+private fun credentialIdBytes(id: String): ByteArray {
+    if (id.startsWith("b64.")) return Fido2Protocol.base64UrlDecode(id.removePrefix("b64."))
+    val hex = id.replace("-", "")
+    if (hex.length == 32 && hex.all { it.isDigit() || it.lowercaseChar() in 'a'..'f' }) {
+        return ByteArray(16) { hex.substring(it * 2, it * 2 + 2).toInt(16).toByte() }
+    }
+    return runCatching { Fido2Protocol.base64UrlDecode(id) }.getOrDefault(id.toByteArray())
+}
+
+private fun clientDataHash(
+    origin: Origin,
+    clientData: ClientData,
+    type: String,
+    challenge: String,
+): Pair<ByteArray, ByteArray> {
+    val originString = when (origin) {
+        is Origin.Web -> origin.origin
+        is Origin.Android -> {
+            val hex = origin.asset.sha256CertFingerprint.orEmpty().filter { it != ':' }
+            val bytes = if (hex.length == 64) {
+                ByteArray(32) { hex.substring(it * 2, it * 2 + 2).toInt(16).toByte() }
+            } else {
+                ByteArray(0)
+            }
+            "android:apk-key-hash:" + Fido2Protocol.base64Url(bytes)
+        }
+    }
+    val packageName = (clientData as? ClientData.DefaultWithExtraData)?.androidPackageName
+    val json = Fido2Protocol.clientDataJson(type, challenge, originString, packageName)
+    val supplied = (clientData as? ClientData.DefaultWithCustomHash)?.hash
+    val hash = if (supplied != null && supplied.size == 32) supplied else Fido2Protocol.sha256(json)
+    return hash to json
 }
 
 private fun jsonString(value: String): String =

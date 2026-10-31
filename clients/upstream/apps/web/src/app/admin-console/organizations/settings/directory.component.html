@@ -8,6 +8,20 @@
     <bit-label>Directory URL</bit-label>
     <input bitInput type="text" formControlName="url" data-testid="ldap-url" />
   </bit-form-field>
+  <bit-form-control>
+    <input type="checkbox" bitCheckbox formControlName="startTls" data-testid="ldap-start-tls" />
+    <bit-label>Use StartTLS (for ldap:// URLs; ldaps:// is already TLS)</bit-label>
+  </bit-form-control>
+  <bit-form-field>
+    <bit-label>CA certificate (PEM, optional)</bit-label>
+    <textarea bitInput rows="4" formControlName="tlsCa" data-testid="ldap-tls-ca"
+      placeholder="-----BEGIN CERTIFICATE-----"></textarea>
+    <bit-hint *ngIf="hasCaCert" data-testid="ldap-ca-stored">A CA certificate is stored. Leave empty to keep it.</bit-hint>
+  </bit-form-field>
+  <bit-form-control *ngIf="hasCaCert">
+    <input type="checkbox" bitCheckbox formControlName="removeCa" data-testid="ldap-remove-ca" />
+    <bit-label>Remove stored CA certificate</bit-label>
+  </bit-form-control>
   <bit-form-field>
     <bit-label>Bind DN</bit-label>
     <input bitInput type="text" formControlName="bindDn" data-testid="ldap-bind-dn" />

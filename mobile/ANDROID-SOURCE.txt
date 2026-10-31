@@ -24,9 +24,9 @@ Rebuild
   # then, in a Komboe checkout at the matching revision:
   SRC=/path/to/android mobile/android-build.sh
 
-The fdroid debug build also links com.bitwarden:sdk-android 4.0.0-9318-3b2c8fc3
-from GitHub Packages (maven.pkg.github.com/bitwarden/sdk). That library is
-Bitwarden's SDK, under the Bitwarden Software Development Kit License Agreement,
-not the GPL. It is used unmodified. Its license is not the GPL text in LICENSE.txt.
+The fdroid debug build does not link com.bitwarden:sdk-android 4.0.0-9318-3b2c8fc3.
+That library is under the Bitwarden Software Development Kit License Agreement,
+not the GPL, and is not part of this APK. Vault encryption is the GPL-3.0-only
+code in mobile/vault-crypto and mobile/komboe-sdk of the Komboe repository.
 
 There is no admin password reset and no key escrow in this app.

@@ -13,8 +13,8 @@
 ## For Marcus (legal review before anything commercial)
 - Footer/about/manifest/plist copyright lines now read "© GoDesk" (Komboe). Upstream credit and license notices live in README.md and NOTICE;
   source-file copyright headers are unchanged. Confirm this satisfies GPL-3.0 §5(d)/AGPL "Appropriate Legal Notices" (README/NOTICE are linked from the repo).
-- Android: built from bitwarden/android (GPL-3.0) with the Bitwarden SDK (`com.bitwarden:sdk-android`, from sdk-internal,
-  GPL-3.0 per the npm package of the same source). Confirm before distribution.
+- Android: built from bitwarden/android (GPL-3.0-only, tag `v2026.10.1-bwpm`). The fdroid flavor does not link
+  `com.bitwarden:sdk-android` (Bitwarden SDK License). Vault crypto is `mobile/vault-crypto` (GPL-3.0-only). Confirm before distribution.
 
 ## Phase C branding gaps (closed)
 - Server picker (extension/desktop): Bitwarden cloud regions (bitwarden.com/.eu) are no longer offered; label reads "Choose your Komboe server" until a self-hosted URL is saved. Web vault on self-host already hides its region selector.

@@ -2,9 +2,7 @@ Komboe for Android
 License: GNU General Public License v3.0 only.
 The full license text is the file LICENSE.txt next to this notice inside the app package.
 
-This program is free software: you can redistribute it and/or modify it under the
-terms of the GNU General Public License as published by the Free Software Foundation,
-either version 3 of the License, or (at your option) any later version.
+This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, version 3.
 
 Corresponding source
 - Bitwarden Android, tag v2026.10.1-bwpm
@@ -24,9 +22,6 @@ Rebuild
   # then, in a Komboe checkout at the matching revision:
   SRC=/path/to/android mobile/android-build.sh
 
-The fdroid debug build does not link com.bitwarden:sdk-android 4.0.0-9318-3b2c8fc3.
-That library is under the Bitwarden Software Development Kit License Agreement,
-not the GPL, and is not part of this APK. Vault encryption is the GPL-3.0-only
-code in mobile/vault-crypto and mobile/komboe-sdk of the Komboe repository.
+Vault crypto is Komboe's own GPL-3.0 code in mobile/vault-crypto, built on Bouncy Castle (MIT). No Bitwarden SDK is linked.
 
 There is no admin password reset and no key escrow in this app.

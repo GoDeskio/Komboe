@@ -10,12 +10,14 @@ steps:
   - name: shellcheck
     image: koalaman/shellcheck-alpine:stable
     commands:
-      - shellcheck scripts/*.sh
+      # -S warning: scripts/import-upstream.sh:14 has an info-level SC2015 note.
+      - shellcheck -S warning scripts/*.sh
 
   - name: license-check
-    image: alpine/git
+    # alpine/git's entrypoint is git; RailYard doesn't override it, so use plain alpine.
+    image: alpine:3.20
     commands:
-      - apk add --no-cache bash grep >/dev/null
+      - apk add --no-cache bash grep git >/dev/null
       - bash scripts/check-licenses.sh
 
   - name: node-test
@@ -30,6 +32,7 @@ steps:
   - name: server-lint
     image: rust:1.99-bookworm
     commands:
+      - echo "PATH=$PATH"; export PATH=/usr/local/cargo/bin:$PATH
       - cd server/upstream
       - rustup component add rustfmt clippy
       - cargo fmt --all -- --check
@@ -39,6 +42,7 @@ steps:
     image: rust:1.99-bookworm
     depends_on: [server-lint]
     commands:
+      - export PATH=/usr/local/cargo/bin:$PATH
       - cd server/upstream
       - cargo test --features sqlite
 
@@ -46,6 +50,7 @@ steps:
     image: rust:1.99-bookworm
     depends_on: [server-test]
     commands:
+      - export PATH=/usr/local/cargo/bin:$PATH
       - cd server/upstream
       - cargo build --release --features sqlite
       - mkdir -p ../../railyard-out && cp target/release/vaultwarden ../../railyard-out/komboe-server

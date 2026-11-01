@@ -26,7 +26,7 @@ PRIV=HERO("Privacy Policy")+f'''
 <p>We do not sell or share personal information (as defined by the CCPA) and we honor Global Privacy Control.</p>
 <h2>Children</h2><p>Komboe is not directed to children under 13 (under 16 in the EEA/UK where required). We do not knowingly collect their data. If you believe a child has an account, contact us and we will delete it.</p>
 <h2>This website</h2><p>This marketing site collects no passwords and has no sign-in forms. {tbd("analytics choice; if any cookies or analytics are used, add consent and a cookie notice")}</p>
-<h2>Self-hosting</h2><p>If you run your own Komboe server, that server's operator, not us, controls the data on it. Data from our hosted service is governed by this policy; {SH_LONG} {SWITCH}.</p>
+<h2>Self-hosting</h2><p>If you run your own Komboe server, that server's operator, not us, controls the data on it. Data from our hosted service is governed by this policy. {SH_LONG} {SWITCH}.</p>
 <h2>Changes</h2><p>We will notify account holders by email at least [30] days before material changes take effect.</p></div></section>'''
 TERMS=HERO("Terms of Service")+f'''
 <p>These Terms are an agreement between you and GODESK IO LLC, an Arizona limited liability company ("GoDesk", "we"). <b>Effective:</b> [date]. <b>Last updated:</b> [date].</p>

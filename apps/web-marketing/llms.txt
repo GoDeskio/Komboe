@@ -15,7 +15,7 @@
 - [Terms of Service (draft)](https://komboe.com/terms.html): Draft Komboe terms of service for the hosted password manager. Pending legal review.
 
 ## Self-hosting
-A self-hosted Komboe server does not contact Komboe. It also does not contact Bitwarden, GitHub, Cloudflare, Have I Been Pwned, or the websites in the vault unless you turn that on. Desktop and CLI update checks stay off until you point them at a feed you host. Opening the exposed-passwords report sends a k-anonymity prefix to Have I Been Pwned. The web vault uses the server it was loaded from. Switches: https://github.com/GoDeskio/Komboe/blob/main/docs/RUNNING.md
+A self-hosted Komboe server does not contact Komboe. It also does not contact Bitwarden, GitHub, Cloudflare, or the websites in the vault unless you turn that on. Desktop and CLI update checks stay off until you point them at a feed you host. Have I Been Pwned is contacted only when you start a check yourself: opening the exposed-passwords report or pressing the breach-check button on a login. Each check sends only a k-anonymity hash prefix, never the password. The web vault uses the server it was loaded from. Until you save a server URL, the browser extension, desktop, CLI and Android apps default to the upstream Bitwarden cloud servers. Set your server URL when you first sign in. Switches: https://github.com/GoDeskio/Komboe/blob/main/docs/RUNNING.md
 
 ## Source
 - [GitHub](https://github.com/GoDeskio/Komboe)

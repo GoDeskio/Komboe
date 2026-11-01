@@ -59,3 +59,44 @@ shutil.copyfile(upstream_license, os.path.join(assets, "LICENSE.txt"))
 shutil.copyfile(os.path.join(ROOT, "mobile", "ANDROID-SOURCE.txt"), os.path.join(assets, "komboe-source.txt"))
 shutil.copyfile(os.path.join(ROOT, "THIRD-PARTY-NOTICES.md"), os.path.join(assets, "THIRD-PARTY-NOTICES.md"))
 print("rebrand gpl assets", "LICENSE.txt", "komboe-source.txt", "THIRD-PARTY-NOTICES.md")
+
+def patch(path, old, new, label):
+    file = os.path.join(S, path)
+    text = open(file, encoding="utf-8").read()
+    if old not in text:
+        if new in text:
+            return
+        sys.exit(f"gpl sdk wire: pattern missing in {path} ({label})")
+    open(file, "w", encoding="utf-8").write(text.replace(old, new))
+    print("gpl sdk", label)
+
+sdk_dir = os.path.join(ROOT, "mobile", "komboe-sdk")
+settings_path = os.path.join(S, "settings.gradle.kts")
+settings = open(settings_path, encoding="utf-8").read()
+if ":komboe-sdk" not in settings:
+    open(settings_path, "a", encoding="utf-8").write(
+        '\ninclude(":komboe-sdk")\nproject(":komboe-sdk").projectDir = file("%s")\n' % sdk_dir
+    )
+    print("gpl sdk", "settings")
+patch("build.gradle.kts", "lockMode.set(LockMode.STRICT)", "lockMode.set(LockMode.LENIENT)", "lock lenient")
+patch("app/build.gradle.kts", "    implementation(libs.bitwarden.sdk)\n", '    implementation(project(":komboe-sdk"))\n', "app dependency")
+patch("authenticator/build.gradle.kts", "    implementation(libs.bitwarden.sdk)\n", '    implementation(project(":komboe-sdk"))\n', "authenticator dependency")
+sdk_maven = '''        maven {
+            name = "GitHubPackages (Bitwarden)"
+            url = uri("https://maven.pkg.github.com/bitwarden/sdk")
+            credentials {
+                username = ""
+                password = userProperties["gitHubToken"] as String? ?: System.getenv("GITHUB_TOKEN")
+            }
+        }
+'''
+patch("settings.gradle.kts", sdk_maven, "", "drop sdk maven repo")
+patch(
+    "app/src/main/kotlin/com/x8bit/bitwarden/data/platform/manager/SdkClientManagerImpl.kt",
+    '''        if (!isBuildVersionAtLeast(Build.VERSION_CODES.S)) {
+            nativeLibraryManager.loadLibrary("bitwarden_uniffi")
+        }
+''',
+    "        // Komboe vault crypto is pure JVM code. There is no bitwarden_uniffi library to load.\n",
+    "skip native sdk",
+)

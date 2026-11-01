@@ -12,6 +12,7 @@ by this audit; it reports what is there and whether it can be replaced with GPL 
 | `@bitwarden/sdk-internal` 0.2.0-main.1126 | Yes (npm dep) | Yes: web vault, extension, desktop (WASM) | GPL-3.0 | Keep; it is the GPL SDK. Corresponding source: bitwarden/sdk-internal at that version |
 | `@bitwarden/commercial-sdk-internal` 0.2.0-main.1126 | Yes (npm dep in root `package.json`, used only by upstream `build:bit*` targets) | **No.** Desktop builds use the OSS (`build:oss*`) webpack configs, which import only `@bitwarden/sdk-internal`; `electron-builder.json` now excludes `node_modules/@bitwarden/commercial-sdk-internal` and `**/bitwarden_license/**`, and the installed desktop `app.asar`/`app.asar.unpacked` were repacked without it | "BITWARDEN SOFTWARE DEVELOPMENT KIT LICENSE AGREEMENT Version 2, 7 October 2025" (proprietary) | Done for shipped builds; verified by `tests/features/desktop_oss_sdk.py`. Remaining: the root `package.json` dependency and `scripts/sdk-internal-versions.ts` (dev install only) |
 | Web vault / extension WASM | — | Byte-identical to the OSS `sdk-internal` WASM | GPL-3.0 | OK |
+| `com.bitwarden:sdk-android` | Not in this repo | **No** on the Android fdroid APK. Replaced by `mobile/komboe-sdk` + `mobile/vault-crypto` | Bitwarden SDK License (not open source) | Removed from the fdroid flavor. Bouncy Castle `bcprov-jdk18on` 1.79 (MIT) is the crypto provider |
 
 ## Leftover `bitwarden_license` references (config only, no code)
 
@@ -69,7 +70,7 @@ GPL-3.0 obligations for a binary:
 - Copyright headers in the upstream Kotlin/Java sources are not rewritten. The rebrand script skips lines that mention copyright or license.
 - `THIRD-PARTY-NOTICES.md` is copied into the same assets directory.
 
-The fdroid build also links `com.bitwarden:sdk-android` `4.0.0-9318-3b2c8fc3` from `bitwarden/sdk`. That library is under the Bitwarden Software Development Kit License Agreement, not the GPL, and is used unmodified. It is listed separately in `THIRD-PARTY-NOTICES.md`. Distributing an APK that combines the GPL app with that SDK needs a review against both licenses before a store or public binary release.
+The fdroid build does not link `com.bitwarden:sdk-android` `4.0.0-9318-3b2c8fc3`. That library is under the Bitwarden Software Development Kit License Agreement, not the GPL. Vault encryption is `mobile/vault-crypto`, called through `mobile/komboe-sdk` (GPL-3.0-only), with Bouncy Castle `bcprov-jdk18on` 1.79 (MIT) as the crypto provider. See `THIRD-PARTY-NOTICES.md`.
 
 ## Still open
 

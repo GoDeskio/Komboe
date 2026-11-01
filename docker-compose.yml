@@ -1,0 +1,61 @@
+# Builds and runs the Komboe server with the web vault mounted in, and builds the
+# Chrome extension zip (Edge and Brave load the same package). Local accounts are the default.
+services:
+  clients:
+    build:
+      context: ./clients/upstream
+      dockerfile: ../../docker/Dockerfile.clients
+    image: komboe-clients:staging
+    volumes:
+      - web-vault:/web-vault
+      - extension:/extension
+
+  server:
+    build:
+      context: ./server/upstream
+      dockerfile: ../../docker/Dockerfile.server
+    image: komboe-server:staging
+    depends_on:
+      clients:
+        condition: service_completed_successfully
+      mailpit:
+        condition: service_started
+    ports:
+      - "8080:80"
+    environment:
+      SIGNUPS_ALLOWED: "true"
+      WEB_VAULT_ENABLED: "true"
+      WEB_VAULT_FOLDER: /web-vault
+      DOMAIN: http://localhost:8080
+      ROCKET_PORT: "80"
+      I_REALLY_WANT_VOLATILE_STORAGE: "true"
+      SMTP_HOST: mailpit
+      SMTP_PORT: "1025"
+      SMTP_SECURITY: "off"
+      SMTP_FROM: no-reply@komboe.com
+      SMTP_FROM_NAME: Komboe
+    volumes:
+      - web-vault:/web-vault:ro
+      - komboe-data:/data
+
+  mailpit:
+    image: axllent/mailpit:v1.21
+    ports:
+      - "8025:8025"
+      - "1025:1025"
+
+  extension:
+    image: python:3.12-alpine
+    depends_on:
+      clients:
+        condition: service_completed_successfully
+    command: ["python3", "-m", "http.server", "80", "--bind", "0.0.0.0", "--directory", "/extension"]
+    ports:
+      - "8081:80"
+    volumes:
+      - extension:/extension:ro
+
+volumes:
+  web-vault:
+  extension:
+  komboe-data:

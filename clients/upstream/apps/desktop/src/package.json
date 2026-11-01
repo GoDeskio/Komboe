@@ -4,7 +4,7 @@
   "desktopName": "komboe.desktop",
   "description": "Komboe: a secure, self-hosted password manager for all of your devices.",
   "version": "2026.10.2",
-  "author": "GoDesk <hello@komboe.com> (https://komboe.com)",
+  "author": "Komboe <hello@komboe.com> (https://komboe.com)",
   "homepage": "https://komboe.com",
   "license": "GPL-3.0",
   "main": "main.js",

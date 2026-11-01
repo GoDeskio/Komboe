@@ -11,9 +11,10 @@
 | Vaultwarden server | dani-garcia/vaultwarden | `1.37.4` | `7c188967e7a467b19b2757bc3326f9cf3ccae327` | 2026-10-05 16:40 | AGPL-3.0 | `server/upstream` |
 | Vaultwarden web-vault build | dani-garcia/bw_web_builds | `v2026.7.0` | `fac81a4f35ede45965b220daa3255994abbf0eb1` | 2026-08-05 12:27 | GPL-3.0 (patches on BW web) | reference only |
 | SimpleLogin | simple-login/app | `v4.83.2` | `dc4130adc75e975cce74db4c1acbd9417105f60d` | 2026-10-26 04:14 | AGPL-3.0 | `aliases/upstream` |
+| Bitwarden Android | bitwarden/android | `v2026.10.1-bwpm` | `1470154cf3d3d0511cdbe5bfc6493971b6478edf` | pinned in `mobile/ANDROID_UPSTREAM_PIN` | GPL-3.0-only | cloned at build time; Komboe rebrand is `mobile/` |
 
 All four Bitwarden client tags point to one monorepo commit, so a single subtree import covers web, browser, desktop and CLI.
-Mobile apps are not in bitwarden/clients (separate `bitwarden/android` and `bitwarden/ios` repos), so they still need pins.
+Android is not inside bitwarden/clients. `mobile/android-build.sh` clones tag `v2026.10.1-bwpm` and applies `mobile/android_rebrand.py`. The GPL-3.0 text and the source offer are copied into `app/src/main/assets` so they ship inside the APK. iOS is not pinned.
 bw_web_builds lags (web v2026.7.0 vs clients web-v2026.10.1). Komboe builds the web vault from `clients/` and uses bw_web_builds only as a reference for Vaultwarden-compatibility patches.
 
 Import (not yet run, to keep this PR reviewable):

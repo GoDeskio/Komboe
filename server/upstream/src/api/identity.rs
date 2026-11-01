@@ -436,6 +436,11 @@ async fn password_login(data: ConnectData, user_id: &mut Option<UserId>, conn: &
             )
         }
     } else if !user.check_valid_password(password) {
+        if CONFIG.mail_enabled()
+            && let Err(e) = mail::send_failed_login(&user.email, &ip.ip.to_string(), &Utc::now().naive_utc()).await
+        {
+            error!("Error sending failed sign-in email: {e:#?}");
+        }
         err!(
             "Username or password is incorrect. Try again",
             format!("IP: {}. Username: {log_username}.", ip.ip),

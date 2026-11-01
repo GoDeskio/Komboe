@@ -4,6 +4,8 @@
 
 Tested on Linux x86_64. Development/testing only - not a production deployment guide.
 
+Accounts: one Komboe account on every client. Local email and master password by default, or optional enterprise OIDC. See [Accounts & sign-in](#accounts--sign-in). Mail: [docs/EMAIL.md](EMAIL.md).
+
 ## Server (Vaultwarden 1.37.4 based)
 ```sh
 cd server/upstream
@@ -28,6 +30,23 @@ server/upstream/target/release/vaultwarden
 ```
 For the test suites, also relax rate limits (`LOGIN_RATELIMIT_SECONDS=1 LOGIN_RATELIMIT_MAX_BURST=10000`,
 same for `ADMIN_` and `UNAUTHENTICATED_`).
+
+## What a self-hosted server contacts
+
+A server started with the defaults does not call komboe.com, Bitwarden, GitHub, Cloudflare, Have I Been Pwned, or the websites stored in the vault. These are the switches, all off until you set them:
+
+| Switch | Default | What it calls |
+|---|---|---|
+| `PUSH_ENABLED` | false, and `PUSH_RELAY_URI` / `PUSH_IDENTITY_URI` are empty | The https relay you set. There is no built-in relay. |
+| `DISABLE_ICON_DOWNLOAD` | true | With the default `ICON_SERVICE=internal`, favicons are not fetched. Set this to false to download them from the sites in the vault, on your server. `ICON_SERVICE=bitwarden`, `duckduckgo`, or `google` redirects clients to those hosts. |
+| `ADMIN_EXTERNAL_CHECKS` | false | GitHub (version and DNS) and Cloudflare (clock) from `/admin/diagnostics`. |
+| `HIBP_API_KEY` | unset | `haveibeenpwned.com` for the breach report. |
+| `YUBICO_CLIENT_ID` and `YUBICO_SECRET_KEY` | unset | YubiKey OTP verification. Set `YUBICO_SERVER` to a validation server you run. |
+| `DUO_IKEY` / `DUO_SKEY` | unset | Duo, only for accounts that turn Duo on. |
+| `SSO_ENABLED` | false | Your OIDC issuer (`SSO_AUTHORITY`) or SAML IdP. |
+| `SMTP_HOST` | unset | Your mail server. No mail is sent until this is set. |
+
+Desktop update checks stay off unless `KOMBOE_UPDATE_FEED=1`. `KOMBOE_UPDATE_URL` points that check at an https feed you host; otherwise the build-time feed is `https://downloads.komboe.com/desktop`. The CLI `update` command contacts a host only when `KOMBOE_CLI_RELEASES_URL` is a GitHub-compatible releases API you host. The master-password breach checkbox is unchecked, so a password change does not call `api.pwnedpasswords.com` until the person checks it. The exposed-passwords report and the per-login check button still call that k-anonymity API when someone runs them. The web vault served by this server uses its own origin. An extension, desktop app, CLI, or Android app that has not saved a server URL still has the upstream Bitwarden cloud hosts compiled in as the unset-server default; the server picker does not offer those regions.
 
 ## Tests
 ```sh
@@ -111,6 +130,62 @@ PYTHONPATH=/workspace/tools/py KOMBOE_DB=/workspace/run/data/db.sqlite3 FWD_RELA
 The feature suite starts both by itself (`tests/features/phase_e.py`). **Coverage is local-test only**: there is no MX record, no DNS TXT check for custom
 domains (`FWD_TRUST_DOMAINS=1`, refused unless bound to loopback) and no SPF/DKIM/DMARC. Production needs those plus outbound DKIM signing.
 
+## Accounts & sign-in
+
+One Komboe account is an email plus a master password, with an optional passkey and two-step login. The web vault, browser extensions, Android, desktop, CLI, and MCP agent all sign in to that account and sync the same vault. Each device gets its own session.
+
+Hosted sign-in is Komboe's own login on komboe.com. It is not an outside identity product. The master password never leaves the device, and there is no admin reset.
+
+Device approval and revocation are in the web vault at Settings → Security → Devices. Deauthorize sessions is under Settings → My account. Those actions apply to every client, because they all use the same account record on the server.
+
+### Local accounts (default)
+
+Leave `SSO_ENABLED` unset (it defaults to false). With `SIGNUPS_ALLOWED=true`, a person registers with an email and a master password. Key derivation (PBKDF2 or Argon2id) runs in the client. The server stores vault ciphertext and an authentication verifier. It never stores the master password, and it has no admin password reset and no Key Connector.
+
+```sh
+SIGNUPS_ALLOWED=true
+# do not set SSO_ENABLED, SSO_AUTHORITY, SSO_CLIENT_ID or SSO_CLIENT_SECRET
+```
+
+### Optional enterprise OIDC
+
+For a company that already runs Keycloak or Okta. `openid` is added automatically. `SSO_ONLY` stays false unless you set it, so local Komboe accounts still sign in with email and master password.
+
+```sh
+SSO_ENABLED=true
+SSO_CLIENT_ID=komboe
+SSO_CLIENT_SECRET=replace-with-the-provider-secret
+SSO_AUTHORITY=https://idp.example.com/realms/komboe
+SSO_SCOPES="email profile"
+SSO_PKCE=true
+SSO_SIGNUPS_ALLOWED=true
+# SSO_ONLY=false is the default: local accounts and OIDC both work
+```
+
+Copy `SSO_AUTHORITY` from the provider's issuer, with no `/.well-known/openid-configuration` suffix:
+
+```sh
+# Keycloak
+SSO_AUTHORITY=https://keycloak.example.com/realms/your-realm
+
+# Okta (org authorization server)
+SSO_AUTHORITY=https://your-org.okta.com/oauth2/default
+```
+
+On the provider, create a confidential client and register the redirect URI `{DOMAIN}/identity/connect/oidc-signin`, for example `https://vault.example.com/identity/connect/oidc-signin`. Send `email` (and `email_verified` when the provider knows it) on the ID token or userinfo. Komboe binds the account to the issuer and subject.
+
+The flow:
+
+1. The person chooses single sign-on in the Komboe client. The browser goes to your issuer with the client id, redirect URI, scopes, state, nonce and PKCE challenge.
+2. The person signs in at the provider. That password is the provider's, and it is not the Komboe master password.
+3. The provider redirects back to `{DOMAIN}/identity/connect/oidc-signin`. Komboe exchanges the code and reads the email and subject.
+4. On the device, the person enters the master password (or unlocks a trusted device). The KDF and the vault keys stay in the client. The provider never receives them. The server never gets a key it can use to open the vault.
+5. There is no admin reset. A lost master password means a lost vault.
+
+`SSO_ALLOW_UNKNOWN_EMAIL_VERIFICATION` stays false unless you trust the provider to have checked the email. Setting it together with `SSO_SIGNUPS_MATCH_EMAIL=true` can attach an OIDC login to an existing local account by email.
+
+SAML is a separate optional path, below. It is not required for OIDC.
+
 ## SAML SSO
 
 Set `SSO_ENABLED=true`, `SSO_SAML_ENABLED=true`, `SSO_SAML_IDP_ENTITY_ID`, `SSO_SAML_IDP_SSO_URL`
@@ -145,7 +220,7 @@ Built on the box into `/workspace/artifacts` (not committed). Browser zips: `npm
 | komboe-linux-x64 (CLI 2026.10.1) | `09693851256214bb3e274a16e4356d7cf6e748f37f55a78b7653a45bb27a84ae` | `komboe --help` says `Usage: komboe` |
 | komboe-chrome-mv3.zip | `586732ce726ca69a61069d8144762e32064ddf939991cad0ebdc0e86bdeb008c` | MV3, "Komboe Password Manager" |
 | komboe-firefox.zip | `8b3c606fa02f59f48b8ada4eea3bd405c5f37ec426a1226c0e64ea6e2aec5d92` | MV2 |
-| komboe-desktop-amd64.deb (2026.10.2) | `9b3f876b03ebeceab864bfa41b7b20c32e8f2b9f06408d56aded264a83419fc7` | package `komboe`, maintainer GoDesk |
+| komboe-desktop-amd64.deb (2026.10.2) | `9b3f876b03ebeceab864bfa41b7b20c32e8f2b9f06408d56aded264a83419fc7` | package `komboe`, maintainer Komboe |
 | komboe-desktop-x86_64.AppImage (2026.10.2) | `a7a0f0874c966dceee59ae8ac285c1c61ba4ac4f59e1220a044576b780f9b0ee` | unpacked app launches, window "Komboe" |
 | komboe-desktop-win-x64-setup.exe | `6ad82a1977b75b468fe40079516d053113fa3cf088d36f1e5283802dc1bba47b` | stale: 2026-10-30 build (rebuild on the Windows machine pending) |
 | komboe-desktop-win-x64.zip | `b969178198095af5dbb45d5b406cf5b1f318aba32821ed71683ac3937957a919` | stale: 2026-10-30 build |

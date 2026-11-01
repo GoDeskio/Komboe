@@ -256,7 +256,8 @@ export class InputPasswordComponent implements OnInit {
         ),
       ]);
 
-      this.formGroup.addControl("checkForBreaches", this.formBuilder.nonNullable.control(true));
+      // Off by default. A checked box sends a k-anonymity prefix to api.pwnedpasswords.com.
+      this.formGroup.addControl("checkForBreaches", this.formBuilder.nonNullable.control(false));
     }
 
     if (
@@ -315,7 +316,7 @@ export class InputPasswordComponent implements OnInit {
       const currentPassword = this.formGroup.controls.currentPassword?.value ?? "";
       const newPassword = this.formGroup.controls.newPassword.value;
       const newPasswordHint = this.formGroup.controls.newPasswordHint?.value ?? "";
-      const checkForBreaches = this.formGroup.controls.checkForBreaches?.value ?? true;
+      const checkForBreaches = this.formGroup.controls.checkForBreaches?.value ?? false;
 
       if (this.flow === InputPasswordFlow.ChangePasswordDelegation) {
         return await this.handleChangePasswordDelegationFlow(newPassword);

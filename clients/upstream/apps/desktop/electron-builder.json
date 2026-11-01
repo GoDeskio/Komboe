@@ -6,7 +6,7 @@
   "productName": "Komboe",
   "appId": "io.komboe.desktop",
   "buildDependenciesFromSource": true,
-  "copyright": "Copyright \u00a9 2026 GoDesk.",
+  "copyright": "Copyright \u00a9 2026 Komboe.",
   "directories": {
     "buildResources": "resources",
     "output": "dist",
@@ -109,7 +109,7 @@
     ],
     "signtoolOptions": {
       "sign": "./sign.js",
-      "publisherName": "GoDesk"
+      "publisherName": "Komboe"
     },
     "extraFiles": [
       {
@@ -224,7 +224,7 @@
     "minVersion": "10.0.14393.0",
     "maxVersionTested": "10.0.26100.0",
     "customExtensionsPath": "../custom-appx-extensions.stable.xml",
-    "publisherDisplayName": "GoDesk",
+    "publisherDisplayName": "Komboe",
     "languages": [
       "en-US",
       "af",

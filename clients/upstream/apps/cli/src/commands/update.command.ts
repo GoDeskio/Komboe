@@ -6,8 +6,6 @@ import { PlatformUtilsService } from "@bitwarden/common/platform/abstractions/pl
 import { Response } from "../models/response";
 import { MessageResponse } from "../models/response/message.response";
 
-const CLIENTS_RELEASE_LIST_ENDPOINT = "https://api.github.com/repos/bitwarden/clients/releases";
-const DEFAULT_DOWNLOAD_URL = "https://github.com/bitwarden/clients/releases";
 const UPDATE_COMMAND = "npm install -g @bitwarden/cli";
 
 export class UpdateCommand {
@@ -21,7 +19,20 @@ export class UpdateCommand {
   }
 
   async run(): Promise<Response> {
-    const response = await this.apiService.nativeFetch(new Request(CLIENTS_RELEASE_LIST_ENDPOINT));
+    // Off until the operator points this at a GitHub-compatible releases API
+    // they host. The CLI does not contact Komboe, Bitwarden, or GitHub on its own.
+    const endpoint = process.env.KOMBOE_CLI_RELEASES_URL;
+    if (endpoint == null || endpoint === "") {
+      const response = new MessageResponse(null, null);
+      response.title = "Update checks are off.";
+      response.message =
+        "Set KOMBOE_CLI_RELEASES_URL to a GitHub-compatible releases API that you host. " +
+        "Nothing is contacted until you do.";
+      response.noColor = true;
+      return Response.success(response);
+    }
+
+    const response = await this.apiService.nativeFetch(new Request(endpoint));
     if (response.status !== 200) {
       return Response.error("Error contacting update API: " + response.status);
     }
@@ -40,12 +51,12 @@ export class UpdateCommand {
       return Response.success(response);
     }
 
-    const res = this.getFoundUpdateResponse(cliRelease);
+    const res = this.getFoundUpdateResponse(cliRelease, endpoint);
     return Response.success(res);
   }
 
-  private getFoundUpdateResponse(release: any) {
-    const downloadUrl = this.getDownloadUrl(release.assets);
+  private getFoundUpdateResponse(release: any, endpoint: string) {
+    const downloadUrl = this.getDownloadUrl(release.assets, endpoint);
 
     const response = new MessageResponse(null, null);
     response.title = "A new version is available: " + release.tag_name;
@@ -79,12 +90,12 @@ export class UpdateCommand {
     return message;
   }
 
-  private getDownloadUrl(assets: any) {
+  private getDownloadUrl(assets: any, fallbackUrl: string) {
     if (assets == null) {
-      return DEFAULT_DOWNLOAD_URL;
+      return fallbackUrl;
     }
 
-    let downloadUrl: string = DEFAULT_DOWNLOAD_URL;
+    let downloadUrl: string = fallbackUrl;
 
     for (const a of assets) {
       const download: string = a.browser_download_url;

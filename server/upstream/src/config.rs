@@ -525,15 +525,15 @@ make_config! {
         enable_websocket:       bool,   false,  def,    true;
     },
     push {
-        /// Enable push notifications
+        /// Enable push notifications |> Off by default. When true, the server posts to PUSH_RELAY_URI. Set that and PUSH_IDENTITY_URI to an https relay you run. There is no default relay.
         push_enabled:           bool,   false,  def,    false;
-        /// Push relay uri
-        push_relay_uri:         String, false,  def,    "https://push.bitwarden.com".to_owned();
-        /// Push identity uri
-        push_identity_uri:      String, false,  def,    "https://identity.bitwarden.com".to_owned();
-        /// Installation id |> The installation id from https://bitwarden.com/host
+        /// Push relay uri |> Required when push is enabled. Empty by default, so push cannot reach a third party until you set an https URL.
+        push_relay_uri:         String, false,  def,    String::new();
+        /// Push identity uri |> Token endpoint for the push relay. Empty by default. Required, and must be https, when push is enabled.
+        push_identity_uri:      String, false,  def,    String::new();
+        /// Installation id |> Id for the push relay you configured. Not used while push is off.
         push_installation_id:   Pass,   false,  def,    String::new();
-        /// Installation key |> The installation key from https://bitwarden.com/host
+        /// Installation key |> Key for the push relay you configured. Not used while push is off.
         push_installation_key:  Pass,   false,  def,    String::new();
     },
     jobs {
@@ -609,11 +609,10 @@ make_config! {
         /// This setting applies globally to all users.
         incomplete_2fa_time_limit: i64, true,   def,    3;
 
-        /// Disable icon downloads |> Set to true to disable icon downloading in the internal icon service.
-        /// This still serves existing icons from $ICON_CACHE_FOLDER, without generating any external
-        /// network requests. $ICON_CACHE_TTL must also be set to 0; otherwise, the existing icons
-        /// will be deleted eventually, but won't be downloaded again.
-        disable_icon_download:  bool,   true,   def,    false;
+        /// Disable icon downloads |> Default true. The internal icon service then serves only icons already in $ICON_CACHE_FOLDER and does not fetch favicons from sites in the vault. Set to false to download those favicons on this server. $ICON_CACHE_TTL must also be 0 while this stays true; otherwise cached icons expire and are not downloaded again. ICON_SERVICE stays `internal` unless you set a URL template you host.
+        disable_icon_download:  bool,   true,   def,    true;
+        /// Admin external checks |> When true, the admin diagnostics page contacts GitHub (version check and DNS) and Cloudflare (clock). Off by default, so opening diagnostics does not call those hosts.
+        admin_external_checks:  bool,   true,   def,    false;
         /// Allow new signups |> Controls whether new users can register. Users can be invited by the vaultwarden admin even if this is disabled
         signups_allowed:        bool,   true,   def,    true;
         /// Require email verification on signups. On new client versions, this will require verification at signup time. On older clients,
@@ -815,7 +814,7 @@ make_config! {
         dns_prefer_ipv6: bool, true, def, false;
     },
 
-    /// OpenID Connect SSO settings
+    /// Optional enterprise OpenID Connect. Leave disabled for local Komboe accounts. SSO_AUTHORITY accepts any OIDC issuer, for example Keycloak or Okta.
     sso {
         /// Enabled
         sso_enabled:                    bool,   true,   def,    false;
@@ -914,7 +913,7 @@ make_config! {
         /// Port
         smtp_port:                     u16,    true,   auto,    |c| if c.smtp_security == *"force_tls" {465} else if c.smtp_security == *"starttls" {587} else {25};
         /// From Address
-        smtp_from:                     String, true,   def,     String::new();
+        smtp_from:                     String, true,   def,     "no-reply@komboe.com".to_owned();
         /// From Name
         smtp_from_name:                String, true,   def,     "Komboe".to_owned();
         /// Username
@@ -1053,9 +1052,10 @@ fn validate_config(cfg: &ConfigItems, on_update: bool) -> Result<(), Error> {
         err!(
             "Misconfigured Push Notification service\n\
             ########################################################################################\n\
-            # It looks like you enabled Push Notification feature, but didn't configure it         #\n\
-            # properly. Make sure the installation id and key from https://bitwarden.com/host are  #\n\
-            # added to your configuration.                                                         #\n\
+            # Push is enabled but not fully configured. Set PUSH_INSTALLATION_ID,                  #\n\
+            # PUSH_INSTALLATION_KEY, PUSH_RELAY_URI and PUSH_IDENTITY_URI to a relay you run.      #\n\
+            # Both URIs must be https. They are empty by default, and nothing is contacted         #\n\
+            # until you set them.                                                                  #\n\
             ########################################################################################\n"
         )
     }
@@ -1767,6 +1767,7 @@ where
     reg!("email/emergency_access_recovery_reminder", ".html");
     reg!("email/emergency_access_recovery_timed_out", ".html");
     reg!("email/incomplete_2fa_login", ".html");
+    reg!("email/failed_login", ".html");
     reg!("email/invite_accepted", ".html");
     reg!("email/invite_confirmed", ".html");
     reg!("email/komboe_notice", ".html");

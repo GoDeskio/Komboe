@@ -244,6 +244,13 @@ async fn email(data: Json<EmailData>, headers: Headers, conn: DbConn) -> JsonRes
     generate_recover_code(&mut user, &conn).await;
 
     log_user_event(EventType::UserUpdated2fa as i32, &user.uuid, headers.device.atype, &headers.ip.ip, &conn).await;
+    crate::api::core::komboe::notify_user(
+        &user.uuid.to_string(),
+        "Two-step login was changed on your Komboe account",
+        "Email two-step login is now on for this Komboe account. If this was not you, sign in and review Settings > Security > Two-step login.",
+        &conn,
+    )
+    .await;
 
     Ok(Json(json!({
         "email": email_data.email,

@@ -14,7 +14,7 @@ Passwords, passkeys, 2FA codes, secure sharing and email aliases for you, your f
 <p align="center">
   <a href="LICENSE"><img alt="License: AGPL-3.0" src="https://img.shields.io/badge/license-AGPL--3.0-6D4AFF"></a>
   <img alt="Zero-knowledge" src="https://img.shields.io/badge/encryption-zero--knowledge%20E2E-3E24B4">
-  <img alt="Platforms" src="https://img.shields.io/badge/platforms-web%20%7C%20Windows%20%7C%20macOS%20%7C%20Linux%20%7C%20iOS%20%7C%20Android-7C5CFF">
+  <img alt="Platforms" src="https://img.shields.io/badge/platforms-web%20%7C%20desktop%20%7C%20Android%20%7C%20iOS%20soon-7C5CFF">
   <img alt="Browsers" src="https://img.shields.io/badge/browsers-Chrome%20%7C%20Firefox%20%7C%20Safari%20%7C%20Edge%20%7C%20Brave%20%7C%20Opera%20%7C%20Vivaldi-7C5CFF">
   <img alt="CLI" src="https://img.shields.io/badge/CLI-yes-C4B7FF">
   <img alt="Self-hosted" src="https://img.shields.io/badge/self--hosted-Docker-C4B7FF">
@@ -30,11 +30,61 @@ Passwords, passkeys, 2FA codes, secure sharing and email aliases for you, your f
 - **Zero-knowledge, end to end.** Your master password and keys never leave your devices. The server stores only ciphertext.
 - **No backdoors, ever.** No key escrow, no master or recovery key, no admin password reset. Lost master password means lost vault, by design.
 - **Built for families and teams.** Shared vaults and admin seats, while every member keeps a personal vault no admin can read.
-- **Every platform.** Web, desktop, mobile, every major browser and a CLI.
+- **Every platform.** Web vault, desktop, Android, browser extensions and a CLI. iOS is coming soon. See [Clients](#clients).
 - **Fully open source (AGPL-3.0).** Self-host it free, or subscribe to hosted Komboe at [komboe.com](https://komboe.com).
 - **Minimal data.** Hosted billing keeps only plan, seats and status, never your vault.
 
 > Status: **pre-alpha.** The images below are preview mockups of the UI in development, not screenshots of shipped software.
+
+## Clients
+
+| Client | Where it runs |
+|---|---|
+| Android | Android phones and tablets (`io.komboe.android`) |
+| Desktop | Windows, macOS and Linux |
+| Browser extension | Chrome, Edge, Firefox, Brave and Safari |
+| Web vault | Any modern browser |
+| CLI | `komboe` on the command line |
+| Self-host server | Your own machine, with Docker or the single binary |
+| MCP agent integration | Agents that use the same Komboe account |
+| iOS | Coming soon |
+
+Chrome, Edge and Brave use the Chrome extension build. Firefox has its own build. The Safari build needs a Mac.
+
+## Accounts & sign-in
+
+One Komboe account is an email plus a master password. A passkey and two-step login are optional. That same account signs in and syncs on every Komboe client: the web vault, the browser extensions, Android, the desktop apps, the CLI, and the MCP agent. Every device shares one vault. Each sign-in is its own session.
+
+Hosted sign-in is Komboe's own login on komboe.com. The master password never leaves the device, and there is no admin reset.
+
+In the web vault, device approval and revocation are under Settings → Security → Devices. Ending sessions is under Settings → My account → Deauthorize sessions. The other clients use those same server records.
+
+Self-host defaults to local accounts. Enterprise OIDC is optional and stays off until you configure it. Examples are in [Running Komboe locally](docs/RUNNING.md#accounts--sign-in).
+
+Local accounts (the default):
+
+```sh
+SIGNUPS_ALLOWED=true
+```
+
+Optional enterprise SSO (Keycloak or Okta). Leave `SSO_ONLY` unset so local accounts keep working:
+
+```sh
+SSO_ENABLED=true
+SSO_CLIENT_ID=komboe
+SSO_CLIENT_SECRET=replace-with-the-provider-secret
+SSO_AUTHORITY=https://idp.example.com/realms/komboe
+SSO_SCOPES="email profile"
+SSO_PKCE=true
+SSO_SIGNUPS_ALLOWED=true
+```
+
+| Provider | Issuer to put in `SSO_AUTHORITY` |
+|---|---|
+| Keycloak | `https://keycloak.example.com/realms/your-realm` |
+| Okta | `https://your-org.okta.com/oauth2/default` |
+
+Register the redirect URI `{DOMAIN}/identity/connect/oidc-signin`. The provider only proves identity. The master password and the vault keys stay on the device. There is no admin reset and no Key Connector.
 
 ## Your vault, beautifully organized
 

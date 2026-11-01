@@ -18,6 +18,7 @@ steps:
     image: alpine:3.20
     commands:
       - apk add --no-cache bash grep git >/dev/null
+      - git config --global --add safe.directory '*'
       - bash scripts/check-licenses.sh
 
   - name: node-test

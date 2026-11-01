@@ -68,3 +68,15 @@ steps:
       - mkdir -p ../../railyard-out && cp target/release/vaultwarden ../../railyard-out/komboe-server
     artifacts:
       - railyard-out/komboe-server
+
+  # Dependency audit against the RustSec advisory DB (read-only; no deploy, no secrets).
+  # Upstream vaultwarden carries known transitive advisories it tracks itself,
+  # so findings are reported but don't block the pipeline.
+  - name: server-audit
+    image: rust:1.99-bookworm
+    failure: ignore
+    commands:
+      - export PATH=/usr/local/cargo/bin:$PATH
+      - cd server/upstream
+      - cargo install cargo-audit --locked --quiet
+      - cargo audit

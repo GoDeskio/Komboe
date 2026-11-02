@@ -4,6 +4,8 @@ NAV=[("index.html","Home"),("features.html","Features"),("security.html","Securi
 import json,re,html as H
 BASE="https://komboe.com"
 STAGING=os.environ.get("KOMBOE_ENV","staging")!="production"   # staging => noindex,nofollow + robots Disallow
+# Google Preferred Sources badge: production builds only. No-JS deeplink, self-hosted official asset, no tracking.
+PREF_SOURCE='<div><a class="pref-source" href="https://www.google.com/preferences/source?q=komboe.com" target="_blank" rel="noopener noreferrer"><img src="{pre}assets/img/google-preferred-source.png" srcset="{pre}assets/img/google-preferred-source@2x.png 2x" width="169" height="53" loading="lazy" alt="Add Komboe as a preferred source on Google"></a></div>'
 LOCALES=["en"]  # path-based locales ready: add e.g. "de" -> /de/<page>
 def ld(o): return '<script type="application/ld+json">'+json.dumps(o,ensure_ascii=False)+'</script>'
 ORG={"@context":"https://schema.org","@type":"Organization","name":"Komboe","url":BASE,"logo":BASE+"/assets/img/pwa-512.png","brand":{"@type":"Brand","name":"Komboe"},"sameAs":["https://github.com/GoDeskio/Komboe"]}
@@ -25,7 +27,7 @@ def page(fn,title,body,pre="",desc="",crumbs=None,extra=()):
 <a class="skip" href="#main">Skip to content</a><header><div class="wrap nav"><a class="brand" href="{pre}index.html"><img src="{pre}assets/img/logo-96.webp" width="34" height="34" alt="Komboe logo">Komboe</a><button id="menu" aria-label="Menu">☰</button>
 <nav class="links" aria-label="Main">{nav}<a href="{pre}login.html">Log in</a><a class="btn p" href="{pre}signup.html">Get started</a></nav></div></header>
 <main id="main">{body}</main>
-<footer><div class="wrap"><div><b>Komboe</b> · Zero-knowledge password manager</div><nav aria-label="Footer"><a href="{pre}features.html">Features</a> · <a href="{pre}security.html">Security</a> · <a href="{pre}pricing.html">Pricing</a> · <a href="{pre}downloads.html">Downloads</a> · <a href="{pre}developers.html">Developers</a> · <a href="https://github.com/GoDeskio/Komboe">Source</a> · <a href="{pre}privacy.html">Privacy</a> · <a href="{pre}terms.html">Terms</a></nav><div>{"© 2026 GODESK IO LLC" if fn in ("privacy.html","terms.html") else "© 2026 Komboe"}</div></div></footer>
+<footer><div class="wrap"><div><b>Komboe</b> · Zero-knowledge password manager</div><nav aria-label="Footer"><a href="{pre}features.html">Features</a> · <a href="{pre}security.html">Security</a> · <a href="{pre}pricing.html">Pricing</a> · <a href="{pre}downloads.html">Downloads</a> · <a href="{pre}developers.html">Developers</a> · <a href="https://github.com/GoDeskio/Komboe">Source</a> · <a href="{pre}privacy.html">Privacy</a> · <a href="{pre}terms.html">Terms</a></nav><div>{"© 2026 GODESK IO LLC" if fn in ("privacy.html","terms.html") else "© 2026 Komboe"}</div>{"" if STAGING else PREF_SOURCE.format(pre=pre)}</div></footer>
 <script src="{pre}assets/app.js" defer></script></body></html>""")
 def EXT(h):
     def f(m):

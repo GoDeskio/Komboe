@@ -63,13 +63,14 @@ pub struct OrgPlan {
 
 const DEFAULT_FAMILY_SEATS: i32 = 6;
 const DEFAULT_FAMILY_PRICE_CENTS: i32 = 100; // per member per month; placeholder until pricing is decided
+const FREE_SEATS: i32 = 3;
 
 impl OrgPlan {
     pub async fn find(org: &str, conn: &DbConn) -> Option<Self> {
         let org = org.to_string();
         conn.run(move |c| komboe_org_plans::table.filter(komboe_org_plans::org_uuid.eq(org)).first::<Self>(c).ok()).await
     }
-    async fn save(self, conn: &DbConn) -> EmptyResult {
+    pub(super) async fn save(self, conn: &DbConn) -> EmptyResult {
         conn.run(move |c| {
             diesel::delete(komboe_org_plans::table.filter(komboe_org_plans::org_uuid.eq(&self.org_uuid))).execute(c)?;
             diesel::insert_into(komboe_org_plans::table).values(&self).execute(c)
@@ -91,11 +92,11 @@ async fn seats_used(org: &OrganizationId, conn: &DbConn) -> i64 {
 
 /// Called from the invite route: refuse invites that would exceed the plan's seat limit.
 pub async fn check_seats(org: &OrganizationId, adding: usize, conn: &DbConn) -> EmptyResult {
-    if let Some(plan) = OrgPlan::find(org, conn).await {
-        let used = seats_used(org, conn).await;
-        if used + adding as i64 > plan.seats as i64 {
-            err!(format!("Seat limit reached: {used} of {} seats used on this {} plan.", plan.seats, plan.kind))
-        }
+    let plan = OrgPlan::find(org, conn).await;
+    let (limit, kind) = plan.as_ref().map_or((FREE_SEATS, "free"), |p| (p.seats, p.kind.as_str()));
+    let used = seats_used(org, conn).await;
+    if used + adding as i64 > limit as i64 {
+        err!(format!("Seat limit reached: {used} of {limit} seats used on this {kind} plan."))
     }
     Ok(())
 }
@@ -104,7 +105,7 @@ async fn membership(user: &UserId, org: &OrganizationId, conn: &DbConn) -> Optio
     Membership::find_by_user_and_org(user, org, conn).await.filter(|m| m.status == MembershipStatus::Confirmed as i32)
 }
 
-async fn require_admin(user: &UserId, org: &OrganizationId, conn: &DbConn) -> Result<Membership, crate::error::Error> {
+pub(crate) async fn require_admin(user: &UserId, org: &OrganizationId, conn: &DbConn) -> Result<Membership, crate::error::Error> {
     match membership(user, org, conn).await {
         Some(m) if m.atype == MembershipType::Owner as i32 || m.atype == MembershipType::Admin as i32 => Ok(m),
         Some(_) => err_code!("Only organization owners and admins can do this.", 403),
@@ -120,7 +121,7 @@ async fn get_plan(org_id: OrganizationId, headers: Headers, conn: DbConn) -> Jso
     let used = seats_used(&org_id, &conn).await;
     match OrgPlan::find(&org_id, &conn).await {
         Some(p) => Ok(Json(p.to_json(used))),
-        None => Ok(Json(json!({ "organizationId": org_id, "kind": "none", "seats": null, "seatsUsed": used, "object": "komboePlan" }))),
+        None => Ok(Json(json!({ "organizationId": org_id, "kind": "free", "seats": FREE_SEATS, "seatsUsed": used, "object": "komboePlan" }))),
     }
 }
 

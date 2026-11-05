@@ -1,0 +1,13 @@
+**
+!server/
+!server/upstream/
+!server/upstream/Cargo.toml
+!server/upstream/Cargo.lock
+!server/upstream/build.rs
+!server/upstream/rust-toolchain.toml
+!server/upstream/macros/
+!server/upstream/macros/**
+!server/upstream/migrations/
+!server/upstream/migrations/**
+!server/upstream/src/
+!server/upstream/src/**

@@ -13,13 +13,14 @@ use crate::{
 };
 
 use super::{CipherId, CollectionId, GroupId, MembershipId, OrgPolicyId, OrganizationId, UserId};
+use crate::api::core::komboe_security as komboe_siem;
 
 // https://bitwarden.com/help/event-logs/
 
 // Upstream: https://github.com/bitwarden/server/blob/9ebe16587175b1c0e9208f84397bb75d0d595510/src/Core/AdminConsole/Services/Implementations/EventService.cs
 // Upstream: https://github.com/bitwarden/server/blob/9ebe16587175b1c0e9208f84397bb75d0d595510/src/Api/AdminConsole/Public/Models/Response/EventResponseModel.cs
 // Upstream SQL: https://github.com/bitwarden/server/blob/9ebe16587175b1c0e9208f84397bb75d0d595510/src/Sql/dbo/Tables/Event.sql
-#[derive(Identifiable, Queryable, Insertable, AsChangeset)]
+#[derive(Identifiable, Queryable, Insertable, AsChangeset, Clone)]
 #[diesel(table_name = event)]
 #[diesel(treat_none_as_null = true)]
 #[diesel(primary_key(uuid))]
@@ -210,6 +211,7 @@ impl Event {
         let res = self.save_db(conn).await;
         if res.is_ok() {
             siem::export(std::slice::from_ref(self));
+            komboe_siem::export(std::slice::from_ref(self), conn).await;
         }
         res
     }
@@ -238,18 +240,18 @@ impl Event {
     }
 
     pub async fn save_user_event(events: Vec<Event>, conn: &DbConn) -> EmptyResult {
-        siem::export(&events);
+        let export_events = events.clone();
         // Special save function which is able to handle multiple events.
         // SQLite doesn't support the DEFAULT argument, and does not support inserting multiple values at the same time.
         // MySQL and PostgreSQL do.
         // We also ignore duplicate if they ever will exists, else it could break the whole flow.
-        db_run! { conn:
+        let result = db_run! { conn:
             // Unfortunately SQLite does not support inserting multiple records at the same time
             // We loop through the events here and insert them one at a time.
             sqlite {
-                for event in events {
+                for event in &events {
                     diesel::insert_or_ignore_into(event::table)
-                    .values(&event)
+                    .values(event)
                     .execute(conn)
                     .unwrap_or_default();
                 }
@@ -270,7 +272,12 @@ impl Event {
                 .unwrap_or_default();
                 Ok(())
             }
+        };
+        if result.is_ok() {
+            siem::export(&export_events);
+            komboe_siem::export(&export_events, conn).await;
         }
+        result
     }
 
     pub async fn delete(self, conn: &DbConn) -> EmptyResult {

@@ -93,6 +93,22 @@ describe("DesktopLockComponentService", () => {
       const result = service.getBiometricsError({ message: "unknown" });
       expect(result).toBeNull();
     });
+
+    it("returns null when the user cancelled", () => {
+      expect(service.getBiometricsError({ message: "User canceled" })).toBeNull();
+    });
+
+    it("maps polkit setup failures", () => {
+      expect(service.getBiometricsError({ message: "polkit policy missing" })).toBe(
+        "biometricsStatusHelptextManualSetupNeeded",
+      );
+    });
+
+    it("maps generic biometric failures", () => {
+      expect(service.getBiometricsError({ message: "Could not complete biometrics" })).toBe(
+        "couldNotCompleteBiometrics",
+      );
+    });
   });
 
   describe("getPreviousUrl", () => {

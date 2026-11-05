@@ -18,6 +18,27 @@ export class DesktopLockComponentService implements LockComponentService {
   constructor() {}
 
   getBiometricsError(error: any): string | null {
+    // Map known OS / native failure strings to desktop i18n keys. Returns null for
+    // cancel / unknown so the lock UI can stay quiet (see unlockViaBiometrics toast).
+    if (error == null) {
+      return null;
+    }
+    const msg = typeof error === "string" ? error : String(error?.message ?? error);
+    if (/cancel|canceled|cancelled|UserPromptCancelled/i.test(msg)) {
+      return null;
+    }
+    if (/polkit|PolicyKit|org\.freedesktop\.PolicyKit1/i.test(msg)) {
+      return "biometricsStatusHelptextManualSetupNeeded";
+    }
+    if (/Windows Hello|WinRT|NCrypt|TPM/i.test(msg)) {
+      return "biometricsStatusHelptextHardwareUnavailable";
+    }
+    if (/Touch ID|LocalAuthentication|not available|HardwareUnavailable/i.test(msg)) {
+      return "biometricsStatusHelptextHardwareUnavailable";
+    }
+    if (/could not complete|authenticate|biometric/i.test(msg)) {
+      return "couldNotCompleteBiometrics";
+    }
     return null;
   }
 

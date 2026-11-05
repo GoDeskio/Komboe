@@ -99,6 +99,24 @@ Outputs `Komboe-<ver>-x86_64.AppImage` and a `.deb`; the app id is `io.komboe.de
 - Windows desktop: NSIS needs wine, and even the portable `zip` target needs the Windows build of the native Rust module (`desktop_napi`), which needs mingw-w64 or MSVC. Neither is on this box, so a zip would not run. Build on a Windows CI runner.
 - iOS, Safari and macOS desktop: need macOS.
 
+## Browser extension smoke (Phase B)
+
+Headless check of the support matrix (Chrome/Edge/Brave/Opera/Vivaldi/**Cerebro**/Firefox/Tor/Safari) and manifests:
+
+```sh
+node scripts/extension-smoke.mjs
+# optional, when zips exist:
+KOMBOE_ARTIFACTS=/workspace/artifacts node scripts/extension-smoke.mjs
+```
+
+Load instructions: [BROWSER-EXTENSIONS.md](BROWSER-EXTENSIONS.md). Matrix: `clients/SUPPORTED-BROWSERS.json`.
+
+## Android E2E harness (no device claimed)
+
+```sh
+bash mobile/android-e2e-check.sh   # static APK checks + docs; see mobile/ANDROID-E2E.md
+```
+
 ## Android debug APK (no apt needed)
 Portable toolchain in `/workspace/tools`: Temurin JDK 21 (upstream `jvmTarget = 21`; JDK 17 is also there but too old) and
 Android commandline-tools. The fdroid flavor links `mobile/komboe-sdk` (GPL-3.0 vault crypto) instead of

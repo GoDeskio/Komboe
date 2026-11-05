@@ -1,0 +1,108 @@
+{
+  "$schema_note": "Machine-readable Komboe browser-extension support matrix. Consumed by scripts/extension-smoke.mjs and docs/BROWSER-EXTENSIONS.md.",
+  "updated": "2026-11-05",
+  "timezone_note": "Arizona MST (UTC-7, no DST)",
+  "builds": {
+    "chromium_mv3": {
+      "artifact": "komboe-chrome-mv3.zip",
+      "manifest_version": 3,
+      "npm_dist": "npm run dist:chrome --workspace @bitwarden/browser",
+      "load": "chrome://extensions → Developer mode → Load unpacked (unzipped dist) or drag the zip where the browser allows"
+    },
+    "firefox": {
+      "artifact": "komboe-firefox.zip",
+      "manifest_version": 2,
+      "npm_dist": "npm run dist:firefox --workspace @bitwarden/browser",
+      "load": "about:debugging#/runtime/this-firefox → Load Temporary Add-on"
+    },
+    "safari": {
+      "artifact": null,
+      "manifest_version": null,
+      "npm_dist": "npm run dist:safari --workspace @bitwarden/browser",
+      "load": "Requires macOS + Xcode; not built on Linux CI"
+    }
+  },
+  "browsers": [
+    {
+      "id": "chrome",
+      "name": "Google Chrome",
+      "family": "chromium",
+      "build": "chromium_mv3",
+      "status": "supported",
+      "tested": true,
+      "notes": "Primary Chromium MV3 target"
+    },
+    {
+      "id": "edge",
+      "name": "Microsoft Edge",
+      "family": "chromium",
+      "build": "chromium_mv3",
+      "status": "supported",
+      "tested": true,
+      "notes": "Load the Chromium MV3 build (edge-specific webpack config also exists)"
+    },
+    {
+      "id": "brave",
+      "name": "Brave",
+      "family": "chromium",
+      "build": "chromium_mv3",
+      "status": "supported",
+      "tested": true,
+      "notes": "Load Chromium MV3 via brave://extensions"
+    },
+    {
+      "id": "opera",
+      "name": "Opera",
+      "family": "chromium",
+      "build": "chromium_mv3",
+      "status": "supported",
+      "tested": false,
+      "notes": "opera webpack target exists; same MV3 zip works"
+    },
+    {
+      "id": "vivaldi",
+      "name": "Vivaldi",
+      "family": "chromium",
+      "build": "chromium_mv3",
+      "status": "supported",
+      "tested": false,
+      "notes": "Load Chromium MV3 via vivaldi://extensions; Phase B #87 — not yet E2E'd in Vivaldi"
+    },
+    {
+      "id": "cerebro",
+      "name": "Cerebro Browser",
+      "family": "chromium",
+      "build": "chromium_mv3",
+      "status": "supported",
+      "tested": false,
+      "notes": "GoDesk Chromium (MV3). Treat like Chrome: load unpacked MV3 build / autofill content scripts. Must stay on the support bar."
+    },
+    {
+      "id": "firefox",
+      "name": "Firefox",
+      "family": "gecko",
+      "build": "firefox",
+      "status": "supported",
+      "tested": true,
+      "notes": "Dedicated Firefox zip"
+    },
+    {
+      "id": "tor",
+      "name": "Tor Browser",
+      "family": "gecko",
+      "build": "firefox",
+      "status": "supported",
+      "tested": false,
+      "notes": "Uses the Firefox build; Phase B #87 — not yet E2E'd in Tor Browser"
+    },
+    {
+      "id": "safari",
+      "name": "Safari",
+      "family": "safari",
+      "build": "safari",
+      "status": "blocked",
+      "tested": false,
+      "notes": "Needs macOS/Xcode (Phase B #86)"
+    }
+  ]
+}

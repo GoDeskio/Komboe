@@ -157,5 +157,8 @@ def _():
     for needle in ("FROM rust:","FROM debian:","USER 10001:10001","HEALTHCHECK","--locked","ENTRYPOINT"):
         assert needle in text, needle
     ignore=open(os.path.join(ROOT,"docker/Dockerfile.server.dockerignore")).read()
-    assert "**" in ignore and "!server/upstream/src/**" in ignore and "target" not in text
+    assert "**" in ignore and "!server/upstream/src/**" in ignore
+    # Do not COPY a host target/ tree into the image (cargo's own target/ path in RUN is fine).
+    assert not re.search(r"(?m)^COPY\s+.*\btarget\b", text), "Dockerfile must not COPY host target/"
+    assert "/out/komboe" in text and "USER 10001:10001" in text
     return ("partial", "multi-stage/non-root/healthchecked Dockerfile statically verified; Docker is unavailable on this build box")

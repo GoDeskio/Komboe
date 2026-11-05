@@ -95,6 +95,49 @@ if (fs.existsSync(mv2Src)) {
   fail(`missing ${mv2Src}`);
 }
 
+// Cerebro MV3 load contract — tied to the real Chromium MV3 source manifest.
+// Cerebro Browser (GoDesk Chromium) loads the same unpacked MV3 build as Chrome.
+const CEREBRO_REQUIRED_PERMISSIONS = [
+  "storage",
+  "tabs",
+  "scripting",
+  "alarms",
+  "notifications",
+];
+{
+  const m = loadJson(mv3Src);
+  const perms = new Set(m.permissions || []);
+  for (const need of CEREBRO_REQUIRED_PERMISSIONS) {
+    if (!perms.has(need)) fail(`Cerebro/MV3 load contract: missing permission "${need}"`);
+  }
+  ok(`Cerebro/MV3 load contract: required permissions present (${CEREBRO_REQUIRED_PERMISSIONS.length})`);
+  const hosts = m.host_permissions || [];
+  if (!hosts.some((h) => h === "https://*/*" || h === "<all_urls>" || h === "*://*/*")) {
+    fail("Cerebro/MV3 load contract: host_permissions must cover https pages for autofill");
+  } else {
+    ok(`Cerebro/MV3 load contract: host_permissions ok (${hosts.join(", ")})`);
+  }
+  if (!m.action || !m.action.default_popup) {
+    fail("Cerebro/MV3 load contract: action.default_popup required for toolbar unlock");
+  } else {
+    ok(`Cerebro/MV3 load contract: action.default_popup=${m.action.default_popup}`);
+  }
+  const cs = m.content_scripts || [];
+  const matches = cs.flatMap((c) => c.matches || []);
+  const coversWeb = matches.some(
+    (x) =>
+      x.includes("http") ||
+      x === "<all_urls>" ||
+      x === "*://*/*" ||
+      x.startsWith("*://"),
+  );
+  if (!coversWeb) {
+    fail("Cerebro/MV3 load contract: content_scripts must match web pages (*://*/* / http(s) / <all_urls>)");
+  } else {
+    ok(`Cerebro/MV3 load contract: content_scripts matches=${JSON.stringify(matches)}`);
+  }
+}
+
 // Built artifacts (optional on a fresh checkout)
 function checkZip(name, expectMv, brandCheck = true) {
   const p = path.join(ART, name);

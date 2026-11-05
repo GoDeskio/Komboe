@@ -66,3 +66,22 @@ node scripts/extension-smoke.mjs
 # with built zips:
 KOMBOE_ARTIFACTS=/workspace/artifacts node scripts/extension-smoke.mjs
 ```
+
+## Cerebro Browser load contract (tied to real MV3 manifest)
+
+Cerebro Browser is GoDesk Chromium. It loads the **same** Chromium MV3 build as Chrome (`komboe-chrome-mv3.zip` / unpacked `dist`). There is no separate Cerebro artifact.
+
+The headless smoke (`scripts/extension-smoke.mjs`) asserts these fields from `clients/upstream/apps/browser/src/manifest.v3.json`:
+
+| Manifest field | Why Cerebro needs it |
+|---|---|
+| `manifest_version: 3` | Cerebro is Chromium MV3 |
+| `permissions` includes `storage`, `tabs`, `scripting`, `alarms`, `notifications` | Vault state, tab autofill injection, unlock reminders |
+| `host_permissions` covers `https://*/*` (or equivalent) | Autofill on HTTPS login forms |
+| `action.default_popup` | Toolbar unlock / vault popup |
+| `content_scripts[].matches` cover web pages (`*://*/*` / http(s) / `<all_urls>`) | Inline in-form menu |
+
+Load steps: same Chromium checklist above (`cerebro://extensions` or the Chromium extensions page → Developer mode → Load unpacked). Confirm toolbar name **Komboe**, set self-host URL, smoke autofill.
+
+UI E2E inside Cerebro is still **manual** until a Cerebro binary is on the box (Phase B #87 partial).
+

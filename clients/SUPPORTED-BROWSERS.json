@@ -7,13 +7,13 @@
       "artifact": "komboe-chrome-mv3.zip",
       "manifest_version": 3,
       "npm_dist": "npm run dist:chrome --workspace @bitwarden/browser",
-      "load": "chrome://extensions → Developer mode → Load unpacked (unzipped dist) or drag the zip where the browser allows"
+      "load": "chrome://extensions \u2192 Developer mode \u2192 Load unpacked (unzipped dist) or drag the zip where the browser allows"
     },
     "firefox": {
       "artifact": "komboe-firefox.zip",
       "manifest_version": 2,
       "npm_dist": "npm run dist:firefox --workspace @bitwarden/browser",
-      "load": "about:debugging#/runtime/this-firefox → Load Temporary Add-on"
+      "load": "about:debugging#/runtime/this-firefox \u2192 Load Temporary Add-on"
     },
     "safari": {
       "artifact": null,
@@ -66,7 +66,7 @@
       "build": "chromium_mv3",
       "status": "supported",
       "tested": false,
-      "notes": "Load Chromium MV3 via vivaldi://extensions; Phase B #87 — not yet E2E'd in Vivaldi"
+      "notes": "Load Chromium MV3 via vivaldi://extensions; Phase B #87 \u2014 not yet E2E'd in Vivaldi"
     },
     {
       "id": "cerebro",
@@ -75,7 +75,30 @@
       "build": "chromium_mv3",
       "status": "supported",
       "tested": false,
-      "notes": "GoDesk Chromium (MV3). Treat like Chrome: load unpacked MV3 build / autofill content scripts. Must stay on the support bar."
+      "notes": "GoDesk Chromium (MV3). Same artifact as Chrome. Load-contract asserted in scripts/extension-smoke.mjs against manifest.v3.json (permissions, host_permissions, action.default_popup, content_scripts). See docs/BROWSER-EXTENSIONS.md.",
+      "load_contract": {
+        "manifest": "clients/upstream/apps/browser/src/manifest.v3.json",
+        "required_permissions": [
+          "storage",
+          "tabs",
+          "scripting",
+          "alarms",
+          "notifications"
+        ],
+        "host_permissions_any_of": [
+          "https://*/*",
+          "<all_urls>",
+          "*://*/*"
+        ],
+        "requires_action_default_popup": true,
+        "content_script_match_any_of": [
+          "*://*/*",
+          "http://*/*",
+          "https://*/*",
+          "<all_urls>"
+        ],
+        "requires_web_content_scripts": true
+      }
     },
     {
       "id": "firefox",
@@ -93,7 +116,7 @@
       "build": "firefox",
       "status": "supported",
       "tested": false,
-      "notes": "Uses the Firefox build; Phase B #87 — not yet E2E'd in Tor Browser"
+      "notes": "Uses the Firefox build; Phase B #87 \u2014 not yet E2E'd in Tor Browser"
     },
     {
       "id": "safari",

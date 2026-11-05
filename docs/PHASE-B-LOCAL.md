@@ -7,7 +7,7 @@ Cheap local work on the box clone (`/workspace/Komboe`), **no CloudAgent** (on-d
 | Area | Feature # | Code location | State after this slice |
 |---|---|---|---|
 | Desktop PIN | 52 | `apps/desktop` set-PIN dialog + `PinServiceAbstraction` via `DesktopLockComponentService.getAvailableUnlockOptions$` | Wired in UI; needs live desktop session to E2E |
-| Desktop biometrics | 52 | `apps/desktop/src/key-management/biometrics/*` (Win Hello / Touch ID / Linux polkit) | Native services present; lock screen now **toasts** on non-cancel failure (`couldNotCompleteBiometrics`); `getBiometricsError` maps polkit/Hello/TouchID strings |
+| Desktop biometrics | 52 | `apps/desktop/src/key-management/biometrics/*` (Win Hello / Touch ID / Linux polkit) | Native services present; lock screen toasts via `LockComponentService.getBiometricsError` (desktop maps polkit/Hello/TouchID; extension maps native-messaging disconnect). Live OS biometric still needs hardware|
 | Android APK | 83 | `mobile/android-build.sh`, rebrand, `komboe-sdk` | APK build path exists; **device E2E not run** |
 | Android E2E harness | 83 | `mobile/ANDROID-E2E.md`, `mobile/android-e2e-check.sh` | **New** — static APK checks + device runbook |
 | Ext Chrome/Edge/Brave/Opera | 84 | Chromium MV3 zip | Done previously; Cerebro added to matrix |
@@ -49,4 +49,12 @@ Do **not** treat either command as device E2E.
 - Branch: `phase-b/local-extension-android-harness` @ `94db00a0dcb30b7b8f7e02530a5b521fcf1d5a1d` (base `main` @ `70787648`)
 - GitGoat mirror: **not pushed** — `https://gitgoat.io/GoDeskio/Komboe.git` remote added; HTTPS auth prompts (no GITGOAT/FORGEJO token in box env). Push when credentials available.
 - Drafts #90 / #97 untouched. No merge / Coolify / DNS / deploy.
+
+## Follow-up on PR #104 branch (2026-11-05 Arizona MST)
+
+- Lock UI now calls `lockComponentService.getBiometricsError(e)` (abstract on `LockComponentService`); desktop + extension implement mappings; web keeps throw/null.
+- Cerebro MV3 **load contract** asserted in `scripts/extension-smoke.mjs` against real `manifest.v3.json` (permissions / host_permissions / action.default_popup / content_scripts).
+- `docs/BROWSER-EXTENSIONS.md` Cerebro load-contract table.
+- `mobile/android-instrumentation.sh` — optional adb install/launch probe (honest SKIP without device).
+- GitGoat: `Godeskadmin/Komboe` is a GitHub **pull-mirror** (git push 403). After GitHub push, `POST /api/v1/repos/Godeskadmin/Komboe/mirror-sync` (or wait ≤15m). Do not recreate `GoDeskio/Komboe` on GitGoat.
 

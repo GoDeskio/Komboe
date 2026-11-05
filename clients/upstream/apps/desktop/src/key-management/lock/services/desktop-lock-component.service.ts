@@ -24,7 +24,7 @@ export class DesktopLockComponentService implements LockComponentService {
       return null;
     }
     const msg = typeof error === "string" ? error : String(error?.message ?? error);
-    if (/cancel|canceled|cancelled|UserPromptCancelled/i.test(msg)) {
+    if (/cancel|canceled|cancelled|UserPromptCancelled|not allowed|denied by the user/i.test(msg)) {
       return null;
     }
     if (/polkit|PolicyKit|org\.freedesktop\.PolicyKit1/i.test(msg)) {

@@ -4,6 +4,8 @@ WORKDIR /src
 RUN apt-get update && apt-get install -y --no-install-recommends python3 \
     && rm -rf /var/lib/apt/lists/*
 COPY . .
+# webpack.base.js copies ../../../../LICENSE and THIRD-PARTY-NOTICES.md (Komboe repo root) from /src/apps/web -> /
+COPY --from=komboe_root LICENSE THIRD-PARTY-NOTICES.md /
 RUN npm ci --ignore-scripts
 ENV NODE_OPTIONS=--max-old-space-size=6144
 RUN npm run dist:oss:selfhost --workspace @bitwarden/web-vault \

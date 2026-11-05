@@ -5,6 +5,8 @@ services:
     build:
       context: ./clients/upstream
       dockerfile: ../../docker/Dockerfile.clients
+      additional_contexts:
+        komboe_root: .
     image: komboe-clients:staging
     volumes:
       - web-vault:/web-vault

@@ -2,12 +2,12 @@
   "$schema": "https://raw.githubusercontent.com/electron-userland/electron-builder/master/packages/app-builder-lib/scheme.json",
   "extraMetadata": {
     "name": "bitwarden-beta",
-    "productName": "Bitwarden Beta"
+    "productName": "Komboe Beta"
   },
-  "productName": "Bitwarden Beta",
-  "appId": "com.bitwarden.beta.desktop",
+  "productName": "Komboe Beta",
+  "appId": "io.komboe.beta.desktop",
   "buildDependenciesFromSource": true,
-  "copyright": "Copyright © 2026 Komboe. Komboe is based on Bitwarden clients (GPL-3.0).",
+  "copyright": "Copyright © 2026 Komboe.",
   "directories": {
     "buildResources": "resources",
     "output": "dist",
@@ -96,7 +96,7 @@
       "dmg",
       "zip"
     ],
-    "artifactName": "Bitwarden-${version}-${arch}-mac.${ext}"
+    "artifactName": "Komboe-Beta-${version}-${arch}-mac.${ext}"
   },
   "dmg": {
     "icon": "dmg.beta.icns",
@@ -119,7 +119,7 @@
       "width": 540,
       "height": 380
     },
-    "artifactName": "Bitwarden-${version}-${arch}.${ext}"
+    "artifactName": "Komboe-Beta-${version}-${arch}.${ext}"
   },
   "win": {
     "electronUpdaterCompatibility": ">=0.0.1",
@@ -170,16 +170,16 @@
     "oneClick": false,
     "perMachine": false,
     "allowToChangeInstallationDirectory": false,
-    "artifactName": "Bitwarden-Beta-Installer-${version}.${ext}",
+    "artifactName": "Komboe-Beta-Installer-${version}.${ext}",
     "uninstallDisplayName": "${productName}",
     "deleteAppDataOnUninstall": true,
     "include": "installer.nsh"
   },
   "portable": {
-    "artifactName": "Bitwarden-Beta-Portable-${version}.${ext}"
+    "artifactName": "Komboe-Beta-Portable-${version}.${ext}"
   },
   "appx": {
-    "artifactName": "Bitwarden-Beta-${version}-${arch}.${ext}",
+    "artifactName": "Komboe-Beta-${version}-${arch}.${ext}",
     "backgroundColor": "#175DDC",
     "customExtensionsPath": "../custom-appx-extensions.beta.xml",
     "minVersion": "10.0.14393.0",

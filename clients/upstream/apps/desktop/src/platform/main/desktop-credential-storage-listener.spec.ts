@@ -41,7 +41,7 @@ describe("DesktopCredentialStorageListener", () => {
     // service name derived from `app.getName()` changes.
 
     it("blocks renderer access to the biometric slot on the stable channel", async () => {
-      const handler = captureKeytarHandler("Bitwarden");
+      const handler = captureKeytarHandler("Komboe");
 
       const result = await handler(null, {
         action: "getPassword",
@@ -54,7 +54,7 @@ describe("DesktopCredentialStorageListener", () => {
     });
 
     it("blocks renderer access to the biometric slot on the Beta channel", async () => {
-      const handler = captureKeytarHandler("Bitwarden Beta");
+      const handler = captureKeytarHandler("Komboe Beta");
 
       const result = await handler(null, {
         action: "getPassword",
@@ -68,7 +68,7 @@ describe("DesktopCredentialStorageListener", () => {
 
     it("does not block non-biometric renderer calls", async () => {
       (passwords.getPassword as jest.Mock).mockResolvedValueOnce("secret");
-      const handler = captureKeytarHandler("Bitwarden");
+      const handler = captureKeytarHandler("Komboe");
 
       const result = await handler(null, {
         action: "getPassword",
@@ -77,12 +77,12 @@ describe("DesktopCredentialStorageListener", () => {
       });
 
       expect(result).toBe("secret");
-      expect(passwords.getPassword).toHaveBeenCalledWith("Bitwarden", "user-id");
+      expect(passwords.getPassword).toHaveBeenCalledWith("Komboe", "user-id");
     });
 
     it("does not block a non-biometric renderer call on the Beta channel", async () => {
       (passwords.getPassword as jest.Mock).mockResolvedValueOnce("secret");
-      const handler = captureKeytarHandler("Bitwarden Beta");
+      const handler = captureKeytarHandler("Komboe Beta");
 
       const result = await handler(null, {
         action: "getPassword",
@@ -91,7 +91,7 @@ describe("DesktopCredentialStorageListener", () => {
       });
 
       expect(result).toBe("secret");
-      expect(passwords.getPassword).toHaveBeenCalledWith("Bitwarden Beta", "user-id");
+      expect(passwords.getPassword).toHaveBeenCalledWith("Komboe Beta", "user-id");
     });
   });
 });

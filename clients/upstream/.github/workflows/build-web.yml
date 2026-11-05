@@ -349,21 +349,21 @@ jobs:
       - name: Build custom image metadata
         id: custom-meta
         env:
-          DESCRIPTION: ${{ matrix.description || 'Bitwarden web vault' }}
+          DESCRIPTION: ${{ matrix.description || 'Komboe web vault' }}
           IMAGE_TAG: ${{ steps.tag.outputs.image_tag }}
           PROJECT_NAME: ${{ matrix.image_name }}
           REVISION: ${{ github.event.pull_request.head.sha || github.sha }}
         run: |
           {
             echo "items<<METADATA_EOF"
-            echo "org.opencontainers.image.title=Bitwarden Web Vault"
+            echo "org.opencontainers.image.title=Komboe Web Vault"
             echo "org.opencontainers.image.description=${DESCRIPTION}"
-            echo "org.opencontainers.image.vendor=Bitwarden Inc."
-            echo "org.opencontainers.image.url=https://bitwarden.com"
-            echo "org.opencontainers.image.source=https://github.com/bitwarden/clients"
+            echo "org.opencontainers.image.vendor=GoDesk"
+            echo "org.opencontainers.image.url=https://komboe.com"
+            echo "org.opencontainers.image.source=https://github.com/GoDeskio/Komboe"
             echo "org.opencontainers.image.version=${IMAGE_TAG}"
             echo "org.opencontainers.image.revision=${REVISION}"
-            echo "com.bitwarden.project=${PROJECT_NAME}"
+            echo "com.komboe.project=${PROJECT_NAME}"
             echo "METADATA_EOF"
           } >> "$GITHUB_OUTPUT"
 

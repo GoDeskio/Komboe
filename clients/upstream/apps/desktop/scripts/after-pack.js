@@ -88,16 +88,18 @@ async function doBuild(context) {
 
     let id;
 
-    // Only use the Bitwarden Identities on CI
-    if (process.env.GITHUB_ACTIONS === "true") {
-      if (is_mas) {
-        id = "3rd Party Mac Developer Application: Bitwarden Inc";
-      } else {
-        id = "Developer ID Application: Bitwarden Inc";
-      }
-      // Locally, use the first valid code signing identity, unless CSC_NAME is set
-    } else if (process.env.CSC_NAME) {
+    // Prefer explicit signing identity (CSC_NAME / MACOS_CERTIFICATE_NAME).
+    // CI fallback uses GoDesk — never an upstream vendor identity.
+    if (process.env.CSC_NAME) {
       id = process.env.CSC_NAME;
+    } else if (process.env.MACOS_CERTIFICATE_NAME) {
+      id = process.env.MACOS_CERTIFICATE_NAME;
+    } else if (process.env.GITHUB_ACTIONS === "true") {
+      if (is_mas) {
+        id = "3rd Party Mac Developer Application: GoDesk";
+      } else {
+        id = "Developer ID Application: GoDesk";
+      }
     } else {
       const identities = getIdentities();
       if (identities.length === 0) {

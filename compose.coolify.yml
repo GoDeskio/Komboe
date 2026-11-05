@@ -1,0 +1,50 @@
+# Coolify sandbox deploy for https://sandbox.komboe.com
+# StackMail SMTP via Coolify env (not mailpit). Builds web vault then server.
+services:
+  clients:
+    build:
+      context: ./clients/upstream
+      dockerfile: ../../docker/Dockerfile.clients
+    image: komboe-clients:sandbox
+    volumes:
+      - web-vault:/web-vault
+      - extension:/extension
+
+  server:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.server
+    image: komboe-server:sandbox
+    depends_on:
+      clients:
+        condition: service_completed_successfully
+    expose:
+      - "8080"
+    environment:
+      SIGNUPS_ALLOWED: "true"
+      WEB_VAULT_ENABLED: "true"
+      WEB_VAULT_FOLDER: /web-vault
+      DOMAIN: ${DOMAIN:-https://sandbox.komboe.com}
+      ROCKET_PORT: "8080"
+      ADMIN_TOKEN: ${ADMIN_TOKEN}
+      SMTP_HOST: ${SMTP_HOST:-smtp.stackmail.com}
+      SMTP_PORT: ${SMTP_PORT:-587}
+      SMTP_SECURITY: ${SMTP_SECURITY:-starttls}
+      SMTP_FROM: ${SMTP_FROM:-donotreply@komboe.com}
+      SMTP_FROM_NAME: ${SMTP_FROM_NAME:-Komboe}
+      SMTP_USERNAME: ${SMTP_USERNAME:-donotreply@komboe.com}
+      SMTP_PASSWORD: ${SMTP_PASSWORD}
+    volumes:
+      - web-vault:/web-vault:ro
+      - komboe-data:/data
+    healthcheck:
+      test: ["CMD", "curl", "--fail", "--silent", "--show-error", "http://127.0.0.1:8080/alive"]
+      interval: 30s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+
+volumes:
+  web-vault:
+  extension:
+  komboe-data:

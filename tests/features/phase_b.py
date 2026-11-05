@@ -142,9 +142,13 @@ def _manifest(zipname):
     msgs = json.loads(z.read("_locales/en/messages.json")); return m, msgs
 @t(84)
 def _():
+    import pathlib
+    matrix = json.loads((pathlib.Path(ROOT) / "clients/SUPPORTED-BROWSERS.json").read_text())
+    ids = {b["id"] for b in matrix["browsers"]}
+    assert {"chrome", "edge", "brave", "opera", "cerebro", "firefox"}.issubset(ids)
     m, msgs = _manifest("komboe-chrome-mv3.zip"); assert m["manifest_version"] == 3 and "Komboe" in msgs["extName"]["message"]
     m2, msgs2 = _manifest("komboe-firefox.zip"); assert "Komboe" in msgs2["extName"]["message"]
-    return DONE(f"Chrome MV3 + Firefox extension zips built and rebranded ({ART})")
+    return DONE(f"Chrome MV3 + Firefox extension zips built and rebranded ({ART}); Cerebro listed in SUPPORTED-BROWSERS.json")
 @t(89)
 def _():
     m, _m = _manifest("komboe-chrome-mv3.zip"); assert any("content" in str(c.get("js")) for c in m.get("content_scripts", []))
@@ -192,7 +196,9 @@ def _():
         assert "application-label:'Komboe'" in badge, "app label is not 'Komboe'"
     names = zipfile.ZipFile(p).namelist()
     assert all(f"res/drawable/{n}.xml" in names for n in ("logo_bitwarden", "logo_shield_icon", "logo_bitwarden_icon")), "in-app logos must be VectorDrawables"
-    return ("partial", "Android debug APK io.komboe.android (label 'Komboe', Sora wordmark header + padlock-K splash as VectorDrawables) built from pinned bitwarden/android (fdroid flavor); not run on a device/emulator here; iOS needs macOS")
+    harness = os.path.join(ROOT, "mobile/ANDROID-E2E.md")
+    assert os.path.exists(harness) and os.path.exists(os.path.join(ROOT, "mobile/android-e2e-check.sh")), "Android E2E harness missing"
+    return ("partial", "Android debug APK io.komboe.android (label 'Komboe', Sora wordmark header + padlock-K splash as VectorDrawables) built from pinned bitwarden/android (fdroid flavor); ANDROID-E2E harness present; not run on a device/emulator here; iOS needs macOS")
 
 # ---- Playwright UI coverage
 def pw(name):
@@ -224,7 +230,15 @@ def _():
     m, msgs = _manifest("komboe-firefox.zip"); assert "browser_specific_settings" in m or "applications" in m
     return DONE("Firefox extension zip built and rebranded")
 @t(87)
-def _(): _manifest("komboe-chrome-mv3.zip"); return ("partial", "Chromium MV3 zip loads in Vivaldi; Tor Browser uses the Firefox build; not tested in either")
+def _():
+    import pathlib
+    matrix = json.loads((pathlib.Path(ROOT) / "clients/SUPPORTED-BROWSERS.json").read_text())
+    by_id = {b["id"]: b for b in matrix["browsers"]}
+    assert by_id["vivaldi"]["build"] == "chromium_mv3"
+    assert by_id["tor"]["build"] == "firefox"
+    assert by_id["cerebro"]["build"] == "chromium_mv3" and by_id["cerebro"]["family"] == "chromium"
+    _manifest("komboe-chrome-mv3.zip")
+    return ("partial", "Vivaldi+Cerebro use Chromium MV3; Tor uses Firefox build; matrix+smoke in-repo; not E2E'd in Vivaldi/Tor/Cerebro UI")
 def _win_desktop():
     import zipfile
     exe, z = art("komboe-desktop-win-x64-setup.exe"), art("komboe-desktop-win-x64.zip")

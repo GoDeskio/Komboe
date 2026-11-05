@@ -105,7 +105,7 @@ async fn membership(user: &UserId, org: &OrganizationId, conn: &DbConn) -> Optio
     Membership::find_by_user_and_org(user, org, conn).await.filter(|m| m.status == MembershipStatus::Confirmed as i32)
 }
 
-async fn require_admin(user: &UserId, org: &OrganizationId, conn: &DbConn) -> Result<Membership, crate::error::Error> {
+pub(crate) async fn require_admin(user: &UserId, org: &OrganizationId, conn: &DbConn) -> Result<Membership, crate::error::Error> {
     match membership(user, org, conn).await {
         Some(m) if m.atype == MembershipType::Owner as i32 || m.atype == MembershipType::Admin as i32 => Ok(m),
         Some(_) => err_code!("Only organization owners and admins can do this.", 403),

@@ -1,5 +1,5 @@
 """Live feature checks for the first security/server unblock batch."""
-import http.server
+import http.server as _hs
 import socket
 import socketserver
 import sqlite3
@@ -10,7 +10,7 @@ import threading
 def _():
     oid, _, _ = org(); secret = "feature-test-hmac-" + uuid.uuid4().hex
     got = {}
-    class Handler(http.server.BaseHTTPRequestHandler):
+    class Handler(_hs.BaseHTTPRequestHandler):
         def do_POST(self):
             n = int(self.headers.get("Content-Length", "0")); got["body"] = self.rfile.read(n)
             got["sig"] = self.headers.get("X-Komboe-Signature"); self.send_response(204); self.end_headers()

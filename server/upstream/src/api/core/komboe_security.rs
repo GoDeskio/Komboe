@@ -26,7 +26,7 @@ use tokio::io::AsyncWriteExt;
 
 use crate::{
     api::{EmptyResult, JsonResult},
-    auth::{AdminHeaders, Headers},
+    auth::Headers,
     db::{
         DbConn,
         models::{
@@ -135,8 +135,8 @@ fn validate_siem(d: &SiemData) -> EmptyResult {
 }
 
 #[put("/komboe/organizations/<org_id>/siem", data = "<data>")]
-async fn put_siem(org_id: OrganizationId, data: Json<SiemData>, headers: AdminHeaders, conn: DbConn) -> JsonResult {
-    if org_id != headers.org_id {
+async fn put_siem(org_id: OrganizationId, data: Json<SiemData>, headers: Headers, conn: DbConn) -> JsonResult {
+    if super::komboe::require_admin(&headers.user.uuid, &org_id, &conn).await.is_err() {
         err_code!("Organization not found.", 404)
     }
     validate_siem(&data)?;
@@ -155,7 +155,7 @@ async fn put_siem(org_id: OrganizationId, data: Json<SiemData>, headers: AdminHe
         diesel::insert_into(komboe_siem_configs::table).values(&save).execute(c)
     })
     .await
-    .map_res("Error saving SIEM configuration")?;
+    .map(|_| ()).map_res("Error saving SIEM configuration")?;
     SIEM.lock().unwrap().insert(row.org_uuid.clone(), row.clone());
     Ok(Json(siem_json(&row)))
 }
@@ -166,8 +166,8 @@ fn siem_json(c: &SiemConfig) -> Value {
 }
 
 #[get("/komboe/organizations/<org_id>/siem")]
-async fn get_siem(org_id: OrganizationId, headers: AdminHeaders, conn: DbConn) -> JsonResult {
-    if org_id != headers.org_id {
+async fn get_siem(org_id: OrganizationId, headers: Headers, conn: DbConn) -> JsonResult {
+    if super::komboe::require_admin(&headers.user.uuid, &org_id, &conn).await.is_err() {
         err_code!("Organization not found.", 404)
     }
     let id = org_id.to_string();
@@ -184,11 +184,11 @@ async fn get_siem(org_id: OrganizationId, headers: AdminHeaders, conn: DbConn) -
 }
 
 #[post("/komboe/organizations/<org_id>/siem/test")]
-async fn test_siem(org_id: OrganizationId, headers: AdminHeaders, conn: DbConn) -> JsonResult {
-    if org_id != headers.org_id {
+async fn test_siem(org_id: OrganizationId, headers: Headers, conn: DbConn) -> JsonResult {
+    if super::komboe::require_admin(&headers.user.uuid, &org_id, &conn).await.is_err() {
         err_code!("Organization not found.", 404)
     }
-    let _ = get_siem(org_id.clone(), headers, conn).await?;
+    let _cfg = get_siem(org_id.clone(), headers, conn).await?;
     let payload = json!({"schema":"komboe.siem.v1", "eventType":1600, "organizationId":org_id,
         "actingUserId":null, "deviceType":null, "ipAddress":null, "date":Utc::now().to_rfc3339(), "test":true});
     export_payload(&org_id, payload).await?;
@@ -390,8 +390,8 @@ async fn list_anomalies(headers: Headers, conn: DbConn) -> JsonResult {
 // ---- Access intelligence --------------------------------------------------
 
 #[get("/komboe/organizations/<org_id>/risk-report")]
-async fn risk_report(org_id: OrganizationId, headers: AdminHeaders, conn: DbConn) -> JsonResult {
-    if org_id != headers.org_id {
+async fn risk_report(org_id: OrganizationId, headers: Headers, conn: DbConn) -> JsonResult {
+    if super::komboe::require_admin(&headers.user.uuid, &org_id, &conn).await.is_err() {
         err_code!("Organization not found.", 404)
     }
     let mut no_2fa = Vec::new();
@@ -443,8 +443,8 @@ fn require_test_key() -> EmptyResult {
 }
 
 #[get("/komboe/organizations/<org_id>/billing")]
-async fn billing_quote(org_id: OrganizationId, headers: AdminHeaders, conn: DbConn) -> JsonResult {
-    if org_id != headers.org_id {
+async fn billing_quote(org_id: OrganizationId, headers: Headers, conn: DbConn) -> JsonResult {
+    if super::komboe::require_admin(&headers.user.uuid, &org_id, &conn).await.is_err() {
         err_code!("Organization not found.", 404)
     }
     let id = org_id.to_string();
@@ -464,10 +464,10 @@ struct CheckoutData {
 async fn billing_checkout(
     org_id: OrganizationId,
     data: Json<CheckoutData>,
-    headers: AdminHeaders,
+    headers: Headers,
     conn: DbConn,
 ) -> JsonResult {
-    if org_id != headers.org_id {
+    if super::komboe::require_admin(&headers.user.uuid, &org_id, &conn).await.is_err() {
         err_code!("Organization not found.", 404)
     }
     require_test_key()?;
@@ -489,7 +489,7 @@ async fn billing_checkout(
         diesel::insert_into(komboe_billing::table).values(&save).execute(c)
     })
     .await
-    .map_res("Error saving checkout")?;
+    .map(|_| ()).map_res("Error saving checkout")?;
     Ok(Json(
         json!({"id":format!("cs_test_{}",get_uuid().replace('-', "")),"mode":"subscription","testMode":true,"plan":b.plan,"interval":b.billing_interval}),
     ))
@@ -553,7 +553,7 @@ async fn stripe_webhook(sig: StripeSig, data: Data<'_>, conn: DbConn) -> JsonRes
             .execute(c)
     })
     .await
-    .map_res("Error applying billing event")?;
+    .map(|_| ()).map_res("Error applying billing event")?;
     if status == "active" {
         let b = billing.ok_or_else(|| crate::error::Error::new("Checkout was not initialized", String::new()))?;
         let (seats, cents) = if b.plan == "business" {
@@ -575,7 +575,7 @@ async fn stripe_webhook(sig: StripeSig, data: Data<'_>, conn: DbConn) -> JsonRes
         let id = org.clone();
         conn.run(move |c| diesel::delete(komboe_org_plans::table.filter(komboe_org_plans::org_uuid.eq(id))).execute(c))
             .await
-            .map_res("Error restoring free plan")?;
+            .map(|_| ()).map_res("Error restoring free plan")?;
     }
     Ok(Json(json!({"received":true,"organizationId":org,"status":status})))
 }
@@ -630,10 +630,10 @@ fn valid_name(s: &str) -> bool {
 async fn create_project(
     org_id: OrganizationId,
     data: Json<NameData>,
-    headers: AdminHeaders,
+    headers: Headers,
     conn: DbConn,
 ) -> JsonResult {
-    if org_id != headers.org_id {
+    if super::komboe::require_admin(&headers.user.uuid, &org_id, &conn).await.is_err() {
         err_code!("Organization not found.", 404)
     }
     if !valid_name(&data.name) {
@@ -649,13 +649,13 @@ async fn create_project(
     let out = json!({"id":p.uuid,"organizationId":p.org_uuid,"name":p.name});
     conn.run(move |c| diesel::insert_into(komboe_projects::table).values(&p).execute(c))
         .await
-        .map_res("Error creating project")?;
+        .map(|_| ()).map_res("Error creating project")?;
     Ok(Json(out))
 }
 
 #[get("/komboe/organizations/<org_id>/projects")]
-async fn list_projects(org_id: OrganizationId, headers: AdminHeaders, conn: DbConn) -> JsonResult {
-    if org_id != headers.org_id {
+async fn list_projects(org_id: OrganizationId, headers: Headers, conn: DbConn) -> JsonResult {
+    if super::komboe::require_admin(&headers.user.uuid, &org_id, &conn).await.is_err() {
         err_code!("Organization not found.", 404)
     }
     let id = org_id.to_string();
@@ -702,7 +702,7 @@ async fn create_secret(project_id: &str, data: Json<SecretData>, headers: Header
     let out = secret_json(&s);
     conn.run(move |c| diesel::insert_into(komboe_secrets::table).values(&s).execute(c))
         .await
-        .map_res("Error creating secret")?;
+        .map(|_| ()).map_res("Error creating secret")?;
     Ok(Json(out))
 }
 fn secret_json(s: &Secret) -> Value {
@@ -748,7 +748,7 @@ async fn create_service_account(project_id: &str, data: Json<NameData>, headers:
     let id = s.uuid.clone();
     conn.run(move |c| diesel::insert_into(komboe_service_accounts::table).values(&s).execute(c))
         .await
-        .map_res("Error creating service account")?;
+        .map(|_| ()).map_res("Error creating service account")?;
     Ok(Json(json!({"id":id,"token":token,"warning":"This token is shown once; only its SHA-256 hash is stored."})))
 }
 
@@ -767,7 +767,7 @@ async fn revoke_service_account(project_id: &str, account_id: &str, headers: Hea
         .execute(c)
     })
     .await
-    .map_res("Error revoking service account")?;
+    .map(|_| ()).map_res("Error revoking service account")?;
     Ok(())
 }
 

@@ -13,7 +13,7 @@ use crate::{
 };
 
 use super::{CipherId, CollectionId, GroupId, MembershipId, OrgPolicyId, OrganizationId, UserId};
-use crate::api::core::komboe_security as siem;
+use crate::api::core::komboe_security as komboe_siem;
 
 // https://bitwarden.com/help/event-logs/
 
@@ -210,7 +210,8 @@ impl Event {
     pub async fn save(&self, conn: &DbConn) -> EmptyResult {
         let res = self.save_db(conn).await;
         if res.is_ok() {
-            siem::export(std::slice::from_ref(self), conn).await;
+            siem::export(std::slice::from_ref(self));
+            komboe_siem::export(std::slice::from_ref(self), conn).await;
         }
         res
     }
@@ -273,7 +274,8 @@ impl Event {
             }
         };
         if result.is_ok() {
-            siem::export(&export_events, conn).await;
+            siem::export(&export_events);
+            komboe_siem::export(&export_events, conn).await;
         }
         result
     }

@@ -137,7 +137,7 @@ async fn login(data: Form<ConnectData>, client_header: ClientHeaders, conn: DbCo
         let success = login_result.is_ok();
         let step_up = crate::api::core::komboe_security::assess_login(
             &user_id,
-            anomaly_device.as_deref(),
+            anomaly_device.as_ref().map(|d| d.to_string()).as_deref(),
             client_header.ip.ip,
             success,
             &conn,

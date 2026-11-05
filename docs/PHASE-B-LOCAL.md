@@ -42,3 +42,11 @@ bash mobile/android-e2e-check.sh
 ```
 
 Do **not** treat either command as device E2E.
+
+## PR / remotes (2026-11-05 Arizona MST)
+
+- GitHub PR: https://github.com/GoDeskio/Komboe/pull/104
+- Branch: `phase-b/local-extension-android-harness` @ `94db00a0dcb30b7b8f7e02530a5b521fcf1d5a1d` (base `main` @ `70787648`)
+- GitGoat mirror: **not pushed** — `https://gitgoat.io/GoDeskio/Komboe.git` remote added; HTTPS auth prompts (no GITGOAT/FORGEJO token in box env). Push when credentials available.
+- Drafts #90 / #97 untouched. No merge / Coolify / DNS / deploy.
+

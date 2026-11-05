@@ -1,7 +1,8 @@
 #!/usr/bin/env node
 /**
  * Headless Phase B extension smoke: validate supported-browser matrix +
- * (when present) Chromium MV3 / Firefox zip manifests. Does not launch a browser.
+ * load contracts (Cerebro / Vivaldi / Tor) + (when present) Chromium MV3 /
+ * Firefox zip manifests. Does not launch a browser.
  *
  * Usage:
  *   node scripts/extension-smoke.mjs
@@ -33,23 +34,150 @@ function loadJson(p) {
 }
 
 function readZipJson(zipPath, inner) {
-  // Prefer system unzip -p to avoid a native zip dependency.
   const { spawnSync } = require("node:child_process");
-  const r = spawnSync("unzip", ["-p", zipPath, inner], { encoding: "buffer", maxBuffer: 8 * 1024 * 1024 });
+  const r = spawnSync("unzip", ["-p", zipPath, inner], {
+    encoding: "buffer",
+    maxBuffer: 8 * 1024 * 1024,
+  });
   if (r.status !== 0) {
-    throw new Error(`unzip -p ${zipPath} ${inner} failed: ${(r.stderr || r.stdout || "").toString()}`);
+    throw new Error(
+      `unzip -p ${zipPath} ${inner} failed: ${(r.stderr || r.stdout || "").toString()}`,
+    );
   }
   return JSON.parse(r.stdout.toString("utf8"));
 }
 
+function matchAny(haystack, needles) {
+  return (haystack || []).some((h) => needles.includes(h));
+}
+
+function coversWebMatches(matches, needles) {
+  return (matches || []).some(
+    (x) =>
+      needles.includes(x) ||
+      x.includes("http") ||
+      x === "<all_urls>" ||
+      x === "*://*/*" ||
+      x.startsWith("*://"),
+  );
+}
+
+/**
+ * Assert a browser's load_contract against an in-repo source manifest.
+ * Contracts live in clients/SUPPORTED-BROWSERS.json (source of truth).
+ */
+function assertLoadContract(browser) {
+  const c = browser.load_contract;
+  if (!c) {
+    fail(`${browser.id}: missing load_contract in SUPPORTED-BROWSERS.json`);
+    return;
+  }
+  const manifestPath = path.join(ROOT, c.manifest);
+  if (!fs.existsSync(manifestPath)) {
+    fail(`${browser.id}: load_contract manifest missing: ${manifestPath}`);
+    return;
+  }
+  const m = loadJson(manifestPath);
+  if (c.manifest_version != null && m.manifest_version !== c.manifest_version) {
+    fail(
+      `${browser.id}: expected manifest_version ${c.manifest_version}, got ${m.manifest_version}`,
+    );
+  } else {
+    ok(`${browser.id}: manifest_version=${m.manifest_version}`);
+  }
+
+  const perms = new Set(m.permissions || []);
+  for (const need of c.required_permissions || []) {
+    if (!perms.has(need)) {
+      fail(`${browser.id}: load contract missing permission "${need}"`);
+    }
+  }
+  if ((c.required_permissions || []).length) {
+    ok(
+      `${browser.id}: required permissions present (${c.required_permissions.length})`,
+    );
+  }
+
+  if (c.host_permissions_any_of) {
+    const hosts = m.host_permissions || [];
+    // MV2 may put hosts in permissions instead of host_permissions
+    const combined = [...hosts, ...(m.permissions || [])];
+    if (!matchAny(combined, c.host_permissions_any_of)) {
+      fail(
+        `${browser.id}: host_permissions/permissions must cover ${c.host_permissions_any_of.join(" | ")}`,
+      );
+    } else {
+      ok(`${browser.id}: host coverage ok`);
+    }
+  }
+
+  if (c.host_or_match_any_of) {
+    const combined = [...(m.host_permissions || []), ...(m.permissions || [])];
+    if (!matchAny(combined, c.host_or_match_any_of)) {
+      fail(
+        `${browser.id}: permissions must cover ${c.host_or_match_any_of.join(" | ")}`,
+      );
+    } else {
+      ok(`${browser.id}: host/permission coverage ok`);
+    }
+  }
+
+  if (c.requires_action_default_popup) {
+    if (!m.action || !m.action.default_popup) {
+      fail(`${browser.id}: action.default_popup required`);
+    } else {
+      ok(`${browser.id}: action.default_popup=${m.action.default_popup}`);
+    }
+  }
+
+  if (c.requires_browser_action_default_popup) {
+    const ba = m.browser_action || m.action;
+    if (!ba || !ba.default_popup) {
+      fail(`${browser.id}: browser_action.default_popup required (Firefox/Tor)`);
+    } else {
+      ok(`${browser.id}: browser_action.default_popup=${ba.default_popup}`);
+    }
+  }
+
+  if (c.requires_web_content_scripts) {
+    const cs = m.content_scripts || [];
+    if (!cs.length) {
+      fail(`${browser.id}: content_scripts required`);
+    } else {
+      const matches = cs.flatMap((x) => x.matches || []);
+      const needles = c.content_script_match_any_of || [];
+      if (!coversWebMatches(matches, needles)) {
+        fail(
+          `${browser.id}: content_scripts must match web pages (${needles.join(" | ")})`,
+        );
+      } else {
+        ok(
+          `${browser.id}: content_scripts matches=${JSON.stringify(matches)}`,
+        );
+      }
+    }
+  }
+}
+
 const matrixPath = path.join(ROOT, "clients/SUPPORTED-BROWSERS.json");
+let matrix;
 if (!fs.existsSync(matrixPath)) {
   fail(`missing ${matrixPath}`);
 } else {
-  const matrix = loadJson(matrixPath);
+  matrix = loadJson(matrixPath);
   const browsers = matrix.browsers || [];
   const ids = new Set(browsers.map((b) => b.id));
-  const required = ["chrome", "edge", "brave", "opera", "vivaldi", "cerebro", "firefox", "tor", "safari"];
+  const required = [
+    "chrome",
+    "edge",
+    "brave",
+    "opera",
+    "vivaldi",
+    "cerebro",
+    "firefox",
+    "tor",
+    "safari",
+  ];
   for (const id of required) {
     if (!ids.has(id)) fail(`SUPPORTED-BROWSERS.json missing browser id: ${id}`);
   }
@@ -63,7 +191,9 @@ if (!fs.existsSync(matrixPath)) {
   const tor = browsers.find((b) => b.id === "tor");
   if (!vivaldi || vivaldi.build !== "chromium_mv3") fail("Vivaldi must use chromium_mv3");
   if (!tor || tor.build !== "firefox") fail("Tor Browser must use firefox build");
-  ok(`support matrix: ${browsers.length} browsers (${browsers.filter((b) => b.status === "supported").length} supported)`);
+  ok(
+    `support matrix: ${browsers.length} browsers (${browsers.filter((b) => b.status === "supported").length} supported)`,
+  );
   console.log(
     "SUPPORTED:",
     browsers
@@ -71,20 +201,26 @@ if (!fs.existsSync(matrixPath)) {
       .map((b) => b.name)
       .join(", "),
   );
+
+  // Matrix-driven load contracts for browsers that declare one.
+  for (const id of ["cerebro", "vivaldi", "tor"]) {
+    const b = browsers.find((x) => x.id === id);
+    if (!b) {
+      fail(`missing browser ${id}`);
+      continue;
+    }
+    console.log(`\n--- load contract: ${b.name} ---`);
+    assertLoadContract(b);
+  }
 }
 
-// Source manifests (always available in-repo)
+// Source manifests (always available in-repo) — basic presence checks
 const mv3Src = path.join(ROOT, "clients/upstream/apps/browser/src/manifest.v3.json");
 const mv2Src = path.join(ROOT, "clients/upstream/apps/browser/src/manifest.json");
 if (fs.existsSync(mv3Src)) {
   const m = loadJson(mv3Src);
   if (m.manifest_version !== 3) fail(`src manifest.v3.json mv=${m.manifest_version}`);
   else ok(`src Chromium MV3 manifest present (mv=${m.manifest_version})`);
-  if (!Array.isArray(m.content_scripts) || m.content_scripts.length === 0) {
-    fail("src MV3 manifest missing content_scripts (autofill)");
-  } else {
-    ok(`src MV3 content_scripts: ${m.content_scripts.length}`);
-  }
 } else {
   fail(`missing ${mv3Src}`);
 }
@@ -93,49 +229,6 @@ if (fs.existsSync(mv2Src)) {
   ok(`src Firefox-oriented manifest present (mv=${m.manifest_version})`);
 } else {
   fail(`missing ${mv2Src}`);
-}
-
-// Cerebro MV3 load contract — tied to the real Chromium MV3 source manifest.
-// Cerebro Browser (GoDesk Chromium) loads the same unpacked MV3 build as Chrome.
-const CEREBRO_REQUIRED_PERMISSIONS = [
-  "storage",
-  "tabs",
-  "scripting",
-  "alarms",
-  "notifications",
-];
-{
-  const m = loadJson(mv3Src);
-  const perms = new Set(m.permissions || []);
-  for (const need of CEREBRO_REQUIRED_PERMISSIONS) {
-    if (!perms.has(need)) fail(`Cerebro/MV3 load contract: missing permission "${need}"`);
-  }
-  ok(`Cerebro/MV3 load contract: required permissions present (${CEREBRO_REQUIRED_PERMISSIONS.length})`);
-  const hosts = m.host_permissions || [];
-  if (!hosts.some((h) => h === "https://*/*" || h === "<all_urls>" || h === "*://*/*")) {
-    fail("Cerebro/MV3 load contract: host_permissions must cover https pages for autofill");
-  } else {
-    ok(`Cerebro/MV3 load contract: host_permissions ok (${hosts.join(", ")})`);
-  }
-  if (!m.action || !m.action.default_popup) {
-    fail("Cerebro/MV3 load contract: action.default_popup required for toolbar unlock");
-  } else {
-    ok(`Cerebro/MV3 load contract: action.default_popup=${m.action.default_popup}`);
-  }
-  const cs = m.content_scripts || [];
-  const matches = cs.flatMap((c) => c.matches || []);
-  const coversWeb = matches.some(
-    (x) =>
-      x.includes("http") ||
-      x === "<all_urls>" ||
-      x === "*://*/*" ||
-      x.startsWith("*://"),
-  );
-  if (!coversWeb) {
-    fail("Cerebro/MV3 load contract: content_scripts must match web pages (*://*/* / http(s) / <all_urls>)");
-  } else {
-    ok(`Cerebro/MV3 load contract: content_scripts matches=${JSON.stringify(matches)}`);
-  }
 }
 
 // Built artifacts (optional on a fresh checkout)

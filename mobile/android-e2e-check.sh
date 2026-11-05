@@ -50,6 +50,21 @@ for f in ("LICENSE.txt", "komboe-source.txt"):
         print(f"WARN: {f} not found inside APK (expected under assets/ for GPL offer)")
     else:
         print(f"OK: found {hits[0]}")
+# Biometric / fingerprint permission strings (UTF-16-LE in binary XML, or ASCII).
+# Presence is a packaging signal only — not a device E2E claim.
+bio_needles = (
+    "android.permission.USE_BIOMETRIC",
+    "android.permission.USE_FINGERPRINT",
+)
+found_bio = []
+for perm in bio_needles:
+    if perm.encode("utf-16-le") in man or perm.encode("ascii") in man:
+        found_bio.append(perm)
+if found_bio:
+    print("OK: biometric-related permission(s) in manifest: " + ", ".join(found_bio))
+else:
+    print("WARN: USE_BIOMETRIC / USE_FINGERPRINT not found in AndroidManifest.xml "
+          "(upstream may declare them in a merged flavor manifest — check device build)")
 PY
 
 if command -v aapt2 >/dev/null 2>&1; then

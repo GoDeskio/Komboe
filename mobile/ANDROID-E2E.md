@@ -14,19 +14,25 @@ Updated 2026-11-05 Arizona MST.
 | Rebrand | `mobile/android_rebrand.py` | Komboe label, padlock-K assets, GPL assets |
 | GPL SDK surface | `mobile/komboe-sdk` | Replaces `com.bitwarden:sdk-android` |
 | Artifact check (no device) | `tests/features/phase_b.py` `#83` | Zip/manifest/badging only |
-| Pre-device smoke | `mobile/android-e2e-check.sh` | APK presence, package id, label, GPL assets listing |
+| Pre-device smoke | `mobile/android-e2e-check.sh` | APK presence, package id, label, GPL assets, biometric permission strings when APK present |
+| Combined harness | `mobile/android-harness.sh` | Runs e2e-check then instrumentation; never claims device E2E |
+| Device launch probe | `mobile/android-instrumentation.sh` | Optional adb install/launch; SKIP without device |
 
 PIN / biometric unlock live in the upstream Android tree after clone+rebrand; they need a real device or emulator with a screen lock enrolled. iOS remains blocked without macOS.
 
 ## Pre-device check (safe on the build box)
 
 ```sh
+# Prefer the combined harness (static + optional adb probe):
+bash mobile/android-harness.sh
+# or individually:
 bash mobile/android-e2e-check.sh
+bash mobile/android-instrumentation.sh
 # optional:
-KOMBOE_ARTIFACTS=/workspace/artifacts bash mobile/android-e2e-check.sh
+KOMBOE_ARTIFACTS=/workspace/artifacts bash mobile/android-harness.sh
 ```
 
-Exit 0 means the APK artifact looks installable. It does **not** mean login/autofill/PIN/biometric E2E passed.
+Exit 0 means docs/scripts (and the APK when present) look installable. When an APK is present, `android-e2e-check.sh` also looks for `USE_BIOMETRIC` / `USE_FINGERPRINT` permission strings in the binary manifest (packaging signal only). It does **not** mean login/autofill/PIN/biometric E2E passed.
 
 ## Device / emulator runbook (when hardware is available)
 

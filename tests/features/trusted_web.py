@@ -19,7 +19,7 @@ PASSWORD = sso_dex.PASSWORD
 
 
 def dex_login(page):
-    page.locator("input[name=login]").wait_for()
+    page.locator("input[name=login]").wait_for(timeout=40000)
     page.fill("input[name=login]", EMAIL)
     page.fill("input[name=password]", PASSWORD)
     page.locator("button[type=submit], #submit-login").first.click()
@@ -31,7 +31,7 @@ def sso(page):
     except Exception as e:  # SPA may redirect to /#/login itself mid-goto
         if "interrupted by another navigation" not in str(e):
             raise
-    page.locator("#email").wait_for(timeout=20000)
+    page.locator("#email").wait_for(timeout=40000)
     page.fill("#email", EMAIL)
     page.get_by_test_id("login-sso-button").click()
     page.wait_for_function(

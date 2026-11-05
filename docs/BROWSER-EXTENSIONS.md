@@ -85,3 +85,27 @@ Load steps: same Chromium checklist above (`cerebro://extensions` or the Chromiu
 
 UI E2E inside Cerebro is still **manual** until a Cerebro binary is on the box (Phase B #87 partial).
 
+## Vivaldi load contract (Chromium MV3)
+
+Vivaldi loads the **same** Chromium MV3 build as Chrome (`komboe-chrome-mv3.zip`). There is no separate Vivaldi artifact.
+
+`scripts/extension-smoke.mjs` reads `load_contract` for `vivaldi` from [`clients/SUPPORTED-BROWSERS.json`](../clients/SUPPORTED-BROWSERS.json) and asserts it against `manifest.v3.json` (same fields as Cerebro: permissions, host_permissions, `action.default_popup`, content_scripts).
+
+Load: `vivaldi://extensions` → Developer mode → Load unpacked. UI E2E inside Vivaldi is still **manual** (Phase B #87 partial).
+
+## Tor Browser load contract (Firefox MV2)
+
+Tor Browser loads the **Firefox** zip (`komboe-firefox.zip`) via the temporary-add-on flow. There is no separate Tor artifact.
+
+`scripts/extension-smoke.mjs` reads `load_contract` for `tor` from the matrix and asserts it against `clients/upstream/apps/browser/src/manifest.json`:
+
+| Manifest field | Why Tor/Firefox needs it |
+|---|---|
+| `manifest_version: 2` | Tor Browser is Firefox-based (MV2 temporary add-on) |
+| `permissions` includes `storage`, `tabs`, `alarms`, `notifications` | Vault state + unlock reminders |
+| host permission / `<all_urls>` / `*://*/*` | Autofill on pages (Tor first-party isolation still needs manual re-test) |
+| `browser_action.default_popup` | Toolbar unlock / vault popup |
+| `content_scripts[].matches` cover web pages | Inline in-form menu |
+
+Load: Tor Browser → `about:debugging#/runtime/this-firefox` → Load Temporary Add-on. UI E2E inside Tor is still **manual** (Phase B #87 partial).
+

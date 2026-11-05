@@ -199,7 +199,8 @@ def _():
     harness = os.path.join(ROOT, "mobile/ANDROID-E2E.md")
     assert os.path.exists(harness) and os.path.exists(os.path.join(ROOT, "mobile/android-e2e-check.sh")), "Android E2E harness missing"
     assert os.path.exists(os.path.join(ROOT, "mobile/android-instrumentation.sh")), "Android instrumentation probe missing"
-    return ("partial", "Android debug APK io.komboe.android (label 'Komboe', Sora wordmark header + padlock-K splash as VectorDrawables) built from pinned bitwarden/android (fdroid flavor); ANDROID-E2E harness present; not run on a device/emulator here; iOS needs macOS")
+    assert os.path.exists(os.path.join(ROOT, "mobile/android-harness.sh")), "Android combined harness missing"
+    return ("partial", "Android debug APK io.komboe.android (label 'Komboe', Sora wordmark header + padlock-K splash as VectorDrawables) built from pinned bitwarden/android (fdroid flavor); ANDROID-E2E + android-harness.sh present; not run on a device/emulator here; iOS needs macOS")
 
 # ---- Playwright UI coverage
 def pw(name):
@@ -238,8 +239,11 @@ def _():
     assert by_id["vivaldi"]["build"] == "chromium_mv3"
     assert by_id["tor"]["build"] == "firefox"
     assert by_id["cerebro"]["build"] == "chromium_mv3" and by_id["cerebro"]["family"] == "chromium"
+    for bid in ("cerebro", "vivaldi", "tor"):
+        assert "load_contract" in by_id[bid], f"{bid} missing load_contract"
+        assert by_id[bid]["load_contract"].get("manifest"), f"{bid} load_contract.manifest required"
     _manifest("komboe-chrome-mv3.zip")
-    return ("partial", "Vivaldi+Cerebro use Chromium MV3; Tor uses Firefox build; matrix+smoke+Cerebro MV3 load-contract in-repo; not E2E'd in Vivaldi/Tor/Cerebro UI")
+    return ("partial", "Vivaldi+Cerebro use Chromium MV3; Tor uses Firefox build; matrix-driven load_contracts for cerebro/vivaldi/tor asserted by extension-smoke; not E2E'd in Vivaldi/Tor/Cerebro UI")
 def _win_desktop():
     import zipfile
     exe, z = art("komboe-desktop-win-x64-setup.exe"), art("komboe-desktop-win-x64.zip")

@@ -123,7 +123,7 @@ def main():
     step("org invites", orgflow)
     def emergency():
         g, e = User(), User()
-        g.api("POST", "/api/emergency-access/invite", {"email": e.email, "type": 1, "waitTimeDays": 1})
+        g.api("POST", "/api/emergency-access/invite", {"email": e.email, "type": 0, "waitTimeDays": 1})
         ea = g.api("GET", "/api/emergency-access/trusted")["data"][0]
         check("emergency invite", e.email, "Emergency", lambda m, b: e.api("POST", f"/api/emergency-access/{ea['id']}/accept", {"token": tok_from(b)}))
         check("emergency accepted (to grantor)", g.email, "Accepted")
@@ -132,15 +132,16 @@ def main():
         check("emergency confirmed", e.email, "Confirmed")
         e.api("POST", f"/api/emergency-access/{ea['id']}/initiate"); check("emergency recovery initiated", g.email, "Initiated")
         g.api("POST", f"/api/emergency-access/{ea['id']}/reject"); check("emergency recovery rejected", e.email, "Rejected")
-        e.api("POST", f"/api/emergency-access/{ea['id']}/initiate"); g.api("POST", f"/api/emergency-access/{ea['id']}/approve")
-        check("emergency recovery approved", e.email, "Approved")
+        for suffix in ("takeover", "password", "approve"):
+            try: e.api("POST", f"/api/emergency-access/{ea['id']}/{suffix}"); raise AssertionError(suffix)
+            except HTTPErr as x: assert x.code in (404, 405)
     step("emergency access", emergency)
     def dbx(sql, *a):
         import sqlite3; c = sqlite3.connect(os.environ.get("KOMBOE_DB", "/workspace/run/mt/data/db.sqlite3"), timeout=30); c.execute(sql, a); c.commit(); c.close()
     def emergency_jobs():
         # Scheduled jobs: server must run with EMERGENCY_*_SCHEDULE="*/5 * * * * *"; we backdate recovery_initiated_at to trigger them.
         g, e = User(), User()
-        g.api("POST", "/api/emergency-access/invite", {"email": e.email, "type": 1, "waitTimeDays": 2})
+        g.api("POST", "/api/emergency-access/invite", {"email": e.email, "type": 0, "waitTimeDays": 2})
         ea = g.api("GET", "/api/emergency-access/trusted")["data"][0]
         check("emergency invite (jobs)", e.email, "Emergency", lambda m, b: e.api("POST", f"/api/emergency-access/{ea['id']}/accept", {"token": tok_from(b)}))
         pk = g.api("GET", f"/api/users/{e.id}/public-key")["publicKey"]

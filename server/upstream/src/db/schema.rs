@@ -417,6 +417,76 @@ table! {
     }
 }
 
+table! {
+    komboe_siem_configs (org_uuid) {
+        org_uuid -> Text,
+        kind -> Text,
+        endpoint -> Text,
+        hmac_secret -> Nullable<Text>,
+        enabled -> Bool,
+        updated_at -> Timestamp,
+    }
+}
+
+table! {
+    komboe_anomalies (uuid) {
+        uuid -> Text,
+        user_uuid -> Text,
+        kind -> Text,
+        ip_prefix -> Text,
+        device_id -> Nullable<Text>,
+        detail -> Text,
+        risk -> Integer,
+        created_at -> Timestamp,
+    }
+}
+
+table! {
+    komboe_billing (org_uuid) {
+        org_uuid -> Text,
+        plan -> Text,
+        billing_interval -> Text,
+        status -> Text,
+        stripe_customer_id -> Nullable<Text>,
+        stripe_subscription_id -> Nullable<Text>,
+        updated_at -> Timestamp,
+    }
+}
+
+table! {
+    komboe_projects (uuid) {
+        uuid -> Text,
+        org_uuid -> Text,
+        name -> Text,
+        created_by -> Text,
+        created_at -> Timestamp,
+    }
+}
+
+table! {
+    komboe_secrets (uuid) {
+        uuid -> Text,
+        project_uuid -> Text,
+        name -> Text,
+        ciphertext -> Text,
+        created_by -> Text,
+        created_at -> Timestamp,
+        updated_at -> Timestamp,
+    }
+}
+
+table! {
+    komboe_service_accounts (uuid) {
+        uuid -> Text,
+        project_uuid -> Text,
+        name -> Text,
+        token_hash -> Text,
+        created_by -> Text,
+        created_at -> Timestamp,
+        revoked_at -> Nullable<Timestamp>,
+    }
+}
+
 allow_tables_to_appear_in_same_query!(
     archives,
     attachments,
@@ -562,5 +632,11 @@ allow_tables_to_appear_in_same_query!(
     komboe_device_trust,
     komboe_login_passkeys,
     komboe_passkey_challenges,
-    komboe_account_keys_v2
+    komboe_account_keys_v2,
+    komboe_siem_configs,
+    komboe_anomalies,
+    komboe_billing,
+    komboe_projects,
+    komboe_secrets,
+    komboe_service_accounts
 );

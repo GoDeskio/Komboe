@@ -637,7 +637,7 @@ async fn agent_act(body: Json<AgentAct>, headers: Headers, conn: DbConn) -> Json
                 {"id": "autotype_linux", "title": "Try Linux auto-type dry-run", "why": "Confirm desktop typing works before relying on it"},
             ],
             "vaultScanned": false,
-        })
+        }),
         "list_unlock_methods" => {
             let uid3 = uid.clone();
             let n = conn

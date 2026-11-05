@@ -61,7 +61,27 @@ adb exec-out screencap -p > /tmp/komboe-android-e2e.png
 adb logcat -d | rg -i 'komboe|AndroidRuntime' | tail -200 > /tmp/komboe-android-e2e.log
 ```
 
-## Instrumentation hooks (future)
+## Instrumentation hooks
+
+### Pre-device (always safe)
+
+```sh
+bash mobile/android-e2e-check.sh
+```
+
+### Device launch probe (optional)
+
+When `adb` sees a device/emulator:
+
+```sh
+bash mobile/android-instrumentation.sh
+# optional:
+KOMBOE_ANDROID_APK=/path/to/komboe-android-debug.apk bash mobile/android-instrumentation.sh
+```
+
+This installs (if APK present), launches `io.komboe.android`, and dumps the resumed activity. It does **not** mark STATUS #83 done.
+
+### Future Espresso / Compose UI tests
 
 When we add Espresso / Compose UI tests against the rebranded tree, keep them under the cloned android sources after rebrand (not committed upstream clones). Prefer:
 
@@ -69,4 +89,4 @@ When we add Espresso / Compose UI tests against the rebranded tree, keep them un
 - Login → vault list smoke against `KOMBOE_TLS_URL`
 - Explicit `@Ignore("needs device biometrics")` on biometric cases so CI stays honest
 
-Until those tests land, `mobile/android-e2e-check.sh` + this checklist are the harness.
+Until those tests land, `android-e2e-check.sh` + `android-instrumentation.sh` + this checklist are the harness.

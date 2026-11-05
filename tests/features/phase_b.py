@@ -198,6 +198,7 @@ def _():
     assert all(f"res/drawable/{n}.xml" in names for n in ("logo_bitwarden", "logo_shield_icon", "logo_bitwarden_icon")), "in-app logos must be VectorDrawables"
     harness = os.path.join(ROOT, "mobile/ANDROID-E2E.md")
     assert os.path.exists(harness) and os.path.exists(os.path.join(ROOT, "mobile/android-e2e-check.sh")), "Android E2E harness missing"
+    assert os.path.exists(os.path.join(ROOT, "mobile/android-instrumentation.sh")), "Android instrumentation probe missing"
     return ("partial", "Android debug APK io.komboe.android (label 'Komboe', Sora wordmark header + padlock-K splash as VectorDrawables) built from pinned bitwarden/android (fdroid flavor); ANDROID-E2E harness present; not run on a device/emulator here; iOS needs macOS")
 
 # ---- Playwright UI coverage
@@ -238,7 +239,7 @@ def _():
     assert by_id["tor"]["build"] == "firefox"
     assert by_id["cerebro"]["build"] == "chromium_mv3" and by_id["cerebro"]["family"] == "chromium"
     _manifest("komboe-chrome-mv3.zip")
-    return ("partial", "Vivaldi+Cerebro use Chromium MV3; Tor uses Firefox build; matrix+smoke in-repo; not E2E'd in Vivaldi/Tor/Cerebro UI")
+    return ("partial", "Vivaldi+Cerebro use Chromium MV3; Tor uses Firefox build; matrix+smoke+Cerebro MV3 load-contract in-repo; not E2E'd in Vivaldi/Tor/Cerebro UI")
 def _win_desktop():
     import zipfile
     exe, z = art("komboe-desktop-win-x64-setup.exe"), art("komboe-desktop-win-x64.zip")

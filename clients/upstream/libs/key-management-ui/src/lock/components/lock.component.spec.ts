@@ -490,6 +490,7 @@ describe("LockComponent", () => {
         masterPassword: { enabled: true },
         prf: { enabled: false },
       };
+      mockLockComponentService.getBiometricsError.mockReturnValue(null);
     });
 
     it("ignores concurrent unlock attempts while one biometric unlock is in progress", async () => {
@@ -526,6 +527,24 @@ describe("LockComponent", () => {
         "[LockComponent] Failed to unlock via biometrics.",
         expect.any(Error),
       );
+      expect(mockToastService.showToast).not.toHaveBeenCalled();
+    });
+
+    it("toasts the i18n key from LockComponentService.getBiometricsError on failure", async () => {
+      mockUnlockService.unlockWithBiometrics.mockRejectedValue(new Error("polkit policy missing"));
+      mockLockComponentService.getBiometricsError.mockReturnValue(
+        "biometricsStatusHelptextManualSetupNeeded",
+      );
+      mockI18nService.t.mockImplementation((key: string) => key);
+
+      await component.unlockViaBiometrics();
+
+      expect(mockLockComponentService.getBiometricsError).toHaveBeenCalled();
+      expect(mockToastService.showToast).toHaveBeenCalledWith({
+        variant: "error",
+        title: "errorOccurred",
+        message: "biometricsStatusHelptextManualSetupNeeded",
+      });
     });
   });
 

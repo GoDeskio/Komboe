@@ -13,11 +13,10 @@ services:
       - extension:/extension
 
   server:
+    name: server
     build:
-      context: ./server/upstream
-      dockerfile: ../../docker/Dockerfile.server
-      additional_contexts:
-        komboe_root: .
+      context: .
+      dockerfile: docker/Dockerfile.server
     image: komboe-server:sandbox
     depends_on:
       clients:

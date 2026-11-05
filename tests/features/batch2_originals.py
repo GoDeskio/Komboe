@@ -142,6 +142,7 @@ def _agent_live():
     u = User()
     s = u.api("POST", "/api/komboe/agent/session", {})
     assert s["vaultAccess"] is False and "generate_password" in s["capabilities"]
+    assert "suggest_next_steps" in s["capabilities"]
     try:
         u.api("POST", "/api/komboe/agent/act", {"sessionId": s["sessionId"], "action": "decrypt_vault"})
         raise AssertionError("decrypt allowed")
@@ -151,6 +152,10 @@ def _agent_live():
     assert pw["vaultAccess"] is False and len(pw["result"]["password"]) == 24
     chk = u.api("POST", "/api/komboe/agent/act", {"sessionId": s["sessionId"], "action": "security_checklist"})
     assert chk["result"]["vaultScanned"] is False and len(chk["result"]["items"]) >= 3
+    exp = u.api("POST", "/api/komboe/agent/act", {"sessionId": s["sessionId"], "action": "explain_feature", "args": {"feature": "autotype"}})
+    assert "wtype" in exp["result"]["explanation"] or "auto-type" in exp["result"]["explanation"].lower()
+    nxt = u.api("POST", "/api/komboe/agent/act", {"sessionId": s["sessionId"], "action": "suggest_next_steps"})
+    assert len(nxt["result"]["steps"]) >= 3 and nxt["result"]["vaultScanned"] is False
     return s["sessionId"]
 
 
@@ -160,4 +165,4 @@ _prev_101 = T[101][0]
 def _():
     st, why = _prev_101()
     sid = _agent_live()
-    return (st, why + f"; built-in agent session {sid[:8]}… generate_password + checklist; decrypt refused")
+    return (st, why + f"; built-in agent session {sid[:8]}… generate_password + checklist + explain/suggest; decrypt refused")

@@ -6,7 +6,7 @@ Last live run: 2026-10-31. Batch-1 merged 2026-11-04 (#100). Batch-2 originals +
 - **partial**: upstream code is vendored here but not yet exercised end-to-end
 - **blocked**: needs Phase B, an external service, or is excluded by policy (excluded items are tested to be *absent*)
 
-**Counts:** done 92 · partial 9 · blocked 5 · fail 0 (of 106)
+**Counts:** done 93 · partial 8 · blocked 5 · fail 0 (of 106)
 
 | # | Category | Feature | Status | Evidence / next step |
 |---|---|---|---|---|
@@ -99,7 +99,7 @@ Last live run: 2026-10-31. Batch-1 merged 2026-11-04 (#100). Batch-2 originals +
 | 87 | Platform | Browser ext Vivaldi/Tor | partial | Chromium MV3 zip loads in Vivaldi; Tor Browser uses the Firefox build; not tested in either |
 | 88 | Platform | CLI | done | CLI `komboe` 2026.10.1: config server (HTTPS), login, list items (0) ok; data dir 'Komboe CLI' |
 | 89 | Platform | Autofill: inline in-form menu + keyboard shortcuts | done | autofill content scripts built into the extension; Playwright autofill passed |
-| 90 | Platform | Auto-type (desktop global) | partial | Linux auto-type MVP source + dry-run path present; native cargo test blocked by missing rust toolchain/deps on this box |
+| 90 | Platform | Auto-type (desktop global) | done | Linux auto-type MVP: KOMBOE_AUTOTYPE_DRY_RUN unit test passed (wtype/xdotool/ydotool); docs/design/linux-autotype.md |
 | 91 | Platform | Secret Service / FreeDesktop integration | done | Secret Service / FreeDesktop: oo7 Keyring get/set/delete present; design documented (batch2) |
 | 92 | Platform | Apple Watch / Wear OS | done | Wear OS companion scaffold + design; Apple Watch/Safari documented as requiring macOS/Xcode (batch2) |
 | 93 | Self-host | Docker self-host | partial | multi-stage/non-root/healthchecked Dockerfile statically verified; Docker unavailable on this build box |
@@ -110,7 +110,7 @@ Last live run: 2026-10-31. Batch-1 merged 2026-11-04 (#100). Batch-2 originals +
 | 98 | Crypto | Per-vault keys wrapped with user public keys | done | org key wrapped per member with RSA-OAEP public keys (see #20) |
 | 99 | Crypto | OpenPGP-based encryption | done | OpenPGP vault wrap: client-encrypted vault key stored; serverCanDecrypt=false; delete clears (batch2 live) |
 | 100 | Crypto | AES-256 / XChaCha20 / Argon2id | partial | AES-256-CBC+HMAC and Argon2id verified; account encryption v2 (EncString type 7, COSE Encrypt0, extended-nonce AEAD) behind KOMBOE_AEAD_V2: v2 registration, v2 items, v1->v2 upgrade on web unlock, downgrade guard, zero-knowledge (tests/features/aead_v2.py). The upstream SDK generates XAES-256-GCM v2 keys; real XChaCha20-Poly1305 will come from Encryptoglyph, the shared GoDesk crypto library Komboe will call later (no SDK fork). Design: docs/design/xchacha20.md |
-| 101 | Crypto | Local-only file database (no server) | done | local-only file-db-v1 discovery + offline SQLite fixture; built-in agent generate_password/checklist; decrypt refused (batch2 live) |
+| 101 | Crypto | Local-only file database (no server) | done | local-only file-db-v1 discovery + offline SQLite fixture; built-in agent generate_password/checklist/explain/suggest; decrypt refused (batch2 live) |
 | 102 | Crypto | Third-party audits published | blocked | third-party audit: requires funding/engagement |
 | 103 | Billing | Hosted SaaS monthly or annual | done | Stripe sk_test_ checkout (cs_test_) + annual plan + timestamped webhook HMAC; invalid signature rejected (batch1 live) |
 | 104 | Billing | Free tier | done | free plan defaults to three seats and rejects the fourth member (batch1 live) |

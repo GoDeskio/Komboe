@@ -553,6 +553,7 @@ async fn agent_session(headers: Headers, conn: DbConn) -> JsonResult {
             "explain_feature",
             "list_unlock_methods",
             "local_only_status",
+            "suggest_next_steps",
         ],
         "vaultAccess": false,
         "note": "Komboe agent never reads vault item plaintext.",
@@ -620,10 +621,23 @@ async fn agent_act(body: Json<AgentAct>, headers: Headers, conn: DbConn) -> Json
                 "siem" => "SIEM export sends sanitized event envelopes (komboe.siem.v1) over HMAC webhooks or RFC5424 syslog. Ciphertext never leaves.",
                 "pgp" => "PGP auth is a three-step possession proof. OpenPGP vault wrap stores a client-encrypted vault key the server cannot open.",
                 "local-only" => "Local-only mode keeps an encrypted SQLite vault on disk with --local-db; no server round-trip.",
+                "autotype" | "auto-type" => "Linux auto-type types credentials into the focused window via wtype/xdotool/ydotool. Use KOMBOE_AUTOTYPE_DRY_RUN=1 for headless unit tests.",
+                "yubikey" => "Hardware unlock stores only a public credential id. The private key never leaves the authenticator.",
+                "passkeys" => "Passkeys are stored as encrypted FIDO2 credentials. The server never sees the private key.",
+                "billing" => "Stripe is test-mode only until Dustin enables live keys. Free tier stays available without a card.",
                 _ => "Komboe is a zero-knowledge password manager. The server stores ciphertext only.",
             };
             json!({ "feature": name, "explanation": text })
         }
+        "suggest_next_steps" => json!({
+            "steps": [
+                {"id": "enable_2fa", "title": "Turn on two-step login", "why": "Stops password-only account takeover"},
+                {"id": "hw_key", "title": "Add a hardware unlock key", "why": "Phishing-resistant unlock on supported clients"},
+                {"id": "emergency", "title": "Name a view-only emergency contact", "why": "Recovery without giving anyone a backdoor"},
+                {"id": "autotype_linux", "title": "Try Linux auto-type dry-run", "why": "Confirm desktop typing works before relying on it"},
+            ],
+            "vaultScanned": false,
+        })
         "list_unlock_methods" => {
             let uid3 = uid.clone();
             let n = conn

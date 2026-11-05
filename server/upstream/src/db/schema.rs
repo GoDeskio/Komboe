@@ -487,6 +487,59 @@ table! {
     }
 }
 
+
+table! {
+    komboe_unlock_credentials (uuid) {
+        uuid -> Text,
+        user_uuid -> Text,
+        kind -> Text,
+        name -> Text,
+        credential_id -> Text,
+        public_data -> Text,
+        salt -> Text,
+        wrapped_user_key -> Text,
+        created_at -> Timestamp,
+    }
+}
+
+table! {
+    komboe_pgp_auth_keys (uuid) {
+        uuid -> Text,
+        user_uuid -> Text,
+        fingerprint -> Text,
+        public_key_armored -> Text,
+        created_at -> Timestamp,
+    }
+}
+
+table! {
+    komboe_pgp_auth_challenges (token) {
+        token -> Text,
+        user_uuid -> Text,
+        nonce -> Text,
+        expires_at -> Timestamp,
+    }
+}
+
+table! {
+    komboe_pgp_vault_keys (user_uuid) {
+        user_uuid -> Text,
+        fingerprint -> Text,
+        public_key_armored -> Text,
+        wrapped_vault_key -> Text,
+        updated_at -> Timestamp,
+    }
+}
+
+table! {
+    komboe_agent_sessions (uuid) {
+        uuid -> Text,
+        user_uuid -> Text,
+        created_at -> Timestamp,
+        last_action -> Text,
+    }
+}
+
 allow_tables_to_appear_in_same_query!(
     archives,
     attachments,
@@ -511,7 +564,7 @@ allow_tables_to_appear_in_same_query!(
     groups_users,
     collections_groups,
     event,
-    auth_requests,
+    auth_requests
 );
 
 // Komboe: family/company plans, split-off requests and SimpleLogin-compatible aliases
@@ -619,6 +672,7 @@ table! {
     }
 }
 
+
 allow_tables_to_appear_in_same_query!(
     komboe_org_plans,
     komboe_split_requests,
@@ -638,5 +692,10 @@ allow_tables_to_appear_in_same_query!(
     komboe_billing,
     komboe_projects,
     komboe_secrets,
-    komboe_service_accounts
+    komboe_service_accounts,
+    komboe_unlock_credentials,
+    komboe_pgp_auth_keys,
+    komboe_pgp_auth_challenges,
+    komboe_pgp_vault_keys,
+    komboe_agent_sessions
 );

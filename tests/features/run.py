@@ -390,7 +390,7 @@ X(104, "free tier: Phase B billing")
 X(105, "Proton-style UI: under review")
 X(106, "secrets manager: upstream code excluded (bitwarden_license); reimplement later")
 
-for _f in ("phase_b.py", "phase_e.py", "phase_tags.py", "phase_templates.py", "phase_bookmarks.py", "phase_gpg.py", "phase_env.py", "phase_passkey.py", "phase_kdbx.py", "phase_expiry.py", "phase_dashboard.py", "phase_ha.py", "phase_sso.py", "phase_scim.py", "phase_ldap.py", "phase_trusted.py", "phase_s3.py", "batch1_security.py"):
+for _f in ("phase_b.py", "phase_e.py", "phase_tags.py", "phase_templates.py", "phase_bookmarks.py", "phase_gpg.py", "phase_env.py", "phase_passkey.py", "phase_kdbx.py", "phase_expiry.py", "phase_dashboard.py", "phase_ha.py", "phase_sso.py", "phase_scim.py", "phase_ldap.py", "phase_trusted.py", "phase_s3.py", "batch1_security.py", "batch2_originals.py"):
     exec(compile(open(os.path.join(os.path.dirname(__file__), _f)).read(), _f, "exec"))
 
 def _fail_why(e):

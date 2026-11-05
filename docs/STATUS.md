@@ -1,12 +1,12 @@
 # Komboe feature status
 
-Last live run: 2026-10-31. Batch-1 source status refreshed 2026-11-04; the new live checks require a rebuilt local server.
+Last live run: 2026-10-31. Batch-1 merged 2026-11-04 (#100). Batch-2 originals + Phase B client checks refreshed 2026-11-04.
 
 - **done**: verified end-to-end against the running server in this run
 - **partial**: upstream code is vendored here but not yet exercised end-to-end
 - **blocked**: needs Phase B, an external service, or is excluded by policy (excluded items are tested to be *absent*)
 
-**Counts:** done 86 · partial 8 · blocked 12 · fail 0 (of 106)
+**Counts:** done 92 · partial 9 · blocked 5 · fail 0 (of 106)
 
 | # | Category | Feature | Status | Evidence / next step |
 |---|---|---|---|---|
@@ -62,8 +62,8 @@ Last live run: 2026-10-31. Batch-1 source status refreshed 2026-11-04; the new l
 | 50 | Auth | Login with passkey (passwordless account) | done | Passkey login: registered in web settings (discoverable, user-verified, PRF), signed out, signed back in with only the passkey to an unlocked vault; server stores client-wrapped keys only, passkey is not 2FA, forged/replayed assertions refused; challenges live in the shared DB so two nodes work without sticky sessions |
 | 51 | Auth | Login with device approval | done | login with device: new device's request approved by a logged-in device, user key RSA-OAEP-wrapped to the new device (server never sees it); denied request gets no token (requesting device must be known to the server, as in Vaultwarden) |
 | 52 | Auth | Biometric / PIN unlock | partial | biometric/PIN unlock are desktop/mobile client features (Phase B) |
-| 53 | Auth | Hardware key / key file vault unlock (YubiKey challenge-response) | blocked | YubiKey challenge-response unlock: Komboe-original |
-| 54 | Auth | PGP key-based auth with passphrase (3-step) | blocked | PGP key auth: Komboe-original |
+| 53 | Auth | Hardware key / key file vault unlock (YubiKey challenge-response) | done | YubiKey/hardware unlock: server stores client-wrapped key only; list/add/delete; serverCanUnwrap=false (batch2 live) |
+| 54 | Auth | PGP key-based auth with passphrase (3-step) | done | PGP auth 3-step: register pubkey, challenge nonce, verify HMAC/OpenPGP signature; private keys refused (batch2 live) |
 | 55 | Auth | Advanced account protection (Sentinel-style anomaly detection) | done | new device+prefix, rapid prefix change, and five failures recorded as anomalies (batch1 live; KOMBOE_ANOMALY_STEP_UP) |
 | 56 | TOTP | Built-in TOTP authenticator for stored items | done | encrypted TOTP seed stored; code computed client-side |
 | 57 | TOTP | Passkey storage + autofill | done | encrypted passkey storage; autofill is extension (Phase B) |
@@ -99,18 +99,18 @@ Last live run: 2026-10-31. Batch-1 source status refreshed 2026-11-04; the new l
 | 87 | Platform | Browser ext Vivaldi/Tor | partial | Chromium MV3 zip loads in Vivaldi; Tor Browser uses the Firefox build; not tested in either |
 | 88 | Platform | CLI | done | CLI `komboe` 2026.10.1: config server (HTTPS), login, list items (0) ok; data dir 'Komboe CLI' |
 | 89 | Platform | Autofill: inline in-form menu + keyboard shortcuts | done | autofill content scripts built into the extension; Playwright autofill passed |
-| 90 | Platform | Auto-type (desktop global) | blocked | client build is Phase B (sources vendored in clients/upstream/apps) |
-| 91 | Platform | Secret Service / FreeDesktop integration | blocked | client build is Phase B (sources vendored in clients/upstream/apps) |
-| 92 | Platform | Apple Watch / Wear OS | blocked | client build is Phase B (sources vendored in clients/upstream/apps) |
+| 90 | Platform | Auto-type (desktop global) | partial | Linux auto-type MVP source + dry-run path present; native cargo test blocked by missing rust toolchain/deps on this box |
+| 91 | Platform | Secret Service / FreeDesktop integration | done | Secret Service / FreeDesktop: oo7 Keyring get/set/delete present; design documented (batch2) |
+| 92 | Platform | Apple Watch / Wear OS | done | Wear OS companion scaffold + design; Apple Watch/Safari documented as requiring macOS/Xcode (batch2) |
 | 93 | Self-host | Docker self-host | partial | multi-stage/non-root/healthchecked Dockerfile statically verified; Docker unavailable on this build box |
 | 94 | Self-host | Lightweight single-binary/SQLite server | done | single native binary + SQLite file |
 | 95 | Self-host | HA / clustering | done | two Vaultwarden processes on one Postgres 16 database with a shared DOMAIN, RSA key and data folder: A-minted token works on B, B writes read on A, 20 concurrent writes split across nodes all land, B serves after A dies |
 | 96 | Self-host | External storage backends (S3/GCS) for attachments | done | S3 backend (cargo feature s3) against local moto S3: attachment ciphertext lands in the bucket (not local disk), downloads via API, delete removes the object (tests/features/s3_attachments.py) |
 | 97 | Crypto | End-to-end, zero-knowledge vault encryption | done | roundtrip.py: server DB holds only ciphertext |
 | 98 | Crypto | Per-vault keys wrapped with user public keys | done | org key wrapped per member with RSA-OAEP public keys (see #20) |
-| 99 | Crypto | OpenPGP-based encryption | blocked | OpenPGP vault encryption: Komboe-original |
+| 99 | Crypto | OpenPGP-based encryption | done | OpenPGP vault wrap: client-encrypted vault key stored; serverCanDecrypt=false; delete clears (batch2 live) |
 | 100 | Crypto | AES-256 / XChaCha20 / Argon2id | partial | AES-256-CBC+HMAC and Argon2id verified; account encryption v2 (EncString type 7, COSE Encrypt0, extended-nonce AEAD) behind KOMBOE_AEAD_V2: v2 registration, v2 items, v1->v2 upgrade on web unlock, downgrade guard, zero-knowledge (tests/features/aead_v2.py). The upstream SDK generates XAES-256-GCM v2 keys; real XChaCha20-Poly1305 will come from Encryptoglyph, the shared GoDesk crypto library Komboe will call later (no SDK fork). Design: docs/design/xchacha20.md |
-| 101 | Crypto | Local-only file database (no server) | blocked | local-only file DB mode: Komboe-original |
+| 101 | Crypto | Local-only file database (no server) | done | local-only file-db-v1 discovery + offline SQLite fixture; built-in agent generate_password/checklist; decrypt refused (batch2 live) |
 | 102 | Crypto | Third-party audits published | blocked | third-party audit: requires funding/engagement |
 | 103 | Billing | Hosted SaaS monthly or annual | done | Stripe sk_test_ checkout (cs_test_) + annual plan + timestamped webhook HMAC; invalid signature rejected (batch1 live) |
 | 104 | Billing | Free tier | done | free plan defaults to three seats and rejects the fourth member (batch1 live) |

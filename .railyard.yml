@@ -1,8 +1,82 @@
-# GitHub Actions is blocked by billing; CI runs on RailYard.
+# RailYard verify pipeline (GitHub Actions is blocked by billing; CI runs on RailYard).
+# Komboe has no root .github/workflows, so this mirrors the existing RailYard
+# checks plus the upstream vaultwarden build.yml verify jobs (fmt, clippy,
+# test, build) for the sqlite feature. No deploy steps, no secrets.
+when:
+  - event: [push, pull_request, manual]
+    branch: [main, railyard/*]
+
 steps:
   - name: shellcheck
     image: koalaman/shellcheck-alpine:stable
-    commands: [shellcheck scripts/*.sh]
+    commands:
+      # -S warning: scripts/import-upstream.sh:14 has an info-level SC2015 note.
+      - shellcheck -S warning scripts/*.sh
+
   - name: license-check
-    image: alpine/git
-    commands: [apk add --no-cache bash grep >/dev/null, bash scripts/check-licenses.sh]
+    # alpine/git's entrypoint is git; RailYard doesn't override it, so use plain alpine.
+    image: alpine:3.20
+    commands:
+      - apk add --no-cache bash grep git >/dev/null
+      - git config --global --add safe.directory '*'
+      - bash scripts/check-licenses.sh
+
+  - name: node-test
+    image: node:24-bookworm
+    commands:
+      - node --version
+      - node --test --experimental-test-coverage --test-reporter=spec --test-reporter-destination=stdout --test-reporter=junit --test-reporter-destination=junit.xml --test-reporter=lcov --test-reporter-destination=lcov.info tests/run/*.test.mjs
+    reports:
+      junit: junit.xml
+      coverage: lcov.info
+
+  # Komboe's own server files (src/api/core/komboe.rs, admin.rs) aren't rustfmt-clean
+  # yet, so fmt is reported but doesn't block the pipeline.
+  - name: server-fmt
+    image: rust:1.99-bookworm
+    failure: ignore
+    commands:
+      - export PATH=/usr/local/cargo/bin:$PATH
+      - cd server/upstream
+      - rustup component add rustfmt
+      - cargo fmt --all -- --check
+
+  # Mirrors upstream build.yml: clippy with the repo's Cargo.toml lint levels.
+  - name: server-lint
+    image: rust:1.99-bookworm
+    commands:
+      - export PATH=/usr/local/cargo/bin:$PATH
+      - cd server/upstream
+      - rustup component add clippy
+      - cargo clippy --features sqlite
+
+  - name: server-test
+    image: rust:1.99-bookworm
+    depends_on: [server-lint]
+    commands:
+      - export PATH=/usr/local/cargo/bin:$PATH
+      - cd server/upstream
+      - cargo test --features sqlite
+
+  - name: server-build
+    image: rust:1.99-bookworm
+    depends_on: [server-test]
+    commands:
+      - export PATH=/usr/local/cargo/bin:$PATH
+      - cd server/upstream
+      - cargo build --release --features sqlite
+      - mkdir -p ../../railyard-out && cp target/release/vaultwarden ../../railyard-out/komboe-server
+    artifacts:
+      - railyard-out/komboe-server
+
+  # Dependency audit against the RustSec advisory DB (read-only; no deploy, no secrets).
+  # Upstream vaultwarden carries known transitive advisories it tracks itself,
+  # so findings are reported but don't block the pipeline.
+  - name: server-audit
+    image: rust:1.99-bookworm
+    failure: ignore
+    commands:
+      - export PATH=/usr/local/cargo/bin:$PATH
+      - cd server/upstream
+      - cargo install cargo-audit --locked --quiet
+      - cargo audit

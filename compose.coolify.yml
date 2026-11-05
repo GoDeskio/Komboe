@@ -14,8 +14,10 @@ services:
 
   server:
     build:
-      context: .
-      dockerfile: docker/Dockerfile.server
+      context: ./server/upstream
+      dockerfile: ../../docker/Dockerfile.server
+      additional_contexts:
+        komboe_root: .
     image: komboe-server:sandbox
     depends_on:
       clients:

@@ -42,7 +42,7 @@ foreach ($subBuildPath in $subBuildPaths) {
                 "--verbose",
                 "--force",
                 "--sign",
-                '"3rd Party Mac Developer Application: Bitwarden Inc"',
+                '"3rd Party Mac Developer Application: GoDesk"',
                 "--entitlements",
                 $entitlementsPath
             )
@@ -54,7 +54,7 @@ foreach ($subBuildPath in $subBuildPaths) {
                 "-o",
                 "runtime",
                 "--sign",
-                '"Developer ID Application: Bitwarden Inc"',
+                '"Developer ID Application: GoDesk"',
                 "--entitlements",
                 $entitlementsPath
             )

@@ -23,8 +23,8 @@ const paths = {
 /// its own copy, which differs only in naming beta's App Group.
 const channels = {
   stable: {
-    appId: "com.bitwarden.desktop",
-    productName: "Bitwarden",
+    appId: "io.komboe.desktop",
+    productName: "Komboe",
     provisioningProfiles: {
       "mas-dev": "PM Stable Desktop-ExtAutofill Testing",
       mas: "PM Stable Desktop-ExtAutofill AppStore",
@@ -32,8 +32,8 @@ const channels = {
     },
   },
   beta: {
-    appId: "com.bitwarden.beta.desktop",
-    productName: "Bitwarden Beta",
+    appId: "io.komboe.beta.desktop",
+    productName: "Komboe Beta",
     provisioningProfiles: {
       "mas-dev": "PM Beta Desktop-ExtAutofill Testing",
       mas: "PM Beta Desktop-ExtAutofill AppStore",
@@ -127,7 +127,7 @@ async function buildMacOs() {
   fse.mkdirSync(paths.extensionDistDir);
   fse.copySync(buildDirectory, paths.extensionDist);
 
-  // Delete the build dir, otherwise MacOS will load the extension from there instead of the Bitwarden.app bundle
+  // Delete the build dir, otherwise MacOS will load the extension from there instead of the Komboe.app bundle
   fse.removeSync(paths.macosBuild);
 }
 

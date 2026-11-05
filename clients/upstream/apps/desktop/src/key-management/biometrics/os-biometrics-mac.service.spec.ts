@@ -12,7 +12,7 @@ import OsBiometricsServiceMac from "./os-biometrics-mac.service";
 
 jest.mock("electron", () => ({
   app: {
-    getName: jest.fn().mockReturnValue("Bitwarden"),
+    getName: jest.fn().mockReturnValue("Komboe"),
   },
   systemPreferences: {
     canPromptTouchID: jest.fn(),
@@ -56,7 +56,7 @@ describe("OsBiometricsServiceMac", () => {
   });
 
   describe("deleteBiometricKey", () => {
-    const serviceName = "Bitwarden_biometric";
+    const serviceName = "Komboe_biometric";
     const keyName = "test-user-id_user_biometric";
 
     it("should delete biometric key successfully", async () => {
@@ -107,21 +107,21 @@ describe("OsBiometricsServiceMac", () => {
       });
     }
 
-    it("derives 'Bitwarden_biometric' on the stable channel", async () => {
-      await enrollUnderAppName("Bitwarden");
+    it("derives 'Komboe_biometric' on the stable channel", async () => {
+      await enrollUnderAppName("Komboe");
 
       expect(passwords.setPassword).toHaveBeenCalledWith(
-        "Bitwarden_biometric",
+        "Komboe_biometric",
         keyName,
         key.toBase64(),
       );
     });
 
-    it("derives 'Bitwarden Beta_biometric' on the Beta channel", async () => {
-      await enrollUnderAppName("Bitwarden Beta");
+    it("derives 'Komboe Beta_biometric' on the Beta channel", async () => {
+      await enrollUnderAppName("Komboe Beta");
 
       expect(passwords.setPassword).toHaveBeenCalledWith(
-        "Bitwarden Beta_biometric",
+        "Komboe Beta_biometric",
         keyName,
         key.toBase64(),
       );

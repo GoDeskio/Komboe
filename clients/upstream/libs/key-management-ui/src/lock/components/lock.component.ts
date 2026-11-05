@@ -454,6 +454,15 @@ export class LockComponent implements OnInit, OnDestroy {
     } catch (e) {
       // Biometrics may fail if the user does not accept or if the desktop app is disconnected.
       this.logService.info("[LockComponent] Failed to unlock via biometrics.", e);
+      // Delegate cancel/OS mapping to the client LockComponentService. Null = stay quiet.
+      const i18nKey = this.lockComponentService.getBiometricsError(e);
+      if (i18nKey) {
+        this.toastService.showToast({
+          variant: "error",
+          title: this.i18nService.t("errorOccurred"),
+          message: this.i18nService.t(i18nKey),
+        });
+      }
     } finally {
       this.unlockingViaBiometrics = false;
     }

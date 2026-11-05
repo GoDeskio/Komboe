@@ -35,6 +35,25 @@ export class ExtensionLockComponentService implements LockComponentService {
     private readonly configService: ConfigService,
   ) {}
 
+  getBiometricsError(error: any): string | null {
+    if (error == null) {
+      return null;
+    }
+    const msg = typeof error === "string" ? error : String(error?.message ?? error);
+    // User dismissed the OS / WebAuthn prompt — stay quiet on the lock screen.
+    if (/cancel|canceled|cancelled|UserPromptCancelled|not allowed|denied by the user/i.test(msg)) {
+      return null;
+    }
+    // Native messaging / desktop bridge disconnected while extension biometrics shares unlock.
+    if (/NativeMessaging|disconnected|DesktopDisconnected|no such native/i.test(msg)) {
+      return "biometricsStatusHelptextDesktopDisconnected";
+    }
+    if (/could not complete|authenticate|biometric|WebAuthn|NotAllowedError/i.test(msg)) {
+      return "couldNotCompleteBiometrics";
+    }
+    return null;
+  }
+
   getPreviousUrl(): string | null {
     return this.routerService.getPreviousUrl() ?? null;
   }

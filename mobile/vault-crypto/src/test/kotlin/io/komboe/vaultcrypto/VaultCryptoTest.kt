@@ -153,11 +153,104 @@ class VaultCryptoTest {
     }
 
     @Test
+    fun accountEncryptionV2RoundTripsAndMatchesPublishedCoseSignature() {
+        val kdf = KdfConfig.Pbkdf2(1000)
+        val account = AccountV2.make("correct horse battery staple", "ada@komboe.test", kdf)
+        assertTrue(account.encryptedPrivateKey.startsWith("7."))
+        assertTrue(account.wrappedSigningKey.startsWith("7."))
+        assertEquals(2L, account.securityVersion)
+        val unlocked = AccountV2.unlockUserKey(
+            "correct horse battery staple",
+            "ada@komboe.test",
+            kdf,
+            account.encryptedUserKey,
+        )
+        assertArrayEquals(account.userKey.bytes, unlocked.bytes)
+        val signing = AccountV2.unwrapSigningKey(account.wrappedSigningKey, unlocked)
+        assertEquals(2L, AccountV2.verifySecurityState(account.securityState, signing))
+        val spki = AccountV2.verifySignedPublicKey(account.signedPublicKey, signing)
+        assertArrayEquals(Base64.getDecoder().decode(account.publicKey), spki)
+        val privateKey = VaultCrypto.decryptCose(account.encryptedPrivateKey, unlocked.bytes)
+        assertTrue(privateKey.isNotEmpty())
+
+        // Detached COSE_Sign1 from the published Bitwarden crypto docs
+        // (namespace -1, payload {"field1":"Test message"}).
+        val signature = ubytes(
+            132, 88, 30, 164, 1, 39, 3, 24, 60, 4, 80, 55, 131, 40, 191, 230, 137, 76, 182, 184, 139,
+            94, 152, 45, 63, 13, 71, 58, 0, 1, 56, 127, 32, 160, 246, 88, 64, 206, 83, 177, 184, 37,
+            103, 128, 39, 120, 174, 61, 4, 29, 184, 68, 46, 47, 203, 47, 246, 108, 160, 169, 114, 7,
+            165, 119, 198, 3, 209, 52, 249, 89, 31, 156, 255, 212, 75, 224, 78, 183, 37, 174, 63, 112,
+            70, 219, 246, 19, 213, 17, 121, 249, 244, 23, 182, 36, 193, 175, 55, 250, 65, 250, 6,
+        )
+        val verifying = ubytes(
+            166, 1, 1, 2, 80, 55, 131, 40, 191, 230, 137, 76, 182, 184, 139, 94, 152, 45, 63, 13, 71,
+            3, 39, 4, 129, 2, 32, 6, 33, 88, 32, 93, 213, 35, 177, 81, 219, 226, 241, 147, 140, 238,
+            32, 34, 183, 213, 107, 227, 92, 75, 84, 208, 47, 198, 80, 18, 188, 172, 145, 184, 154, 26,
+            170,
+        )
+        val message = ubytes(
+            161, 102, 102, 105, 101, 108, 100, 49, 108, 84, 101, 115, 116, 32, 109, 101, 115, 115, 97, 103, 101,
+        )
+        val publicKey = verifying.copyOfRange(verifying.size - 32, verifying.size)
+        assertTrue(AccountV2.verifyDetached(signature, message, publicKey, -1))
+    }
+
+    @Test
+    fun fido2RegisterAndAuthenticateRoundTrip() {
+        val rpId = "komboe.test"
+        val challenge = "c2hhbGxlbmdl"
+        val origin = "https://komboe.test"
+        val clientData = Fido2Protocol.clientDataJson("webauthn.create", challenge, origin)
+        val hash = Fido2Protocol.sha256(clientData)
+        val created = Fido2Protocol.makeCredential(
+            rpId = rpId,
+            userHandle = "user-1".toByteArray(),
+            userVerified = true,
+            clientDataHash = hash,
+            credentialId = ByteArray(16) { it.toByte() },
+        )
+        assertEquals(77, Fido2Protocol.coseEs256(
+            java.security.KeyFactory.getInstance("EC").generatePublic(
+                java.security.spec.X509EncodedKeySpec(created.publicKeySpki),
+            ) as java.security.interfaces.ECPublicKey,
+        ).size)
+        assertTrue(created.attestationObject.isNotEmpty())
+        assertEquals("00010203-0405-0607-0809-0a0b0c0d0e0f", created.credentialId)
+
+        val assertionData = Fido2Protocol.clientDataJson("webauthn.get", challenge, origin)
+        val assertionHash = Fido2Protocol.sha256(assertionData)
+        val rawId = ByteArray(16) { it.toByte() }
+        val asserted = Fido2Protocol.getAssertion(
+            rpId = rpId,
+            credentialId = rawId,
+            privateKeyPkcs8 = created.privateKeyPkcs8,
+            userHandle = "user-1".toByteArray(),
+            userVerified = true,
+            clientDataHash = assertionHash,
+        )
+        assertTrue(
+            Fido2Protocol.verifyAssertion(
+                created.publicKeySpki,
+                asserted.authenticatorData,
+                assertionHash,
+                asserted.signature,
+            ),
+        )
+        // A credential stored the way the web vault stores it (base64url PKCS8, UUID id)
+        // still asserts.
+        val storedKey = Fido2Protocol.base64UrlDecode(Fido2Protocol.base64Url(created.privateKeyPkcs8))
+        val again = Fido2Protocol.getAssertion(rpId, rawId, storedKey, "user-1".toByteArray(), true, assertionHash)
+        assertTrue(Fido2Protocol.verifyAssertion(created.publicKeySpki, again.authenticatorData, assertionHash, again.signature))
+    }
+
+    @Test
     fun fingerprintUsesEffWordlist() {
         val phrase = VaultCrypto.fingerprintPhrase("ada@komboe.test", "komboe-public-key".toByteArray())
         assertEquals(5, phrase.split("-").size)
         assertTrue(phrase.all { it.isLetter() || it == '-' })
     }
+
+    private fun ubytes(vararg values: Int): ByteArray = ByteArray(values.size) { values[it].toByte() }
 
     private fun json(): Json = Json.parse(
         VaultCryptoTest::class.java.classLoader.getResource("vectors.json")!!.readText(),

@@ -6,7 +6,7 @@
     "type": "git",
     "url": "git+https://github.com/bitwarden/clients.git"
   },
-  "author": "Bitwarden Inc. <hello@bitwarden.com> (https://bitwarden.com)",
+  "author": "Komboe <hello@komboe.com> (https://komboe.com)",
   "license": "GPL-3.0",
   "bugs": {
     "url": "https://github.com/bitwarden/clients/issues"

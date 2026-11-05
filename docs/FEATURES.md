@@ -91,10 +91,10 @@ Status: **Excluded** = conflicts with the no-escrow/no-recovery rules; **Review*
 | 81 | Platform | Desktop Windows/macOS/Linux | PP, BW, KP, PD | In scope |  |
 | 82 | Platform | Desktop app Windows only | PB | In scope |  |
 | 83 | Platform | Mobile iOS + Android | PP, BW, PB, PD, PS, SL | In scope |  |
-| 84 | Platform | Browser ext Chrome/Edge/Brave/Opera | PP, BW, KP, PB, PD, PS, SL | In scope |  |
+| 84 | Platform | Browser ext Chrome/Edge/Brave/Opera (+Cerebro) | PP, BW, KP, PB, PD, PS, SL | In scope | Cerebro Browser = Chromium MV3 |
 | 85 | Platform | Browser ext Firefox | PP, BW, KP, PB, PD, PS, SL | In scope |  |
 | 86 | Platform | Browser ext Safari | PP, BW, KP, SL | In scope |  |
-| 87 | Platform | Browser ext Vivaldi/Tor | BW | In scope |  |
+| 87 | Platform | Browser ext Vivaldi/Tor | BW | In scope | See docs/BROWSER-EXTENSIONS.md |
 | 88 | Platform | CLI | PP, BW, KP, PB, PS | In scope |  |
 | 89 | Platform | Autofill: inline in-form menu + keyboard shortcuts | PP, BW, KP, PB, PD, PS | In scope |  |
 | 90 | Platform | Auto-type (desktop global) | KP | In scope |  |

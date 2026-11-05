@@ -145,9 +145,16 @@ rw(f"{C}/apps/cli/package.json", clipkg)
 rw(f"{C}/apps/web/src/app/layouts/product-switcher/shared/product-switcher.service.ts", lambda t: t.replace(
    "        if (smOrg) {\n          bento.push(products.sm);\n        } else if (!shouldDisableSMAds) {\n          // Only show SM in \"other\" section if ads are not disabled\n          other.push(products.sm);\n        }\n",
    "        // Komboe: Secrets Manager is not part of Komboe; never offered in the switcher.\n        void smOrg;\n        void shouldDisableSMAds;\n"))
-FOOT = '<div bitTypography="body2">&copy; {{ year }} Bitwarden Inc.</div>'
+FOOT_OLD = '<div bitTypography="body2">&copy; {{ year }} Bitwarden Inc.</div>'
+FOOT_NEW = '<div bitTypography="body2">&copy; {{ year }} Komboe</div>'
 for p in [f"{C}/apps/web/src/app/layouts/frontend-layout.component.html", f"{C}/libs/components/src/anon-layout/anon-layout.component.html"]:
-    rw(p, lambda t: t.replace(FOOT, '<div bitTypography="body2">Komboe</div>\n' + FOOT) if '>Komboe</div>' not in t else t)
+    def _foot(t, _old=FOOT_OLD, _new=FOOT_NEW):
+        t = t.replace(_old, _new)
+        # collapse prior rebrand that left both Komboe label + old copyright
+        t = t.replace('<div bitTypography="body2">Komboe</div>\n' + _new, _new)
+        t = t.replace('<div bitTypography="body2">Komboe</div>\n' + _old, _new)
+        return t
+    rw(p, _foot)
 
 # 6. Phase C branding gaps: no Bitwarden cloud regions in the server picker, violet autofill icons, Android label
 ENV = f"{C}/libs/angular/src/auth/environment-selector/environment-selector.component.html"

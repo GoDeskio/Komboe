@@ -51,6 +51,12 @@ export abstract class LockComponentService {
 
   // Desktop only
   abstract isWindowVisible(): Promise<boolean>;
+  /**
+   * Map a biometric unlock failure to an i18n key, or null to stay quiet
+   * (user cancel / unsupported / unknown). Desktop maps polkit / Hello / Touch ID;
+   * extension maps WebAuthn / native messaging failures; web throws / returns null.
+   */
+  abstract getBiometricsError(error: any): string | null;
   abstract getBiometricsUnlockBtnText(): string;
 
   // Multi client

@@ -15,7 +15,7 @@ Passwords, passkeys, 2FA codes, secure sharing and email aliases for you, your f
   <a href="LICENSE"><img alt="License: AGPL-3.0" src="https://img.shields.io/badge/license-AGPL--3.0-6D4AFF"></a>
   <img alt="Zero-knowledge" src="https://img.shields.io/badge/encryption-zero--knowledge%20E2E-3E24B4">
   <img alt="Platforms" src="https://img.shields.io/badge/platforms-web%20%7C%20desktop%20%7C%20Android%20%7C%20iOS%20soon-7C5CFF">
-  <img alt="Browsers" src="https://img.shields.io/badge/browsers-Chrome%20%7C%20Firefox%20%7C%20Safari%20%7C%20Edge%20%7C%20Brave%20%7C%20Opera%20%7C%20Vivaldi-7C5CFF">
+  <img alt="Browsers" src="https://img.shields.io/badge/browsers-Chrome%20%7C%20Edge%20%7C%20Brave%20%7C%20Opera%20%7C%20Vivaldi%20%7C%20Cerebro%20%7C%20Firefox%20%7C%20Tor%20%7C%20Safari-7C5CFF">
   <img alt="CLI" src="https://img.shields.io/badge/CLI-yes-C4B7FF">
   <img alt="Self-hosted" src="https://img.shields.io/badge/self--hosted-Docker-C4B7FF">
   <img alt="Status" src="https://img.shields.io/badge/status-pre--alpha-orange">
@@ -42,14 +42,14 @@ Passwords, passkeys, 2FA codes, secure sharing and email aliases for you, your f
 |---|---|
 | Android | Android phones and tablets (`io.komboe.android`) |
 | Desktop | Windows, macOS and Linux |
-| Browser extension | Chrome, Edge, Firefox, Brave and Safari |
+| Browser extension | Chrome, Edge, Brave, Opera, Vivaldi, Cerebro, Firefox, Tor Browser; Safari (Mac) |
 | Web vault | Any modern browser |
 | CLI | `komboe` on the command line |
 | Self-host server | Your own machine, with Docker or the single binary |
 | MCP agent integration | Agents that use the same Komboe account |
 | iOS | Coming soon |
 
-Chrome, Edge and Brave use the Chrome extension build. Firefox has its own build. The Safari build needs a Mac.
+Chrome, Edge, Brave, Opera, Vivaldi and Cerebro Browser (GoDesk Chromium) use the Chromium MV3 extension build. Firefox and Tor Browser use the Firefox build. The Safari build needs a Mac. See [docs/BROWSER-EXTENSIONS.md](docs/BROWSER-EXTENSIONS.md) and `clients/SUPPORTED-BROWSERS.json`.
 
 ## Accounts & sign-in
 
@@ -106,7 +106,7 @@ Strong passwords and memorable passphrases with a live strength meter, plus user
 
 <p align="center"><img src="docs/images/autofill-extension.png" alt="Autofill in every browser: preview mockup" width="860"><br><sub><i>Mockup: this feature is not built or not verified in Komboe yet</i></sub></p>
 
-An inline in-form menu, keyboard shortcuts and a popup for Chrome, Edge, Brave, Opera, Vivaldi, Firefox, Safari and Tor Browser. On desktop, global auto-type.
+An inline in-form menu, keyboard shortcuts and a popup for Chrome, Edge, Brave, Opera, Vivaldi, Cerebro Browser, Firefox, Safari and Tor Browser. On desktop, global auto-type.
 
 **Where it came from:** Bitwarden browser extension; Proton Pass (inline UX); KeePassXC (auto-type).
 

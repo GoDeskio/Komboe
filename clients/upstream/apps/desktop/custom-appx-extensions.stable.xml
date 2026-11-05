@@ -19,9 +19,9 @@
             <com:ComServer>
               <com:ExeServer Executable="app\bitwarden_plugin_authenticator.exe"
                 Arguments="serve"
-                DisplayName="Bitwarden Passkey Manager">
+                DisplayName="Komboe Passkey Manager">
                 <com:Class Id="${clsid:windows_plugin_authenticator_config.stable.json}"
-                  DisplayName="Bitwarden Passkey Manager" />
+                  DisplayName="Komboe Passkey Manager" />
               </com:ExeServer>
             </com:ComServer>
           </com:Extension>

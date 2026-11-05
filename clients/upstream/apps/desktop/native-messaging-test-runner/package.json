@@ -11,7 +11,7 @@
     "update": "tsc && node dist/apps/desktop/native-messaging-test-runner/src/commands/bw-credential-update.js",
     "generate": "tsc && node dist/apps/desktop/native-messaging-test-runner/src/commands/bw-generate-password.js"
   },
-  "author": "Bitwarden Inc. <hello@bitwarden.com> (https://bitwarden.com)",
+  "author": "Komboe <hello@komboe.com> (https://komboe.com)",
   "license": "GPL-3.0",
   "dependencies": {
     "@bitwarden/common": "file:../../../libs/common",

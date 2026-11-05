@@ -413,4 +413,24 @@ describe("ExtensionLockComponentService", () => {
       }
     });
   });
+
+
+  describe("getBiometricsError", () => {
+    it("returns null for cancel", () => {
+      expect(service.getBiometricsError({ message: "User canceled" })).toBeNull();
+    });
+
+    it("maps desktop disconnect", () => {
+      expect(service.getBiometricsError({ message: "DesktopDisconnected" })).toBe(
+        "biometricsStatusHelptextDesktopDisconnected",
+      );
+    });
+
+    it("maps generic biometric failures", () => {
+      expect(service.getBiometricsError({ message: "Could not complete biometrics" })).toBe(
+        "couldNotCompleteBiometrics",
+      );
+    });
+  });
+
 });

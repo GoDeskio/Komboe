@@ -51,12 +51,12 @@ const mainWindowSizeKey = "mainWindowSize";
 const WindowEventHandlingDelay = 100;
 
 /**
- * Every path prefix a Bitwarden snap's real binary can sit under — one per snap name per snapd
- * mount root, e.g. `/snap/bitwarden/` and `/var/lib/snapd/snap/bitwarden-beta/`. See
+ * Every path prefix a Komboe snap's real binary can sit under — one per snap name per snapd
+ * mount root, e.g. `/snap/komboe/` and `/var/lib/snapd/snap/komboe-beta/`. See
  * {@link SNAP_MOUNT_DIRS} for why there is more than one root.
  *
- * The trailing slash matters: without it, `bitwarden` would also match a hypothetical
- * `bitwarden-evil` snap. (The cgroup check below guards the same edge with `(?![\w-])`.)
+ * The trailing slash matters: without it, `komboe` would also match a hypothetical
+ * `komboe-evil` snap. (The cgroup check below guards the same edge with `(?![\w-])`.)
  */
 const SNAP_EXEC_PATH_PREFIXES = SNAP_MOUNT_DIRS.flatMap((dir) =>
   SNAP_STORE_NAMES.map((name) => `${dir}/${name}/`),

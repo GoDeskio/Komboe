@@ -260,16 +260,16 @@ mod tests {
     fn parse_config_succeeds_with_valid_json() {
         let json = br#"{
             "clsid": "0f7dc5d9-69ce-4652-8572-6877fd695062",
-            "name": "Bitwarden"
+            "name": "Komboe"
         }"#;
         let config = parse_config(json.as_slice()).unwrap();
         assert_eq!(config.clsid, "0f7dc5d9-69ce-4652-8572-6877fd695062");
-        assert_eq!(config.name, "Bitwarden");
+        assert_eq!(config.name, "Komboe");
     }
 
     #[test]
     fn parse_config_fails_when_clsid_is_missing() {
-        let json = br#"{"name": "Bitwarden"}"#;
+        let json = br#"{"name": "Komboe"}"#;
         assert!(parse_config(json.as_slice()).is_err());
     }
 

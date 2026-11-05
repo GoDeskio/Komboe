@@ -1,6 +1,6 @@
 # Komboe feature status
 
-Last live run: 2026-10-31. Batch-1 merged 2026-11-04 (#100). Batch-2 originals + Phase B client checks refreshed 2026-11-04.
+Last live run: 2026-10-31. Batch-1 merged 2026-11-04 (#100). Batch-2 originals + Phase B client checks refreshed 2026-11-04. User-facing packaging branding scrub (Windows CompanyName/CLI VERSIONINFO, beta productName, Passkey Manager DisplayName, authors) 2026-11-05 Arizona MST.
 
 - **done**: verified end-to-end against the running server in this run
 - **partial**: upstream code is vendored here but not yet exercised end-to-end
@@ -90,8 +90,8 @@ Last live run: 2026-10-31. Batch-1 merged 2026-11-04 (#100). Batch-2 originals +
 | 78 | Import | Encrypted export (password-protected JSON) | done | password-protected JSON export: downloaded file is ciphertext and independently decrypts (PBKDF2+AES-256-CBC+HMAC) to the vault items (Playwright) |
 | 79 | Import | Org-level import/export | done | org import + export |
 | 80 | Platform | Web vault | done | Komboe-branded web vault served by the server |
-| 81 | Platform | Desktop Windows/macOS/Linux | partial | Linux desktop built (deb Package: komboe Version: 2026.10.2; WM_CLASS komboe; AppImage 195 MB); Playwright E2E over CDP passes (window title Komboe, self-hosted picker, login, vault); Windows x64 NSIS installer (156 MB) + portable zip (215 MB) with native Rust helpers; installed app launches as 'Komboe' with padlock-K/Sora branding (docs/screenshots/desktop-windows-login.png); unsigned; macOS not built (needs a Mac) |
-| 82 | Platform | Desktop app Windows only | done | Windows x64 NSIS installer (156 MB) + portable zip (215 MB) with native Rust helpers; installed app launches as 'Komboe' with padlock-K/Sora branding (docs/screenshots/desktop-windows-login.png); unsigned |
+| 81 | Platform | Desktop Windows/macOS/Linux | partial | Linux desktop built (deb Package: komboe Version: 2026.10.2; WM_CLASS komboe; AppImage 195 MB); Playwright E2E over CDP passes (window title Komboe, self-hosted picker, login, vault); Windows x64 NSIS installer (156 MB) + portable zip (215 MB) with native Rust helpers; installed app launches as 'Komboe' with padlock-K/Sora branding (docs/screenshots/desktop-windows-login.png); unsigned; macOS not built (needs a Mac) Packaging branding scrub 2026-11-05 Arizona MST: Windows/CLI VERSIONINFO CompanyName GoDesk, authors Komboe, beta productName Komboe Beta, Passkey Manager DisplayName Komboe (no user-facing Bitwarden Inc.). |
+| 82 | Platform | Desktop app Windows only | done | Windows x64 NSIS installer (156 MB) + portable zip (215 MB) with native Rust helpers; installed app launches as 'Komboe' with padlock-K/Sora branding (docs/screenshots/desktop-windows-login.png); unsigned Packaging branding scrub 2026-11-05 Arizona MST: CompanyName/authors no longer Bitwarden Inc. |
 | 83 | Platform | Mobile iOS + Android | partial | Android debug APK io.komboe.android (label 'Komboe', Sora wordmark header + padlock-K splash as VectorDrawables) built from pinned bitwarden/android (fdroid flavor); not run on a device/emulator here; iOS needs macOS |
 | 84 | Platform | Browser ext Chrome/Edge/Brave/Opera | done | Chrome MV3 + Firefox extension zips built and rebranded (/workspace/artifacts) |
 | 85 | Platform | Browser ext Firefox | done | Firefox extension zip built and rebranded |

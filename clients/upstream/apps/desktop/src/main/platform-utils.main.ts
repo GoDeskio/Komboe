@@ -29,7 +29,7 @@ export const SNAP_MOUNT_DIRS = ["/snap", "/var/lib/snapd/snap"];
 // snapd sets SNAP (mount path) and SNAP_NAME for confined snaps. Match our snap name
 // specifically so SNAP_* vars leaking from a parent snap process into a non-snap build
 // (AppImage/deb/rpm launched from within another snap) don't produce a false positive.
-export const SNAP_STORE_NAMES = ["bitwarden", "bitwarden-beta"];
+export const SNAP_STORE_NAMES = ["komboe", "komboe-beta"];
 
 export function isSnapStore() {
   return (

@@ -10,12 +10,7 @@ pub use app_data::{
     AppData, AppMetadata, VerifiableAppData,
 };
 
-/// Verifies the active application and types into it.
-///
-/// # Errors
-///
-/// Returns an error if the active app can't be resolved, if it no longer matches `expected`, or if
-/// typing fails.
+/// Verifies the active application and types into it (Windows path verification).
 #[cfg(windows)]
 pub fn execute_autotype(
     expected: VerifiableAppData,
@@ -38,16 +33,22 @@ pub fn execute_autotype(
     type_input::type_input(input, keyboard_shortcut)
 }
 
-/// Verifies the active application and types into it.
-///
-/// # Panics
-///
-/// Always panics — Autotype is not supported on non-Windows platforms.
-#[cfg(not(windows))]
+/// Linux MVP: types via wtype/xdotool/ydotool (or dry-run). App path verification is Windows-only for now.
+#[cfg(target_os = "linux")]
+pub fn execute_autotype(
+    _expected: VerifiableAppData,
+    input: &[u16],
+    keyboard_shortcut: &[String],
+) -> Result<()> {
+    mvp::type_input(input, keyboard_shortcut)
+}
+
+/// Autotype is not supported on this platform yet.
+#[cfg(not(any(windows, target_os = "linux")))]
 pub fn execute_autotype(
     _expected: VerifiableAppData,
     _input: &[u16],
     _keyboard_shortcut: &[String],
 ) -> Result<()> {
-    unimplemented!("Autotype is not supported on non-Windows platforms")
+    Err(anyhow::anyhow!("Autotype is not supported on this platform"))
 }

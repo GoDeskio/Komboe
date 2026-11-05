@@ -573,8 +573,8 @@ export class LoginCommand {
         if (code != null && receivedState != null && this.checkState(receivedState, state)) {
           res.writeHead(200);
           res.end(
-            "<html><head><title>Success | Bitwarden CLI</title></head><body>" +
-              "<h1>Successfully authenticated with the Bitwarden CLI</h1>" +
+            "<html><head><title>Success | Komboe CLI</title></head><body>" +
+              "<h1>Successfully authenticated with the Komboe CLI</h1>" +
               "<p>You may now close this tab and return to the terminal.</p>" +
               "</body></html>",
           );
@@ -587,8 +587,8 @@ export class LoginCommand {
         } else {
           res.writeHead(400);
           res.end(
-            "<html><head><title>Failed | Bitwarden CLI</title></head><body>" +
-              "<h1>Something went wrong logging into the Bitwarden CLI</h1>" +
+            "<html><head><title>Failed | Komboe CLI</title></head><body>" +
+              "<h1>Something went wrong logging into the Komboe CLI</h1>" +
               "<p>You may now close this tab and return to the terminal.</p>" +
               "</body></html>",
           );

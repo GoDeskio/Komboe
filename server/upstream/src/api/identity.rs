@@ -63,10 +63,11 @@ pub fn routes() -> Vec<Route> {
 #[post("/connect/token", data = "<data>")]
 async fn login(data: Form<ConnectData>, client_header: ClientHeaders, conn: DbConn) -> JsonResult {
     let data: ConnectData = data.into_inner();
+    let anomaly_device = data.device_identifier.clone();
 
     let mut user_id: Option<UserId> = None;
 
-    let login_result = match data.grant_type.as_ref() {
+    let mut login_result = match data.grant_type.as_ref() {
         "refresh_token" => {
             check_is_some(data.refresh_token.as_ref(), "refresh_token cannot be blank")?;
             refresh_login(data, &conn, &client_header.ip).await
@@ -133,6 +134,22 @@ async fn login(data: Form<ConnectData>, client_header: ClientHeaders, conn: DbCo
     };
 
     if let Some(user_id) = user_id {
+        let success = login_result.is_ok();
+        let step_up = crate::api::core::komboe_security::assess_login(
+            &user_id,
+            anomaly_device.as_ref().map(|d| d.to_string()).as_deref(),
+            client_header.ip.ip,
+            success,
+            &conn,
+        )
+        .await;
+        if success && step_up {
+            login_result = Err(crate::error::Error::new(
+                "Additional verification is required for this unusual sign-in.",
+                "Komboe anomaly step-up",
+            )
+            .with_code(400));
+        }
         match &login_result {
             Ok(_) => {
                 log_user_event(

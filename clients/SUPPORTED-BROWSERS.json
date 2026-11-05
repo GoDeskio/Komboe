@@ -1,0 +1,182 @@
+{
+  "$schema_note": "Machine-readable Komboe browser-extension support matrix. Consumed by scripts/extension-smoke.mjs and docs/BROWSER-EXTENSIONS.md.",
+  "updated": "2026-11-05",
+  "timezone_note": "Arizona MST (UTC-7, no DST)",
+  "builds": {
+    "chromium_mv3": {
+      "artifact": "komboe-chrome-mv3.zip",
+      "manifest_version": 3,
+      "npm_dist": "npm run dist:chrome --workspace @bitwarden/browser",
+      "load": "chrome://extensions \u2192 Developer mode \u2192 Load unpacked (unzipped dist) or drag the zip where the browser allows"
+    },
+    "firefox": {
+      "artifact": "komboe-firefox.zip",
+      "manifest_version": 2,
+      "npm_dist": "npm run dist:firefox --workspace @bitwarden/browser",
+      "load": "about:debugging#/runtime/this-firefox \u2192 Load Temporary Add-on"
+    },
+    "safari": {
+      "artifact": null,
+      "manifest_version": null,
+      "npm_dist": "npm run dist:safari --workspace @bitwarden/browser",
+      "load": "Requires macOS + Xcode; not built on Linux CI"
+    }
+  },
+  "browsers": [
+    {
+      "id": "chrome",
+      "name": "Google Chrome",
+      "family": "chromium",
+      "build": "chromium_mv3",
+      "status": "supported",
+      "tested": true,
+      "notes": "Primary Chromium MV3 target"
+    },
+    {
+      "id": "edge",
+      "name": "Microsoft Edge",
+      "family": "chromium",
+      "build": "chromium_mv3",
+      "status": "supported",
+      "tested": true,
+      "notes": "Load the Chromium MV3 build (edge-specific webpack config also exists)"
+    },
+    {
+      "id": "brave",
+      "name": "Brave",
+      "family": "chromium",
+      "build": "chromium_mv3",
+      "status": "supported",
+      "tested": true,
+      "notes": "Load Chromium MV3 via brave://extensions"
+    },
+    {
+      "id": "opera",
+      "name": "Opera",
+      "family": "chromium",
+      "build": "chromium_mv3",
+      "status": "supported",
+      "tested": false,
+      "notes": "opera webpack target exists; same MV3 zip works"
+    },
+    {
+      "id": "vivaldi",
+      "name": "Vivaldi",
+      "family": "chromium",
+      "build": "chromium_mv3",
+      "status": "supported",
+      "tested": false,
+      "notes": "Load Chromium MV3 via vivaldi://extensions; Phase B #87 \u2014 matrix load-contract asserted headlessly; not yet E2E'd in Vivaldi UI",
+      "load_contract": {
+        "manifest": "clients/upstream/apps/browser/src/manifest.v3.json",
+        "manifest_version": 3,
+        "required_permissions": [
+          "storage",
+          "tabs",
+          "scripting",
+          "alarms",
+          "notifications"
+        ],
+        "host_permissions_any_of": [
+          "https://*/*",
+          "<all_urls>",
+          "*://*/*"
+        ],
+        "requires_action_default_popup": true,
+        "content_script_match_any_of": [
+          "*://*/*",
+          "http://*/*",
+          "https://*/*",
+          "<all_urls>"
+        ],
+        "requires_web_content_scripts": true
+      }
+    },
+    {
+      "id": "cerebro",
+      "name": "Cerebro Browser",
+      "family": "chromium",
+      "build": "chromium_mv3",
+      "status": "supported",
+      "tested": false,
+      "notes": "GoDesk Chromium (MV3). Same artifact as Chrome. Load-contract asserted in scripts/extension-smoke.mjs from this matrix (permissions, host_permissions, action.default_popup, content_scripts). See docs/BROWSER-EXTENSIONS.md.",
+      "load_contract": {
+        "manifest": "clients/upstream/apps/browser/src/manifest.v3.json",
+        "manifest_version": 3,
+        "required_permissions": [
+          "storage",
+          "tabs",
+          "scripting",
+          "alarms",
+          "notifications"
+        ],
+        "host_permissions_any_of": [
+          "https://*/*",
+          "<all_urls>",
+          "*://*/*"
+        ],
+        "requires_action_default_popup": true,
+        "content_script_match_any_of": [
+          "*://*/*",
+          "http://*/*",
+          "https://*/*",
+          "<all_urls>"
+        ],
+        "requires_web_content_scripts": true
+      }
+    },
+    {
+      "id": "firefox",
+      "name": "Firefox",
+      "family": "gecko",
+      "build": "firefox",
+      "status": "supported",
+      "tested": true,
+      "notes": "Dedicated Firefox zip"
+    },
+    {
+      "id": "tor",
+      "name": "Tor Browser",
+      "family": "gecko",
+      "build": "firefox",
+      "status": "supported",
+      "tested": false,
+      "notes": "Uses the Firefox build; Phase B #87 \u2014 Firefox MV2 load-contract asserted headlessly; not yet E2E'd in Tor Browser UI",
+      "load_contract": {
+        "manifest": "clients/upstream/apps/browser/src/manifest.json",
+        "manifest_version": 2,
+        "required_permissions": [
+          "storage",
+          "tabs",
+          "alarms",
+          "notifications"
+        ],
+        "host_or_match_any_of": [
+          "<all_urls>",
+          "*://*/*",
+          "http://*/*",
+          "https://*/*"
+        ],
+        "requires_browser_action_default_popup": true,
+        "content_script_match_any_of": [
+          "*://*/*",
+          "http://*/*",
+          "https://*/*",
+          "<all_urls>",
+          "file:///*"
+        ],
+        "requires_web_content_scripts": true,
+        "notes": "Tor Browser loads the Firefox zip via about:debugging temporary add-on; no separate Tor artifact."
+      }
+    },
+    {
+      "id": "safari",
+      "name": "Safari",
+      "family": "safari",
+      "build": "safari",
+      "status": "blocked",
+      "tested": false,
+      "notes": "Needs macOS/Xcode (Phase B #86)"
+    }
+  ]
+}

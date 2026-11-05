@@ -21,9 +21,17 @@ Bitwarden-derived clients). All upstream copyright and license headers in source
 | Web vault, browser extension, desktop, CLI (`clients/upstream`) | https://github.com/bitwarden/clients | © Bitwarden Inc. | GPL-3.0 (code outside `bitwarden_license/`) |
 | `@bitwarden/sdk-internal` (WASM SDK used by the clients) | https://github.com/bitwarden/sdk-internal | © Bitwarden Inc. | GPL-3.0 |
 | Email aliases (`aliases/upstream`) | https://github.com/simple-login/app tag `v4.83.2` | © SimpleLogin | AGPL-3.0-only |
-| Android app | https://github.com/bitwarden/android tag `v2026.10.1-bwpm`, commit `1470154cf3d3d0511cdbe5bfc6493971b6478edf` | © Bitwarden Inc. and contributors | GPL-3.0-only |
-| Android SDK library linked by that app (`com.bitwarden:sdk-android` `4.0.0-9318-3b2c8fc3`) | https://github.com/bitwarden/sdk (GitHub Packages) | © Bitwarden Inc. | Bitwarden Software Development Kit License Agreement (not GPL). Used unmodified |
+| Android app (fdroid flavor) | https://github.com/bitwarden/android tag `v2026.10.1-bwpm`, commit `1470154cf3d3d0511cdbe5bfc6493971b6478edf` | © Bitwarden Inc. and contributors | GPL-3.0-only |
+| Vault crypto (`mobile/vault-crypto`, `mobile/komboe-sdk`) | Written for Komboe from the public Bitwarden protocol | © 2026 GODESK IO LLC | GPL-3.0-only |
+| Bouncy Castle (`org.bouncycastle:bcprov-jdk18on` 1.79) | https://www.bouncycastle.org | © The Legion of the Bouncy Castle | MIT |
 | Sora typeface (`branding/fonts/sora`) | https://github.com/sora-xor/sora-font | © 2019 The Sora Project Authors | SIL Open Font License 1.1 |
+
+The Android fdroid build does not link `com.bitwarden:sdk-android` `4.0.0-9318-3b2c8fc3`. That artifact is published under the
+Bitwarden Software Development Kit License Agreement, which is not the GPL, and it is not a dependency of the fdroid APK.
+Vault encryption (KDF, EncString, account and organization keys, TOTP, Send) is the GPL-3.0-only code in
+`mobile/vault-crypto`, called through `mobile/komboe-sdk`. Bouncy Castle is MIT, which is compatible with
+the GPL when the combined work is distributed under the GPL. Other AndroidX, Kotlin, and Google libraries
+linked by the upstream fdroid flavor stay under their own Apache-2.0 or similar permissive licenses.
 
 Code under Bitwarden's `bitwarden_license/` directory (Bitwarden License Agreement) is not included in this
 repository. See `docs/LICENSE-AUDIT.md` for the current audit, including one known gap in the desktop package.

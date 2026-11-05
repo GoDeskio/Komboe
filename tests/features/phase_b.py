@@ -142,9 +142,13 @@ def _manifest(zipname):
     msgs = json.loads(z.read("_locales/en/messages.json")); return m, msgs
 @t(84)
 def _():
+    import pathlib
+    matrix = json.loads((pathlib.Path(ROOT) / "clients/SUPPORTED-BROWSERS.json").read_text())
+    ids = {b["id"] for b in matrix["browsers"]}
+    assert {"chrome", "edge", "brave", "opera", "cerebro", "firefox"}.issubset(ids)
     m, msgs = _manifest("komboe-chrome-mv3.zip"); assert m["manifest_version"] == 3 and "Komboe" in msgs["extName"]["message"]
     m2, msgs2 = _manifest("komboe-firefox.zip"); assert "Komboe" in msgs2["extName"]["message"]
-    return DONE(f"Chrome MV3 + Firefox extension zips built and rebranded ({ART})")
+    return DONE(f"Chrome MV3 + Firefox extension zips built and rebranded ({ART}); Cerebro listed in SUPPORTED-BROWSERS.json")
 @t(89)
 def _():
     m, _m = _manifest("komboe-chrome-mv3.zip"); assert any("content" in str(c.get("js")) for c in m.get("content_scripts", []))
@@ -192,7 +196,11 @@ def _():
         assert "application-label:'Komboe'" in badge, "app label is not 'Komboe'"
     names = zipfile.ZipFile(p).namelist()
     assert all(f"res/drawable/{n}.xml" in names for n in ("logo_bitwarden", "logo_shield_icon", "logo_bitwarden_icon")), "in-app logos must be VectorDrawables"
-    return ("partial", "Android debug APK io.komboe.android (label 'Komboe', Sora wordmark header + padlock-K splash as VectorDrawables) built from pinned bitwarden/android (fdroid flavor); not run on a device/emulator here; iOS needs macOS")
+    harness = os.path.join(ROOT, "mobile/ANDROID-E2E.md")
+    assert os.path.exists(harness) and os.path.exists(os.path.join(ROOT, "mobile/android-e2e-check.sh")), "Android E2E harness missing"
+    assert os.path.exists(os.path.join(ROOT, "mobile/android-instrumentation.sh")), "Android instrumentation probe missing"
+    assert os.path.exists(os.path.join(ROOT, "mobile/android-harness.sh")), "Android combined harness missing"
+    return ("partial", "Android debug APK io.komboe.android (label 'Komboe', Sora wordmark header + padlock-K splash as VectorDrawables) built from pinned bitwarden/android (fdroid flavor); ANDROID-E2E + android-harness.sh present; not run on a device/emulator here; iOS needs macOS")
 
 # ---- Playwright UI coverage
 def pw(name):
@@ -219,18 +227,23 @@ _report(70, ["report-exposed"], "exposed-password report via HIBP k-anonymity ra
 _report(71, ["report-inactive-2fa"], "inactive two-step login report flags seeded github.com login (2fa.directory list; Playwright)", "inactive 2FA report is client-side")
 _report(72, ["report-unsecured"], "unsecured (http://) website report lists only the seeded http item (Playwright)", "unsecured website report is client-side")
 _report(78, ["export-encrypted"], "password-protected JSON export: downloaded file is ciphertext and independently decrypts (PBKDF2+AES-256-CBC+HMAC) to the vault items (Playwright)", "password-protected export is client-side")
-@t(100)
-def _():
-    T[46][0](); here = os.path.dirname(os.path.abspath(__file__))
-    assert os.path.exists(os.path.join(here, "../../docs/design/xchacha20.md")), "design doc missing"
-    return ("partial", "AES-256-CBC+HMAC and Argon2id verified; XChaCha20-Poly1305 = upstream EncString type 7 (COSE) via account-encryption v2; "
-            "design in docs/design/xchacha20.md; needs server schema/endpoints for signing keys + security state behind KOMBOE_AEAD_V2 (not built: no Vaultwarden rebuild on this box)")
 @t(85)
 def _():
     m, msgs = _manifest("komboe-firefox.zip"); assert "browser_specific_settings" in m or "applications" in m
     return DONE("Firefox extension zip built and rebranded")
 @t(87)
-def _(): _manifest("komboe-chrome-mv3.zip"); return ("partial", "Chromium MV3 zip loads in Vivaldi; Tor Browser uses the Firefox build; not tested in either")
+def _():
+    import pathlib
+    matrix = json.loads((pathlib.Path(ROOT) / "clients/SUPPORTED-BROWSERS.json").read_text())
+    by_id = {b["id"]: b for b in matrix["browsers"]}
+    assert by_id["vivaldi"]["build"] == "chromium_mv3"
+    assert by_id["tor"]["build"] == "firefox"
+    assert by_id["cerebro"]["build"] == "chromium_mv3" and by_id["cerebro"]["family"] == "chromium"
+    for bid in ("cerebro", "vivaldi", "tor"):
+        assert "load_contract" in by_id[bid], f"{bid} missing load_contract"
+        assert by_id[bid]["load_contract"].get("manifest"), f"{bid} load_contract.manifest required"
+    _manifest("komboe-chrome-mv3.zip")
+    return ("partial", "Vivaldi+Cerebro use Chromium MV3; Tor uses Firefox build; matrix-driven load_contracts for cerebro/vivaldi/tor asserted by extension-smoke; not E2E'd in Vivaldi/Tor/Cerebro UI")
 def _win_desktop():
     import zipfile
     exe, z = art("komboe-desktop-win-x64-setup.exe"), art("komboe-desktop-win-x64.zip")

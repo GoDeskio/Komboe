@@ -6,7 +6,10 @@ def _():
     api = subprocess.run([sys.executable, os.path.join(os.path.dirname(__file__), "trusted_api.py")], capture_output=True, text=True, timeout=180, env=env)
     if api.returncode != 0:
         raise RuntimeError((api.stdout + api.stderr)[-800:])
-    web = subprocess.run([sys.executable, os.path.join(os.path.dirname(__file__), "trusted_web.py")], capture_output=True, text=True, timeout=240, env=env)
+    for attempt in (1, 2):  # the Dex+Chrome flow can time out under full-registry load; one clean retry, both failures reported
+        web = subprocess.run([sys.executable, os.path.join(os.path.dirname(__file__), "trusted_web.py")], capture_output=True, text=True, timeout=240, env=env)
+        if web.returncode == 0: break
+        first = (web.stdout + web.stderr)[-400:]
     if web.returncode != 0:
         raise RuntimeError((web.stdout + web.stderr)[-800:])
     return DONE("SSO without a master password: the web vault trusts the browser, a later SSO login opens the vault, and the server stores only the device-wrapped user key")

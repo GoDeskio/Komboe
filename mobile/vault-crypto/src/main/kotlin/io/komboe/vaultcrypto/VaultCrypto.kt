@@ -179,7 +179,7 @@ object VaultCrypto {
 
     fun unlockUserKey(password: String, email: String, kdf: KdfConfig, encryptedUserKey: String): SymmetricKey {
         val master = masterKey(password, email, kdf)
-        return SymmetricKey(unwrapKey(encryptedUserKey, stretch(master)))
+        return AccountV2.materialToUserKey(unwrapKey(encryptedUserKey, stretch(master)))
     }
 
     /** Org symmetric key, wrapped to a member with RSA-OAEP SHA-1 (EncString type 4). */
@@ -220,15 +220,29 @@ object VaultCrypto {
     fun fingerprintPhrase(material: String, publicKey: ByteArray): String =
         Fingerprint.phrase(material, publicKey)
 
-    fun encryptCose(plain: ByteArray, key32: ByteArray, algorithm: CoseAead, nonce: ByteArray? = null): String {
+    fun encryptCose(
+        plain: ByteArray,
+        key32: ByteArray,
+        algorithm: CoseAead,
+        nonce: ByteArray? = null,
+        keyId: ByteArray? = null,
+    ): String {
         require(key32.size == 32)
         val used = nonce ?: ByteArray(24).also { random.nextBytes(it) }
         require(used.size == 24)
+        val protected = coseProtected(algorithm.algorithmId, keyId)
+        val aad = if (keyId == null) ByteArray(0) else CoseEncrypt0.encStructure(protected)
         val ciphertext = when (algorithm) {
             CoseAead.XCHACHA20_POLY1305 -> xchacha(key32, used, plain, encrypt = true)
-            CoseAead.XAES_256_GCM -> xaes(key32, used, plain, encrypt = true, aad = ByteArray(0))
+            CoseAead.XAES_256_GCM -> xaes(key32, used, plain, encrypt = true, aad = aad)
         }
-        return "7." + b64(CoseEncrypt0.encode(algorithm.algorithmId, used, ciphertext))
+        return "7." + b64(CoseEncrypt0.encode(algorithm.algorithmId, used, ciphertext, keyId))
+    }
+
+    private fun coseProtected(algorithm: Int, keyId: ByteArray?): ByteArray {
+        val pairs = mutableListOf(Cbor.int(1) to Cbor.int(algorithm.toLong()))
+        if (keyId != null) pairs += Cbor.int(4) to Cbor.bstr(keyId)
+        return Cbor.map(pairs)
     }
 
     fun decryptCose(enc: String, key32: ByteArray): ByteArray {
@@ -236,11 +250,22 @@ object VaultCrypto {
         val parsed = parseEncString(enc)
         require(parsed.type == 7)
         val envelope = CoseEncrypt0.decode(parsed.data)
-        return when (envelope.algorithm) {
-            CoseAead.XCHACHA20_POLY1305.algorithmId -> xchacha(key32, envelope.nonce, envelope.ciphertext, encrypt = false)
-            CoseAead.XAES_256_GCM.algorithmId -> xaes(key32, envelope.nonce, envelope.ciphertext, encrypt = false, aad = ByteArray(0))
-            else -> error("unsupported COSE algorithm ${envelope.algorithm}")
+        val aads = listOf(CoseEncrypt0.encStructure(envelope.protectedHeader), ByteArray(0))
+        var last: Exception? = null
+        for (aad in aads) {
+            try {
+                return when (envelope.algorithm) {
+                    CoseAead.XCHACHA20_POLY1305.algorithmId ->
+                        xchacha(key32, envelope.nonce, envelope.ciphertext, encrypt = false)
+                    CoseAead.XAES_256_GCM.algorithmId ->
+                        xaes(key32, envelope.nonce, envelope.ciphertext, encrypt = false, aad = aad)
+                    else -> error("unsupported COSE algorithm ${envelope.algorithm}")
+                }
+            } catch (error: Exception) {
+                last = error
+            }
         }
+        throw last ?: error("COSE decrypt failed")
     }
 
     /** Encrypt each non-null string. Used for cipher, folder, collection and send fields. */

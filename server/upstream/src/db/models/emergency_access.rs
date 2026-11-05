@@ -53,11 +53,7 @@ impl EmergencyAccess {
     }
 
     pub fn get_type_as_str(&self) -> &'static str {
-        if self.atype == EmergencyAccessType::View as i32 {
-            "View"
-        } else {
-            "Takeover"
-        }
+        "View"
     }
 
     pub fn to_json(&self) -> Value {
@@ -117,14 +113,12 @@ impl EmergencyAccess {
 #[derive(Copy, Clone)]
 pub enum EmergencyAccessType {
     View = 0,
-    Takeover = 1,
 }
 
 impl EmergencyAccessType {
     pub fn from_str(s: &str) -> Option<Self> {
         match s {
             "0" | "View" => Some(EmergencyAccessType::View),
-            "1" | "Takeover" => Some(EmergencyAccessType::Takeover),
             _ => None,
         }
     }

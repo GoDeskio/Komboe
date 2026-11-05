@@ -194,8 +194,8 @@ describe("isConfinedSnap", () => {
     readFileSync = jest.spyOn(fs, "readFileSync");
     setPlatform("linux");
     // Only the stable snap path is a valid default; each test sets what it needs.
-    setExecPath("/snap/bitwarden/x1/opt/Bitwarden/bitwarden");
-    setCgroup(confinedCgroup("bitwarden"));
+    setExecPath("/snap/komboe/x1/opt/Komboe/komboe");
+    setCgroup(confinedCgroup("komboe"));
   });
 
   afterEach(() => {
@@ -215,34 +215,34 @@ describe("isConfinedSnap", () => {
   });
 
   it("returns true for the stable snap", () => {
-    setExecPath("/snap/bitwarden/x1/opt/Bitwarden/bitwarden");
-    setCgroup(confinedCgroup("bitwarden"));
+    setExecPath("/snap/komboe/x1/opt/Komboe/komboe");
+    setCgroup(confinedCgroup("komboe"));
     expect(isConfinedSnap()).toBe(true);
   });
 
   it("returns true for the beta snap", () => {
-    setExecPath("/snap/bitwarden-beta/x1/opt/Bitwarden Beta/bitwarden");
-    setCgroup(confinedCgroup("bitwarden-beta"));
+    setExecPath("/snap/komboe-beta/x1/opt/Komboe Beta/komboe");
+    setCgroup(confinedCgroup("komboe-beta"));
     expect(isConfinedSnap()).toBe(true);
   });
 
   // Fedora, Arch and openSUSE mount snaps at /var/lib/snapd/snap; execPath is canonicalized, so
   // it carries that root rather than the /snap compatibility symlink.
   it("returns true on distros that mount snaps outside /snap", () => {
-    setExecPath("/var/lib/snapd/snap/bitwarden/x1/opt/Bitwarden/bitwarden");
-    setCgroup(confinedCgroup("bitwarden"));
+    setExecPath("/var/lib/snapd/snap/komboe/x1/opt/Komboe/komboe");
+    setCgroup(confinedCgroup("komboe"));
     expect(isConfinedSnap()).toBe(true);
   });
 
   it("returns false when execPath is outside a snap mount", () => {
-    setExecPath("/opt/Bitwarden/bitwarden");
+    setExecPath("/opt/Komboe/komboe");
     expect(isConfinedSnap()).toBe(false);
   });
 
   // snapd's per-user data dir is user-writable, so a copy planted there must not pass as confined.
   it("returns false for a snap-lookalike path under the user's home", () => {
-    setExecPath("/home/user/snap/bitwarden/current/opt/Bitwarden/bitwarden");
-    setCgroup(confinedCgroup("bitwarden"));
+    setExecPath("/home/user/snap/komboe/current/opt/Komboe/komboe");
+    setCgroup(confinedCgroup("komboe"));
     expect(isConfinedSnap()).toBe(false);
   });
 
@@ -253,12 +253,12 @@ describe("isConfinedSnap", () => {
   });
 
   it("does not read the cgroup when execPath already rules out a snap", () => {
-    setExecPath("/opt/Bitwarden/bitwarden");
+    setExecPath("/opt/Komboe/komboe");
     isConfinedSnap();
     expect(readFileSync).not.toHaveBeenCalled();
   });
 
-  it("returns false when the cgroup does not name a bitwarden snap", () => {
+  it("returns false when the cgroup does not name a komboe snap", () => {
     setCgroup("0::/user.slice/user-1000.slice/session-2.scope\n");
     expect(isConfinedSnap()).toBe(false);
   });
@@ -274,9 +274,9 @@ describe("isConfinedSnap", () => {
   });
 
   it("is not fooled by snap env vars alone, unlike isSnapStore", () => {
-    setExecPath("/opt/Bitwarden/bitwarden");
-    process.env.SNAP = "/snap/bitwarden/x1";
-    process.env.SNAP_NAME = "bitwarden";
+    setExecPath("/opt/Komboe/komboe");
+    process.env.SNAP = "/snap/komboe/x1";
+    process.env.SNAP_NAME = "komboe";
 
     expect(isConfinedSnap()).toBe(false);
     expect(isSnapStore()).toBe(true);

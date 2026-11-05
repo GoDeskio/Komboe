@@ -2,12 +2,12 @@
 
 <#
 .SYNOPSIS
-Script to build, package and sign the Bitwarden desktop client as a Windows Appx
+Script to build, package and sign the Komboe desktop client as a Windows Appx
 package.
 
 .DESCRIPTION
 This script provides cross-platform support for packaging and signing the
-Bitwarden desktop client as a Windows Appx package.
+Komboe desktop client as a Windows Appx package.
 
 Currently, only macOS -> Windows Appx is supported, but Linux -> Windows Appx
 could be added in the future by providing Linux binaries for the msix-packaging
@@ -25,15 +25,15 @@ host, or directly on the host with OpenSSL.
 
 Using Windows PowerShell 5.1:
 ```powershell
-$publisher = "CN=Bitwarden Inc., O=Bitwarden Inc., L=Santa Barbara, S=California, C=US, SERIALNUMBER=7654941, OID.2.5.4.15=Private Organization, OID.1.3.6.1.4.1.311.60.2.1.2=Delaware, OID.1.3.6.1.4.1.311.60.2.1.3=US"
-$certificate = New-SelfSignedCertificate -Type Custom -KeyUsage DigitalSignature -CertStoreLocation "Cert:\CurrentUser\My" -TextExtension @("2.5.29.37={text}1.3.6.1.5.5.7.3.3", "2.5.29.19={text}") -Subject $publisher -FriendlyName "Bitwarden Developer Signing Certificate"
+$publisher = "CN=GoDesk, O=GODESK IO LLC, L=Phoenix, S=Arizona, C=US"
+$certificate = New-SelfSignedCertificate -Type Custom -KeyUsage DigitalSignature -CertStoreLocation "Cert:\CurrentUser\My" -TextExtension @("2.5.29.37={text}1.3.6.1.5.5.7.3.3", "2.5.29.19={text}") -Subject $publisher -FriendlyName "Komboe Developer Signing Certificate"
 $password = Read-Host -AsSecureString
 Export-PfxCertificate -cert "Cert:\CurrentUser\My\${$certificate.Thumbprint}" -FilePath "C:\path/to/pfx" -Password $password
 ```
 
 Using OpenSSL:
 ```sh
-subject="jurisdictionCountryName=US/jurisdictionStateOrProvinceName=Delaware/businessCategory=Private Organization/serialNumber=7654941, C=US, ST=California, L=Santa Barbara, O=Bitwarden Inc., CN=Bitwarden Inc."
+subject="C=US, ST=Arizona, L=Phoenix, O=GODESK IO LLC, CN=GoDesk"
 keyfile="/tmp/mysigning.rsa.pem"
 certfile="/tmp/mysigning.cert.pem"
 p12file="/tmp/mysigning.p12"

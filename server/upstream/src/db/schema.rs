@@ -417,6 +417,129 @@ table! {
     }
 }
 
+table! {
+    komboe_siem_configs (org_uuid) {
+        org_uuid -> Text,
+        kind -> Text,
+        endpoint -> Text,
+        hmac_secret -> Nullable<Text>,
+        enabled -> Bool,
+        updated_at -> Timestamp,
+    }
+}
+
+table! {
+    komboe_anomalies (uuid) {
+        uuid -> Text,
+        user_uuid -> Text,
+        kind -> Text,
+        ip_prefix -> Text,
+        device_id -> Nullable<Text>,
+        detail -> Text,
+        risk -> Integer,
+        created_at -> Timestamp,
+    }
+}
+
+table! {
+    komboe_billing (org_uuid) {
+        org_uuid -> Text,
+        plan -> Text,
+        billing_interval -> Text,
+        status -> Text,
+        stripe_customer_id -> Nullable<Text>,
+        stripe_subscription_id -> Nullable<Text>,
+        updated_at -> Timestamp,
+    }
+}
+
+table! {
+    komboe_projects (uuid) {
+        uuid -> Text,
+        org_uuid -> Text,
+        name -> Text,
+        created_by -> Text,
+        created_at -> Timestamp,
+    }
+}
+
+table! {
+    komboe_secrets (uuid) {
+        uuid -> Text,
+        project_uuid -> Text,
+        name -> Text,
+        ciphertext -> Text,
+        created_by -> Text,
+        created_at -> Timestamp,
+        updated_at -> Timestamp,
+    }
+}
+
+table! {
+    komboe_service_accounts (uuid) {
+        uuid -> Text,
+        project_uuid -> Text,
+        name -> Text,
+        token_hash -> Text,
+        created_by -> Text,
+        created_at -> Timestamp,
+        revoked_at -> Nullable<Timestamp>,
+    }
+}
+
+
+table! {
+    komboe_unlock_credentials (uuid) {
+        uuid -> Text,
+        user_uuid -> Text,
+        kind -> Text,
+        name -> Text,
+        credential_id -> Text,
+        public_data -> Text,
+        salt -> Text,
+        wrapped_user_key -> Text,
+        created_at -> Timestamp,
+    }
+}
+
+table! {
+    komboe_pgp_auth_keys (uuid) {
+        uuid -> Text,
+        user_uuid -> Text,
+        fingerprint -> Text,
+        public_key_armored -> Text,
+        created_at -> Timestamp,
+    }
+}
+
+table! {
+    komboe_pgp_auth_challenges (token) {
+        token -> Text,
+        user_uuid -> Text,
+        nonce -> Text,
+        expires_at -> Timestamp,
+    }
+}
+
+table! {
+    komboe_pgp_vault_keys (user_uuid) {
+        user_uuid -> Text,
+        fingerprint -> Text,
+        public_key_armored -> Text,
+        wrapped_vault_key -> Text,
+        updated_at -> Timestamp,
+    }
+}
+
+table! {
+    komboe_agent_sessions (uuid) {
+        uuid -> Text,
+        user_uuid -> Text,
+        created_at -> Timestamp,
+        last_action -> Text,
+    }
+}
+
 allow_tables_to_appear_in_same_query!(
     archives,
     attachments,
@@ -441,7 +564,7 @@ allow_tables_to_appear_in_same_query!(
     groups_users,
     collections_groups,
     event,
-    auth_requests,
+    auth_requests
 );
 
 // Komboe: family/company plans, split-off requests and SimpleLogin-compatible aliases
@@ -549,6 +672,7 @@ table! {
     }
 }
 
+
 allow_tables_to_appear_in_same_query!(
     komboe_org_plans,
     komboe_split_requests,
@@ -562,5 +686,16 @@ allow_tables_to_appear_in_same_query!(
     komboe_device_trust,
     komboe_login_passkeys,
     komboe_passkey_challenges,
-    komboe_account_keys_v2
+    komboe_account_keys_v2,
+    komboe_siem_configs,
+    komboe_anomalies,
+    komboe_billing,
+    komboe_projects,
+    komboe_secrets,
+    komboe_service_accounts,
+    komboe_unlock_credentials,
+    komboe_pgp_auth_keys,
+    komboe_pgp_auth_challenges,
+    komboe_pgp_vault_keys,
+    komboe_agent_sessions
 );

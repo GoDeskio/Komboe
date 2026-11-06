@@ -8,6 +8,7 @@ services:
       additional_contexts:
         komboe_root: .
     image: komboe-clients:sandbox
+    restart: "no"
     volumes:
       - web-vault:/web-vault
       - extension:/extension

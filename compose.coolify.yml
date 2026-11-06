@@ -28,6 +28,7 @@ services:
       SIGNUPS_ALLOWED: "true"
       WEB_VAULT_ENABLED: "true"
       WEB_VAULT_FOLDER: /web-vault
+      TEMPLATES_FOLDER: /data/templates
       DOMAIN: ${DOMAIN:-https://sandbox.komboe.com}
       ROCKET_PORT: "8080"
       ADMIN_TOKEN: ${ADMIN_TOKEN}

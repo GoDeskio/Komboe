@@ -13,11 +13,11 @@ services:
       - extension:/extension
 
   server:
-    name: server
     build:
       context: .
       dockerfile: docker/Dockerfile.server
     image: komboe-server:sandbox
+    pull_policy: never
     depends_on:
       clients:
         condition: service_completed_successfully

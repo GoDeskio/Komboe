@@ -913,7 +913,7 @@ make_config! {
         /// Port
         smtp_port:                     u16,    true,   auto,    |c| if c.smtp_security == *"force_tls" {465} else if c.smtp_security == *"starttls" {587} else {25};
         /// From Address
-        smtp_from:                     String, true,   def,     "no-reply@komboe.com".to_owned();
+        smtp_from:                     String, true,   def,     "donotreply@komboe.com".to_owned();
         /// From Name
         smtp_from_name:                String, true,   def,     "Komboe".to_owned();
         /// Username

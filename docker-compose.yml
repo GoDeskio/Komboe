@@ -34,7 +34,7 @@ services:
       SMTP_HOST: mailpit
       SMTP_PORT: "1025"
       SMTP_SECURITY: "off"
-      SMTP_FROM: no-reply@komboe.com
+      SMTP_FROM: donotreply@komboe.com
       SMTP_FROM_NAME: Komboe
     volumes:
       - web-vault:/web-vault:ro

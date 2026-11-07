@@ -1,0 +1,89 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Sender, backup, and update checks
+        run: |
+          set -eu
+          python3 tests/features/smtp_from.py
+          python3 tests/features/backup_restore.py
+          python3 tests/features/self_update.py
+          python3 tests/features/coolify_pull.py
+      - name: Validate the pull-only compose file
+        env:
+          KOMBOE_SERVER_DIGEST: aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+          KOMBOE_CLIENTS_DIGEST: bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+          ADMIN_TOKEN: ci-admin-token
+          SMTP_PASSWORD: ci-smtp-password
+        run: |
+          set -eu
+          out=$(docker compose -f deploy/coolify/docker-compose.pull.yml config)
+          printf '%s\n' "$out"
+          printf '%s\n' "$out" | grep -F "ghcr.io/godeskio/komboe-server@sha256:${KOMBOE_SERVER_DIGEST}"
+          printf '%s\n' "$out" | grep -F "ghcr.io/godeskio/komboe-clients@sha256:${KOMBOE_CLIENTS_DIGEST}"
+          printf '%s\n' "$out" | grep -F "donotreply@komboe.com"
+          if printf '%s\n' "$out" | grep -Eq '^[[:space:]]*build:'; then
+            echo "pull compose rendered a build block" >&2
+            exit 1
+          fi
+
+  image:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    needs: checks
+    permissions:
+      contents: read
+      packages: write
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: docker/setup-buildx-action@v3
+      - uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Build and publish server and clients images
+        env:
+          IMAGE_SHA: ${{ github.sha }}
+        run: |
+          set -eu
+          owner=$(echo "$GITHUB_REPOSITORY_OWNER" | tr '[:upper:]' '[:lower:]')
+          publish_one() {
+            name="$1"
+            shift
+            meta="${name}-meta.json"
+            docker buildx build \
+              --platform linux/amd64 \
+              --provenance=false \
+              --sbom=false \
+              --metadata-file "$meta" \
+              --push \
+              --label "org.opencontainers.image.revision=${IMAGE_SHA}" \
+              --label "org.opencontainers.image.source=https://github.com/${GITHUB_REPOSITORY}" \
+              -t "ghcr.io/${owner}/${name}:${IMAGE_SHA}" \
+              "$@"
+            digest=$(jq -r '."containerimage.digest" // empty' "$meta")
+            hex=${digest#sha256:}
+            if [ -z "$hex" ] || [ "$hex" = "$digest" ]; then
+              echo "buildx metadata for ${name}:" >&2
+              cat "$meta" >&2 || true
+              echo "buildx did not write a sha256 manifest digest" >&2
+              exit 1
+            fi
+            echo "${name} sha256:${hex}" | tee -a "$GITHUB_STEP_SUMMARY"
+            echo "${name}_digest=${hex}" >> "$GITHUB_OUTPUT"
+          }
+          publish_one komboe-server -f docker/Dockerfile.server .
+          publish_one komboe-clients -f docker/Dockerfile.clients --build-context komboe_root=. clients/upstream
+          for name in komboe-server komboe-clients; do
+            gh api --method PUT "/orgs/${GITHUB_REPOSITORY_OWNER}/packages/container/${name}" -f visibility=public \
+              || echo "package ${name} stayed private; Coolify needs a read token to pull it"
+          done

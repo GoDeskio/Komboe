@@ -101,7 +101,7 @@ const HELP: &str = "\
 Alternative implementation of the Bitwarden server API written in Rust
 
 USAGE:
-    vaultwarden [FLAGS|COMMAND]
+    komboe [FLAGS|COMMAND]
 
 FLAGS:
     -h, --help       Prints help information
@@ -111,6 +111,8 @@ COMMAND:
     hash [--preset {bitwarden|owasp}]  Generate an Argon2id PHC ADMIN_TOKEN
     backup                             Create a backup of the SQLite database
                                        You can also send the USR1 signal to trigger a backup
+    restore <backup.sqlite3>           Replace the SQLite database with a backup file
+                                       Stop the server first. Attachments are not included
 
 PRESETS:                  m=         t=          p=
     bitwarden (default) 64MiB, 3 Iterations, 4 Threads
@@ -193,6 +195,24 @@ fn parse_args() {
                 }
                 Err(e) => {
                     println!("Backup failed. {e:?}");
+                    exit(1);
+                }
+            }
+        } else if command == "restore" {
+            let backup_file = match pargs.free_from_str::<String>() {
+                Ok(path) => path,
+                Err(_) => {
+                    println!("Usage: komboe restore <backup.sqlite3>");
+                    exit(1);
+                }
+            };
+            match db::restore_sqlite(&backup_file) {
+                Ok(f) => {
+                    println!("Restored database at '{f}'");
+                    exit(0);
+                }
+                Err(e) => {
+                    println!("Restore failed. {e:?}");
                     exit(1);
                 }
             }

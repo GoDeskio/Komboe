@@ -1,0 +1,50 @@
+# Pull-only Coolify stack. Set docker_compose_location to this file.
+# The host pulls the images and does not compile them.
+# KOMBOE_SERVER_DIGEST and KOMBOE_CLIENTS_DIGEST are the hex digests printed by
+# the main image job, without a sha256: prefix. They are not secrets.
+# Coolify fills DOMAIN when it assigns the app URL. TLS stays on Coolify's proxy.
+# Point the domain at the server service, port 8080.
+services:
+  clients:
+    image: ghcr.io/godeskio/komboe-clients@sha256:${KOMBOE_CLIENTS_DIGEST:?set to the digest printed by the main image job}
+    restart: "no"
+    volumes:
+      - web-vault:/web-vault
+      - extension:/extension
+
+  server:
+    image: ghcr.io/godeskio/komboe-server@sha256:${KOMBOE_SERVER_DIGEST:?set to the digest printed by the main image job}
+    depends_on:
+      clients:
+        condition: service_completed_successfully
+    expose:
+      - "8080"
+    environment:
+      SIGNUPS_ALLOWED: "true"
+      WEB_VAULT_ENABLED: "true"
+      WEB_VAULT_FOLDER: /web-vault
+      TEMPLATES_FOLDER: /data/templates
+      DOMAIN: ${DOMAIN:-https://sandbox.komboe.com}
+      ROCKET_PORT: "8080"
+      ADMIN_TOKEN: ${ADMIN_TOKEN}
+      SMTP_HOST: ${SMTP_HOST:-smtp.stackmail.com}
+      SMTP_PORT: ${SMTP_PORT:-587}
+      SMTP_SECURITY: ${SMTP_SECURITY:-starttls}
+      SMTP_FROM: ${SMTP_FROM:-donotreply@komboe.com}
+      SMTP_FROM_NAME: ${SMTP_FROM_NAME:-Komboe}
+      SMTP_USERNAME: ${SMTP_USERNAME:-donotreply@komboe.com}
+      SMTP_PASSWORD: ${SMTP_PASSWORD}
+    volumes:
+      - web-vault:/web-vault:ro
+      - komboe-data:/data
+    healthcheck:
+      test: ["CMD", "curl", "--fail", "--silent", "--show-error", "http://127.0.0.1:8080/alive"]
+      interval: 30s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+
+volumes:
+  web-vault:
+  extension:
+  komboe-data:

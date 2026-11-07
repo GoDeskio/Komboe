@@ -434,6 +434,113 @@ pub fn backup_sqlite() -> Result<String, Error> {
     err_silent!("The database type is not SQLite. Backups only works for SQLite databases")
 }
 
+/// Replaces the live SQLite database with a file produced by `backup`.
+/// The server must be stopped. Attachments and config.json are not restored.
+/// A leftover `-wal` or `-shm` is removed so SQLite does not replay it over the restored file.
+#[cfg(sqlite)]
+pub fn restore_sqlite(backup_file: &str) -> Result<String, Error> {
+    let db_url = CONFIG.database_url();
+    if DbConnType::from_url(&db_url).is_ok_and(|t| t == DbConnType::Sqlite) {
+        let file_path = db_url.strip_prefix("sqlite://").unwrap_or(&db_url);
+        restore_sqlite_at(file_path, backup_file)
+    } else {
+        err_silent!("The database type is not SQLite. Restore only works for SQLite databases")
+    }
+}
+
+#[cfg(sqlite)]
+fn restore_sqlite_at(live_path: &str, backup_file: &str) -> Result<String, Error> {
+    use std::io::Read;
+
+    let backup = std::path::Path::new(backup_file);
+    let live = std::path::Path::new(live_path);
+    if !backup.is_file() {
+        err!(format!("Backup file '{backup_file}' does not exist"));
+    }
+    if live.exists()
+        && let (Ok(backup_real), Ok(live_real)) = (backup.canonicalize(), live.canonicalize())
+        && backup_real == live_real
+    {
+        err!("Refusing to restore a database over itself");
+    }
+
+    let mut header = [0u8; 16];
+    let mut file = std::fs::File::open(backup)?;
+    file.read_exact(&mut header)?;
+    if &header != b"SQLite format 3\0" {
+        err!(format!("Backup file '{backup_file}' is not a SQLite database"));
+    }
+    drop(file);
+
+    if let Some(parent) = live.parent()
+        && !parent.as_os_str().is_empty()
+    {
+        std::fs::create_dir_all(parent)?;
+    }
+
+    let tmp = format!("{live_path}.restore");
+    std::fs::copy(backup, &tmp)?;
+    std::fs::rename(&tmp, live)?;
+    for suffix in ["-wal", "-shm", "-journal"] {
+        let side = format!("{live_path}{suffix}");
+        if std::path::Path::new(&side).exists() {
+            std::fs::remove_file(side)?;
+        }
+    }
+    Ok(live_path.to_owned())
+}
+
+#[cfg(not(sqlite))]
+pub fn restore_sqlite(_backup_file: &str) -> Result<String, Error> {
+    err_silent!("The database type is not SQLite. Restore only works for SQLite databases")
+}
+
+#[cfg(all(test, sqlite))]
+mod restore_tests {
+    use super::restore_sqlite_at;
+
+    fn scratch() -> std::path::PathBuf {
+        let nonce = std::time::SystemTime::now().duration_since(std::time::UNIX_EPOCH).unwrap().as_nanos();
+        let dir = std::env::temp_dir().join(format!("komboe-restore-{nonce}"));
+        let _ = std::fs::remove_dir_all(&dir);
+        std::fs::create_dir_all(&dir).unwrap();
+        dir
+    }
+
+    fn write_sqlite(path: &std::path::Path, payload: &[u8]) {
+        use std::io::Write;
+        let mut file = std::fs::File::create(path).unwrap();
+        file.write_all(b"SQLite format 3\0").unwrap();
+        file.write_all(payload).unwrap();
+    }
+
+    #[test]
+    fn restore_replaces_the_live_database_and_drops_wal() {
+        let dir = scratch();
+        let live = dir.join("db.sqlite3");
+        let backup = dir.join("db_backup.sqlite3");
+        let live_s = live.to_str().unwrap();
+        let backup_s = backup.to_str().unwrap();
+        write_sqlite(&live, b"changed");
+        write_sqlite(&backup, b"kept");
+        std::fs::write(format!("{live_s}-wal"), b"old-wal").unwrap();
+
+        let restored = restore_sqlite_at(live_s, backup_s).unwrap();
+        assert_eq!(restored, live_s);
+        assert_eq!(std::fs::read(&live).unwrap(), std::fs::read(&backup).unwrap());
+        assert!(!std::path::Path::new(&format!("{live_s}-wal")).exists());
+
+        assert!(restore_sqlite_at(live_s, live_s).is_err());
+        let notes = dir.join("notes.txt");
+        std::fs::write(&notes, b"not a database!!").unwrap();
+        assert!(restore_sqlite_at(live.to_str().unwrap(), notes.to_str().unwrap()).is_err());
+        let missing = dir.join("missing.sqlite3");
+        assert!(restore_sqlite_at(live.to_str().unwrap(), missing.to_str().unwrap()).is_err());
+
+        let _ = std::fs::remove_dir_all(&dir);
+    }
+}
+
 /// Get the SQL Server version
 pub async fn get_sql_server_version(conn: &DbConn) -> String {
     db_run! { conn:

@@ -66,7 +66,14 @@ def check_files():
     assert "Your Komboe master password was changed" in accounts
     assert "Two-step login was changed on your Komboe account" in twofa
     assert "send_failed_login" in (ROOT / "server/upstream/src/api/identity.rs").read_text()
-    assert 'no-reply@komboe.com' in (ROOT / "server/upstream/src/config.rs").read_text()
+    config = (ROOT / "server/upstream/src/config.rs").read_text()
+    assert 'donotreply@komboe.com' in config
+    assert 'no-reply@komboe.com' not in config
+    for rel in ("docker-compose.yml", "compose.coolify.yml", "deploy/coolify/docker-compose.pull.yml", "docs/EMAIL.md"):
+        text = (ROOT / rel).read_text()
+        assert "donotreply@komboe.com" in text, rel
+        assert "no-reply@komboe.com" not in text, rel
+    assert "donotreply@komboe.com" in (ROOT / "server/upstream/.env.template").read_text()
     print("TEMPLATE FILES PASS", len(REQUIRED))
 
 def mailpit_up():
@@ -89,7 +96,7 @@ def send_and_read():
         html_s = html_s.replace("{{> email/email_footer }}", "")
         html_s = re.sub(r"\{\{[#/]?[^}]+\}\}", "sample", html_s)
         msg = EmailMessage()
-        msg["From"] = "Komboe <no-reply@komboe.com>"
+        msg["From"] = "Komboe <donotreply@komboe.com>"
         msg["To"] = "sink@komboe.test"
         msg["Subject"] = f"Komboe test {kind}"
         msg.set_content(sample)
@@ -108,7 +115,7 @@ def send_and_read():
     # One full read: From address and no GoDesk.
     mid = data["messages"][0]["ID"]
     full = json.loads(urllib.request.urlopen(f"{MAILPIT}/api/v1/message/{mid}", timeout=5).read())
-    assert full["From"]["Address"] == "no-reply@komboe.com", full["From"]
+    assert full["From"]["Address"] == "donotreply@komboe.com", full["From"]
     blob = (full.get("HTML") or "") + (full.get("Text") or "")
     assert "GoDesk" not in blob
     assert "Komboe" in blob or "sample" in blob

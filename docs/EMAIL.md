@@ -1,12 +1,12 @@
 # Komboe email
 
-SMTP is configured only with environment variables. The default sender is `no-reply@komboe.com` with the display name Komboe. Override it with `SMTP_FROM` and `SMTP_FROM_NAME` when a self-hosted server should use its own address.
+SMTP is configured only with environment variables. The default sender is `donotreply@komboe.com` with the display name Komboe. Override it with `SMTP_FROM` and `SMTP_FROM_NAME` when a self-hosted server should use its own address.
 
 ```sh
 SMTP_HOST=smtp.example.com
 SMTP_PORT=587
 SMTP_SECURITY=starttls
-SMTP_FROM=no-reply@komboe.com
+SMTP_FROM=donotreply@komboe.com
 SMTP_FROM_NAME=Komboe
 SMTP_USERNAME=
 SMTP_PASSWORD=
@@ -42,7 +42,7 @@ These records are what a receiving server expects for mail from `komboe.com`. Th
 | DKIM | `komboe._domainkey.komboe.com` TXT | Public key that matches the private key used to sign outbound mail. The selector name is chosen with the SMTP provider |
 | DMARC | `_dmarc.komboe.com` TXT | `v=DMARC1; p=quarantine; rua=mailto:dmarc@komboe.com; adkim=s; aspf=s` once SPF and DKIM both pass. Start with `p=none` while checking reports |
 
-The envelope sender and the `From` address should both be on `komboe.com` so SPF and DKIM alignment succeed. A self-hosted server that sends as `no-reply@komboe.com` must be listed in the komboe.com SPF record, or it should use its own domain in `SMTP_FROM`.
+The envelope sender and the `From` address should both be on `komboe.com` so SPF and DKIM alignment succeed. A self-hosted server that sends as `donotreply@komboe.com` must be listed in the komboe.com SPF record, or it should use its own domain in `SMTP_FROM`.
 
 ## Local sink
 

@@ -31,6 +31,20 @@ server/upstream/target/release/vaultwarden
 For the test suites, also relax rate limits (`LOGIN_RATELIMIT_SECONDS=1 LOGIN_RATELIMIT_MAX_BURST=10000`,
 same for `ADMIN_` and `UNAUTHENTICATED_`).
 
+## Backup and restore
+
+The server CLI copies the SQLite database. Attachments and `config.json` are not included. The cargo binary is `vaultwarden`; the container installs that same binary as `komboe`.
+
+```sh
+DATA_FOLDER=$PWD/data server/upstream/target/release/vaultwarden backup
+# writes $DATA_FOLDER/db_YYYYMMDD_HHMMSS.sqlite3
+
+# stop the server first
+DATA_FOLDER=$PWD/data server/upstream/target/release/vaultwarden restore $PWD/data/db_YYYYMMDD_HHMMSS.sqlite3
+```
+
+In the container the same commands are `komboe backup` and `komboe restore <backup.sqlite3>`. The admin page runs the same backup from `/admin` → Settings → Backup Database. A `USR1` signal also triggers a backup. Restore is the CLI only, and the server must be stopped.
+
 ## What a self-hosted server contacts
 
 A server started with the defaults does not call komboe.com, Bitwarden, GitHub, Cloudflare, Have I Been Pwned, or the websites stored in the vault. These are the switches, all off until you set them:

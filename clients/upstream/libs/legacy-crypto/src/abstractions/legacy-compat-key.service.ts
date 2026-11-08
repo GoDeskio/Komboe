@@ -49,6 +49,16 @@ export abstract class LegacyCompatKeyService {
   abstract makeMasterKey(password: string, email: string, kdfConfig: KdfConfig): Promise<MasterKey>;
 
   /**
+   * Same derivation as {@link makeMasterKey} without lowercasing the salt.
+   * Login-name envelopes use the email captured at registration, including its case.
+   */
+  abstract makeMasterKeyPreservingSalt(
+    password: string,
+    salt: string,
+    kdfConfig: KdfConfig,
+  ): Promise<MasterKey>;
+
+  /**
    * Encrypts the provided user key with the provided master key.
    * @deprecated Interacting with the master key directly is prohibited. Use a high level function from MasterPasswordService instead.
    * @param masterKey The user's master key

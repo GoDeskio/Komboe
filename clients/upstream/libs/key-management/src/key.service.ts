@@ -118,6 +118,9 @@ export class DefaultKeyService implements KeyServiceAbstraction {
       throw new Error("UserId is required");
     }
 
+    // The in-memory user key is what the auth status treats as Unlocked.
+    // Clearing it here, from the lock wipe, is what makes that status Locked.
+    await this.stateProvider.setUserState(USER_KEY, null, userId);
     await this.stateService.setUserKeyAutoUnlock(null, { userId: userId });
   }
 

@@ -103,6 +103,9 @@ async function main() {
   if (!built.includes("komboe.deviceTrust")) {
     throw new Error("the built vault does not send the server trust token");
   }
+  if (!built.includes("Save this login name")) {
+    throw new Error("the built vault has no login-name enrollment");
+  }
   fs.mkdirSync(SHOTS, { recursive: true });
   const data = fs.mkdtempSync(path.join(os.tmpdir(), "komboe-angular-"));
   const cert = path.join(data, "cert.pem");
@@ -137,6 +140,7 @@ async function main() {
     await waitAlive();
     const email = `angular-${Date.now().toString(36)}@komboe.test`;
     const password = "Angular-Vault-Password-1";
+    const loginName = ("ang" + Date.now().toString(36)).slice(-12);
     const context = await browser.newContext({ ignoreHTTPSErrors: true, viewport: { width: 1280, height: 900 } });
     const page = await context.newPage();
     page.on("response", async (response) => {
@@ -197,6 +201,27 @@ async function main() {
     } catch (error) {
       throw new Error(page.url() + "\n" + (await page.locator("body").innerText()).slice(0, 1200));
     }
+    for (let attempt = 0; attempt < 40; attempt += 1) {
+      const salt = await page.getByTestId("login-name-kdf-email").inputValue();
+      if (salt.includes("@")) break;
+      await page.waitForTimeout(100);
+    }
+    const salt = await page.getByTestId("login-name-kdf-email").inputValue();
+    if (salt.toLowerCase() !== email.toLowerCase()) {
+      throw new Error("vault email field was " + salt);
+    }
+    await page.getByTestId("login-name").evaluate((el, value) => {
+      el.value = value;
+      el.dispatchEvent(new Event("input", { bubbles: true }));
+    }, loginName);
+    await page.getByTestId("login-name-password").evaluate((el, value) => {
+      el.value = value;
+      el.dispatchEvent(new Event("input", { bubbles: true }));
+    }, password);
+    await page.getByTestId("save-login-name").evaluate((el) => el.click());
+    const savedName = await page.getByTestId("login-name-message").innerText();
+    if (!/saved/i.test(savedName)) throw new Error(savedName);
+    await page.screenshot({ path: path.join(SHOTS, "angular-login-name-saved.png") });
     await page.getByTestId("device-pin").evaluate((el, pin) => {
       el.value = pin;
       el.dispatchEvent(new Event("input", { bubbles: true }));
@@ -284,6 +309,26 @@ async function main() {
       }
     }
     if (left.length !== 0) throw new Error("logout left a device record");
+    await page.getByTestId("login-email-input").waitFor({ timeout: 20000 });
+    await page.getByTestId("login-email-input").fill(loginName);
+    await page.getByTestId("login-continue-button").click();
+    await page.getByTestId("login-master-password-input").waitFor({ timeout: 20000 });
+    await page.getByTestId("login-master-password-input").fill(password);
+    await page.getByTestId("login-submit-button").click();
+    try {
+      await page.getByTestId("login-email-input").waitFor({ state: "hidden", timeout: 40000 });
+    } catch (error) {
+      await page.screenshot({ path: path.join(SHOTS, "angular-username-login-stuck.png") });
+      throw new Error(page.url() + " " + (await page.locator("body").innerText()).slice(0, 1500));
+    }
+    await page.evaluate(() => { window.location.hash = "/vault"; });
+    await page.waitForURL(/#\/vault/, { timeout: 20000 });
+    await openCipher(page);
+    const revealName = page.getByTestId("toggle-password");
+    if (await revealName.count()) await revealName.click();
+    const shownName = await page.getByTestId("login-password").inputValue().catch(async () => page.locator("body").innerText());
+    if (!String(shownName).includes(SECRET)) throw new Error("username login decrypted " + shownName);
+    await page.screenshot({ path: path.join(SHOTS, "angular-username-unlocked-cipher.png") });
     console.log("ANGULAR VAULT UNLOCK PASS");
   } finally {
     await browser.close();

@@ -18,6 +18,11 @@ jobs:
           python3 tests/features/self_update.py
           python3 tests/features/coolify_pull.py
           python3 tests/features/email_interval.py
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Extension trust token is revoked from session storage
+        run: node --experimental-strip-types tests/features/email_trust_storage.mjs
       - name: Validate the pull-only compose file
         env:
           KOMBOE_SERVER_DIGEST: aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
@@ -48,7 +53,7 @@ jobs:
           workspaces: server/upstream
       - name: Server unit tests
         working-directory: server/upstream
-        run: cargo test --features sqlite --bin vaultwarden -- never_and_window codes_expire email_is_not login_name_shape login_name_uses restore_replaces
+        run: cargo test --features sqlite --bin vaultwarden -- never_and_window codes_expire email_is_not login_name_shape login_name_uses a_miss_is_stable restore_replaces
       - uses: actions/setup-node@v4
         with:
           node-version: "22"
@@ -167,7 +172,7 @@ jobs:
 
   image:
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-    needs: checks
+    needs: [checks, marketing, angular-vault, extension]
     permissions:
       contents: read
       packages: write
@@ -212,7 +217,39 @@ jobs:
             echo "${name}_digest=${hex}" >> "$GITHUB_OUTPUT"
           }
           publish_one komboe-server -f docker/Dockerfile.server .
-          publish_one komboe-clients -f docker/Dockerfile.clients --build-context komboe_root=. clients/upstream
+          docker buildx build \
+            --load \
+            --platform linux/amd64 \
+            --provenance=false \
+            --sbom=false \
+            -f docker/Dockerfile.clients \
+            --build-context komboe_root=. \
+            --build-arg KOMBOE_REVISION="${IMAGE_SHA}" \
+            -t komboe-clients:validate \
+            clients/upstream
+          cid=$(docker create komboe-clients:validate)
+          mkdir -p dist
+          docker cp "$cid:/src/apps/web/build/komboe-downloads.json" dist/komboe-downloads.json
+          docker cp "$cid:/opt/komboe-chrome-mv3.zip" dist/komboe-chrome-mv3.zip
+          docker rm "$cid"
+          EXPECTED_REVISION="${IMAGE_SHA}" python3 - << 'PY'
+          import hashlib, json, os
+          from pathlib import Path
+          manifest = json.loads(Path("dist/komboe-downloads.json").read_text())
+          if manifest.get("revision") != os.environ["EXPECTED_REVISION"]:
+              raise SystemExit(f"published clients image stamped {manifest.get('revision')}")
+          blob = Path("dist/komboe-chrome-mv3.zip").read_bytes()
+          asset = next(item for item in manifest["assets"] if item["id"] == "extension-chromium-mv3")
+          if asset["sha256"] != hashlib.sha256(blob).hexdigest() or asset["status"] != "published":
+              raise SystemExit(f"published image manifest does not match the zip: {asset}")
+          for other in manifest["assets"]:
+              if other["id"] == "extension-chromium-mv3":
+                  continue
+              if other["sha256"] or other["url"] or other["status"] == "published":
+                  raise SystemExit(f"published image manifest includes a file this image did not build: {other['id']}")
+          print("clients image revision", manifest["revision"])
+          PY
+          publish_one komboe-clients -f docker/Dockerfile.clients --build-arg KOMBOE_REVISION="${IMAGE_SHA}" --build-context komboe_root=. clients/upstream
           for name in komboe-server komboe-clients; do
             gh api --method PUT "/orgs/${GITHUB_REPOSITORY_OWNER}/packages/container/${name}" -f visibility=public \
               || echo "package ${name} stayed private; Coolify needs a read token to pull it"

@@ -14,6 +14,7 @@ BIN = Path(os.environ.get("KOMBOE_BIN", ROOT / "server/upstream/target/debug/vau
 PORT = "18082"
 NEED = (
     "komboe_login_names",
+    "komboe_kdf_email",
     "komboe_email_login_policy",
     "komboe_email_login_trust",
     "komboe_email_login_codes",
@@ -77,7 +78,7 @@ def main():
         missing = [name for name in NEED if name not in names]
         if missing:
             raise SystemExit(f"migrations did not create {missing}")
-        for version in ("20261108000000", "20261108010000", "20261108020000", "20261108030000"):
+        for version in ("20261108000000", "20261108010000", "20261108020000", "20261108030000", "20261108040000"):
             if version not in versions:
                 raise SystemExit(f"{version} not in schema migrations: {versions[-8:]}")
         con = sqlite3.connect(db)

@@ -60,6 +60,7 @@ import { ApiKeyResponse } from "../auth/models/response/api-key.response";
 import { AuthRequestResponse } from "../auth/models/response/auth-request.response";
 import { IdentityDeviceVerificationResponse } from "../auth/models/response/identity-device-verification.response";
 import { IdentitySsoRequiredResponse } from "../auth/models/response/identity-sso-required.response";
+import { rememberKomboeEmailSessionAsync } from "../auth/komboe-email-trust";
 import { IdentityTokenResponse } from "../auth/models/response/identity-token.response";
 import { IdentityTwoFactorResponse } from "../auth/models/response/identity-two-factor.response";
 import { RefreshTokenResponse } from "../auth/models/response/refresh-token.response";
@@ -200,20 +201,26 @@ export class ApiService implements ApiServiceAbstraction {
 
     if (responseJson != null) {
       if (response.status === 200) {
-        if (
-          typeof responseJson.KomboeDeviceTrust === "string" &&
-          responseJson.KomboeDeviceTrust &&
-          globalThis.sessionStorage
-        ) {
-          globalThis.sessionStorage.setItem("komboe.apiBase", env.getApiUrl());
+        const token = new IdentityTokenResponse(responseJson);
+        const deviceTrust = responseJson.KomboeDeviceTrust;
+        if (typeof deviceTrust === "string" && deviceTrust) {
+          await rememberKomboeEmailSessionAsync({
+            deviceTrust,
+            apiBase: env.getApiUrl(),
+          });
         }
-        return new IdentityTokenResponse(responseJson);
+        return token;
       } else if (
         response.status === 400 &&
         responseJson.TwoFactorProviders2 &&
         Object.keys(responseJson.TwoFactorProviders2).length
       ) {
-        return new IdentityTwoFactorResponse(responseJson);
+        const twoFactor = new IdentityTwoFactorResponse(responseJson);
+        const challenge = responseJson.KomboeLoginChallenge;
+        if (typeof challenge === "string" && challenge) {
+          await rememberKomboeEmailSessionAsync({ loginChallenge: challenge });
+        }
+        return twoFactor;
       } else if (
         response.status === 400 &&
         responseJson?.ErrorModel?.Message === ApiService.NEW_DEVICE_VERIFICATION_REQUIRED_MESSAGE

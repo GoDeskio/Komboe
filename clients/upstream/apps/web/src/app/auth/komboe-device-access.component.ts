@@ -5,13 +5,19 @@ import { firstValueFrom } from "rxjs";
 
 import { AccountService } from "@bitwarden/common/auth/abstractions/account.service";
 import { getUserId } from "@bitwarden/common/auth/services/account.service";
-import { USER_KEY } from "@bitwarden/common/key-management/state-definitions";
+import { KDF_CONFIG } from "@bitwarden/common/key-management/state-definitions";
 import { StateProvider } from "@bitwarden/common/platform/state";
+import { ApiService } from "@bitwarden/common/abstractions/api.service";
+import {
+  envelopeKeyBytes,
+  randomEnvelopeSalt,
+  sealKdfEmail,
+} from "@bitwarden/common/auth/kdf-identity";
 import { UserId } from "@bitwarden/common/types/guid";
 import { UserKey } from "@bitwarden/common/types/key";
 import { LockComponent } from "@bitwarden/key-management-ui";
 import { KeyService } from "@bitwarden/key-management";
-import { SymmetricCryptoKey } from "@bitwarden/legacy-crypto";
+import { KdfConfig, KdfType, LegacyCompatKeyService, SymmetricCryptoKey } from "@bitwarden/legacy-crypto";
 import { LogoutService } from "@bitwarden/auth/common";
 import { LockService, LockSource, UnlockService } from "@bitwarden/unlock";
 
@@ -84,6 +90,34 @@ type DeviceUnlockApi = {
       @if (message()) {
         <p role="alert" data-testid="device-access-message">{{ message() }}</p>
       }
+      @if (mode === "enroll") {
+        <h3 class="tw-mt-6 tw-text-base tw-font-semibold">Login name</h3>
+        <p>
+          A login name signs in without typing the email. The vault key still uses the email from
+          when the account was created, including its case. The server stores that email inside an
+          envelope sealed with this account's own key derivation, not a cheaper one. Changing the
+          master password clears it.
+        </p>
+        @if (savedLoginName()) {
+          <p>Current login name: {{ savedLoginName() }}</p>
+        }
+        <label class="tw-mt-3 tw-block">
+          Exact vault email
+          <input class="tw-mt-1 tw-w-full" type="email" data-testid="login-name-kdf-email" [value]="kdfEmail()" (input)="kdfEmail.set($any($event.target).value)" />
+        </label>
+        <label class="tw-mt-3 tw-block">
+          Login name
+          <input class="tw-mt-1 tw-w-full" type="text" autocomplete="username" data-testid="login-name" (input)="loginName.set($any($event.target).value)" />
+        </label>
+        <label class="tw-mt-3 tw-block">
+          Master password
+          <input class="tw-mt-1 tw-w-full" type="password" autocomplete="current-password" data-testid="login-name-password" (input)="loginPassword.set($any($event.target).value)" />
+        </label>
+        <button type="button" class="tw-mt-2" data-testid="save-login-name" (click)="saveLoginName()">Save this login name</button>
+        @if (loginNameMessage()) {
+          <p role="status" data-testid="login-name-message">{{ loginNameMessage() }}</p>
+        }
+      }
       <p>
         <button type="button" data-testid="device-lock" (click)="lock()">Lock</button>
         <button type="button" data-testid="device-logout" (click)="logout()">Log out</button>
@@ -100,6 +134,8 @@ export class KomboeDeviceAccessComponent {
   private readonly lockService = inject(LockService);
   private readonly logoutService = inject(LogoutService);
   private readonly stateProvider = inject(StateProvider);
+  private readonly apiService = inject(ApiService);
+  private readonly legacyKey = inject(LegacyCompatKeyService);
   private readonly router = inject(Router);
 
   protected readonly dots = [0, 1, 2, 3, 4, 5, 6, 7, 8];
@@ -109,6 +145,11 @@ export class KomboeDeviceAccessComponent {
   protected readonly userKeyReady = signal(false);
   protected readonly record = signal<any>(null);
   protected readonly biometric = signal({ supported: false, reason: "" });
+  protected readonly savedLoginName = signal("");
+  protected readonly loginName = signal("");
+  protected readonly loginPassword = signal("");
+  protected readonly kdfEmail = signal("");
+  protected readonly loginNameMessage = signal("");
 
   constructor() {
     this.mode = this.router.url.includes("device-access") ? "enroll" : "unlock";
@@ -117,15 +158,67 @@ export class KomboeDeviceAccessComponent {
 
   protected async lock(): Promise<void> {
     this.message.set("locking");
-    const userId = await this.userId();
-    // The in-memory user key is what makes the account Unlocked. Clear it before
-    // LockService waits for that transition; the wait otherwise expires and never reloads.
-    await this.stateProvider.setUserState(USER_KEY, null, userId);
+    // LockService clears cipher caches and the user key, then reloads the process.
+    // Nulling the key here would drop it before that wipe, and navigating to /lock
+    // without a reload would leave decrypted caches in this process. Unsaved edits
+    // are discarded by the reload.
     try {
-      await this.lockService.lock(userId, LockSource.Manual);
+      await this.lockService.lock(await this.userId(), LockSource.Manual);
     } catch (error) {
       this.message.set(error instanceof Error ? error.message : "Could not lock.");
-      await this.router.navigate(["/lock"]);
+    }
+  }
+
+  protected async saveLoginName(): Promise<void> {
+    this.loginNameMessage.set("");
+    const name = this.loginName().trim();
+    const password = this.loginPassword();
+    const kdfEmail = this.kdfEmail().trim();
+    if (!name || !password || !kdfEmail.includes("@")) {
+      this.loginNameMessage.set("Enter the vault email, a login name, and the master password.");
+      return;
+    }
+    try {
+      const userId = await this.userId();
+      const kdf = await firstValueFrom(this.stateProvider.getUser(userId, KDF_CONFIG).state$);
+      if (!kdf) {
+        this.loginNameMessage.set("This device does not have the account key derivation yet.");
+        return;
+      }
+      const masterKey = await this.legacyKey.makeMasterKeyPreservingSalt(password, kdfEmail, kdf);
+      const masterPasswordHash = await this.legacyKey.hashMasterKey(password, masterKey);
+      await this.apiService.send(
+        "PUT",
+        "/komboe/kdf-email",
+        { kdfEmail, masterPasswordHash },
+        true,
+        true,
+      );
+      const envelopeSalt = randomEnvelopeSalt();
+      const wrappingKey = await this.legacyKey.makeMasterKeyPreservingSalt(password, envelopeSalt, kdf);
+      const envelope = await sealKdfEmail(envelopeKeyBytes(wrappingKey.toEncoded()), kdfEmail);
+      const saved = await this.apiService.send(
+        "PUT",
+        "/komboe/login-name",
+        {
+          name,
+          masterPasswordHash,
+          envelope,
+          envelopeSalt,
+          ...this.kdfBody(kdf),
+        },
+        true,
+        true,
+      );
+      this.savedLoginName.set(saved?.name || name.toLowerCase());
+      this.loginPassword.set("");
+      this.loginNameMessage.set("Login name saved. Sign in with it and the master password.");
+    } catch (error) {
+      const message =
+        error instanceof Error
+          ? error.message
+          : (error as { message?: string } | null)?.message;
+      this.loginNameMessage.set(message || "The login name was not saved.");
     }
   }
 
@@ -202,6 +295,45 @@ export class KomboeDeviceAccessComponent {
     this.record.set(raw ? JSON.parse(raw) : null);
     const userKey = await firstValueFrom(this.keyService.userKey$(userId));
     this.userKeyReady.set(userKey != null);
+    if (this.mode !== "enroll") {
+      return;
+    }
+    const account = await firstValueFrom(this.accountService.activeAccount$);
+    this.kdfEmail.set(account?.email ?? "");
+    try {
+      const salt = await this.apiService.send("GET", "/komboe/kdf-email", null, true, true);
+      if (typeof salt?.kdfEmail === "string" && salt.kdfEmail.includes("@")) {
+        this.kdfEmail.set(salt.kdfEmail);
+      }
+      const current = await this.apiService.send("GET", "/komboe/login-name", null, true, true);
+      if (typeof current?.name === "string") {
+        this.savedLoginName.set(current.name);
+      }
+    } catch {
+      // The form still works with the account email when the salt was not stored.
+    }
+  }
+
+  private kdfBody(kdf: KdfConfig): {
+    kdf: number;
+    kdfIterations: number;
+    kdfMemory: number | null;
+    kdfParallelism: number | null;
+  } {
+    if (kdf.kdfType === KdfType.Argon2id) {
+      return {
+        kdf: kdf.kdfType,
+        kdfIterations: kdf.iterations,
+        kdfMemory: kdf.memory,
+        kdfParallelism: kdf.parallelism,
+      };
+    }
+    return {
+      kdf: kdf.kdfType,
+      kdfIterations: kdf.iterations,
+      kdfMemory: null,
+      kdfParallelism: null,
+    };
   }
 
   private async userId(): Promise<UserId> {

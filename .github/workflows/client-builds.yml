@@ -140,10 +140,12 @@ jobs:
             --record-checksums \
             --revision "${{ github.sha }}" \
             --out dist/komboe-downloads.json
-          python3 - << 'PY'
-          import json
+          EXPECTED_REVISION="${{ github.sha }}" python3 - << 'PY'
+          import json, os
           from pathlib import Path
           manifest = json.loads(Path("dist/komboe-downloads.json").read_text())
+          if manifest.get("revision") != os.environ["EXPECTED_REVISION"]:
+              raise SystemExit(f"checksum manifest revision {manifest.get('revision')} is not {os.environ['EXPECTED_REVISION']}")
           for asset in manifest["assets"]:
               if asset["url"] or asset["status"] == "published":
                   raise SystemExit(f"checksum job must not publish a URL: {asset['id']}")

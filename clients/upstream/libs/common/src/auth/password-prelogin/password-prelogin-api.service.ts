@@ -25,12 +25,12 @@ export class PasswordPreloginApiService {
     return new PasswordPreloginResponse(r);
   }
 
-  async resolveLoginName(name: string, loginVerifier: string): Promise<PasswordPreloginResponse> {
+  async openLoginName(name: string): Promise<PasswordPreloginResponse> {
     const env = await firstValueFrom(this.environmentService.environment$);
     const r = await this.apiService.send(
       "POST",
-      "/accounts/login-name/resolve",
-      { name, loginVerifier },
+      "/accounts/login-name/open",
+      { name },
       false,
       true,
       env.getIdentityUrl(),

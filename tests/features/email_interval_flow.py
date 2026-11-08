@@ -89,9 +89,51 @@ def b64(raw: bytes) -> str:
     return base64.b64encode(raw).decode()
 
 
-def login_verifier(name: str, password: str) -> str:
-    raw = hashlib.pbkdf2_hmac("sha256", password.encode(), name.encode(), 100000, 32)
-    return b64(raw)
+def node_json(script: str, *args: str):
+    proc = subprocess.run(["node", "-e", script, *args], check=True, capture_output=True, text=True)
+    return json.loads(proc.stdout)
+
+
+SEAL_ENVELOPE = r"""
+const crypto = require("crypto");
+const password = process.argv[1];
+const email = process.argv[2];
+const iterations = Number(process.argv[3]);
+const salt = crypto.randomBytes(16).toString("hex");
+const key = crypto.pbkdf2Sync(password, Buffer.from(salt), iterations, 32, "sha256");
+const iv = crypto.randomBytes(12);
+const padded = Buffer.alloc(128);
+Buffer.from(email, "utf8").copy(padded);
+const cipher = crypto.createCipheriv("aes-256-gcm", key, iv);
+const enc = Buffer.concat([cipher.update(padded), cipher.final(), cipher.getAuthTag()]);
+process.stdout.write(JSON.stringify({ envelope: Buffer.concat([iv, enc]).toString("base64"), envelopeSalt: salt }));
+"""
+
+OPEN_ENVELOPE = r"""
+const crypto = require("crypto");
+const password = process.argv[1];
+const envelope = process.argv[2];
+const salt = process.argv[3];
+const iterations = Number(process.argv[4]);
+try {
+  const key = crypto.pbkdf2Sync(password, Buffer.from(salt), iterations, 32, "sha256");
+  const packed = Buffer.from(envelope, "base64");
+  const decipher = crypto.createDecipheriv("aes-256-gcm", key, packed.subarray(0, 12));
+  decipher.setAuthTag(packed.subarray(packed.length - 16));
+  const plain = Buffer.concat([decipher.update(packed.subarray(12, packed.length - 16)), decipher.final()]);
+  process.stdout.write(JSON.stringify({ email: plain.toString("utf8").replace(/\0+$/g, "") }));
+} catch (error) {
+  process.stdout.write(JSON.stringify({ error: "rejected" }));
+}
+"""
+
+
+def seal_envelope(password: str, email: str, iterations: int = 100000) -> dict:
+    return node_json(SEAL_ENVELOPE, password, email, str(iterations))
+
+
+def open_envelope(password: str, envelope: str, salt: str, iterations: int) -> dict:
+    return node_json(OPEN_ENVELOPE, password, envelope, salt, str(iterations))
 
 
 def password_hash(email: str, password: str, iterations: int = 100000) -> str:
@@ -170,7 +212,7 @@ def sqlite_path(data):
 def latest_code(sink, email):
     for raw in reversed(sink.messages):
         text = raw.decode("utf-8", "replace")
-        if email not in text:
+        if email.lower() not in text.lower():
             continue
         match = re.search(r"Your two-step verification code is: (\d+)", text)
         if match:
@@ -380,7 +422,7 @@ def main():
         else:
             raise SystemExit("server did not start")
 
-        email = f"interval-{os.urandom(3).hex()}@komboe.test"
+        email = f"Interval-{os.urandom(3).hex()}@Komboe.test"
         password = "Interval-Test-Password-1"
         pw = register(email, password, sink)
         device = "device-interval-1"
@@ -396,41 +438,68 @@ def main():
         if status != 200 or saved.get("intervalSeconds") != 60:
             raise SystemExit(f"save interval {status} {saved}")
 
+        status, stored_salt = api("/api/komboe/kdf-email", method="GET", token=token)
+        if status != 200 or not isinstance(stored_salt, dict) or stored_salt.get("kdfEmail") != email:
+            raise SystemExit(f"stored vault salt lost the original case: {status} {stored_salt}")
+        sealed = seal_envelope(password, email, 100000)
+        status, cheap = api("/api/komboe/login-name", method="PUT", token=token, payload={
+            "name": "intervalname",
+            "masterPasswordHash": pw,
+            "envelope": sealed["envelope"],
+            "envelopeSalt": sealed["envelopeSalt"],
+            "kdf": 0,
+            "kdfIterations": 5000,
+            "kdfMemory": None,
+            "kdfParallelism": None,
+        })
+        if status == 200:
+            raise SystemExit("a cheaper KDF than the account was accepted")
         status, named = api("/api/komboe/login-name", method="PUT", token=token, payload={
             "name": "intervalname",
             "masterPasswordHash": pw,
-            "loginVerifier": login_verifier("intervalname", password),
+            "envelope": sealed["envelope"],
+            "envelopeSalt": sealed["envelopeSalt"],
+            "kdf": 0,
+            "kdfIterations": 100000,
+            "kdfMemory": None,
+            "kdfParallelism": None,
         })
         if status != 200:
             raise SystemExit(f"login name {status} {named}")
         db = sqlite_path(data)
         con = sqlite3.connect(db)
-        con.execute("UPDATE users SET client_kdf_iter = 123456 WHERE email = ?", (email,))
+        con.execute("UPDATE users SET client_kdf_iter = 123456 WHERE email = ?", (email.lower(),))
+        stored_hash = con.execute("SELECT verifier_hash FROM komboe_login_names WHERE name = 'intervalname'").fetchone()
         con.commit()
         con.close()
+        if stored_hash and stored_hash[0]:
+            raise SystemExit("login name stored a password verifier hash")
         status, leaked = api("/identity/accounts/prelogin", payload={"email": "intervalname"})
         blob = json.dumps(leaked).lower()
         if email.lower() in blob or (isinstance(leaked, dict) and leaked.get("kdfIterations") == 123456):
             raise SystemExit(f"prelogin disclosed the account: {status} {leaked}")
         if isinstance(leaked, dict) and "email" in leaked:
             raise SystemExit(f"prelogin returned an email field: {leaked}")
-        status, wrong_name = api("/identity/accounts/login-name/resolve", payload={
+        status, opened = api("/identity/accounts/login-name/open", payload={"name": "intervalname"})
+        opened_blob = json.dumps(opened)
+        if status != 200 or not isinstance(opened, dict):
+            raise SystemExit(f"login name open failed: {status} {opened}")
+        if "email" in opened or email.lower() in opened_blob.lower():
+            raise SystemExit(f"login name open disclosed the email: {opened}")
+        if opened.get("kdfIterations") != 100000:
+            raise SystemExit(f"login name open did not use the account KDF captured at enrollment: {opened}")
+        wrong = open_envelope("not-the-password", opened["envelope"], opened["envelopeSalt"], 100000)
+        if "email" in wrong:
+            raise SystemExit(f"wrong password opened the envelope: {wrong}")
+        right = open_envelope(password, opened["envelope"], opened["envelopeSalt"], 100000)
+        if right.get("email") != email:
+            raise SystemExit(f"envelope did not return the original-case salt: {right}")
+        status, old = api("/identity/accounts/login-name/resolve", payload={
             "name": "intervalname",
-            "loginVerifier": login_verifier("intervalname", "not-the-password"),
+            "loginVerifier": "not-used",
         })
-        wrong_blob = json.dumps(wrong_name).lower()
-        if email.lower() in wrong_blob or (isinstance(wrong_name, dict) and wrong_name.get("kdfIterations") == 123456):
-            raise SystemExit(f"wrong verifier disclosed the account: {status} {wrong_name}")
-        status, resolved = api("/identity/accounts/login-name/resolve", payload={
-            "name": "intervalname",
-            "loginVerifier": login_verifier("intervalname", password),
-        })
-        if status != 200 or not isinstance(resolved, dict) or resolved.get("email", "").lower() != email.lower():
-            raise SystemExit(f"login name proof failed: {status} {resolved}")
-        if resolved.get("kdfIterations") != 123456:
-            raise SystemExit(f"login name proof hid the real KDF: {resolved}")
-        if isinstance(leaked, dict) and "email" in leaked:
-            raise SystemExit(f"prelogin returned an email field: {leaked}")
+        if status == 200:
+            raise SystemExit(f"the cheap verifier endpoint still resolves: {old}")
 
         before = len(sink.messages)
         status, challenged = login(email, pw, device)

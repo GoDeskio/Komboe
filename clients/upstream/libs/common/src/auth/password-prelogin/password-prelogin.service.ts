@@ -19,8 +19,8 @@ export abstract class PasswordPreloginService {
   abstract clearCache(): void;
 
   /**
-   * Exchange a login-name verifier for the account email and KDF.
-   * The email is not available until this proof succeeds.
+   * Fetch the account KDF and the envelope for a login name.
+   * The vault-key email is inside the envelope and is not in this result.
    */
-  abstract resolveLoginName(name: string, verifier: string): Promise<PasswordPreloginData>;
+  abstract openLoginName(name: string): Promise<PasswordPreloginData>;
 }

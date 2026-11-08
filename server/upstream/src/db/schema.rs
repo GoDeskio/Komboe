@@ -588,6 +588,19 @@ table! {
         user_uuid -> Text,
         name -> Text,
         verifier_hash -> Nullable<Text>,
+        envelope -> Nullable<Text>,
+        envelope_salt -> Nullable<Text>,
+        wrap_kdf_type -> Nullable<Integer>,
+        wrap_kdf_iter -> Nullable<Integer>,
+        wrap_kdf_memory -> Nullable<Integer>,
+        wrap_kdf_parallelism -> Nullable<Integer>,
+    }
+}
+
+table! {
+    komboe_kdf_email (user_uuid) {
+        user_uuid -> Text,
+        kdf_email -> Text,
     }
 }
 
@@ -759,6 +772,7 @@ allow_tables_to_appear_in_same_query!(
     komboe_pgp_vault_keys,
     komboe_agent_sessions,
     komboe_login_names,
+    komboe_kdf_email,
     komboe_email_login_policy,
     komboe_email_login_trust,
     komboe_email_login_codes,

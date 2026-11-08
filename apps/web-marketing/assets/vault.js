@@ -100,18 +100,23 @@ async function load() {
 
 document.getElementById("dash-logout")?.addEventListener("click", async () => {
   const token = sessionStorage.getItem(TOKEN_KEY);
-  if (token) {
-    await fetch("/api/komboe/email-login-trust/clear", {
-      method: "POST",
-      headers: {
-        Authorization: "Bearer " + token,
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ token: sessionStorage.getItem("komboe.deviceTrust") || "" }),
-      credentials: "omit",
-    }).catch(() => {});
-    sessionStorage.removeItem("komboe.deviceTrust");
+  const trust = sessionStorage.getItem("komboe.deviceTrust");
+  if (token && trust) {
+    try {
+      const response = await fetch("/api/komboe/email-login-trust/clear", {
+        method: "POST",
+        headers: {
+          Authorization: "Bearer " + token,
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ token: trust }),
+        credentials: "omit",
+      });
+      if (response.ok) sessionStorage.removeItem("komboe.deviceTrust");
+    } catch {
+      // Keep the bearer token so a later logout can revoke it.
+    }
   }
   sessionStorage.removeItem(TOKEN_KEY);
   sessionStorage.removeItem("komboe.agentSession");

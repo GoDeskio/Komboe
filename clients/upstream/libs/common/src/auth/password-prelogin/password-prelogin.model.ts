@@ -13,8 +13,12 @@ export class PasswordPreloginData {
   constructor(
     readonly kdfConfig: KdfConfig,
     readonly salt: string,
-    /** Account email when the person typed a login name. Null for an email login. */
+    /** Unused for the envelope login. Kept so older callers still compile. */
     readonly canonicalEmail: string | null = null,
+    /** Exact vault-key email from an email prelogin. Null when this server has no stored salt. */
+    readonly kdfEmail: string | null = null,
+    readonly envelope: string | null = null,
+    readonly envelopeSalt: string | null = null,
   ) {}
 
   /**
@@ -24,6 +28,13 @@ export class PasswordPreloginData {
   static fromResponse(response: PasswordPreloginResponse): PasswordPreloginData {
     const kdfConfig = response.kdfSettings.toKdfConfig();
     kdfConfig.validateKdfConfigForPrelogin();
-    return new PasswordPreloginData(kdfConfig, response.salt, response.email);
+    return new PasswordPreloginData(
+      kdfConfig,
+      response.salt,
+      response.email,
+      response.kdfEmail,
+      response.envelope,
+      response.envelopeSalt,
+    );
   }
 }

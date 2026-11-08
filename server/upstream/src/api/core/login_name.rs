@@ -1,5 +1,10 @@
-//! Optional login name. It is an alias for the account email.
-//! The vault key is still derived from the email. This module never writes `users.email`.
+//! Optional login name. It is an alias for the account, not a KDF salt.
+//! The vault-key salt is the email the client sent at registration, including its case.
+//! `users.email` is stored lowercased and must not be used as that salt.
+//!
+//! The unauthenticated open response is an AES-GCM envelope of that email, wrapped by a key
+//! derived with the account's own KDF and a random salt. It never contains the email.
+//! A stored SHA-256 of a cheaper login-name PBKDF2 is not accepted.
 
 use diesel::prelude::*;
 use ring::digest;
@@ -10,17 +15,19 @@ use serde_json::json;
 use crate::{
     api::{EmptyResult, JsonResult},
     auth::Headers,
-    crypto,
     db::{
         DbConn,
-        models::{User, UserId},
-        schema::komboe_login_names,
+        models::UserId,
+        schema::{komboe_kdf_email, komboe_login_names},
     },
     error::MapResult,
 };
 
+/// IV (12) + padded email (128) + GCM tag (16).
+const ENVELOPE_LEN: usize = 156;
+
 pub fn routes() -> Vec<Route> {
-    routes![get_login_name, put_login_name, delete_login_name]
+    routes![get_kdf_email, put_kdf_email, get_login_name, put_login_name, delete_login_name]
 }
 
 /// A login name is not an email and is not a KDF salt.
@@ -50,76 +57,174 @@ pub fn kdf_email_for_login(typed: &str, _canonical_email: Option<&str>) -> Resul
 
 #[derive(Deserialize)]
 #[serde(rename_all = "camelCase")]
+struct KdfEmailBody {
+    kdf_email: String,
+    master_password_hash: String,
+}
+
+#[derive(Deserialize)]
+#[serde(rename_all = "camelCase")]
 struct LoginNameBody {
     name: String,
     master_password_hash: String,
-    /// PBKDF2-SHA256 of the master password with the login name as salt, 100000 iterations, base64.
-    /// Stored only as SHA-256. Unauthenticated prelogin never returns the email.
-    login_verifier: String,
+    /// AES-GCM envelope of the exact vault-key email. The key is the account KDF, not a cheaper one.
+    envelope: String,
+    envelope_salt: String,
+    kdf: i32,
+    kdf_iterations: i32,
+    kdf_memory: Option<i32>,
+    kdf_parallelism: Option<i32>,
 }
 
-fn verifier_hash(verifier: &str) -> String {
-    let digest = digest::digest(&digest::SHA256, verifier.as_bytes());
-    data_encoding::HEXLOWER.encode(digest.as_ref())
+fn decoy_bytes(name: &str) -> Vec<u8> {
+    let mut block = digest::digest(&digest::SHA256, name.as_bytes()).as_ref().to_vec();
+    let mut out = Vec::with_capacity(ENVELOPE_LEN);
+    while out.len() < ENVELOPE_LEN {
+        block = digest::digest(&digest::SHA256, &block).as_ref().to_vec();
+        out.extend_from_slice(&block);
+    }
+    out.truncate(ENVELOPE_LEN);
+    out
 }
 
-/// Password proof for a login name. `None` means the name or the verifier did not match.
-/// The email and KDF are returned only after that proof. A miss is not distinguishable in the body.
-pub async fn prove_login_name(name: &str, verifier: &str, conn: &DbConn) -> Option<(String, i32, i32, Option<i32>, Option<i32>)> {
+/// Same shape for a hit and a miss. The email is not in the body. Repeating the call does not
+/// change a miss, so the ciphertext is not a boolean oracle.
+fn decoy_open(name: &str) -> (i32, i32, Option<i32>, Option<i32>, String, String) {
+    let (kdf_type, kdf_iter, kdf_mem, kdf_para) = super::accounts::unknown_email_kdf(name);
+    let bytes = decoy_bytes(name);
+    let salt = data_encoding::HEXLOWER.encode(&bytes[..16]);
+    let envelope = data_encoding::BASE64.encode(&bytes);
+    (kdf_type, kdf_iter, kdf_mem, kdf_para, envelope, salt)
+}
+
+/// KDF parameters and the envelope for this login name. The email stays inside the envelope.
+pub async fn open_login_name(name: &str, conn: &DbConn) -> (i32, i32, Option<i32>, Option<i32>, String, String) {
     let Ok(name) = validate_login_name(name) else {
-        drop(verifier_hash(verifier));
-        return None;
+        return decoy_open(name);
     };
-    let hash = verifier_hash(verifier);
     let name_key = name.clone();
-    let row: Option<(String, Option<String>)> = conn
+    let row: Option<(Option<String>, Option<String>, Option<i32>, Option<i32>, Option<i32>, Option<i32>)> = conn
         .run(move |c| {
             komboe_login_names::table
                 .filter(komboe_login_names::name.eq(name_key))
-                .select((komboe_login_names::user_uuid, komboe_login_names::verifier_hash))
-                .first::<(String, Option<String>)>(c)
+                .select((
+                    komboe_login_names::envelope,
+                    komboe_login_names::envelope_salt,
+                    komboe_login_names::wrap_kdf_type,
+                    komboe_login_names::wrap_kdf_iter,
+                    komboe_login_names::wrap_kdf_memory,
+                    komboe_login_names::wrap_kdf_parallelism,
+                ))
+                .first(c)
                 .ok()
         })
         .await;
-    let Some((user_uuid, stored)) = row else {
-        return None;
-    };
-    let Some(stored) = stored else {
-        return None;
-    };
-    if !crypto::ct_eq(&stored, &hash) {
-        return None;
+    if let Some((Some(envelope), Some(salt), Some(kdf_type), Some(kdf_iter), kdf_mem, kdf_para)) = row {
+        return (kdf_type, kdf_iter, kdf_mem, kdf_para, envelope, salt);
     }
-    let user = User::find_by_uuid(&UserId::from(user_uuid), conn).await?;
-    Some((user.email, user.client_kdf_type, user.client_kdf_iter, user.client_kdf_memory, user.client_kdf_parallelism))
+    decoy_open(&name)
 }
 
+pub async fn stored_kdf_email(user_id: &UserId, conn: &DbConn) -> Option<String> {
+    let user_id = user_id.to_string();
+    conn.run(move |c| {
+        komboe_kdf_email::table
+            .filter(komboe_kdf_email::user_uuid.eq(user_id))
+            .select(komboe_kdf_email::kdf_email)
+            .first::<String>(c)
+            .ok()
+    })
+    .await
+}
+
+pub async fn save_kdf_email(user_id: &UserId, kdf_email: &str, conn: &DbConn) -> EmptyResult {
+    let user_id = user_id.to_string();
+    let kdf_email = kdf_email.to_string();
+    conn.run(move |c| -> Result<(), diesel::result::Error> {
+        diesel::delete(komboe_kdf_email::table.filter(komboe_kdf_email::user_uuid.eq(&user_id))).execute(c)?;
+        diesel::insert_into(komboe_kdf_email::table)
+            .values((komboe_kdf_email::user_uuid.eq(user_id), komboe_kdf_email::kdf_email.eq(kdf_email)))
+            .execute(c)?;
+        Ok(())
+    })
+    .await
+    .map(|_| ())
+    .map_res("Error saving the vault email salt")
+}
+
+/// Password and email changes drop the envelope. The name can be saved again while signed in.
 pub async fn clear_verifier(user_id: &UserId, conn: &DbConn) -> EmptyResult {
     let user_id = user_id.to_string();
     conn.run(move |c| {
         diesel::update(komboe_login_names::table.filter(komboe_login_names::user_uuid.eq(user_id)))
-            .set(komboe_login_names::verifier_hash.eq(None::<String>))
+            .set((
+                komboe_login_names::verifier_hash.eq(None::<String>),
+                komboe_login_names::envelope.eq(None::<String>),
+                komboe_login_names::envelope_salt.eq(None::<String>),
+                komboe_login_names::wrap_kdf_type.eq(None::<i32>),
+                komboe_login_names::wrap_kdf_iter.eq(None::<i32>),
+                komboe_login_names::wrap_kdf_memory.eq(None::<i32>),
+                komboe_login_names::wrap_kdf_parallelism.eq(None::<i32>),
+            ))
             .execute(c)
     })
     .await
     .map(|_| ())
-    .map_res("Error clearing the login-name verifier")
+    .map_res("Error clearing the login-name envelope")
+}
+
+fn envelope_ok(envelope: &str, salt: &str) -> bool {
+    let Ok(bytes) = data_encoding::BASE64.decode(envelope.trim().as_bytes()) else {
+        return false;
+    };
+    bytes.len() == ENVELOPE_LEN
+        && salt.len() == 32
+        && salt.chars().all(|c| c.is_ascii_digit() || ('a'..='f').contains(&c))
+}
+
+#[get("/komboe/kdf-email")]
+async fn get_kdf_email(headers: Headers, conn: DbConn) -> JsonResult {
+    let kdf_email = stored_kdf_email(&headers.user.uuid, &conn).await;
+    Ok(Json(json!({
+        "kdfEmail": kdf_email,
+        "accountEmail": headers.user.email,
+    })))
+}
+
+/// Records the exact vault-key salt when this server did not store it at registration.
+/// The lowercased value must be the account email. This does not change `users.email`.
+#[put("/komboe/kdf-email", data = "<body>")]
+async fn put_kdf_email(body: Json<KdfEmailBody>, headers: Headers, conn: DbConn) -> JsonResult {
+    if !headers.user.check_valid_password(&body.master_password_hash) {
+        err!("Invalid master password.");
+    }
+    let kdf_email = body.kdf_email.trim();
+    if !kdf_email.contains('@') || kdf_email.len() > 256 || kdf_email.to_lowercase() != headers.user.email {
+        err!("That email does not match this account.");
+    }
+    save_kdf_email(&headers.user.uuid, kdf_email, &conn).await?;
+    Ok(Json(json!({ "kdfEmail": kdf_email })))
 }
 
 #[get("/komboe/login-name")]
 async fn get_login_name(headers: Headers, conn: DbConn) -> JsonResult {
     let user_uuid = headers.user.uuid.to_string();
-    let name: Option<String> = conn
+    let row: Option<(String, Option<String>)> = conn
         .run(move |c| {
             komboe_login_names::table
                 .filter(komboe_login_names::user_uuid.eq(user_uuid))
-                .select(komboe_login_names::name)
-                .first::<String>(c)
+                .select((komboe_login_names::name, komboe_login_names::envelope))
+                .first::<(String, Option<String>)>(c)
                 .ok()
         })
         .await;
+    let (name, ready) = match row {
+        Some((name, envelope)) => (Some(name), envelope.is_some()),
+        None => (None, false),
+    };
     Ok(Json(json!({
         "name": name,
+        "ready": ready,
         "email": headers.user.email,
         "emailUnchanged": true,
     })))
@@ -134,11 +239,16 @@ async fn put_login_name(body: Json<LoginNameBody>, headers: Headers, conn: DbCon
         Ok(name) => name,
         Err(message) => err!(message),
     };
-    let verifier = body.login_verifier.trim();
-    if verifier.len() < 16 {
+    if headers.user.client_kdf_type != body.kdf
+        || headers.user.client_kdf_iter != body.kdf_iterations
+        || headers.user.client_kdf_memory != body.kdf_memory
+        || headers.user.client_kdf_parallelism != body.kdf_parallelism
+    {
+        err!("The login name has to use this account's key derivation. Save it again from a signed-in client.");
+    }
+    if !envelope_ok(&body.envelope, &body.envelope_salt) {
         err!("The login name was not saved. Confirm the master password and try again.");
     }
-    let verifier_hash = verifier_hash(verifier);
     let owner = headers.user.uuid.to_string();
     let taken = conn
         .run({
@@ -158,6 +268,12 @@ async fn put_login_name(body: Json<LoginNameBody>, headers: Headers, conn: DbCon
         err!("That login name is not available.");
     }
     let email_before = headers.user.email.clone();
+    let envelope = body.envelope.trim().to_string();
+    let envelope_salt = body.envelope_salt.trim().to_string();
+    let kdf = body.kdf;
+    let kdf_iterations = body.kdf_iterations;
+    let kdf_memory = body.kdf_memory;
+    let kdf_parallelism = body.kdf_parallelism;
     conn.run({
         let name = name.clone();
         let owner = owner.clone();
@@ -167,7 +283,13 @@ async fn put_login_name(body: Json<LoginNameBody>, headers: Headers, conn: DbCon
                 .values((
                     komboe_login_names::user_uuid.eq(owner),
                     komboe_login_names::name.eq(name),
-                    komboe_login_names::verifier_hash.eq(verifier_hash),
+                    komboe_login_names::verifier_hash.eq(None::<String>),
+                    komboe_login_names::envelope.eq(envelope),
+                    komboe_login_names::envelope_salt.eq(envelope_salt),
+                    komboe_login_names::wrap_kdf_type.eq(Some(kdf)),
+                    komboe_login_names::wrap_kdf_iter.eq(Some(kdf_iterations)),
+                    komboe_login_names::wrap_kdf_memory.eq(kdf_memory),
+                    komboe_login_names::wrap_kdf_parallelism.eq(kdf_parallelism),
                 ))
                 .execute(c)?;
             Ok(())
@@ -177,6 +299,7 @@ async fn put_login_name(body: Json<LoginNameBody>, headers: Headers, conn: DbCon
     .map_res("Error saving the login name")?;
     Ok(Json(json!({
         "name": name,
+        "ready": true,
         "email": email_before,
         "emailUnchanged": true,
     })))
@@ -214,5 +337,17 @@ mod tests {
         assert_eq!(validate_login_name("Ada_1").unwrap(), "ada_1");
         assert!(validate_login_name("ab").is_err());
         assert!(validate_login_name("has space").is_err());
+    }
+
+    #[test]
+    fn a_miss_is_stable_and_has_no_email() {
+        // Do not call unknown_email_kdf here. Its HMAC key is filled at server start,
+        // and waiting for it from a unit test never returns.
+        let first = decoy_bytes("intervalname");
+        let second = decoy_bytes("intervalname");
+        assert_eq!(first, second);
+        assert_eq!(first.len(), ENVELOPE_LEN);
+        let envelope = data_encoding::BASE64.encode(&first);
+        assert!(!envelope.to_lowercase().contains("komboe"));
     }
 }

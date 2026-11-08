@@ -281,6 +281,9 @@ async fn is_email_2fa_required(member_id: Option<MembershipId>, conn: &DbConn) -
 
 pub async fn register(data: Json<RegisterData>, conn: DbConn) -> JsonResult {
     let data: RegisterData = data.into_inner();
+    // Vault keys are derived from the email the client sent, including its case.
+    // `users.email` stays lowercased for lookup and is not that salt.
+    let kdf_email = data.email.clone();
     let email = data.email.to_lowercase();
 
     let mut name = None;
@@ -441,6 +444,7 @@ pub async fn register(data: Json<RegisterData>, conn: DbConn) -> JsonResult {
     }
 
     user.save(&conn).await?;
+    crate::api::core::login_name::save_kdf_email(&user.uuid, &kdf_email, &conn).await?;
     if let Some(k) = keys_v2 {
         k.save(&conn).await?;
     }
@@ -1372,6 +1376,7 @@ async fn post_email(data: Json<ChangeEmailData>, headers: Headers, conn: DbConn,
         user.verified_at = None;
     }
 
+    let kdf_email = data.new_email.clone();
     user.email = data.new_email;
     user.email_new = None;
     user.email_new_token = None;
@@ -1380,6 +1385,7 @@ async fn post_email(data: Json<ChangeEmailData>, headers: Headers, conn: DbConn,
 
     let save_result = user.save(&conn).await;
 
+    crate::api::core::login_name::save_kdf_email(&user.uuid, &kdf_email, &conn).await?;
     crate::api::core::email_interval::clear_user(&user.uuid, &conn).await?;
     crate::api::core::login_name::clear_verifier(&user.uuid, &conn).await?;
     nt.send_logout(&user, None, &conn).await;
@@ -1565,7 +1571,7 @@ pub struct PreloginData {
 
 /// Like upstream, an unknown email gets KDF settings picked from a list of common ones by a keyed hash of the email,
 /// so they stay the same between requests. The salt stays null, as for existing users.
-fn unknown_email_kdf(email: &str) -> (i32, i32, Option<i32>, Option<i32>) {
+pub(crate) fn unknown_email_kdf(email: &str) -> (i32, i32, Option<i32>, Option<i32>) {
     const PBKDF2: i32 = UserKdfType::Pbkdf2 as i32;
     const ARGON2ID: i32 = UserKdfType::Argon2id as i32;
     // Same list as upstream, the default is in it twice to give it more weight
@@ -1589,9 +1595,15 @@ pub async fn prelogin(data: Json<PreloginData>, ip: ClientIp, conn: DbConn) -> J
     // which names exist. Vault keys stay derived from the email the person types.
     let email = data.email.trim().to_lowercase();
 
-    let (kdf_type, kdf_iter, kdf_mem, kdf_para) = match User::find_by_mail(&email, &conn).await {
-        Some(user) => (user.client_kdf_type, user.client_kdf_iter, user.client_kdf_memory, user.client_kdf_parallelism),
-        None => unknown_email_kdf(&email),
+    let (kdf_type, kdf_iter, kdf_mem, kdf_para, kdf_email) = match User::find_by_mail(&email, &conn).await {
+        Some(user) => {
+            let kdf_email = super::login_name::stored_kdf_email(&user.uuid, &conn).await;
+            (user.client_kdf_type, user.client_kdf_iter, user.client_kdf_memory, user.client_kdf_parallelism, kdf_email)
+        }
+        None => {
+            let (kdf_type, kdf_iter, kdf_mem, kdf_para) = unknown_email_kdf(&email);
+            (kdf_type, kdf_iter, kdf_mem, kdf_para, None)
+        }
     };
 
     Ok(Json(json!({
@@ -1605,6 +1617,7 @@ pub async fn prelogin(data: Json<PreloginData>, ip: ClientIp, conn: DbConn) -> J
             "memory": kdf_mem,
             "parallelism": kdf_para
         },
+        "kdfEmail": kdf_email,
         "salt": null,
     })))
 }

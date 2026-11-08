@@ -11,7 +11,7 @@ import { IdentityDeviceVerificationResponse } from "@bitwarden/common/auth/model
 import { IdentitySsoRequiredResponse } from "@bitwarden/common/auth/models/response/identity-sso-required.response";
 import { IdentityTokenResponse } from "@bitwarden/common/auth/models/response/identity-token.response";
 import { IdentityTwoFactorResponse } from "@bitwarden/common/auth/models/response/identity-two-factor.response";
-import { kdfIdentity, loginNameVerifier } from "@bitwarden/common/auth/kdf-identity";
+import { envelopeKeyBytes, kdfIdentity, openKdfEmail } from "@bitwarden/common/auth/kdf-identity";
 import {
   PasswordPreloginData,
   PasswordPreloginService,
@@ -155,19 +155,20 @@ export class PasswordLoginStrategy extends LoginStrategy<PasswordLoginStrategyDa
     );
 
     if (!email.includes("@")) {
-      const verifier = await loginNameVerifier(email, masterPassword);
-      const resolved = await this.passwordPreloginService.resolveLoginName(
-        email.trim().toLowerCase(),
-        verifier,
-      );
-      const accountEmail = resolved.canonicalEmail;
-      if (!accountEmail || !accountEmail.includes("@")) {
+      const opened = await this.passwordPreloginService.openLoginName(email.trim().toLowerCase());
+      if (!opened.envelope || !opened.envelopeSalt) {
         throw new Error("That login name was not accepted.");
       }
-      const masterKey = await this.legacyCompatKeyService.makeMasterKey(
+      const wrappingKey = await this.legacyCompatKeyService.makeMasterKeyPreservingSalt(
+        masterPassword,
+        opened.envelopeSalt,
+        opened.kdfConfig,
+      );
+      const accountEmail = await openKdfEmail(envelopeKeyBytes(wrappingKey.toEncoded()), opened.envelope);
+      const masterKey = await this.legacyCompatKeyService.makeMasterKeyPreservingSalt(
         masterPassword,
         accountEmail,
-        resolved.kdfConfig,
+        opened.kdfConfig,
       );
       return { masterKey, kdfEmail: accountEmail };
     }
@@ -178,6 +179,16 @@ export class PasswordLoginStrategy extends LoginStrategy<PasswordLoginStrategyDa
 
     if (!preloginData) {
       throw new Error("KDF config is required");
+    }
+
+    const storedSalt = preloginData.kdfEmail;
+    if (storedSalt && storedSalt.includes("@")) {
+      const masterKey = await this.legacyCompatKeyService.makeMasterKeyPreservingSalt(
+        masterPassword,
+        storedSalt,
+        preloginData.kdfConfig,
+      );
+      return { masterKey, kdfEmail: storedSalt };
     }
 
     const kdfEmail = kdfIdentity(email, preloginData.canonicalEmail);

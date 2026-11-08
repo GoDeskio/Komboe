@@ -24,14 +24,28 @@ The recovery is explicit: a session that is already signed in sets the interval 
 
 ## Login names
 
-Prelogin does not resolve a login name and does not return an email or the account KDF. The client sends a separate verifier (PBKDF2-SHA256, login name as salt, 100000 iterations). Only a match returns the email and the real KDF, and the vault key is still derived from that email. A wrong verifier gets the same error as an unknown name.
+Prelogin does not resolve a login name. It does not return an email for a name, and it does not return that account's KDF. Signing in with a name calls `/identity/accounts/login-name/open`. The response is the account's KDF parameters and an AES-GCM envelope. The vault-key email is inside the envelope. A miss has the same shape and the same bytes every time, so repeating the call does not reveal whether the name exists.
 
-The verifier is not the vault key. Guessing it online is rate-limited with the other login attempts. A database copy of the stored hash is not the verifier. Changing the master password or the account email clears the verifier; the person saves the login name again while signed in. If the account email changed and the vault key was still derived from the previous email, this login cannot invent that older salt.
+The envelope key is derived with that account's KDF (600000 PBKDF2 or Argon2, whichever the account uses) and a random salt. It is not PBKDF2-100000 with the login name as salt. A database copy of the envelope is not a cheaper password oracle than the account KDF. The server rejects an enrollment whose KDF parameters are not the account's current ones.
+
+The salt inside the envelope is the email the client sent at registration, including its case. `users.email` is stored lowercased for lookup and is not that salt. Accounts created before migration `20261108040000` have no stored salt. A signed-in client can record one only when it lowercases to `users.email`. A mixed-case salt from before that migration cannot be reconstructed from the lowercased column.
+
+Enrollment is the signed-in device settings page. It sends the master-password hash and the envelope. There is no unauthenticated verifier. Changing the master password or the account email clears the envelope. The person saves the login name again while signed in. If the vault key was derived from an older email, this login cannot invent that salt.
+
+The old `/identity/accounts/login-name/resolve` route is gone. A client that still sends the 100000 verifier cannot learn the email.
+
+## Logout and the extension
+
+The trust token is stored in `sessionStorage` on the web vault and the desktop app. The extension service worker has no `sessionStorage`. It uses `chrome.storage.session`, which the popup shares. Logout POSTs the token and deletes the local copy only after the server accepts it. If that store cannot be read, logout does not report the token as cleared.
+
+## Lock
+
+Lock clears decrypted cipher and folder caches, then the in-memory user key, waits until the account is locked, and reloads the process. Unsaved edits are discarded by that reload. The lock button does not clear the key first and does not open the lock screen without a reload.
 
 ## Rollback
 
-Migration `20261108020000` creates the trust and challenge tables and deletes the old device-id trust rows. Migration `20261108030000` adds resend counters and the login-name verifier column.
+Migration `20261108020000` creates the trust and challenge tables and deletes the old device-id trust rows. Migration `20261108030000` adds resend counters and the unused login-name verifier column. Migration `20261108040000` stores the original vault-key email and the login-name envelope.
 
-Rolling the server back to a build that reads device-id trust does not restore those deleted rows, so every account with a timer is challenged again. A rolled-back server also does not understand `KomboeDeviceTrust`. Rolling the database back past `20261108020000` drops the new tables. Do that only with a backup taken before the migration, and only while no account depends on the timer.
+Rolling the server back to a build that reads device-id trust does not restore those deleted rows, so every account with a timer is challenged again. A rolled-back server also does not understand `KomboeDeviceTrust` or the envelope. Rolling the database back past `20261108020000` drops the new tables. Do that only with a backup taken before the migration, and only while no account depends on the timer. SQLite cannot drop the envelope columns; a rollback there is a forward server build plus a database backup, not a down migration.
 
-Do not publish a release that enables the timer for existing accounts until that release's web and extension builds are the ones being served.
+Do not publish a release that enables the timer, or that serves the login-name page, until that release's web, desktop, and extension builds are the ones being served. Those clients and the server are one revision. Do not mix an older client with this server.

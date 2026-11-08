@@ -83,9 +83,11 @@ export class IdentityTokenResponse extends BaseResponse {
     }
     this.twoFactorToken = this.getResponseProperty("TwoFactorToken");
     const deviceTrust = this.getResponseProperty("KomboeDeviceTrust");
-    if (typeof deviceTrust === "string" && deviceTrust && globalThis.sessionStorage) {
-      globalThis.sessionStorage.setItem("komboe.deviceTrust", deviceTrust);
-      globalThis.sessionStorage.removeItem("komboe.loginChallenge");
+    if (typeof deviceTrust === "string" && deviceTrust) {
+      // Page sessionStorage when it exists, and chrome.storage.session for the extension worker.
+      void import("../../komboe-email-trust").then(({ rememberKomboeEmailSession }) => {
+        rememberKomboeEmailSession({ deviceTrust });
+      });
     }
 
     const kdf = this.getResponseProperty("Kdf");

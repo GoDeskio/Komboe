@@ -45,8 +45,20 @@ export async function passwordHash(email, password, pre) {
   return b64(await pbkdf2(key, bytes(password), 1));
 }
 
-async function loginNameVerifier(name, password) {
-  return b64(await pbkdf2(bytes(password), bytes(name.trim().toLowerCase()), 100000));
+async function openKdfEmail(rawKey, envelope) {
+  const text = atob(envelope);
+  const packed = new Uint8Array(text.length);
+  for (let i = 0; i < text.length; i += 1) packed[i] = text.charCodeAt(i);
+  if (packed.length !== 12 + 128 + 16) throw new Error("That login name was not accepted.");
+  const key = await crypto.subtle.importKey("raw", rawKey, "AES-GCM", false, ["decrypt"]);
+  const plain = await crypto.subtle.decrypt(
+    { name: "AES-GCM", iv: packed.slice(0, 12) },
+    key,
+    packed.slice(12),
+  );
+  const email = new TextDecoder().decode(plain).replace(/\0+$/g, "");
+  if (!email.includes("@")) throw new Error("That login name was not accepted.");
+  return email;
 }
 
 function deviceId() {
@@ -193,22 +205,29 @@ async function boot() {
           return;
         }
         if (!typed.includes("@")) {
-          const verifier = await loginNameVerifier(typed, password);
-          const resolved = await fetch("/identity/accounts/login-name/resolve", {
+          const opened = await fetch("/identity/accounts/login-name/open", {
             method: "POST",
             headers: { "Content-Type": "application/json", Accept: "application/json" },
-            body: JSON.stringify({ name: typed, loginVerifier: verifier }),
+            body: JSON.stringify({ name: typed }),
             credentials: "omit",
           });
-          const resolvedBody = await readJson(resolved);
-          if (!resolved.ok || !String(resolvedBody.email || "").includes("@")) {
-            showError(error, loginMessage(resolvedBody, resolved.status));
+          const openedBody = await readJson(opened);
+          if (!opened.ok || !openedBody.envelope || !openedBody.envelopeSalt) {
+            showError(error, loginMessage(openedBody, opened.status));
             return;
           }
-          accountEmail = String(resolvedBody.email).trim().toLowerCase();
-          hash = await passwordHash(accountEmail, password, resolvedBody);
+          try {
+            const wrappingKey = await masterKey(openedBody.envelopeSalt, password, openedBody);
+            accountEmail = await openKdfEmail(wrappingKey, openedBody.envelope);
+          } catch {
+            showError(error, "Email or master password is incorrect.");
+            return;
+          }
+          hash = await passwordHash(accountEmail, password, openedBody);
         } else {
-          accountEmail = typed;
+          accountEmail = typeof preBody.kdfEmail === "string" && preBody.kdfEmail.includes("@")
+            ? preBody.kdfEmail.trim()
+            : typed;
           hash = await passwordHash(accountEmail, password, preBody);
         }
         pending = { typed, hash, accountEmail };

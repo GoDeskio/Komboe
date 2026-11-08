@@ -51,8 +51,8 @@ export class DefaultPasswordPreloginService implements PasswordPreloginService {
     this.currentPreloginData$ = null;
   }
 
-  async resolveLoginName(name: string, verifier: string): Promise<PasswordPreloginData> {
-    const response = await this.passwordPreloginApiService.resolveLoginName(name, verifier);
+  async openLoginName(name: string): Promise<PasswordPreloginData> {
+    const response = await this.passwordPreloginApiService.openLoginName(name);
     return PasswordPreloginData.fromResponse(response);
   }
 

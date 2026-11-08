@@ -24,7 +24,8 @@
   <p id="out" role="status"></p>
   <p id="err" role="alert"></p>
   <script type="module">
-    import { biometricCapability, enrollDeviceUnlock, unlockDevice, validatePattern } from "./device_unlock_module.mjs";
+    import { biometricCapability, enrollDeviceUnlock, unlockDevice, validatePattern } from "../../clients/upstream/apps/web/src/app/auth/komboe-device-unlock.mjs";
+    window.komboeDevice = { biometricCapability, enrollDeviceUnlock, unlockDevice, validatePattern };
     const userKey = new Uint8Array(64).fill(7);
     let record = null;
     const out = document.getElementById("out");

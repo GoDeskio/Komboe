@@ -55,7 +55,7 @@ export class TransferItemsDialogComponent {
 
   protected openLearnMore(e: Event) {
     e.preventDefault();
-    this.platformUtilsService.launchUri("https://bitwarden.com/help/transfer-ownership/");
+    this.platformUtilsService.launchUri("https://github.com/GoDeskio/Komboe/tree/main/docs");
   }
 
   static open(dialogService: DialogService, config: DialogConfig<TransferItemsDialogParams>) {

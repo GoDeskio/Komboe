@@ -1,5 +1,14 @@
 import { MenuItemConstructorOptions, app } from "electron";
 
+import {
+  KOMBOE_DOCS,
+  KOMBOE_EXTENSION_DOCS,
+  KOMBOE_ISSUES,
+  KOMBOE_MOBILE_DOCS,
+  KOMBOE_PRIVACY,
+  KOMBOE_SOURCE,
+  KOMBOE_TERMS,
+} from "@bitwarden/common/komboe/public-links";
 import { I18nService } from "@bitwarden/common/platform/abstractions/i18n.service";
 import { MessagingService } from "@bitwarden/common/platform/abstractions/messaging.service";
 import { UrlType } from "@bitwarden/common/platform/misc/safe-urls";
@@ -54,7 +63,7 @@ export class HelpMenu implements IMenubarMenu {
     return {
       id: "helpAndFeedback",
       label: this.localize("helpAndFeedback"),
-      click: () => this.shell.openExternal("https://bitwarden.com/help", UrlType.WebUrl),
+      click: () => this.shell.openExternal(KOMBOE_DOCS, UrlType.WebUrl),
     };
   }
 
@@ -63,7 +72,7 @@ export class HelpMenu implements IMenubarMenu {
       id: "fileBugReport",
       label: this.localize("fileBugReport"),
       click: () =>
-        this.shell.openExternal("https://github.com/bitwarden/clients/issues", UrlType.WebUrl),
+        this.shell.openExternal(KOMBOE_ISSUES, UrlType.WebUrl),
     };
   }
 
@@ -81,12 +90,12 @@ export class HelpMenu implements IMenubarMenu {
       {
         id: "termsOfService",
         label: this.localize("termsOfService"),
-        click: () => this.shell.openExternal("https://bitwarden.com/terms/", UrlType.WebUrl),
+        click: () => this.shell.openExternal(KOMBOE_TERMS, UrlType.WebUrl),
       },
       {
         id: "privacyPolicy",
         label: this.localize("privacyPolicy"),
-        click: () => this.shell.openExternal("https://bitwarden.com/privacy/", UrlType.WebUrl),
+        click: () => this.shell.openExternal(KOMBOE_PRIVACY, UrlType.WebUrl),
       },
     ];
   }
@@ -104,31 +113,12 @@ export class HelpMenu implements IMenubarMenu {
   }
 
   private get followUsSubmenu(): MenuItemConstructorOptions[] {
+    // No owned social accounts besides the source repository. Do not link Bitwarden's accounts.
     return [
-      {
-        id: "blog",
-        label: this.localize("blog"),
-        click: () => this.shell.openExternal("https://blog.bitwarden.com", UrlType.WebUrl),
-      },
-      {
-        id: "twitter",
-        label: "Twitter",
-        click: () => this.shell.openExternal("https://twitter.com/bitwarden", UrlType.WebUrl),
-      },
-      {
-        id: "facebook",
-        label: "Facebook",
-        click: () => this.shell.openExternal("https://www.facebook.com/bitwarden/", UrlType.WebUrl),
-      },
       {
         id: "github",
         label: "GitHub",
-        click: () => this.shell.openExternal("https://github.com/bitwarden", UrlType.WebUrl),
-      },
-      {
-        id: "mastodon",
-        label: "Mastodon",
-        click: () => this.shell.openExternal("https://fosstodon.org/@bitwarden", UrlType.WebUrl),
+        click: () => this.shell.openExternal(KOMBOE_SOURCE, UrlType.WebUrl),
       },
     ];
   }
@@ -155,21 +145,13 @@ export class HelpMenu implements IMenubarMenu {
       {
         id: "iOS",
         label: "iOS",
-        click: () =>
-          this.shell.openExternal(
-            "https://itunes.apple.com/app/" + "bitwarden-free-password-manager/id1137397744?mt=8",
-            UrlType.WebUrl,
-          ),
+        click: () => this.shell.openExternal(KOMBOE_MOBILE_DOCS, UrlType.WebUrl),
       },
       {
         id: "android",
         label: "Android",
         visible: !isMacAppStore(), // Apple Guideline 2.3.10 - Accurate Metadata
-        click: () =>
-          this.shell.openExternal(
-            "https://play.google.com/store/apps/" + "details?id=com.x8bit.bitwarden",
-            UrlType.WebUrl,
-          ),
+        click: () => this.shell.openExternal(KOMBOE_MOBILE_DOCS, UrlType.WebUrl),
       },
     ];
   }
@@ -188,45 +170,27 @@ export class HelpMenu implements IMenubarMenu {
       {
         id: "chrome",
         label: "Chrome",
-        click: () =>
-          this.shell.openExternal(
-            "https://chromewebstore.google.com/detail/" +
-              "bitwarden-free-password-m/nngceckbapebfimnlniiiahkandclblb",
-            UrlType.WebUrl,
-          ),
+        click: () => this.shell.openExternal(KOMBOE_EXTENSION_DOCS, UrlType.WebUrl),
       },
       {
         id: "firefox",
         label: "Firefox",
-        click: () =>
-          this.shell.openExternal(
-            "https://addons.mozilla.org/firefox/addon/" + "bitwarden-password-manager/",
-            UrlType.WebUrl,
-          ),
+        click: () => this.shell.openExternal(KOMBOE_EXTENSION_DOCS, UrlType.WebUrl),
       },
       {
         id: "firefox",
         label: "Opera",
-        click: () =>
-          this.shell.openExternal(
-            "https://addons.opera.com/extensions/details/" + "bitwarden-free-password-manager/",
-            UrlType.WebUrl,
-          ),
+        click: () => this.shell.openExternal(KOMBOE_EXTENSION_DOCS, UrlType.WebUrl),
       },
       {
         id: "firefox",
         label: "Edge",
-        click: () =>
-          this.shell.openExternal(
-            "https://microsoftedge.microsoft.com/addons/" +
-              "detail/jbkfoedolllekgbhcbcoahefnbanhhlh",
-            UrlType.WebUrl,
-          ),
+        click: () => this.shell.openExternal(KOMBOE_EXTENSION_DOCS, UrlType.WebUrl),
       },
       {
         id: "safari",
         label: "Safari",
-        click: () => this.shell.openExternal("https://bitwarden.com/download/", UrlType.WebUrl),
+        click: () => this.shell.openExternal(KOMBOE_EXTENSION_DOCS, UrlType.WebUrl),
       },
     ];
   }

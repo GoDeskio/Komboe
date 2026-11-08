@@ -141,7 +141,7 @@ describe("ImportControlsComponent", () => {
         hasDirectImporter: true,
         acceptedFileTypes: ["csv", "json"],
         pasteFormats: ["csv", "json"],
-        instructionLink: "https://bitwarden.com/help/import-from-keeper/",
+        instructionLink: "https://github.com/GoDeskio/Komboe/tree/main/docs",
       }),
       keepercsv: buildOption({
         id: "keepercsv",
@@ -249,7 +249,7 @@ describe("ImportControlsComponent", () => {
         isBrowser: true,
         hasDirectImporter: true,
         instructionKey: "importChromiumAliasPreamble",
-        instructionLink: "https://bitwarden.com/help/import-from-chrome/",
+        instructionLink: "https://github.com/GoDeskio/Komboe/tree/main/docs",
       }),
       delinea: buildOption({
         id: "delinea",
@@ -1968,7 +1968,7 @@ describe("ImportControlsComponent", () => {
       expect(fixture.nativeElement.textContent).toContain("importChromiumAliasPreamble");
       const link = fixture.debugElement.query(By.css("bit-callout a"));
       expect(link.nativeElement.getAttribute("href")).toBe(
-        "https://bitwarden.com/help/import-from-chrome/",
+        "https://github.com/GoDeskio/Komboe/tree/main/docs",
       );
     });
 
@@ -1994,7 +1994,7 @@ describe("ImportControlsComponent", () => {
       expect(fixture.nativeElement.textContent).toContain("importChromiumAliasPreamble");
       const link = fixture.debugElement.query(By.css("bit-callout a"));
       expect(link.nativeElement.getAttribute("href")).toBe(
-        "https://bitwarden.com/help/import-from-chrome/",
+        "https://github.com/GoDeskio/Komboe/tree/main/docs",
       );
     });
   });

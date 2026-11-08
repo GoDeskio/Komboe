@@ -56,7 +56,7 @@ import {
           <a
             class="tw-text-sm tw-text-center"
             bitLink
-            href="https://bitwarden.com/help/automatic-confirmation/"
+            href="https://github.com/GoDeskio/Komboe/tree/main/docs"
             target="_blank"
           >
             <strong class="tw-pr-1">

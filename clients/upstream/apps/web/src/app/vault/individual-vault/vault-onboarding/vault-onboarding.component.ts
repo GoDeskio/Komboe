@@ -164,24 +164,24 @@ export class VaultOnboardingComponent implements OnInit, OnDestroy {
   setInstallExtLink() {
     if (this.platformUtilsService.isChrome()) {
       this.extensionUrl.set(
-        "https://chromewebstore.google.com/detail/bitwarden-password-manager/nngceckbapebfimnlniiiahkandclblb",
+        "https://github.com/GoDeskio/Komboe/blob/main/docs/BROWSER-EXTENSIONS.md",
       );
     } else if (this.platformUtilsService.isFirefox()) {
       this.extensionUrl.set(
-        "https://addons.mozilla.org/en-US/firefox/addon/bitwarden-password-manager/",
+        "https://github.com/GoDeskio/Komboe/blob/main/docs/BROWSER-EXTENSIONS.md",
       );
     } else if (this.platformUtilsService.isSafari()) {
-      this.extensionUrl.set("https://apps.apple.com/us/app/bitwarden/id1352778147?mt=12");
+      this.extensionUrl.set("https://github.com/GoDeskio/Komboe/tree/main/mobile");
     } else if (this.platformUtilsService.isOpera()) {
       this.extensionUrl.set(
-        "https://addons.opera.com/extensions/details/bitwarden-free-password-manager/",
+        "https://github.com/GoDeskio/Komboe/blob/main/docs/BROWSER-EXTENSIONS.md",
       );
     } else if (this.platformUtilsService.isEdge()) {
       this.extensionUrl.set(
-        "https://microsoftedge.microsoft.com/addons/detail/jbkfoedolllekgbhcbcoahefnbanhhlh",
+        "https://github.com/GoDeskio/Komboe/blob/main/docs/BROWSER-EXTENSIONS.md",
       );
     } else {
-      this.extensionUrl.set("https://bitwarden.com/download/#downloads-web-browser");
+      this.extensionUrl.set("https://github.com/GoDeskio/Komboe/blob/main/docs/BROWSER-EXTENSIONS.md");
     }
   }
 

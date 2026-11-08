@@ -3351,10 +3351,10 @@
     "message": "Turn on new device login protection"
   },
   "turnOffNewDeviceLoginProtectionModalDesc": {
-    "message": "Proceed below to turn off the verification emails bitwarden sends when you login from a new device."
+    "message": "Proceed below to turn off the verification emails Komboe sends when you login from a new device."
   },
   "turnOnNewDeviceLoginProtectionModalDesc": {
-    "message": "Proceed below to have bitwarden send you verification emails when you login from a new device."
+    "message": "Proceed below to have Komboe send you verification emails when you login from a new device."
   },
   "turnOffNewDeviceLoginProtectionWarning": {
     "message": "With new device login protection turned off, anyone with your master password can access your account from any device. To protect your account without verification emails, set up two-step login."

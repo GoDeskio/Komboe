@@ -64,7 +64,7 @@ describe("SetupExtensionComponent", () => {
   });
 
   it("sets webStoreUrl", () => {
-    expect(component["webStoreUrl"]).toBe("https://bitwarden.com/download/#downloads-web-browser");
+    expect(component["webStoreUrl"]).toBe("https://github.com/GoDeskio/Komboe/blob/main/docs/BROWSER-EXTENSIONS.md");
   });
 
   describe("initialization", () => {

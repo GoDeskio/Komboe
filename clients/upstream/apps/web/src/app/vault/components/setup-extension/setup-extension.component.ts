@@ -83,7 +83,7 @@ export class SetupExtensionComponent implements OnInit, OnDestroy {
     // It is not be uncommon for users to hit this page from smaller viewports.
     // There are global styles that set a min-width for the page which cause it to render poorly.
     // Remove them here.
-    // https://github.com/bitwarden/clients/blob/main/apps/web/src/scss/base.scss#L6
+    // https://github.com/GoDeskio/Komboe
     this.document.body.style.minWidth = "auto";
 
     const viewportMeta = this.document.querySelector('meta[name="viewport"]');

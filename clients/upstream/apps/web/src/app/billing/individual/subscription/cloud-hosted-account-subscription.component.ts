@@ -246,7 +246,7 @@ export class CloudHostedAccountSubscriptionComponent {
   readonly onSubscriptionCardAction = async (action: SubscriptionCardAction) => {
     switch (action) {
       case SubscriptionCardActions.ContactSupport:
-        window.open("https://bitwarden.com/contact/", "_blank");
+        window.open("https://github.com/GoDeskio/Komboe/tree/main/docs", "_blank");
         break;
       case SubscriptionCardActions.ManageInvoices:
         await this.router.navigate(["../billing-history"], { relativeTo: this.activatedRoute });

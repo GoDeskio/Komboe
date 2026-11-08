@@ -17,6 +17,13 @@ jobs:
           python3 tests/features/backup_restore.py
           python3 tests/features/self_update.py
           python3 tests/features/coolify_pull.py
+      - name: Downloads manifest, file bytes, and local QR roundtrip
+        run: |
+          set -eu
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq zbar-tools
+          python3 -m pip install --user segno
+          python3 tests/features/downloads_manifest.py
       - name: Validate the pull-only compose file
         env:
           KOMBOE_SERVER_DIGEST: aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa

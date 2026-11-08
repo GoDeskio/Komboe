@@ -98,18 +98,72 @@ security=f'''<section class="hero"><div class="wrap"><h1>Security &amp; <span cl
 <section id="self-hosting"><div class="wrap"><h2>Self-hosting and outside services</h2><p class="lead">{SH_LONG} {SWITCH}.</p></div></section>'''
 tiers=[("Free","$0","Personal starter",["Unlimited passwords","1 device type","Passkeys"]),("Plus","Coming soon","",["All devices","Secure sharing","Vault health report"]),("Family","Coming soon","",["Up to 6 members","Shared collections","Everything in Plus"]),("Business","Coming soon","",["Org admin console","AI agent integration (MCP)","Compliance reports"])]
 pricing='<section class="hero"><div class="wrap"><h1>Pricing</h1><p>Simple plans for individuals, families and teams.</p><p class="sso">Paid plan prices will be announced at launch.</p></div></section><section><div class="wrap"><h2>Plans</h2><div class="grid">'+"".join(f'<div class="card{" hl" if n=="Plus" else ""}"><h3>{n}</h3><div class="price">{p} <small>{s}</small></div><ul>{"".join(f"<li>{x}</li>" for x in L)}</ul><a class="btn{" p" if n=="Plus" else ""} full" href="signup.html">Choose {n}</a></div>' for n,p,s,L in tiers)+'</div></div></section>'
-PH='<span class="meta">Version and SHA-256 checksum will be published with the first release.</span>'
-def dl(os_,icon,t,desc,btn,instr="",soon=False):
-    b=f'<span class="btn full" aria-disabled="true">Coming soon</span>' if soon else f'<span class="btn full" aria-disabled="true">{btn}: coming soon</span>'
-    return f'<div class="card dl{" soon" if soon else ""}" data-os="{os_}"><span class="tag">★ Detected for you</span><div class="ic">{icon}</div><h3>{t}</h3><p>{desc}</p>{instr}{"" if soon else PH}{b}</div>'
-groups=[("Mobile",[dl("android","🤖","Android","Android 9+. Autofill service and biometric unlock.","Get it for Android"),dl("ios","🍎","iOS","iPhone and iPad.","",soon=True)]),
-("Desktop",[dl("windows","🪟","Windows","Windows 10/11, x64 &amp; ARM64 installer.","Download .exe"),dl("macos","🍏","macOS","macOS 12+, Apple silicon &amp; Intel.","Download .dmg"),dl("linux","🐧","Linux","AppImage, .deb and .rpm.","Download for Linux")]),
-("Browser extensions",[dl("ext-"+b.lower(),"🧩",b,f"Autofill and save logins in {b}.","Add to "+b) for b in ["Chrome","Edge","Firefox","Brave","Safari"]]),
-("Web, CLI, server &amp; agents",[f'<div class="card dl" data-os="web"><div class="ic">🌐</div><h3>Web vault</h3><p>No install. Open in any modern browser.</p><a class="btn p full" href="login.html">Open web vault</a></div>',
-dl("cli","⌨️","Command-line tool","<code>komboe</code> CLI and <code>komboe-run</code> for scripts and CI.","Download CLI",'<pre># install command coming soon\ncurl -fsSL https://komboe.com/install.sh | sh</pre>'),
-dl("server","🗄️","Self-host server","Run your own Komboe sync server (Docker image).","Get server",'<pre># coming soon\ndocker pull ghcr.io/godeskio/komboe-server:TBD</pre><p style="font-size:13px"><b>Accounts:</b> local Komboe accounts by default; optional enterprise SSO via OIDC or SAML (e.g. Keycloak, Okta).</p><p style="font-size:13px">'+SH_SHORT+' '+SWITCH+'.</p>'),
-dl("mcp","✨","AI agent integration (MCP)","MCP server giving AI agents scoped, revocable access to approved secrets.","Get MCP server",'<pre># MCP client config coming soon config\n{"mcpServers":{"komboe":{"command":"komboe","args":["mcp"]}}}</pre>')])]
-downloads='<section class="hero"><div class="wrap"><h1>Download Komboe</h1><p>Every Komboe tool, on every platform. We detected: <b id="detected">…</b></p><p class="sso">Komboe is pre-release. Installers will appear here when the first builds are published.</p></div></section>'+"".join(f'<section style="padding:32px 0"><div class="wrap"><h2>{g}</h2><div class="grid">{"".join(c)}</div></div></section>' for g,c in groups)+'<section><div class="wrap"><p class="lead">Always verify the SHA-256 checksum of a download before installing: <code>sha256sum &lt;file&gt;</code> (Linux), <code>shasum -a 256 &lt;file&gt;</code> (macOS), <code>Get-FileHash &lt;file&gt;</code> (Windows).</p></div></section>'
+from pathlib import Path as _Path
+_MANIFEST = json.loads((_Path(__file__).resolve().parents[2] / "distribution" / "komboe-downloads.json").read_text(encoding="utf-8"))
+_OS = {
+    "desktop-windows": "windows",
+    "desktop-macos": "macos",
+    "desktop-linux-deb": "linux",
+    "desktop-linux-appimage": "linux",
+    "android": "android",
+    "ios": "ios",
+    "extension-chromium-mv3": "ext-chrome ext-edge ext-brave",
+    "extension-firefox": "ext-firefox",
+}
+def _asset_card(asset):
+    name = H.escape(asset["name"])
+    platforms = H.escape(", ".join(asset["platforms"]))
+    os_attr = H.escape(_OS.get(asset["id"], asset["id"]))
+    docs = f'<p><a href="{H.escape(asset["docsUrl"], quote=True)}">Instructions</a></p>'
+    url = asset.get("url") or ""
+    published = asset.get("status") == "published" and url.startswith(("https://", "http://"))
+    if published:
+        qr = ""
+        if asset.get("qr") and url.startswith("https://"):
+            import segno as _segno
+            _qr_name = f'downloads/qr-{asset["id"]}.svg'
+            os.makedirs("downloads", exist_ok=True)
+            _segno.make(url, error="m").save(_qr_name, scale=4)
+            qr = f'<p><img src="{_qr_name}" width="168" height="168" alt="QR code for {name}. The download link is the same file."></p>'
+        body = (
+            f'<p><strong>Unsigned testing build</strong>'
+            + (f' · version {H.escape(asset["version"])}' if asset.get("version") else "")
+            + "</p>"
+            + f'<p><a class="btn p" href="{H.escape(url, quote=True)}">Download {H.escape(asset.get("filename") or "file")}</a></p>'
+            + (f'<p>sha256 {H.escape(asset["sha256"])}</p>' if asset.get("sha256") else "")
+            + (f'<p>{int(asset["size"])} bytes</p>' if asset.get("size") is not None else "")
+            + (f'<p>{H.escape(asset["install"])}</p>' if asset.get("install") else "")
+            + qr
+        )
+    else:
+        body = f'<p><strong>Not available.</strong> {H.escape(asset.get("reason") or "")}</p>'
+    return (
+        f'<article class="card" data-os="{os_attr}" data-testid="marketing-download-{H.escape(asset["id"], quote=True)}">'
+        f"<h3>{name}</h3><p>{platforms}</p>{body}{docs}</article>"
+    )
+_cards = "".join(_asset_card(asset) for asset in _MANIFEST["assets"])
+_any_download = any(asset.get("status") == "published" and (asset.get("url") or "").startswith(("https://", "http://")) for asset in _MANIFEST["assets"])
+_empty = "" if _any_download else '<p data-testid="downloads-manifest-empty">No installer file is in this manifest. There is no download link and no QR code.</p>'
+downloads = (
+    '<section class="hero"><div class="wrap"><h1>Download Komboe</h1>'
+    '<p>This page is generated from <code>distribution/komboe-downloads.json</code>, the same manifest the signed-in vault reads. '
+    'A link appears only when that file records a real installer. This browser looks like: <b id="detected">…</b></p>'
+    '<p class="sso">Store listings for other password managers are not Komboe. '
+    'The Android debug APK is not a release. macOS and iPhone builds are not published. '
+    'The public site files live in this repository under <code>apps/web-marketing</code>; publishing them to a domain is a separate hosting step.</p>'
+    '<div class="cta"><a class="btn p" href="https://github.com/GoDeskio/Komboe/blob/main/docs/BROWSER-EXTENSIONS.md">Browser extension instructions</a>'
+    '<a class="btn" href="https://github.com/GoDeskio/Komboe/tree/main/mobile">Mobile source</a>'
+    '<a class="btn" href="https://github.com/GoDeskio/Komboe">Source repository</a></div></div></section>'
+    '<section id="release-manifest"><div class="wrap"><h2>Release manifest</h2>'
+    f'<p>Generated {H.escape(_MANIFEST.get("generatedAt") or "")}. {H.escape(_MANIFEST.get("note") or "")}</p>'
+    + _empty
+    + f'<div class="grid">{_cards}</div>'
+    + '<p class="lead">When a binary is published, verify its SHA-256 before installing: '
+    '<code>sha256sum &lt;file&gt;</code> (Linux), <code>shasum -a 256 &lt;file&gt;</code> (macOS), '
+    '<code>Get-FileHash &lt;file&gt;</code> (Windows).</p>'
+    '<p>' + SH_SHORT + " " + SWITCH + ".</p>"
+    "</div></section>"
+)
 VAULT_LOGIN="/vault"          # PLACEHOLDER web vault login (alternative: https://app.komboe.com)
 VAULT_SIGNUP="/vault/signup"  # PLACEHOLDER web vault sign-up
 def auth(mode):
@@ -137,7 +191,7 @@ META={"index.html":("Zero-knowledge password manager","Komboe is an open-source,
 "features.html":("Features","Every Komboe feature (vault, passkeys, sharing, browser extensions, desktop, Android, CLI, AI agent MCP integration) and the projects that inspired them.","Features"),
 "security.html":("Security & zero-knowledge","How Komboe keeps your vault zero-knowledge: on-device Encryptoglyph encryption before upload, no backdoor and no admin password reset.","Security"),
 "pricing.html":("Pricing","Komboe plans for individuals, families and businesses. Free tier available; paid prices to be announced.","Pricing"),
-"downloads.html":("Downloads","Download Komboe for Android, Windows, macOS, Linux, Chrome, Edge, Firefox, Brave, Safari, the web, CLI, self-host server and MCP.","Downloads"),
+"downloads.html":("Downloads","Komboe downloads follow the release manifest. An installer link appears only when a build published that file.","Downloads"),
 "developers.html":("Developers","Komboe developer resources: source code, self-hosting, CLI, MCP server, Encryptoglyph (Apache-2.0), contributing and security disclosure.","Developers"),
 "login.html":("Log in","Log in to Komboe: one account for the web vault, extensions, Android, desktop, CLI and MCP.","Log in"),
 "signup.html":("Sign up","Create your Komboe account with your email and master password, plus optional passkey and 2FA.","Sign up"),
@@ -162,3 +216,4 @@ import datetime as _d
 open(".well-known/security.txt","w").write("# Contact address is a placeholder (TBD): confirm security@komboe.com is monitored before launch.\nContact: mailto:security@komboe.com\nExpires: "+(_d.datetime.now(_d.timezone.utc)+_d.timedelta(days=365)).strftime("%Y-%m-%dT00:00:00Z")+"\nPreferred-Languages: en\nCanonical: "+BASE+"/.well-known/security.txt\nPolicy: "+BASE+"/developers.html#security\n")
 open("llms.txt","w").write(("# Komboe\n\n> Komboe is an open-source, zero-knowledge password manager (pre-release). Vaults are encrypted on-device with Encryptoglyph (Apache-2.0); vault contents are end-to-end encrypted on the device before upload, so Komboe can't read vault data; some account metadata is processed as described in the Privacy Policy (https://komboe.com/privacy.html). The master password never leaves the device, there is no backdoor and no admin password reset. One Komboe account (email + master password, optional passkey and 2FA) covers the web vault, browser extensions, Android, desktop, CLI and an MCP agent integration. iOS is planned. Paid prices and release builds are not yet published.\n\n## Pages\n"+"".join(f"- [{META[f][0]}]({u(f)}): {META[f][1]}\n" for f in pages)+"\n## Self-hosting\n"+SH_LONG+" Switches: "+RUNNING+"\n\n## Source\n- [GitHub](https://github.com/GoDeskio/Komboe)\n").replace("<code>","`").replace("</code>","`"))
 os.makedirs("downloads",exist_ok=True)
+open("komboe-downloads.json","w").write(json.dumps(_MANIFEST, indent=2) + "\n")

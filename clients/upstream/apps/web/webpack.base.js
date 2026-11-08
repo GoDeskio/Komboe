@@ -175,6 +175,7 @@ module.exports.buildConfig = function buildConfig(params) {
         { from: path.resolve(__dirname, "src/favicon.ico") },
         { from: path.resolve(__dirname, "src/browserconfig.xml") },
         { from: path.resolve(__dirname, "src/app-id.json") },
+        { from: path.resolve(__dirname, "src/komboe-downloads.json"), to: "komboe-downloads.json" },
         { from: path.resolve(__dirname, "src/images"), to: "images" },
         { from: path.resolve(__dirname, "src/images/icons"), to: "images" },
         { from: path.resolve(__dirname, "src/videos"), to: "videos" },

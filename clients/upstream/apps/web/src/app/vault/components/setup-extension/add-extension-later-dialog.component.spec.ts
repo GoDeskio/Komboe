@@ -37,7 +37,7 @@ describe("AddExtensionLaterDialogComponent", () => {
     const link = fixture.debugElement.queryAll(By.css("a[bitButton]"))[0];
 
     expect(link.nativeElement.getAttribute("href")).toBe(
-      "https://bitwarden.com/download/#downloads-web-browser",
+      "https://github.com/GoDeskio/Komboe/blob/main/docs/BROWSER-EXTENSIONS.md",
     );
   });
 

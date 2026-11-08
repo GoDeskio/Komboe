@@ -567,7 +567,7 @@ export class InputPasswordComponent implements OnInit {
 
         if (learnMore) {
           this.platformUtilsService.launchUri(
-            "https://bitwarden.com/help/attachments/#add-storage-space",
+            "https://github.com/GoDeskio/Komboe/tree/main/docs",
           );
         }
 

@@ -1,4 +1,12 @@
-<bit-accordion [title]="title()" [subtitle]="subtitle()" [startIcon]="startIcon()" [(open)]="open">
+<bit-accordion [title]="title()" [subtitle]="subtitle()" [(open)]="open">
+  <img
+    slot="start"
+    src="images/komboe-mark.svg"
+    width="32"
+    height="32"
+    alt=""
+    class="tw-shrink-0"
+  />
   @if (tasks().length > 0) {
     <bit-badge variant="primary" startIcon="bwi-clock" slot="end">
       {{ "onboardingTasksComplete" | i18n: amountCompleted() : tasks().length }}

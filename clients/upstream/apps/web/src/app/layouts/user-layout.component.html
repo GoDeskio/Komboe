@@ -25,6 +25,12 @@
           [text]="'generator' | i18n"
           route="tools/generator"
         ></bit-nav-item>
+        <bit-nav-item
+          icon="bwi-download"
+          text="Downloads"
+          route="downloads"
+          data-testid="nav-downloads"
+        ></bit-nav-item>
       </bit-nav-section>
 
       <bit-nav-section [label]="'manage' | i18n">
@@ -86,6 +92,12 @@
         <vault-coachmark #importCoachmark stepId="importData" />
         <bit-nav-item [text]="'exportNoun' | i18n" route="tools/export"></bit-nav-item>
       </bit-nav-group>
+      <bit-nav-item
+        icon="bwi-download"
+        text="Downloads"
+        route="downloads"
+        data-testid="nav-downloads"
+      ></bit-nav-item>
       <bit-nav-item
         icon="bwi-sliders"
         [text]="'reports' | i18n"

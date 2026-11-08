@@ -284,7 +284,7 @@ export class Fido2Component implements OnInit, OnDestroy {
 
     if (data?.type === BrowserFido2MessageTypes.PickCredentialRequest) {
       // TODO: Revert to use fido2 user verification service once user verification for passkeys is approved for production.
-      // PM-4577 - https://github.com/bitwarden/clients/pull/8746
+      // PM-4577 - https://github.com/GoDeskio/Komboe
       const userVerified = await this.handleUserVerification(data.userVerification, this.cipher);
 
       this.send({
@@ -307,7 +307,7 @@ export class Fido2Component implements OnInit, OnDestroy {
       }
 
       // TODO: Revert to use fido2 user verification service once user verification for passkeys is approved for production.
-      // PM-4577 - https://github.com/bitwarden/clients/pull/8746
+      // PM-4577 - https://github.com/GoDeskio/Komboe
       const userVerified = await this.handleUserVerification(data.userVerification, this.cipher);
 
       this.send({
@@ -327,7 +327,7 @@ export class Fido2Component implements OnInit, OnDestroy {
     if (data?.type === BrowserFido2MessageTypes.ConfirmNewCredentialRequest) {
       const name = data.credentialName || data.rpId;
       // TODO: Revert to check for user verification once user verification for passkeys is approved for production.
-      // PM-4577 - https://github.com/bitwarden/clients/pull/8746
+      // PM-4577 - https://github.com/GoDeskio/Komboe
       await this.createNewCipher(name, data.userName);
 
       if (this.sessionId == null || this.cipher == null) {

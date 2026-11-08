@@ -197,7 +197,7 @@ describe("ProductSwitcherService", () => {
 
         const organizations = products.other.find((p) => p.name === "Organizations");
         expect(organizations).toBeDefined();
-        expect(organizations.marketingRoute.route).toBe("https://bitwarden.com/products/business/");
+        expect(organizations.marketingRoute.route).toBe("https://github.com/GoDeskio/Komboe/tree/main/docs");
         expect(organizations.marketingRoute.external).toBe(true);
 
         expect(products.other.find((p) => p.name === "Organizations")).toBeDefined();

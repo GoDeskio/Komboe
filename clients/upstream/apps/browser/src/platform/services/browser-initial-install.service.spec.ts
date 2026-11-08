@@ -52,7 +52,7 @@ describe("BrowserInitialInstallService", () => {
       await service.displayWelcomePage();
 
       expect(createNewTabSpy).toHaveBeenCalledTimes(1);
-      expect(createNewTabSpy).toHaveBeenCalledWith("https://bitwarden.com/browser-start/");
+      expect(createNewTabSpy).toHaveBeenCalledWith("https://github.com/GoDeskio/Komboe/blob/main/docs/BROWSER-EXTENSIONS.md");
     });
 
     it.each([

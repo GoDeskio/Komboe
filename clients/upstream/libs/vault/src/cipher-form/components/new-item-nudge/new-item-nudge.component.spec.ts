@@ -90,7 +90,7 @@ describe("NewItemNudgeComponent", () => {
     expect(component.nudgeTitle).toBe("newSshNudgeTitle");
     expect(component.nudgeBody).toBe("newSshNudgeBodyOne");
     expect(component.nudgeBodyLinkText).toBe("newSshNudgeBodyTwo");
-    expect(component.nudgeBodyLinkUrl).toBe("https://bitwarden.com/help/ssh-agent");
+    expect(component.nudgeBodyLinkUrl).toBe("https://github.com/GoDeskio/Komboe/tree/main/docs");
     expect(component.nudgeBodyBold).toBe("");
     expect(component.nudgeBodySuffix).toBe("");
     expect(component.dismissalNudgeType).toBe(NudgeType.NewSshItemStatus);

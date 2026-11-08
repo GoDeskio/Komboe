@@ -511,7 +511,7 @@ export class OrganizationSubscriptionCloudVNextComponent {
         void this.router.navigate(["../payment-details"], { relativeTo: this.route });
         return;
       case SubscriptionCardActions.ContactSupport:
-        this.platformUtilsService.launchUri("https://bitwarden.com/contact/");
+        this.platformUtilsService.launchUri("https://github.com/GoDeskio/Komboe/tree/main/docs");
         return;
     }
   }

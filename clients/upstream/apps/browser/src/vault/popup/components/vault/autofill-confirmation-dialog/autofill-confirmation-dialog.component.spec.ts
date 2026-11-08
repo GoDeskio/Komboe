@@ -158,13 +158,13 @@ describe("AutofillConfirmationDialogComponent", () => {
 
   it("handles empty savedUris gracefully", async () => {
     const newParams: AutofillConfirmationDialogParams = {
-      currentUrl: "https://bitwarden.com/help",
+      currentUrl: "https://example.com/help",
       savedUris: [],
     };
 
     const { component: fresh } = await createFreshFixture({ params: newParams });
     expect(fresh.savedUrls()).toEqual([]);
-    expect(fresh.formattedCurrentUrl()).toBe("bitwarden.com");
+    expect(fresh.formattedCurrentUrl()).toBe("example.com");
   });
 
   it("handles undefined savedUris by defaulting to []", async () => {
@@ -264,7 +264,7 @@ describe("AutofillConfirmationDialogComponent", () => {
 
   it('hides the "show all" button when savedUrls is empty', async () => {
     const newParams: AutofillConfirmationDialogParams = {
-      currentUrl: "https://bitwarden.com/help",
+      currentUrl: "https://example.com/help",
       savedUris: [],
     };
 

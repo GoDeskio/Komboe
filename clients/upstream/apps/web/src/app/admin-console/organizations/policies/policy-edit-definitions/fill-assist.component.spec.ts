@@ -28,7 +28,7 @@ const USER_ID = "user1" as UserId;
 const DEFAULT_URL = "https://fillassist.bitwarden.com";
 // A historical value of DEFAULT_FILL_ASSIST_RULES_URL. Kept in sync with
 // LEGACY_DEFAULT_FILL_ASSIST_RULES_URLS in libs/common/src/autofill/constants.
-const LEGACY_GITHUB_URL = "https://github.com/bitwarden/map-the-web/releases/latest/download";
+const LEGACY_GITHUB_URL = "https://github.com/GoDeskio/Komboe/blob/main/docs/BROWSER-EXTENSIONS.md";
 const CUSTOM_URL = "https://custom.example.com/rules";
 // A custom URL's host and path only — the template renders `https://` as an
 // uneditable prefix.

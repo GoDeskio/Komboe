@@ -98,6 +98,7 @@ import { SMLandingComponent } from "./secrets-manager/secrets-manager-landing/sm
 import { AppearanceComponent } from "./settings/appearance.component";
 import { DomainRulesComponent } from "./settings/domain-rules.component";
 import { CredentialGeneratorComponent } from "./tools/credential-generator/credential-generator.component";
+import { DownloadsComponent } from "./tools/downloads/downloads.component";
 import { unsavedSendEditsGuard } from "./tools/guards/unsaved-send-edits.guard";
 import { ImportShellWebComponent } from "./tools/import/import-shell-web.component";
 import { AccessComponent, SendAccessExplainerComponent } from "./tools/send/send-access";
@@ -687,6 +688,11 @@ const routes: Routes = [
         path: "vault",
         canActivate: [premiumInterestRedirectGuard, setupExtensionRedirectGuard],
         loadChildren: () => VaultModule,
+      },
+      {
+        path: "downloads",
+        component: DownloadsComponent,
+        data: { titleId: "download" } satisfies RouteDataProperties,
       },
       {
         path: "sends",

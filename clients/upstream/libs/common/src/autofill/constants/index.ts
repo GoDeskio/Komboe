@@ -119,20 +119,20 @@ export const BrowserClientVendors = {
 
 export const BrowserShortcutsUris = {
   Chrome: "chrome://extensions/shortcuts",
-  Firefox: "https://bitwarden.com/help/keyboard-shortcuts",
+  Firefox: "https://github.com/GoDeskio/Komboe/tree/main/docs",
   Opera: "opera://extensions/shortcuts",
   Edge: "edge://extensions/shortcuts",
   Vivaldi: "vivaldi://extensions/shortcuts",
-  Unknown: "https://bitwarden.com/help/keyboard-shortcuts",
+  Unknown: "https://github.com/GoDeskio/Komboe/tree/main/docs",
 } as const;
 
 export const DisablePasswordManagerUris = {
   Chrome: "chrome://password-manager/settings",
-  Firefox: "https://bitwarden.com/help/disable-browser-autofill/",
+  Firefox: "https://github.com/GoDeskio/Komboe/tree/main/docs",
   Opera: "opera://settings/autofill",
   Edge: "edge://settings/autofill/passwords/settings",
   Vivaldi: "vivaldi://settings/autofill",
-  Unknown: "https://bitwarden.com/help/disable-browser-autofill/",
+  Unknown: "https://github.com/GoDeskio/Komboe/tree/main/docs",
 } as const;
 
 export const ExtensionCommand = {

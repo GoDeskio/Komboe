@@ -61,7 +61,7 @@ describe("WebVaultExtensionPromptDialogComponent", () => {
       expect(getDevice).toHaveBeenCalled();
 
       expect(component["webStoreUrl"]).toBe(
-        "https://chromewebstore.google.com/detail/bitwarden-password-manage/nngceckbapebfimnlniiiahkandclblb",
+        "https://github.com/GoDeskio/Komboe/blob/main/docs/BROWSER-EXTENSIONS.md",
       );
     });
   });

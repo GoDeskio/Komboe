@@ -16,6 +16,6 @@ export class PermitCipherDetailsPopoverComponent {
 
   openLearnMore(e: Event) {
     e.preventDefault();
-    this.platformUtilService.launchUri("https://bitwarden.com/help/website-icons/");
+    this.platformUtilService.launchUri("https://github.com/GoDeskio/Komboe/tree/main/docs");
   }
 }

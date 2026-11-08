@@ -206,7 +206,7 @@ export class ProductSwitcherService {
 
         const orgsMarketingRoute = this.platformUtilsService.isSelfHost()
           ? {
-              route: "https://bitwarden.com/products/business/",
+              route: "https://github.com/GoDeskio/Komboe/tree/main/docs",
               external: true,
             }
           : {
@@ -227,7 +227,7 @@ export class ProductSwitcherService {
             icon: "bwi-lock",
             appRoute: "/vault",
             marketingRoute: {
-              route: "https://bitwarden.com/products/personal/",
+              route: "https://github.com/GoDeskio/Komboe/tree/main/docs",
               external: true,
             },
             isActive:
@@ -254,7 +254,7 @@ export class ProductSwitcherService {
             icon: vfo1Enabled ? "bwi-admin-console" : "bwi-business",
             appRoute: ["/organizations", acOrg?.id],
             marketingRoute: {
-              route: "https://bitwarden.com/products/business/",
+              route: "https://github.com/GoDeskio/Komboe/tree/main/docs",
               external: true,
             },
             isActive: this.router.url.includes("/organizations/"),

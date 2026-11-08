@@ -46,7 +46,7 @@ export class AdvancedUriOptionDialogComponent {
 
   openLink(event: Event) {
     event.preventDefault();
-    this.platformUtilsService.launchUri("https://bitwarden.com/help/uri-match-detection/");
+    this.platformUtilsService.launchUri("https://github.com/GoDeskio/Komboe/tree/main/docs");
   }
 
   static open(

@@ -17,6 +17,7 @@ jobs:
           python3 tests/features/backup_restore.py
           python3 tests/features/self_update.py
           python3 tests/features/coolify_pull.py
+          python3 tests/features/email_interval.py
       - name: Validate the pull-only compose file
         env:
           KOMBOE_SERVER_DIGEST: aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa

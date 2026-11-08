@@ -9,6 +9,7 @@ pub mod komboe;
 pub mod komboe_security;
 pub mod komboe_originals;
 pub mod login_name;
+pub mod email_interval;
 mod ldap;
 mod organizations;
 pub mod passkeys;
@@ -59,6 +60,7 @@ pub fn routes() -> Vec<Route> {
     routes.append(&mut komboe_security::routes());
     routes.append(&mut komboe_originals::routes());
     routes.append(&mut login_name::routes());
+    routes.append(&mut email_interval::routes());
     routes.append(&mut scim::admin_routes());
     routes.append(&mut ldap::routes());
     routes.append(&mut trusted::routes());

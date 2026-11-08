@@ -532,6 +532,35 @@ table! {
 }
 
 table! {
+    komboe_email_login_policy (user_uuid) {
+        user_uuid -> Text,
+        interval_secs -> Nullable<BigInt>,
+    }
+}
+
+table! {
+    komboe_email_login_trust (user_uuid, device_uuid) {
+        user_uuid -> Text,
+        device_uuid -> Text,
+        verified_at -> BigInt,
+    }
+}
+
+table! {
+    komboe_email_login_codes (uuid) {
+        uuid -> Text,
+        user_uuid -> Text,
+        device_uuid -> Text,
+        code_hash -> Text,
+        purpose -> Text,
+        expires_at -> BigInt,
+        used_at -> Nullable<BigInt>,
+        attempts -> Integer,
+        created_at -> BigInt,
+    }
+}
+
+table! {
     komboe_login_names (user_uuid) {
         user_uuid -> Text,
         name -> Text,
@@ -705,5 +734,8 @@ allow_tables_to_appear_in_same_query!(
     komboe_pgp_auth_challenges,
     komboe_pgp_vault_keys,
     komboe_agent_sessions,
-    komboe_login_names
+    komboe_login_names,
+    komboe_email_login_policy,
+    komboe_email_login_trust,
+    komboe_email_login_codes
 );

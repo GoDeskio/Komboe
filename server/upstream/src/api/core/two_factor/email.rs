@@ -111,7 +111,13 @@ async fn send_email_login(data: Json<SendEmailLoginData>, client_headers: Client
         user
     };
 
-    send_token(&user.uuid, &conn).await
+    if TwoFactor::find_by_user_and_type(&user.uuid, TwoFactorType::Email as i32, &conn).await.is_some() {
+        return send_token(&user.uuid, &conn).await;
+    }
+    let Some(device_identifier) = data.device_identifier else {
+        err!("No device identifier has been submitted.");
+    };
+    crate::api::core::email_interval::send_if_due(&user, &device_identifier, &conn).await
 }
 
 /// Generate the token, save the data for later verification and send email to user

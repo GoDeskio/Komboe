@@ -242,7 +242,14 @@ def u(f):
 
 open("sitemap.xml", "w").write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + "".join(f"<url><loc>{u(f)}</loc></url>\n" for f in pages if f not in ("privacy.html", "terms.html")) + "</urlset>\n")
 open("robots.txt", "w").write("User-agent: *\nDisallow: /\n" if STAGING else f"User-agent: *\nAllow: /\nSitemap: {BASE}/sitemap.xml\n")
-DASH = '''<section class="hero"><div class="wrap"><h1>Your vault</h1><div id="dashboard" class="card glass" data-mode="vault"><p id="dash-status">Loading your vault…</p><div id="dash-body" hidden><h2 id="dash-name">Your vault</h2><p>Signed in as <b id="dash-email"></b></p><p class="fine">Items in this vault: <b id="dash-count"></b></p><p class="fine" id="device-unlock-note"></p><button class="btn" id="dash-logout" type="button">Sign out</button></div></div></div></section>'''
+DASH = '''<section class="hero"><div class="wrap"><h1>Your vault</h1><div id="dashboard" class="card glass" data-mode="vault"><p id="dash-status">Loading your vault…</p><div id="dash-body" hidden><h2 id="dash-name">Your vault</h2><p>Signed in as <b id="dash-email"></b></p><p class="fine">Items in this vault: <b id="dash-count"></b></p><p class="fine" id="device-unlock-note"></p>
+<label class="field">Email code on the next sign-in after
+<select id="email-interval"></select></label>
+<p class="fine" id="email-interval-help">The timer starts when an email code is accepted on this device. Failed sign-ins and opening the vault do not extend it. Never turns off only this timer. An authenticator, passkey, or other required check still applies.</p>
+<label class="field">Master password to confirm <input id="email-interval-password" type="password" autocomplete="current-password"></label>
+<button class="btn" id="email-interval-save" type="button">Save email timing</button>
+<p id="email-interval-status" role="status"></p>
+<button class="btn" id="dash-logout" type="button">Sign out</button></div></div></div></section>'''
 os.makedirs("vault/signup", exist_ok=True)
 open("vault/index.html", "w").write(page("vault/index.html", "Your vault", DASH, "../", "Your Komboe vault."))
 open("vault/signup/index.html", "w").write(page("vault/signup/index.html", "Create account", '<section class="hero"><div class="wrap"><h1>Create account</h1><p><a class="btn p" href="../../signup.html">Create account</a></p></div></section>', "../../", "Create a Komboe account."))

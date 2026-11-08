@@ -16,6 +16,7 @@ use crate::{
         core::{
             accounts::{PreloginData, RegisterData, kdf_upgrade, prelogin, register},
             log_user_event,
+            email_interval,
             two_factor::{
                 authenticator, duo_oidc, email, enforce_2fa_policy, is_twofactor_provider_usable, webauthn, yubikey,
             },
@@ -884,6 +885,9 @@ async fn twofactor_auth(
     // No twofactor token if twofactor is disabled
     if twofactors.is_empty() {
         enforce_2fa_policy(user, &user.uuid, device.atype, &ip.ip, conn).await?;
+        // Timed email code. Standing factors above are unchanged. Trust is not refreshed here
+        // unless enforce() accepts a code; a missing or wrong code leaves the old timestamp.
+        email_interval::enforce(user, &device.uuid, data.two_factor_token.as_deref(), conn).await?;
         return Ok(None);
     }
 
@@ -1428,6 +1432,7 @@ struct SamlSloData {
 /// End every session of a user: all devices (and their refresh tokens) are removed and the security stamp
 /// rotated so outstanding access tokens stop working. Vault data stays encrypted; no key material is involved.
 async fn saml_end_sessions(user: &mut User, nt: &Notify<'_>, conn: &DbConn) -> EmptyResult {
+    crate::api::core::email_interval::clear_user(&user.uuid, conn).await?;
     nt.send_logout(user, None, conn).await;
     Device::delete_all_by_user(&user.uuid, conn).await?;
     user.reset_security_stamp(conn).await?;

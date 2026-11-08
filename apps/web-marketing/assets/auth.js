@@ -39,7 +39,7 @@ async function masterKey(email, password, pre) {
   return pbkdf2(bytes(password), bytes(email), pre.kdfIterations || 600000);
 }
 
-async function passwordHash(email, password, pre) {
+export async function passwordHash(email, password, pre) {
   const key = await masterKey(email, password, pre);
   return b64(await pbkdf2(key, bytes(password), 1));
 }
@@ -223,12 +223,17 @@ async function boot() {
         code.focus();
         if (id === "1" && !emailCodeSent) {
           emailCodeSent = true;
-          await fetch("/api/two-factor/send-email-login", {
+          const sent = await fetch("/api/two-factor/send-email-login", {
             method: "POST",
             headers: { "Content-Type": "application/json", Accept: "application/json" },
             body: JSON.stringify({ email: accountEmail, masterPasswordHash: hash, deviceIdentifier: deviceId() }),
             credentials: "omit",
           });
+          if (!sent.ok) {
+            const sentBody = await readJson(sent);
+            showError(error, sentBody.message || "The sign-in code could not be sent. Sign-in was not completed.");
+            return;
+          }
         }
         showError(error, id === "1"
           ? "Enter the code sent to your email."

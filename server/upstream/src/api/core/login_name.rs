@@ -9,11 +9,7 @@ use serde_json::json;
 use crate::{
     api::{EmptyResult, JsonResult},
     auth::Headers,
-    db::{
-        DbConn,
-        models::{User, UserId},
-        schema::komboe_login_names,
-    },
+    db::{DbConn, schema::komboe_login_names},
     error::MapResult,
 };
 
@@ -36,33 +32,14 @@ pub fn validate_login_name(raw: &str) -> Result<String, &'static str> {
     Ok(name)
 }
 
-/// Email identifiers keep the exact typed value, so existing vault keys do not change.
-/// A login name is usable only when the server resolved it to an email.
+/// The typed email is the KDF salt. A login name is never rewritten to the account email.
 #[cfg_attr(not(test), allow(dead_code))]
-pub fn kdf_email_for_login(typed: &str, canonical_email: Option<&str>) -> Result<String, &'static str> {
+pub fn kdf_email_for_login(typed: &str, _canonical_email: Option<&str>) -> Result<String, &'static str> {
     let typed = typed.trim();
     if typed.contains('@') {
         return Ok(typed.to_string());
     }
-    match canonical_email.map(str::trim).filter(|email| email.contains('@')) {
-        Some(email) => Ok(email.to_string()),
-        None => Err("This login name is not an account. Refusing to derive a vault key from it."),
-    }
-}
-
-pub async fn canonical_email_for_name(name: &str, conn: &DbConn) -> Option<String> {
-    let name = name.to_string();
-    let user_uuid: Option<String> = conn
-        .run(move |c| {
-            komboe_login_names::table
-                .filter(komboe_login_names::name.eq(name))
-                .select(komboe_login_names::user_uuid)
-                .first::<String>(c)
-                .ok()
-        })
-        .await;
-    let user_uuid = user_uuid?;
-    User::find_by_uuid(&UserId::from(user_uuid), conn).await.map(|user| user.email)
+    Err("Sign in with the email for this vault. A login name is not the key.")
 }
 
 #[derive(Deserialize)]
@@ -161,7 +138,7 @@ mod tests {
 
     #[test]
     fn login_name_uses_the_server_email_only() {
-        assert_eq!(kdf_email_for_login("ada", Some("ada@example.com")).unwrap(), "ada@example.com");
+        assert!(kdf_email_for_login("ada", Some("ada@example.com")).is_err());
         assert!(kdf_email_for_login("ada", None).is_err());
         assert!(kdf_email_for_login("ada", Some("not-an-email")).is_err());
     }

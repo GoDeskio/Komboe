@@ -18,7 +18,7 @@ import { kdfIdentity, loginIdentifierAccepted } from "../../clients/upstream/lib
 
 test("email keeps its exact characters and a login name cannot derive a key", () => {
   assert.equal(kdfIdentity("Ada@Example.com", "other@example.com"), "Ada@Example.com");
-  assert.equal(kdfIdentity("ada", "ada@example.com"), "ada@example.com");
+  assert.throws(() => kdfIdentity("ada", "ada@example.com"), /will not derive/);
   assert.throws(() => kdfIdentity("ada", null), /will not derive/);
   assert.equal(loginIdentifierAccepted("ada"), true);
   assert.equal(loginIdentifierAccepted("ab"), false);
@@ -65,7 +65,13 @@ test("a 64-byte vault user key roundtrips and a token does not", async () => {
   const record = await enrollDeviceUnlock(userKey, "902410", "pin");
   const opened = await unlockDevice(record, "902410");
   assert.equal(Buffer.from(opened.userKey).equals(Buffer.from(userKey)), true);
+  assert.throws(() => assertVaultUserKey(new Uint8Array(32)), /vault user key/);
   assert.throws(() => assertVaultUserKey(new Uint8Array(16)), /vault user key/);
+  const cose = crypto.getRandomValues(new Uint8Array(96));
+  assertVaultUserKey(cose);
+  const coseRecord = await enrollDeviceUnlock(cose, "902410", "pin");
+  const coseOpened = await unlockDevice(coseRecord, "902410");
+  assert.equal(Buffer.from(coseOpened.userKey).equals(Buffer.from(cose)), true);
   const source = fs.readFileSync(
     new URL("../../clients/upstream/apps/web/src/app/auth/komboe-device-access.component.ts", import.meta.url),
     "utf8",
@@ -82,8 +88,8 @@ test("biometrics are reported honestly and no sample is stored", () => {
   const present = biometricCapability({ credentials: { create() {} } });
   globalThis.PublicKeyCredential = function PublicKeyCredential() {};
   const withWebAuthn = biometricCapability({ credentials: { create() {} } });
-  assert.equal(withWebAuthn.supported, true);
-  assert.match(withWebAuthn.reason, /never receives a biometric sample/);
+  assert.equal(withWebAuthn.supported, false);
+  assert.match(withWebAuthn.reason, /does not enroll a passkey/);
   assert.equal(present.supported, false);
   delete globalThis.PublicKeyCredential;
 });

@@ -94,7 +94,7 @@ async function load() {
   const note = document.getElementById("device-unlock-note");
   if (note) {
     note.textContent = biometricCapability(navigator).reason
-      + " A PIN or pattern enrolls in the web vault only after the master password has unlocked that device. This page does not hold the vault key, so it does not store a PIN, pattern, or biometric sample.";
+      + " A PIN or pattern enrolls in the web vault only after the master password has unlocked that device. This page does not hold the vault key, so it does not store a PIN, pattern, or biometric sample. A short PIN copied out of browser storage can be guessed offline; the wrong-attempt counter does not stop that.";
   }
 }
 
@@ -103,9 +103,15 @@ document.getElementById("dash-logout")?.addEventListener("click", async () => {
   if (token) {
     await fetch("/api/komboe/email-login-trust/clear", {
       method: "POST",
-      headers: { Authorization: "Bearer " + token, Accept: "application/json" },
+      headers: {
+        Authorization: "Bearer " + token,
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ token: sessionStorage.getItem("komboe.deviceTrust") || "" }),
       credentials: "omit",
     }).catch(() => {});
+    sessionStorage.removeItem("komboe.deviceTrust");
   }
   sessionStorage.removeItem(TOKEN_KEY);
   sessionStorage.removeItem("komboe.agentSession");

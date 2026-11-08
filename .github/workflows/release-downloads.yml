@@ -1,0 +1,138 @@
+name: release-downloads
+
+# Runs only after a person publishes a GitHub release. Attaches the files that
+# actually built and writes komboe-downloads.json with those URLs and checksums.
+on:
+  release:
+    types: [published]
+
+permissions:
+  contents: write
+
+jobs:
+  chrome:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - uses: docker/setup-buildx-action@v3
+      - name: Build the Chromium zip
+        run: |
+          set -eu
+          docker buildx build \
+            --load \
+            --platform linux/amd64 \
+            --provenance=false \
+            --sbom=false \
+            -f docker/Dockerfile.clients \
+            --build-context komboe_root=. \
+            -t komboe-clients:release \
+            clients/upstream
+          cid=$(docker create komboe-clients:release)
+          mkdir -p dist
+          docker cp "$cid:/opt/komboe-chrome-mv3.zip" dist/komboe-chrome-mv3.zip
+          docker rm "$cid"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: release-chrome
+          path: dist/komboe-chrome-mv3.zip
+
+  desktop-linux:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+      - run: sudo apt-get update && sudo apt-get install -y pkg-config libsecret-1-dev libxss1 rpm fakeroot dpkg
+      - name: Build unsigned Linux packages
+        working-directory: clients/upstream
+        env:
+          CSC_IDENTITY_AUTO_DISCOVERY: "false"
+        run: |
+          set -eu
+          npm install -g npm@11.6.2
+          npm ci
+          npm run build:oss --workspace @bitwarden/desktop
+          cd apps/desktop
+          npx electron-builder --linux deb AppImage --x64 -p never
+      - uses: actions/upload-artifact@v4
+        with:
+          name: release-linux
+          path: clients/upstream/apps/desktop/dist/*
+          if-no-files-found: ignore
+
+  desktop-windows:
+    runs-on: windows-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+      - name: Build an unsigned Windows installer
+        working-directory: clients/upstream
+        env:
+          CSC_IDENTITY_AUTO_DISCOVERY: "false"
+        run: |
+          npm install -g npm@11.6.2
+          npm ci
+          npm run build:oss --workspace @bitwarden/desktop
+          cd apps/desktop
+          npx electron-builder --win --x64 -p never
+      - uses: actions/upload-artifact@v4
+        with:
+          name: release-windows
+          path: clients/upstream/apps/desktop/dist/*.exe
+          if-no-files-found: ignore
+
+  manifest:
+    needs: [chrome, desktop-linux, desktop-windows]
+    if: always() && needs.chrome.result == 'success'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: release-*
+          path: gathered
+          merge-multiple: true
+      - name: Write the manifest from the files that exist and attach the release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -eu
+          mkdir -p dist
+          find gathered -type f \( -name '*.zip' -o -name '*.deb' -o -name '*.AppImage' -o -name '*.exe' \) -exec cp {} dist/ \;
+          # Keep the names the manifest generator expects.
+          if compgen -G "dist/*.deb" > /dev/null; then
+            deb=$(ls dist/*.deb | head -1)
+            mv "$deb" dist/komboe-desktop-amd64.deb
+          fi
+          if compgen -G "dist/*.AppImage" > /dev/null; then
+            app=$(ls dist/*.AppImage | head -1)
+            mv "$app" dist/komboe-desktop-x86_64.AppImage
+          fi
+          if compgen -G "dist/*.exe" > /dev/null; then
+            exe=$(ls dist/*.exe | head -1)
+            mv "$exe" dist/komboe-desktop-win-x64-setup.exe
+          fi
+          tag="${{ github.event.release.tag_name }}"
+          python3 scripts/build-downloads-manifest.py \
+            --artifacts dist \
+            --out dist/komboe-downloads.json \
+            --publish-dir dist/upload \
+            --url-prefix "https://github.com/${GITHUB_REPOSITORY}/releases/download/${tag}/"
+          cp dist/komboe-downloads.json dist/upload/komboe-downloads.json
+          gh release upload "$tag" dist/upload/* --clobber
+          python3 - << 'PY'
+          import json
+          from pathlib import Path
+          manifest = json.loads(Path("dist/komboe-downloads.json").read_text())
+          published = [a for a in manifest["assets"] if a["status"] == "published"]
+          print("published", [(a["id"], a["sha256"], a["url"]) for a in published])
+          for asset in published:
+              assert asset["url"].startswith("https://github.com/")
+              assert asset["sha256"]
+          PY

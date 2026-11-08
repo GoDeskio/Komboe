@@ -1,11 +1,14 @@
 #!/usr/bin/env python3
 """Server login exercise for the timed email code. Uses a loopback SMTP sink and a throwaway database."""
+import base64
 import hashlib
+import hmac
 import os
 import re
 import shutil
 import socket
 import sqlite3
+import struct
 import subprocess
 import tempfile
 import threading
@@ -121,7 +124,7 @@ def api(path, *, method="POST", payload=None, form=None, token=None):
         return err.code, body
 
 
-def login(email, pw_hash, device, code=None):
+def login(email, pw_hash, device, code=None, trust=None, challenge=None, provider="1"):
     form = {
         "grant_type": "password",
         "username": email,
@@ -132,10 +135,31 @@ def login(email, pw_hash, device, code=None):
         "deviceIdentifier": device,
         "deviceName": "interval-test",
     }
+    if trust:
+        form["komboeDeviceTrust"] = trust
     if code:
-        form["twoFactorProvider"] = "1"
+        form["twoFactorProvider"] = provider
         form["twoFactorToken"] = code
+        if challenge:
+            form["komboeLoginChallenge"] = challenge
     return api("/identity/connect/token", form=form)
+
+
+def totp(secret_b32, t=None):
+    key = base64.b32decode(secret_b32.upper() + "=" * (-len(secret_b32) % 8))
+    mac = hmac.new(key, struct.pack(">Q", int((t or time.time()) // 30)), hashlib.sha1).digest()
+    offset = mac[-1] & 15
+    return f"{(struct.unpack('>I', mac[offset:offset + 4])[0] & 0x7FFFFFFF) % 1000000:06d}"
+
+
+def sqlite_path(data):
+    db = Path(data) / "db.sqlite3"
+    if db.is_file():
+        return db
+    matches = list(Path(data).rglob("*.sqlite3"))
+    if not matches:
+        raise SystemExit(f"no sqlite database in {data}")
+    return matches[0]
 
 
 def latest_code(sink, email):
@@ -184,6 +208,125 @@ def register(email, password, sink):
     return pw
 
 
+def mail_disabled_does_not_lock(binary):
+    """A timer cannot be turned on without mail, and an existing timer cannot trap the account."""
+    data = tempfile.mkdtemp(prefix="komboe-interval-nomail-")
+    log_path = Path("/tmp/komboe-nomail.log")
+    env = os.environ.copy()
+    env.update({
+        "DATA_FOLDER": data,
+        "ROCKET_ADDRESS": "127.0.0.1",
+        "ROCKET_PORT": "18084",
+        "DOMAIN": "http://127.0.0.1:18084",
+        "SIGNUPS_ALLOWED": "true",
+        "SIGNUPS_VERIFY": "false",
+        "WEB_VAULT_ENABLED": "false",
+        "LOGIN_RATELIMIT_MAX_BURST": "100",
+        "LOGIN_RATELIMIT_SECONDS": "1",
+        "SMTP_FROM": "",
+    })
+    for key in ("SMTP_HOST", "SMTP_PORT", "SMTP_SECURITY", "SMTP_FROM_NAME"):
+        env.pop(key, None)
+    log = open("/tmp/komboe-nomail.log", "w", encoding="utf-8")
+    proc = subprocess.Popen([str(binary)], env=env, stdout=log, stderr=subprocess.STDOUT)
+    base = "http://127.0.0.1:18084"
+
+    def call(path, payload=None, token=None, method="POST"):
+        headers = {"Accept": "application/json", "Content-Type": "application/json"}
+        if token:
+            headers["Authorization"] = "Bearer " + token
+        req = urllib.request.Request(base + path, data=json.dumps(payload).encode() if payload is not None else None, headers=headers, method=method)
+        try:
+            with urllib.request.urlopen(req, timeout=20) as resp:
+                text = resp.read().decode()
+                return resp.status, json.loads(text) if text else None
+        except urllib.error.HTTPError as err:
+            text = err.read().decode()
+            try:
+                body = json.loads(text) if text else None
+            except json.JSONDecodeError:
+                body = text
+            return err.code, body
+
+    try:
+        for _ in range(80):
+            try:
+                urllib.request.urlopen(base + "/alive", timeout=1).read()
+                break
+            except Exception:
+                time.sleep(0.25)
+        else:
+            log.flush()
+            raise SystemExit("mail-disabled server did not start\n" + log_path.read_text(encoding="utf-8", errors="replace")[-2000:])
+        email = f"nomail-{os.urandom(3).hex()}@komboe.test"
+        password = "Interval-Test-Password-1"
+        status, body = call("/identity/accounts/register/send-verification-email", {"email": email, "name": "NoMail"})
+        token = body if status == 200 and isinstance(body, str) else None
+        if not token:
+            raise SystemExit(f"nomail verification {status} {body}")
+        pw = password_hash(email, password)
+        status, body = call("/identity/accounts/register/finish", {
+            "email": email,
+            "emailVerificationToken": token,
+            "masterPasswordHash": pw,
+            "masterPasswordHint": None,
+            "userSymmetricKey": "2." + b64(os.urandom(16)) + "|" + b64(os.urandom(64)) + "|" + b64(os.urandom(32)),
+            "kdf": 0,
+            "kdfIterations": 100000,
+            "userAsymmetricKeys": {"publicKey": b64(os.urandom(32)), "encryptedPrivateKey": "x"},
+        })
+        if status != 200:
+            raise SystemExit(f"nomail register {status} {body}")
+        status, session = call("/identity/connect/token", None)
+        # Password login is form-encoded. Use the shared helper against this port.
+        global API
+        previous = API
+        API = base
+        try:
+            status, session = login(email, pw, "nomail-device")
+        finally:
+            API = previous
+        if not isinstance(session, dict) or "access_token" not in session:
+            raise SystemExit(f"nomail login {status} {session}")
+        access = session["access_token"]
+        previous = API
+        API = base
+        try:
+            status, saved = api("/api/komboe/email-login-interval", method="PUT", token=access, payload={
+                "intervalSeconds": 60,
+                "masterPasswordHash": pw,
+            })
+            status_get, current = api("/api/komboe/email-login-interval", method="GET", token=access)
+        finally:
+            API = previous
+        if status == 200:
+            raise SystemExit(f"interval was saved while mail is disabled: {saved}")
+        if not isinstance(current, dict) or current.get("intervalSeconds") not in (None, 0):
+            raise SystemExit(f"rejected interval left a policy: {status_get} {current}")
+        db = sqlite_path(data)
+        con = sqlite3.connect(db)
+        user_id = con.execute("SELECT uuid FROM users WHERE email = ?", (email,)).fetchone()[0]
+        con.execute("UPDATE users SET verified_at = ? WHERE uuid = ?", ("2026-11-08 04:00:00", user_id))
+        con.execute("INSERT INTO komboe_email_login_policy (user_uuid, interval_secs) VALUES (?, 60)", (user_id,))
+        con.commit()
+        con.close()
+        previous = API
+        API = base
+        try:
+            status, opened = login(email, pw, "nomail-device")
+        finally:
+            API = previous
+        if not isinstance(opened, dict) or "access_token" not in opened:
+            raise SystemExit(f"existing timer locked the account after mail was disabled: {status} {opened}")
+    finally:
+        proc.terminate()
+        try:
+            proc.wait(timeout=5)
+        except subprocess.TimeoutExpired:
+            proc.kill()
+        shutil.rmtree(data, ignore_errors=True)
+
+
 def main():
     if not BIN.is_file():
         raise SystemExit(f"server binary missing: {BIN}")
@@ -204,6 +347,8 @@ def main():
         "SMTP_FROM": "donotreply@komboe.com",
         "SMTP_SECURITY": "off",
         "SMTP_FROM_NAME": "Komboe",
+        "LOGIN_RATELIMIT_MAX_BURST": "100",
+        "LOGIN_RATELIMIT_SECONDS": "1",
     })
     proc = subprocess.Popen([str(BIN)], env=env, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
     try:
@@ -232,16 +377,46 @@ def main():
         if status != 200 or saved.get("intervalSeconds") != 60:
             raise SystemExit(f"save interval {status} {saved}")
 
+        status, named = api("/api/komboe/login-name", method="PUT", token=token, payload={
+            "name": "intervalname",
+            "masterPasswordHash": pw,
+        })
+        if status != 200:
+            raise SystemExit(f"login name {status} {named}")
+        db = sqlite_path(data)
+        con = sqlite3.connect(db)
+        con.execute("UPDATE users SET client_kdf_iter = 123456 WHERE email = ?", (email,))
+        con.commit()
+        con.close()
+        status, leaked = api("/identity/accounts/prelogin", payload={"email": "intervalname"})
+        blob = json.dumps(leaked).lower()
+        if email.lower() in blob or (isinstance(leaked, dict) and leaked.get("kdfIterations") == 123456):
+            raise SystemExit(f"prelogin disclosed the account: {status} {leaked}")
+        if isinstance(leaked, dict) and "email" in leaked:
+            raise SystemExit(f"prelogin returned an email field: {leaked}")
+
         before = len(sink.messages)
         status, challenged = login(email, pw, device)
         if not isinstance(challenged, dict) or "1" not in (challenged.get("TwoFactorProviders") or []):
             raise SystemExit(f"expected an email challenge: {status} {challenged}")
-        if "access_token" in challenged:
-            raise SystemExit("token issued before the email code")
+        if "access_token" in challenged or not challenged.get("KomboeLoginChallenge"):
+            raise SystemExit(f"challenge nonce missing: {status} {challenged}")
+        challenge = challenged["KomboeLoginChallenge"]
+        status, copied = login(email, pw, device, trust="copied-public-device-id")
+        if isinstance(copied, dict) and "access_token" in copied:
+            raise SystemExit("a copied device id skipped the email code")
+        status, bare = api("/api/two-factor/send-email-login", payload={
+            "email": email,
+            "masterPasswordHash": pw,
+            "deviceIdentifier": device,
+        })
+        if status == 200:
+            raise SystemExit("a device id alone sent a code")
         status, sent = api("/api/two-factor/send-email-login", payload={
             "email": email,
             "masterPasswordHash": pw,
             "deviceIdentifier": device,
+            "komboeLoginChallenge": challenge,
         })
         if status != 200:
             raise SystemExit(f"send code {status} {sent}")
@@ -251,34 +426,56 @@ def main():
         if not code or code in json.dumps(sent):
             raise SystemExit("code missing from mail or leaked in the API body")
 
-        status, bad = login(email, pw, device, code="00000000")
+        status, wrong_challenge = login(email, pw, device, code=code, challenge="not-this-login")
+        if isinstance(wrong_challenge, dict) and "access_token" in wrong_challenge:
+            raise SystemExit("a code was accepted for a different challenge")
+        status, bad = login(email, pw, device, code="00000000", challenge=challenge)
         if isinstance(bad, dict) and "access_token" in bad:
             raise SystemExit("wrong code was accepted")
-
-        status, good = login(email, pw, device, code=code)
-        if not isinstance(good, dict) or "access_token" not in good:
+        status, good = login(email, pw, device, code=code, challenge=challenge)
+        if not isinstance(good, dict) or "access_token" not in good or not good.get("KomboeDeviceTrust"):
             raise SystemExit(f"valid code rejected: {status} {good}")
+        trust = good["KomboeDeviceTrust"]
 
-        status, again = login(email, pw, device)
+        status, device_only = login(email, pw, device)
+        if isinstance(device_only, dict) and "access_token" in device_only:
+            raise SystemExit("password plus the public device id skipped the timer")
+        status, again = login(email, pw, "different-device", trust=trust)
         if not isinstance(again, dict) or "access_token" not in again:
-            raise SystemExit(f"login inside the window was challenged: {status} {again}")
+            raise SystemExit(f"server trust token was not accepted: {status} {again}")
 
-        db = Path(data) / "db.sqlite3"
-        if not db.is_file():
-            matches = list(Path(data).rglob("*.sqlite3"))
-            if not matches:
-                raise SystemExit(f"no sqlite database in {data}")
-            db = matches[0]
         con = sqlite3.connect(db)
-        con.execute("UPDATE komboe_email_login_trust SET verified_at = verified_at - 120")
+        con.execute("UPDATE komboe_email_trust_tokens SET verified_at = verified_at - 50")
+        con.commit()
+        status, still = login(email, pw, "another-device", trust=trust)
+        if not isinstance(still, dict) or "access_token" not in still:
+            raise SystemExit(f"trust inside the window was dropped: {status} {still}")
+        stamped = con.execute("SELECT verified_at FROM komboe_email_trust_tokens").fetchone()[0]
+        con.execute("UPDATE komboe_email_trust_tokens SET verified_at = ?", (stamped,))
+        status, wrong = login(email, pw, "another-device", trust="not-the-token")
+        moved = con.execute("SELECT verified_at FROM komboe_email_trust_tokens").fetchone()[0]
+        con.execute("UPDATE komboe_email_trust_tokens SET verified_at = verified_at - 120")
         con.commit()
         con.close()
-        status, expired = login(email, pw, device)
+        if moved != stamped:
+            raise SystemExit("a failed login moved the trust window")
+        status, expired = login(email, pw, device, trust=trust)
         if not isinstance(expired, dict) or "1" not in (expired.get("TwoFactorProviders") or []):
             raise SystemExit(f"expired trust did not challenge: {status} {expired}")
-        status, replay = login(email, pw, device, code=code)
+        status, replay = login(email, pw, device, code=code, challenge=challenge)
         if isinstance(replay, dict) and "access_token" in replay:
             raise SystemExit("replayed code was accepted after the window")
+
+        status, cleared = api("/api/komboe/email-login-trust/clear", token=good["access_token"], payload={"token": trust})
+        if status not in (200, 204):
+            raise SystemExit(f"revoke {status} {cleared}")
+        con = sqlite3.connect(db)
+        con.execute("UPDATE komboe_email_trust_tokens SET verified_at = ?", (int(time.time()),))
+        con.commit()
+        con.close()
+        status, revoked = login(email, pw, device, trust=trust)
+        if isinstance(revoked, dict) and "access_token" in revoked:
+            raise SystemExit("a revoked trust token skipped the email code")
 
         unknown = f"nobody-{os.urandom(2).hex()}@komboe.test"
         mail_before = len(sink.messages)
@@ -289,16 +486,40 @@ def main():
             raise SystemExit("unknown account triggered mail")
 
         sink.stop()
+        status, fresh = login(email, pw, "mail-fail-device")
+        fresh_challenge = fresh.get("KomboeLoginChallenge") if isinstance(fresh, dict) else None
         status, failed_send = api("/api/two-factor/send-email-login", payload={
             "email": email,
             "masterPasswordHash": pw,
-            "deviceIdentifier": device,
+            "komboeLoginChallenge": fresh_challenge or "",
         })
         if status == 200:
             raise SystemExit("mail failure still reported success")
-        status, no_token = login(email, pw, device, code="12345678")
+        status, no_token = login(email, pw, device, code="12345678", challenge=fresh_challenge)
         if isinstance(no_token, dict) and "access_token" in no_token:
             raise SystemExit("sign-in completed after the mailer failed")
+
+        status, key_body = api("/api/two-factor/get-authenticator", method="POST", token=token, payload={"masterPasswordHash": pw})
+        if status != 200 or not isinstance(key_body, dict) or not key_body.get("key"):
+            raise SystemExit(f"authenticator key {status} {key_body}")
+        secret = key_body["key"]
+        status, enabled = api("/api/two-factor/authenticator", method="PUT", token=token, payload={
+            "key": secret,
+            "token": totp(secret),
+            "masterPasswordHash": pw,
+        })
+        if status != 200:
+            raise SystemExit(f"enable authenticator {status} {enabled}")
+        status, skipped = login(email, pw, device, trust=trust)
+        providers = (skipped or {}).get("TwoFactorProviders") if isinstance(skipped, dict) else None
+        if isinstance(skipped, dict) and "access_token" in skipped:
+            raise SystemExit("a trust token skipped authenticator 2FA")
+        if not providers or "0" not in providers:
+            raise SystemExit(f"authenticator was not required: {status} {skipped}")
+        status, with_totp = login(email, pw, device, code=totp(secret, time.time() + 30), provider="0")
+        if not isinstance(with_totp, dict) or "access_token" not in with_totp:
+            raise SystemExit(f"authenticator code rejected: {status} {with_totp}")
+        mail_disabled_does_not_lock(BIN)
         print("EMAIL INTERVAL FLOW PASS")
     finally:
         proc.terminate()

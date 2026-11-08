@@ -32,6 +32,7 @@ struct SendEmailLoginData {
     master_password_hash: Option<String>,
     auth_request_id: Option<AuthRequestId>,
     auth_request_access_code: Option<String>,
+    komboe_login_challenge: Option<String>,
 }
 
 /// User is trying to login and wants to use email 2FA.
@@ -114,10 +115,10 @@ async fn send_email_login(data: Json<SendEmailLoginData>, client_headers: Client
     if TwoFactor::find_by_user_and_type(&user.uuid, TwoFactorType::Email as i32, &conn).await.is_some() {
         return send_token(&user.uuid, &conn).await;
     }
-    let Some(device_identifier) = data.device_identifier else {
-        err!("No device identifier has been submitted.");
+    let Some(challenge) = data.komboe_login_challenge.filter(|value| !value.trim().is_empty()) else {
+        err!("This sign-in code is not for this attempt.");
     };
-    crate::api::core::email_interval::send_if_due(&user, &device_identifier, &conn).await
+    crate::api::core::email_interval::send_if_due(&user, &challenge, &conn).await
 }
 
 /// Generate the token, save the data for later verification and send email to user

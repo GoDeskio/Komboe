@@ -82,6 +82,11 @@ export class IdentityTokenResponse extends BaseResponse {
       this.key = new EncString(key);
     }
     this.twoFactorToken = this.getResponseProperty("TwoFactorToken");
+    const deviceTrust = this.getResponseProperty("KomboeDeviceTrust");
+    if (typeof deviceTrust === "string" && deviceTrust && globalThis.sessionStorage) {
+      globalThis.sessionStorage.setItem("komboe.deviceTrust", deviceTrust);
+      globalThis.sessionStorage.removeItem("komboe.loginChallenge");
+    }
 
     const kdf = this.getResponseProperty("Kdf");
     const kdfIterations = this.getResponseProperty("KdfIterations");

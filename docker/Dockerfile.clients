@@ -7,7 +7,7 @@ COPY . .
 # webpack.base.js copies ../../../../LICENSE and THIRD-PARTY-NOTICES.md (Komboe repo root) from /src/apps/web -> /
 COPY --from=komboe_root LICENSE THIRD-PARTY-NOTICES.md /
 COPY --from=komboe_root scripts/build-downloads-manifest.py /opt/build-downloads-manifest.py
-RUN npm ci --ignore-scripts
+RUN npm install -g npm@11.6.2 && npm ci --ignore-scripts
 ENV NODE_OPTIONS=--max-old-space-size=6144
 RUN npm run dist:oss:selfhost --workspace @bitwarden/web-vault \
     && npm run build:prod:chrome --workspace @bitwarden/browser \

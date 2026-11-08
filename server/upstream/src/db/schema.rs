@@ -547,6 +547,27 @@ table! {
 }
 
 table! {
+    komboe_email_trust_tokens (token_hash) {
+        token_hash -> Text,
+        user_uuid -> Text,
+        verified_at -> BigInt,
+        revoked_at -> Nullable<BigInt>,
+    }
+}
+
+table! {
+    komboe_email_login_challenges (challenge_id) {
+        challenge_id -> Text,
+        user_uuid -> Text,
+        code_hash -> Nullable<Text>,
+        expires_at -> BigInt,
+        used_at -> Nullable<BigInt>,
+        attempts -> Integer,
+        created_at -> BigInt,
+    }
+}
+
+table! {
     komboe_email_login_codes (uuid) {
         uuid -> Text,
         user_uuid -> Text,
@@ -737,5 +758,7 @@ allow_tables_to_appear_in_same_query!(
     komboe_login_names,
     komboe_email_login_policy,
     komboe_email_login_trust,
-    komboe_email_login_codes
+    komboe_email_login_codes,
+    komboe_email_trust_tokens,
+    komboe_email_login_challenges
 );

@@ -83,7 +83,7 @@ FEAT = [
 ]
 SIGNIN = '''<div class="card glass signin" id="signin"><h2>Sign in</h2>
 <form id="login-form" method="post" action="">
-<label class="field">Email or login name <input id="email" name="email" type="text" autocomplete="username" required></label>
+<label class="field">Email <input id="email" name="email" type="email" autocomplete="username" required></label>
 <label class="field">Master password <span class="pw"><input id="master-password" name="password" type="password" autocomplete="current-password" required><button class="btn eye" type="button" data-eye="master-password" aria-pressed="false">Show</button></span></label>
 <p id="login-error" class="error" role="alert" hidden></p>
 <div id="twofactor" hidden><label class="field"><span id="twofactor-label">Authenticator code</span><input id="twofactor-code" name="code" inputmode="numeric" autocomplete="one-time-code"></label></div>

@@ -1579,25 +1579,17 @@ pub async fn prelogin(data: Json<PreloginData>, ip: ClientIp, conn: DbConn) -> J
     crate::ratelimit::check_limit_unauthenticated(&ip.ip)?;
 
     let data: PreloginData = data.into_inner();
-    let typed = data.email.trim();
-    // Email lookup stays lowercased, as before. A login name resolves to the stored email,
-    // which is returned so the client can derive the vault key from that email.
-    // This does not write users.email. The typed email remains the client's KDF salt.
-    let (lookup, canonical_email) = if typed.contains('@') {
-        (typed.to_lowercase(), None)
-    } else {
-        match super::login_name::canonical_email_for_name(&typed.to_lowercase(), &conn).await {
-            Some(email) => (email.clone(), Some(email)),
-            None => (typed.to_lowercase(), None),
-        }
-    };
+    // The typed value is only an email lookup. A login name is not resolved here:
+    // returning the account email or the real KDF would tell an anonymous caller
+    // which names exist. Vault keys stay derived from the email the person types.
+    let email = data.email.trim().to_lowercase();
 
-    let (kdf_type, kdf_iter, kdf_mem, kdf_para) = match User::find_by_mail(&lookup, &conn).await {
+    let (kdf_type, kdf_iter, kdf_mem, kdf_para) = match User::find_by_mail(&email, &conn).await {
         Some(user) => (user.client_kdf_type, user.client_kdf_iter, user.client_kdf_memory, user.client_kdf_parallelism),
-        None => unknown_email_kdf(&lookup),
+        None => unknown_email_kdf(&email),
     };
 
-    let mut body = json!({
+    Ok(Json(json!({
         "kdf": kdf_type,
         "kdfIterations": kdf_iter,
         "kdfMemory": kdf_mem,
@@ -1609,11 +1601,7 @@ pub async fn prelogin(data: Json<PreloginData>, ip: ClientIp, conn: DbConn) -> J
             "parallelism": kdf_para
         },
         "salt": null,
-    });
-    if let Some(email) = canonical_email {
-        body["email"] = json!(email);
-    }
-    Ok(Json(body))
+    })))
 }
 
 // https://github.com/bitwarden/server/blob/9ebe16587175b1c0e9208f84397bb75d0d595510/src/Api/Auth/Models/Request/Accounts/SecretVerificationRequestModel.cs

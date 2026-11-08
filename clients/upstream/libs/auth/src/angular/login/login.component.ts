@@ -25,7 +25,6 @@ import { InternalPolicyService } from "@bitwarden/common/admin-console/abstracti
 import { MasterPasswordPolicyOptions } from "@bitwarden/common/admin-console/models/domain/master-password-policy-options";
 import { DevicesApiServiceAbstraction } from "@bitwarden/common/auth/abstractions/devices-api.service.abstraction";
 import { SsoLoginServiceAbstraction } from "@bitwarden/common/auth/abstractions/sso-login.service.abstraction";
-import { loginIdentifierAccepted } from "@bitwarden/common/auth/kdf-identity";
 import { AuthResult } from "@bitwarden/common/auth/models/domain/auth-result";
 import { OrganizationInviteService } from "@bitwarden/common/auth/organization-invite";
 import { PasswordPreloginService } from "@bitwarden/common/auth/password-prelogin";
@@ -111,8 +110,7 @@ export class LoginComponent implements OnInit, OnDestroy {
         "",
         [
           Validators.required,
-          (control: FormControl) =>
-            loginIdentifierAccepted(String(control.value ?? "")) ? null : { identifier: true },
+          Validators.email,
         ],
       ],
       masterPassword: [

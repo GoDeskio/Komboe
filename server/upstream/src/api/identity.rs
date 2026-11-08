@@ -316,7 +316,7 @@ async fn sso_login(data: ConnectData, user_id: &mut Option<UserId>, conn: &DbCon
 
     let now = Utc::now().naive_utc();
     // Will trigger 2FA flow if needed
-    let (user, mut device, twofactor_token, sso_user) = match user_with_sso {
+    let (user, mut device, twofactor_token, device_trust, sso_user) = match user_with_sso {
         None => {
             if !CONFIG.is_sso_signup_allowed(&user_infos.email) {
                 if CONFIG.signups_domains_whitelist().is_empty() {
@@ -358,7 +358,7 @@ async fn sso_login(data: ConnectData, user_id: &mut Option<UserId>, conn: &DbCon
 
             let device = get_device(&data, conn, &user).await?;
 
-            (user, device, None, None)
+            (user, device, None, None, None)
         }
         Some((user, _)) if !user.enabled => {
             err!(
@@ -372,7 +372,7 @@ async fn sso_login(data: ConnectData, user_id: &mut Option<UserId>, conn: &DbCon
         Some((mut user, sso_user)) => {
             let mut device = get_device(&data, conn, &user).await?;
 
-            let twofactor_token = twofactor_auth(&mut user, &data, &mut device, ip, conn).await?;
+            let (twofactor_token, device_trust) = twofactor_auth(&mut user, &data, &mut device, ip, conn).await?;
 
             if user.private_key.is_none() {
                 // User was invited a stub was created
@@ -391,7 +391,7 @@ async fn sso_login(data: ConnectData, user_id: &mut Option<UserId>, conn: &DbCon
                 info!("User {} email changed in SSO provider from {} to {}", user.uuid, user.email, user_infos.email);
             }
 
-            (user, device, twofactor_token, sso_user)
+            (user, device, twofactor_token, device_trust, sso_user)
         }
     };
 
@@ -401,7 +401,7 @@ async fn sso_login(data: ConnectData, user_id: &mut Option<UserId>, conn: &DbCon
     // We passed 2FA get auth tokens
     let auth_tokens = sso::redeem(&device, &user, data.client_id, sso_user, sso_auth, user_infos, conn).await?;
 
-    authenticated_response(&user, &mut device, auth_tokens, twofactor_token, conn, ip).await
+    authenticated_response(&user, &mut device, auth_tokens, twofactor_token, device_trust, conn, ip).await
 }
 
 async fn password_login(data: ConnectData, user_id: &mut Option<UserId>, conn: &DbConn, ip: &ClientIp) -> JsonResult {
@@ -520,7 +520,7 @@ async fn password_login(data: ConnectData, user_id: &mut Option<UserId>, conn: &
 
     let mut device = get_device(&data, conn, &user).await?;
 
-    let twofactor_token = twofactor_auth(&mut user, &data, &mut device, ip, conn).await?;
+    let (twofactor_token, device_trust) = twofactor_auth(&mut user, &data, &mut device, ip, conn).await?;
 
     // Like upstream, an auth request can be used for one login only. Marked after 2FA so a 2FA prompt doesn't use it up.
     if let Some(ref auth_request_id) = data.auth_request
@@ -537,7 +537,7 @@ async fn password_login(data: ConnectData, user_id: &mut Option<UserId>, conn: &
 
     let auth_tokens = auth::AuthTokens::new(&device, &user, AuthMethod::Password, data.client_id);
 
-    authenticated_response(&user, &mut device, auth_tokens, twofactor_token, conn, ip).await
+    authenticated_response(&user, &mut device, auth_tokens, twofactor_token, device_trust, conn, ip).await
 }
 
 #[get("/accounts/webauthn/assertion-options")]
@@ -578,7 +578,7 @@ async fn passkey_login(data: ConnectData, user_id: &mut Option<UserId>, conn: &D
     }
     let mut device = get_device(&data, conn, &user).await?;
     let auth_tokens = auth::AuthTokens::new(&device, &user, AuthMethod::Password, data.client_id);
-    let mut resp = authenticated_response(&user, &mut device, auth_tokens, None, conn, ip).await?;
+    let mut resp = authenticated_response(&user, &mut device, auth_tokens, None, None, conn, ip).await?;
     if let Some(prf) = row.prf_option()
         && let Some(opts) = resp.0.get_mut("UserDecryptionOptions")
     {
@@ -612,6 +612,7 @@ async fn authenticated_response(
     device: &mut Device,
     auth_tokens: auth::AuthTokens,
     twofactor_token: Option<String>,
+    device_trust: Option<String>,
     conn: &DbConn,
     ip: &ClientIp,
 ) -> JsonResult {
@@ -685,6 +686,9 @@ async fn authenticated_response(
 
     if let Some(token) = twofactor_token {
         result["TwoFactorToken"] = Value::String(token);
+    }
+    if let Some(trust) = device_trust {
+        result["KomboeDeviceTrust"] = Value::String(trust);
     }
 
     info!("User {} logged in successfully. IP: {}", user.email, ip.ip);
@@ -879,7 +883,7 @@ async fn twofactor_auth(
     device: &mut Device,
     ip: &ClientIp,
     conn: &DbConn,
-) -> ApiResult<Option<String>> {
+) -> ApiResult<(Option<String>, Option<String>)> {
     let twofactors = TwoFactor::find_by_user(&user.uuid, conn).await;
 
     // No twofactor token if twofactor is disabled
@@ -887,8 +891,15 @@ async fn twofactor_auth(
         enforce_2fa_policy(user, &user.uuid, device.atype, &ip.ip, conn).await?;
         // Timed email code. Standing factors above are unchanged. Trust is not refreshed here
         // unless enforce() accepts a code; a missing or wrong code leaves the old timestamp.
-        email_interval::enforce(user, &device.uuid, data.two_factor_token.as_deref(), conn).await?;
-        return Ok(None);
+        let trust = email_interval::enforce(
+            user,
+            data.komboe_device_trust.as_deref(),
+            data.komboe_login_challenge.as_deref(),
+            data.two_factor_token.as_deref(),
+            conn,
+        )
+        .await?;
+        return Ok((None, trust));
     }
 
     TwoFactorIncomplete::mark_incomplete(&user.uuid, &device.uuid, &device.name, device.atype, ip, conn).await?;
@@ -1014,7 +1025,7 @@ async fn twofactor_auth(
     } else {
         None
     };
-    Ok(two_factor)
+    Ok((two_factor, None))
 }
 
 fn selected_data(tf: Option<TwoFactor>) -> ApiResult<String> {
@@ -1235,6 +1246,12 @@ struct ConnectData {
     #[field(name = uncased("two_factor_remember"))]
     #[field(name = uncased("twofactorremember"))]
     two_factor_remember: Option<i32>,
+    #[field(name = uncased("komboe_device_trust"))]
+    #[field(name = uncased("komboedevicetrust"))]
+    komboe_device_trust: Option<String>,
+    #[field(name = uncased("komboe_login_challenge"))]
+    #[field(name = uncased("komboeloginchallenge"))]
+    komboe_login_challenge: Option<String>,
     #[field(name = uncased("authrequest"))]
     auth_request: Option<AuthRequestId>,
     // Komboe #50: grant_type=webauthn

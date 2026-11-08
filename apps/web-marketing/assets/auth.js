@@ -1,4 +1,5 @@
 const TOKEN_KEY = "komboe.accessToken";
+const TRUST_KEY = "komboe.deviceTrust";
 const DEVICE_KEY = "komboe.deviceId";
 
 function bytes(text) {
@@ -187,25 +188,24 @@ async function boot() {
           showError(error, loginMessage(preBody, pre.status));
           return;
         }
-        // An email is the KDF salt, lowercased as before. A login name is used only
-        // when prelogin returns the stored account email. The login name is never the salt.
         if (!typed.includes("@")) {
-          accountEmail = String(preBody.email || "").trim().toLowerCase();
-          if (!accountEmail.includes("@")) {
-            showError(error, "That login name is not an account. Sign in with the email for this vault.");
-            return;
-          }
+          showError(error, "Sign in with the email for this vault. A login name is not the key.");
+          return;
         }
+        accountEmail = typed;
         hash = await passwordHash(accountEmail, password, preBody);
         pending = { typed, hash, accountEmail };
       } else {
         accountEmail = pending.accountEmail;
       }
       const extra = {};
+      const storedTrust = sessionStorage.getItem(TRUST_KEY);
+      if (storedTrust) extra.komboeDeviceTrust = storedTrust;
       if (!twoFactor.hidden && code.value.trim()) {
         extra.twoFactorProvider = twoFactor.dataset.provider || "0";
         extra.twoFactorToken = code.value.trim();
         extra.twoFactorRemember = "0";
+        if (pending && pending.challenge) extra.komboeLoginChallenge = pending.challenge;
       }
       const response = await tokenRequest(accountEmail, hash, extra);
       const body = await readJson(response);
@@ -214,7 +214,7 @@ async function boot() {
         return;
       }
       if (body.TwoFactorProviders) {
-        pending = { typed, hash, accountEmail };
+        pending = { typed, hash, accountEmail, challenge: body.KomboeLoginChallenge || "" };
         const id = providerId(body);
         twoFactor.hidden = false;
         twoFactor.dataset.provider = id;
@@ -226,7 +226,12 @@ async function boot() {
           const sent = await fetch("/api/two-factor/send-email-login", {
             method: "POST",
             headers: { "Content-Type": "application/json", Accept: "application/json" },
-            body: JSON.stringify({ email: accountEmail, masterPasswordHash: hash, deviceIdentifier: deviceId() }),
+            body: JSON.stringify({
+              email: accountEmail,
+              masterPasswordHash: hash,
+              deviceIdentifier: deviceId(),
+              komboeLoginChallenge: (pending && pending.challenge) || "",
+            }),
             credentials: "omit",
           });
           if (!sent.ok) {
@@ -245,6 +250,8 @@ async function boot() {
         return;
       }
       sessionStorage.setItem(TOKEN_KEY, body.access_token);
+      if (body.KomboeDeviceTrust) sessionStorage.setItem(TRUST_KEY, body.KomboeDeviceTrust);
+      else sessionStorage.removeItem(TRUST_KEY);
       pending = null;
       document.getElementById("master-password").value = "";
       code.value = "";

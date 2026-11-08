@@ -261,6 +261,7 @@ export class AppComponent implements OnDestroy, OnInit {
       this.folderService.clear(userId),
       this.biometricStateService.logout(userId),
       Promise.resolve(localStorage.removeItem(`komboe.deviceUnlock.v1.${userId}`)),
+      this.revokeEmailTrust(userId),
     ]);
 
     await this.stateEventRunnerService.handleEvent("logout", userId);
@@ -293,6 +294,28 @@ export class AppComponent implements OnDestroy, OnInit {
       // it handles it.
       await this.processReloadService.reloadProcess();
     }, userId);
+  }
+
+  private async revokeEmailTrust(userId: Parameters<TokenService["getAccessToken"]>[0]): Promise<void> {
+    const trust = globalThis.sessionStorage?.getItem("komboe.deviceTrust");
+    globalThis.sessionStorage?.removeItem("komboe.deviceTrust");
+    globalThis.sessionStorage?.removeItem("komboe.loginChallenge");
+    if (!trust) {
+      return;
+    }
+    const access = await this.tokenService.getAccessToken(userId);
+    if (!access) {
+      return;
+    }
+    await fetch("/api/komboe/email-login-trust/clear", {
+      method: "POST",
+      headers: {
+        Authorization: "Bearer " + access,
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify({ token: trust }),
+    }).catch((): undefined => undefined);
   }
 
   private async recordActivity() {

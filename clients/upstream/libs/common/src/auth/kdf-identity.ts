@@ -3,18 +3,14 @@
  * An email is returned unchanged, including its case, so existing vault keys stay valid.
  * A login name is accepted only with the email the server stored for that account.
  */
-export function kdfIdentity(typed: string, canonicalEmail: string | null | undefined): string {
+export function kdfIdentity(typed: string, _canonicalEmail?: string | null): string {
   const value = typed.trim();
-  if (value.includes("@")) {
-    return value;
-  }
-  const email = (canonicalEmail ?? "").trim();
-  if (!email.includes("@")) {
+  if (!value.includes("@")) {
     throw new Error(
-      "This login name is not an account. Komboe will not derive a vault key from a login name.",
+      "Sign in with the email for this vault. Komboe will not derive a vault key from a login name.",
     );
   }
-  return email;
+  return value;
 }
 
 /** True when the login form can submit this identifier. */

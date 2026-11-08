@@ -58,7 +58,12 @@ def main():
     vault = open("apps/web-marketing/assets/vault.js", encoding="utf-8").read()
     server = open("server/upstream/src/api/core/email_interval.rs", encoding="utf-8").read()
     assert "passwordHash(accountEmail" in auth
+    assert "komboeDeviceTrust" in auth
+    assert "KomboeLoginChallenge" in auth
+    assert "preBody.email" not in auth
     assert "could not be sent" in auth
+    assert "issue_trust_token" in server
+    assert "mail_can_send" in server
     assert "email-login-interval" in vault
     assert "Never" in vault
     assert "challenge_due" in server

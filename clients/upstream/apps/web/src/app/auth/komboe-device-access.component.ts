@@ -10,7 +10,8 @@ import { UserKey } from "@bitwarden/common/types/key";
 import { LockComponent } from "@bitwarden/key-management-ui";
 import { KeyService } from "@bitwarden/key-management";
 import { SymmetricCryptoKey } from "@bitwarden/legacy-crypto";
-import { UnlockService } from "@bitwarden/unlock";
+import { LogoutService } from "@bitwarden/auth/common";
+import { LockService, LockSource, UnlockService } from "@bitwarden/unlock";
 
 type DeviceUnlockApi = {
   storageKey: (userId: string) => string;
@@ -31,7 +32,11 @@ type DeviceUnlockApi = {
       @if (mode === "enroll") {
         <p>
           A PIN or pattern unlocks this browser after you have signed in with your email and master
-          password. It is not a new account password, and it is not sent to the server.
+          password. It is not a new account password, and it is not sent to the server. The
+          wrong-attempt counter only applies in this browser. Someone who copies this browser's
+          storage can guess a short PIN or pattern offline. This is not hardware-bound. This page
+          does not enroll a passkey or collect biometrics. Use the master password when the PIN is
+          not enough.
         </p>
         @if (!userKeyReady()) {
           <p role="status">
@@ -76,6 +81,10 @@ type DeviceUnlockApi = {
       @if (message()) {
         <p role="alert" data-testid="device-access-message">{{ message() }}</p>
       }
+      <p>
+        <button type="button" data-testid="device-lock" (click)="lock()">Lock</button>
+        <button type="button" data-testid="device-logout" (click)="logout()">Log out</button>
+      </p>
     </section>
   `,
 })
@@ -85,6 +94,8 @@ export class KomboeDeviceAccessComponent {
   private readonly accountService = inject(AccountService);
   private readonly keyService = inject(KeyService);
   private readonly unlockService = inject(UnlockService);
+  private readonly lockService = inject(LockService);
+  private readonly logoutService = inject(LogoutService);
 
   protected readonly dots = [0, 1, 2, 3, 4, 5, 6, 7, 8];
   protected readonly pin = signal("");
@@ -97,6 +108,19 @@ export class KomboeDeviceAccessComponent {
   constructor() {
     this.mode = inject(Router).url.includes("device-access") ? "enroll" : "unlock";
     void this.start();
+  }
+
+  protected async lock(): Promise<void> {
+    this.message.set("locking");
+    try {
+      await this.lockService.lock(await this.userId(), LockSource.Manual);
+    } catch (error) {
+      this.message.set(error instanceof Error ? error.message : "Could not lock.");
+    }
+  }
+
+  protected async logout(): Promise<void> {
+    await this.logoutService.logout(await this.userId(), "userInitiated");
   }
 
   protected addDot(dot: number): void {

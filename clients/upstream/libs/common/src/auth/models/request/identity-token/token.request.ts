@@ -46,7 +46,15 @@ export abstract class TokenRequest {
         obj.twoFactorToken = this.twoFactor.token;
         obj.twoFactorProvider = this.twoFactor.provider;
         obj.twoFactorRemember = this.twoFactor.remember ? "1" : "0";
+        const challenge = globalThis.sessionStorage?.getItem("komboe.loginChallenge");
+        if (challenge) {
+          obj.komboeLoginChallenge = challenge;
+        }
       }
+    }
+    const trust = globalThis.sessionStorage?.getItem("komboe.deviceTrust");
+    if (trust) {
+      obj.komboeDeviceTrust = trust;
     }
 
     return obj;

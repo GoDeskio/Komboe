@@ -45,9 +45,9 @@ export function biometricCapability(nav = globalThis.navigator) {
     };
   }
   return {
-    supported: true,
+    supported: false,
     reason:
-      "On the web, biometrics stay inside the device authenticator (Touch ID, Windows Hello, or a security key) via a passkey with the PRF extension. Komboe never receives a biometric sample. The passkey control on the lock screen is the unlock. It stays unavailable until a PRF passkey is enrolled on this device.",
+      "This page does not enroll a passkey and does not collect fingerprints or face data. The existing lock-screen passkey button works only for a PRF credential that was already enrolled. Use your master password, or a PIN or pattern that stays in this browser.",
   };
 }
 
@@ -81,9 +81,14 @@ async function wrappingKey(secret, salt) {
   );
 }
 
-/** A vault user key is 32 or 64 bytes. A session token or a short secret is refused. */
+/**
+ * Same acceptance rule as SymmetricCryptoKey for a full user key:
+ * 64-byte enc+mac, or a longer COSE key. A bare 32-byte AES key is not a user key.
+ * Copying localStorage still lets someone guess a short PIN offline. The attempt
+ * counter only stops guesses made through this browser.
+ */
 export function assertVaultUserKey(userKey) {
-  if (!(userKey instanceof Uint8Array) || (userKey.byteLength !== 32 && userKey.byteLength !== 64)) {
+  if (!(userKey instanceof Uint8Array) || userKey.byteLength < 64) {
     throw new Error("Refusing to wrap anything except a vault user key.");
   }
 }

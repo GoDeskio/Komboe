@@ -140,7 +140,7 @@ def version_from(path: Path | None) -> str | None:
     return value if isinstance(value, str) and value else None
 
 
-def build(artifacts: Path, version_file: Path | None, url_prefix: str, publish_dir: Path | None, record_checksums: bool = False) -> dict:
+def build(artifacts: Path, version_file: Path | None, url_prefix: str, publish_dir: Path | None, record_checksums: bool = False, revision: str | None = None) -> dict:
     refused = sorted(name for name in REFUSED if (artifacts / name).is_file())
     assets = []
     for item in CATALOG:
@@ -185,6 +185,7 @@ def build(artifacts: Path, version_file: Path | None, url_prefix: str, publish_d
         assets.append(asset)
     return {
         "schema": 1,
+        "revision": revision,
         "generatedAt": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
         "generator": "scripts/build-downloads-manifest.py",
         "note": (
@@ -205,10 +206,11 @@ def main() -> None:
     parser.add_argument("--publish-dir", type=Path)
     parser.add_argument("--url-prefix", default="downloads/")
     parser.add_argument("--record-checksums", action="store_true")
+    parser.add_argument("--revision", default=None)
     args = parser.parse_args()
     if not args.artifacts.is_dir():
         raise SystemExit(f"artifact directory does not exist: {args.artifacts}")
-    manifest = build(args.artifacts, args.version_file, args.url_prefix, args.publish_dir, args.record_checksums)
+    manifest = build(args.artifacts, args.version_file, args.url_prefix, args.publish_dir, args.record_checksums, args.revision)
     text = json.dumps(manifest, indent=2) + "\n"
     for dest in args.out:
         dest.parent.mkdir(parents=True, exist_ok=True)

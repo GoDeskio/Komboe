@@ -138,6 +138,7 @@ jobs:
           python3 scripts/build-downloads-manifest.py \
             --artifacts dist \
             --record-checksums \
+            --revision "${{ github.sha }}" \
             --out dist/komboe-downloads.json
           python3 - << 'PY'
           import json

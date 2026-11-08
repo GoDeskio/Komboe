@@ -72,6 +72,50 @@ jobs:
           name: marketing-screenshots
           path: apps/web-marketing/e2e/screenshots/*
 
+  angular-vault:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@1.99.0
+      - run: sudo apt-get update && sudo apt-get install -y pkg-config libssl-dev
+      - uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: server/upstream
+      - name: Build the server the vault test logs into
+        working-directory: server/upstream
+        run: cargo build --features sqlite --bin vaultwarden
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+      - name: Install the web vault dependencies
+        working-directory: clients/upstream
+        run: |
+          set -eu
+          npm install -g npm@11.6.2
+          npm ci --ignore-scripts
+      - name: Build the self-hosted web vault
+        working-directory: clients/upstream
+        env:
+          NODE_OPTIONS: --max-old-space-size=5120
+        run: npm run dist:oss:selfhost --workspace @bitwarden/web-vault
+      - name: Install Playwright
+        working-directory: apps/web-marketing
+        run: |
+          set -eu
+          npm ci
+          npx playwright install --with-deps chromium
+      - name: Unlock a real encrypted cipher with PIN and pattern
+        env:
+          KOMBOE_BIN: server/upstream/target/debug/vaultwarden
+          KOMBOE_SHOTS: ${{ github.workspace }}/angular-shots
+        run: node tests/features/angular_vault_unlock.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: angular-vault-screenshots
+          path: angular-shots/*
+
   extension:
     # Builds the Chromium MV3 zip inside the existing clients image and uploads it.
     # Does not push to GHCR and does not publish a store listing.
@@ -90,6 +134,7 @@ jobs:
             --sbom=false \
             -f docker/Dockerfile.clients \
             --build-context komboe_root=. \
+            --build-arg KOMBOE_REVISION="${{ github.sha }}" \
             -t komboe-clients:ci \
             clients/upstream
           cid=$(docker create komboe-clients:ci)
@@ -102,10 +147,17 @@ jobs:
           from pathlib import Path
           blob = Path("dist/komboe-chrome-mv3.zip").read_bytes()
           manifest = json.loads(Path("dist/komboe-downloads.json").read_text())
+          if manifest.get("revision") != "${{ github.sha }}":
+              raise SystemExit(f"manifest revision is not this commit: {manifest.get('revision')}")
           asset = next(item for item in manifest["assets"] if item["id"] == "extension-chromium-mv3")
           digest = hashlib.sha256(blob).hexdigest()
           if asset["sha256"] != digest or asset["status"] != "published":
               raise SystemExit(f"manifest does not match the zip: {asset}")
+          for other in manifest["assets"]:
+              if other["id"] == "extension-chromium-mv3":
+                  continue
+              if other["sha256"] or other["url"] or other["status"] == "published":
+                  raise SystemExit(f"clients image manifest includes a file this image did not build: {other['id']}")
           print("extension", digest, asset["size"])
           PY
       - uses: actions/upload-artifact@v4

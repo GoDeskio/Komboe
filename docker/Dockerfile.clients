@@ -7,6 +7,7 @@ COPY . .
 # webpack.base.js copies ../../../../LICENSE and THIRD-PARTY-NOTICES.md (Komboe repo root) from /src/apps/web -> /
 COPY --from=komboe_root LICENSE THIRD-PARTY-NOTICES.md /
 COPY --from=komboe_root scripts/build-downloads-manifest.py /opt/build-downloads-manifest.py
+ARG KOMBOE_REVISION=unknown
 RUN npm install -g npm@11.6.2 && npm ci --ignore-scripts
 ENV NODE_OPTIONS=--max-old-space-size=6144
 RUN npm run dist:oss:selfhost --workspace @bitwarden/web-vault \
@@ -17,5 +18,6 @@ RUN npm run dist:oss:selfhost --workspace @bitwarden/web-vault \
         --version-file /src/apps/browser/src/manifest.v3.json \
         --out /src/apps/web/build/komboe-downloads.json \
         --publish-dir /src/apps/web/build/downloads \
-        --url-prefix downloads/
+        --url-prefix downloads/ \
+        --revision "$KOMBOE_REVISION"
 CMD ["sh", "-c", "cp -a /src/apps/web/build/. /web-vault/ && cp /opt/komboe-chrome-mv3.zip /extension/komboe-chrome-mv3.zip && ls -la /web-vault/index.html /extension/komboe-chrome-mv3.zip"]

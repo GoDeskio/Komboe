@@ -21,7 +21,7 @@ const BIN = process.env.KOMBOE_BIN || path.join(ROOT, "server/upstream/target/de
 const API = "https://127.0.0.1:18085";
 const SECRET = "known-cipher-secret";
 const PIN = "902410";
-const SHOTS = "/opt/cursor/artifacts";
+const SHOTS = process.env.KOMBOE_SHOTS || "/opt/cursor/artifacts";
 
 function b64(raw) {
   return Buffer.from(raw).toString("base64");

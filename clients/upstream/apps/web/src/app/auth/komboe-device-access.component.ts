@@ -5,6 +5,8 @@ import { firstValueFrom } from "rxjs";
 
 import { AccountService } from "@bitwarden/common/auth/abstractions/account.service";
 import { getUserId } from "@bitwarden/common/auth/services/account.service";
+import { USER_KEY } from "@bitwarden/common/key-management/state-definitions";
+import { StateProvider } from "@bitwarden/common/platform/state";
 import { UserId } from "@bitwarden/common/types/guid";
 import { UserKey } from "@bitwarden/common/types/key";
 import { LockComponent } from "@bitwarden/key-management-ui";
@@ -34,7 +36,8 @@ type DeviceUnlockApi = {
           A PIN or pattern unlocks this browser after you have signed in with your email and master
           password. It is not a new account password, and it is not sent to the server. The
           wrong-attempt counter only applies in this browser. Someone who copies this browser's
-          storage can guess a short PIN or pattern offline. This is not hardware-bound. This page
+          storage can guess a short PIN or pattern offline. This is not hardware-bound. The email
+          timer proof is a bearer secret in this browser session, not a device binding. This page
           does not enroll a passkey or collect biometrics. Use the master password when the PIN is
           not enough.
         </p>
@@ -96,6 +99,8 @@ export class KomboeDeviceAccessComponent {
   private readonly unlockService = inject(UnlockService);
   private readonly lockService = inject(LockService);
   private readonly logoutService = inject(LogoutService);
+  private readonly stateProvider = inject(StateProvider);
+  private readonly router = inject(Router);
 
   protected readonly dots = [0, 1, 2, 3, 4, 5, 6, 7, 8];
   protected readonly pin = signal("");
@@ -106,16 +111,21 @@ export class KomboeDeviceAccessComponent {
   protected readonly biometric = signal({ supported: false, reason: "" });
 
   constructor() {
-    this.mode = inject(Router).url.includes("device-access") ? "enroll" : "unlock";
+    this.mode = this.router.url.includes("device-access") ? "enroll" : "unlock";
     void this.start();
   }
 
   protected async lock(): Promise<void> {
     this.message.set("locking");
+    const userId = await this.userId();
+    // The in-memory user key is what makes the account Unlocked. Clear it before
+    // LockService waits for that transition; the wait otherwise expires and never reloads.
+    await this.stateProvider.setUserState(USER_KEY, null, userId);
     try {
-      await this.lockService.lock(await this.userId(), LockSource.Manual);
+      await this.lockService.lock(userId, LockSource.Manual);
     } catch (error) {
       this.message.set(error instanceof Error ? error.message : "Could not lock.");
+      await this.router.navigate(["/lock"]);
     }
   }
 
@@ -181,6 +191,7 @@ export class KomboeDeviceAccessComponent {
     const key = new SymmetricCryptoKey(result.userKey) as UserKey;
     await this.unlockService.unlockWithDecryptedUserKey(userId, key);
     this.message.set("Vault unlocked on this device.");
+    await this.router.navigate(["/vault"]);
   }
 
   private async start(): Promise<void> {

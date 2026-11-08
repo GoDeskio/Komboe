@@ -53,6 +53,17 @@ function api(pathname, payload) {
   });
 }
 
+async function openCipher(page) {
+  const row = page.locator("tr").filter({ hasText: "Known cipher" });
+  await row.first().waitFor({ timeout: 20000 });
+  const name = row.first().locator("a, button").filter({ hasText: "Known cipher" });
+  if (await name.count()) {
+    await name.first().click();
+  } else {
+    await row.first().dblclick();
+  }
+}
+
 async function enterPin(page, field, button, pin) {
   await page.getByTestId(field).evaluate((el, value) => {
     el.value = value;
@@ -197,13 +208,8 @@ async function main() {
     if (!enrolled.includes("can now unlock")) throw new Error(enrolled);
     await page.screenshot({ path: path.join(SHOTS, "angular-pin-enrolled.png") });
 
+    await page.keyboard.press("Escape");
     await page.getByTestId("device-lock").evaluate((el) => el.click());
-    await page.waitForTimeout(3000);
-    const lockText = await page.getByTestId("device-access").innerText().catch(() => "");
-    if (!lockText.includes("locking") && !page.url().includes("lock")) {
-      throw new Error("lock click did not run: " + lockText.slice(0, 500));
-    }
-    await page.evaluate(() => { window.location.hash = "/lock"; });
     await page.waitForURL(/#\/lock/, { timeout: 20000 });
     await enterPin(page, "unlock-pin", "unlock-pin-submit", "000111");
     const wrong = await page.getByTestId("device-access-message").innerText();
@@ -212,11 +218,37 @@ async function main() {
 
     await enterPin(page, "unlock-pin", "unlock-pin-submit", PIN);
     await page.waitForURL(/#\/vault/, { timeout: 20000 });
-    await page.getByText("Known cipher").first().click();
-    await page.getByTestId("toggle-password-visibility").click();
-    const shown = await page.locator('input[formcontrolname="password"], [data-testid="password"]').first().inputValue().catch(async () => page.getByText(SECRET).innerText());
+    await openCipher(page);
+    await page.getByText(/login credentials|view login/i).first().waitFor({ timeout: 15000 });
+    const reveal = page.getByTestId("toggle-password");
+    if (await reveal.count()) await reveal.click();
+    const shown = await page.getByTestId("login-password").inputValue().catch(async () => page.locator("body").innerText());
     if (!String(shown).includes(SECRET)) throw new Error("decrypted password was " + shown);
     await page.screenshot({ path: path.join(SHOTS, "angular-pin-unlocked-cipher.png") });
+    await page.keyboard.press("Escape");
+    await page.evaluate(() => { window.location.hash = "/settings/device-access"; });
+    await page.waitForURL(/device-access/);
+    for (const dot of [0, 4, 8, 6]) {
+      await page.locator(`[data-dot="${dot}"]`).evaluate((el) => el.click());
+    }
+    await page.getByTestId("enroll-pattern").evaluate((el) => el.click());
+    await page.getByText("can now unlock").waitFor({ timeout: 20000 });
+    await page.getByTestId("device-lock").evaluate((el) => el.click());
+    await page.waitForURL(/#\/lock/, { timeout: 20000 });
+    await page.reload({ waitUntil: "domcontentloaded" });
+    await page.waitForURL(/#\/lock/, { timeout: 20000 });
+    for (const label of ["1", "5", "9", "7"]) {
+      await page.locator("[data-testid=device-access] button", { hasText: new RegExp("^" + label + "$") }).evaluate((el) => el.click());
+    }
+    await page.getByTestId("unlock-pattern-submit").evaluate((el) => el.click());
+    await page.waitForURL(/#\/vault/, { timeout: 20000 });
+    await openCipher(page);
+    const revealAgain = page.getByTestId("toggle-password");
+    if (await revealAgain.count()) await revealAgain.click();
+    const shownAgain = await page.getByTestId("login-password").inputValue().catch(async () => page.locator("body").innerText());
+    if (!String(shownAgain).includes(SECRET)) throw new Error("pattern unlock decrypted " + shownAgain);
+    await page.screenshot({ path: path.join(SHOTS, "angular-pattern-unlocked-cipher.png") });
+    await page.keyboard.press("Escape");
 
     const keys = await page.evaluate(() => Object.keys(localStorage).filter((key) => key.startsWith("komboe.deviceUnlock")));
     if (keys.length !== 1) throw new Error("expected one device record, saw " + keys.join(","));
@@ -230,13 +262,27 @@ async function main() {
     await page.waitForTimeout(2000);
     await page.evaluate(() => { window.location.hash = "/lock"; });
     await page.waitForURL(/#\/lock/);
-    await enterPin(page, "unlock-pin", "unlock-pin-submit", PIN);
+    for (const label of ["1", "5", "9", "7"]) {
+      await page.locator("[data-testid=device-access] button", { hasText: new RegExp("^" + label + "$") }).evaluate((el) => el.click());
+    }
+    await page.getByTestId("unlock-pattern-submit").evaluate((el) => el.click());
     const expired = await page.getByTestId("device-access-message").innerText();
     if (!/expired|master password/i.test(expired)) throw new Error("expiry message was " + expired);
 
     await page.evaluate(() => { window.location.hash = "/settings/device-access"; });
-    await page.getByTestId("device-logout").evaluate((el) => el.click());
-    const left = await page.evaluate(() => Object.keys(localStorage).filter((key) => key.startsWith("komboe.deviceUnlock")));
+    await Promise.all([
+      page.waitForNavigation({ waitUntil: "domcontentloaded", timeout: 20000 }),
+      page.getByTestId("device-logout").evaluate((el) => el.click()),
+    ]);
+    let left = null;
+    for (let attempt = 0; attempt < 10; attempt += 1) {
+      try {
+        left = await page.evaluate(() => Object.keys(localStorage).filter((key) => key.startsWith("komboe.deviceUnlock")));
+        break;
+      } catch {
+        await page.waitForTimeout(400);
+      }
+    }
     if (left.length !== 0) throw new Error("logout left a device record");
     console.log("ANGULAR VAULT UNLOCK PASS");
   } finally {

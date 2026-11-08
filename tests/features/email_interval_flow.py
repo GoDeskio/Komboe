@@ -89,6 +89,11 @@ def b64(raw: bytes) -> str:
     return base64.b64encode(raw).decode()
 
 
+def login_verifier(name: str, password: str) -> str:
+    raw = hashlib.pbkdf2_hmac("sha256", password.encode(), name.encode(), 100000, 32)
+    return b64(raw)
+
+
 def password_hash(email: str, password: str, iterations: int = 100000) -> str:
     master = hashlib.pbkdf2_hmac("sha256", password.encode(), email.encode(), iterations, 32)
     return b64(hashlib.pbkdf2_hmac("sha256", master, password.encode(), 1, 32))
@@ -316,8 +321,22 @@ def mail_disabled_does_not_lock(binary):
             status, opened = login(email, pw, "nomail-device")
         finally:
             API = previous
-        if not isinstance(opened, dict) or "access_token" not in opened:
-            raise SystemExit(f"existing timer locked the account after mail was disabled: {status} {opened}")
+        if isinstance(opened, dict) and "access_token" in opened:
+            raise SystemExit(f"disabled mail skipped an enabled timer: {status} {opened}")
+        previous = API
+        API = base
+        try:
+            status, cleared = api("/api/komboe/email-login-interval", method="PUT", token=access, payload={
+                "intervalSeconds": 0,
+                "masterPasswordHash": pw,
+            })
+            if status != 200 or not (isinstance(cleared, dict) and cleared.get("never") is True):
+                raise SystemExit(f"authenticated timer disable failed: {status} {cleared}")
+            status, after = login(email, pw, "nomail-device")
+        finally:
+            API = previous
+        if not isinstance(after, dict) or "access_token" not in after:
+            raise SystemExit(f"login after explicit timer disable failed: {status} {after}")
     finally:
         proc.terminate()
         try:
@@ -380,6 +399,7 @@ def main():
         status, named = api("/api/komboe/login-name", method="PUT", token=token, payload={
             "name": "intervalname",
             "masterPasswordHash": pw,
+            "loginVerifier": login_verifier("intervalname", password),
         })
         if status != 200:
             raise SystemExit(f"login name {status} {named}")
@@ -392,6 +412,23 @@ def main():
         blob = json.dumps(leaked).lower()
         if email.lower() in blob or (isinstance(leaked, dict) and leaked.get("kdfIterations") == 123456):
             raise SystemExit(f"prelogin disclosed the account: {status} {leaked}")
+        if isinstance(leaked, dict) and "email" in leaked:
+            raise SystemExit(f"prelogin returned an email field: {leaked}")
+        status, wrong_name = api("/identity/accounts/login-name/resolve", payload={
+            "name": "intervalname",
+            "loginVerifier": login_verifier("intervalname", "not-the-password"),
+        })
+        wrong_blob = json.dumps(wrong_name).lower()
+        if email.lower() in wrong_blob or (isinstance(wrong_name, dict) and wrong_name.get("kdfIterations") == 123456):
+            raise SystemExit(f"wrong verifier disclosed the account: {status} {wrong_name}")
+        status, resolved = api("/identity/accounts/login-name/resolve", payload={
+            "name": "intervalname",
+            "loginVerifier": login_verifier("intervalname", password),
+        })
+        if status != 200 or not isinstance(resolved, dict) or resolved.get("email", "").lower() != email.lower():
+            raise SystemExit(f"login name proof failed: {status} {resolved}")
+        if resolved.get("kdfIterations") != 123456:
+            raise SystemExit(f"login name proof hid the real KDF: {resolved}")
         if isinstance(leaked, dict) and "email" in leaked:
             raise SystemExit(f"prelogin returned an email field: {leaked}")
 
@@ -420,6 +457,13 @@ def main():
         })
         if status != 200:
             raise SystemExit(f"send code {status} {sent}")
+        status, resent = api("/api/two-factor/send-email-login", payload={
+            "email": email,
+            "masterPasswordHash": pw,
+            "komboeLoginChallenge": challenge,
+        })
+        if status == 200:
+            raise SystemExit("a resend inside the gap was accepted")
         if len(sink.messages) == before:
             raise SystemExit("mail sink received no code")
         code = latest_code(sink, email)
@@ -443,6 +487,8 @@ def main():
         status, again = login(email, pw, "different-device", trust=trust)
         if not isinstance(again, dict) or "access_token" not in again:
             raise SystemExit(f"server trust token was not accepted: {status} {again}")
+        if "KomboeDeviceTrust" in again:
+            raise SystemExit("an in-window login issued a replacement token and would drop the current one")
 
         con = sqlite3.connect(db)
         con.execute("UPDATE komboe_email_trust_tokens SET verified_at = verified_at - 50")
@@ -484,6 +530,45 @@ def main():
             raise SystemExit("unknown account received a token")
         if len(sink.messages) != mail_before:
             raise SystemExit("unknown account triggered mail")
+
+        status, raced = login(email, pw, "race-device")
+        race_id = raced.get("KomboeLoginChallenge") if isinstance(raced, dict) else None
+        status, race_sent = api("/api/two-factor/send-email-login", payload={
+            "email": email,
+            "masterPasswordHash": pw,
+            "komboeLoginChallenge": race_id or "",
+        })
+        if status != 200:
+            raise SystemExit(f"race send {status} {race_sent}")
+        race_code = latest_code(sink, email)
+        race_results = []
+
+        def submit_race():
+            race_results.append(login(email, pw, "race-device", code=race_code, challenge=race_id))
+
+        threads = [threading.Thread(target=submit_race), threading.Thread(target=submit_race)]
+        for thread in threads:
+            thread.start()
+        for thread in threads:
+            thread.join()
+        wins = [item for item in race_results if isinstance(item[1], dict) and "access_token" in item[1]]
+        if len(wins) != 1:
+            raise SystemExit(f"the same code was accepted {len(wins)} times: {race_results}")
+
+        email_b = f"other-{os.urandom(3).hex()}@komboe.test"
+        pw_b = register(email_b, password, sink)
+        status, session_b = login(email_b, pw_b, "b-device")
+        if not isinstance(session_b, dict) or "access_token" not in session_b:
+            raise SystemExit(f"second account login {status} {session_b}")
+        status, saved_b = api("/api/komboe/email-login-interval", method="PUT", token=session_b["access_token"], payload={
+            "intervalSeconds": 60,
+            "masterPasswordHash": pw_b,
+        })
+        if status != 200:
+            raise SystemExit(f"second interval {status} {saved_b}")
+        status, scoped = login(email_b, pw_b, "b-other", trust=trust)
+        if isinstance(scoped, dict) and "access_token" in scoped:
+            raise SystemExit("a trust token for one account unlocked another")
 
         sink.stop()
         status, fresh = login(email, pw, "mail-fail-device")

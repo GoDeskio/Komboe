@@ -17,4 +17,10 @@ export abstract class PasswordPreloginService {
    * to prevent stale KDF config from persisting in memory.
    */
   abstract clearCache(): void;
+
+  /**
+   * Exchange a login-name verifier for the account email and KDF.
+   * The email is not available until this proof succeeds.
+   */
+  abstract resolveLoginName(name: string, verifier: string): Promise<PasswordPreloginData>;
 }

@@ -763,6 +763,9 @@ export class AppComponent implements OnInit, OnDestroy {
       await this.biometricStateService.logout(userBeingLoggedOut);
       await this.pinService.logout(userBeingLoggedOut);
 
+      const { revokeKomboeEmailTrust } = await import("@bitwarden/common/auth/komboe-email-trust");
+      await revokeKomboeEmailTrust(await this.tokenService.getAccessToken(userBeingLoggedOut));
+
       await this.keyService.clearKeys(userBeingLoggedOut);
 
       await this.stateEventRunnerService.handleEvent("logout", userBeingLoggedOut);

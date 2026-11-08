@@ -31,6 +31,8 @@ use crate::{
 
 const CODE_TTL_SECS: i64 = 600;
 const MAX_ATTEMPTS: i32 = 5;
+const RESEND_GAP_SECS: i64 = 30;
+const MAX_SENDS: i32 = 5;
 pub const ALLOWED_INTERVALS: [i64; 8] = [60, 300, 600, 900, 1800, 3600, 21600, 86400];
 
 pub fn routes() -> Vec<Route> {
@@ -215,6 +217,8 @@ async fn create_challenge(user_id: &UserId, conn: &DbConn) -> crate::api::ApiRes
                 komboe_email_login_challenges::used_at.eq(None::<i64>),
                 komboe_email_login_challenges::attempts.eq(0),
                 komboe_email_login_challenges::created_at.eq(now),
+                komboe_email_login_challenges::last_sent_at.eq(None::<i64>),
+                komboe_email_login_challenges::send_count.eq(0),
             ))
             .execute(c)
     })
@@ -237,9 +241,10 @@ pub async fn enforce(
     if interval.is_none() {
         return Ok(None);
     }
-    // Mail that cannot send must not trap the account. Stronger factors are handled by the caller.
+    // An enabled timer stays required. Mail that cannot send does not turn the factor off.
+    // A signed-in session can set the interval to Never; that is the explicit recovery.
     if !mail_can_send(user) {
-        return Ok(None);
+        err!("This account requires an email sign-in code, and a code cannot be sent right now. Sign-in was not completed.");
     }
     let verified = trust_verified_at(&user.uuid, trust_token, conn).await;
     if !challenge_due(interval, verified, now_secs()) {
@@ -262,8 +267,11 @@ pub async fn enforce(
 }
 
 pub async fn send_if_due(user: &User, challenge_id: &str, conn: &DbConn) -> EmptyResult {
-    if interval_for(&user.uuid, conn).await.is_none() || !mail_can_send(user) {
+    if interval_for(&user.uuid, conn).await.is_none() {
         err!("Two factor not found");
+    }
+    if !mail_can_send(user) {
+        err!("A code cannot be sent right now. Sign-in was not completed.");
     }
     let challenge_id = challenge_id.trim();
     if challenge_id.is_empty() {
@@ -274,59 +282,50 @@ pub async fn send_if_due(user: &User, challenge_id: &str, conn: &DbConn) -> Empt
 
 async fn issue_challenge_code(user: &User, challenge_id: &str, conn: &DbConn) -> EmptyResult {
     let now = now_secs();
+    let code = crypto::generate_email_token(8);
+    let hash = code_hash(&code);
     let user_id = user.uuid.to_string();
     let challenge_id = challenge_id.to_string();
-    let row: Option<(i64, Option<i64>, Option<String>)> = conn
+    let earliest = now - RESEND_GAP_SECS;
+    let updated = conn
         .run({
             let user_id = user_id.clone();
             let challenge_id = challenge_id.clone();
+            let hash = hash.clone();
             move |c| {
-                komboe_email_login_challenges::table
-                    .filter(komboe_email_login_challenges::challenge_id.eq(challenge_id))
-                    .filter(komboe_email_login_challenges::user_uuid.eq(user_id))
-                    .select((
-                        komboe_email_login_challenges::expires_at,
-                        komboe_email_login_challenges::used_at,
-                        komboe_email_login_challenges::code_hash,
-                    ))
-                    .first::<(i64, Option<i64>, Option<String>)>(c)
-                    .ok()
+                diesel::update(
+                    komboe_email_login_challenges::table
+                        .filter(komboe_email_login_challenges::challenge_id.eq(challenge_id))
+                        .filter(komboe_email_login_challenges::user_uuid.eq(user_id))
+                        .filter(komboe_email_login_challenges::used_at.is_null())
+                        .filter(komboe_email_login_challenges::expires_at.gt(now))
+                        .filter(komboe_email_login_challenges::send_count.lt(MAX_SENDS))
+                        .filter(
+                            komboe_email_login_challenges::last_sent_at
+                                .is_null()
+                                .or(komboe_email_login_challenges::last_sent_at.le(earliest)),
+                        ),
+                )
+                .set((
+                    komboe_email_login_challenges::code_hash.eq(Some(hash)),
+                    komboe_email_login_challenges::last_sent_at.eq(Some(now)),
+                    komboe_email_login_challenges::send_count.eq(komboe_email_login_challenges::send_count + 1),
+                ))
+                .execute(c)
             }
         })
-        .await;
-    let Some((expires_at, used_at, _)) = row else {
-        err!("This sign-in code is not for this attempt.");
-    };
-    if used_at.is_some() || now >= expires_at {
-        err!("That sign-in challenge has expired. Start sign-in again.");
+        .await?;
+    if updated == 0 {
+        err!("Another code cannot be sent for this sign-in yet.");
     }
-    let code = crypto::generate_email_token(8);
-    let hash = code_hash(&code);
-    let user_id2 = user.uuid.to_string();
-    let challenge_key = challenge_id.clone();
-    conn.run(move |c| {
-        diesel::update(
-            komboe_email_login_challenges::table
-                .filter(komboe_email_login_challenges::challenge_id.eq(challenge_key))
-                .filter(komboe_email_login_challenges::user_uuid.eq(user_id2)),
-        )
-        .set((
-            komboe_email_login_challenges::code_hash.eq(Some(hash)),
-            komboe_email_login_challenges::attempts.eq(0),
-        ))
-        .execute(c)
-    })
-    .await
-    .map(|_| ())
-    .map_res("Error preparing the sign-in code")?;
     if let Err(err) = mail::send_token(&user.email, &code).await {
-        let user_id3 = user.uuid.to_string();
+        let user_id = user.uuid.to_string();
         let challenge_key = challenge_id.clone();
         conn.run(move |c| {
             diesel::update(
                 komboe_email_login_challenges::table
                     .filter(komboe_email_login_challenges::challenge_id.eq(challenge_key))
-                    .filter(komboe_email_login_challenges::user_uuid.eq(user_id3)),
+                    .filter(komboe_email_login_challenges::user_uuid.eq(user_id)),
             )
             .set(komboe_email_login_challenges::code_hash.eq(None::<String>))
             .execute(c)
@@ -348,7 +347,60 @@ async fn consume_challenge(
     let user_id = user_id.to_string();
     let challenge_id = challenge_id.to_string();
     let hash = code_hash(code);
-    let row: Option<(i64, Option<i64>, i32, Option<String>)> = conn
+    // One UPDATE claims the code. A second concurrent request matches zero rows.
+    let claimed = conn
+        .run({
+            let user_id = user_id.clone();
+            let challenge_id = challenge_id.clone();
+            let hash = hash.clone();
+            move |c| {
+                diesel::update(
+                    komboe_email_login_challenges::table
+                        .filter(komboe_email_login_challenges::challenge_id.eq(challenge_id))
+                        .filter(komboe_email_login_challenges::user_uuid.eq(user_id))
+                        .filter(komboe_email_login_challenges::used_at.is_null())
+                        .filter(komboe_email_login_challenges::expires_at.gt(now))
+                        .filter(komboe_email_login_challenges::attempts.lt(MAX_ATTEMPTS))
+                        .filter(komboe_email_login_challenges::code_hash.eq(hash)),
+                )
+                .set(komboe_email_login_challenges::used_at.eq(Some(now)))
+                .execute(c)
+            }
+        })
+        .await?;
+    if claimed == 1 {
+        return Ok(CodeState::Ok);
+    }
+    conn.run({
+            let user_id = user_id.clone();
+            let challenge_id = challenge_id.clone();
+            move |c| {
+                let user_id_2 = user_id.clone();
+                let challenge_id_2 = challenge_id.clone();
+                diesel::update(
+                    komboe_email_login_challenges::table
+                        .filter(komboe_email_login_challenges::challenge_id.eq(challenge_id))
+                        .filter(komboe_email_login_challenges::user_uuid.eq(user_id))
+                        .filter(komboe_email_login_challenges::used_at.is_null())
+                        .filter(komboe_email_login_challenges::expires_at.gt(now))
+                        .filter(komboe_email_login_challenges::attempts.lt(MAX_ATTEMPTS)),
+                )
+                .set(komboe_email_login_challenges::attempts.eq(komboe_email_login_challenges::attempts + 1))
+                .execute(c)?;
+                diesel::update(
+                    komboe_email_login_challenges::table
+                        .filter(komboe_email_login_challenges::challenge_id.eq(challenge_id_2))
+                        .filter(komboe_email_login_challenges::user_uuid.eq(user_id_2))
+                        .filter(komboe_email_login_challenges::used_at.is_null())
+                        .filter(komboe_email_login_challenges::attempts.ge(MAX_ATTEMPTS)),
+                )
+                .set(komboe_email_login_challenges::used_at.eq(Some(now)))
+                .execute(c)
+            }
+        })
+        .await
+        .ok();
+    let row: Option<(i64, Option<i64>, i32)> = conn
         .run({
             let user_id = user_id.clone();
             let challenge_id = challenge_id.clone();
@@ -360,59 +412,16 @@ async fn consume_challenge(
                         komboe_email_login_challenges::expires_at,
                         komboe_email_login_challenges::used_at,
                         komboe_email_login_challenges::attempts,
-                        komboe_email_login_challenges::code_hash,
                     ))
-                    .first::<(i64, Option<i64>, i32, Option<String>)>(c)
+                    .first::<(i64, Option<i64>, i32)>(c)
                     .ok()
             }
         })
         .await;
-    let Some((expires_at, used_at, attempts, stored_hash)) = row else {
+    let Some((expires_at, used_at, attempts)) = row else {
         return Ok(CodeState::Mismatch);
     };
-    let matches = stored_hash.as_deref().is_some_and(|stored| crypto::ct_eq(stored, &hash));
-    let state = judge_code(expires_at, used_at, attempts, matches, now);
-    match state {
-        CodeState::Ok => {
-            let user_id = user_id.clone();
-            let challenge_id = challenge_id.clone();
-            conn.run(move |c| {
-                diesel::update(
-                    komboe_email_login_challenges::table
-                        .filter(komboe_email_login_challenges::challenge_id.eq(challenge_id))
-                        .filter(komboe_email_login_challenges::user_uuid.eq(user_id)),
-                )
-                .set(komboe_email_login_challenges::used_at.eq(Some(now)))
-                .execute(c)
-            })
-            .await
-            .map(|_| ())
-            .map_res("Error closing the sign-in code")?;
-        }
-        CodeState::Mismatch => {
-            let attempts = attempts.saturating_add(1);
-            let used = if attempts >= MAX_ATTEMPTS { Some(now) } else { None };
-            let user_id = user_id.clone();
-            let challenge_id = challenge_id.clone();
-            conn.run(move |c| {
-                diesel::update(
-                    komboe_email_login_challenges::table
-                        .filter(komboe_email_login_challenges::challenge_id.eq(challenge_id))
-                        .filter(komboe_email_login_challenges::user_uuid.eq(user_id)),
-                )
-                .set((
-                    komboe_email_login_challenges::attempts.eq(attempts),
-                    komboe_email_login_challenges::used_at.eq(used),
-                ))
-                .execute(c)
-            })
-            .await
-            .map(|_| ())
-            .map_res("Error recording a sign-in attempt")?;
-        }
-        _ => {}
-    }
-    Ok(state)
+    Ok(judge_code(expires_at, used_at, attempts, false, now))
 }
 
 #[get("/komboe/email-login-interval")]
@@ -422,7 +431,7 @@ async fn get_interval(headers: Headers, conn: DbConn) -> JsonResult {
         "intervalSeconds": seconds,
         "never": seconds.is_none(),
         "options": ALLOWED_INTERVALS,
-        "meaning": "The timer starts when an email code is accepted. It is not extended by failed sign-ins or by using the vault. The proof is a server-issued secret, not the device id. Never turns off this timer only. A copied browser profile can still guess a short PIN offline; the wrong-attempt counter only applies in that browser.",
+        "meaning": "The timer starts when an email code is accepted and is not extended by failed sign-ins. KomboeDeviceTrust is a bearer secret for this account until it expires or is revoked. It is not bound to a device. Copying it to another client skips the timer until then. Never is the explicit way to turn this timer off and requires the master password. If mail cannot send, sign-in stays incomplete.",
     })))
 }
 

@@ -11,6 +11,7 @@ import { InternalOrganizationServiceAbstraction } from "@bitwarden/common/admin-
 import { AccountService } from "@bitwarden/common/auth/abstractions/account.service";
 import { AuthService } from "@bitwarden/common/auth/abstractions/auth.service";
 import { TokenService } from "@bitwarden/common/auth/abstractions/token.service";
+import { revokeKomboeEmailTrust } from "@bitwarden/common/auth/komboe-email-trust";
 import { AuthenticationStatus } from "@bitwarden/common/auth/enums/authentication-status";
 import { getUserId } from "@bitwarden/common/auth/services/account.service";
 import { EventUploadService } from "@bitwarden/common/dirt/event-logs";
@@ -297,25 +298,8 @@ export class AppComponent implements OnDestroy, OnInit {
   }
 
   private async revokeEmailTrust(userId: Parameters<TokenService["getAccessToken"]>[0]): Promise<void> {
-    const trust = globalThis.sessionStorage?.getItem("komboe.deviceTrust");
-    globalThis.sessionStorage?.removeItem("komboe.deviceTrust");
-    globalThis.sessionStorage?.removeItem("komboe.loginChallenge");
-    if (!trust) {
-      return;
-    }
     const access = await this.tokenService.getAccessToken(userId);
-    if (!access) {
-      return;
-    }
-    await fetch("/api/komboe/email-login-trust/clear", {
-      method: "POST",
-      headers: {
-        Authorization: "Bearer " + access,
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-      body: JSON.stringify({ token: trust }),
-    }).catch((): undefined => undefined);
+    await revokeKomboeEmailTrust(access);
   }
 
   private async recordActivity() {

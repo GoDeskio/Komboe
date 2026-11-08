@@ -2,6 +2,7 @@
 //! The vault key is still derived from the email. This module never writes `users.email`.
 
 use diesel::prelude::*;
+use ring::digest;
 use rocket::{Route, serde::json::Json};
 use serde::Deserialize;
 use serde_json::json;
@@ -9,7 +10,12 @@ use serde_json::json;
 use crate::{
     api::{EmptyResult, JsonResult},
     auth::Headers,
-    db::{DbConn, schema::komboe_login_names},
+    crypto,
+    db::{
+        DbConn,
+        models::{User, UserId},
+        schema::komboe_login_names,
+    },
     error::MapResult,
 };
 
@@ -47,6 +53,57 @@ pub fn kdf_email_for_login(typed: &str, _canonical_email: Option<&str>) -> Resul
 struct LoginNameBody {
     name: String,
     master_password_hash: String,
+    /// PBKDF2-SHA256 of the master password with the login name as salt, 100000 iterations, base64.
+    /// Stored only as SHA-256. Unauthenticated prelogin never returns the email.
+    login_verifier: String,
+}
+
+fn verifier_hash(verifier: &str) -> String {
+    let digest = digest::digest(&digest::SHA256, verifier.as_bytes());
+    data_encoding::HEXLOWER.encode(digest.as_ref())
+}
+
+/// Password proof for a login name. `None` means the name or the verifier did not match.
+/// The email and KDF are returned only after that proof. A miss is not distinguishable in the body.
+pub async fn prove_login_name(name: &str, verifier: &str, conn: &DbConn) -> Option<(String, i32, i32, Option<i32>, Option<i32>)> {
+    let Ok(name) = validate_login_name(name) else {
+        drop(verifier_hash(verifier));
+        return None;
+    };
+    let hash = verifier_hash(verifier);
+    let name_key = name.clone();
+    let row: Option<(String, Option<String>)> = conn
+        .run(move |c| {
+            komboe_login_names::table
+                .filter(komboe_login_names::name.eq(name_key))
+                .select((komboe_login_names::user_uuid, komboe_login_names::verifier_hash))
+                .first::<(String, Option<String>)>(c)
+                .ok()
+        })
+        .await;
+    let Some((user_uuid, stored)) = row else {
+        return None;
+    };
+    let Some(stored) = stored else {
+        return None;
+    };
+    if !crypto::ct_eq(&stored, &hash) {
+        return None;
+    }
+    let user = User::find_by_uuid(&UserId::from(user_uuid), conn).await?;
+    Some((user.email, user.client_kdf_type, user.client_kdf_iter, user.client_kdf_memory, user.client_kdf_parallelism))
+}
+
+pub async fn clear_verifier(user_id: &UserId, conn: &DbConn) -> EmptyResult {
+    let user_id = user_id.to_string();
+    conn.run(move |c| {
+        diesel::update(komboe_login_names::table.filter(komboe_login_names::user_uuid.eq(user_id)))
+            .set(komboe_login_names::verifier_hash.eq(None::<String>))
+            .execute(c)
+    })
+    .await
+    .map(|_| ())
+    .map_res("Error clearing the login-name verifier")
 }
 
 #[get("/komboe/login-name")]
@@ -77,6 +134,11 @@ async fn put_login_name(body: Json<LoginNameBody>, headers: Headers, conn: DbCon
         Ok(name) => name,
         Err(message) => err!(message),
     };
+    let verifier = body.login_verifier.trim();
+    if verifier.len() < 16 {
+        err!("The login name was not saved. Confirm the master password and try again.");
+    }
+    let verifier_hash = verifier_hash(verifier);
     let owner = headers.user.uuid.to_string();
     let taken = conn
         .run({
@@ -102,7 +164,11 @@ async fn put_login_name(body: Json<LoginNameBody>, headers: Headers, conn: DbCon
         move |c| -> Result<(), diesel::result::Error> {
             diesel::delete(komboe_login_names::table.filter(komboe_login_names::user_uuid.eq(&owner))).execute(c)?;
             diesel::insert_into(komboe_login_names::table)
-                .values((komboe_login_names::user_uuid.eq(owner), komboe_login_names::name.eq(name)))
+                .values((
+                    komboe_login_names::user_uuid.eq(owner),
+                    komboe_login_names::name.eq(name),
+                    komboe_login_names::verifier_hash.eq(verifier_hash),
+                ))
                 .execute(c)?;
             Ok(())
         }

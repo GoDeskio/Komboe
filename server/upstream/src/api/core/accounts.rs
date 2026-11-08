@@ -705,6 +705,7 @@ async fn post_password(data: Json<ChangePassData>, headers: Headers, conn: DbCon
     // If you do logout the user it will causes issues at the client side.
     // Adding the device uuid will prevent this.
     crate::api::core::email_interval::clear_user(&user.uuid, &conn).await?;
+    crate::api::core::login_name::clear_verifier(&user.uuid, &conn).await?;
     nt.send_logout(&user, Some(&headers.device), &conn).await;
     if save_result.is_ok() {
         crate::api::core::komboe::notify_user(&user.uuid, "Your Komboe master password was changed",
@@ -807,6 +808,7 @@ async fn post_kdf(data: Json<ChangeKdfData>, headers: Headers, conn: DbConn, nt:
     let save_result = user.save(&conn).await;
 
     crate::api::core::email_interval::clear_user(&user.uuid, &conn).await?;
+    crate::api::core::login_name::clear_verifier(&user.uuid, &conn).await?;
     nt.send_logout(&user, Some(&headers.device), &conn).await;
 
     save_result
@@ -1109,6 +1111,7 @@ async fn rotate_account_keys(data: KeyData, keep_password: bool, headers: Header
     // If you do logout the user it will causes issues at the client side.
     // Adding the device uuid will prevent this.
     crate::api::core::email_interval::clear_user(&user.uuid, &conn).await?;
+    crate::api::core::login_name::clear_verifier(&user.uuid, &conn).await?;
     nt.send_logout(&user, Some(&headers.device), &conn).await;
 
     save_result
@@ -1253,6 +1256,7 @@ async fn post_sstamp(data: Json<PasswordOrOtpData>, headers: Headers, conn: DbCo
     let save_result = user.save(&conn).await;
 
     crate::api::core::email_interval::clear_user(&user.uuid, &conn).await?;
+    crate::api::core::login_name::clear_verifier(&user.uuid, &conn).await?;
     nt.send_logout(&user, None, &conn).await;
 
     Device::delete_all_by_user(&user.uuid, &conn).await?;
@@ -1377,6 +1381,7 @@ async fn post_email(data: Json<ChangeEmailData>, headers: Headers, conn: DbConn,
     let save_result = user.save(&conn).await;
 
     crate::api::core::email_interval::clear_user(&user.uuid, &conn).await?;
+    crate::api::core::login_name::clear_verifier(&user.uuid, &conn).await?;
     nt.send_logout(&user, None, &conn).await;
 
     save_result

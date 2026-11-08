@@ -564,6 +564,8 @@ table! {
         used_at -> Nullable<BigInt>,
         attempts -> Integer,
         created_at -> BigInt,
+        last_sent_at -> Nullable<BigInt>,
+        send_count -> Integer,
     }
 }
 
@@ -585,6 +587,7 @@ table! {
     komboe_login_names (user_uuid) {
         user_uuid -> Text,
         name -> Text,
+        verifier_hash -> Nullable<Text>,
     }
 }
 

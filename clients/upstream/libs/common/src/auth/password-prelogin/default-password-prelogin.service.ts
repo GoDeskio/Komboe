@@ -51,6 +51,11 @@ export class DefaultPasswordPreloginService implements PasswordPreloginService {
     this.currentPreloginData$ = null;
   }
 
+  async resolveLoginName(name: string, verifier: string): Promise<PasswordPreloginData> {
+    const response = await this.passwordPreloginApiService.resolveLoginName(name, verifier);
+    return PasswordPreloginData.fromResponse(response);
+  }
+
   private async fetchPreloginData(email: string): Promise<PasswordPreloginData> {
     // TODO: PM-40137 - Remove this flag
     const useSdk = await this.configService.getFeatureFlag(

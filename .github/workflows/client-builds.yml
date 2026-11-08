@@ -51,7 +51,7 @@ jobs:
           npm ci
           npm run build:oss --workspace @bitwarden/desktop
           cd apps/desktop
-          npx electron-builder --win --x64 -p never
+          npx electron-builder --win nsis --x64 -p never --config.win.target=nsis
       - uses: actions/upload-artifact@v4
         with:
           name: desktop-windows-unsigned

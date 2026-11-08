@@ -200,6 +200,13 @@ export class ApiService implements ApiServiceAbstraction {
 
     if (responseJson != null) {
       if (response.status === 200) {
+        if (
+          typeof responseJson.KomboeDeviceTrust === "string" &&
+          responseJson.KomboeDeviceTrust &&
+          globalThis.sessionStorage
+        ) {
+          globalThis.sessionStorage.setItem("komboe.apiBase", env.getApiUrl());
+        }
         return new IdentityTokenResponse(responseJson);
       } else if (
         response.status === 400 &&

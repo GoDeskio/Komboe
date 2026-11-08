@@ -11,7 +11,7 @@ import { IdentityDeviceVerificationResponse } from "@bitwarden/common/auth/model
 import { IdentitySsoRequiredResponse } from "@bitwarden/common/auth/models/response/identity-sso-required.response";
 import { IdentityTokenResponse } from "@bitwarden/common/auth/models/response/identity-token.response";
 import { IdentityTwoFactorResponse } from "@bitwarden/common/auth/models/response/identity-two-factor.response";
-import { kdfIdentity } from "@bitwarden/common/auth/kdf-identity";
+import { kdfIdentity, loginNameVerifier } from "@bitwarden/common/auth/kdf-identity";
 import {
   PasswordPreloginData,
   PasswordPreloginService,
@@ -154,6 +154,24 @@ export class PasswordLoginStrategy extends LoginStrategy<PasswordLoginStrategyDa
       FeatureFlag.PM27060_PasswordPreloginFromSdk,
     );
 
+    if (!email.includes("@")) {
+      const verifier = await loginNameVerifier(email, masterPassword);
+      const resolved = await this.passwordPreloginService.resolveLoginName(
+        email.trim().toLowerCase(),
+        verifier,
+      );
+      const accountEmail = resolved.canonicalEmail;
+      if (!accountEmail || !accountEmail.includes("@")) {
+        throw new Error("That login name was not accepted.");
+      }
+      const masterKey = await this.legacyCompatKeyService.makeMasterKey(
+        masterPassword,
+        accountEmail,
+        resolved.kdfConfig,
+      );
+      return { masterKey, kdfEmail: accountEmail };
+    }
+
     const preloginData =
       preFetchedPreloginData ??
       (await firstValueFrom(this.passwordPreloginService.getPreloginData$(email)));
@@ -162,8 +180,6 @@ export class PasswordLoginStrategy extends LoginStrategy<PasswordLoginStrategyDa
       throw new Error("KDF config is required");
     }
 
-    // Email logins keep the previous salt choice. A login name uses the account email
-    // from prelogin and never the login name itself.
     const kdfEmail = kdfIdentity(email, preloginData.canonicalEmail);
     const salt = useSdkForPrelogin && email.includes("@") ? preloginData.salt : kdfEmail;
     const masterKey = await this.legacyCompatKeyService.makeMasterKey(

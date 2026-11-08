@@ -46,6 +46,7 @@ pub fn routes() -> Vec<Route> {
         login,
         post_prelogin,
         prelogin_password,
+        login_name_resolve,
         register_verification_email,
         register_finish,
         prevalidate,
@@ -1117,6 +1118,40 @@ async fn post_prelogin(data: Json<PreloginData>, ip: ClientIp, conn: DbConn) -> 
 #[post("/accounts/prelogin/password", data = "<data>")]
 async fn prelogin_password(data: Json<PreloginData>, ip: ClientIp, conn: DbConn) -> JsonResult {
     prelogin(data, ip, conn).await
+}
+
+#[derive(Deserialize)]
+#[serde(rename_all = "camelCase")]
+struct LoginNameResolveData {
+    name: String,
+    login_verifier: String,
+}
+
+/// Returns the account email and KDF only after the login-name verifier matches.
+/// A miss uses the same error as a wrong password and does not include KDF fields.
+#[post("/accounts/login-name/resolve", data = "<data>")]
+async fn login_name_resolve(data: Json<LoginNameResolveData>, ip: ClientIp, conn: DbConn) -> JsonResult {
+    crate::ratelimit::check_limit_login(&ip.ip)?;
+    let data = data.into_inner();
+    let Some((email, kdf_type, kdf_iter, kdf_mem, kdf_para)) =
+        crate::api::core::login_name::prove_login_name(&data.name, &data.login_verifier, &conn).await
+    else {
+        err!("Username or password is incorrect. Try again");
+    };
+    Ok(Json(json!({
+        "email": email,
+        "kdf": kdf_type,
+        "kdfIterations": kdf_iter,
+        "kdfMemory": kdf_mem,
+        "kdfParallelism": kdf_para,
+        "kdfSettings": {
+            "iterations": kdf_iter,
+            "kdfType": kdf_type,
+            "memory": kdf_mem,
+            "parallelism": kdf_para
+        },
+        "salt": null,
+    })))
 }
 
 #[derive(Debug, Deserialize)]

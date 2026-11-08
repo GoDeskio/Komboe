@@ -45,6 +45,10 @@ export async function passwordHash(email, password, pre) {
   return b64(await pbkdf2(key, bytes(password), 1));
 }
 
+async function loginNameVerifier(name, password) {
+  return b64(await pbkdf2(bytes(password), bytes(name.trim().toLowerCase()), 100000));
+}
+
 function deviceId() {
   let id = sessionStorage.getItem(DEVICE_KEY);
   if (!id) {
@@ -189,11 +193,24 @@ async function boot() {
           return;
         }
         if (!typed.includes("@")) {
-          showError(error, "Sign in with the email for this vault. A login name is not the key.");
-          return;
+          const verifier = await loginNameVerifier(typed, password);
+          const resolved = await fetch("/identity/accounts/login-name/resolve", {
+            method: "POST",
+            headers: { "Content-Type": "application/json", Accept: "application/json" },
+            body: JSON.stringify({ name: typed, loginVerifier: verifier }),
+            credentials: "omit",
+          });
+          const resolvedBody = await readJson(resolved);
+          if (!resolved.ok || !String(resolvedBody.email || "").includes("@")) {
+            showError(error, loginMessage(resolvedBody, resolved.status));
+            return;
+          }
+          accountEmail = String(resolvedBody.email).trim().toLowerCase();
+          hash = await passwordHash(accountEmail, password, resolvedBody);
+        } else {
+          accountEmail = typed;
+          hash = await passwordHash(accountEmail, password, preBody);
         }
-        accountEmail = typed;
-        hash = await passwordHash(accountEmail, password, preBody);
         pending = { typed, hash, accountEmail };
       } else {
         accountEmail = pending.accountEmail;
@@ -251,7 +268,6 @@ async function boot() {
       }
       sessionStorage.setItem(TOKEN_KEY, body.access_token);
       if (body.KomboeDeviceTrust) sessionStorage.setItem(TRUST_KEY, body.KomboeDeviceTrust);
-      else sessionStorage.removeItem(TRUST_KEY);
       pending = null;
       document.getElementById("master-password").value = "";
       code.value = "";

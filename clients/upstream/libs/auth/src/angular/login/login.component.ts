@@ -27,6 +27,7 @@ import { DevicesApiServiceAbstraction } from "@bitwarden/common/auth/abstraction
 import { SsoLoginServiceAbstraction } from "@bitwarden/common/auth/abstractions/sso-login.service.abstraction";
 import { AuthResult } from "@bitwarden/common/auth/models/domain/auth-result";
 import { OrganizationInviteService } from "@bitwarden/common/auth/organization-invite";
+import { loginIdentifierAccepted } from "@bitwarden/common/auth/kdf-identity";
 import { PasswordPreloginService } from "@bitwarden/common/auth/password-prelogin";
 import { ClientType, HttpStatusCode } from "@bitwarden/common/enums";
 import { ErrorResponse } from "@bitwarden/common/models/response/error.response";
@@ -110,7 +111,8 @@ export class LoginComponent implements OnInit, OnDestroy {
         "",
         [
           Validators.required,
-          Validators.email,
+          (control: FormControl) =>
+            loginIdentifierAccepted(String(control.value ?? "")) ? null : { identifier: true },
         ],
       ],
       masterPassword: [
@@ -832,9 +834,8 @@ export class LoginComponent implements OnInit, OnDestroy {
    */
   private prefetchPasswordPreloginData() {
     const email = this.formGroup.value.email;
-    if (email) {
-      // Don't await this call as we don't want to delay the UI transition to the master password entry
-      // Errors are deferred to the subscriber in submit().
+    if (email && email.includes("@")) {
+      // A login name is resolved with the password on submit. Prelogin must not be asked for it.
       void this.passwordPreloginService.getPreloginData$(email);
     }
   }

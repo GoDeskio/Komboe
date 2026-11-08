@@ -35,6 +35,33 @@ jobs:
             exit 1
           fi
 
+  marketing:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@1.99.0
+      - run: sudo apt-get update && sudo apt-get install -y pkg-config libssl-dev
+      - uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: server/upstream
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - run: npm ci
+        working-directory: apps/web-marketing
+      - run: npx playwright install --with-deps chromium
+        working-directory: apps/web-marketing
+      - run: bash e2e/run.sh
+        working-directory: apps/web-marketing
+        env:
+          CARGO_BUILD_JOBS: "2"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: marketing-screenshots
+          path: apps/web-marketing/e2e/screenshots/*
+
   image:
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     needs: checks

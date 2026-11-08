@@ -1,0 +1,11 @@
+{
+  "name": "komboe-marketing",
+  "private": true,
+  "scripts": {
+    "build": "python3 build.py",
+    "test:e2e": "playwright test"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.49.1"
+  }
+}

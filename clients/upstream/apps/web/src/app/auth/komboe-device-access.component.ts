@@ -10,14 +10,23 @@ import { StateProvider } from "@bitwarden/common/platform/state";
 import { ApiService } from "@bitwarden/common/abstractions/api.service";
 import {
   envelopeKeyBytes,
+  LOGIN_NAME_WRAP_ITERATIONS,
+  LOGIN_NAME_WRAP_KDF_TYPE,
+  loginNamePlaintext,
   randomEnvelopeSalt,
-  sealKdfEmail,
+  sealLoginNamePlaintext,
 } from "@bitwarden/common/auth/kdf-identity";
 import { UserId } from "@bitwarden/common/types/guid";
 import { UserKey } from "@bitwarden/common/types/key";
 import { LockComponent } from "@bitwarden/key-management-ui";
 import { KeyService } from "@bitwarden/key-management";
-import { KdfConfig, KdfType, LegacyCompatKeyService, SymmetricCryptoKey } from "@bitwarden/legacy-crypto";
+import {
+  KdfConfig,
+  KdfType,
+  LegacyCompatKeyService,
+  PBKDF2KdfConfig,
+  SymmetricCryptoKey,
+} from "@bitwarden/legacy-crypto";
 import { LogoutService } from "@bitwarden/auth/common";
 import { LockService, LockSource, UnlockService } from "@bitwarden/unlock";
 
@@ -194,9 +203,20 @@ export class KomboeDeviceAccessComponent {
         true,
         true,
       );
+      const accountKdf = this.kdfBody(kdf);
       const envelopeSalt = randomEnvelopeSalt();
-      const wrappingKey = await this.legacyKey.makeMasterKeyPreservingSalt(password, envelopeSalt, kdf);
-      const envelope = await sealKdfEmail(envelopeKeyBytes(wrappingKey.toEncoded()), kdfEmail);
+      const wrapKdf = new PBKDF2KdfConfig(LOGIN_NAME_WRAP_ITERATIONS);
+      const wrappingKey = await this.legacyKey.makeMasterKeyPreservingSalt(password, envelopeSalt, wrapKdf);
+      const envelope = await sealLoginNamePlaintext(
+        envelopeKeyBytes(wrappingKey.toEncoded()),
+        loginNamePlaintext({
+          kdfEmail,
+          kdfType: accountKdf.kdf,
+          kdfIterations: accountKdf.kdfIterations,
+          kdfMemory: accountKdf.kdfMemory,
+          kdfParallelism: accountKdf.kdfParallelism,
+        }),
+      );
       const saved = await this.apiService.send(
         "PUT",
         "/komboe/login-name",
@@ -205,7 +225,10 @@ export class KomboeDeviceAccessComponent {
           masterPasswordHash,
           envelope,
           envelopeSalt,
-          ...this.kdfBody(kdf),
+          kdf: LOGIN_NAME_WRAP_KDF_TYPE,
+          kdfIterations: LOGIN_NAME_WRAP_ITERATIONS,
+          kdfMemory: null,
+          kdfParallelism: null,
         },
         true,
         true,

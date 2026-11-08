@@ -1126,8 +1126,9 @@ struct LoginNameOpenData {
     name: String,
 }
 
-/// Returns the account KDF and an AES-GCM envelope of the vault-key email.
-/// The email is not in the body. A miss has the same shape and is stable.
+/// Returns the public login-name wrap KDF and an AES-GCM envelope.
+/// The wrap KDF does not change when the name exists, and it is not the account's custom KDF.
+/// The email and the account KDF are inside the envelope. A miss has the same shape and is stable.
 #[post("/accounts/login-name/open", data = "<data>")]
 async fn login_name_open(data: Json<LoginNameOpenData>, ip: ClientIp, conn: DbConn) -> JsonResult {
     crate::ratelimit::check_limit_login(&ip.ip)?;

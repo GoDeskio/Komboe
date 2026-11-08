@@ -11,7 +11,12 @@ import { IdentityDeviceVerificationResponse } from "@bitwarden/common/auth/model
 import { IdentitySsoRequiredResponse } from "@bitwarden/common/auth/models/response/identity-sso-required.response";
 import { IdentityTokenResponse } from "@bitwarden/common/auth/models/response/identity-token.response";
 import { IdentityTwoFactorResponse } from "@bitwarden/common/auth/models/response/identity-two-factor.response";
-import { envelopeKeyBytes, kdfIdentity, openKdfEmail } from "@bitwarden/common/auth/kdf-identity";
+import {
+  envelopeKeyBytes,
+  kdfIdentity,
+  LoginNamePayload,
+  openLoginNamePayload,
+} from "@bitwarden/common/auth/kdf-identity";
 import {
   PasswordPreloginData,
   PasswordPreloginService,
@@ -21,13 +26,31 @@ import { PasswordStrengthServiceAbstraction } from "@bitwarden/common/tools/pass
 import { UserId } from "@bitwarden/common/types/guid";
 import { MasterKey } from "@bitwarden/common/types/key";
 // eslint-disable-next-line no-restricted-imports
-import { LegacyCompatKeyService, SymmetricCryptoKey } from "@bitwarden/legacy-crypto";
+import {
+  Argon2KdfConfig,
+  KdfConfig,
+  KdfType,
+  LegacyCompatKeyService,
+  PBKDF2KdfConfig,
+  SymmetricCryptoKey,
+} from "@bitwarden/legacy-crypto";
 import { UnlockService } from "@bitwarden/unlock";
 
 import { PasswordLoginCredentials } from "../models/domain/login-credentials";
 import { CacheData } from "../services/login-strategies/login-strategy.state";
 
 import { LoginStrategy, LoginStrategyData } from "./login.strategy";
+
+function loginNameAccountKdf(payload: LoginNamePayload): KdfConfig {
+  if (payload.kdfType === KdfType.Argon2id) {
+    return new Argon2KdfConfig(
+      payload.kdfIterations,
+      payload.kdfMemory ?? 0,
+      payload.kdfParallelism ?? 0,
+    );
+  }
+  return new PBKDF2KdfConfig(payload.kdfIterations);
+}
 
 export class PasswordLoginStrategyData implements LoginStrategyData {
   readonly tokenRequest: PasswordTokenRequest;
@@ -164,13 +187,16 @@ export class PasswordLoginStrategy extends LoginStrategy<PasswordLoginStrategyDa
         opened.envelopeSalt,
         opened.kdfConfig,
       );
-      const accountEmail = await openKdfEmail(envelopeKeyBytes(wrappingKey.toEncoded()), opened.envelope);
+      const payload = await openLoginNamePayload(
+        envelopeKeyBytes(wrappingKey.toEncoded()),
+        opened.envelope,
+      );
       const masterKey = await this.legacyCompatKeyService.makeMasterKeyPreservingSalt(
         masterPassword,
-        accountEmail,
-        opened.kdfConfig,
+        payload.kdfEmail,
+        loginNameAccountKdf(payload),
       );
-      return { masterKey, kdfEmail: accountEmail };
+      return { masterKey, kdfEmail: payload.kdfEmail };
     }
 
     const preloginData =
@@ -181,16 +207,8 @@ export class PasswordLoginStrategy extends LoginStrategy<PasswordLoginStrategyDa
       throw new Error("KDF config is required");
     }
 
-    const storedSalt = preloginData.kdfEmail;
-    if (storedSalt && storedSalt.includes("@")) {
-      const masterKey = await this.legacyCompatKeyService.makeMasterKeyPreservingSalt(
-        masterPassword,
-        storedSalt,
-        preloginData.kdfConfig,
-      );
-      return { masterKey, kdfEmail: storedSalt };
-    }
-
+    // Prelogin does not carry the stored email. The typed value is the salt, lowercased
+    // the same way registration derives it. A mixed-case salt is inside a login-name envelope.
     const kdfEmail = kdfIdentity(email, preloginData.canonicalEmail);
     const salt = useSdkForPrelogin && email.includes("@") ? preloginData.salt : kdfEmail;
     const masterKey = await this.legacyCompatKeyService.makeMasterKey(

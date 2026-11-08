@@ -45,7 +45,24 @@ export async function passwordHash(email, password, pre) {
   return b64(await pbkdf2(key, bytes(password), 1));
 }
 
-async function openKdfEmail(rawKey, envelope) {
+function parseLoginNamePlaintext(plain) {
+  const text = plain.replace(/\0+$/g, "");
+  if (!text.startsWith("v2\n")) {
+    if (!text.includes("@")) throw new Error("That login name was not accepted.");
+    return { kdfEmail: text, kdf: 0, kdfIterations: 600000, kdfMemory: null, kdfParallelism: null };
+  }
+  const parts = text.split("\n");
+  if (!String(parts[1] || "").includes("@")) throw new Error("That login name was not accepted.");
+  return {
+    kdfEmail: parts[1],
+    kdf: Number(parts[2]),
+    kdfIterations: Number(parts[3]),
+    kdfMemory: parts[4] ? Number(parts[4]) : null,
+    kdfParallelism: parts[5] ? Number(parts[5]) : null,
+  };
+}
+
+async function openLoginNamePayload(rawKey, envelope) {
   const text = atob(envelope);
   const packed = new Uint8Array(text.length);
   for (let i = 0; i < text.length; i += 1) packed[i] = text.charCodeAt(i);
@@ -56,9 +73,7 @@ async function openKdfEmail(rawKey, envelope) {
     key,
     packed.slice(12),
   );
-  const email = new TextDecoder().decode(plain).replace(/\0+$/g, "");
-  if (!email.includes("@")) throw new Error("That login name was not accepted.");
-  return email;
+  return parseLoginNamePlaintext(new TextDecoder().decode(plain));
 }
 
 function deviceId() {
@@ -216,18 +231,18 @@ async function boot() {
             showError(error, loginMessage(openedBody, opened.status));
             return;
           }
+          let payload;
           try {
             const wrappingKey = await masterKey(openedBody.envelopeSalt, password, openedBody);
-            accountEmail = await openKdfEmail(wrappingKey, openedBody.envelope);
+            payload = await openLoginNamePayload(wrappingKey, openedBody.envelope);
           } catch {
             showError(error, "Email or master password is incorrect.");
             return;
           }
-          hash = await passwordHash(accountEmail, password, openedBody);
+          accountEmail = payload.kdfEmail;
+          hash = await passwordHash(accountEmail, password, payload);
         } else {
-          accountEmail = typeof preBody.kdfEmail === "string" && preBody.kdfEmail.includes("@")
-            ? preBody.kdfEmail.trim()
-            : typed;
+          accountEmail = typed;
           hash = await passwordHash(accountEmail, password, preBody);
         }
         pending = { typed, hash, accountEmail };

@@ -26,6 +26,14 @@ use crate::{
 /// IV (12) + padded email (128) + GCM tag (16).
 const ENVELOPE_LEN: usize = 156;
 
+/// Every login-name open response uses this KDF, whether or not the name exists.
+/// It is PBKDF2-SHA256 at the account default. A hit must not return a custom account
+/// KDF: the miss decoys cannot imitate an arbitrary custom value, so that value would
+/// show which names exist. The account's own KDF, which may be custom, is inside the
+/// envelope and is what derives the vault key.
+pub const LOGIN_NAME_WRAP_KDF_TYPE: i32 = 0;
+pub const LOGIN_NAME_WRAP_KDF_ITERATIONS: i32 = 600_000;
+
 pub fn routes() -> Vec<Route> {
     routes![get_kdf_email, put_kdf_email, get_login_name, put_login_name, delete_login_name]
 }
@@ -87,14 +95,25 @@ fn decoy_bytes(name: &str) -> Vec<u8> {
     out
 }
 
-/// Same shape for a hit and a miss. The email is not in the body. Repeating the call does not
+fn public_wrap() -> (i32, i32, Option<i32>, Option<i32>) {
+    (LOGIN_NAME_WRAP_KDF_TYPE, LOGIN_NAME_WRAP_KDF_ITERATIONS, None, None)
+}
+
+/// Same KDF fields for a hit and a miss. The email is not in the body. Repeating the call does not
 /// change a miss, so the ciphertext is not a boolean oracle.
 fn decoy_open(name: &str) -> (i32, i32, Option<i32>, Option<i32>, String, String) {
-    let (kdf_type, kdf_iter, kdf_mem, kdf_para) = super::accounts::unknown_email_kdf(name);
+    let (kdf_type, kdf_iter, kdf_mem, kdf_para) = public_wrap();
     let bytes = decoy_bytes(name);
     let salt = data_encoding::HEXLOWER.encode(&bytes[..16]);
     let envelope = data_encoding::BASE64.encode(&bytes);
     (kdf_type, kdf_iter, kdf_mem, kdf_para, envelope, salt)
+}
+
+/// PBKDF2 at or below the public wrap is not a cheaper password confirmation than the wrap.
+/// Argon2 and a higher PBKDF2 count are stronger, so a login name is refused rather than sealed
+/// with a cheaper key. The account KDF itself is unchanged.
+fn account_kdf_fits_wrap(kdf_type: i32, kdf_iterations: i32) -> bool {
+    kdf_type == LOGIN_NAME_WRAP_KDF_TYPE && (100_000..=LOGIN_NAME_WRAP_KDF_ITERATIONS).contains(&kdf_iterations)
 }
 
 /// KDF parameters and the envelope for this login name. The email stays inside the envelope.
@@ -120,7 +139,12 @@ pub async fn open_login_name(name: &str, conn: &DbConn) -> (i32, i32, Option<i32
         })
         .await;
     if let Some((Some(envelope), Some(salt), Some(kdf_type), Some(kdf_iter), kdf_mem, kdf_para)) = row {
-        return (kdf_type, kdf_iter, kdf_mem, kdf_para, envelope, salt);
+        // A row sealed with some other KDF is not opened. Returning those parameters
+        // would distinguish the name, and the client would not be using the public wrap.
+        if (kdf_type, kdf_iter, kdf_mem, kdf_para) == public_wrap() {
+            let (wrap_type, wrap_iter, wrap_mem, wrap_para) = public_wrap();
+            return (wrap_type, wrap_iter, wrap_mem, wrap_para, envelope, salt);
+        }
     }
     decoy_open(&name)
 }
@@ -239,12 +263,15 @@ async fn put_login_name(body: Json<LoginNameBody>, headers: Headers, conn: DbCon
         Ok(name) => name,
         Err(message) => err!(message),
     };
-    if headers.user.client_kdf_type != body.kdf
-        || headers.user.client_kdf_iter != body.kdf_iterations
-        || headers.user.client_kdf_memory != body.kdf_memory
-        || headers.user.client_kdf_parallelism != body.kdf_parallelism
+    if body.kdf != LOGIN_NAME_WRAP_KDF_TYPE
+        || body.kdf_iterations != LOGIN_NAME_WRAP_KDF_ITERATIONS
+        || body.kdf_memory.is_some()
+        || body.kdf_parallelism.is_some()
     {
-        err!("The login name has to use this account's key derivation. Save it again from a signed-in client.");
+        err!("The login name has to be sealed with the vault's login-name key derivation.");
+    }
+    if !account_kdf_fits_wrap(headers.user.client_kdf_type, headers.user.client_kdf_iter) {
+        err!("This account's key derivation is stronger than the login-name seal. Sign in with the email.");
     }
     if !envelope_ok(&body.envelope, &body.envelope_salt) {
         err!("The login name was not saved. Confirm the master password and try again.");
@@ -349,5 +376,14 @@ mod tests {
         assert_eq!(first.len(), ENVELOPE_LEN);
         let envelope = data_encoding::BASE64.encode(&first);
         assert!(!envelope.to_lowercase().contains("komboe"));
+        let (kdf_type, kdf_iter, kdf_mem, kdf_para, _, _) = decoy_open("intervalname");
+        assert_eq!(kdf_type, LOGIN_NAME_WRAP_KDF_TYPE);
+        assert_eq!(kdf_iter, LOGIN_NAME_WRAP_KDF_ITERATIONS);
+        assert!(kdf_mem.is_none());
+        assert!(kdf_para.is_none());
+        assert!(account_kdf_fits_wrap(0, 500_000));
+        assert!(account_kdf_fits_wrap(0, 600_000));
+        assert!(!account_kdf_fits_wrap(0, 750_000));
+        assert!(!account_kdf_fits_wrap(1, 3));
     }
 }

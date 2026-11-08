@@ -24,11 +24,17 @@ The recovery is explicit: a session that is already signed in sets the interval 
 
 ## Login names
 
-Prelogin does not resolve a login name. It does not return an email for a name, and it does not return that account's KDF. Signing in with a name calls `/identity/accounts/login-name/open`. The response is the account's KDF parameters and an AES-GCM envelope. The vault-key email is inside the envelope. A miss has the same shape and the same bytes every time, so repeating the call does not reveal whether the name exists.
+Prelogin does not resolve a login name and does not return a vault-key email for anyone. A new account, an old account, and an unknown email all omit that field. Returning it only for accounts that have a stored salt told an anonymous caller which addresses were registered.
 
-The envelope key is derived with that account's KDF (600000 PBKDF2 or Argon2, whichever the account uses) and a random salt. It is not PBKDF2-100000 with the login name as salt. A database copy of the envelope is not a cheaper password oracle than the account KDF. The server rejects an enrollment whose KDF parameters are not the account's current ones.
+Signing in with a name calls `/identity/accounts/login-name/open`. The KDF in that response is always PBKDF2-SHA256 with 600000 iterations, for a name that exists and for one that does not. It is not the account's KDF. A custom count or Argon2 would not match the miss response, so those parameters stay out of the body. A miss has the same KDF fields and the same envelope bytes every time.
 
-The salt inside the envelope is the email the client sent at registration, including its case. `users.email` is stored lowercased for lookup and is not that salt. Accounts created before migration `20261108040000` have no stored salt. A signed-in client can record one only when it lowercases to `users.email`. A mixed-case salt from before that migration cannot be reconstructed from the lowercased column.
+The envelope is sealed with that public wrap and a random salt. Inside it are the registration email, including its case, and the account's own KDF. After the wrap opens, the vault key uses that inner KDF and that email. `users.email` is stored lowercased for lookup and is not the salt. This client's email sign-in still lowercases the typed address, which is how registration derives the salt. A mixed-case salt unlocks through the login name, or through a client that hashes that exact string.
+
+A login name is refused when the account KDF is stronger than the public wrap: PBKDF2 above 600000 iterations, or Argon2. Sealing those accounts with the wrap would be a cheaper password check. Their vault KDF is not changed. They sign in with the email.
+
+Accounts created before migration `20261108040000` have no stored salt. A signed-in client can record one only when it lowercases to `users.email`. A mixed-case salt from before that migration cannot be reconstructed from the lowercased column.
+
+Migration `20261108030000` added `verifier_hash` for the old PBKDF2-100000 proof. Migration `20261108050000` sets every value to null. The column remains because the SQLite build this server uses cannot drop it. The server does not read or write it.
 
 Enrollment is the signed-in device settings page. It sends the master-password hash and the envelope. There is no unauthenticated verifier. Changing the master password or the account email clears the envelope. The person saves the login name again while signed in. If the vault key was derived from an older email, this login cannot invent that salt.
 
@@ -44,7 +50,7 @@ Lock clears decrypted cipher and folder caches, then the in-memory user key, wai
 
 ## Rollback
 
-Migration `20261108020000` creates the trust and challenge tables and deletes the old device-id trust rows. Migration `20261108030000` adds resend counters and the unused login-name verifier column. Migration `20261108040000` stores the original vault-key email and the login-name envelope.
+Migration `20261108020000` creates the trust and challenge tables and deletes the old device-id trust rows. Migration `20261108030000` adds resend counters and the login-name verifier column. Migration `20261108040000` stores the original vault-key email and the login-name envelope. Migration `20261108050000` clears every verifier hash and does not drop the column.
 
 Rolling the server back to a build that reads device-id trust does not restore those deleted rows, so every account with a timer is challenged again. A rolled-back server also does not understand `KomboeDeviceTrust` or the envelope. Rolling the database back past `20261108020000` drops the new tables. Do that only with a backup taken before the migration, and only while no account depends on the timer. SQLite cannot drop the envelope columns; a rollback there is a forward server build plus a database backup, not a down migration.
 

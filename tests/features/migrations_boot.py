@@ -78,7 +78,7 @@ def main():
         missing = [name for name in NEED if name not in names]
         if missing:
             raise SystemExit(f"migrations did not create {missing}")
-        for version in ("20261108000000", "20261108010000", "20261108020000", "20261108030000", "20261108040000"):
+        for version in ("20261108000000", "20261108010000", "20261108020000", "20261108030000", "20261108040000", "20261108050000"):
             if version not in versions:
                 raise SystemExit(f"{version} not in schema migrations: {versions[-8:]}")
         con = sqlite3.connect(db)

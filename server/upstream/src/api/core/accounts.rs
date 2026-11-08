@@ -1595,15 +1595,12 @@ pub async fn prelogin(data: Json<PreloginData>, ip: ClientIp, conn: DbConn) -> J
     // which names exist. Vault keys stay derived from the email the person types.
     let email = data.email.trim().to_lowercase();
 
-    let (kdf_type, kdf_iter, kdf_mem, kdf_para, kdf_email) = match User::find_by_mail(&email, &conn).await {
-        Some(user) => {
-            let kdf_email = super::login_name::stored_kdf_email(&user.uuid, &conn).await;
-            (user.client_kdf_type, user.client_kdf_iter, user.client_kdf_memory, user.client_kdf_parallelism, kdf_email)
-        }
-        None => {
-            let (kdf_type, kdf_iter, kdf_mem, kdf_para) = unknown_email_kdf(&email);
-            (kdf_type, kdf_iter, kdf_mem, kdf_para, None)
-        }
+    // Do not return the stored vault-key email. A non-null salt for registered
+    // accounts and null for everyone else tells an anonymous caller the account exists.
+    // The person types the email. Its original case is kept for login-name envelopes.
+    let (kdf_type, kdf_iter, kdf_mem, kdf_para) = match User::find_by_mail(&email, &conn).await {
+        Some(user) => (user.client_kdf_type, user.client_kdf_iter, user.client_kdf_memory, user.client_kdf_parallelism),
+        None => unknown_email_kdf(&email),
     };
 
     Ok(Json(json!({
@@ -1617,7 +1614,6 @@ pub async fn prelogin(data: Json<PreloginData>, ip: ClientIp, conn: DbConn) -> J
             "memory": kdf_mem,
             "parallelism": kdf_para
         },
-        "kdfEmail": kdf_email,
         "salt": null,
     })))
 }

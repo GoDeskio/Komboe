@@ -45,6 +45,23 @@ export async function passwordHash(email, password, pre) {
   return b64(await pbkdf2(key, bytes(password), 1));
 }
 
+/**
+ * Email vault-key salts. The typed case is first so a mixed-case vault unlocks.
+ * The lowercased form is second so an account registered with a lowercased salt
+ * still unlocks when the person types different case. Identical strings are one try.
+ */
+export function emailSaltCandidates(typed) {
+  const exact = String(typed || "").trim();
+  if (!exact) return [];
+  const lower = exact.toLowerCase();
+  return exact === lower ? [exact] : [exact, lower];
+}
+
+function passwordRejected(body, status) {
+  const message = (body && (body.message || body.error_description || body.Message)) || "";
+  return status === 400 && /username or password is incorrect/i.test(message);
+}
+
 function parseLoginNamePlaintext(plain) {
   const text = plain.replace(/\0+$/g, "");
   if (!text.startsWith("v2\n")) {
@@ -198,11 +215,13 @@ async function boot() {
     busy = true;
     submit.disabled = true;
     clearError(error);
-    const typed = document.getElementById("email").value.trim().toLowerCase();
+    const raw = document.getElementById("email").value.trim();
+    const typed = raw.toLowerCase();
     const password = document.getElementById("master-password").value;
     try {
       let accountEmail = typed;
       let hash = !twoFactor.hidden && pending && pending.typed === typed ? pending.hash : null;
+      let settled = null;
       if (!hash) {
         const pre = await fetch("/identity/accounts/prelogin", {
           method: "POST",
@@ -242,8 +261,22 @@ async function boot() {
           accountEmail = payload.kdfEmail;
           hash = await passwordHash(accountEmail, password, payload);
         } else {
-          accountEmail = typed;
+          const salts = emailSaltCandidates(raw);
+          accountEmail = salts[0];
           hash = await passwordHash(accountEmail, password, preBody);
+          if (salts[1]) {
+            const probeExtra = {};
+            const storedTrust = sessionStorage.getItem(TRUST_KEY);
+            if (storedTrust) probeExtra.komboeDeviceTrust = storedTrust;
+            const probe = await tokenRequest(accountEmail, hash, probeExtra);
+            const probeBody = await readJson(probe);
+            if (passwordRejected(probeBody, probe.status)) {
+              accountEmail = salts[1];
+              hash = await passwordHash(accountEmail, password, preBody);
+            } else {
+              settled = { response: probe, body: probeBody };
+            }
+          }
         }
         pending = { typed, hash, accountEmail };
       } else {
@@ -258,8 +291,8 @@ async function boot() {
         extra.twoFactorRemember = "0";
         if (pending && pending.challenge) extra.komboeLoginChallenge = pending.challenge;
       }
-      const response = await tokenRequest(accountEmail, hash, extra);
-      const body = await readJson(response);
+      const response = settled ? settled.response : await tokenRequest(accountEmail, hash, extra);
+      const body = settled ? settled.body : await readJson(response);
       if (response.status === 429) {
         showError(error, loginMessage(body, 429));
         return;
@@ -315,4 +348,4 @@ async function boot() {
   });
 }
 
-boot();
+if (typeof document !== "undefined") boot();

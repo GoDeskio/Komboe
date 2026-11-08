@@ -23,6 +23,8 @@ jobs:
           node-version: "22"
       - name: Extension trust token is revoked from session storage
         run: node --experimental-strip-types tests/features/email_trust_storage.mjs
+      - name: Login-name eligibility matches the server wrap rule
+        run: node --experimental-strip-types tests/features/login_name_eligibility.mjs
       - name: Validate the pull-only compose file
         env:
           KOMBOE_SERVER_DIGEST: aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
@@ -67,6 +69,8 @@ jobs:
           CARGO_BUILD_JOBS: "2"
       - name: Timed email sign-in against the built server and a local mail sink
         run: python3 tests/features/email_interval_flow.py
+      - name: Marketing sign-in keeps mixed-case salts and lowercased accounts
+        run: node tests/features/marketing_email_case.mjs
       - name: New migrations apply on boot and survive a second boot
         run: python3 tests/features/migrations_boot.py
       - name: Signed-in vault, downloads page, and PIN enroll/unlock/failure

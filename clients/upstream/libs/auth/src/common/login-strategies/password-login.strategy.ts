@@ -207,11 +207,12 @@ export class PasswordLoginStrategy extends LoginStrategy<PasswordLoginStrategyDa
       throw new Error("KDF config is required");
     }
 
-    // Prelogin does not carry the stored email. The typed value is the salt, lowercased
-    // the same way registration derives it. A mixed-case salt is inside a login-name envelope.
+    // The typed email keeps its case. Do not lowercase it. Prelogin does not
+    // send the stored salt back. A mixed-case vault key matches only this string.
     const kdfEmail = kdfIdentity(email, preloginData.canonicalEmail);
-    const salt = useSdkForPrelogin && email.includes("@") ? preloginData.salt : kdfEmail;
-    const masterKey = await this.legacyCompatKeyService.makeMasterKey(
+    const salt =
+      useSdkForPrelogin && email.includes("@") && preloginData.salt ? preloginData.salt : kdfEmail;
+    const masterKey = await this.legacyCompatKeyService.makeMasterKeyPreservingSalt(
       masterPassword,
       salt,
       preloginData.kdfConfig,

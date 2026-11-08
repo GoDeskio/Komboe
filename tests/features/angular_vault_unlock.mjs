@@ -210,6 +210,13 @@ async function main() {
     if (salt.toLowerCase() !== email.toLowerCase()) {
       throw new Error("vault email field was " + salt);
     }
+    const loginCopy = await page.getByTestId("device-access").innerText();
+    if (!loginCopy.includes("PBKDF2-SHA256 at 600000")) {
+      throw new Error("login name copy does not name the public wrap");
+    }
+    if (/sealed with this account/i.test(loginCopy)) {
+      throw new Error("login name copy still says the account KDF seals the envelope");
+    }
     await page.getByTestId("login-name").evaluate((el, value) => {
       el.value = value;
       el.dispatchEvent(new Event("input", { bubbles: true }));

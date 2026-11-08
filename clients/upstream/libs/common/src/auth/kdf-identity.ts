@@ -24,6 +24,19 @@ export const LOGIN_NAME_ENVELOPE_PLAINTEXT = 128;
 export const LOGIN_NAME_WRAP_KDF_TYPE = 0;
 export const LOGIN_NAME_WRAP_ITERATIONS = 600_000;
 
+/**
+ * Same rule as the server's `account_kdf_fits_wrap`.
+ * PBKDF2 from 100000 through 600000 can use a login name.
+ * Argon2 and a higher PBKDF2 count cannot: the public wrap would be a cheaper check.
+ */
+export function loginNameWrapAllowed(kdfType: number, kdfIterations: number): boolean {
+  return (
+    kdfType === LOGIN_NAME_WRAP_KDF_TYPE &&
+    kdfIterations >= 100_000 &&
+    kdfIterations <= LOGIN_NAME_WRAP_ITERATIONS
+  );
+}
+
 export type LoginNamePayload = {
   kdfEmail: string;
   kdfType: number;

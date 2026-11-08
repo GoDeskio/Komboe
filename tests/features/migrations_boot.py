@@ -87,13 +87,28 @@ def main():
         con.close()
         backup = data / "db_backup.sqlite3"
         shutil.copy2(db, backup)
+        con = sqlite3.connect(db)
+        con.execute(
+            "INSERT INTO komboe_login_names (user_uuid, name, verifier_hash) VALUES ('old-user', 'oldname', 'cheap-verifier')"
+        )
+        con.execute("DELETE FROM __diesel_schema_migrations WHERE version = '20261108050000'")
+        con.commit()
+        con.close()
         boot(data, data / "boot2.log")
         names2, _ = tables(db)
         if not NEED[0] in names2:
             raise SystemExit("second boot lost the migrated tables")
         con = sqlite3.connect(db)
         kept = con.execute("SELECT interval_secs FROM komboe_email_login_policy WHERE user_uuid='kept-user'").fetchone()
+        verifier = con.execute("SELECT verifier_hash FROM komboe_login_names WHERE name = 'oldname'").fetchone()
+        reran = con.execute(
+            "SELECT version FROM __diesel_schema_migrations WHERE version = '20261108050000'"
+        ).fetchone()
         con.close()
+        if verifier != (None,):
+            raise SystemExit(f"old login verifier survived migration 20261108050000: {verifier}")
+        if reran != ("20261108050000",):
+            raise SystemExit(f"migration 20261108050000 did not record itself again: {reran}")
         if kept != (60,):
             raise SystemExit(f"upgrade boot did not keep the row: {kept}")
         # A copy of the upgraded file still opens and has the row. That is the backup the restore command copies back.

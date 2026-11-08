@@ -13,6 +13,7 @@ import {
   LOGIN_NAME_WRAP_ITERATIONS,
   LOGIN_NAME_WRAP_KDF_TYPE,
   loginNamePlaintext,
+  loginNameWrapAllowed,
   randomEnvelopeSalt,
   sealLoginNamePlaintext,
 } from "@bitwarden/common/auth/kdf-identity";
@@ -101,28 +102,38 @@ type DeviceUnlockApi = {
       }
       @if (mode === "enroll") {
         <h3 class="tw-mt-6 tw-text-base tw-font-semibold">Login name</h3>
-        <p>
-          A login name signs in without typing the email. The vault key still uses the email from
-          when the account was created, including its case. The server stores that email inside an
-          envelope sealed with this account's own key derivation, not a cheaper one. Changing the
-          master password clears it.
-        </p>
-        @if (savedLoginName()) {
-          <p>Current login name: {{ savedLoginName() }}</p>
+        @if (loginNameAllowed() === false) {
+          <p data-testid="login-name-unavailable">
+            A login name is not available for this account. Argon2, and PBKDF2 above 600000
+            iterations, stay on email sign-in. A login name would check the password with a
+            cheaper key, so it is not offered. Email sign-in still uses this account's own key
+            derivation.
+          </p>
+        } @else if (loginNameAllowed() === true) {
+          <p>
+            A login name signs in without typing the email. The vault key still uses the email
+            from when the account was created, including its case, and this account's own key
+            derivation. The envelope is sealed with PBKDF2-SHA256 at 600000 iterations. That is
+            not this account's key derivation, and it is not a cheaper check. Changing the master
+            password clears the login name.
+          </p>
+          @if (savedLoginName()) {
+            <p>Current login name: {{ savedLoginName() }}</p>
+          }
+          <label class="tw-mt-3 tw-block">
+            Exact vault email
+            <input class="tw-mt-1 tw-w-full" type="email" data-testid="login-name-kdf-email" [value]="kdfEmail()" (input)="kdfEmail.set($any($event.target).value)" />
+          </label>
+          <label class="tw-mt-3 tw-block">
+            Login name
+            <input class="tw-mt-1 tw-w-full" type="text" autocomplete="username" data-testid="login-name" (input)="loginName.set($any($event.target).value)" />
+          </label>
+          <label class="tw-mt-3 tw-block">
+            Master password
+            <input class="tw-mt-1 tw-w-full" type="password" autocomplete="current-password" data-testid="login-name-password" (input)="loginPassword.set($any($event.target).value)" />
+          </label>
+          <button type="button" class="tw-mt-2" data-testid="save-login-name" (click)="saveLoginName()">Save this login name</button>
         }
-        <label class="tw-mt-3 tw-block">
-          Exact vault email
-          <input class="tw-mt-1 tw-w-full" type="email" data-testid="login-name-kdf-email" [value]="kdfEmail()" (input)="kdfEmail.set($any($event.target).value)" />
-        </label>
-        <label class="tw-mt-3 tw-block">
-          Login name
-          <input class="tw-mt-1 tw-w-full" type="text" autocomplete="username" data-testid="login-name" (input)="loginName.set($any($event.target).value)" />
-        </label>
-        <label class="tw-mt-3 tw-block">
-          Master password
-          <input class="tw-mt-1 tw-w-full" type="password" autocomplete="current-password" data-testid="login-name-password" (input)="loginPassword.set($any($event.target).value)" />
-        </label>
-        <button type="button" class="tw-mt-2" data-testid="save-login-name" (click)="saveLoginName()">Save this login name</button>
         @if (loginNameMessage()) {
           <p role="status" data-testid="login-name-message">{{ loginNameMessage() }}</p>
         }
@@ -159,6 +170,8 @@ export class KomboeDeviceAccessComponent {
   protected readonly loginPassword = signal("");
   protected readonly kdfEmail = signal("");
   protected readonly loginNameMessage = signal("");
+  /** Null until this device knows the account KDF. False hides the form before any submit. */
+  protected readonly loginNameAllowed = signal<boolean | null>(null);
 
   constructor() {
     this.mode = this.router.url.includes("device-access") ? "enroll" : "unlock";
@@ -180,6 +193,12 @@ export class KomboeDeviceAccessComponent {
 
   protected async saveLoginName(): Promise<void> {
     this.loginNameMessage.set("");
+    if (this.loginNameAllowed() !== true) {
+      this.loginNameMessage.set(
+        "A login name is not available for this account. Sign in with your email.",
+      );
+      return;
+    }
     const name = this.loginName().trim();
     const password = this.loginPassword();
     const kdfEmail = this.kdfEmail().trim();
@@ -190,8 +209,11 @@ export class KomboeDeviceAccessComponent {
     try {
       const userId = await this.userId();
       const kdf = await firstValueFrom(this.stateProvider.getUser(userId, KDF_CONFIG).state$);
-      if (!kdf) {
-        this.loginNameMessage.set("This device does not have the account key derivation yet.");
+      if (!kdf || !loginNameWrapAllowed(kdf.kdfType, kdf.iterations)) {
+        this.loginNameAllowed.set(false);
+        this.loginNameMessage.set(
+          "A login name is not available for this account. Sign in with your email.",
+        );
         return;
       }
       const masterKey = await this.legacyKey.makeMasterKeyPreservingSalt(password, kdfEmail, kdf);
@@ -323,6 +345,8 @@ export class KomboeDeviceAccessComponent {
     }
     const account = await firstValueFrom(this.accountService.activeAccount$);
     this.kdfEmail.set(account?.email ?? "");
+    const kdf = await firstValueFrom(this.stateProvider.getUser(userId, KDF_CONFIG).state$);
+    this.loginNameAllowed.set(kdf != null && loginNameWrapAllowed(kdf.kdfType, kdf.iterations));
     try {
       const salt = await this.apiService.send("GET", "/komboe/kdf-email", null, true, true);
       if (typeof salt?.kdfEmail === "string" && salt.kdfEmail.includes("@")) {

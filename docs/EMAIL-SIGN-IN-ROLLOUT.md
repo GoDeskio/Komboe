@@ -28,9 +28,17 @@ Prelogin does not resolve a login name and does not return a vault-key email for
 
 Signing in with a name calls `/identity/accounts/login-name/open`. The KDF in that response is always PBKDF2-SHA256 with 600000 iterations, for a name that exists and for one that does not. It is not the account's KDF. A custom count or Argon2 would not match the miss response, so those parameters stay out of the body. A miss has the same KDF fields and the same envelope bytes every time.
 
-The envelope is sealed with that public wrap and a random salt. Inside it are the registration email, including its case, and the account's own KDF. After the wrap opens, the vault key uses that inner KDF and that email. `users.email` is stored lowercased for lookup and is not the salt. This client's email sign-in still lowercases the typed address, which is how registration derives the salt. A mixed-case salt unlocks through the login name, or through a client that hashes that exact string.
+The envelope is sealed with that public wrap and a random salt. Inside it are the registration email, including its case, and the account's own KDF. After the wrap opens, the vault key uses that inner KDF and that email. `users.email` is stored lowercased for lookup and is not the salt.
 
-A login name is refused when the account KDF is stronger than the public wrap: PBKDF2 above 600000 iterations, or Argon2. Sealing those accounts with the wrap would be a cheaper password check. Their vault KDF is not changed. They sign in with the email.
+The web vault keeps the case of the email typed at sign-in. It does not lowercase that string before deriving the vault key. The marketing sign-in tries that exact string first, then the lowercased string when it is different and the exact string was rejected. An account whose salt is the lowercased email still opens when the person types different case. A mixed-case salt opens from the exact string. Neither attempt is a cheaper key.
+
+A login name is refused when the account KDF is stronger than the public wrap: PBKDF2 above 600000 iterations, or Argon2. The device page checks that rule before it shows the form. Those accounts see that a login name is unavailable and that email sign-in still works. Sealing them with the wrap would be a cheaper password check. Their vault KDF is not changed.
+
+## Not done: login names for stronger key derivation
+
+Argon2 accounts, and PBKDF2 above 600000 iterations, still cannot use a login name. This is unfinished. A uniform open response cannot reveal those parameters without telling an anonymous caller that the name exists, and the 600000 wrap would be a cheaper password check. Do not treat this as implemented. Email sign-in is the path for those accounts.
+
+Email prelogin still returns the real KDF for an address that exists and a decoy from the usual list otherwise. That difference is unchanged from main. This revision does not hide it and does not weaken it.
 
 Accounts created before migration `20261108040000` have no stored salt. A signed-in client can record one only when it lowercases to `users.email`. A mixed-case salt from before that migration cannot be reconstructed from the lowercased column.
 

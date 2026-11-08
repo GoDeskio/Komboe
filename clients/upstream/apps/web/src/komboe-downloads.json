@@ -1,0 +1,167 @@
+{
+  "schema": 1,
+  "generatedAt": "2026-11-08T03:19:43Z",
+  "generator": "scripts/build-downloads-manifest.py",
+  "note": "A download URL is present only when the named file was in the artifact directory and copied to the publish directory. Store listings are not used. komboe-android-debug.apk is refused.",
+  "refused": [],
+  "assets": [
+    {
+      "id": "extension-chromium-mv3",
+      "name": "Browser extension (Chromium)",
+      "platforms": [
+        "Chrome",
+        "Edge",
+        "Brave",
+        "Opera",
+        "Vivaldi",
+        "Cerebro"
+      ],
+      "kind": "extension",
+      "filename": "komboe-chrome-mv3.zip",
+      "version": null,
+      "status": "unavailable",
+      "channel": "unsigned-testing",
+      "sha256": null,
+      "size": null,
+      "url": null,
+      "docsUrl": "https://github.com/GoDeskio/Komboe/blob/main/docs/BROWSER-EXTENSIONS.md",
+      "install": "No extension store listing. Unzip the file and load it unpacked (chrome://extensions, edge://extensions, or the Chromium equivalent). The same zip is what Edge, Brave, Opera, Vivaldi, and Cerebro load.",
+      "reason": "The clients image has not published komboe-chrome-mv3.zip into this vault.",
+      "qr": false
+    },
+    {
+      "id": "extension-firefox",
+      "name": "Browser extension (Firefox)",
+      "platforms": [
+        "Firefox",
+        "Tor Browser"
+      ],
+      "kind": "extension",
+      "filename": "komboe-firefox.zip",
+      "version": null,
+      "status": "unavailable",
+      "channel": "unsigned-testing",
+      "sha256": null,
+      "size": null,
+      "url": null,
+      "docsUrl": "https://github.com/GoDeskio/Komboe/blob/main/docs/BROWSER-EXTENSIONS.md",
+      "install": "No add-ons listing. Load the zip as a temporary add-on from about:debugging.",
+      "reason": "No komboe-firefox.zip is in the release artifacts.",
+      "qr": false
+    },
+    {
+      "id": "desktop-windows",
+      "name": "Desktop for Windows",
+      "platforms": [
+        "Windows"
+      ],
+      "kind": "desktop",
+      "filename": "komboe-desktop-win-x64-setup.exe",
+      "version": null,
+      "status": "unavailable",
+      "channel": "unsigned-testing",
+      "sha256": null,
+      "size": null,
+      "url": null,
+      "docsUrl": "https://github.com/GoDeskio/Komboe",
+      "install": "Unsigned testing installer. Windows SmartScreen will warn.",
+      "reason": "No verified current Windows installer. Older unsigned builds are not offered.",
+      "qr": false
+    },
+    {
+      "id": "desktop-linux-deb",
+      "name": "Desktop for Linux (.deb)",
+      "platforms": [
+        "Linux"
+      ],
+      "kind": "desktop",
+      "filename": "komboe-desktop-amd64.deb",
+      "version": null,
+      "status": "unavailable",
+      "channel": "unsigned-testing",
+      "sha256": null,
+      "size": null,
+      "url": null,
+      "docsUrl": "https://github.com/GoDeskio/Komboe",
+      "install": "Unsigned testing package.",
+      "reason": "No verified current Linux .deb. Older unsigned builds are not offered.",
+      "qr": false
+    },
+    {
+      "id": "desktop-linux-appimage",
+      "name": "Desktop for Linux (AppImage)",
+      "platforms": [
+        "Linux"
+      ],
+      "kind": "desktop",
+      "filename": "komboe-desktop-x86_64.AppImage",
+      "version": null,
+      "status": "unavailable",
+      "channel": "unsigned-testing",
+      "sha256": null,
+      "size": null,
+      "url": null,
+      "docsUrl": "https://github.com/GoDeskio/Komboe",
+      "install": "Unsigned testing AppImage.",
+      "reason": "No verified current Linux AppImage. Older unsigned builds are not offered.",
+      "qr": false
+    },
+    {
+      "id": "desktop-macos",
+      "name": "Desktop for macOS",
+      "platforms": [
+        "macOS"
+      ],
+      "kind": "desktop",
+      "filename": "komboe-desktop-macos.dmg",
+      "version": null,
+      "status": "unavailable",
+      "channel": "unavailable",
+      "sha256": null,
+      "size": null,
+      "url": null,
+      "docsUrl": "https://github.com/GoDeskio/Komboe",
+      "install": "",
+      "reason": "No macOS build. Apple signing and notarization are not set up.",
+      "qr": false
+    },
+    {
+      "id": "android",
+      "name": "Android",
+      "platforms": [
+        "Android"
+      ],
+      "kind": "mobile",
+      "filename": "komboe-android.apk",
+      "version": null,
+      "status": "unavailable",
+      "channel": "unavailable",
+      "sha256": null,
+      "size": null,
+      "url": null,
+      "docsUrl": "https://github.com/GoDeskio/Komboe/tree/main/mobile",
+      "install": "",
+      "reason": "No production Android APK. An internal debug APK exists on a build machine and is not published: device login, autofill, PIN, and biometric are unverified.",
+      "qr": false
+    },
+    {
+      "id": "ios",
+      "name": "iPhone and iPad",
+      "platforms": [
+        "iOS"
+      ],
+      "kind": "mobile",
+      "filename": null,
+      "version": null,
+      "status": "unavailable",
+      "channel": "unavailable",
+      "sha256": null,
+      "size": null,
+      "url": null,
+      "docsUrl": "https://github.com/GoDeskio/Komboe",
+      "install": "",
+      "reason": "No iOS build, App Store listing, or TestFlight. There is no QR code.",
+      "qr": false
+    }
+  ]
+}

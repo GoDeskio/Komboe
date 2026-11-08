@@ -1,10 +1,12 @@
 import assert from "node:assert/strict";
+import fs from "node:fs";
 import test from "node:test";
 
 import {
   MAX_FAILURES,
   UNLOCK_TTL_MS,
   biometricCapability,
+  assertVaultUserKey,
   enrollDeviceUnlock,
   recordHoldsPlaintext,
   storageKey,
@@ -55,6 +57,22 @@ test("pattern roundtrip and expiry require the master password again", async () 
   assert.equal(expired.expired, true);
   assert.equal(expired.userKey, null);
   assert.equal(storageKey("user-1"), "komboe.deviceUnlock.v1.user-1");
+});
+
+test("a 64-byte vault user key roundtrips and a token does not", async () => {
+  const userKey = crypto.getRandomValues(new Uint8Array(64));
+  assertVaultUserKey(userKey);
+  const record = await enrollDeviceUnlock(userKey, "902410", "pin");
+  const opened = await unlockDevice(record, "902410");
+  assert.equal(Buffer.from(opened.userKey).equals(Buffer.from(userKey)), true);
+  assert.throws(() => assertVaultUserKey(new Uint8Array(16)), /vault user key/);
+  const source = fs.readFileSync(
+    new URL("../../clients/upstream/apps/web/src/app/auth/komboe-device-access.component.ts", import.meta.url),
+    "utf8",
+  );
+  assert.match(source, /userKey\.toEncoded\(\)/);
+  assert.match(source, /unlockWithDecryptedUserKey/);
+  assert.match(source, /assertVaultUserKey\(result\.userKey\)/);
 });
 
 test("biometrics are reported honestly and no sample is stored", () => {

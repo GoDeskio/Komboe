@@ -81,14 +81,19 @@ async function wrappingKey(secret, salt) {
   );
 }
 
+/** A vault user key is 32 or 64 bytes. A session token or a short secret is refused. */
+export function assertVaultUserKey(userKey) {
+  if (!(userKey instanceof Uint8Array) || (userKey.byteLength !== 32 && userKey.byteLength !== 64)) {
+    throw new Error("Refusing to wrap anything except a vault user key.");
+  }
+}
+
 export async function enrollDeviceUnlock(userKey, secret, kind) {
   const problem = kind === "pin" ? validatePin(secret) : validatePattern(secret);
   if (problem) {
     throw new Error(problem);
   }
-  if (!(userKey instanceof Uint8Array) || userKey.byteLength < 32) {
-    throw new Error("A device unlock can only wrap an existing user key.");
-  }
+  assertVaultUserKey(userKey);
   const salt = crypto.getRandomValues(new Uint8Array(16));
   const iv = crypto.getRandomValues(new Uint8Array(12));
   const key = await wrappingKey(`${kind}:${secret}`, salt);

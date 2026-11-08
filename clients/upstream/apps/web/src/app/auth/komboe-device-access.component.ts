@@ -14,6 +14,7 @@ import { UnlockService } from "@bitwarden/unlock";
 
 type DeviceUnlockApi = {
   storageKey: (userId: string) => string;
+  assertVaultUserKey: (userKey: Uint8Array) => void;
   enrollDeviceUnlock: (userKey: Uint8Array, secret: string, kind: string) => Promise<Record<string, unknown>>;
   unlockDevice: (record: any, secret: string) => Promise<any>;
   biometricCapability: () => { supported: boolean; reason: string };
@@ -116,7 +117,9 @@ export class KomboeDeviceAccessComponent {
     }
     const secret = kind === "pin" ? this.pin() : this.pattern();
     try {
-      const record = await api.enrollDeviceUnlock(userKey.toEncoded(), secret, kind);
+      const encoded = userKey.toEncoded();
+      api.assertVaultUserKey(encoded);
+      const record = await api.enrollDeviceUnlock(encoded, secret, kind);
       localStorage.setItem(api.storageKey(userId), JSON.stringify(record));
       this.pin.set("");
       this.pattern.set("");
@@ -150,6 +153,7 @@ export class KomboeDeviceAccessComponent {
       this.message.set(result.error);
       return;
     }
+    api.assertVaultUserKey(result.userKey);
     const key = new SymmetricCryptoKey(result.userKey) as UserKey;
     await this.unlockService.unlockWithDecryptedUserKey(userId, key);
     this.message.set("Vault unlocked on this device.");

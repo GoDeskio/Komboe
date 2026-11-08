@@ -8,6 +8,7 @@
   [attr.aria-controls]="contentId"
   (click)="toggle()"
 >
+  <ng-content select="[slot=start]"></ng-content>
   @if (startIcon()) {
     <bit-icon-tile [icon]="startIcon()" [size]="iconTileSize()" variant="gray"></bit-icon-tile>
   }

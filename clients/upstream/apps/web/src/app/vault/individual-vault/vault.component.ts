@@ -148,7 +148,6 @@ import { VaultBannersComponent } from "./vault-banners/vault-banners.component";
 import { VaultFilterComponent } from "./vault-filter/components/vault-filter.component";
 import { VaultFilterModule } from "./vault-filter/vault-filter.module";
 import { VaultHeaderComponent } from "./vault-header/vault-header.component";
-import { VaultOnboardingComponent } from "./vault-onboarding/vault-onboarding.component";
 
 const BroadcasterSubscriptionId = "VaultComponent";
 
@@ -170,7 +169,6 @@ type EmptyStateMap = Record<EmptyStateType, EmptyStateItem>;
   imports: [
     VaultOrganizationUserNotificationsComponent,
     VaultHeaderComponent,
-    VaultOnboardingComponent,
     VaultBannersComponent,
     VaultFilterModule,
     KomboeTagsComponent,

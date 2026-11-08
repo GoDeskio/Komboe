@@ -497,7 +497,7 @@ export class SettingsDialogComponent implements OnInit {
         type: "warning",
       });
       if (confirmed) {
-        this.platformUtilsService.launchUri("https://bitwarden.com/help/biometrics/");
+        this.platformUtilsService.launchUri("https://github.com/GoDeskio/Komboe/tree/main/docs");
       }
       return;
     }

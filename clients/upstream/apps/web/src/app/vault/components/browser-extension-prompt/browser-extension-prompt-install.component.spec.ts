@@ -78,7 +78,7 @@ describe("BrowserExtensionInstallComponent", () => {
       const link = fixture.debugElement.query(By.css("a")).nativeElement;
 
       expect(link.getAttribute("href")).toBe(
-        "https://bitwarden.com/download/#downloads-web-browser",
+        "https://github.com/GoDeskio/Komboe/blob/main/docs/BROWSER-EXTENSIONS.md",
       );
     });
 
@@ -90,7 +90,7 @@ describe("BrowserExtensionInstallComponent", () => {
       const link = fixture.debugElement.query(By.css("a")).nativeElement;
 
       expect(link.getAttribute("href")).toBe(
-        "https://chrome.google.com/webstore/detail/bitwarden-password-manage/nngceckbapebfimnlniiiahkandclblb",
+        "https://github.com/GoDeskio/Komboe/blob/main/docs/BROWSER-EXTENSIONS.md",
       );
     });
 
@@ -102,7 +102,7 @@ describe("BrowserExtensionInstallComponent", () => {
       const link = fixture.debugElement.query(By.css("a")).nativeElement;
 
       expect(link.getAttribute("href")).toBe(
-        "https://addons.mozilla.org/en-US/firefox/addon/bitwarden-password-manager/",
+        "https://github.com/GoDeskio/Komboe/blob/main/docs/BROWSER-EXTENSIONS.md",
       );
     });
 
@@ -114,7 +114,7 @@ describe("BrowserExtensionInstallComponent", () => {
       const link = fixture.debugElement.query(By.css("a")).nativeElement;
 
       expect(link.getAttribute("href")).toBe(
-        "https://apps.apple.com/us/app/bitwarden/id1352778147?mt=12",
+        "https://github.com/GoDeskio/Komboe/tree/main/mobile",
       );
     });
 
@@ -126,7 +126,7 @@ describe("BrowserExtensionInstallComponent", () => {
       const link = fixture.debugElement.query(By.css("a")).nativeElement;
 
       expect(link.getAttribute("href")).toBe(
-        "https://addons.opera.com/extensions/details/bitwarden-free-password-manager/",
+        "https://github.com/GoDeskio/Komboe/blob/main/docs/BROWSER-EXTENSIONS.md",
       );
     });
 
@@ -138,7 +138,7 @@ describe("BrowserExtensionInstallComponent", () => {
       const link = fixture.debugElement.query(By.css("a")).nativeElement;
 
       expect(link.getAttribute("href")).toBe(
-        "https://microsoftedge.microsoft.com/addons/detail/jbkfoedolllekgbhcbcoahefnbanhhlh",
+        "https://github.com/GoDeskio/Komboe/blob/main/docs/BROWSER-EXTENSIONS.md",
       );
     });
   });

@@ -108,21 +108,21 @@ describe("VaultOnboardingComponent", () => {
     it("should set extensionUrl to Chrome Web Store when isChrome is true", async () => {
       jest.spyOn((component as any).platformUtilsService, "isChrome").mockReturnValue(true);
       const expected =
-        "https://chromewebstore.google.com/detail/bitwarden-password-manager/nngceckbapebfimnlniiiahkandclblb";
+        "https://github.com/GoDeskio/Komboe/blob/main/docs/BROWSER-EXTENSIONS.md";
       await component.ngOnInit();
       expect(component.extensionUrl()).toEqual(expected);
     });
 
     it("should set extensionUrl to Firefox Store when isFirefox is true", async () => {
       jest.spyOn((component as any).platformUtilsService, "isFirefox").mockReturnValue(true);
-      const expected = "https://addons.mozilla.org/en-US/firefox/addon/bitwarden-password-manager/";
+      const expected = "https://github.com/GoDeskio/Komboe/blob/main/docs/BROWSER-EXTENSIONS.md";
       await component.ngOnInit();
       expect(component.extensionUrl()).toEqual(expected);
     });
 
     it("should set extensionUrl when isSafari is true", async () => {
       jest.spyOn((component as any).platformUtilsService, "isSafari").mockReturnValue(true);
-      const expected = "https://apps.apple.com/us/app/bitwarden/id1352778147?mt=12";
+      const expected = "https://github.com/GoDeskio/Komboe/tree/main/mobile";
       await component.ngOnInit();
       expect(component.extensionUrl()).toEqual(expected);
     });

@@ -128,7 +128,7 @@ pub async fn clear_user(user_id: &UserId, conn: &DbConn) -> EmptyResult {
             .execute(c)?;
         diesel::delete(komboe_email_login_codes::table.filter(komboe_email_login_codes::user_uuid.eq(&user_id)))
             .execute(c)?;
-        Ok(())
+        Ok::<(), diesel::result::Error>(())
     })
     .await
     .map_res("Error clearing email sign-in trust")
@@ -150,7 +150,7 @@ async fn clear_device(user_id: &UserId, device_id: &DeviceId, conn: &DbConn) -> 
                 .filter(komboe_email_login_codes::device_uuid.eq(&device_id)),
         )
         .execute(c)?;
-        Ok(())
+        Ok::<(), diesel::result::Error>(())
     })
     .await
     .map_res("Error clearing this device's email sign-in trust")
@@ -173,7 +173,7 @@ async fn stamp(user_id: &UserId, device_id: &DeviceId, now: i64, conn: &DbConn) 
                 komboe_email_login_trust::verified_at.eq(now),
             ))
             .execute(c)?;
-        Ok(())
+        Ok::<(), diesel::result::Error>(())
     })
     .await
     .map_res("Error recording email sign-in")
@@ -279,16 +279,16 @@ async fn issue_and_send(user: &User, device_id: &DeviceId, conn: &DbConn) -> Emp
                     komboe_email_login_codes::created_at.eq(now),
                 ))
                 .execute(c)?;
-            Ok(())
+            Ok::<(), diesel::result::Error>(())
         }
     })
     .await
     .map_res("Error preparing the sign-in code")?;
     if let Err(err) = mail::send_token(&user.email, &code).await {
         let uuid = uuid.clone();
-        let _ = conn
-            .run(move |c| diesel::delete(komboe_email_login_codes::table.filter(komboe_email_login_codes::uuid.eq(uuid))).execute(c))
-            .await;
+        conn.run(move |c| diesel::delete(komboe_email_login_codes::table.filter(komboe_email_login_codes::uuid.eq(uuid))).execute(c))
+            .await
+            .ok();
         return Err(err);
     }
     Ok(())
@@ -334,6 +334,7 @@ async fn consume_code(user_id: &UserId, device_id: &DeviceId, code: &str, conn: 
                     .execute(c)
             })
             .await
+            .map(|_| ())
             .map_res("Error closing the sign-in code")?;
         }
         CodeState::Mismatch => {
@@ -348,6 +349,7 @@ async fn consume_code(user_id: &UserId, device_id: &DeviceId, code: &str, conn: 
                     .execute(c)
             })
             .await
+            .map(|_| ())
             .map_res("Error recording a sign-in attempt")?;
         }
         _ => {}
@@ -394,7 +396,7 @@ async fn put_interval(body: Json<IntervalBody>, headers: Headers, conn: DbConn) 
                     komboe_email_login_policy::interval_secs.eq(seconds),
                 ))
                 .execute(c)?;
-            Ok(())
+            Ok::<(), diesel::result::Error>(())
         }
     })
     .await

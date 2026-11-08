@@ -1432,7 +1432,7 @@ struct SamlSloData {
 /// End every session of a user: all devices (and their refresh tokens) are removed and the security stamp
 /// rotated so outstanding access tokens stop working. Vault data stays encrypted; no key material is involved.
 async fn saml_end_sessions(user: &mut User, nt: &Notify<'_>, conn: &DbConn) -> EmptyResult {
-    crate::api::core::email_interval::clear_user(&user.uuid, conn).await?;
+    email_interval::clear_user(&user.uuid, conn).await?;
     nt.send_logout(user, None, conn).await;
     Device::delete_all_by_user(&user.uuid, conn).await?;
     user.reset_security_stamp(conn).await?;

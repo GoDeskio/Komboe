@@ -38,6 +38,7 @@ pub fn validate_login_name(raw: &str) -> Result<String, &'static str> {
 
 /// Email identifiers keep the exact typed value, so existing vault keys do not change.
 /// A login name is usable only when the server resolved it to an email.
+#[cfg_attr(not(test), allow(dead_code))]
 pub fn kdf_email_for_login(typed: &str, canonical_email: Option<&str>) -> Result<String, &'static str> {
     let typed = typed.trim();
     if typed.contains('@') {
@@ -121,11 +122,12 @@ async fn put_login_name(body: Json<LoginNameBody>, headers: Headers, conn: DbCon
     conn.run({
         let name = name.clone();
         let owner = owner.clone();
-        move |c| {
+        move |c| -> Result<(), diesel::result::Error> {
             diesel::delete(komboe_login_names::table.filter(komboe_login_names::user_uuid.eq(&owner))).execute(c)?;
             diesel::insert_into(komboe_login_names::table)
                 .values((komboe_login_names::user_uuid.eq(owner), komboe_login_names::name.eq(name)))
-                .execute(c)
+                .execute(c)?;
+            Ok(())
         }
     })
     .await

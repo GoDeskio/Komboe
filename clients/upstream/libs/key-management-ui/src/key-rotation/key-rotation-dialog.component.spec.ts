@@ -273,7 +273,7 @@ describe("KeyRotationDialogComponent", () => {
           await callSubmit();
 
           expect(mockPlatformUtilsService.launchUri).toHaveBeenCalledWith(
-            "https://bitwarden.com/help/attachments/#fixing-old-attachments",
+            "https://github.com/GoDeskio/Komboe/tree/main/docs",
           );
         });
 

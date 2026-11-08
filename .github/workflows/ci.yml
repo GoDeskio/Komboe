@@ -57,6 +57,8 @@ jobs:
         working-directory: apps/web-marketing
         env:
           CARGO_BUILD_JOBS: "2"
+      - name: Timed email sign-in against the built server and a local mail sink
+        run: python3 tests/features/email_interval_flow.py
       - uses: actions/upload-artifact@v4
         if: always()
         with:

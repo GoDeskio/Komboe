@@ -61,6 +61,7 @@ import {
   KomboeDeviceAccessComponent,
   KomboeLockPageComponent,
 } from "./auth/komboe-device-access.component";
+import { DownloadsComponent } from "./tools/downloads/downloads.component";
 import { premiumInterestRedirectGuard } from "@bitwarden/web-vault/app/vault/guards/premium-interest-redirect/premium-interest-redirect.guard";
 
 import { flagEnabled, Flags } from "../utils/flags";
@@ -691,6 +692,11 @@ const routes: Routes = [
         path: "vault",
         canActivate: [premiumInterestRedirectGuard, setupExtensionRedirectGuard],
         loadChildren: () => VaultModule,
+      },
+      {
+        path: "downloads",
+        component: DownloadsComponent,
+        data: { titleId: "download" } satisfies RouteDataProperties,
       },
       {
         path: "sends",

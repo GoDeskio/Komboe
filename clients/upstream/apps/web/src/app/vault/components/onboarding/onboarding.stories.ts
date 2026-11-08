@@ -45,7 +45,6 @@ export default {
       <app-onboarding
         [title]="'getStartedWithYourVault' | i18n"
         [subtitle]="'onboardingChecklistSubtitle' | i18n"
-        startIcon="bwi-bitwarden-shield"
       >
         <app-onboarding-task
           [title]="'onboardingCreateYourAccountTitle' | i18n"

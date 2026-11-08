@@ -213,7 +213,8 @@ def dashboard_contract():
     marketing = open(os.path.join(ROOT, "apps/web-marketing/downloads.html"), encoding="utf-8").read()
     assert "docs/BROWSER-EXTENSIONS.md" in marketing
     assert "nngceckbapebfimnlniiiahkandclblb" not in marketing
-    assert "coming soon" in marketing.lower()
+    assert "Not available." in marketing
+    assert "coming soon" not in marketing.lower()
 
 
 def fixture(route_rows):

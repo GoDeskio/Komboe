@@ -109,8 +109,17 @@ def main() -> None:
     assert "qrserver" not in component and "chart.googleapis" not in component
     assert "komboe-android-debug" not in component
     marketing = MARKETING.read_text(encoding="utf-8")
-    assert "downloads-manifest-empty" in marketing or "KOMBOE_DOWNLOADS_MANIFEST" in marketing
+    committed = json.loads((ROOT / "distribution/komboe-downloads.json").read_text(encoding="utf-8"))
+    published_copy = json.loads((ROOT / "apps/web-marketing/komboe-downloads.json").read_text(encoding="utf-8"))
+    assert published_copy == committed
+    assert "downloads-manifest-empty" in marketing
+    assert "coming soon" not in marketing.lower()
     assert "BROWSER-EXTENSIONS.md" in marketing
+    for asset in committed["assets"]:
+        assert f'marketing-download-{asset["id"]}' in marketing
+        if asset["status"] != "published":
+            assert asset["reason"] in marketing
+            assert asset["qr"] is False
     docker = DOCKERFILE.read_text(encoding="utf-8")
     assert "build-downloads-manifest.py" in docker
     assert "komboe-chrome-mv3" in docker

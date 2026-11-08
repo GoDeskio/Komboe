@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Komboe device unlock</title>
+  <style>
+    body { font-family: system-ui, sans-serif; margin: 24px; max-width: 420px; }
+    button { margin: 4px 4px 4px 0; min-height: 40px; }
+    .pad { display: grid; grid-template-columns: repeat(3, 48px); gap: 8px; }
+    [role="alert"] { color: #8a1f11; }
+  </style>
+</head>
+<body>
+  <h1>This device</h1>
+  <p id="bio"></p>
+  <p>PIN and pattern are for this browser after a master-password sign-in. They are not sent to the server.</p>
+  <label>PIN <input id="pin" type="password" inputmode="numeric" value="902410"></label>
+  <button id="enroll" type="button">Enroll PIN</button>
+  <button id="unlock" type="button">Unlock with PIN</button>
+  <button id="wrong" type="button">Try a wrong PIN</button>
+  <div class="pad" id="pad"></div>
+  <p id="pattern-text"></p>
+  <button id="enroll-pattern" type="button">Enroll pattern</button>
+  <p id="out" role="status"></p>
+  <p id="err" role="alert"></p>
+  <script type="module">
+    import { biometricCapability, enrollDeviceUnlock, unlockDevice, validatePattern } from "./device_unlock_module.mjs";
+    const userKey = new Uint8Array(64).fill(7);
+    let record = null;
+    const out = document.getElementById("out");
+    const err = document.getElementById("err");
+    document.getElementById("bio").textContent = biometricCapability(navigator).reason;
+    let pattern = "";
+    const pad = document.getElementById("pad");
+    for (let dot = 0; dot < 9; dot += 1) {
+      const button = document.createElement("button");
+      button.type = "button";
+      button.textContent = String(dot + 1);
+      button.addEventListener("click", () => {
+        if (!pattern.includes(String(dot))) pattern += String(dot);
+        document.getElementById("pattern-text").textContent = pattern ? "Pattern entered" : "";
+      });
+      pad.appendChild(button);
+    }
+    document.getElementById("enroll").addEventListener("click", async () => {
+      try {
+        record = await enrollDeviceUnlock(userKey, document.getElementById("pin").value, "pin");
+        out.textContent = "PIN enrolled on this browser. The stored record has no PIN and no user key.";
+        err.textContent = "";
+      } catch (error) {
+        err.textContent = error.message;
+      }
+    });
+    document.getElementById("unlock").addEventListener("click", async () => {
+      const result = await unlockDevice(record, document.getElementById("pin").value);
+      record = result.record;
+      out.textContent = result.userKey ? "Unlocked. The vault user key was restored on this device." : "";
+      err.textContent = result.userKey ? "" : result.error;
+    });
+    document.getElementById("wrong").addEventListener("click", async () => {
+      const result = await unlockDevice(record, "111222");
+      record = result.record;
+      err.textContent = result.error;
+      out.textContent = result.wiped ? "Device unlock removed. Use your master password." : "";
+    });
+    document.getElementById("enroll-pattern").addEventListener("click", async () => {
+      const problem = validatePattern(pattern);
+      if (problem) {
+        err.textContent = problem;
+        return;
+      }
+      record = await enrollDeviceUnlock(userKey, pattern, "pattern");
+      out.textContent = "Pattern enrolled on this browser.";
+      err.textContent = "";
+    });
+  </script>
+</body>
+</html>

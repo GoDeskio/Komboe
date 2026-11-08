@@ -260,6 +260,7 @@ export class AppComponent implements OnDestroy, OnInit {
       this.cipherService.clear(userId),
       this.folderService.clear(userId),
       this.biometricStateService.logout(userId),
+      Promise.resolve(localStorage.removeItem(`komboe.deviceUnlock.v1.${userId}`)),
     ]);
 
     await this.stateEventRunnerService.handleEvent("logout", userId);

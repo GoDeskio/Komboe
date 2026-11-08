@@ -1,3 +1,5 @@
+import { biometricCapability } from "./device-unlock.js";
+
 const TOKEN_KEY = "komboe.accessToken";
 
 async function load() {
@@ -32,11 +34,19 @@ async function load() {
   document.getElementById("dash-name").textContent = profile.name || "Your vault";
   document.getElementById("dash-count").textContent = count;
   document.getElementById("dash-body").hidden = false;
+  const note = document.getElementById("device-unlock-note");
+  if (note) {
+    note.textContent = biometricCapability(navigator).reason
+      + " A PIN or pattern enrolls in the web vault only after the master password has unlocked that device. This page does not hold the vault key, so it does not store a PIN, pattern, or biometric sample.";
+  }
 }
 
 document.getElementById("dash-logout")?.addEventListener("click", () => {
   sessionStorage.removeItem(TOKEN_KEY);
   sessionStorage.removeItem("komboe.agentSession");
+  Object.keys(localStorage).forEach((key) => {
+    if (key.startsWith("komboe.deviceUnlock.v1.")) localStorage.removeItem(key);
+  });
   location.assign("../index.html#signin");
 });
 

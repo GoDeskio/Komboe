@@ -13,6 +13,8 @@ export class PasswordPreloginData {
   constructor(
     readonly kdfConfig: KdfConfig,
     readonly salt: string,
+    /** Account email when the person typed a login name. Null for an email login. */
+    readonly canonicalEmail: string | null = null,
   ) {}
 
   /**
@@ -22,6 +24,6 @@ export class PasswordPreloginData {
   static fromResponse(response: PasswordPreloginResponse): PasswordPreloginData {
     const kdfConfig = response.kdfSettings.toKdfConfig();
     kdfConfig.validateKdfConfigForPrelogin();
-    return new PasswordPreloginData(kdfConfig, response.salt);
+    return new PasswordPreloginData(kdfConfig, response.salt, response.email);
   }
 }

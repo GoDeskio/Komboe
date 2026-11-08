@@ -166,15 +166,16 @@ async function boot() {
     busy = true;
     submit.disabled = true;
     clearError(error);
-    const email = document.getElementById("email").value.trim().toLowerCase();
+    const typed = document.getElementById("email").value.trim().toLowerCase();
     const password = document.getElementById("master-password").value;
     try {
-      let hash = !twoFactor.hidden && pending && pending.email === email ? pending.hash : null;
+      let accountEmail = typed;
+      let hash = !twoFactor.hidden && pending && pending.typed === typed ? pending.hash : null;
       if (!hash) {
         const pre = await fetch("/identity/accounts/prelogin", {
           method: "POST",
           headers: { "Content-Type": "application/json", Accept: "application/json" },
-          body: JSON.stringify({ email }),
+          body: JSON.stringify({ email: typed }),
           credentials: "omit",
         });
         const preBody = await readJson(pre);
@@ -186,7 +187,19 @@ async function boot() {
           showError(error, loginMessage(preBody, pre.status));
           return;
         }
-        hash = await passwordHash(email, password, preBody);
+        // An email is the KDF salt, lowercased as before. A login name is used only
+        // when prelogin returns the stored account email. The login name is never the salt.
+        if (!typed.includes("@")) {
+          accountEmail = String(preBody.email || "").trim().toLowerCase();
+          if (!accountEmail.includes("@")) {
+            showError(error, "That login name is not an account. Sign in with the email for this vault.");
+            return;
+          }
+        }
+        hash = await passwordHash(accountEmail, password, preBody);
+        pending = { typed, hash, accountEmail };
+      } else {
+        accountEmail = pending.accountEmail;
       }
       const extra = {};
       if (!twoFactor.hidden && code.value.trim()) {
@@ -194,14 +207,14 @@ async function boot() {
         extra.twoFactorToken = code.value.trim();
         extra.twoFactorRemember = "0";
       }
-      const response = await tokenRequest(email, hash, extra);
+      const response = await tokenRequest(accountEmail, hash, extra);
       const body = await readJson(response);
       if (response.status === 429) {
         showError(error, loginMessage(body, 429));
         return;
       }
       if (body.TwoFactorProviders) {
-        pending = { email, hash };
+        pending = { typed, hash, accountEmail };
         const id = providerId(body);
         twoFactor.hidden = false;
         twoFactor.dataset.provider = id;
@@ -213,7 +226,7 @@ async function boot() {
           await fetch("/api/two-factor/send-email-login", {
             method: "POST",
             headers: { "Content-Type": "application/json", Accept: "application/json" },
-            body: JSON.stringify({ email, masterPasswordHash: hash, deviceIdentifier: deviceId() }),
+            body: JSON.stringify({ email: accountEmail, masterPasswordHash: hash, deviceIdentifier: deviceId() }),
             credentials: "omit",
           });
         }

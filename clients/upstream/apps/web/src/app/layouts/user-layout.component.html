@@ -34,6 +34,7 @@
           <bit-nav-item [text]="'myAccount' | i18n" route="settings/account"></bit-nav-item>
           <bit-nav-item [text]="'security' | i18n" route="settings/security"></bit-nav-item>
           <bit-nav-item [text]="'appearance' | i18n" route="settings/appearance"></bit-nav-item>
+        <bit-nav-item text="Device unlock" route="settings/device-access" data-testid="nav-device-access"></bit-nav-item>
           @let vfo1SubscriptionRoute = subscriptionRoute$ | async;
           @if (vfo1SubscriptionRoute) {
             <bit-nav-item
@@ -101,6 +102,7 @@
         <bit-nav-item [text]="'myAccount' | i18n" route="settings/account"></bit-nav-item>
         <bit-nav-item [text]="'security' | i18n" route="settings/security"></bit-nav-item>
         <bit-nav-item [text]="'appearance' | i18n" route="settings/appearance"></bit-nav-item>
+        <bit-nav-item text="Device unlock" route="settings/device-access" data-testid="nav-device-access"></bit-nav-item>
         @let subscriptionRoute = subscriptionRoute$ | async;
         @if (subscriptionRoute) {
           <bit-nav-item [text]="'subscription' | i18n" [route]="subscriptionRoute"></bit-nav-item>

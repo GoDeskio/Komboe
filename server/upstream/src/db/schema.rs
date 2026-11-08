@@ -532,6 +532,13 @@ table! {
 }
 
 table! {
+    komboe_login_names (user_uuid) {
+        user_uuid -> Text,
+        name -> Text,
+    }
+}
+
+table! {
     komboe_agent_sessions (uuid) {
         uuid -> Text,
         user_uuid -> Text,
@@ -697,5 +704,6 @@ allow_tables_to_appear_in_same_query!(
     komboe_pgp_auth_keys,
     komboe_pgp_auth_challenges,
     komboe_pgp_vault_keys,
-    komboe_agent_sessions
+    komboe_agent_sessions,
+    komboe_login_names
 );

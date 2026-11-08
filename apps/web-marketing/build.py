@@ -83,7 +83,7 @@ FEAT = [
 ]
 SIGNIN = '''<div class="card glass signin" id="signin"><h2>Sign in</h2>
 <form id="login-form" method="post" action="">
-<label class="field">Email <input id="email" name="email" type="email" autocomplete="username" required></label>
+<label class="field">Email or login name <input id="email" name="email" type="text" autocomplete="username" required></label>
 <label class="field">Master password <span class="pw"><input id="master-password" name="password" type="password" autocomplete="current-password" required><button class="btn eye" type="button" data-eye="master-password" aria-pressed="false">Show</button></span></label>
 <p id="login-error" class="error" role="alert" hidden></p>
 <div id="twofactor" hidden><label class="field"><span id="twofactor-label">Authenticator code</span><input id="twofactor-code" name="code" inputmode="numeric" autocomplete="one-time-code"></label></div>
@@ -151,18 +151,40 @@ tiers = [("Free", "$0", "Personal starter", ["Unlimited passwords", "Passkeys", 
 pricing = '<section class="hero"><div class="wrap"><h1>Pricing</h1><p>Simple plans for individuals, families and teams.</p><p class="sso">Paid plan prices will be announced at launch.</p></div></section><section><div class="wrap"><h2>Plans</h2><div class="grid">' + "".join(f'<div class="card glass{" hl" if n == "Plus" else ""}"><h3>{n}</h3><div class="price">{p} <small>{s}</small></div><ul>{"".join(f"<li>{x}</li>" for x in L)}</ul><a class="btn{" p" if n == "Plus" else ""} full" href="signup.html">Choose {n}</a></div>' for n, p, s, L in tiers) + "</div></div></section>"
 PH = '<span class="meta">Version and SHA-256 checksum will be published with the first release.</span>'
 
-def dl(os_, icon, t, desc, btn, instr="", soon=False):
-    b = '<span class="btn full" aria-disabled="true">Coming soon</span>' if soon else f'<span class="btn full" aria-disabled="true">{btn}: coming soon</span>'
-    return f'<div class="card glass dl{" soon" if soon else ""}" data-os="{os_}"><span class="tag">Detected for you</span><div class="ic">{icon}</div><h3>{t}</h3><p>{desc}</p>{instr}{"" if soon else PH}{b}</div>'
+import html as _html
+import json as _json
+from pathlib import Path as _Path
+_MANIFEST = _json.loads((_Path(__file__).resolve().parents[2] / "distribution" / "komboe-downloads.json").read_text(encoding="utf-8"))
+_OS = {"desktop-windows": "windows", "desktop-macos": "macos", "desktop-linux-deb": "linux", "desktop-linux-appimage": "linux", "android": "android", "ios": "ios", "extension-chromium-mv3": "ext-chrome ext-edge ext-brave", "extension-firefox": "ext-firefox"}
 
-groups = [("Phone", [dl("android", "📱", "Phone", "Autofill service and biometric unlock.", "Get the phone app"), dl("ios", "📱", "Other phones", "A later build.", "", soon=True)]),
-("Desktop", [dl("windows", "💻", "Windows", "Installer for current Windows systems.", "Download"), dl("macos", "💻", "macOS", "Current macOS, both chip families.", "Download"), dl("linux", "💻", "Linux", "Packages for common Linux systems.", "Download")]),
-("Browser", [dl("ext-" + b.lower(), "🧩", b, f"Autofill and save logins in {b}.", "Add to " + b) for b in ["Chrome", "Edge", "Firefox", "Brave", "Safari"]]),
-("Web, command line and server", [f'<div class="card glass dl" data-os="web"><div class="ic">🌐</div><h3>Web vault</h3><p>No install. Sign in on the home page.</p><a class="btn p full" href="index.html#signin">Sign in</a></div>',
-dl("cli", "⌨️", "Command line", "Script your vault and inject secrets into a process.", "Download", '<p class="fine">Installers ship with a SHA-256 checksum. Do not pipe a downloaded script into a shell.</p>'),
-dl("server", "🗄️", "Self-host server", "Run your own Komboe sync server from the published container image.", "Get server", '<p class="fine">Local accounts are the default. Optional enterprise single sign-on can be added by the operator.</p><p class="fine">' + SH_SHORT + " " + SWITCH + "</p>"),
-dl("mcp", "✨", "Assistant", "The signed-in assistant on this site uses the Komboe agent. It does not read vault items.", "Included", "<pre>komboe mcp</pre>")])]
-downloads = '<section class="hero"><div class="wrap"><h1>Download Komboe</h1><p>Every Komboe app. This browser looks like: <b id="detected">this device</b></p><p class="sso">Komboe is pre-release. Installers will appear here with the first builds.</p></div></section>' + "".join(f'<section class="tight"><div class="wrap"><h2>{g}</h2><div class="grid">{"".join(c)}</div></div></section>' for g, c in groups) + '<section><div class="wrap"><p class="lead">Check the SHA-256 checksum of a download before installing.</p></div></section>'
+def _manifest_card(asset):
+    name = _html.escape(asset["name"])
+    platforms = _html.escape(", ".join(asset["platforms"]))
+    os_attr = _html.escape(_OS.get(asset["id"], asset["id"]))
+    url = asset.get("url") or ""
+    if asset.get("status") == "published" and url.startswith(("https://", "http://")):
+        body = f'<p><strong>Unsigned testing build</strong></p><p><a class="btn p" href="{_html.escape(url, quote=True)}">Download {_html.escape(asset.get("filename") or "file")}</a></p>'
+        if asset.get("sha256"):
+            body += f'<p class="fine">sha256 {_html.escape(asset["sha256"])}</p>'
+    else:
+        body = f'<p><strong>Not available.</strong> {_html.escape(asset.get("reason") or "")}</p>'
+    docs = f'<p><a href="{_html.escape(asset["docsUrl"], quote=True)}">Instructions</a></p>'
+    return f'<article class="card glass" data-os="{os_attr}" data-testid="marketing-download-{_html.escape(asset["id"], quote=True)}"><h3>{name}</h3><p>{platforms}</p>{body}{docs}</article>'
+
+_manifest_cards = "".join(_manifest_card(asset) for asset in _MANIFEST["assets"])
+_empty = "" if any(asset.get("status") == "published" and str(asset.get("url") or "").startswith(("https://", "http://")) for asset in _MANIFEST["assets"]) else '<p data-testid="downloads-manifest-empty">No installer file is in this manifest. There is no download link and no QR code.</p>'
+downloads = (
+    '<section class="hero"><div class="wrap"><h1>Download Komboe</h1>'
+    '<p>Installers come from the same release manifest as the signed-in vault. This browser looks like: <b id="detected">this device</b></p>'
+    '<p class="sso">A link appears only when that manifest has a real file. Store listings for other password managers are not Komboe.</p></div></section>'
+    '<section class="tight" id="release-manifest"><div class="wrap"><h2>Release manifest</h2>'
+    + _empty
+    + f'<div class="grid">{_manifest_cards}</div></div></section>'
+    + '<section class="tight"><div class="wrap"><h2>Web vault</h2><div class="grid">'
+    + '<div class="card glass dl" data-os="web"><div class="ic">🌐</div><h3>Web vault</h3><p>No install. Sign in on the home page.</p><a class="btn p full" href="index.html#signin">Sign in</a></div>'
+    + '</div><p class="lead">Check the SHA-256 checksum of a download before installing. '
+    + SH_SHORT + " " + SWITCH + "</p></div></section>"
+)
 def auth(mode):
     sg = mode == "signup"
     return f"""<section class="hero"><div class="wrap"><div class="card glass auth"><img src="assets/img/logo-96.webp" alt="Komboe logo" width="52" height="52"><h1>{"Create your Komboe account" if sg else "Log in to Komboe"}</h1>
@@ -196,7 +218,7 @@ META = {
     "features.html": ("Features", "Every Komboe feature, with links to other products that offer the same idea.", "Features"),
     "security.html": ("Security and zero-knowledge", "How Komboe keeps your vault zero-knowledge: on-device encryption, no backdoor and no admin password reset.", "Security"),
     "pricing.html": ("Pricing", "Komboe plans for individuals, families and businesses. The free tier is available now.", "Pricing"),
-    "downloads.html": ("Downloads", "Download Komboe for phone, desktop, browser, the web, the command line and a self-hosted server.", "Downloads"),
+    "downloads.html": ("Downloads", "Komboe downloads follow the release manifest. An installer link appears only when a build published that file.", "Downloads"),
     "developers.html": ("Developers", "Komboe developer resources: source, self-hosting, command line, the assistant and security disclosure.", "Developers"),
     "login.html": ("Log in", "Sign in to Komboe from the home page. One account for every Komboe app.", "Log in"),
     "signup.html": ("Sign up", "Create your Komboe account with your email and master password.", "Sign up"),
@@ -220,11 +242,12 @@ def u(f):
 
 open("sitemap.xml", "w").write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + "".join(f"<url><loc>{u(f)}</loc></url>\n" for f in pages if f not in ("privacy.html", "terms.html")) + "</urlset>\n")
 open("robots.txt", "w").write("User-agent: *\nDisallow: /\n" if STAGING else f"User-agent: *\nAllow: /\nSitemap: {BASE}/sitemap.xml\n")
-DASH = '''<section class="hero"><div class="wrap"><h1>Your vault</h1><div id="dashboard" class="card glass" data-mode="vault"><p id="dash-status">Loading your vault…</p><div id="dash-body" hidden><h2 id="dash-name">Your vault</h2><p>Signed in as <b id="dash-email"></b></p><p class="fine">Items in this vault: <b id="dash-count"></b></p><button class="btn" id="dash-logout" type="button">Sign out</button></div></div></div></section>'''
+DASH = '''<section class="hero"><div class="wrap"><h1>Your vault</h1><div id="dashboard" class="card glass" data-mode="vault"><p id="dash-status">Loading your vault…</p><div id="dash-body" hidden><h2 id="dash-name">Your vault</h2><p>Signed in as <b id="dash-email"></b></p><p class="fine">Items in this vault: <b id="dash-count"></b></p><p class="fine" id="device-unlock-note"></p><button class="btn" id="dash-logout" type="button">Sign out</button></div></div></div></section>'''
 os.makedirs("vault/signup", exist_ok=True)
 open("vault/index.html", "w").write(page("vault/index.html", "Your vault", DASH, "../", "Your Komboe vault."))
 open("vault/signup/index.html", "w").write(page("vault/signup/index.html", "Create account", '<section class="hero"><div class="wrap"><h1>Create account</h1><p><a class="btn p" href="../../signup.html">Create account</a></p></div></section>', "../../", "Create a Komboe account."))
 os.makedirs(".well-known", exist_ok=True)
 open(".well-known/security.txt", "w").write("Contact: mailto:security@komboe.com\nExpires: " + (_d.datetime.now(_d.timezone.utc) + _d.timedelta(days=365)).strftime("%Y-%m-%dT00:00:00Z") + "\nPreferred-Languages: en\nCanonical: " + BASE + "/.well-known/security.txt\n")
 open("llms.txt", "w").write("# Komboe\n\n> Komboe is an open-source, zero-knowledge password manager. The master password stays on the device. There is no backdoor and no admin password reset.\n\n## Pages\n" + "".join(f"- [{META[f][0]}]({u(f)}): {META[f][1]}\n" for f in pages) + "\n")
+open("komboe-downloads.json", "w").write(_json.dumps(_MANIFEST, indent=2) + "\n")
 print("built", len(pages), "pages")

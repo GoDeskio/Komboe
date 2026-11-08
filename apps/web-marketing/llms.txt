@@ -7,7 +7,7 @@
 - [Features](https://komboe.com/features.html): Every Komboe feature, with links to other products that offer the same idea.
 - [Security and zero-knowledge](https://komboe.com/security.html): How Komboe keeps your vault zero-knowledge: on-device encryption, no backdoor and no admin password reset.
 - [Pricing](https://komboe.com/pricing.html): Komboe plans for individuals, families and businesses. The free tier is available now.
-- [Downloads](https://komboe.com/downloads.html): Download Komboe for phone, desktop, browser, the web, the command line and a self-hosted server.
+- [Downloads](https://komboe.com/downloads.html): Komboe downloads follow the release manifest. An installer link appears only when a build published that file.
 - [Developers](https://komboe.com/developers.html): Komboe developer resources: source, self-hosting, command line, the assistant and security disclosure.
 - [Log in](https://komboe.com/login.html): Sign in to Komboe from the home page. One account for every Komboe app.
 - [Sign up](https://komboe.com/signup.html): Create your Komboe account with your email and master password.

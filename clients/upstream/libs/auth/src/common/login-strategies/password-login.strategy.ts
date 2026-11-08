@@ -12,6 +12,12 @@ import { IdentitySsoRequiredResponse } from "@bitwarden/common/auth/models/respo
 import { IdentityTokenResponse } from "@bitwarden/common/auth/models/response/identity-token.response";
 import { IdentityTwoFactorResponse } from "@bitwarden/common/auth/models/response/identity-two-factor.response";
 import {
+  envelopeKeyBytes,
+  kdfIdentity,
+  LoginNamePayload,
+  openLoginNamePayload,
+} from "@bitwarden/common/auth/kdf-identity";
+import {
   PasswordPreloginData,
   PasswordPreloginService,
 } from "@bitwarden/common/auth/password-prelogin";
@@ -20,13 +26,31 @@ import { PasswordStrengthServiceAbstraction } from "@bitwarden/common/tools/pass
 import { UserId } from "@bitwarden/common/types/guid";
 import { MasterKey } from "@bitwarden/common/types/key";
 // eslint-disable-next-line no-restricted-imports
-import { LegacyCompatKeyService, SymmetricCryptoKey } from "@bitwarden/legacy-crypto";
+import {
+  Argon2KdfConfig,
+  KdfConfig,
+  KdfType,
+  LegacyCompatKeyService,
+  PBKDF2KdfConfig,
+  SymmetricCryptoKey,
+} from "@bitwarden/legacy-crypto";
 import { UnlockService } from "@bitwarden/unlock";
 
 import { PasswordLoginCredentials } from "../models/domain/login-credentials";
 import { CacheData } from "../services/login-strategies/login-strategy.state";
 
 import { LoginStrategy, LoginStrategyData } from "./login.strategy";
+
+function loginNameAccountKdf(payload: LoginNamePayload): KdfConfig {
+  if (payload.kdfType === KdfType.Argon2id) {
+    return new Argon2KdfConfig(
+      payload.kdfIterations,
+      payload.kdfMemory ?? 0,
+      payload.kdfParallelism ?? 0,
+    );
+  }
+  return new PBKDF2KdfConfig(payload.kdfIterations);
+}
 
 export class PasswordLoginStrategyData implements LoginStrategyData {
   readonly tokenRequest: PasswordTokenRequest;
@@ -89,30 +113,31 @@ export class PasswordLoginStrategy extends LoginStrategy<PasswordLoginStrategyDa
   override async logIn(credentials: PasswordLoginCredentials): Promise<AuthResult> {
     const { email, masterPassword, twoFactor, preFetchedPreloginData } = credentials;
 
-    const masterKey = await this.makePasswordPreloginMasterKey(
+    const { masterKey, kdfEmail } = await this.makePasswordPreloginMasterKey(
       masterPassword,
       email,
       preFetchedPreloginData,
     );
     this.passwordPreloginService.clearCache();
 
-    // Hash the password early (before authentication) so we don't persist it in memory in plaintext
+    // Hash the password early (before authentication) so we don't persist it in memory in plaintext.
+    // kdfEmail is the typed email, or the stored account email when a login name was resolved.
     const serverMasterKeyHash = await this.legacyCompatKeyService.hashMasterKey(
       masterPassword,
       masterKey,
     );
 
     const tokenRequest = new PasswordTokenRequest(
-      email,
+      kdfEmail,
       serverMasterKeyHash,
-      await this.buildTwoFactor(twoFactor, email),
+      await this.buildTwoFactor(twoFactor, kdfEmail),
       await this.buildDeviceRequest(),
     );
 
     this.cache.next(
       new PasswordLoginStrategyData({
         tokenRequest,
-        userEnteredEmail: email,
+        userEnteredEmail: kdfEmail,
         masterKey,
         masterPassword,
         forcePasswordResetReason: ForceSetPasswordReason.None,
@@ -147,56 +172,52 @@ export class PasswordLoginStrategy extends LoginStrategy<PasswordLoginStrategyDa
     masterPassword: string,
     email: string,
     preFetchedPreloginData?: PasswordPreloginData,
-  ): Promise<MasterKey> {
+  ): Promise<{ masterKey: MasterKey; kdfEmail: string }> {
     const useSdkForPrelogin = await this.configService.getFeatureFlag(
       FeatureFlag.PM27060_PasswordPreloginFromSdk,
     );
 
-    // if we have prefetched prelogin data, use it
-    if (preFetchedPreloginData) {
-      // If we are using the sdk to fetch the prelogin data, only then do we want to
-      // use the salt that is passed back from the prelogin response in building the master key.
-      // This gives us the ability to turn off the feature of using the returned salt from salt
-      // in the event of bad normalization occurring during the transition.
-      if (useSdkForPrelogin) {
-        return this.legacyCompatKeyService.makeMasterKey(
-          masterPassword,
-          preFetchedPreloginData.salt,
-          preFetchedPreloginData.kdfConfig,
-        );
-      } else {
-        return this.legacyCompatKeyService.makeMasterKey(
-          masterPassword,
-          email,
-          preFetchedPreloginData.kdfConfig,
-        );
+    if (!email.includes("@")) {
+      const opened = await this.passwordPreloginService.openLoginName(email.trim().toLowerCase());
+      if (!opened.envelope || !opened.envelopeSalt) {
+        throw new Error("That login name was not accepted.");
       }
+      const wrappingKey = await this.legacyCompatKeyService.makeMasterKeyPreservingSalt(
+        masterPassword,
+        opened.envelopeSalt,
+        opened.kdfConfig,
+      );
+      const payload = await openLoginNamePayload(
+        envelopeKeyBytes(wrappingKey.toEncoded()),
+        opened.envelope,
+      );
+      const masterKey = await this.legacyCompatKeyService.makeMasterKeyPreservingSalt(
+        masterPassword,
+        payload.kdfEmail,
+        loginNameAccountKdf(payload),
+      );
+      return { masterKey, kdfEmail: payload.kdfEmail };
     }
 
-    // No prefetched data — fetch now. PasswordPreloginData.fromResponse validates the KDF config.
-    const preloginData = await firstValueFrom(this.passwordPreloginService.getPreloginData$(email));
+    const preloginData =
+      preFetchedPreloginData ??
+      (await firstValueFrom(this.passwordPreloginService.getPreloginData$(email)));
 
     if (!preloginData) {
       throw new Error("KDF config is required");
     }
 
-    // If we are using the sdk to fetch the prelogin data, only then do we want to
-    // use the salt that is passed back from the prelogin response in building the master key.
-    // This gives us the ability to turn off the feature of using the returned salt from salt
-    // in the event of bad normalization occurring during the transition.
-    if (useSdkForPrelogin) {
-      return this.legacyCompatKeyService.makeMasterKey(
-        masterPassword,
-        preloginData.salt,
-        preloginData.kdfConfig,
-      );
-    } else {
-      return this.legacyCompatKeyService.makeMasterKey(
-        masterPassword,
-        email,
-        preloginData.kdfConfig,
-      );
-    }
+    // The typed email keeps its case. Do not lowercase it. Prelogin does not
+    // send the stored salt back. A mixed-case vault key matches only this string.
+    const kdfEmail = kdfIdentity(email, preloginData.canonicalEmail);
+    const salt =
+      useSdkForPrelogin && email.includes("@") && preloginData.salt ? preloginData.salt : kdfEmail;
+    const masterKey = await this.legacyCompatKeyService.makeMasterKeyPreservingSalt(
+      masterPassword,
+      salt,
+      preloginData.kdfConfig,
+    );
+    return { masterKey, kdfEmail };
   }
 
   private async evaluateMasterPasswordIfRequired(

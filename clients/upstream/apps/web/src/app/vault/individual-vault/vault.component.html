@@ -15,10 +15,8 @@
   (onOpenAddItemDialog)="openAddItemDialog()"
 ></app-vault-header>
 
-<app-vault-onboarding [ciphers]="ciphers"></app-vault-onboarding>
-
-<div class="tw-flex tw-flex-row -tw-mx-2.5">
-  <div class="tw-basis-1/4 tw-max-w-1/4 tw-px-2.5">
+<div class="tw-flex tw-flex-col md:tw-flex-row -tw-mx-2.5">
+  <div class="tw-w-full md:tw-basis-1/4 md:tw-max-w-1/4 tw-px-2.5">
     <app-vault-filter
       #vaultFilter
       [activeFilter]="activeFilter"
@@ -29,7 +27,7 @@
     <komboe-tags></komboe-tags>
     <komboe-password-expiry-settings></komboe-password-expiry-settings>
   </div>
-  <div class="tw-basis-3/4 tw-max-w-3/4 tw-px-2.5">
+  <div class="tw-w-full md:tw-basis-3/4 md:tw-max-w-3/4 tw-px-2.5">
     @if (activeFilter.isDeleted) {
       <bit-callout type="warning">
         {{ trashCleanupWarning }}

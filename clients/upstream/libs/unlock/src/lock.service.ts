@@ -135,8 +135,16 @@ export class DefaultLockService implements LockService {
     }
 
     this.logService.mark(`Lock start (${source})`);
+    // Unsaved edits are discarded. The user key stays until wipe, so this method
+    // does not clear it before the caches. Wipe clears folder and cipher caches
+    // and then the key. The process reload drops everything still in memory.
+    // Callers must not null the key or navigate to the lock screen themselves.
+    this.logService.info(
+      "[LockService] Lock discards unsaved edits, clears secret caches, then reloads.",
+    );
+    const locked = this.waitForLockedStatus(userId);
     await this.wipeDecryptedState(userId);
-    await this.waitForLockedStatus(userId);
+    await locked;
     await this.systemService.clearPendingClipboard();
     await this.runPlatformOnLockActions(userId, source);
 

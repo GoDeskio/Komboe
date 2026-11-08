@@ -24,4 +24,17 @@ export class PasswordPreloginApiService {
     );
     return new PasswordPreloginResponse(r);
   }
+
+  async openLoginName(name: string): Promise<PasswordPreloginResponse> {
+    const env = await firstValueFrom(this.environmentService.environment$);
+    const r = await this.apiService.send(
+      "POST",
+      "/accounts/login-name/open",
+      { name },
+      false,
+      true,
+      env.getIdentityUrl(),
+    );
+    return new PasswordPreloginResponse(r);
+  }
 }

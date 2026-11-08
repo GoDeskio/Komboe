@@ -17,7 +17,7 @@ export class ShowQuickCopyActionsDetailsPopoverComponent {
   openLearnMore(e: Event) {
     e.preventDefault();
     this.platformUtilService.launchUri(
-      "https://bitwarden.com/help/auto-fill-browser/#copy-credentials",
+      "https://github.com/GoDeskio/Komboe/tree/main/docs",
     );
   }
 }

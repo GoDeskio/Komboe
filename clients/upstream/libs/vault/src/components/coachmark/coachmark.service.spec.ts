@@ -135,7 +135,7 @@ describe("CoachmarkService", () => {
 
     it("returns the learn more URL for a step that has one", () => {
       const url = service.getStepLearnMoreUrl("importData");
-      expect(url).toBe("https://bitwarden.com/help/import-data/");
+      expect(url).toBe("https://github.com/GoDeskio/Komboe/tree/main/docs");
     });
 
     it("returns undefined for an unknown step", () => {

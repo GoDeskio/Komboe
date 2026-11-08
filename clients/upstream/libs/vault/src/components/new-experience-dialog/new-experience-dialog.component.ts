@@ -38,7 +38,7 @@ export type NewExperienceDialogParams = {
   darkImgSrc: string;
 };
 
-export const NEW_EXPERIENCE_LEARN_MORE_URL = "https://bitwarden.com/blog/2026-design-update";
+export const NEW_EXPERIENCE_LEARN_MORE_URL = "https://github.com/GoDeskio/Komboe/tree/main/docs";
 
 /**
  * Announces the redesigned vault to users who created their account before the redesign shipped.

@@ -502,7 +502,7 @@ mod restore_tests {
     fn scratch() -> std::path::PathBuf {
         let nonce = std::time::SystemTime::now().duration_since(std::time::UNIX_EPOCH).unwrap().as_nanos();
         let dir = std::env::temp_dir().join(format!("komboe-restore-{nonce}"));
-        let _ = std::fs::remove_dir_all(&dir);
+        std::fs::remove_dir_all(&dir).ok();
         std::fs::create_dir_all(&dir).unwrap();
         dir
     }
@@ -537,7 +537,7 @@ mod restore_tests {
         let missing = dir.join("missing.sqlite3");
         assert!(restore_sqlite_at(live.to_str().unwrap(), missing.to_str().unwrap()).is_err());
 
-        let _ = std::fs::remove_dir_all(&dir);
+        std::fs::remove_dir_all(&dir).ok();
     }
 }
 

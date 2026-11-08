@@ -47,7 +47,7 @@ export type EmergencyAccessTakeoverDialogResultType =
  * by changing the Grantor's master password. It is displayed as a dialog when the Grantee
  * clicks the "Takeover" button while on the `/settings/emergency-access` page (see `EmergencyAccessComponent`).
  *
- * @link https://bitwarden.com/help/emergency-access/
+ * @link https://github.com/GoDeskio/Komboe/tree/main/docs
  */
 // FIXME(https://bitwarden.atlassian.net/browse/CL-764): Migrate to OnPush
 // eslint-disable-next-line @angular-eslint/prefer-on-push-component-change-detection

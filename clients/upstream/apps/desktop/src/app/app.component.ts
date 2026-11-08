@@ -346,7 +346,7 @@ export class AppComponent implements OnInit, OnDestroy {
             });
             if (emailVerificationConfirmed) {
               this.platformUtilsService.launchUri(
-                "https://bitwarden.com/help/create-bitwarden-account/",
+                "https://github.com/GoDeskio/Komboe/tree/main/docs",
               );
             }
             break;
@@ -762,6 +762,9 @@ export class AppComponent implements OnInit, OnDestroy {
       await this.folderService.clear(userBeingLoggedOut);
       await this.biometricStateService.logout(userBeingLoggedOut);
       await this.pinService.logout(userBeingLoggedOut);
+
+      const { revokeKomboeEmailTrust } = await import("@bitwarden/common/auth/komboe-email-trust");
+      await revokeKomboeEmailTrust(await this.tokenService.getAccessToken(userBeingLoggedOut));
 
       await this.keyService.clearKeys(userBeingLoggedOut);
 

@@ -11,6 +11,7 @@ import { InternalOrganizationServiceAbstraction } from "@bitwarden/common/admin-
 import { AccountService } from "@bitwarden/common/auth/abstractions/account.service";
 import { AuthService } from "@bitwarden/common/auth/abstractions/auth.service";
 import { TokenService } from "@bitwarden/common/auth/abstractions/token.service";
+import { revokeKomboeEmailTrust } from "@bitwarden/common/auth/komboe-email-trust";
 import { AuthenticationStatus } from "@bitwarden/common/auth/enums/authentication-status";
 import { getUserId } from "@bitwarden/common/auth/services/account.service";
 import { EventUploadService } from "@bitwarden/common/dirt/event-logs";
@@ -260,6 +261,8 @@ export class AppComponent implements OnDestroy, OnInit {
       this.cipherService.clear(userId),
       this.folderService.clear(userId),
       this.biometricStateService.logout(userId),
+      Promise.resolve(localStorage.removeItem(`komboe.deviceUnlock.v1.${userId}`)),
+      this.revokeEmailTrust(userId),
     ]);
 
     await this.stateEventRunnerService.handleEvent("logout", userId);
@@ -292,6 +295,11 @@ export class AppComponent implements OnDestroy, OnInit {
       // it handles it.
       await this.processReloadService.reloadProcess();
     }, userId);
+  }
+
+  private async revokeEmailTrust(userId: Parameters<TokenService["getAccessToken"]>[0]): Promise<void> {
+    const access = await this.tokenService.getAccessToken(userId);
+    await revokeKomboeEmailTrust(access);
   }
 
   private async recordActivity() {

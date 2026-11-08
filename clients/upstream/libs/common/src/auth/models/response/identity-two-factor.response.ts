@@ -16,6 +16,12 @@ export class IdentityTwoFactorResponse extends BaseResponse {
     super(response);
     this.twoFactorProviders = this.getResponseProperty("TwoFactorProviders");
     this.twoFactorProviders2 = this.getResponseProperty("TwoFactorProviders2");
+    const challenge = this.getResponseProperty("KomboeLoginChallenge");
+    if (typeof challenge === "string" && challenge) {
+      void import("../../komboe-email-trust").then(({ rememberKomboeEmailSession }) => {
+        rememberKomboeEmailSession({ loginChallenge: challenge });
+      });
+    }
     this.masterPasswordPolicy = new MasterPasswordPolicyResponse(
       this.getResponseProperty("MasterPasswordPolicy"),
     );

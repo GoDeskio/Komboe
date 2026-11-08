@@ -6,7 +6,7 @@ import { ImportOption, ImportOptionData, importOptionsById } from "./import-opti
 
 // TODO: remove once pm-35053-import-upgrade is retired
 
-const bitwardenExportHelp = "https://bitwarden.com/help/export-your-data/";
+const bitwardenExportHelp = "https://github.com/GoDeskio/Komboe/tree/main/docs";
 
 /** `importOptionsById` plus the picker vendor entries and format overrides the upgraded import
  *  flow needs. Only the upgraded flow reads this; the legacy dropdown and the CLI keep using
@@ -43,7 +43,7 @@ export const importUpgradeOptionsById = deepFreeze({
     hasDirectImporter: false,
     loaders: [Loader.file],
     sourceName: "KeePass",
-    instructionLink: "https://bitwarden.com/help/import-from-keepass/",
+    instructionLink: "https://github.com/GoDeskio/Komboe/tree/main/docs",
   },
   keepass2xml: {
     name: "KeePass 2 (xml)",
@@ -54,7 +54,7 @@ export const importUpgradeOptionsById = deepFreeze({
     hasDirectImporter: false,
     loaders: [Loader.file],
     sourceName: "KeePass",
-    instructionLink: "https://bitwarden.com/help/import-from-keepass/",
+    instructionLink: "https://github.com/GoDeskio/Komboe/tree/main/docs",
   },
   keepassxcsv: {
     name: "KeePassX (csv)",
@@ -65,7 +65,7 @@ export const importUpgradeOptionsById = deepFreeze({
     hasDirectImporter: false,
     loaders: [Loader.file],
     sourceName: "KeePass",
-    instructionLink: "https://bitwarden.com/help/import-from-keepass/",
+    instructionLink: "https://github.com/GoDeskio/Komboe/tree/main/docs",
   },
   "1password": {
     name: "1Password",
@@ -76,7 +76,7 @@ export const importUpgradeOptionsById = deepFreeze({
     hasDirectImporter: false,
     loaders: [Loader.file],
     sourceName: "1Password",
-    instructionLink: "https://bitwarden.com/help/import-from-1password/",
+    instructionLink: "https://github.com/GoDeskio/Komboe/tree/main/docs",
   },
   "1passwordwincsv": {
     name: "1Password 6 and 7 Windows .csv",
@@ -87,7 +87,7 @@ export const importUpgradeOptionsById = deepFreeze({
     hasDirectImporter: false,
     loaders: [Loader.file],
     sourceName: "1Password",
-    instructionLink: "https://bitwarden.com/help/import-from-1password/",
+    instructionLink: "https://github.com/GoDeskio/Komboe/tree/main/docs",
   },
   "1passwordmaccsv": {
     name: "1Password 6 and 7 Mac .csv",
@@ -98,7 +98,7 @@ export const importUpgradeOptionsById = deepFreeze({
     hasDirectImporter: false,
     loaders: [Loader.file],
     sourceName: "1Password",
-    instructionLink: "https://bitwarden.com/help/import-from-1password/",
+    instructionLink: "https://github.com/GoDeskio/Komboe/tree/main/docs",
   },
   enpass: {
     name: "Enpass",

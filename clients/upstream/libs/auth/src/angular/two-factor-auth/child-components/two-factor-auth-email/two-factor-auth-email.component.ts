@@ -144,6 +144,7 @@ export class TwoFactorAuthEmailComponent implements OnInit {
       request.ssoEmail2FaSessionToken =
         (await this.loginStrategyService.getSsoEmail2FaSessionToken()) ?? "";
       request.deviceIdentifier = await this.appIdService.getAppId();
+      request.komboeLoginChallenge = globalThis.sessionStorage?.getItem("komboe.loginChallenge") ?? "";
       request.authRequestAccessCode = (await this.loginStrategyService.getAccessCode()) ?? "";
       request.authRequestId = (await this.loginStrategyService.getAuthRequestId()) ?? "";
       this.emailPromise = this.twoFactorService.postTwoFactorEmail(request);

@@ -25,6 +25,12 @@
           [text]="'generator' | i18n"
           route="tools/generator"
         ></bit-nav-item>
+        <bit-nav-item
+          icon="bwi-download"
+          text="Downloads"
+          route="downloads"
+          data-testid="nav-downloads"
+        ></bit-nav-item>
       </bit-nav-section>
 
       <bit-nav-section [label]="'manage' | i18n">
@@ -34,6 +40,7 @@
           <bit-nav-item [text]="'myAccount' | i18n" route="settings/account"></bit-nav-item>
           <bit-nav-item [text]="'security' | i18n" route="settings/security"></bit-nav-item>
           <bit-nav-item [text]="'appearance' | i18n" route="settings/appearance"></bit-nav-item>
+        <bit-nav-item text="Device unlock" route="settings/device-access" data-testid="nav-device-access"></bit-nav-item>
           @let vfo1SubscriptionRoute = subscriptionRoute$ | async;
           @if (vfo1SubscriptionRoute) {
             <bit-nav-item
@@ -87,6 +94,12 @@
         <bit-nav-item [text]="'exportNoun' | i18n" route="tools/export"></bit-nav-item>
       </bit-nav-group>
       <bit-nav-item
+        icon="bwi-download"
+        text="Downloads"
+        route="downloads"
+        data-testid="nav-downloads"
+      ></bit-nav-item>
+      <bit-nav-item
         icon="bwi-sliders"
         [text]="'reports' | i18n"
         route="reports"
@@ -101,6 +114,7 @@
         <bit-nav-item [text]="'myAccount' | i18n" route="settings/account"></bit-nav-item>
         <bit-nav-item [text]="'security' | i18n" route="settings/security"></bit-nav-item>
         <bit-nav-item [text]="'appearance' | i18n" route="settings/appearance"></bit-nav-item>
+        <bit-nav-item text="Device unlock" route="settings/device-access" data-testid="nav-device-access"></bit-nav-item>
         @let subscriptionRoute = subscriptionRoute$ | async;
         @if (subscriptionRoute) {
           <bit-nav-item [text]="'subscription' | i18n" [route]="subscriptionRoute"></bit-nav-item>

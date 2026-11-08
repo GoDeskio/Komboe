@@ -94,6 +94,23 @@ export class DefaultLegacyCompatKeyService implements LegacyCompatKeyServiceAbst
     return masterKey;
   }
 
+  @measured(PERF_TRACK_GROUP, PERF_TRACK)
+  async makeMasterKeyPreservingSalt(
+    password: string,
+    salt: string,
+    kdfConfig: KdfConfig,
+  ): Promise<MasterKey> {
+    const start = new Date().getTime();
+    const masterKey = (await this.keyGenerationService.deriveKeyFromPassword(
+      password,
+      salt.trim(),
+      kdfConfig,
+    )) as MasterKey;
+    const end = new Date().getTime();
+    this.logService.info(`[LegacyCompatKeyService] Deriving master key took ${end - start}ms`);
+    return masterKey;
+  }
+
   /**
    * @deprecated Please use `makeMasterPasswordUnlockData` in {@link MasterPasswordService} instead.
    */

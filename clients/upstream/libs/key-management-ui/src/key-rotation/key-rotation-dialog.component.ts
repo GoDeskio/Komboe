@@ -162,7 +162,7 @@ export class KeyRotationDialogComponent {
 
     if (learnMore) {
       this.platformUtilsService.launchUri(
-        "https://bitwarden.com/help/attachments/#fixing-old-attachments",
+        "https://github.com/GoDeskio/Komboe/tree/main/docs",
       );
     }
   }

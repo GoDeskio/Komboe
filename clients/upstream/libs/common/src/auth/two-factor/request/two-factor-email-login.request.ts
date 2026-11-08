@@ -5,6 +5,7 @@ import { SecretVerificationRequest } from "../../models/request/secret-verificat
 export class TwoFactorEmailLoginRequest extends SecretVerificationRequest {
   email: string;
   deviceIdentifier: string;
+  komboeLoginChallenge: string;
   authRequestId: string;
   ssoEmail2FaSessionToken?: string;
 }

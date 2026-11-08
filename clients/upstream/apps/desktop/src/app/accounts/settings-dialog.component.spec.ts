@@ -786,7 +786,7 @@ describe("SettingsDialogComponent", () => {
 
           if (dialogResult) {
             expect(platformUtilsService.launchUri).toHaveBeenCalledWith(
-              "https://bitwarden.com/help/biometrics/",
+              "https://github.com/GoDeskio/Komboe/tree/main/docs",
             );
           } else {
             expect(platformUtilsService.launchUri).not.toHaveBeenCalled();

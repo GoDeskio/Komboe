@@ -2097,6 +2097,9 @@ export default class MainBackground {
        */
     ]);
 
+    const { revokeKomboeEmailTrust } = await import("@bitwarden/common/auth/komboe-email-trust");
+    await revokeKomboeEmailTrust(await this.tokenService.getAccessToken(userBeingLoggedOut));
+
     await this.keyService.clearKeys(userBeingLoggedOut);
 
     //Needs to be checked before state is cleaned

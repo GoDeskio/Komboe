@@ -86,7 +86,7 @@ export class NewItemNudgeComponent {
         this.nudgeTitle = this.i18nService.t("newSshNudgeTitle");
         this.nudgeBody = this.i18nService.t("newSshNudgeBodyOne");
         this.nudgeBodyLinkText = this.i18nService.t("newSshNudgeBodyTwo");
-        this.nudgeBodyLinkUrl = "https://bitwarden.com/help/ssh-agent";
+        this.nudgeBodyLinkUrl = "https://github.com/GoDeskio/Komboe/tree/main/docs";
         return NudgeType.NewSshItemStatus;
       }
       default:

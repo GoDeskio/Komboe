@@ -17,4 +17,10 @@ export abstract class PasswordPreloginService {
    * to prevent stale KDF config from persisting in memory.
    */
   abstract clearCache(): void;
+
+  /**
+   * Fetch the account KDF and the envelope for a login name.
+   * The vault-key email is inside the envelope and is not in this result.
+   */
+  abstract openLoginName(name: string): Promise<PasswordPreloginData>;
 }

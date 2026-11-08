@@ -21,7 +21,7 @@ import { SharedModule } from "../../shared/shared.module";
 })
 export class SMLandingComponent implements OnInit {
   tryItNowUrl: string;
-  learnMoreUrl: string = "https://bitwarden.com/help/secrets-manager-overview/";
+  learnMoreUrl: string = "https://github.com/GoDeskio/Komboe/tree/main/docs";
   imageSrc: string = "../images/sm.webp";
   showSecretsManagerInformation: boolean = true;
   showGiveMembersAccessInstructions: boolean = false;
@@ -81,7 +81,7 @@ export class SMLandingComponent implements OnInit {
     this.showGiveMembersAccessInstructions = true;
     this.showSecretsManagerInformation = false;
     this.learnMoreUrl =
-      "https://bitwarden.com/help/secrets-manager-quick-start/#give-members-access";
+      "https://github.com/GoDeskio/Komboe/tree/main/docs";
     this.imageSrc = "../images/sm-give-access.png";
     this.tryItNowUrl = `/organizations/${orgId}/members`;
   }

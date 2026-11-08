@@ -56,7 +56,12 @@ import { FeatureFlag } from "@bitwarden/common/enums/feature-flag.enum";
 import { ConfigService } from "@bitwarden/common/platform/abstractions/config/config.service";
 import { AnonLayoutWrapperComponent, AnonLayoutWrapperData } from "@bitwarden/components";
 import { canActivateImportType } from "@bitwarden/importer-ui";
-import { LockComponent, RemovePasswordComponent } from "@bitwarden/key-management-ui";
+import { RemovePasswordComponent } from "@bitwarden/key-management-ui";
+import {
+  KomboeDeviceAccessComponent,
+  KomboeLockPageComponent,
+} from "./auth/komboe-device-access.component";
+import { DownloadsComponent } from "./tools/downloads/downloads.component";
 import { premiumInterestRedirectGuard } from "@bitwarden/web-vault/app/vault/guards/premium-interest-redirect/premium-interest-redirect.guard";
 
 import { flagEnabled, Flags } from "../utils/flags";
@@ -445,7 +450,7 @@ const routes: Routes = [
         children: [
           {
             path: "",
-            component: LockComponent,
+            component: KomboeLockPageComponent,
           },
         ],
         data: {
@@ -689,6 +694,11 @@ const routes: Routes = [
         loadChildren: () => VaultModule,
       },
       {
+        path: "downloads",
+        component: DownloadsComponent,
+        data: { titleId: "download" } satisfies RouteDataProperties,
+      },
+      {
         path: "sends",
         component: SendComponent,
         data: { titleId: "send" } satisfies RouteDataProperties,
@@ -748,6 +758,11 @@ const routes: Routes = [
             path: "appearance",
             component: AppearanceComponent,
             data: { titleId: "appearance" } satisfies RouteDataProperties,
+          },
+          {
+            path: "device-access",
+            component: KomboeDeviceAccessComponent,
+            data: { titleId: "myAccount" } satisfies RouteDataProperties,
           },
           {
             path: "security",

@@ -11,7 +11,7 @@ import {
 import { BrowserApi } from "../browser/browser-api";
 import { ExtensionInstallType } from "../browser/extension-install-type";
 
-const WELCOME_PAGE_URL = "https://bitwarden.com/browser-start/";
+const WELCOME_PAGE_URL = "https://github.com/GoDeskio/Komboe/blob/main/docs/BROWSER-EXTENSIONS.md";
 
 const EXTENSION_INSTALLED = new KeyDefinition<boolean>(
   EXTENSION_INITIAL_INSTALL_DISK,

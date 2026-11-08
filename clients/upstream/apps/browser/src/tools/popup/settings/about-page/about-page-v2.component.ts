@@ -18,18 +18,19 @@ import { AboutDialogComponent } from "../about-dialog/about-dialog.component";
 
 const RateUrls = {
   [DeviceType.ChromeExtension]:
-    "https://chromewebstore.google.com/detail/bitwarden-free-password-m/nngceckbapebfimnlniiiahkandclblb/reviews",
+    "https://github.com/GoDeskio/Komboe/blob/main/docs/BROWSER-EXTENSIONS.md",
   [DeviceType.FirefoxExtension]:
-    "https://addons.mozilla.org/en-US/firefox/addon/bitwarden-password-manager/#reviews",
+    "https://github.com/GoDeskio/Komboe/blob/main/docs/BROWSER-EXTENSIONS.md",
   [DeviceType.OperaExtension]:
-    "https://addons.opera.com/en/extensions/details/bitwarden-free-password-manager/#feedback-container",
+    "https://github.com/GoDeskio/Komboe/blob/main/docs/BROWSER-EXTENSIONS.md",
   [DeviceType.EdgeExtension]:
-    "https://microsoftedge.microsoft.com/addons/detail/jbkfoedolllekgbhcbcoahefnbanhhlh",
+    "https://github.com/GoDeskio/Komboe/blob/main/docs/BROWSER-EXTENSIONS.md",
   [DeviceType.VivaldiExtension]:
-    "https://chromewebstore.google.com/detail/bitwarden-free-password-m/nngceckbapebfimnlniiiahkandclblb/reviews",
-  [DeviceType.SafariExtension]: "https://apps.apple.com/app/bitwarden/id1352778147",
+    "https://github.com/GoDeskio/Komboe/blob/main/docs/BROWSER-EXTENSIONS.md",
+  [DeviceType.SafariExtension]:
+    "https://github.com/GoDeskio/Komboe/blob/main/docs/BROWSER-EXTENSIONS.md",
   [DeviceType.DuckDuckGoExtension]:
-    "https://chromewebstore.google.com/detail/bitwarden-free-password-m/nngceckbapebfimnlniiiahkandclblb/reviews",
+    "https://github.com/GoDeskio/Komboe/blob/main/docs/BROWSER-EXTENSIONS.md",
 };
 
 // FIXME(https://bitwarden.atlassian.net/browse/CL-764): Migrate to OnPush
@@ -71,7 +72,7 @@ export class AboutPageV2Component {
       acceptButtonText: { key: "continue" },
     });
     if (confirmed) {
-      await BrowserApi.createNewTab("https://bitwarden.com/help/");
+      await BrowserApi.createNewTab("https://github.com/GoDeskio/Komboe/tree/main/docs");
     }
   }
 

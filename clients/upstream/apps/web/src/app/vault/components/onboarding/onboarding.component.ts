@@ -12,7 +12,6 @@ import {
 import {
   AccordionComponent,
   BadgeComponent,
-  BitwardenIcon,
   ButtonComponent,
   IconComponent,
 } from "@bitwarden/components";
@@ -30,7 +29,6 @@ export class OnboardingComponent implements AfterContentInit {
   readonly tasks = contentChildren(OnboardingTaskComponent);
   readonly title = input.required<string>();
   readonly subtitle = input<string>();
-  readonly startIcon = input<BitwardenIcon>();
 
   readonly dismiss = output<void>();
 

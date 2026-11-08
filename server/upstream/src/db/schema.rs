@@ -532,6 +532,79 @@ table! {
 }
 
 table! {
+    komboe_email_login_policy (user_uuid) {
+        user_uuid -> Text,
+        interval_secs -> Nullable<BigInt>,
+    }
+}
+
+table! {
+    komboe_email_login_trust (user_uuid, device_uuid) {
+        user_uuid -> Text,
+        device_uuid -> Text,
+        verified_at -> BigInt,
+    }
+}
+
+table! {
+    komboe_email_trust_tokens (token_hash) {
+        token_hash -> Text,
+        user_uuid -> Text,
+        verified_at -> BigInt,
+        revoked_at -> Nullable<BigInt>,
+    }
+}
+
+table! {
+    komboe_email_login_challenges (challenge_id) {
+        challenge_id -> Text,
+        user_uuid -> Text,
+        code_hash -> Nullable<Text>,
+        expires_at -> BigInt,
+        used_at -> Nullable<BigInt>,
+        attempts -> Integer,
+        created_at -> BigInt,
+        last_sent_at -> Nullable<BigInt>,
+        send_count -> Integer,
+    }
+}
+
+table! {
+    komboe_email_login_codes (uuid) {
+        uuid -> Text,
+        user_uuid -> Text,
+        device_uuid -> Text,
+        code_hash -> Text,
+        purpose -> Text,
+        expires_at -> BigInt,
+        used_at -> Nullable<BigInt>,
+        attempts -> Integer,
+        created_at -> BigInt,
+    }
+}
+
+table! {
+    komboe_login_names (user_uuid) {
+        user_uuid -> Text,
+        name -> Text,
+        verifier_hash -> Nullable<Text>,
+        envelope -> Nullable<Text>,
+        envelope_salt -> Nullable<Text>,
+        wrap_kdf_type -> Nullable<Integer>,
+        wrap_kdf_iter -> Nullable<Integer>,
+        wrap_kdf_memory -> Nullable<Integer>,
+        wrap_kdf_parallelism -> Nullable<Integer>,
+    }
+}
+
+table! {
+    komboe_kdf_email (user_uuid) {
+        user_uuid -> Text,
+        kdf_email -> Text,
+    }
+}
+
+table! {
     komboe_agent_sessions (uuid) {
         uuid -> Text,
         user_uuid -> Text,
@@ -697,5 +770,12 @@ allow_tables_to_appear_in_same_query!(
     komboe_pgp_auth_keys,
     komboe_pgp_auth_challenges,
     komboe_pgp_vault_keys,
-    komboe_agent_sessions
+    komboe_agent_sessions,
+    komboe_login_names,
+    komboe_kdf_email,
+    komboe_email_login_policy,
+    komboe_email_login_trust,
+    komboe_email_login_codes,
+    komboe_email_trust_tokens,
+    komboe_email_login_challenges
 );

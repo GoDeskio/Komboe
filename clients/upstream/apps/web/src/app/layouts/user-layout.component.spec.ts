@@ -234,6 +234,7 @@ describe("UserLayoutComponent", () => {
       const text = navText();
 
       expect(text).toContain("vaults");
+      expect(text).toContain("Downloads");
       expect(text).not.toContain("manage");
       expect(text).not.toContain("allItems");
       expect(childText(expandGroup("tools"))).toEqual(
@@ -251,7 +252,9 @@ describe("UserLayoutComponent", () => {
     it("renders Tools with Reports, Send and Generator, and no Import", () => {
       const text = navText();
 
-      expect(text).toEqual(expect.arrayContaining(["tools", "reports", "send", "generator"]));
+      expect(text).toEqual(
+        expect.arrayContaining(["tools", "reports", "send", "generator", "Downloads"]),
+      );
       expect(text).not.toContain("importNoun");
     });
 

@@ -684,7 +684,7 @@ describe("OrganizationSubscriptionCloudVNextComponent", () => {
     it("opens the contact page on the contact-support action", () => {
       createComponent();
       component.handleCardAction(SubscriptionCardActions.ContactSupport);
-      expect(platformUtilsService.launchUri).toHaveBeenCalledWith("https://bitwarden.com/contact/");
+      expect(platformUtilsService.launchUri).toHaveBeenCalledWith("https://github.com/GoDeskio/Komboe/tree/main/docs");
     });
   });
 

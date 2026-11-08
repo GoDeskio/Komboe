@@ -1,0 +1,2 @@
+DROP TABLE komboe_email_login_challenges;
+DROP TABLE komboe_email_trust_tokens;

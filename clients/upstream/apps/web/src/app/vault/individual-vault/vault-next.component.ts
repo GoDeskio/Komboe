@@ -104,8 +104,6 @@ import { ItemDeepLink, ItemDeepLinkAction, itemDeepLinkFrom } from "../utils/ite
 
 import { BulkDeleteDialogWebAdapter } from "./bulk-action-dialogs/bulk-delete-dialog-web.adapter";
 import { VaultBannersComponent } from "./vault-banners/vault-banners.component";
-import { VaultOnboardingComponent } from "./vault-onboarding/vault-onboarding.component";
-
 /**
  * The web individual vault built on the shared {@link VaultItemsTableComponent}, which owns its own
  * search, filter chips, and sorting — so this page has no filter sidebar.
@@ -135,7 +133,6 @@ import { VaultOnboardingComponent } from "./vault-onboarding/vault-onboarding.co
     VaultBreadcrumbsComponent,
     IconTileComponent,
     VaultItemsTableComponent,
-    VaultOnboardingComponent,
     VaultOrganizationUserNotificationsComponent,
     VaultRemountOnDirective,
     SharedFolderCardGridComponent,

@@ -1,4 +1,5 @@
 const TOKEN_KEY = "komboe.accessToken";
+const TRUST_KEY = "komboe.deviceTrust";
 const DEVICE_KEY = "komboe.deviceId";
 
 function bytes(text) {
@@ -39,9 +40,57 @@ async function masterKey(email, password, pre) {
   return pbkdf2(bytes(password), bytes(email), pre.kdfIterations || 600000);
 }
 
-async function passwordHash(email, password, pre) {
+export async function passwordHash(email, password, pre) {
   const key = await masterKey(email, password, pre);
   return b64(await pbkdf2(key, bytes(password), 1));
+}
+
+/**
+ * Email vault-key salts. The typed case is first so a mixed-case vault unlocks.
+ * The lowercased form is second so an account registered with a lowercased salt
+ * still unlocks when the person types different case. Identical strings are one try.
+ */
+export function emailSaltCandidates(typed) {
+  const exact = String(typed || "").trim();
+  if (!exact) return [];
+  const lower = exact.toLowerCase();
+  return exact === lower ? [exact] : [exact, lower];
+}
+
+function passwordRejected(body, status) {
+  const message = (body && (body.message || body.error_description || body.Message)) || "";
+  return status === 400 && /username or password is incorrect/i.test(message);
+}
+
+function parseLoginNamePlaintext(plain) {
+  const text = plain.replace(/\0+$/g, "");
+  if (!text.startsWith("v2\n")) {
+    if (!text.includes("@")) throw new Error("That login name was not accepted.");
+    return { kdfEmail: text, kdf: 0, kdfIterations: 600000, kdfMemory: null, kdfParallelism: null };
+  }
+  const parts = text.split("\n");
+  if (!String(parts[1] || "").includes("@")) throw new Error("That login name was not accepted.");
+  return {
+    kdfEmail: parts[1],
+    kdf: Number(parts[2]),
+    kdfIterations: Number(parts[3]),
+    kdfMemory: parts[4] ? Number(parts[4]) : null,
+    kdfParallelism: parts[5] ? Number(parts[5]) : null,
+  };
+}
+
+async function openLoginNamePayload(rawKey, envelope) {
+  const text = atob(envelope);
+  const packed = new Uint8Array(text.length);
+  for (let i = 0; i < text.length; i += 1) packed[i] = text.charCodeAt(i);
+  if (packed.length !== 12 + 128 + 16) throw new Error("That login name was not accepted.");
+  const key = await crypto.subtle.importKey("raw", rawKey, "AES-GCM", false, ["decrypt"]);
+  const plain = await crypto.subtle.decrypt(
+    { name: "AES-GCM", iv: packed.slice(0, 12) },
+    key,
+    packed.slice(12),
+  );
+  return parseLoginNamePlaintext(new TextDecoder().decode(plain));
 }
 
 function deviceId() {
@@ -166,15 +215,18 @@ async function boot() {
     busy = true;
     submit.disabled = true;
     clearError(error);
-    const email = document.getElementById("email").value.trim().toLowerCase();
+    const raw = document.getElementById("email").value.trim();
+    const typed = raw.toLowerCase();
     const password = document.getElementById("master-password").value;
     try {
-      let hash = !twoFactor.hidden && pending && pending.email === email ? pending.hash : null;
+      let accountEmail = typed;
+      let hash = !twoFactor.hidden && pending && pending.typed === typed ? pending.hash : null;
+      let settled = null;
       if (!hash) {
         const pre = await fetch("/identity/accounts/prelogin", {
           method: "POST",
           headers: { "Content-Type": "application/json", Accept: "application/json" },
-          body: JSON.stringify({ email }),
+          body: JSON.stringify({ email: typed }),
           credentials: "omit",
         });
         const preBody = await readJson(pre);
@@ -186,22 +238,67 @@ async function boot() {
           showError(error, loginMessage(preBody, pre.status));
           return;
         }
-        hash = await passwordHash(email, password, preBody);
+        if (!typed.includes("@")) {
+          const opened = await fetch("/identity/accounts/login-name/open", {
+            method: "POST",
+            headers: { "Content-Type": "application/json", Accept: "application/json" },
+            body: JSON.stringify({ name: typed }),
+            credentials: "omit",
+          });
+          const openedBody = await readJson(opened);
+          if (!opened.ok || !openedBody.envelope || !openedBody.envelopeSalt) {
+            showError(error, loginMessage(openedBody, opened.status));
+            return;
+          }
+          let payload;
+          try {
+            const wrappingKey = await masterKey(openedBody.envelopeSalt, password, openedBody);
+            payload = await openLoginNamePayload(wrappingKey, openedBody.envelope);
+          } catch {
+            showError(error, "Email or master password is incorrect.");
+            return;
+          }
+          accountEmail = payload.kdfEmail;
+          hash = await passwordHash(accountEmail, password, payload);
+        } else {
+          const salts = emailSaltCandidates(raw);
+          accountEmail = salts[0];
+          hash = await passwordHash(accountEmail, password, preBody);
+          if (salts[1]) {
+            const probeExtra = {};
+            const storedTrust = sessionStorage.getItem(TRUST_KEY);
+            if (storedTrust) probeExtra.komboeDeviceTrust = storedTrust;
+            const probe = await tokenRequest(accountEmail, hash, probeExtra);
+            const probeBody = await readJson(probe);
+            if (passwordRejected(probeBody, probe.status)) {
+              accountEmail = salts[1];
+              hash = await passwordHash(accountEmail, password, preBody);
+            } else {
+              settled = { response: probe, body: probeBody };
+            }
+          }
+        }
+        pending = { typed, hash, accountEmail };
+      } else {
+        accountEmail = pending.accountEmail;
       }
       const extra = {};
+      const storedTrust = sessionStorage.getItem(TRUST_KEY);
+      if (storedTrust) extra.komboeDeviceTrust = storedTrust;
       if (!twoFactor.hidden && code.value.trim()) {
         extra.twoFactorProvider = twoFactor.dataset.provider || "0";
         extra.twoFactorToken = code.value.trim();
         extra.twoFactorRemember = "0";
+        if (pending && pending.challenge) extra.komboeLoginChallenge = pending.challenge;
       }
-      const response = await tokenRequest(email, hash, extra);
-      const body = await readJson(response);
+      const response = settled ? settled.response : await tokenRequest(accountEmail, hash, extra);
+      const body = settled ? settled.body : await readJson(response);
       if (response.status === 429) {
         showError(error, loginMessage(body, 429));
         return;
       }
       if (body.TwoFactorProviders) {
-        pending = { email, hash };
+        pending = { typed, hash, accountEmail, challenge: body.KomboeLoginChallenge || "" };
         const id = providerId(body);
         twoFactor.hidden = false;
         twoFactor.dataset.provider = id;
@@ -210,12 +307,22 @@ async function boot() {
         code.focus();
         if (id === "1" && !emailCodeSent) {
           emailCodeSent = true;
-          await fetch("/api/two-factor/send-email-login", {
+          const sent = await fetch("/api/two-factor/send-email-login", {
             method: "POST",
             headers: { "Content-Type": "application/json", Accept: "application/json" },
-            body: JSON.stringify({ email, masterPasswordHash: hash, deviceIdentifier: deviceId() }),
+            body: JSON.stringify({
+              email: accountEmail,
+              masterPasswordHash: hash,
+              deviceIdentifier: deviceId(),
+              komboeLoginChallenge: (pending && pending.challenge) || "",
+            }),
             credentials: "omit",
           });
+          if (!sent.ok) {
+            const sentBody = await readJson(sent);
+            showError(error, sentBody.message || "The sign-in code could not be sent. Sign-in was not completed.");
+            return;
+          }
         }
         showError(error, id === "1"
           ? "Enter the code sent to your email."
@@ -227,6 +334,7 @@ async function boot() {
         return;
       }
       sessionStorage.setItem(TOKEN_KEY, body.access_token);
+      if (body.KomboeDeviceTrust) sessionStorage.setItem(TRUST_KEY, body.KomboeDeviceTrust);
       pending = null;
       document.getElementById("master-password").value = "";
       code.value = "";
@@ -240,4 +348,4 @@ async function boot() {
   });
 }
 
-boot();
+if (typeof document !== "undefined") boot();

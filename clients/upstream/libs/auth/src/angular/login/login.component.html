@@ -2,10 +2,11 @@
   <div [ngClass]="{ 'tw-hidden': loginUiState !== LoginUiState.EMAIL_ENTRY }">
     <!-- Email Address input -->
     <bit-form-field>
-      <bit-label>{{ "emailAddress" | i18n }}</bit-label>
+      <bit-label>Email or login name</bit-label>
       <input
         id="email"
-        type="email"
+        type="text"
+        autocomplete="username"
         formControlName="email"
         bitInput
         appAutofocus
